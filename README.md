@@ -1,4 +1,4 @@
-# Aegis Sequential Max Agent Framework 4.0.0
+# Aegis Framework 0.0.1
 
 A project-independent coding-agent operating framework with a small host-neutral policy core, executable
 state/evidence/law infrastructure, and optional host/environment adapters.
