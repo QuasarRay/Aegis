@@ -1,0 +1,8 @@
+{
+  "content_sha256": "83eae81590e1522f7fcecffd5a47bced04dfd0c606b87808d3923cc2f6594031",
+  "deployment": "manual-human-action-required",
+  "manifest_sha256": "39ea7aa8d57f484dab903c052d43d4eb7ecedd4190e393228c91cf06eb2b53b4",
+  "schema": 2,
+  "source_authority": "source-tree-outside-.agents",
+  "version": "4.0.0"
+}
