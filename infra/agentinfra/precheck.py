@@ -123,7 +123,6 @@ def build_precheck(
         reference_paths=scope_data["reference"],
         user_dirty=discovery.get("dirty_tracked", []),
         nested_repositories=discovery.get("nested_repositories", []),
-        baseline_authorized=False,
         governance_digest=governance["digest"],
     )
     artifacts = {

@@ -16,15 +16,29 @@ from agentinfra.transaction import FileTransaction, Mutation, TransactionError, 
 
 class TestAtomicWrite(unittest.TestCase):
     def test_atomic_write_accepts_lexical_alias_of_same_resolved_root(self):
-        lexical_root = Path.cwd()
-        resolved_root = lexical_root.resolve(strict=True)
+        resolved_root = Path.cwd().resolve(strict=True)
+        lexical_root = resolved_root
+        if os.name == "nt":
+            for codepoint in range(ord("A"), ord("Z") + 1):
+                drive = Path(f"{chr(codepoint)}:\\")
+                try:
+                    relative = resolved_root.relative_to(drive.resolve(strict=True))
+                    candidate = drive / relative
+                    if candidate != resolved_root and candidate.resolve(strict=True) == resolved_root:
+                        lexical_root = candidate
+                        break
+                except (OSError, ValueError):
+                    continue
         if lexical_root == resolved_root:
-            self.skipTest("current workspace has no distinct lexical filesystem alias")
+            self.skipTest("host exposes no distinct lexical alias for the current workspace")
         runtime = lexical_root / ".aegis" / "runtime"
         runtime.mkdir(parents=True, exist_ok=True)
         with tempfile.TemporaryDirectory(dir=runtime) as td:
             target = Path(td) / "alias-write"
-            atomic_write_bytes(target, b"complete", root=resolved_root)
+            try:
+                atomic_write_bytes(target, b"complete", root=resolved_root)
+            except AtomicWriteError as exc:
+                self.fail(f"same-resolved-root lexical alias was rejected as an escape: {exc}")
             self.assertEqual(target.read_bytes(), b"complete")
 
     @unittest.skipIf(os.name == "nt", "POSIX permission bits are a POSIX host capability")

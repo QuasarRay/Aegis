@@ -16,6 +16,7 @@ TDD_MODES = {
 }
 TDD_STATUSES = {
     "TEST_DESIGNED",
+    "BASELINE_ATTEMPT",
     "BASELINE_EXECUTED",
     "RED_OBSERVED",
     "CHARACTERIZATION_OBSERVED",
@@ -27,6 +28,7 @@ TDD_STATUSES = {
 }
 _BASELINE_STATUSES = {value[1] for value in TDD_MODES.values()}
 FALSIFICATION_OUTCOMES = {"NO_COUNTEREXAMPLE", "COUNTEREXAMPLE"}
+FALSIFICATION_CAPABILITY_STATUSES = {"PROVEN", "UNAVAILABLE", "BLOCKED", "UNTESTED", "NOT_APPLICABLE"}
 _SHA256_RE = re.compile(r"^[0-9a-f]{64}$")
 _ID_RE = re.compile(r"^[A-Za-z0-9][A-Za-z0-9_.-]{0,63}$")
 
@@ -177,8 +179,45 @@ def new_tdd_cycle(
                 remediation=remediation,
             )
         ],
+        # Pure constructors are intentionally not an operational trust
+        # boundary.  StateStore will never grant implementation authority to
+        # a caller-asserted baseline carrying this source marker.
+        "authority_source": "CALLER_ASSERTED",
     }
     return _seal(value)
+
+
+def record_baseline_attempt(
+    cycle: dict,
+    *,
+    classification: str,
+    evidence_id: str,
+    evidence_digest: str,
+    detail: str,
+) -> dict:
+    """Append a fail-closed observed baseline attempt without granting authority."""
+
+    validate_tdd_cycle(cycle)
+    if cycle["status"] != "TEST_DESIGNED":
+        raise AssuranceError("baseline attempts require an active TEST_DESIGNED cycle")
+    if not isinstance(classification, str) or not classification.strip():
+        raise AssuranceError("baseline attempt requires a classification")
+    if not isinstance(evidence_id, str) or not evidence_id.startswith("E-"):
+        raise AssuranceError("baseline attempt requires framework evidence")
+    _require_digest(evidence_digest, "baseline attempt evidence digest")
+    if not isinstance(detail, str) or not detail.strip():
+        raise AssuranceError("baseline attempt requires detail")
+    updated = copy.deepcopy(cycle)
+    updated["events"].append(
+        _event(
+            "BASELINE_ATTEMPT",
+            classification=classification.strip(),
+            evidence_id=evidence_id,
+            evidence_digest=evidence_digest,
+            detail=detail.strip(),
+        )
+    )
+    return _seal(updated)
 
 
 def record_baseline(
@@ -386,7 +425,7 @@ def validate_falsification_receipt(
 ) -> bool:
     """Return whether a falsification receipt is intact and current."""
 
-    if not isinstance(receipt, dict) or receipt.get("schema") != 1:
+    if not isinstance(receipt, dict) or receipt.get("schema") not in {1, 2}:
         return False
     if receipt.get("receipt_sha256") != _digest(receipt, "receipt_sha256"):
         return False
@@ -396,16 +435,48 @@ def validate_falsification_receipt(
         return False
     if any(not isinstance(receipt.get(field), str) or not _SHA256_RE.fullmatch(receipt[field]) for field in ("tdd_cycle_digest", "diff_digest")):
         return False
-    if any(
-        not isinstance(receipt.get(field), list)
-        or not receipt[field]
-        or any(not isinstance(item, str) or not item.strip() for item in receipt[field])
-        for field in ("methods", "attempts", "boundary_cases")
-    ):
-        return False
-    counterexamples = receipt.get("counterexamples")
-    if not isinstance(counterexamples, list) or any(not isinstance(item, str) or not item.strip() for item in counterexamples):
-        return False
+    if receipt.get("schema") == 1:
+        if any(
+            not isinstance(receipt.get(field), list)
+            or not receipt[field]
+            or any(not isinstance(item, str) or not item.strip() for item in receipt[field])
+            for field in ("methods", "attempts", "boundary_cases")
+        ):
+            return False
+        counterexamples = receipt.get("counterexamples")
+        if not isinstance(counterexamples, list) or any(not isinstance(item, str) or not item.strip() for item in counterexamples):
+            return False
+    else:
+        required = receipt.get("required_families")
+        attempts = receipt.get("attempts")
+        if (
+            not isinstance(required, list)
+            or not required
+            or required != sorted(set(required))
+            or not isinstance(attempts, list)
+            or len(attempts) != len(required)
+            or [item.get("family") for item in attempts if isinstance(item, dict)] != required
+        ):
+            return False
+        for attempt in attempts:
+            if (
+                not isinstance(attempt, dict)
+                or not isinstance(attempt.get("attempt_id"), str)
+                or not isinstance(attempt.get("evidence_id"), str)
+                or not attempt["evidence_id"].startswith("E-")
+                or not isinstance(attempt.get("evidence_digest"), str)
+                or not _SHA256_RE.fullmatch(attempt["evidence_digest"])
+                or attempt.get("capability_status") not in FALSIFICATION_CAPABILITY_STATUSES
+                or attempt.get("outcome") not in FALSIFICATION_OUTCOMES
+                or attempt.get("task_id") != receipt.get("task_id")
+                or attempt.get("tdd_cycle_digest") != receipt.get("tdd_cycle_digest")
+                or attempt.get("epoch") != receipt.get("epoch")
+                or attempt.get("diff_digest") != receipt.get("diff_digest")
+            ):
+                return False
+        if any(item["capability_status"] != "PROVEN" for item in attempts):
+            return False
+        counterexamples = [item["attempt_id"] for item in attempts if item["outcome"] == "COUNTEREXAMPLE"]
     outcome = receipt.get("outcome")
     if outcome not in FALSIFICATION_OUTCOMES:
         return False
@@ -420,3 +491,40 @@ def validate_falsification_receipt(
         "diff_digest": current_diff_digest,
     }
     return all(value is None or receipt.get(field) == value for field, value in expected.items())
+
+
+def build_execution_falsification_receipt(
+    *,
+    task_id: str,
+    tdd_cycle_digest: str,
+    epoch: int,
+    diff_digest: str,
+    required_families: list[str],
+    attempts: list[dict],
+) -> dict:
+    """Build the trusted schema only from executed, evidence-bound attempts."""
+
+    required = sorted(set(_require_string_list(required_families, "required falsification families", nonempty=True)))
+    selected = sorted((copy.deepcopy(item) for item in attempts), key=lambda item: item.get("family", ""))
+    receipt = {
+        "schema": 2,
+        "task_id": task_id,
+        "recorded_at": _now(),
+        "tdd_cycle_digest": _require_digest(tdd_cycle_digest, "TDD-cycle digest"),
+        "epoch": epoch,
+        "diff_digest": _require_digest(diff_digest, "diff digest"),
+        "required_families": required,
+        "attempts": selected,
+        "outcome": "COUNTEREXAMPLE" if any(item.get("outcome") == "COUNTEREXAMPLE" for item in selected) else "NO_COUNTEREXAMPLE",
+    }
+    receipt["receipt_sha256"] = _digest(receipt, "receipt_sha256")
+    if not validate_falsification_receipt(
+        receipt,
+        task_id=task_id,
+        current_tdd_cycle_digest=tdd_cycle_digest,
+        current_epoch=epoch,
+        current_diff_digest=diff_digest,
+        require_clean=False,
+    ):
+        raise AssuranceError("executed falsification attempts do not exactly cover the required families")
+    return receipt

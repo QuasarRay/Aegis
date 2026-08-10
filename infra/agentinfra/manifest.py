@@ -10,6 +10,7 @@ import zipfile
 from pathlib import Path, PurePosixPath
 
 from .atomic import atomic_write_bytes
+from .governance import _governance_tree_creation
 from .locks import FileLock
 from .security import confined_path
 
@@ -295,6 +296,15 @@ def safe_extract(archive_path: Path, destination: Path) -> list[str]:
             target = confined_path(root, relative, reject_symlinks=True)
             if target.exists():
                 raise ManifestError(f"archive extraction refuses to overwrite: {relative}")
-            target.parent.mkdir(parents=True, exist_ok=True)
-            atomic_write_bytes(target, archive.read(info), root=root, mode=((info.external_attr >> 16) & 0o777) or 0o644)
+        with _governance_tree_creation(root):
+            for info in members:
+                relative = _safe_relative(info.filename, require_agents=False)
+                target = confined_path(root, relative, reject_symlinks=True)
+                target.parent.mkdir(parents=True, exist_ok=True)
+                atomic_write_bytes(
+                    target,
+                    archive.read(info),
+                    root=root,
+                    mode=((info.external_attr >> 16) & 0o777) or 0o644,
+                )
     return sorted(seen)

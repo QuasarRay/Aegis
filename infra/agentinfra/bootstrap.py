@@ -10,6 +10,7 @@ import uuid
 from pathlib import Path
 
 from .atomic import atomic_write_bytes
+from .governance import _governing_instruction_update
 from .locks import FileLock
 from .paths import framework_dir, install_state_dir, persistent_dir, runtime_dir
 from .security import confined_path
@@ -189,11 +190,12 @@ def _public(plan: dict) -> dict:
 
 def install(root: Path, *, apply: bool = False, replace_managed_block: bool = False) -> dict:
     root = root.resolve(strict=True)
-    recover_named_transactions(
-        persistent_dir(root) / "transactions",
-        expected_root=root,
-        names=("bootstrap-install", "bootstrap-uninstall"),
-    )
+    with _governing_instruction_update(root, root / "AGENTS.md"):
+        recover_named_transactions(
+            persistent_dir(root) / "transactions",
+            expected_root=root,
+            names=("bootstrap-install", "bootstrap-uninstall"),
+        )
     initial = plan_install(root, replace_managed_block=replace_managed_block)
     if not apply or not initial["changed"]:
         return {"applied": False, **_public(initial)}
@@ -243,12 +245,13 @@ def install(root: Path, *, apply: bool = False, replace_managed_block: bool = Fa
             Mutation(target, plan["_new_bytes"], expected_sha256=plan["before_sha256"] if plan["target_existed"] else None, expected_exists=plan["target_existed"], mode=original_mode),
             Mutation(_journal_path(root), _journal_bytes(journal), expected_sha256=_sha_bytes(_journal_path(root).read_bytes()) if _journal_path(root).exists() else None, expected_exists=_journal_path(root).exists(), mode=0o600),
         ]
-        FileTransaction(
-            root,
-            mutations,
-            state_dir=persistent_dir(root) / "transactions",
-            name="bootstrap-install",
-        ).commit(retain=False)
+        with _governing_instruction_update(root, target):
+            FileTransaction(
+                root,
+                mutations,
+                state_dir=persistent_dir(root) / "transactions",
+                name="bootstrap-install",
+            ).commit(retain=False)
         _legacy_journal_path(root).unlink(missing_ok=True)
         return {"applied": True, **_public(plan), "backup": backup_rel, "journal": str(_journal_path(root))}
     except BaseException:
@@ -314,11 +317,12 @@ def plan_uninstall(root: Path, *, force_managed_block: bool = False) -> dict:
 
 def uninstall(root: Path, *, apply: bool = False, force_managed_block: bool = False) -> dict:
     root = root.resolve(strict=True)
-    recover_named_transactions(
-        persistent_dir(root) / "transactions",
-        expected_root=root,
-        names=("bootstrap-install", "bootstrap-uninstall"),
-    )
+    with _governing_instruction_update(root, root / "AGENTS.md"):
+        recover_named_transactions(
+            persistent_dir(root) / "transactions",
+            expected_root=root,
+            names=("bootstrap-install", "bootstrap-uninstall"),
+        )
     initial = plan_uninstall(root, force_managed_block=force_managed_block)
     if not apply or not initial.get("changed"):
         return {"applied": False, **_public(initial)}
@@ -337,12 +341,13 @@ def uninstall(root: Path, *, apply: bool = False, force_managed_block: bool = Fa
         if backup_rel:
             backup = confined_path(root, backup_rel, must_exist=True, reject_symlinks=True)
             mutations.append(Mutation(backup, None, expected_sha256=_sha_bytes(backup.read_bytes()), expected_exists=True))
-        FileTransaction(
-            root,
-            mutations,
-            state_dir=persistent_dir(root) / "transactions",
-            name="bootstrap-uninstall",
-        ).commit(retain=False)
+        with _governing_instruction_update(root, target):
+            FileTransaction(
+                root,
+                mutations,
+                state_dir=persistent_dir(root) / "transactions",
+                name="bootstrap-uninstall",
+            ).commit(retain=False)
         return {"applied": True, **_public(plan)}
     finally:
         lock.release()

@@ -449,7 +449,11 @@ def scaffold(root: Path, module_id: str, kind: str = "agent-host") -> dict:
         raise ModuleError("module id must be 2-64 lowercase letters/digits/hyphens")
     if kind not in KINDS:
         raise ModuleError(f"unknown module kind: {kind!r}")
-    base = root / ".agents" / "local-modules"
+    # Local module source belongs beside the authoritative framework surface:
+    # ``root/local-modules`` in a source checkout, and the immutable deployed
+    # ``.agents/local-modules`` surface otherwise.  The latter remains guarded
+    # by FileTransaction and therefore fails closed for ordinary callers.
+    base = framework_dir(root) / "local-modules"
     base.mkdir(parents=True, exist_ok=True)
     destination = confined_path(base.resolve(), module_id, reject_symlinks=True)
     if destination.exists():

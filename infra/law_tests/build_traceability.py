@@ -262,10 +262,8 @@ SOURCE_PROPERTY_SUBSUMPTION = {
     "31": ("property-module-test_policy_compiler_properties", "property-module-test_law_runtime_properties", "unit-module-test_context_cache"),
     "32": ("property-module-test_policy_compiler_properties", "property-module-test_tdd_lifecycle_properties", "property-module-test_state_assurance_integration_properties", "property-module-test_final_audit_properties"),
     "33": ("unit-module-test_atomic_transaction", "property-module-test_state_assurance_integration_properties", "property-module-test_operational_runtime_properties", "unit-module-test_locks"),
-    "34": ("property-module-test_scope_controls_properties", "property-module-test_governance_runtime_properties", "property-module-test_state_assurance_integration_properties", "unit-module-test_laws"),
     "35": ("property-module-test_operational_runtime_properties", "property-module-test_release_source_properties", "unit-module-test_migration"),
     "36": ("property-module-test_release_source_properties", "unit-module-test_context_cache", "unit-module-test_evidence", "unit-module-test_laws"),
-    "37": ("property-module-test_governance_runtime_properties", "property-module-test_policy_compiler_properties", "property-module-test_tdd_lifecycle_properties", "property-module-test_assurance_review_properties", "property-module-test_state_assurance_integration_properties", "property-module-test_final_audit_properties", "property-module-test_operational_runtime_properties", "property-module-test_release_source_properties"),
 }
 
 
@@ -340,7 +338,13 @@ def load_semantic_catalog(root: Path, inventory_sources: dict[str, str]) -> tupl
         raise RuntimeError(
             f"semantic observation catalog is not an exact inventory bijection; missing={missing[:5]} extra={extra[:5]}"
         )
-    permitted_families = {item[0] for item in FAMILY.values()} | {"outer-unit", "outer-law", "outer-template", "source-assurance"}
+    permitted_families = {item[0] for item in FAMILY.values()} | {
+        "outer-unit",
+        "outer-law",
+        "outer-template",
+        "source-assurance",
+        "historical-integrity",
+    }
     forbidden_labels = {
         "family-completed", "family-registered",
         *(item[0] for item in FAMILY.values()),

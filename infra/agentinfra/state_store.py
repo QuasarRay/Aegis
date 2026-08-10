@@ -16,11 +16,24 @@ from .assurance import (
 )
 from .atomic import atomic_write_json
 from .controls import GATE_SEVERITIES, validate_gate_waiver
-from .evidence import evidence_lock, load_evidence
+from .evidence import (
+    _append_framework_evidence,
+    evidence_lock,
+    load_evidence,
+    rollback_last_evidence,
+)
+from .final_audit import REQUIRED_FINAL_AUDIT_CHECKS, non_write_audit_binding_digest, validate_task_audit_receipt
 from .locks import FileLock, LeaseLock
 from .paths import leases_dir, persistent_dir, runtime_dir, tasks_dir
 from .security import confined_path
-from .review import ReviewError, review_receipt_digest, validate_review_receipt
+from .review import (
+    ReviewError,
+    review_handoff_digest,
+    review_payload_digest,
+    review_receipt_digest,
+    validate_review_payload,
+    validate_review_receipt,
+)
 from .state_machine import ALLOWED, STATES, TERMINAL_STATES, validate_transition
 from .transaction import FileTransaction, Mutation
 from .workspace import workspace_fingerprint
@@ -67,6 +80,8 @@ def _empty_tdd() -> dict:
         "semantic_reason": "",
         "active_cycle_id": None,
         "green_epoch": None,
+        "baseline_observed_by_framework": False,
+        "green_observed_by_framework": False,
         "cycles": [],
     }
 
@@ -90,6 +105,10 @@ def _canonical(value: object) -> bytes:
 
 def _state_digest(task: dict) -> str:
     return hashlib.sha256(_canonical({key: value for key, value in task.items() if key != "integrity_sha256"})).hexdigest()
+
+
+def _value_digest(value: object) -> str:
+    return hashlib.sha256(_canonical(value)).hexdigest()
 
 
 def _anchor_digest(anchor: dict) -> str:
@@ -133,7 +152,7 @@ def validate_task(task: dict, *, expected_id: str | None = None, verify_integrit
     if not isinstance(task, dict):
         raise RuntimeError("state schema: task must be an object")
     schema = task.get("schema")
-    if schema not in {2, 3, 4}:
+    if schema not in {2, 3, 4, 5, 6, 7}:
         raise RuntimeError(f"state schema: unsupported version {schema!r}")
     required = {
         "schema",
@@ -160,9 +179,13 @@ def validate_task(task: dict, *, expected_id: str | None = None, verify_integrit
         "transitions",
     }
     missing = sorted(required - set(task))
+    if schema >= 6 and "falsification_attempts" not in task:
+        missing.append("falsification_attempts")
+    if schema >= 7 and "final_audit_receipt" not in task:
+        missing.append("final_audit_receipt")
     if missing:
         raise RuntimeError("state schema: missing required fields: " + ", ".join(missing))
-    if schema == 4 and "tdd" not in task:
+    if schema >= 4 and "tdd" not in task:
         raise RuntimeError("state schema: missing required fields: tdd")
     task_id = validate_task_id(task["id"])
     if expected_id is not None and task_id != expected_id:
@@ -192,12 +215,17 @@ def validate_task(task: dict, *, expected_id: str | None = None, verify_integrit
         if not isinstance(tdd, dict):
             raise RuntimeError("state schema: tdd must be an object")
         expected_tdd_fields = set(_empty_tdd())
+        if schema < 5:
+            expected_tdd_fields -= {"baseline_observed_by_framework", "green_observed_by_framework"}
         missing_tdd = sorted(expected_tdd_fields - set(tdd))
         if missing_tdd:
             raise RuntimeError("state schema: incomplete tdd contract: " + ", ".join(missing_tdd))
         if tdd.get("mode") is not None and tdd.get("mode") not in TDD_MODES:
             raise RuntimeError("state schema: invalid tdd mode")
-        for field in ("test_design_complete", "baseline_executed", "harness_valid", "baseline_intact"):
+        boolean_fields = ["test_design_complete", "baseline_executed", "harness_valid", "baseline_intact"]
+        if schema >= 5:
+            boolean_fields.extend(("baseline_observed_by_framework", "green_observed_by_framework"))
+        for field in boolean_fields:
             if not isinstance(tdd.get(field), bool):
                 raise RuntimeError(f"state schema: tdd {field} must be boolean")
         for field in (
@@ -244,6 +272,12 @@ def validate_task(task: dict, *, expected_id: str | None = None, verify_integrit
     if falsification is not None:
         if not validate_falsification_receipt(falsification, task_id=task_id, require_clean=False):
             raise RuntimeError("state schema: invalid falsification receipt")
+    attempts = task.get("falsification_attempts", [])
+    if not isinstance(attempts, list):
+        raise RuntimeError("state schema: falsification attempts must be an array")
+    attempt_ids = [item.get("attempt_id") for item in attempts if isinstance(item, dict)]
+    if len(attempt_ids) != len(attempts) or len(attempt_ids) != len(set(attempt_ids)):
+        raise RuntimeError("state schema: invalid or duplicate falsification attempt")
     review_receipt = task.get("review_receipt")
     if review_receipt is not None:
         try:
@@ -252,6 +286,13 @@ def validate_task(task: dict, *, expected_id: str | None = None, verify_integrit
             raise RuntimeError("state schema: invalid review receipt") from exc
         if review_receipt.get("task_id") != task_id:
             raise RuntimeError("state schema: review receipt belongs to another task")
+    final_audit_receipt = task.get("final_audit_receipt")
+    if final_audit_receipt is not None and not validate_task_audit_receipt(
+        final_audit_receipt,
+        task_id=task_id,
+        epoch=task.get("change_epoch"),
+    ):
+        raise RuntimeError("state schema: invalid final-audit receipt")
     for field in ("gates", "risks", "decisions", "child_history", "verification_evidence", "transitions"):
         if not isinstance(task.get(field), list):
             raise RuntimeError(f"state schema: {field} must be an array")
@@ -271,6 +312,8 @@ def validate_task(task: dict, *, expected_id: str | None = None, verify_integrit
     for field in ("final_audit_complete", "material_claim"):
         if field in task and not isinstance(task[field], bool):
             raise RuntimeError(f"state schema: {field} must be boolean")
+    if schema >= 7 and bool(task.get("final_audit_complete")) != isinstance(final_audit_receipt, dict):
+        raise RuntimeError("state schema: final-audit completion must be derived from an exact receipt")
     for gate in task["gates"]:
         if gate.get("status") not in GATE_STATUSES or not isinstance(gate.get("description"), str) or not gate["description"].strip():
             raise RuntimeError("state schema: invalid acceptance gate")
@@ -532,7 +575,7 @@ class StateStore:
                 raise RuntimeError("task id collision")
             created = now()
             task = {
-                "schema": 4,
+                "schema": 7,
                 "id": task_id,
                 "title": title.strip(),
                 "mode": mode,
@@ -552,6 +595,7 @@ class StateStore:
                 "verification_epoch": None,
                 "change_epoch": 0,
                 "final_audit_complete": False,
+                "final_audit_receipt": None,
                 "active_child": None,
                 "previous_state": None,
                 "transitions": [],
@@ -561,6 +605,7 @@ class StateStore:
                 "implementation_digest": None,
                 "diff_digest": None,
                 "falsification": None,
+                "falsification_attempts": [],
                 "review_receipt": None,
             }
             task["integrity_sha256"] = _state_digest(task)
@@ -637,6 +682,8 @@ class StateStore:
                 or current.get("sha256") != audited.get("sha256")
             ):
                 raise RuntimeError("finalized task workspace no longer matches its audited fingerprint")
+            if task.get("schema", 0) >= 7:
+                self._validate_bound_final_audit(task, records)
         self._loaded_identity[id(task)] = task_id
         return task
 
@@ -660,18 +707,35 @@ class StateStore:
 
     def _migrate(self, task: dict) -> dict:
         migrated = json.loads(json.dumps(task))
-        if migrated.get("schema") != 4:
-            migrated["schema"] = 4
+        source_schema = int(migrated.get("schema", 0))
+        legacy_tdd_schema = source_schema < 5
+        if source_schema != 7:
+            migrated["schema"] = 7
         migrated.setdefault("material_claim", True)
         migrated.setdefault("evidence_head", None)
         migrated.setdefault("evidence_set_digest", EMPTY_EVIDENCE_SET_DIGEST)
         migrated.setdefault("implementation_digest", None)
         migrated.setdefault("diff_digest", None)
         migrated.setdefault("falsification", None)
+        migrated.setdefault("falsification_attempts", [])
         migrated.setdefault("review_receipt", None)
+        migrated.setdefault("final_audit_receipt", None)
         migrated.setdefault("tdd", _empty_tdd())
         for field, default in _empty_tdd().items():
             migrated["tdd"].setdefault(field, json.loads(json.dumps(default)))
+        if legacy_tdd_schema:
+            # Loading an older valid task must never manufacture proof for the
+            # new execution-observation boundary.
+            migrated["tdd"]["baseline_observed_by_framework"] = False
+            migrated["tdd"]["green_observed_by_framework"] = False
+            migrated["falsification"] = None
+        if source_schema < 7:
+            # An older boolean/workspace marker is not an exact operational
+            # receipt.  Migration keeps the task readable but requires a real
+            # re-audit before finalization.
+            migrated["final_audit_complete"] = False
+            migrated["final_audit_receipt"] = None
+            migrated.pop("final_audit_workspace", None)
         epoch = 0
         for index, transition in enumerate(migrated.get("transitions", []), 1):
             if transition.get("to") in {"IMPLEMENT", "REMEDIATE"}:
@@ -685,7 +749,7 @@ class StateStore:
         for field in ("id", "title", "mode", "complexity", "risk", "created"):
             if updated.get(field) != current.get(field):
                 raise RuntimeError(f"immutable task field changed: {field}")
-        for field in ("decisions", "child_history", "transitions"):
+        for field in ("decisions", "child_history", "transitions", "falsification_attempts"):
             before = current.get(field, [])
             after = updated.get(field, [])
             if after[: len(before)] != before:
@@ -705,6 +769,15 @@ class StateStore:
             "test_contract_digest",
             "oracle_digest",
             "baseline_epoch",
+            "authority_source",
+            "adapter",
+            "adapter_digest",
+            "environment_identity",
+            "compiled_contract_digest",
+            "write_scope_digest",
+            "governance_digest",
+            "surface_contract",
+            "design_snapshots",
         )
         for old, new in zip(before_cycles, after_cycles):
             if any(new.get(field) != old.get(field) for field in immutable_cycle_fields):
@@ -756,22 +829,29 @@ class StateStore:
     @staticmethod
     def _review_bindings(task: dict) -> tuple[object, ...]:
         cycle = _current_tdd_cycle(task)
-        return (
+        receipt = task.get("review_receipt")
+        base = (
             task.get("id"),
             cycle.get("cycle_sha256") if cycle else None,
             task.get("change_epoch"),
             task.get("implementation_digest"),
             task.get("diff_digest"),
             _artifact_digest(task.get("precheck", {}).get("compiled_policy")),
-            task.get("evidence_set_digest"),
             _artifact_digest(task.get("precheck", {}).get("test_law_baseline")),
+            task.get("falsification", {}).get("receipt_sha256")
+            if isinstance(task.get("falsification"), dict)
+            else None,
         )
+        # Operational schema-2 review seals the reviewed evidence prefix.  A
+        # subsequent framework verification/audit may append evidence without
+        # pretending that the reviewer saw those later observations.
+        return base if isinstance(receipt, dict) and receipt.get("schema") == 2 else (*base, task.get("evidence_set_digest"))
 
     @staticmethod
     def _validate_bound_falsification(task: dict, *, require_clean: bool) -> None:
         receipt = task.get("falsification")
         cycle = _current_tdd_cycle(task)
-        if receipt is None or cycle is None or not validate_falsification_receipt(
+        if receipt is None or receipt.get("schema") != 2 or cycle is None or not validate_falsification_receipt(
             receipt,
             task_id=task.get("id"),
             current_tdd_cycle_digest=cycle.get("cycle_sha256"),
@@ -781,23 +861,70 @@ class StateStore:
         ):
             raise RuntimeError("falsification receipt is missing, stale, contains a counterexample, or is invalid")
 
-    @staticmethod
-    def _validate_bound_review(task: dict) -> None:
+    def _validate_bound_review(self, task: dict, records: list[dict] | None = None) -> None:
         receipt = task.get("review_receipt")
         cycle = _current_tdd_cycle(task)
-        if receipt is None or cycle is None or receipt.get("task_id") != task.get("id"):
+        if receipt is None or receipt.get("schema") != 2 or cycle is None or receipt.get("task_id") != task.get("id"):
             raise RuntimeError("independent review receipt is missing or belongs to another task")
         reviewer_role = str(receipt.get("reviewer_role", "")).casefold()
         if not any(marker in reviewer_role for marker in ("adversarial", "security")):
             raise RuntimeError("independent review receipt lacks an adversarial/security role")
-        matching_handoff = any(
+        matching_handoffs = [
+            item
+            for item in task.get("child_history", [])
+            if isinstance(item, dict) and (
             item.get("lease_id", item.get("handoff_id")) == receipt.get("reviewer_lease")
             and item.get("role") == receipt.get("reviewer_role")
             and item.get("outcome") in {"accepted", "partial"}
-            for item in task.get("child_history", [])
-        )
-        if not matching_handoff:
+            )
+        ]
+        if len(matching_handoffs) != 1:
             raise RuntimeError("review receipt is not bound to a closed accepted child lease")
+        handoff = matching_handoffs[0]
+        try:
+            payload = validate_review_payload(handoff.get("review_payload"))
+            handoff_valid = (
+                handoff.get("schema") == 2
+                and handoff.get("outcome") == "accepted"
+                and handoff.get("handoff_sha256") == review_handoff_digest(handoff)
+                and handoff.get("review_payload_sha256") == review_payload_digest(payload)
+                and handoff.get("handoff_sha256") == receipt.get("handoff_sha256")
+                and handoff.get("context_brief_sha256") == receipt.get("context_brief_sha256")
+                and all(
+                    receipt.get(field) == payload.get(field)
+                    for field in (
+                        "assumptions_tested",
+                        "counterexamples_attempted",
+                        "boundary_cases",
+                        "potential_failures",
+                        "unexpected_scope",
+                        "findings",
+                        "outcome",
+                    )
+                )
+            )
+        except ReviewError:
+            handoff_valid = False
+        if not handoff_valid:
+            raise RuntimeError("review receipt is not bound to an intact structured handoff")
+        if records is None:
+            records = load_evidence(self._task_dir(task["id"]), verify=True)
+        prefix = EMPTY_EVIDENCE_SET_DIGEST
+        prefix_seen = receipt.get("evidence_set_digest") == prefix
+        encoded_prefix = bytearray()
+        for record in records:
+            encoded_prefix.extend(record["record_sha256"].encode("ascii"))
+            prefix = hashlib.sha256(encoded_prefix).hexdigest()
+            if prefix == receipt.get("evidence_set_digest"):
+                prefix_seen = True
+                break
+        if not prefix_seen:
+            raise RuntimeError("reviewed evidence ledger prefix is absent from the current ledger")
+        falsification_digest = (
+            task.get("falsification", {}).get("receipt_sha256")
+            if isinstance(task.get("falsification"), dict)
+            else None
+        )
         if not validate_review_receipt(
             receipt,
             current_epoch=task.get("change_epoch"),
@@ -806,8 +933,172 @@ class StateStore:
             current_evidence_set_digest=task.get("evidence_set_digest"),
             current_tdd_cycle_digest=cycle.get("cycle_sha256"),
             current_test_law_baseline_digest=_artifact_digest(task.get("precheck", {}).get("test_law_baseline")),
+            current_falsification_receipt_digest=falsification_digest,
         ):
             raise RuntimeError("independent review receipt is stale, rejected, or invalid")
+
+    @staticmethod
+    def _final_audit_bindings(task: dict) -> tuple[object, ...]:
+        cycle = _current_tdd_cycle(task)
+        non_write = task.get("mode") == "read"
+        workspace_sha256 = task.get("diff_digest")
+        tdd_digest = (
+            non_write_audit_binding_digest(
+                binding="tdd-cycle",
+                task_id=task["id"],
+                epoch=task["change_epoch"],
+                workspace_sha256=workspace_sha256,
+            )
+            if non_write else (cycle.get("cycle_sha256") if cycle else None)
+        )
+        review_digest = (
+            non_write_audit_binding_digest(
+                binding="review-receipt",
+                task_id=task["id"],
+                epoch=task["change_epoch"],
+                workspace_sha256=workspace_sha256,
+            )
+            if non_write else (
+                task.get("review_receipt", {}).get("receipt_sha256")
+                if isinstance(task.get("review_receipt"), dict) else None
+            )
+        )
+        falsification_digest = (
+            non_write_audit_binding_digest(
+                binding="falsification-receipt",
+                task_id=task["id"],
+                epoch=task["change_epoch"],
+                workspace_sha256=workspace_sha256,
+            )
+            if non_write else (
+                task.get("falsification", {}).get("receipt_sha256")
+                if isinstance(task.get("falsification"), dict) else None
+            )
+        )
+        return (
+            task.get("id"),
+            task.get("change_epoch"),
+            task.get("implementation_digest"),
+            task.get("diff_digest"),
+            _artifact_digest(task.get("precheck", {}).get("compiled_policy")),
+            _artifact_digest(task.get("precheck", {}).get("write_scope")),
+            _artifact_digest(task.get("precheck", {}).get("governance_snapshot")),
+            task.get("evidence_set_digest"),
+            task.get("evidence_head"),
+            tdd_digest,
+            review_digest,
+            falsification_digest,
+            _artifact_digest(task.get("precheck", {}).get("test_law_baseline")),
+            _value_digest(task.get("gates", [])),
+            _value_digest(task.get("risks", [])),
+            _value_digest(task.get("decisions", [])),
+            _value_digest(task.get("child_history", [])),
+            _value_digest(task.get("verification_evidence", [])),
+        )
+
+    def _validate_bound_final_audit(self, task: dict, records: list[dict]) -> None:
+        receipt = task.get("final_audit_receipt")
+        cycle = _current_tdd_cycle(task)
+        non_write = task.get("mode") == "read"
+        if not isinstance(receipt, dict) or receipt.get("schema") != 2 or (cycle is None and not non_write):
+            raise RuntimeError("exact task final-audit receipt is missing")
+        from .final_audit_runtime import PRODUCER_REGISTRY_DIGEST
+
+        workspace_sha256 = task.get("diff_digest")
+        tdd_digest = (
+            non_write_audit_binding_digest(binding="tdd-cycle", task_id=task["id"], epoch=task["change_epoch"], workspace_sha256=workspace_sha256)
+            if non_write else cycle.get("cycle_sha256")
+        )
+        review_digest = (
+            non_write_audit_binding_digest(binding="review-receipt", task_id=task["id"], epoch=task["change_epoch"], workspace_sha256=workspace_sha256)
+            if non_write else (
+                task.get("review_receipt", {}).get("receipt_sha256")
+                if isinstance(task.get("review_receipt"), dict) else None
+            )
+        )
+        falsification_digest = (
+            non_write_audit_binding_digest(binding="falsification-receipt", task_id=task["id"], epoch=task["change_epoch"], workspace_sha256=workspace_sha256)
+            if non_write else (
+                task.get("falsification", {}).get("receipt_sha256")
+                if isinstance(task.get("falsification"), dict) else None
+            )
+        )
+
+        expected = {
+            "task_id": task.get("id"),
+            "epoch": task.get("change_epoch"),
+            "implementation_digest": task.get("implementation_digest"),
+            "diff_digest": task.get("diff_digest"),
+            "compiled_contract_digest": _artifact_digest(task.get("precheck", {}).get("compiled_policy")),
+            "write_scope_digest": _artifact_digest(task.get("precheck", {}).get("write_scope")),
+            "governance_digest": _artifact_digest(task.get("precheck", {}).get("governance_snapshot")),
+            "evidence_set_digest": task.get("evidence_set_digest"),
+            "evidence_head": task.get("evidence_head"),
+            "tdd_cycle_digest": tdd_digest,
+            "review_receipt_digest": review_digest,
+            "falsification_receipt_digest": falsification_digest,
+            "test_law_baseline_digest": _artifact_digest(task.get("precheck", {}).get("test_law_baseline")),
+            "gates_digest": _value_digest(task.get("gates", [])),
+            "risks_digest": _value_digest(task.get("risks", [])),
+            "decisions_digest": _value_digest(task.get("decisions", [])),
+            "child_history_digest": _value_digest(task.get("child_history", [])),
+            "verification_digest": _value_digest(task.get("verification_evidence", [])),
+            "producer_registry_digest": PRODUCER_REGISTRY_DIGEST,
+        }
+        if not validate_task_audit_receipt(receipt, **expected):
+            raise RuntimeError("task final-audit receipt is stale, malformed, or candidate-mismatched")
+        workspace = task.get("final_audit_workspace")
+        if (
+            not isinstance(workspace, dict)
+            or workspace.get("available") is not True
+            or workspace.get("sha256") != receipt.get("workspace_sha256")
+        ):
+            raise RuntimeError("task final-audit workspace is missing or receipt-mismatched")
+        evidence_ids = {
+            evidence_id
+            for observation in receipt.get("observations", [])
+            for evidence_id in observation.get("evidence_record_ids", [])
+        }
+        if len(evidence_ids) != 1:
+            raise RuntimeError("task final-audit observations must share one atomic proof record")
+        evidence_id = next(iter(evidence_ids))
+        record = next((item for item in records if item.get("id") == evidence_id), None)
+        details = record.get("details", {}) if record else {}
+        if (
+            record is None
+            or record.get("schema") != 2
+            or record.get("task_id") != task.get("id")
+            or record.get("change_epoch") != task.get("change_epoch")
+            or record.get("provenance") != "verified-observation"
+            or record.get("record_sha256") != receipt.get("evidence_head")
+            or details.get("operation") != "final-task-audit"
+            or details.get("authoritative_checks") != list(REQUIRED_FINAL_AUDIT_CHECKS)
+            or details.get("producer_registry_digest") != PRODUCER_REGISTRY_DIGEST
+        ):
+            raise RuntimeError("task final-audit receipt lacks its framework-produced proof record")
+        proofs = details.get("proofs")
+        if (
+            not isinstance(proofs, dict)
+            or len(proofs) != len(REQUIRED_FINAL_AUDIT_CHECKS)
+            or set(proofs) != set(REQUIRED_FINAL_AUDIT_CHECKS)
+        ):
+            raise RuntimeError("task final-audit proof record lacks the exact check universe")
+        for observation in receipt["observations"]:
+            check_id = observation["check_id"]
+            proof = proofs.get(check_id)
+            if (
+                not isinstance(proof, dict)
+                or proof.get("check_id") != check_id
+                or proof.get("producer_id") != observation.get("producer_id")
+                or proof.get("status") != observation.get("status")
+                or proof.get("detail") != observation.get("detail")
+                or proof.get("justification") != observation.get("justification")
+                or proof.get("proof_digest") != observation.get("proof_digest")
+                or proof.get("proof_digest") != _value_digest(
+                    {key: value for key, value in proof.items() if key != "proof_digest"}
+                )
+            ):
+                raise RuntimeError(f"task final-audit proof material is invalid: {check_id}")
 
     def _save_locked(
         self,
@@ -837,6 +1128,20 @@ class StateStore:
             raise RuntimeError("task id mutation cannot redirect state storage")
         records = load_evidence(self._task_dir(current["id"]), verify=True)
         records_by_id = {record["id"]: record for record in records}
+        self._validate_framework_tdd_evidence(updated, records_by_id)
+        for attempt in updated.get("falsification_attempts", []):
+            record = records_by_id.get(attempt.get("evidence_id"))
+            details = record.get("details", {}) if record else {}
+            if (
+                record is None
+                or record.get("provenance") != "framework-command"
+                or record.get("record_sha256") != attempt.get("evidence_digest")
+                or details.get("operation") != "falsification-attempt"
+                or details.get("attempt_id") != attempt.get("attempt_id")
+                or details.get("family") != attempt.get("family")
+                or details.get("outcome") != attempt.get("outcome")
+            ):
+                raise RuntimeError("falsification attempt lacks matching executed framework evidence")
         for gate in updated.get("gates", []):
             if gate.get("status") == "WAIVED" and gate.get("gate_severity") is not None and not validate_gate_waiver(
                 gate,
@@ -868,15 +1173,24 @@ class StateStore:
             and self._review_bindings(migrated_current) != self._review_bindings(updated)
         ):
             updated["review_receipt"] = None
+        if (
+            current.get("final_audit_receipt") is not None
+            and updated.get("final_audit_receipt") == current.get("final_audit_receipt")
+            and (
+                self._final_audit_bindings(migrated_current) != self._final_audit_bindings(updated)
+                or updated.get("final_audit_complete") is not True
+            )
+        ):
+            updated["final_audit_receipt"] = None
+            updated["final_audit_complete"] = False
+            updated.pop("final_audit_workspace", None)
         self._validate_append_only(migrated_current, updated)
         if updated.get("falsification") is not None:
             self._validate_bound_falsification(updated, require_clean=False)
         if updated.get("review_receipt") is not None:
-            self._validate_bound_review(updated)
-        claim_fields = ("gates", "risks", "verification_evidence", "verification_epoch", "evidence_head", "decisions")
-        if current.get("final_audit_complete") and any(updated.get(field) != current.get(field) for field in claim_fields):
-            updated["final_audit_complete"] = False
-            updated.pop("final_audit_workspace", None)
+            self._validate_bound_review(updated, records)
+        if updated.get("final_audit_receipt") is not None:
+            self._validate_bound_final_audit(updated, records)
         updated["revision"] = expected_revision + 1
         updated["updated"] = now()
         updated["integrity_sha256"] = _state_digest(updated)
@@ -981,56 +1295,276 @@ class StateStore:
                 ledger_lock.release()
             lock.release()
 
+    @staticmethod
+    def _apply_tdd_cycle(task: dict, cycle: dict) -> None:
+        expected_outcome, observed_status = ASSURANCE_TDD_MODES[cycle["mode"]]
+        cycles = task["tdd"]["cycles"]
+        index = next(
+            (position for position, item in enumerate(cycles) if item.get("cycle_id") == cycle["cycle_id"]),
+            None,
+        )
+        if index is None:
+            cycles.append(json.loads(json.dumps(cycle)))
+        else:
+            cycles[index] = json.loads(json.dumps(cycle))
+        baseline_event = next(
+            (event for event in cycle["events"] if event.get("status") == "BASELINE_EXECUTED"),
+            None,
+        )
+        framework_source = cycle.get("authority_source") == "FRAMEWORK_OBSERVED"
+        aborted = cycle.get("status") == "TDD_CYCLE_ABORTED"
+        baseline_observed = bool(
+            framework_source
+            and not aborted
+            and baseline_event
+            and baseline_event.get("evidence_id") == cycle.get("baseline_evidence_id")
+            and baseline_event.get("evidence_digest") == cycle.get("baseline_evidence_digest")
+        )
+        green_event = next(
+            (event for event in cycle["events"] if event.get("status") == "GREEN_PROVEN"),
+            None,
+        )
+        green_observed = bool(
+            baseline_observed
+            and green_event
+            and green_event.get("evidence_id") == cycle.get("green_evidence_id")
+            and green_event.get("evidence_digest") == cycle.get("green_evidence_digest")
+        )
+        tdd = task["tdd"]
+        tdd.update(
+            mode=cycle["mode"],
+            test_design_complete=True,
+            baseline_executed=baseline_event is not None and not aborted,
+            baseline_outcome=baseline_event.get("outcome") if baseline_event else None,
+            required_baseline_outcome=expected_outcome,
+            test_contract_digest=cycle["test_contract_digest"],
+            frozen_test_contract_digest=cycle.get("frozen_test_contract_digest"),
+            oracle_digest=cycle["oracle_digest"],
+            frozen_oracle_digest=cycle.get("frozen_oracle_digest"),
+            baseline_implementation_digest=cycle.get("baseline_implementation_digest"),
+            observed_implementation_digest=cycle.get("baseline_implementation_digest"),
+            harness_valid=bool(not aborted and baseline_event and baseline_event.get("harness_valid") is True),
+            baseline_intact=bool(not aborted and baseline_event and baseline_event.get("baseline_intact") is True),
+            semantic_reason=str(baseline_event.get("semantic_reason", "")) if baseline_event and not aborted else "",
+            active_cycle_id=cycle["cycle_id"],
+            green_epoch=cycle.get("green_epoch"),
+            baseline_observed_by_framework=baseline_observed,
+            green_observed_by_framework=green_observed,
+        )
+        if baseline_event is not None and cycle.get("status") not in {
+            observed_status,
+            "GREEN_PROVEN",
+            "TDD_CYCLE_COMPLETE",
+            "TDD_CYCLE_ABORTED",
+        }:
+            raise AssuranceError("TDD cycle status contradicts its recorded baseline")
+        if cycle.get("status") in {"GREEN_PROVEN", "TDD_CYCLE_COMPLETE"}:
+            task["implementation_digest"] = cycle.get("green_implementation_digest")
+            task["diff_digest"] = cycle.get("green_diff_digest")
+
+    @staticmethod
+    def _validate_framework_tdd_evidence(task: dict, records_by_id: dict[str, dict]) -> None:
+        for cycle in task.get("tdd", {}).get("cycles", []):
+            source = cycle.get("authority_source")
+            baseline_event = next(
+                (event for event in cycle.get("events", []) if event.get("status") == "BASELINE_EXECUTED"),
+                None,
+            )
+            green_event = next(
+                (event for event in cycle.get("events", []) if event.get("status") == "GREEN_PROVEN"),
+                None,
+            )
+            attempts = [event for event in cycle.get("events", []) if event.get("status") == "BASELINE_ATTEMPT"]
+            if source != "FRAMEWORK_OBSERVED":
+                if baseline_event is not None or green_event is not None:
+                    if cycle.get("cycle_id") == task.get("tdd", {}).get("active_cycle_id") and (
+                        task.get("tdd", {}).get("baseline_observed_by_framework")
+                        or task.get("tdd", {}).get("green_observed_by_framework")
+                    ):
+                        raise RuntimeError("untrusted TDD cycle cannot carry framework authority")
+                continue
+            for event, operation in [
+                *[(attempt, "baseline") for attempt in attempts],
+                *([(baseline_event, "baseline")] if baseline_event else []),
+                *([(green_event, "green")] if green_event else []),
+            ]:
+                evidence_id = event.get("evidence_id")
+                record = records_by_id.get(evidence_id)
+                if (
+                    record is None
+                    or event.get("evidence_digest") != record.get("record_sha256")
+                    or record.get("task_id") != task.get("id")
+                    or record.get("provenance") not in {"framework-command", "verified-observation"}
+                ):
+                    raise RuntimeError("trusted TDD observation lacks matching framework evidence")
+                details = record.get("details", {})
+                if (
+                    details.get("operation") != operation
+                    or details.get("tdd_cycle_id") != cycle.get("cycle_id")
+                    or details.get("classification") != event.get("classification")
+                ):
+                    raise RuntimeError("trusted TDD observation/evidence binding is inconsistent")
+            if baseline_event is not None:
+                expected_classification = {
+                    "RED_REQUIRED": "EXPECTED_BEHAVIORAL_RED",
+                    "CHARACTERIZATION_REQUIRED": "CHARACTERIZATION_PASS",
+                    "NON_BEHAVIORAL_TEST_FIRST": "TEST_FIRST_OBSERVED",
+                }[cycle["mode"]]
+                record = records_by_id.get(cycle.get("baseline_evidence_id"))
+                command = record.get("details", {}).get("command") if record else None
+                snapshots = cycle.get("baseline_snapshots", {})
+                designed = cycle.get("design_snapshots", {})
+                if (
+                    baseline_event.get("classification") != expected_classification
+                    or cycle.get("baseline_classification") != expected_classification
+                    or not isinstance(command, dict)
+                    or command.get("success") is not True
+                    or snapshots.get("before", {}).get("production", {}).get("digest")
+                    != designed.get("production", {}).get("digest")
+                    or snapshots.get("after", {}).get("production", {}).get("digest")
+                    != designed.get("production", {}).get("digest")
+                ):
+                    raise RuntimeError("trusted TDD baseline was not independently observed intact")
+            if green_event is not None:
+                record = records_by_id.get(cycle.get("green_evidence_id"))
+                command = record.get("details", {}).get("command") if record else None
+                if (
+                    green_event.get("classification") != "GREEN"
+                    or cycle.get("green_classification") != "GREEN"
+                    or not isinstance(command, dict)
+                    or command.get("success") is not True
+                ):
+                    raise RuntimeError("trusted TDD GREEN was not independently observed")
+
     def record_tdd_cycle(self, cycle: dict, task_id: str | None = None) -> dict:
-        """Append or extend one validated TDD cycle without replacing its identity."""
+        """Append/extend a cycle; only framework evidence can establish authority."""
 
         validate_tdd_cycle(cycle)
         task_id = validate_task_id(task_id or self.current_id())
         if cycle.get("task_id") != task_id:
             raise AssuranceError("TDD cycle belongs to another task")
-        expected_outcome, observed_status = ASSURANCE_TDD_MODES[cycle["mode"]]
+        if cycle.get("authority_source") != "FRAMEWORK_OBSERVED" and any(
+            event.get("status") in {"BASELINE_EXECUTED", "GREEN_PROVEN"}
+            for event in cycle.get("events", [])
+        ):
+            raise AssuranceError("untrusted caller-asserted TDD cycle lacks framework evidence")
 
         def apply(task: dict) -> None:
-            cycles = task["tdd"]["cycles"]
-            index = next((position for position, item in enumerate(cycles) if item.get("cycle_id") == cycle["cycle_id"]), None)
-            if index is None:
-                cycles.append(json.loads(json.dumps(cycle)))
-            else:
-                cycles[index] = json.loads(json.dumps(cycle))
-            baseline_event = next(
-                (event for event in cycle["events"] if event.get("status") == "BASELINE_EXECUTED"),
-                None,
-            )
-            tdd = task["tdd"]
-            tdd.update(
-                mode=cycle["mode"],
-                test_design_complete=True,
-                baseline_executed=baseline_event is not None and cycle.get("status") != "TDD_CYCLE_ABORTED",
-                baseline_outcome=baseline_event.get("outcome") if baseline_event else None,
-                required_baseline_outcome=expected_outcome,
-                test_contract_digest=cycle["test_contract_digest"],
-                frozen_test_contract_digest=cycle.get("frozen_test_contract_digest"),
-                oracle_digest=cycle["oracle_digest"],
-                frozen_oracle_digest=cycle.get("frozen_oracle_digest"),
-                baseline_implementation_digest=cycle.get("baseline_implementation_digest"),
-                observed_implementation_digest=cycle.get("baseline_implementation_digest"),
-                harness_valid=bool(baseline_event and baseline_event.get("harness_valid") is True),
-                baseline_intact=bool(baseline_event and baseline_event.get("baseline_intact") is True),
-                semantic_reason=str(baseline_event.get("semantic_reason", "")) if baseline_event else "",
-                active_cycle_id=cycle["cycle_id"],
-                green_epoch=cycle.get("green_epoch"),
-            )
-            if baseline_event is not None and cycle.get("status") not in {
-                observed_status,
-                "GREEN_PROVEN",
-                "TDD_CYCLE_COMPLETE",
-            }:
-                raise AssuranceError("TDD cycle status contradicts its recorded baseline")
-            if cycle.get("status") in {"GREEN_PROVEN", "TDD_CYCLE_COMPLETE"}:
-                task["implementation_digest"] = cycle.get("green_implementation_digest")
-                task["diff_digest"] = cycle.get("green_diff_digest")
+            self._apply_tdd_cycle(task, cycle)
 
         return self.mutate(apply, task_id)
+
+    def _record_framework_tdd_observation(
+        self,
+        build_cycle,
+        *,
+        task_id: str,
+        kind: str,
+        summary: str,
+        provenance: str,
+        evidence_details: dict,
+    ) -> tuple[dict, dict, dict]:
+        """Atomically append framework evidence and the cycle state that cites it."""
+
+        task_id = validate_task_id(task_id)
+        holder: dict[str, dict] = {}
+
+        def apply(task: dict) -> None:
+            details = json.loads(json.dumps(evidence_details))
+            details.update(
+                task_id=task["id"],
+                task_revision=task["revision"],
+                change_epoch=task["change_epoch"],
+                task_state=task["state"],
+            )
+            record = _append_framework_evidence(
+                self._task_dir(task_id),
+                kind,
+                summary,
+                provenance=provenance,
+                lock_held=True,
+                **details,
+            )
+            holder["record"] = record
+            cycle = build_cycle(record)
+            validate_tdd_cycle(cycle)
+            if cycle.get("task_id") != task_id or cycle.get("authority_source") != "FRAMEWORK_OBSERVED":
+                raise AssuranceError("trusted TDD observation builder returned an untrusted or foreign cycle")
+            holder["cycle"] = cycle
+            self._apply_tdd_cycle(task, cycle)
+            task["evidence_head"] = record["record_sha256"]
+            task["final_audit_complete"] = False
+            task.pop("final_audit_workspace", None)
+
+        def rollback() -> None:
+            record = holder.get("record")
+            if record is not None:
+                rollback_last_evidence(
+                    self._task_dir(task_id),
+                    record["record_sha256"],
+                    lock_held=True,
+                )
+
+        updated = self.mutate(
+            apply,
+            task_id,
+            hold_evidence_lock=True,
+            on_failure=rollback,
+        )
+        return updated, holder["record"], holder["cycle"]
+
+    def _record_framework_observation(
+        self,
+        mutate_with_record,
+        *,
+        task_id: str,
+        kind: str,
+        summary: str,
+        provenance: str,
+        evidence_details: dict,
+        preserve_final_audit: bool = False,
+    ) -> tuple[dict, dict]:
+        """Atomically append one framework observation and its canonical-state binding."""
+
+        task_id = validate_task_id(task_id)
+        holder: dict[str, dict] = {}
+
+        def apply(task: dict) -> None:
+            details = json.loads(json.dumps(evidence_details))
+            details.update(
+                task_id=task["id"],
+                task_revision=task["revision"],
+                change_epoch=task["change_epoch"],
+                task_state=task["state"],
+            )
+            record = _append_framework_evidence(
+                self._task_dir(task_id),
+                kind,
+                summary,
+                provenance=provenance,
+                lock_held=True,
+                **details,
+            )
+            holder["record"] = record
+            mutate_with_record(task, record)
+            task["evidence_head"] = record["record_sha256"]
+            if not preserve_final_audit:
+                task["final_audit_complete"] = False
+                task["final_audit_receipt"] = None
+                task.pop("final_audit_workspace", None)
+
+        def rollback() -> None:
+            record = holder.get("record")
+            if record is not None:
+                rollback_last_evidence(self._task_dir(task_id), record["record_sha256"], lock_held=True)
+
+        updated = self.mutate(
+            apply,
+            task_id,
+            hold_evidence_lock=True,
+            on_failure=rollback,
+        )
+        return updated, holder["record"]
 
     def record_falsification(self, receipt: dict, task_id: str | None = None) -> dict:
         task_id = validate_task_id(task_id or self.current_id())
@@ -1038,6 +1572,8 @@ class StateStore:
         def apply(task: dict) -> None:
             if task.get("state") != "FALSIFY":
                 raise RuntimeError("falsification evidence may be recorded only in FALSIFY")
+            if receipt.get("schema") != 2:
+                raise AssuranceError("falsification requires execution-backed schema-2 evidence")
             cycle = _current_tdd_cycle(task)
             if cycle is None or not validate_falsification_receipt(
                 receipt,
@@ -1058,6 +1594,8 @@ class StateStore:
         def apply(task: dict) -> None:
             if task.get("state") != "ADVERSARIAL_REVIEW":
                 raise RuntimeError("review evidence may be recorded only in ADVERSARIAL_REVIEW")
+            if receipt.get("schema") != 2:
+                raise ReviewError("current review requires an operational schema-2 receipt")
             task["review_receipt"] = json.loads(json.dumps(receipt))
             self._validate_bound_review(task)
 
@@ -1140,6 +1678,14 @@ class StateStore:
 
         def apply(task: dict) -> None:
             validate_transition(task, target, reason=reason)
+            if target in {"IMPLEMENT", "REMEDIATE"} and task.get("mode") == "write":
+                # Same-user out-of-band edits cannot be prevented by this
+                # process, so authority is independently recomputed at the
+                # lifecycle boundary from the frozen compiled surfaces.
+                from .tdd_runtime import implementation_authority_current
+
+                if not implementation_authority_current(self.root, task):
+                    raise RuntimeError("trusted baseline authority is stale or compiled production changed")
             if target in {"FINAL_AUDIT", "FINALIZE"}:
                 lease = LeaseLock(self._leases_root() / "subagent-lease.json", "single-active-subagent").inspect()
                 if lease.get("exists"):
@@ -1154,6 +1700,21 @@ class StateStore:
                     raise RuntimeError("workspace fingerprint was unavailable or changed during finalization")
                 if not isinstance(audited, dict) or first.get("sha256") != audited.get("sha256"):
                     raise RuntimeError("workspace changed after final audit; re-verify and re-audit")
+            if target == "VERIFY" and task.get("mode") == "read":
+                first = workspace_fingerprint(self.root)
+                second = workspace_fingerprint(self.root)
+                if (
+                    first.get("available") is not True
+                    or second.get("available") is not True
+                    or first.get("sha256") != second.get("sha256")
+                ):
+                    raise RuntimeError("read-task candidate workspace was unavailable or changed during VERIFY")
+                # A read task has no production implementation snapshot/TDD
+                # cycle.  Bind its candidate identity to the independently
+                # repeated workspace observation instead of leaving unauditable
+                # nulls or fabricating a behavioral cycle.
+                task["implementation_digest"] = first["sha256"]
+                task["diff_digest"] = first["sha256"]
             old = task["state"]
             if target == "BLOCKED":
                 task["previous_state"] = old
@@ -1169,6 +1730,7 @@ class StateStore:
                 task["falsification"] = None
                 task["review_receipt"] = None
                 task["final_audit_complete"] = False
+                task["final_audit_receipt"] = None
                 task.pop("final_audit_workspace", None)
                 for gate in task.get("gates", []):
                     if gate.get("status") == "PROVEN":
@@ -1182,6 +1744,17 @@ class StateStore:
                 task["falsification"] = None
                 task["review_receipt"] = None
                 task["final_audit_complete"] = False
+                task["final_audit_receipt"] = None
+                task.pop("final_audit_workspace", None)
+            elif target == "FINAL_AUDIT":
+                # Entering (or re-entering) the phase starts a new audit.  An
+                # older receipt cannot be carried into the new observation.
+                task["final_audit_complete"] = False
+                task["final_audit_receipt"] = None
+                task.pop("final_audit_workspace", None)
+            elif old == "FINAL_AUDIT" and target != "FINALIZE":
+                task["final_audit_complete"] = False
+                task["final_audit_receipt"] = None
                 task.pop("final_audit_workspace", None)
             task.setdefault("transitions", []).append(
                 {
@@ -1199,18 +1772,6 @@ class StateStore:
 
     def audit_complete(self, task_id: str | None = None) -> dict:
         task_id = validate_task_id(task_id or self.current_id())
+        from .final_audit_runtime import complete
 
-        def apply(task: dict) -> None:
-            if task.get("state") != "FINAL_AUDIT":
-                raise RuntimeError("audit-complete requires task state FINAL_AUDIT")
-            self._validate_proofs(task, finalizing=False)
-            lease = LeaseLock(self._leases_root() / "subagent-lease.json", "single-active-subagent").inspect()
-            if lease.get("exists"):
-                raise RuntimeError("global subagent lease blocks final-audit completion")
-            fingerprint = workspace_fingerprint(self.root)
-            if not fingerprint.get("available"):
-                raise RuntimeError("cannot complete final audit without an available workspace fingerprint")
-            task["final_audit_workspace"] = fingerprint
-            task["final_audit_complete"] = True
-
-        return self.mutate(apply, task_id)
+        return complete(self, task_id)

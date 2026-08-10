@@ -20,6 +20,29 @@ class TestModules(unittest.TestCase):
             with self.assertRaisesRegex(TransactionError,"deployed .agents governance is immutable"):
                 scaffold(r,"my-agent")
             self.assertFalse((r/".agents"/"local-modules"/"my-agent").exists())
+
+    def test_scaffold_local_module_in_authoritative_source_checkout(self):
+        with tempfile.TemporaryDirectory() as td:
+            root=Path(td)
+            (root/"VERSION").write_text("4.0.0\n")
+            (root/"framework.toml").write_text("[framework]\nversion='4.0.0'\n")
+            (root/"infra"/"agentinfra").mkdir(parents=True)
+            (root/"laws").mkdir()
+            (root/"modules").mkdir()
+            error=None
+            made=None
+            try:
+                made=scaffold(root,"my-agent")
+            except Exception as exc:
+                error=exc
+            self.assertIsNone(error,f"source scaffold was rejected: {error}")
+            destination=root/"local-modules"/"my-agent"
+            self.assertIsNotNone(made)
+            self.assertEqual(Path(made["path"]),destination)
+            self.assertFalse((root/".agents").exists())
+            loaded=discover(root)["my-agent"]
+            self.assertEqual(loaded["source"],"local")
+            self.assertEqual(loaded["manifest"]["module"]["requires_framework"],">=4.0.0,<5.0.0")
     def test_requires_framework_is_enforced(self):
         with tempfile.TemporaryDirectory() as td:
             r=Path(td);a=r/".agents"/"modules"/"x";a.mkdir(parents=True);(r/".agents"/"VERSION").write_text("4.0.0\n")

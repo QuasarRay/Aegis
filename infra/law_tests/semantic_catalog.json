@@ -804,7 +804,7 @@
       "end-to-end::codex-second-concurrent-child-rejected-flow"
     ],
     "test_end_to_end_concurrent_process_fuzzing_never_violates_single_child_state_evidence_or_install_invariants": [
-      "end-to-end::concurrent-state-evidence-child-finalize-invariants-flow"
+      "historical-integrity::actual-process-concurrency-complete"
     ],
     "test_end_to_end_crash_at_every_transaction_boundary_recovers_to_pre_or_post_transaction_state": [
       "end-to-end::all-transaction-boundaries-pre-or-post-flow"
@@ -836,7 +836,7 @@
       "end-to-end::read-only-material-claim-direct-evidence-flow"
     ],
     "test_end_to_end_release_zip_clean_extract_selftest_laws_and_self_audit_all_pass": [
-      "end-to-end::release-clean-extract-integrity-flow"
+      "historical-integrity::release-clean-artifact-full-sequence-complete"
     ],
     "test_end_to_end_runtime_directory_deletion_does_not_destroy_persistent_uninstall_or_recovery_capability": [
       "end-to-end::runtime-deletion-preserves-all-install-recovery"
@@ -903,10 +903,10 @@
       "end-to-end::external-host-assumptions-probed-and-fail-closed"
     ],
     "test_every_hard_framework_claim_has_executable_enforcement_and_independent_adversarial_verification": [
-      "end-to-end::every-hard-claim-independent-adversarial-enforcement"
+      "historical-integrity::hard-invariant-canonical-complete"
     ],
     "test_every_hard_invariant_has_independent_mutant_that_is_killed_by_suite": [
-      "mutation::module-replacement-hard-invariant-mutant-killed"
+      "historical-integrity::hard-invariant-canonical-complete"
     ],
     "test_every_hard_policy_invariant_maps_to_at_least_one_executable_enforcement_or_fail_closed_probe": [
       "policy-consistency::hard-policy-invariants-have-executable-contracts"
@@ -918,19 +918,19 @@
       "end-to-end::persistent-mutations-have-transactional-recovery"
     ],
     "test_every_seeded_v4_0_known_defect_causes_at_least_one_proposed_law_to_fail": [
-      "mutation::every-seeded-v4-defect-has-failing-and-passing-regression"
+      "historical-integrity::v4-canonical-execution-complete"
     ],
     "test_every_spawned_managed_subagent_uses_max_reasoning_or_spawn_fails_closed": [
       "reasoning-cost::managed-spawn-roles-all-max"
     ],
     "test_every_v4_0_audited_flaw_has_at_least_one_direct_law_name_in_collection": [
-      "end-to-end::v4-every-flaw-has-direct-law"
+      "historical-integrity::v4-canonical-execution-complete"
     ],
     "test_every_v4_0_audited_flaw_has_at_least_one_failing_seeded_regression_before_fix": [
-      "end-to-end::v4-every-flaw-has-failing-seeded-regression"
+      "historical-integrity::v4-canonical-execution-complete"
     ],
     "test_every_v4_0_audited_flaw_has_at_least_one_passing_regression_after_fix": [
-      "end-to-end::v4-every-flaw-has-passing-postfix-regression"
+      "historical-integrity::v4-canonical-execution-complete"
     ],
     "test_every_workflow_state_has_explicit_allowed_incoming_and_outgoing_transitions": [
       "workflow::transition-table-total"
@@ -1794,64 +1794,64 @@
       "gates-risks-decisions::proven-gate-empty-evidence-rejected"
     ],
     "test_mutation_score_for_hard_invariant_code_is_one_hundred_percent_or_explicitly_justified_equivalent_proof": [
-      "mutation::hard-invariant-mutation-score-100-percent"
+      "historical-integrity::hard-mutation-canonical-complete"
     ],
     "test_mutation_suite_kills_acceptance_gate_requirement": [
-      "mutation::acceptance-gate-requirement-mutant-killed"
+      "historical-integrity::acceptance-gate-requirement-mutant-killed"
     ],
     "test_mutation_suite_kills_codex_project_trust_verification": [
-      "mutation::codex-project-trust-claim-mutant-killed"
+      "historical-integrity::codex-project-trust-claim-mutant-killed"
     ],
     "test_mutation_suite_kills_current_epoch_evidence_requirement": [
-      "mutation::current-epoch-mutant-killed"
+      "historical-integrity::current-epoch-mutant-killed"
     ],
     "test_mutation_suite_kills_evidence_provenance_validation": [
-      "mutation::evidence-provenance-mutant-killed"
+      "historical-integrity::evidence-provenance-mutant-killed"
     ],
     "test_mutation_suite_kills_external_context_ttl_enforcement": [
-      "mutation::external-context-ttl-mutant-killed"
+      "historical-integrity::external-context-ttl-mutant-killed"
     ],
     "test_mutation_suite_kills_manifest_integrity_validation": [
-      "mutation::manifest-mutant-killed"
+      "historical-integrity::manifest-mutant-killed"
     ],
     "test_mutation_suite_kills_model_change_from_gpt_5_6_sol": [
-      "mutation::model-identity-mutant-killed"
+      "historical-integrity::model-identity-mutant-killed"
     ],
     "test_mutation_suite_kills_module_replacement_hard_invariant_guard": [
-      "mutation::module-replacement-hard-invariant-mutant-killed"
+      "historical-integrity::module-replacement-hard-invariant-mutant-killed"
     ],
     "test_mutation_suite_kills_nested_delegation_prohibition": [
-      "mutation::nested-delegation-mutant-killed"
+      "historical-integrity::nested-delegation-mutant-killed"
     ],
     "test_mutation_suite_kills_path_confinement_guard": [
-      "mutation::path-confinement-mutant-corpus"
+      "historical-integrity::path-confinement-mutant-corpus"
     ],
     "test_mutation_suite_kills_python_meta_dependency_failure_status": [
-      "mutation::python-meta-dependency-status-mutant-killed"
+      "historical-integrity::python-meta-dependency-status-mutant-killed"
     ],
     "test_mutation_suite_kills_removal_of_max_reasoning_enforcement": [
-      "mutation::max-reasoning-mutant-killed"
+      "historical-integrity::max-reasoning-mutant-killed"
     ],
     "test_mutation_suite_kills_sequential_child_limit_enforcement": [
-      "mutation::sequential-child-limit-mutant-killed"
+      "historical-integrity::sequential-child-limit-mutant-killed"
     ],
     "test_mutation_suite_kills_test_mutation_detection": [
-      "mutation::test-definition-mutation-mutant-killed"
+      "historical-integrity::test-definition-mutation-mutant-killed"
     ],
     "test_mutation_suite_kills_transaction_rollback_guard": [
-      "mutation::transaction-rollback-mutant-killed"
+      "historical-integrity::transaction-rollback-mutant-killed"
     ],
     "test_mutation_suite_kills_user_work_preservation_guard": [
-      "mutation::user-work-preservation-mutant-killed"
+      "historical-integrity::user-work-preservation-mutant-killed"
     ],
     "test_mutation_suite_kills_workspace_fingerprint_recheck": [
-      "mutation::workspace-recheck-mutant-killed"
+      "historical-integrity::workspace-recheck-mutant-killed"
     ],
     "test_mutation_suite_kills_xonsh_exit_code_propagation": [
-      "mutation::xonsh-exit-code-mutant-killed"
+      "historical-integrity::xonsh-exit-code-mutant-killed"
     ],
     "test_no_known_v4_0_flaw_catalog_entry_remains_uncovered_unfixed_or_unverified": [
-      "end-to-end::no-known-v4-flaw-uncovered"
+      "historical-integrity::v4-canonical-execution-complete"
     ],
     "test_no_policy_file_contains_stale_path_role_command_or_config_key_reference": [
       "policy-consistency::policy-path-and-role-references-are-live",

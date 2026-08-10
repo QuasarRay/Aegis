@@ -1,19 +1,26 @@
+import hashlib
 import json
 import os
 import shutil
 import subprocess
 import tempfile
 import unittest
+from datetime import datetime, timezone
 from pathlib import Path
 import sys
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from agentinfra.assurance import build_falsification_receipt, new_tdd_cycle, record_baseline, record_green
-from agentinfra.evidence import _append_verified_observation, append_evidence, load_evidence, rollback_last_evidence
-from agentinfra.review import build_review_receipt
+from agentinfra.evidence import _append_framework_evidence, _append_verified_observation, append_evidence, execute_command_evidence, load_evidence, rollback_last_evidence
+from agentinfra.falsification_runtime import complete as complete_falsification
+from agentinfra.falsification_runtime import run_attempt as run_falsification_attempt
+from agentinfra.governance import capture_governance
+from agentinfra.review_runtime import complete as complete_review
 from agentinfra.state_machine import TransitionError
 from agentinfra.state_store import StateStore
+from agentinfra.tdd_runtime import baseline as observe_baseline
+from agentinfra.tdd_runtime import design as design_tdd
+from agentinfra.tdd_runtime import green as observe_green
 from agentinfra.workspace import workspace_fingerprint
 
 
@@ -23,6 +30,9 @@ SHA_C = "c" * 64
 SHA_D = "d" * 64
 SHA_E = "e" * 64
 SHA_F = "f" * 64
+FRAMEWORK_ROOT = Path(__file__).resolve().parents[2]
+DEPLOYMENT_LAYOUT = FRAMEWORK_ROOT.name == ".agents"
+CLI = FRAMEWORK_ROOT / "bin" / "agentctl.py"
 
 
 class TestState(unittest.TestCase):
@@ -33,6 +43,20 @@ class TestState(unittest.TestCase):
         (self.root / ".agents" / "framework.toml").write_text(
             "[framework]\nversion='4.0.0'\n", encoding="utf-8"
         )
+        (self.root / "src").mkdir()
+        (self.root / "src" / "__init__.py").write_text("", encoding="utf-8")
+        (self.root / "src" / "state_probe.py").write_text("VALUE = 0\n", encoding="utf-8")
+        (self.root / "tests").mkdir()
+        (self.root / "tests" / "__init__.py").write_text("", encoding="utf-8")
+        (self.root / "tests" / "test_state_probe.py").write_text(
+            "import unittest\n"
+            "from src.state_probe import VALUE\n\n"
+            "class StateProbeContract(unittest.TestCase):\n"
+            "    def test_value(self):\n"
+            "        self.assertEqual(VALUE, 1)\n",
+            encoding="utf-8",
+        )
+        (self.root / "tests" / "oracle.txt").write_text("VALUE must equal 1\n", encoding="utf-8")
         self.s = StateStore(self.root)
 
     def tearDown(self):
@@ -41,20 +65,62 @@ class TestState(unittest.TestCase):
     def _task_dir(self, task_id):
         return self.root / ".aegis" / "tasks" / task_id
 
+    def _cli(self, *arguments: str) -> dict:
+        completed = subprocess.run(
+            [sys.executable, "-B", str(CLI), "--root", str(self.root), "--json", *arguments],
+            text=True,
+            capture_output=True,
+            timeout=30,
+        )
+        self.assertEqual(completed.returncode, 0, completed.stderr + completed.stdout)
+        return json.loads(completed.stdout)
+
     def _precheck(self):
         self.s.transition("DISCOVER", "repository discovery")
         self.s.transition("PRECHECK", "compile artifacts")
+        governance = capture_governance(self.root)
+        compiled = {
+            "schema": 1,
+            "task": {"tdd_mode": "RED_REQUIRED", "classes": ["BUG_FIX"]},
+            "falsification": {"required_families": ["boundary"]},
+            "gates": [{
+                "id": "G1",
+                "description": "state-machine acceptance contract",
+                "severity": "HARD",
+                "family": "fixture",
+                "waivable": False,
+            }],
+            "commands": {"test": [["python", "-B", "-m", "unittest"]]},
+        }
+        compiled["digest"] = hashlib.sha256(
+            json.dumps(compiled, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
+        scope = {
+            "schema": 2,
+            "allow": ["src/**", "tests/**"],
+            "deny": [".agents", ".agents/**", "agents.md", "**/agents.md"],
+            "test_paths": ["tests/**"],
+            "production_paths": ["src/**"],
+            "generated_paths": [],
+            "reference_paths": [],
+            "user_dirty": [],
+            "nested_repositories": [],
+            "governance_digest": governance["digest"],
+        }
+        scope["digest"] = hashlib.sha256(
+            json.dumps(scope, sort_keys=True, separators=(",", ":")).encode("utf-8")
+        ).hexdigest()
         artifacts = {
-            "governance_snapshot": {"digest": SHA_A},
+            "governance_snapshot": governance,
             "constitution": {"digest": SHA_B},
             "instruction_provenance": {"digest": SHA_C},
             "repository_discovery": {"digest": SHA_D},
             "workspace_snapshot": workspace_fingerprint(self.root),
             "test_law_baseline": {"digest": SHA_E},
             "tdd_plan": {"digest": SHA_F},
-            "compiled_policy": {"digest": SHA_A},
+            "compiled_policy": compiled,
             "mandatory_gates": {"digest": SHA_B},
-            "write_scope": {"digest": SHA_C},
+            "write_scope": scope,
             "budgets": {"digest": SHA_D},
             "command_matrix": {"digest": SHA_E},
             "review_requirements": {"digest": SHA_F},
@@ -63,29 +129,20 @@ class TestState(unittest.TestCase):
         return self.s.transition("TRIAGE", "precheck current")
 
     def _baseline_cycle(self, *, remediation=False):
-        task = self.s.load()
-        cycle = new_tdd_cycle(
-            task_id=task["id"],
-            cycle_id=f"TDD-{task['change_epoch'] + 1}",
-            mode="RED_REQUIRED",
-            designed_at_revision=task["revision"],
-            test_contract_digest=SHA_A,
-            oracle_digest=SHA_B,
-            remediation=remediation,
-            discovered_epoch=task["change_epoch"] if remediation else None,
+        design_tdd(
+            self.root,
+            adapter_kind="unittest",
+            test_id="tests.test_state_probe.StateProbeContract.test_value",
+            test_paths=["tests/test_state_probe.py"],
+            oracle_paths=["tests/oracle.txt"],
         )
-        cycle = record_baseline(
-            cycle,
-            outcome="RED",
-            observed_implementation_digest=SHA_C,
-            command=["python", "contract.py"],
-            environment_digest=SHA_D,
-            output_digest=SHA_E,
-            semantic_reason="required behavior absent",
-            harness_valid=True,
-            baseline_intact=True,
+        result, authorized = observe_baseline(
+            self.root,
+            semantic_reason="the fixture value has not been implemented",
+            timeout=10,
         )
-        self.s.record_tdd_cycle(cycle)
+        self.assertTrue(authorized, result)
+        self.assertEqual(result["classification"], "EXPECTED_BEHAVIORAL_RED")
 
     def _implement(self):
         self._precheck()
@@ -102,71 +159,74 @@ class TestState(unittest.TestCase):
         return self.s.transition("REMEDIATE", "remediation authorized")
 
     def _green(self, *, verify=False):
-        task = self.s.load()
-        cycle = next(item for item in task["tdd"]["cycles"] if item["cycle_id"] == task["tdd"]["active_cycle_id"])
-        cycle = record_green(
-            cycle,
-            current_epoch=task["change_epoch"],
-            current_test_contract_digest=SHA_A,
-            current_oracle_digest=SHA_B,
-            current_implementation_digest=SHA_D,
-            diff_digest=SHA_E,
-            command=["python", "contract.py"],
-            environment_digest=SHA_F,
-            output_digest=SHA_C,
-            passed=True,
-        )
-        self.s.record_tdd_cycle(cycle)
+        (self.root / "src" / "state_probe.py").write_text("VALUE = 1\n", encoding="utf-8")
+        observed, passed = observe_green(self.root, timeout=10)
+        self.assertTrue(passed, observed)
+        self.assertEqual(observed["classification"], "GREEN")
         result = self.s.transition("GREEN", "frozen contract green")
         return self.s.transition("VERIFY", "verification") if verify else result
 
     def _review_current(self):
         self.s.transition("FALSIFY", "seek counterexamples")
-        task = self.s.load()
-        cycle = next(item for item in task["tdd"]["cycles"] if item["cycle_id"] == task["tdd"]["active_cycle_id"])
-        receipt = build_falsification_receipt(
-            task_id=task["id"],
-            tdd_cycle_digest=cycle["cycle_sha256"],
-            epoch=task["change_epoch"],
-            diff_digest=task["diff_digest"],
-            methods=["boundary analysis"],
-            attempts=["stale epoch"],
-            boundary_cases=["empty ledger"],
-            counterexamples=[],
-            outcome="NO_COUNTEREXAMPLE",
+        attempt = run_falsification_attempt(
+            self.root,
+            family="boundary",
+            adapter_kind="unittest",
+            test_id="tests.test_state_probe.StateProbeContract.test_value",
+            interpretation="the current candidate preserves the executable boundary contract",
+            timeout=10,
         )
-        self.s.record_falsification(receipt)
+        self.assertEqual(attempt["capability_status"], "PROVEN")
+        complete_falsification(self.root)
         self.s.transition("ADVERSARIAL_REVIEW", "independent review")
-        lease = f"review-{task['change_epoch']}"
-        self.s.mutate(lambda value: value["child_history"].append({
-            "role": "adversarial-reviewer",
-            "lease_id": lease,
-            "outcome": "accepted",
-            "summary": "independent review complete",
-            "evidence": [],
-        }))
-        task = self.s.load()
-        review = build_review_receipt(
-            task_id=task["id"],
-            reviewer_lease=lease,
-            reviewer_role="adversarial-reviewer",
-            reviewer_identity="reviewer",
-            implementer_identity="implementer",
-            epoch=task["change_epoch"],
-            diff_digest=task["diff_digest"],
-            requirements_digest=SHA_A,
-            evidence_set_digest=task["evidence_set_digest"],
-            tdd_cycle_digest=cycle["cycle_sha256"],
-            test_law_baseline_digest=SHA_E,
-            assumptions_tested=["scope closed"],
-            counterexamples_attempted=["stale epoch"],
-            boundary_cases=["empty ledger"],
-            potential_failures=["post-review mutation"],
-            unexpected_scope=[],
-            findings=[],
-            outcome="ACCEPTED",
+        opened = self._cli(
+            "subagent", "open",
+            "--role", "adversarial-reviewer",
+            "--context-evidence", attempt["evidence_id"],
         )
-        return self.s.record_review(review)
+        lease = opened["lease"]["lease_id"]
+        review_path = self.root / ".aegis" / "state-machine-review.json"
+        review_path.write_text(
+            json.dumps(
+                {
+                    "schema": 1,
+                    "assumptions_tested": [{
+                        "claim": "the candidate matches the frozen contract",
+                        "observation": "the bounded executable evidence passed",
+                        "evidence_ids": [attempt["evidence_id"]],
+                    }],
+                    "counterexamples_attempted": [{
+                        "claim": "the boundary contract may fail",
+                        "observation": "no counterexample was observed",
+                        "evidence_ids": [attempt["evidence_id"]],
+                    }],
+                    "boundary_cases": [{
+                        "claim": "the fixture value boundary",
+                        "observation": "the exact contract passed",
+                        "evidence_ids": [attempt["evidence_id"]],
+                    }],
+                    "potential_failures": [{
+                        "claim": "post-review mutation",
+                        "observation": "must invalidate the review",
+                        "evidence_ids": [attempt["evidence_id"]],
+                    }],
+                    "unexpected_scope": [],
+                    "findings": [],
+                    "outcome": "ACCEPTED",
+                },
+                sort_keys=True,
+            ),
+            encoding="utf-8",
+        )
+        self._cli(
+            "subagent", "close",
+            "--lease-id", lease,
+            "--outcome", "accepted",
+            "--summary", "bounded state-machine review complete",
+            "--evidence", attempt["evidence_id"],
+            "--review-file", str(review_path),
+        )
+        return complete_review(self.root, lease_id=lease)
 
     def test_precheck_fails_closed(self):
         self.s.create("x", mode="write")
@@ -179,6 +239,45 @@ class TestState(unittest.TestCase):
         self.s.create("x", mode="write")
         self._precheck()
         self.assertEqual(self.s.load()["state"], "TRIAGE")
+
+    def test_read_task_with_fresh_external_source_completes_exact_audit(self):
+        task = self.s.create("fresh research claim", mode="read", risk="low")
+        self._precheck()
+        self.s.transition("PLAN", "bounded research plan")
+        self.s.transition("VERIFY", "verify current external source")
+        current = self.s.load()
+        record = _append_framework_evidence(
+            self._task_dir(task["id"]),
+            "external-source",
+            "fresh bound research source",
+            provenance="external-source",
+            task_id=task["id"],
+            change_epoch=current["change_epoch"],
+            task_revision=current["revision"],
+            source_identity="https://example.invalid/research-source",
+            source_fingerprint="sha256:verified-source",
+            observed_at=datetime.now(timezone.utc).isoformat(),
+            ttl_seconds=3600,
+            workspace=workspace_fingerprint(self.root),
+        )
+        self.s.mutate(lambda state: (
+            state.__setitem__("verification_evidence", [record["id"]]),
+            state.__setitem__("verification_epoch", state["change_epoch"]),
+            state.__setitem__("evidence_head", record["record_sha256"]),
+        ))
+        self.s.transition("FINAL_AUDIT", "fresh direct research evidence")
+        audited = None
+        error = None
+        try:
+            audited = self.s.audit_complete()
+        except Exception as exc:
+            error = exc
+        self.assertIsNone(error, f"exact read-task audit was rejected: {error}")
+        self.assertIsNotNone(audited)
+        observations = audited["final_audit_receipt"]["observations"]
+        self.assertEqual(len(observations), 40)
+        self.assertTrue(any(item["status"] == "NOT_APPLICABLE" for item in observations))
+        self.assertEqual(self.s.transition("FINALIZE", "research proof complete")["state"], "FINALIZE")
 
     def test_transition_history_is_atomic_state(self):
         task = self.s.create("x")
@@ -195,6 +294,7 @@ class TestState(unittest.TestCase):
             self.s.transition("IMPLEMENT", "skip")
         self.assertEqual(self.s.transition("DISCOVER", "resume")["state"], "DISCOVER")
 
+    @unittest.skipIf(DEPLOYMENT_LAYOUT, "deep source assurance is covered by the deployed public-workflow smoke test")
     def test_implementation_invalidates_stale_proof(self):
         self.s.create("x")
         self._implement()
@@ -206,8 +306,6 @@ class TestState(unittest.TestCase):
                 {"id": "G1", "description": "proof gate", "status": "PROVEN", "evidence": ["E-old"]},
                 {"id": "G2", "description": "waived gate", "status": "WAIVED", "evidence": [], "waiver_reason": "not applicable", "waiver_authority": "policy:test-policy"},
             ]
-            task["final_audit_complete"] = True
-            task["final_audit_workspace"] = {"available": False}
 
         self.s.mutate(proven)
         epoch = self.s.load()["change_epoch"]
@@ -223,6 +321,7 @@ class TestState(unittest.TestCase):
         self.assertEqual(task["gates"][0]["evidence"], [])
         self.assertEqual(task["gates"][1]["status"], "WAIVED")
 
+    @unittest.skipIf(DEPLOYMENT_LAYOUT, "deep source assurance is covered by the deployed public-workflow smoke test")
     def test_final_audit_requires_resolved_gates_and_critical_risks(self):
         self.s.create("x")
         self._implement()
@@ -313,24 +412,30 @@ class TestState(unittest.TestCase):
         with self.assertRaisesRegex(RuntimeError, "critical acceptance gates cannot be waived"):
             self.s.mutate(forge_waiver)
 
+    @unittest.skipIf(DEPLOYMENT_LAYOUT, "deep source assurance is covered by the deployed public-workflow smoke test")
     def test_finalized_load_fails_closed_after_workspace_mutation(self):
         self.s.create("x", mode="write", risk="low")
         self._implement()
         self._green(verify=True)
         task = self.s.load()
         task_dir = self._task_dir(task["id"])
-        record = _append_verified_observation(
-            task_dir, "observation", "current proof",
-            task_id=task["id"], change_epoch=task["change_epoch"], task_revision=task["revision"],
-            workspace=workspace_fingerprint(self.root), gate_ids=["G1"],
+        record, command = execute_command_evidence(
+            task_dir,
+            root=self.root,
+            argv=[sys.executable, "-B", "-m", "unittest", "tests.test_state_probe.StateProbeContract.test_value"],
+            summary="current exact verification command",
+            change_epoch=task["change_epoch"],
+            task_revision=task["revision"],
+            gate_ids=["G1"],
         )
+        self.assertEqual(command.returncode, 0)
 
         def bind(state):
             state["evidence_head"] = record["record_sha256"]
             state["verification_evidence"] = [record["id"]]
             state["verification_epoch"] = state["change_epoch"]
             state["gates"] = [{
-                "id": "G1", "description": "proof", "severity": "high", "status": "PROVEN",
+                "id": "G1", "description": "proof", "severity": "high", "gate_severity": "HARD", "status": "PROVEN",
                 "evidence": [record["id"]], "created_revision": 0,
             }]
 

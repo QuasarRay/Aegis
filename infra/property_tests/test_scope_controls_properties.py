@@ -24,7 +24,7 @@ def controls():
     return importlib.import_module("agentinfra.controls")
 
 
-def compiled_scope(*, baseline_authorized: bool = True, user_dirty=(), nested=(), references=()) -> dict:
+def compiled_scope(*, user_dirty=(), nested=(), references=()) -> dict:
     return scope_module().compile_write_scope(
         allow=["src/**", "tests/**", "infra/property_tests/**"],
         deny=["vendor/**"],
@@ -34,7 +34,6 @@ def compiled_scope(*, baseline_authorized: bool = True, user_dirty=(), nested=()
         reference_paths=list(references),
         user_dirty=list(user_dirty),
         nested_repositories=list(nested),
-        baseline_authorized=baseline_authorized,
         governance_digest=SHA_A,
     )
 
@@ -53,11 +52,10 @@ class ScopeAndControlsProperties(unittest.TestCase):
     )
     def test_governance_is_unconditionally_denied_under_aliases(self, spelling: str, phase: str) -> None:
         self.assertFalse(
-            scope_module().write_authorized(
+            scope_module()._static_scope_allows(
                 compiled_scope(),
                 spelling,
                 phase=phase,
-                current_governance_digest=SHA_A,
             )
         )
 
@@ -66,31 +64,29 @@ class ScopeAndControlsProperties(unittest.TestCase):
         scope = compiled_scope()
         is_test = path.startswith(("tests/", "infra/property_tests/"))
         self.assertEqual(
-            scope_module().write_authorized(scope, path, phase="TEST_DESIGN", current_governance_digest=SHA_A),
+            scope_module()._static_scope_allows(scope, path, phase="TEST_DESIGN"),
             is_test,
         )
         self.assertEqual(
-            scope_module().write_authorized(scope, path, phase="IMPLEMENTATION", current_governance_digest=SHA_A),
+            scope_module()._static_scope_allows(scope, path, phase="IMPLEMENTATION"),
             not is_test,
         )
 
-    def test_implementation_authority_requires_legitimate_baseline_and_current_governance(self) -> None:
-        self.assertFalse(
-            scope_module().write_authorized(
-                compiled_scope(baseline_authorized=False),
-                "src/main.py",
-                phase="IMPLEMENTATION",
-                current_governance_digest=SHA_A,
-            )
+    def test_dynamic_implementation_authority_cannot_be_embedded_in_static_scope(self) -> None:
+        scope = compiled_scope()
+        self.assertNotIn("baseline_authorized", scope)
+        self.assertEqual(
+            set(scope),
+            scope_module()._STATIC_SCOPE_FIELDS,
         )
-        self.assertFalse(
-            scope_module().write_authorized(
-                compiled_scope(),
-                "src/main.py",
-                phase="IMPLEMENTATION",
-                current_governance_digest=SHA_B,
-            )
-        )
+        import inspect
+
+        parameters = inspect.signature(scope_module().write_authorized).parameters
+        self.assertEqual(set(parameters), {"root", "path", "task_id"})
+        tampered = dict(scope)
+        tampered["governance_digest"] = SHA_B
+        with self.assertRaises(scope_module().ScopeError):
+            scope_module().validate_write_scope(tampered)
 
     @given(boundary=st.sampled_from(("dirty.txt", "nested", "reference")))
     def test_user_dirty_nested_and_reference_boundaries_override_allow(self, boundary: str) -> None:
@@ -105,8 +101,8 @@ class ScopeAndControlsProperties(unittest.TestCase):
             "reference": "src/reference/model.py",
         }[boundary]
         self.assertFalse(
-            scope_module().write_authorized(
-                compiled_scope(**values), path, phase="IMPLEMENTATION", current_governance_digest=SHA_A
+            scope_module()._static_scope_allows(
+                compiled_scope(**values), path, phase="IMPLEMENTATION"
             )
         )
 

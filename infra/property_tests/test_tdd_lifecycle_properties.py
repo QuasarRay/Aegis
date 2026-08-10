@@ -44,6 +44,7 @@ def _task(mode: str = "RED_REQUIRED") -> dict:
             "mode": mode,
             "test_design_complete": False,
             "baseline_executed": False,
+            "baseline_observed_by_framework": False,
             "baseline_outcome": None,
             "required_baseline_outcome": expected,
             "test_contract_digest": "a" * 64,
@@ -64,6 +65,7 @@ def _implementation_expected(task: dict) -> bool:
     return bool(
         tdd["test_design_complete"]
         and tdd["baseline_executed"]
+        and tdd["baseline_observed_by_framework"]
         and tdd["baseline_outcome"] == tdd["required_baseline_outcome"]
         and tdd["test_contract_digest"] == tdd["frozen_test_contract_digest"]
         and tdd["oracle_digest"] == tdd["frozen_oracle_digest"]
@@ -90,6 +92,7 @@ class TDDTransitionStateMachine(RuleBasedStateMachine):
         tdd = self.task["tdd"]
         tdd.update(
             baseline_executed=True,
+            baseline_observed_by_framework=True,
             baseline_outcome="RED",
             frozen_test_contract_digest=tdd["test_contract_digest"],
             frozen_oracle_digest=tdd["oracle_digest"],
@@ -179,6 +182,7 @@ class TDDLifecycleProperties(unittest.TestCase):
         tdd.update(
             test_design_complete=True,
             baseline_executed=True,
+            baseline_observed_by_framework=True,
             frozen_test_contract_digest=tdd["test_contract_digest"],
             frozen_oracle_digest=tdd["oracle_digest"],
             observed_implementation_digest=tdd["baseline_implementation_digest"],
@@ -200,6 +204,7 @@ class TDDLifecycleProperties(unittest.TestCase):
         tdd.update(
             test_design_complete=True,
             baseline_executed=True,
+            baseline_observed_by_framework=True,
             baseline_outcome="RED",
             frozen_test_contract_digest=tdd["test_contract_digest"],
             frozen_oracle_digest=tdd["oracle_digest"],
@@ -213,13 +218,25 @@ class TDDLifecycleProperties(unittest.TestCase):
         with self.assertRaises(TransitionError):
             validate_transition(task, "IMPLEMENT", reason="mutated contract")
 
-    @given(harness_valid=st.booleans(), baseline_intact=st.booleans(), reason=st.sampled_from(("", "irrelevant", "semantic defect")))
-    def test_fake_or_irrelevant_red_cannot_authorize_implementation(self, harness_valid: bool, baseline_intact: bool, reason: str) -> None:
+    @given(
+        framework_observed=st.booleans(),
+        harness_valid=st.booleans(),
+        baseline_intact=st.booleans(),
+        reason=st.sampled_from(("", "irrelevant", "semantic defect")),
+    )
+    def test_fake_or_irrelevant_red_cannot_authorize_implementation(
+        self,
+        framework_observed: bool,
+        harness_valid: bool,
+        baseline_intact: bool,
+        reason: str,
+    ) -> None:
         task = _task("RED_REQUIRED")
         tdd = task["tdd"]
         tdd.update(
             test_design_complete=True,
             baseline_executed=True,
+            baseline_observed_by_framework=framework_observed,
             baseline_outcome="RED",
             frozen_test_contract_digest=tdd["test_contract_digest"],
             frozen_oracle_digest=tdd["oracle_digest"],
@@ -228,7 +245,7 @@ class TDDLifecycleProperties(unittest.TestCase):
             baseline_intact=baseline_intact,
             semantic_reason=reason if reason == "semantic defect" else "",
         )
-        should_accept = harness_valid and baseline_intact and reason == "semantic defect"
+        should_accept = framework_observed and harness_valid and baseline_intact and reason == "semantic defect"
         if should_accept:
             validate_transition(task, "IMPLEMENT", reason="legitimate red")
         else:

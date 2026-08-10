@@ -3,6 +3,8 @@ from __future__ import annotations
 import os
 import hashlib
 import json
+from contextlib import contextmanager
+from contextvars import ContextVar
 from pathlib import Path
 
 from .security import is_path_redirect
@@ -10,6 +12,59 @@ from .security import is_path_redirect
 
 class GovernanceViolation(RuntimeError):
     """Raised when an Aegis-managed mutation targets governing input."""
+
+
+_GOVERNANCE_CREATION_ROOTS: ContextVar[frozenset[str]] = ContextVar(
+    "aegis_governance_creation_roots", default=frozenset()
+)
+_INSTRUCTION_UPDATE_TARGETS: ContextVar[frozenset[str]] = ContextVar(
+    "aegis_instruction_update_targets", default=frozenset()
+)
+
+
+def _path_key(path: Path) -> str:
+    candidate = Path(path)
+    value = str(candidate.parent.resolve(strict=False) / candidate.name)
+    return value.casefold() if os.name == "nt" else value
+
+
+@contextmanager
+def _governance_tree_creation(root: Path):
+    """Authorize creation of one absent governance tree for verified deployment.
+
+    The authority is context-local, cannot apply to an existing ``.agents``
+    tree, and ends before the extracted artifact is returned to its caller.
+    """
+
+    project = Path(root).resolve(strict=True)
+    if (project / ".agents").exists():
+        raise GovernanceViolation("AEGIS-I001: governance creation requires an absent .agents tree")
+    current = _GOVERNANCE_CREATION_ROOTS.get()
+    token = _GOVERNANCE_CREATION_ROOTS.set(current | {str(project)})
+    try:
+        yield
+    finally:
+        _GOVERNANCE_CREATION_ROOTS.reset(token)
+
+
+@contextmanager
+def _governing_instruction_update(root: Path, target: Path):
+    """Authorize only the root bootstrap transaction's exact AGENTS.md target."""
+
+    project = Path(root).resolve(strict=True)
+    expected = project / "AGENTS.md"
+    candidate = Path(target)
+    candidate = candidate if candidate.is_absolute() else project / candidate
+    if _path_key(candidate) != _path_key(expected):
+        raise GovernanceViolation("AEGIS-I001: bootstrap authority is limited to root AGENTS.md")
+    if is_path_redirect(candidate):
+        raise GovernanceViolation("AEGIS-I001: redirected governing instruction is forbidden")
+    current = _INSTRUCTION_UPDATE_TARGETS.get()
+    token = _INSTRUCTION_UPDATE_TARGETS.set(current | {_path_key(expected)})
+    try:
+        yield
+    finally:
+        _INSTRUCTION_UPDATE_TARGETS.reset(token)
 
 
 def _identity(path: Path) -> tuple[int, int] | None:
@@ -21,10 +76,11 @@ def _identity(path: Path) -> tuple[int, int] | None:
 
 
 def _relative_casefold(path: Path, root: Path) -> tuple[str, ...] | None:
-    """Return a lexical relative identity with Windows aliases normalized."""
+    """Return a confined relative identity with filesystem aliases normalized."""
 
     try:
-        relative = path.absolute().relative_to(root.absolute())
+        candidate = path.parent.resolve(strict=False) / path.name
+        relative = candidate.relative_to(root.resolve(strict=True))
     except ValueError:
         return None
     parts = relative.parts
@@ -123,25 +179,43 @@ def assert_mutation_allowed(root: Path, *targets: Path, operation: str = "write"
     """
 
     project = Path(root).resolve(strict=True)
+    governance_creation = str(project) in _GOVERNANCE_CREATION_ROOTS.get()
     governing_identities = _governing_file_identities(project)
     for supplied in targets:
         raw = Path(supplied)
         if not raw.is_absolute() and ".." in raw.parts:
             raise GovernanceViolation(f"AEGIS-I001: {operation} path uses parent traversal: {supplied}")
         candidate = raw if raw.is_absolute() else project / raw
+        instruction_update = _path_key(candidate) in _INSTRUCTION_UPDATE_TARGETS.get()
         relative_parts = _relative_casefold(candidate, project)
         if relative_parts is None:
             raise GovernanceViolation(f"AEGIS-I010: {operation} target escapes project root: {supplied}")
-        if relative_parts and relative_parts[0] == ".agents":
+        if relative_parts and relative_parts[0] == ".agents" and not governance_creation:
             raise GovernanceViolation(f"AEGIS-I001: deployed .agents governance is immutable: {supplied}")
-        if relative_parts and relative_parts[-1] == ("agents.md" if os.name == "nt" else "AGENTS.md"):
+        if (
+            relative_parts
+            and relative_parts[-1] == ("agents.md" if os.name == "nt" else "AGENTS.md")
+            and not instruction_update
+        ):
             raise GovernanceViolation(f"AEGIS-I001: governing instruction file is immutable: {supplied}")
 
-        current = project
-        for part in candidate.absolute().relative_to(project.absolute()).parts:
-            current = current / part
+        current = candidate.absolute()
+        while True:
             if is_path_redirect(current):
                 raise GovernanceViolation(f"AEGIS-I001: redirected mutation path is forbidden: {current}")
+            try:
+                if current.resolve(strict=False) == project:
+                    break
+            except OSError as exc:
+                raise GovernanceViolation(
+                    f"AEGIS-I001: cannot resolve mutation ancestry: {current}"
+                ) from exc
+            parent = current.parent
+            if parent == current:
+                raise GovernanceViolation(
+                    f"AEGIS-I010: {operation} target ancestry does not reach project root: {supplied}"
+                )
+            current = parent
 
         resolved = candidate.parent.resolve(strict=False) / candidate.name
         try:
@@ -151,8 +225,8 @@ def assert_mutation_allowed(root: Path, *targets: Path, operation: str = "write"
         normalized_resolved = tuple(
             part.casefold() if os.name == "nt" else part for part in resolved_relative.parts
         )
-        if normalized_resolved and normalized_resolved[0] == ".agents":
+        if normalized_resolved and normalized_resolved[0] == ".agents" and not governance_creation:
             raise GovernanceViolation(f"AEGIS-I001: resolved target enters deployed governance: {supplied}")
         identity = _identity(candidate)
-        if identity is not None and identity in governing_identities:
+        if identity is not None and identity in governing_identities and not instruction_update:
             raise GovernanceViolation(f"AEGIS-I001: hardlinked governing content is immutable: {supplied}")

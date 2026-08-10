@@ -5,7 +5,7 @@ CLI=Path(__file__).resolve().parents[2]/"bin"/"agentctl.py"
 
 class TestCliWorkflow(unittest.TestCase):
     def root(self,td):
-        root=Path(td);(root/".agents"/"runtime").mkdir(parents=True);(root/".agents"/"framework.toml").write_text("[framework]\nversion='4.0.0'\n")
+        root=Path(td);(root/".aegis"/"runtime").mkdir(parents=True);(root/".agents"/"framework.toml").parent.mkdir(parents=True);(root/".agents"/"framework.toml").write_text("[framework]\nversion='5.0.0'\n")
         return root
     def run_cli(self,root,*args,expect=0):
         cp=subprocess.run([sys.executable,"-B",str(CLI),"--root",str(root),*args],text=True,capture_output=True)

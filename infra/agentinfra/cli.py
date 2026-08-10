@@ -8,6 +8,7 @@ from .context_cache import ContextLedger
 from .controls import validate_gate_waiver
 from .discovery import discover_repository, write_discovery_artifact
 from .evidence import _append_verified_observation, append_evidence, execute_command_evidence, load_evidence, rollback_last_evidence, verify_evidence
+from .falsification_runtime import complete as falsification_complete, run_attempt as falsification_run
 from .laws import LawRunner
 from .locks import FileLock, LeaseLock, LockError
 from .manifest import verify as verify_manifest
@@ -17,8 +18,12 @@ from .policy import compile_contract, load_project_contract, write_compiled_poli
 from .precheck import build_precheck
 from .runtime_migration import migrate_runtime
 from .release_source import build_deployment_tree, verify_deployment_tree
+from .review import review_handoff_digest, review_payload_digest, validate_review_payload
+from .review_runtime import complete as review_complete
+from .security import confined_path
 from .shell_select import choose as choose_shell, available as available_shells
 from .state_store import StateStore, now
+from .tdd_runtime import abort as tdd_abort, baseline as tdd_baseline, design as tdd_design, green as tdd_green, status as tdd_status
 from .workspace import workspace_fingerprint
 
 def dump(obj): print(json.dumps(obj,indent=2,sort_keys=True,default=str))
@@ -149,6 +154,22 @@ def cmd_evidence(root,args):
         rec=attached["record"]
         dump(rec);return 0
 
+def cmd_tdd(root,args):
+    if args.action=="design":
+        dump(tdd_design(root,adapter_kind=args.adapter,test_id=args.test_id,test_paths=args.test_path,oracle_paths=args.oracle_path or [],task_id=args.task_id or None));return 0
+    if args.action=="baseline":
+        report,accepted=tdd_baseline(root,semantic_reason=args.semantic_reason,timeout=args.timeout,task_id=args.task_id or None);dump(report);return 0 if accepted else 1
+    if args.action=="green":
+        report,accepted=tdd_green(root,timeout=args.timeout,task_id=args.task_id or None);dump(report);return 0 if accepted else 1
+    if args.action=="status":dump(tdd_status(root,task_id=args.task_id or None));return 0
+    if args.action=="abort":dump(tdd_abort(root,reason=args.reason,task_id=args.task_id or None));return 0
+    raise RuntimeError("unknown TDD action")
+
+def cmd_falsify(root,args):
+    if args.action=="run":dump(falsification_run(root,family=args.family,adapter_kind=args.adapter,test_id=args.test_id,interpretation=args.interpretation,timeout=args.timeout,task_id=args.task_id or None));return 0
+    if args.action=="complete":dump(falsification_complete(root,task_id=args.task_id or None));return 0
+    raise RuntimeError("unknown falsification action")
+
 def cmd_context(root,args):
     c=ContextLedger(root)
     if args.action in {"record","check"}:
@@ -160,6 +181,17 @@ def cmd_context(root,args):
 
 def child_lease(root):return LeaseLock(leases_dir(root)/"subagent-lease.json","single-active-subagent")
 def child_control(root):return FileLock(leases_dir(root)/"subagent-control.lock","subagent-control")
+
+def _read_review_payload(root,value):
+    path=confined_path(root,value,must_exist=True,reject_symlinks=True)
+    if not path.is_file():raise RuntimeError("review handoff path must be a regular file")
+    before=path.stat();raw=path.read_bytes();after=path.stat()
+    if len(raw)>65_536:raise RuntimeError("review handoff exceeds 65536-byte bound")
+    stable=(before.st_dev,before.st_ino,before.st_size,before.st_mtime_ns)==(after.st_dev,after.st_ino,after.st_size,after.st_mtime_ns)
+    if not stable or len(raw)!=after.st_size:raise RuntimeError("review handoff changed while being read")
+    try:payload=json.loads(raw.decode("utf-8"))
+    except (UnicodeDecodeError,json.JSONDecodeError) as exc:raise RuntimeError(f"invalid review handoff JSON: {exc}") from exc
+    return validate_review_payload(payload)
 
 def cmd_subagent(root,args):
     lease=child_lease(root);s=StateStore(root)
@@ -205,17 +237,23 @@ def cmd_subagent(root,args):
         if not info.get("exists") or info.get("lease_id")!=child.get("lease_id") or info.get("task_id")!=t["id"]:
             raise RuntimeError("task/global subagent lease mismatch; recover explicitly")
         if args.lease_id and args.lease_id!=child["lease_id"]:raise RuntimeError("provided lease id mismatch")
+        if not args.summary.strip():raise RuntimeError("child handoff summary must not be empty")
         evidence=list(dict.fromkeys(args.evidence or []))
         if evidence:
             known={e["id"] for e in load_evidence(task_dir(root,t["id"]))}
             missing=[eid for eid in evidence if eid not in known]
             if missing:raise RuntimeError("unknown child-handoff evidence: "+", ".join(missing))
+        review_payload=_read_review_payload(root,args.review_file) if args.review_file else None
+        if review_payload is not None and review_payload["outcome"].casefold()!=args.outcome:
+            raise RuntimeError("structured review outcome conflicts with child handoff outcome")
         control=child_control(root);control.acquire()
         try:
             lease.release(child["lease_id"],owner_nonce=child.get("owner_nonce"),task_id=t["id"],role=child["role"])
             try:
                 def f(x):
-                    x.setdefault("child_history",[]).append({"role":child["role"],"lease_id":child["lease_id"],"opened":child["opened"],"closed":now(),"outcome":args.outcome,"summary":args.summary.strip(),"evidence":evidence,"context_brief_sha256":child.get("context_brief_sha256")})
+                    handoff={"schema":2 if review_payload is not None else 1,"role":child["role"],"lease_id":child["lease_id"],"opened":child["opened"],"closed":now(),"outcome":args.outcome,"summary":args.summary.strip(),"evidence":evidence,"context_brief":child.get("context_brief"),"context_brief_sha256":child.get("context_brief_sha256"),"review_payload":review_payload,"review_payload_sha256":review_payload_digest(review_payload) if review_payload is not None else None}
+                    handoff["handoff_sha256"]=review_handoff_digest(handoff)
+                    x.setdefault("child_history",[]).append(handoff)
                     x["active_child"]=None;x["final_audit_complete"]=False
                 updated=s.mutate(f,t["id"],allow_active_child=True)
             except BaseException:
@@ -247,6 +285,10 @@ def cmd_subagent(root,args):
                 lease.restore(cleared);raise
         finally:control.release()
         dump({"cleared":cleared,"task":updated,"evidence":rec});return 0
+
+def cmd_review(root,args):
+    if args.action=="complete":dump(review_complete(root,lease_id=args.lease_id,task_id=args.task_id or None));return 0
+    raise RuntimeError("unknown review action")
 
 def law_files(root,args):
     if args.files:return [Path(x).resolve() if Path(x).is_absolute() else root/x for x in args.files]
@@ -309,7 +351,16 @@ def build_parser():
     x=qs.add_parser("decision-add");x.add_argument("statement");x.add_argument("--id");x.add_argument("--rationale",required=True);x.add_argument("--evidence",action="append");x.add_argument("--task-id")
     q=sp.add_parser("evidence");qs=q.add_subparsers(dest="action",required=True)
     for a in ["list","verify"]:x=qs.add_parser(a);x.add_argument("--task-id")
-    x=qs.add_parser("add");x.add_argument("--kind",required=True);x.add_argument("--summary",required=True);x.add_argument("--result");x.add_argument("--path");x.add_argument("--verification",action="store_true");x.add_argument("--argv",nargs="+");x.add_argument("--gate-id",action="append");x.add_argument("--timeout",type=float,default=60.0);x.add_argument("--expected-exit",type=int,default=0);x.add_argument("--task-id")
+    x=qs.add_parser("add");x.add_argument("--kind",required=True);x.add_argument("--summary",required=True);x.add_argument("--result");x.add_argument("--path");x.add_argument("--verification",action="store_true");x.add_argument("--gate-id",action="append");x.add_argument("--timeout",type=float,default=60.0);x.add_argument("--expected-exit",type=int,default=0);x.add_argument("--task-id");x.add_argument("--argv",nargs=argparse.REMAINDER)
+    q=sp.add_parser("tdd");qs=q.add_subparsers(dest="action",required=True)
+    x=qs.add_parser("design");x.add_argument("--adapter",choices=["unittest"],required=True);x.add_argument("--test-id",required=True);x.add_argument("--test-path",action="append",required=True);x.add_argument("--oracle-path",action="append");x.add_argument("--task-id")
+    x=qs.add_parser("baseline");x.add_argument("--semantic-reason",required=True);x.add_argument("--timeout",type=float,default=60.0);x.add_argument("--task-id")
+    x=qs.add_parser("green");x.add_argument("--timeout",type=float,default=60.0);x.add_argument("--task-id")
+    for action in ("status",):x=qs.add_parser(action);x.add_argument("--task-id")
+    x=qs.add_parser("abort");x.add_argument("--reason",required=True);x.add_argument("--task-id")
+    q=sp.add_parser("falsify");qs=q.add_subparsers(dest="action",required=True)
+    x=qs.add_parser("run");x.add_argument("--family",required=True);x.add_argument("--adapter",choices=["unittest"],required=True);x.add_argument("--test-id",required=True);x.add_argument("--interpretation",required=True);x.add_argument("--timeout",type=float,default=60.0);x.add_argument("--task-id")
+    x=qs.add_parser("complete");x.add_argument("--task-id")
     q=sp.add_parser("context");qs=q.add_subparsers(dest="action",required=True)
     for a in ["record","check"]:
         x=qs.add_parser(a);x.add_argument("path")
@@ -319,8 +370,9 @@ def build_parser():
     q=sp.add_parser("subagent");qs=q.add_subparsers(dest="action",required=True)
     qs.add_parser("status")
     x=qs.add_parser("open");x.add_argument("--role",required=True);x.add_argument("--context-evidence",action="append");x.add_argument("--task-id")
-    x=qs.add_parser("close");x.add_argument("--lease-id");x.add_argument("--summary",required=True);x.add_argument("--outcome",choices=["accepted","rejected","partial"],required=True);x.add_argument("--evidence",action="append");x.add_argument("--task-id")
+    x=qs.add_parser("close");x.add_argument("--lease-id");x.add_argument("--summary",required=True);x.add_argument("--outcome",choices=["accepted","rejected","partial"],required=True);x.add_argument("--evidence",action="append");x.add_argument("--review-file");x.add_argument("--task-id")
     x=qs.add_parser("recover");x.add_argument("--task-id");x.add_argument("--reason",required=True);x.add_argument("--force",action="store_true")
+    q=sp.add_parser("review");qs=q.add_subparsers(dest="action",required=True);x=qs.add_parser("complete");x.add_argument("--lease-id",required=True);x.add_argument("--task-id")
     q=sp.add_parser("law");qs=q.add_subparsers(dest="action",required=True);x=qs.add_parser("run");x.add_argument("files",nargs="*")
     q=sp.add_parser("module");qs=q.add_subparsers(dest="action",required=True);qs.add_parser("list");x=qs.add_parser("show");x.add_argument("id")
     x=qs.add_parser("verify");x.add_argument("id")
@@ -354,8 +406,11 @@ def main(argv=None):
         if args.cmd=="shell":dump(choose_shell(args.purpose));return 0
         if args.cmd=="task":return cmd_task(root,args)
         if args.cmd=="evidence":return cmd_evidence(root,args)
+        if args.cmd=="tdd":return cmd_tdd(root,args)
+        if args.cmd=="falsify":return cmd_falsify(root,args)
         if args.cmd=="context":return cmd_context(root,args)
         if args.cmd=="subagent":return cmd_subagent(root,args)
+        if args.cmd=="review":return cmd_review(root,args)
         if args.cmd=="law":return cmd_law(root,args)
         if args.cmd=="module":return cmd_module(root,args)
         if args.cmd=="bootstrap":

@@ -1,9 +1,12 @@
 from __future__ import annotations
 
+import hashlib
+import json
 import re
 
 from .assurance import validate_falsification_receipt
 from .review import validate_review_receipt
+from .final_audit import non_write_audit_binding_digest, validate_task_audit_receipt
 
 
 STATES = {
@@ -107,6 +110,12 @@ def _artifact_digest(value: object) -> str | None:
     return digest if isinstance(digest, str) and _SHA256_RE.fullmatch(digest) else None
 
 
+def _value_digest(value: object) -> str:
+    return hashlib.sha256(
+        json.dumps(value, sort_keys=True, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+
+
 def _current_tdd_cycle(task: dict) -> dict | None:
     tdd = task.get("tdd")
     if not isinstance(tdd, dict):
@@ -122,6 +131,8 @@ def _validate_current_green(task: dict) -> dict:
     cycle = _current_tdd_cycle(task)
     if cycle is None or cycle.get("status") not in {"GREEN_PROVEN", "TDD_CYCLE_COMPLETE"}:
         raise TransitionError("current TDD cycle has not established GREEN")
+    if task.get("tdd", {}).get("green_observed_by_framework") is not True:
+        raise TransitionError("current GREEN lacks trusted framework execution evidence")
     epoch = int(task.get("change_epoch", 0))
     if cycle.get("green_epoch") != epoch or task.get("tdd", {}).get("green_epoch") != epoch:
         raise TransitionError("GREEN evidence is stale for the current implementation epoch")
@@ -138,7 +149,7 @@ def _validate_current_green(task: dict) -> dict:
 
 
 def _validate_current_falsification(task: dict, cycle: dict) -> None:
-    if not validate_falsification_receipt(
+    if not isinstance(task.get("falsification"), dict) or task["falsification"].get("schema") != 2 or not validate_falsification_receipt(
         task.get("falsification"),
         task_id=task.get("id"),
         current_tdd_cycle_digest=cycle.get("cycle_sha256"),
@@ -151,7 +162,7 @@ def _validate_current_falsification(task: dict, cycle: dict) -> None:
 
 def _validate_current_review(task: dict, cycle: dict) -> None:
     receipt = task.get("review_receipt")
-    if not isinstance(receipt, dict) or receipt.get("task_id") != task.get("id"):
+    if not isinstance(receipt, dict) or receipt.get("schema") != 2 or receipt.get("task_id") != task.get("id"):
         raise TransitionError("current candidate lacks an independent review receipt")
     matching_handoff = any(
         item.get("lease_id", item.get("handoff_id")) == receipt.get("reviewer_lease")
@@ -167,8 +178,66 @@ def _validate_current_review(task: dict, cycle: dict) -> None:
         current_evidence_set_digest=task.get("evidence_set_digest"),
         current_tdd_cycle_digest=cycle.get("cycle_sha256"),
         current_test_law_baseline_digest=_artifact_digest(task.get("precheck", {}).get("test_law_baseline")),
+        current_falsification_receipt_digest=(
+            task.get("falsification", {}).get("receipt_sha256")
+            if isinstance(task.get("falsification"), dict)
+            else None
+        ),
     ):
         raise TransitionError("independent review is missing, rejected, or stale")
+
+
+def _validate_current_final_audit(task: dict) -> None:
+    receipt = task.get("final_audit_receipt")
+    cycle = _current_tdd_cycle(task)
+    workspace = task.get("final_audit_workspace")
+    from .final_audit_runtime import PRODUCER_REGISTRY_DIGEST
+
+    non_write = task.get("mode") == "read"
+    workspace_sha256 = workspace.get("sha256") if isinstance(workspace, dict) else None
+    tdd_digest = (
+        non_write_audit_binding_digest(binding="tdd-cycle", task_id=task["id"], epoch=task["change_epoch"], workspace_sha256=workspace_sha256)
+        if non_write else (cycle.get("cycle_sha256") if cycle else None)
+    )
+    review_digest = (
+        non_write_audit_binding_digest(binding="review-receipt", task_id=task["id"], epoch=task["change_epoch"], workspace_sha256=workspace_sha256)
+        if non_write else (
+            task.get("review_receipt", {}).get("receipt_sha256")
+            if isinstance(task.get("review_receipt"), dict) else None
+        )
+    )
+    falsification_digest = (
+        non_write_audit_binding_digest(binding="falsification-receipt", task_id=task["id"], epoch=task["change_epoch"], workspace_sha256=workspace_sha256)
+        if non_write else (
+            task.get("falsification", {}).get("receipt_sha256")
+            if isinstance(task.get("falsification"), dict) else None
+        )
+    )
+
+    if (cycle is None and not non_write) or not isinstance(workspace, dict) or workspace.get("available") is not True or not validate_task_audit_receipt(
+        receipt,
+        task_id=task.get("id"),
+        epoch=task.get("change_epoch"),
+        implementation_digest=task.get("implementation_digest"),
+        diff_digest=task.get("diff_digest"),
+        workspace_sha256=workspace.get("sha256"),
+        compiled_contract_digest=_artifact_digest(task.get("precheck", {}).get("compiled_policy")),
+        write_scope_digest=_artifact_digest(task.get("precheck", {}).get("write_scope")),
+        governance_digest=_artifact_digest(task.get("precheck", {}).get("governance_snapshot")),
+        evidence_set_digest=task.get("evidence_set_digest"),
+        evidence_head=task.get("evidence_head"),
+        tdd_cycle_digest=tdd_digest,
+        review_receipt_digest=review_digest,
+        falsification_receipt_digest=falsification_digest,
+        test_law_baseline_digest=_artifact_digest(task.get("precheck", {}).get("test_law_baseline")),
+        gates_digest=_value_digest(task.get("gates", [])),
+        risks_digest=_value_digest(task.get("risks", [])),
+        decisions_digest=_value_digest(task.get("decisions", [])),
+        child_history_digest=_value_digest(task.get("child_history", [])),
+        verification_digest=_value_digest(task.get("verification_evidence", [])),
+        producer_registry_digest=PRODUCER_REGISTRY_DIGEST,
+    ):
+        raise TransitionError("final audit lacks a current exact framework-produced receipt")
 
 
 def _validate_precheck(task: dict) -> None:
@@ -194,6 +263,8 @@ def _validate_tdd_authority(task: dict) -> None:
         raise TransitionError("implementation requires completed TEST_DESIGN")
     if tdd.get("baseline_executed") is not True:
         raise TransitionError("implementation requires an executed pre-implementation baseline")
+    if tdd.get("baseline_observed_by_framework") is not True:
+        raise TransitionError("implementation requires a trusted framework-observed baseline")
     if tdd.get("baseline_outcome") != expected:
         raise TransitionError(f"{mode} requires baseline outcome {expected}")
     for current, frozen, label in (
@@ -324,3 +395,4 @@ def validate_transition(task: dict, target: str, *, reason: str | None = None) -
             raise TransitionError("verification evidence is stale for the current implementation epoch")
         if not task.get("final_audit_complete"):
             raise TransitionError("final audit not recorded")
+        _validate_current_final_audit(task)

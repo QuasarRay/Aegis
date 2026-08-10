@@ -53,6 +53,9 @@ from agentinfra.codex_config import (
 )
 from agentinfra.context_cache import ContextLedger
 from agentinfra.evidence import _append_framework_evidence, _append_verified_observation, append_evidence, execute_command_evidence, load_evidence, rollback_last_evidence, verify_evidence
+from agentinfra.falsification_runtime import complete as complete_falsification
+from agentinfra.falsification_runtime import run_attempt as run_falsification_attempt
+from agentinfra.governance import capture_governance
 from agentinfra.lawlib import (
     LawFailure,
     associative,
@@ -82,7 +85,9 @@ from agentinfra.manifest import (
     write_release_anchor,
 )
 from agentinfra.modules import ModuleError, discover, run_action, scaffold
+from agentinfra.paths import aegis_dir, cache_dir, framework_dir, install_state_dir, leases_dir, persistent_dir, runtime_dir, tasks_dir
 from agentinfra.process import run_process
+from agentinfra.review_runtime import complete as complete_review
 from agentinfra.security import (
     SecurityError,
     confined_path,
@@ -94,6 +99,9 @@ from agentinfra.security import (
 from agentinfra.shell_select import available as available_shells, choose as choose_shell
 from agentinfra.state_machine import ALLOWED, STATES, TransitionError
 from agentinfra.state_store import StateStore, validate_task, validate_task_id
+from agentinfra.tdd_runtime import baseline as observe_baseline
+from agentinfra.tdd_runtime import design as design_tdd
+from agentinfra.tdd_runtime import green as observe_green
 from agentinfra.transaction import FileTransaction, Mutation, TransactionError, recover_transaction
 from agentinfra.workspace import workspace_fingerprint
 
@@ -178,14 +186,16 @@ def _sha(value: object) -> str:
 
 
 def _copy_bootstrap(source: Path, root: Path) -> None:
+    framework = framework_dir(source)
     (root / ".agents" / "bootstrap").mkdir(parents=True)
-    shutil.copy2(source / ".agents" / "bootstrap" / "root-AGENTS.block.md", root / ".agents" / "bootstrap" / "root-AGENTS.block.md")
-    shutil.copy2(source / ".agents" / "VERSION", root / ".agents" / "VERSION")
+    shutil.copy2(framework / "bootstrap" / "root-AGENTS.block.md", root / ".agents" / "bootstrap" / "root-AGENTS.block.md")
+    shutil.copy2(framework / "VERSION", root / ".agents" / "VERSION")
 
 
 def _copy_codex(source: Path, root: Path) -> None:
-    shutil.copytree(source / ".agents" / "modules" / "codex", root / ".agents" / "modules" / "codex")
-    shutil.copy2(source / ".agents" / "VERSION", root / ".agents" / "VERSION")
+    framework = framework_dir(source)
+    shutil.copytree(framework / "modules" / "codex", root / ".agents" / "modules" / "codex")
+    shutil.copy2(framework / "VERSION", root / ".agents" / "VERSION")
 
 
 def _valid_probe() -> dict:
@@ -219,47 +229,273 @@ def _filesystem_symlink_capability_probe() -> tuple[bool, str]:
 
 
 def _advance_precheck(store: StateStore, root: Path) -> None:
-    store.transition("PRECHECK", "begin precheck")
-    def apply(task):
-        snapshot = workspace_fingerprint(root)
-        task["precheck"].update(
-            instructions_discovered=True,
-            project_overlay_checked=True,
-            acceptance_defined=True,
-            workspace_inspected=snapshot,
-            workspace_snapshot=snapshot,
+    """Install the current content-addressed PRECHECK contract in a fixture.
+
+    Historical scenario code used caller booleans and a direct CREATED ->
+    PRECHECK edge.  This fixture intentionally mirrors the supported artifact
+    boundary: DISCOVER first, then sealed compiled-policy/write-scope objects
+    plus every required content-addressed artifact.
+    """
+
+    agents = root / ".agents"
+    agents.mkdir(parents=True, exist_ok=True)
+    marker = agents / "framework.toml"
+    if not marker.exists():
+        marker.write_text("[framework]\nversion='4.0.0'\n", encoding="utf-8")
+    source = root / "src"
+    tests = root / "tests"
+    source.mkdir(exist_ok=True)
+    tests.mkdir(exist_ok=True)
+    (source / "__init__.py").touch(exist_ok=True)
+    (tests / "__init__.py").touch(exist_ok=True)
+    probe = source / "semantic_probe.py"
+    contract = tests / "test_semantic_probe.py"
+    oracle = tests / "oracle.txt"
+    if not probe.exists():
+        probe.write_text("VALUE = 0\n", encoding="utf-8")
+    if not contract.exists():
+        contract.write_text(
+            "import unittest\n"
+            "from src.semantic_probe import VALUE\n\n"
+            "class SemanticProbeContract(unittest.TestCase):\n"
+            "    def test_value(self):\n"
+            "        self.assertEqual(VALUE, 1)\n",
+            encoding="utf-8",
         )
-    store.mutate(apply)
-    store.transition("TRIAGE", "precheck directly observed")
+    if not oracle.exists():
+        oracle.write_text("VALUE must equal 1\n", encoding="utf-8")
+
+    store.transition("DISCOVER", "repository discovery")
+    store.transition("PRECHECK", "compile current precheck artifacts")
+    governance = capture_governance(root)
+    compiled = {
+        "schema": 1,
+        "task": {"tdd_mode": "RED_REQUIRED", "classes": ["BUG_FIX"]},
+        "falsification": {"required_families": ["boundary"]},
+        "gates": [{
+            "id": "G1",
+            "description": "semantic workflow acceptance contract",
+            "severity": "HARD",
+            "family": "fixture",
+            "waivable": False,
+        }],
+        "commands": {"test": [["python", "-B", "-m", "unittest"]]},
+    }
+    compiled["digest"] = _sha(compiled)
+    scope = {
+        "schema": 2,
+        "allow": ["src/**", "tests/**"],
+        "deny": [".agents", ".agents/**", "agents.md", "**/agents.md"],
+        "test_paths": ["tests/**"],
+        "production_paths": ["src/**"],
+        "generated_paths": [],
+        "reference_paths": [],
+        "user_dirty": [],
+        "nested_repositories": [],
+        "governance_digest": governance["digest"],
+    }
+    scope["digest"] = _sha(scope)
+    artifacts = {
+        "governance_snapshot": governance,
+        "constitution": {"digest": "b" * 64},
+        "instruction_provenance": {"digest": "c" * 64},
+        "repository_discovery": {"digest": "d" * 64},
+        "workspace_snapshot": workspace_fingerprint(root),
+        "test_law_baseline": {"digest": "e" * 64},
+        "tdd_plan": {"digest": "f" * 64},
+        "compiled_policy": compiled,
+        "mandatory_gates": {"digest": "b" * 64},
+        "write_scope": scope,
+        "budgets": {"digest": "d" * 64},
+        "command_matrix": {"digest": "e" * 64},
+        "review_requirements": {"digest": "f" * 64},
+    }
+    store.mutate(lambda task: task["precheck"].update(artifacts))
+    store.transition("TRIAGE", "content-addressed precheck observed")
+
+
+def _design_and_baseline(store: StateStore, root: Path, *, remediation: bool = False) -> dict:
+    store.transition("TEST_DESIGN", "regression first" if remediation else "test first")
+    design_tdd(
+        root,
+        adapter_kind="unittest",
+        test_id="tests.test_semantic_probe.SemanticProbeContract.test_value",
+        test_paths=["tests/test_semantic_probe.py"],
+        oracle_paths=["tests/oracle.txt"],
+    )
+    result, authorized = observe_baseline(
+        root,
+        semantic_reason="the fixture behavior has not yet been implemented",
+        timeout=10,
+    )
+    if not authorized or result.get("classification") != "EXPECTED_BEHAVIORAL_RED":
+        raise RuntimeError(f"fixture baseline did not establish legitimate RED: {result}")
+    store.transition("BASELINE", "framework-observed legitimate RED")
+    return result
+
+
+def _implemented_state(
+    root: Path,
+    *,
+    title: str = "semantic implementation",
+    include_gate: bool = True,
+) -> StateStore:
+    store = StateStore(root)
+    store.create(title, mode="write", complexity="M", risk="medium")
+    _advance_precheck(store, root)
+    store.transition("PLAN", "bounded implementation plan")
+    if include_gate:
+        _cli_json(
+            root,
+            "task", "gate-add", "semantic workflow acceptance contract",
+            "--id", "G1", "--severity", "HARD", "--task-id", store.load()["id"],
+        )
+    _design_and_baseline(store, root)
+    store.transition("IMPLEMENT", "implementation authorized by observed RED")
+    return store
+
+
+def _cli_json(root: Path, *arguments: str) -> dict:
+    cli = INFRA.parent / "bin" / "agentctl.py"
+    result = run_process(
+        [sys.executable, "-B", str(cli), "--root", str(root), "--json", *arguments],
+        cwd=root,
+        timeout=30,
+        capture_limit=256_000,
+    )
+    if result.returncode != 0:
+        raise RuntimeError(f"fixture CLI failed: {result.stderr or result.stdout}")
+    return json.loads(result.stdout)
+
+
+def _attach_current_verification(
+    store: StateStore,
+    root: Path,
+    *,
+    gate_ids: tuple[str, ...] = (),
+    summary: str = "current exact fixture verification",
+    argv: tuple[str, ...] | None = None,
+) -> dict:
+    """Attach verification through the supported execution-derived CLI path."""
+    task = store.load()
+    arguments = [
+        "evidence", "add",
+        "--kind", "observation",
+        "--summary", summary,
+        "--verification",
+        "--task-id", task["id"],
+    ]
+    for gate_id in gate_ids:
+        arguments.extend(("--gate-id", gate_id))
+    command = argv or (
+        sys.executable, "-B", "-c", "print('aegis-current-verification')",
+    )
+    arguments.extend(("--argv", *command))
+    record = _cli_json(root, *arguments)
+    for gate_id in gate_ids:
+        _cli_json(
+            root,
+            "task", "gate-prove", gate_id,
+            "--evidence", record["id"],
+            "--task-id", task["id"],
+        )
+    return record
+
+
+def _close_current_review_handoff(
+    store: StateStore,
+    root: Path,
+    evidence_id: str,
+    *,
+    role: str = "adversarial-reviewer",
+) -> str:
+    opened = _cli_json(
+        root,
+        "subagent", "open", "--role", role,
+        "--context-evidence", evidence_id,
+    )
+    lease_id = opened["lease"]["lease_id"]
+    payload_path = root / ".aegis" / "semantic-review.json"
+    payload_path.write_text(json.dumps({
+        "schema": 1,
+        "assumptions_tested": [{
+            "claim": "the candidate matches the frozen contract",
+            "observation": "the bounded executable evidence passed",
+            "evidence_ids": [evidence_id],
+        }],
+        "counterexamples_attempted": [{
+            "claim": "the boundary contract may fail",
+            "observation": "no counterexample was observed",
+            "evidence_ids": [evidence_id],
+        }],
+        "boundary_cases": [{
+            "claim": "the fixture value boundary",
+            "observation": "the exact contract passed",
+            "evidence_ids": [evidence_id],
+        }],
+        "potential_failures": [{
+            "claim": "post-review mutation",
+            "observation": "must invalidate current review",
+            "evidence_ids": [evidence_id],
+        }],
+        "unexpected_scope": [],
+        "findings": [],
+        "outcome": "ACCEPTED",
+    }, sort_keys=True), encoding="utf-8")
+    _cli_json(
+        root,
+        "subagent", "close", "--lease-id", lease_id,
+        "--outcome", "accepted", "--summary", "bounded semantic review complete",
+        "--evidence", evidence_id, "--review-file", str(payload_path),
+    )
+    return lease_id
+
+
+def _review_current_candidate(store: StateStore, root: Path, evidence_id: str) -> None:
+    store.transition("ADVERSARIAL_REVIEW", "bounded independent review")
+    lease_id = _close_current_review_handoff(store, root, evidence_id)
+    complete_review(root, lease_id=lease_id)
+
+
+def _verified_state(root: Path, *, include_gate: bool = True) -> tuple[StateStore, dict]:
+    store = _implemented_state(root, title="semantic flow", include_gate=include_gate)
+    (root / "src" / "semantic_probe.py").write_text("VALUE = 1\n", encoding="utf-8")
+    green, passed = observe_green(root, timeout=10)
+    if not passed or green.get("classification") != "GREEN":
+        raise RuntimeError(f"fixture GREEN was not observed: {green}")
+    store.transition("GREEN", "frozen contract GREEN")
+    store.transition("FALSIFY", "seek boundary counterexamples")
+    attempt = run_falsification_attempt(
+        root,
+        family="boundary",
+        adapter_kind="unittest",
+        test_id="tests.test_semantic_probe.SemanticProbeContract.test_value",
+        interpretation="the current candidate preserves the executable boundary contract",
+        timeout=10,
+    )
+    if attempt.get("capability_status") != "PROVEN" or attempt.get("outcome") != "NO_COUNTEREXAMPLE":
+        raise RuntimeError(f"fixture falsification was not clean: {attempt}")
+    complete_falsification(root)
+    _review_current_candidate(store, root, attempt["evidence_id"])
+    store.transition("VERIFY", "execute exact verification command")
+    record = _attach_current_verification(
+        store,
+        root,
+        gate_ids=("G1",) if include_gate else (),
+        summary="current exact semantic verification",
+        argv=(
+            sys.executable,
+            "-B",
+            "-m",
+            "unittest",
+            "tests.test_semantic_probe.SemanticProbeContract.test_value",
+        ),
+    )
+    return store, record
 
 
 def _audited_state(root: Path) -> tuple[StateStore, dict]:
-    (root / ".agents" / "runtime").mkdir(parents=True, exist_ok=True)
-    store = StateStore(root)
-    store.create("semantic flow", mode="write", complexity="M", risk="medium")
-    _advance_precheck(store, root)
-    store.transition("PLAN", "plan accepted")
-    store.mutate(lambda task: task["gates"].append({"id": "G1", "description": "production flow succeeds", "severity": "high", "status": "OPEN", "evidence": [], "created_revision": task["revision"] + 1}))
-    store.transition("IMPLEMENT", "implement production behavior")
-    store.transition("VERIFY", "execute verification")
-    task = store.load()
-    record = _append_verified_observation(
-        root / ".agents" / "runtime" / "tasks" / task["id"],
-        "observation",
-        "verified production flow",
-        task_id=task["id"],
-        change_epoch=task["change_epoch"],
-        task_revision=task["revision"],
-        workspace=workspace_fingerprint(root),
-        gate_ids=["G1"],
-    )
-    def prove(current):
-        current["verification_evidence"] = [record["id"]]
-        current["verification_epoch"] = current["change_epoch"]
-        current["evidence_head"] = record["record_sha256"]
-        current["gates"][0]["status"] = "PROVEN"
-        current["gates"][0]["evidence"] = [record["id"]]
-    store.mutate(prove)
+    store, record = _verified_state(root)
     store.transition("FINAL_AUDIT", "proof and gates current")
     store.audit_complete()
     return store, record
@@ -604,12 +840,12 @@ def _bootstrap(root: Path) -> FamilyOutcome:
         book.check("bootstrap-preserves-user-and-format", b"Keep me." in installed and BEGIN.encode() in installed and installed.startswith(b"\xef\xbb\xbf"))
         book.check("bootstrap-preserves-original-permissions",stat.S_IMODE((work/"AGENTS.md").stat().st_mode)==original_mode)
         book.check("bootstrap-preserves-crlf-and-bom",installed.startswith(b"\xef\xbb\xbf") and b"\r\n" in installed)
-        journal=work/".agents"/"persistent"/"install-state"/"bootstrap"/"install.json"
+        journal=install_state_dir(work)/"bootstrap"/"install.json"
         book.check("bootstrap-journal-is-persistent-and-versioned",journal.is_file() and json.loads(journal.read_text(encoding="utf-8")).get("schema") is not None)
         first_hash = hashlib.sha256(installed).hexdigest()
         reinstall = bootstrap_install(work, apply=True)
         book.check("bootstrap-reinstall-idempotent", not reinstall["changed"] and hashlib.sha256((work / "AGENTS.md").read_bytes()).hexdigest() == first_hash)
-        shutil.rmtree(work / ".agents" / "runtime", ignore_errors=True)
+        shutil.rmtree(runtime_dir(work), ignore_errors=True)
         bootstrap_uninstall(work, apply=True)
         book.check("bootstrap-uninstall-runtime-independent", (work / "AGENTS.md").read_bytes() == original)
         (work / "AGENTS.md").write_text(f"{BEGIN}\nmanual\n<!-- AEGIS:END -->\n", encoding="utf-8")
@@ -671,7 +907,7 @@ def _bootstrap(root: Path) -> FamilyOutcome:
         from unittest.mock import patch
         with patch("agentinfra.bootstrap.FileTransaction.commit",autospec=True,side_effect=fail_after_journal):
             book.expect("bootstrap-install-journal-failure-reported",OSError,lambda:bootstrap_install(work,apply=True))
-        book.check("bootstrap-install-journal-failure-restores-preinstall-file",target.read_bytes()==b"original" and not (work/".agents"/"persistent"/"install-state"/"bootstrap"/"install.json").exists())
+        book.check("bootstrap-install-journal-failure-restores-preinstall-file",target.read_bytes()==b"original" and not (install_state_dir(work)/"bootstrap"/"install.json").exists())
     return book.finish()
 
 
@@ -690,14 +926,14 @@ def _state_identity(root: Path) -> FamilyOutcome:
     book.check("task-id-empty-whitespace-rejected",all_ids_rejected((""," ")))
     book.check("task-id-canonical-length-characters",all_ids_rejected(("A"*65,"UPPER","under_score")) and validate_task_id("valid-task-1")=="valid-task-1")
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
         store = StateStore(work); task = store.create("identity", mode="write", complexity="XL", risk="critical")
         book.check("state-create-library-enums", task["mode"] == "write" and task["complexity"] == "XL" and task["risk"] == "critical")
         for args in (("x", "bad", "M", "medium"), ("x", "write", "XX", "medium"), ("x", "write", "M", "severe")):
             book.expect("state-create-invalid-enum-" + args[1] + args[2] + args[3], ValueError, lambda args=args: store.create(*args))
         loaded = store.load(task["id"]); loaded["id"] = "redirect"
         book.expect("state-save-id-redirect", RuntimeError, lambda: store.save(loaded, loaded["revision"]))
-        state_path = work / ".agents" / "runtime" / "tasks" / task["id"] / "state.json"
+        state_path = tasks_dir(work) / task["id"] / "state.json"
         raw = json.loads(state_path.read_text(encoding="utf-8")); raw["mode"] = "read"; state_path.write_text(json.dumps(raw), encoding="utf-8")
         book.expect("state-integrity-tamper", RuntimeError, lambda: store.load(task["id"]))
     integrity_mutations=(
@@ -708,17 +944,17 @@ def _state_identity(root: Path) -> FamilyOutcome:
     )
     for label,mutate in integrity_mutations:
         with tempfile.TemporaryDirectory() as directory:
-            work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create(label)
-            state_path=work/".agents"/"runtime"/"tasks"/task["id"]/"state.json"; raw=json.loads(state_path.read_text(encoding="utf-8")); mutate(raw); state_path.write_text(json.dumps(raw),encoding="utf-8")
+            work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create(label)
+            state_path=tasks_dir(work)/task["id"]/"state.json"; raw=json.loads(state_path.read_text(encoding="utf-8")); mutate(raw); state_path.write_text(json.dumps(raw),encoding="utf-8")
             book.expect(label,RuntimeError,lambda store=store,task=task:store.load(task["id"]))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("pointer")
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("pointer")
         pointer=store.current_path(); original=pointer.read_bytes()
         for label,value in (("current-pointer-traversal-rejected","../escape\n"),("current-pointer-absolute-rejected",str(work.resolve())+"\n"),("current-pointer-missing-task-rejected","missing-task\n")):
             pointer.write_text(value,encoding="utf-8")
             book.expect(label,(ValueError,RuntimeError,FileNotFoundError),lambda:store.current_id())
         pointer.write_bytes(original)
-        task_dir=work/".agents"/"runtime"/"tasks"/task["id"]
+        task_dir=tasks_dir(work)/task["id"]
         base=store.load()
         def schema_reject(label,mutate):
             candidate=json.loads(json.dumps(base)); mutate(candidate)
@@ -743,24 +979,24 @@ def _state_identity(root: Path) -> FamilyOutcome:
         first=store.load(); second=store.load(); first["precheck"]["one"]=True; saved=store.save(first,first["revision"]); second["precheck"]["two"]=True
         book.expect("state-optimistic-revision-prevents-lost-update",RuntimeError,lambda:store.save(second,second["revision"]))
         book.check("state-first-concurrent-update-preserved",store.load()["precheck"].get("one") is True and saved["revision"]==1)
-        state_path=task_dir/"state.json"; anchor=work/".agents"/"persistent"/"task-anchors"/f"{task['id']}.json"
+        state_path=task_dir/"state.json"; anchor=persistent_dir(work)/"task-anchors"/f"{task['id']}.json"
         old_state=state_path.read_bytes(); old_anchor=anchor.read_bytes()
         store.mutate(lambda value:value["precheck"].__setitem__("newer-anchor-revision",True))
         state_path.write_bytes(old_state); anchor.write_bytes(old_anchor)
         book.expect("state-anchor-history-detects-state-and-head-rollback",RuntimeError,lambda:store.load())
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); created=[]; errors=[]
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); created=[]; errors=[]
         def creator(index):
             try: created.append(store.create(f"task {index}"))
             except BaseException as exc: errors.append(str(exc))
         threads=[threading.Thread(target=creator,args=(index,)) for index in range(6)]
         for thread in threads:thread.start()
         for thread in threads:thread.join()
-        dirs={item.name for item in (work/".agents"/"runtime"/"tasks").iterdir() if item.is_dir()}
+        dirs={item.name for item in tasks_dir(work).iterdir() if item.is_dir()}
         book.check("concurrent-task-create-no-loss",not errors and len(created)==6 and {item["id"] for item in created}==dirs,repr(errors))
         book.check("current-pointer-transactionally-consistent",store.current_id() in dirs and store.load(store.current_id())["id"]==store.current_id())
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("concurrent mutate")
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("concurrent mutate")
         mutation_errors=[]
         def mutate_key(key):
             try: store.mutate(lambda value:key and value["precheck"].__setitem__(key,True))
@@ -770,10 +1006,10 @@ def _state_identity(root: Path) -> FamilyOutcome:
         for thread in threads: thread.join()
         loaded=store.load(task["id"])
         book.check("state-mutation-reloads-under-lock",not mutation_errors and loaded["precheck"].get("first") is True and loaded["precheck"].get("second") is True,repr(mutation_errors))
-        book.check("state-store-root-confinement",store._task_dir(task["id"]).is_relative_to(work/".agents"/"runtime"/"tasks"))
+        book.check("state-store-root-confinement",store._task_dir(task["id"]).is_relative_to(tasks_dir(work)))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("symlink state")
-        tasks=work/".agents"/"runtime"/"tasks"; outside=work/"outside"; outside.mkdir(); (outside/"sentinel").write_bytes(b"outside")
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("symlink state")
+        tasks=tasks_dir(work); outside=work/"outside"; outside.mkdir(); (outside/"sentinel").write_bytes(b"outside")
         linked=tasks/"linked-task"
         try:
             linked.symlink_to(outside,target_is_directory=True)
@@ -786,24 +1022,24 @@ def _state_identity(root: Path) -> FamilyOutcome:
             book.check("state-symlinked-state-file-rejected",False,f"host cannot create test symlink: {exc}")
             book.check("state-symlink-rejection-never-touches-outside",False,f"host cannot create test symlink: {exc}")
     with tempfile.TemporaryDirectory() as directory, tempfile.TemporaryDirectory() as outside_directory:
-        work=Path(directory); outside=Path(outside_directory); (work/".agents"/"runtime").mkdir(parents=True)
+        work=Path(directory); outside=Path(outside_directory); runtime_dir(work).mkdir(parents=True)
         store=StateStore(work); task=store.create("redirected control root")
-        runtime=work/".agents"/"runtime"; redirected=outside/"runtime"; shutil.copytree(runtime,redirected); shutil.rmtree(runtime)
+        control_root=tasks_dir(work); redirected=outside/"tasks"; shutil.copytree(control_root,redirected); shutil.rmtree(control_root)
         made=False
         try:
             if os.name == "nt":
-                result=subprocess.run(["cmd.exe","/d","/c","mklink","/J",str(runtime),str(redirected)],capture_output=True,text=True)
+                result=subprocess.run(["cmd.exe","/d","/c","mklink","/J",str(control_root),str(redirected)],capture_output=True,text=True)
                 made=result.returncode == 0
             else:
-                runtime.symlink_to(redirected,target_is_directory=True); made=True
+                control_root.symlink_to(redirected,target_is_directory=True); made=True
             if not made:
                 book.check("state-control-redirection-root-escape-rejected",False,"host could not create link-like directory redirection")
             else:
                 book.expect("state-control-redirection-root-escape-rejected",(RuntimeError,SecurityError,OSError),lambda:StateStore(work).load(task["id"]))
-                book.check("state-control-redirection-preserves-outside",(redirected/"tasks"/task["id"]/"state.json").is_file())
+                book.check("state-control-redirection-preserves-outside",(redirected/task["id"]/"state.json").is_file())
         finally:
             if made:
-                runtime.rmdir()
+                control_root.rmdir()
     return book.finish()
 
 
@@ -817,40 +1053,42 @@ def _workflow(root: Path) -> FamilyOutcome:
         final = store.load()
         book.check("finalize-idempotent", store.transition("FINALIZE", "idempotent") == final)
         book.expect("finalized-rejects-mutation", RuntimeError, lambda: store.mutate(lambda task: task.update(title="changed")))
-        final_task_dir=work/".agents"/"runtime"/"tasks"/final["id"]
+        final_task_dir=tasks_dir(work)/final["id"]
         book.expect("terminal-evidence-append-rejected",RuntimeError,lambda:append_evidence(final_task_dir,"observation","after finalize",task_id=final["id"],change_epoch=final["change_epoch"]))
         book.check("terminal-evidence-rejection-preserves-final-state",store.load()["state"]=="FINALIZE")
     with tempfile.TemporaryDirectory() as directory:
         _, _, rejected = _state_flow(Path(directory), mutate_after_audit=True)
         book.check("post-audit-mutation-rejected", rejected)
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("post verification edit",risk="low")
-        _advance_precheck(store,work); store.transition("PLAN","plan"); store.mutate(lambda value:value["gates"].append({"id":"G1","description":"proof","severity":"high","status":"OPEN","evidence":[],"created_revision":value["revision"]+1})); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
-        current=store.load(); record=_append_verified_observation(work/".agents"/"runtime"/"tasks"/task["id"],"observation","verified before edit",task_id=task["id"],change_epoch=current["change_epoch"],task_revision=current["revision"],workspace=workspace_fingerprint(work),gate_ids=["G1"])
-        store.mutate(lambda value:(value.__setitem__("verification_evidence",[record["id"]]),value.__setitem__("verification_epoch",value["change_epoch"]),value.__setitem__("evidence_head",record["record_sha256"]),value["gates"][0].update(status="PROVEN",evidence=[record["id"]])))
-        (work/"production.txt").write_text("edited after verification",encoding="utf-8")
-        store.transition("FINAL_AUDIT","stale workspace proof")
-        store.audit_complete()
-        book.expect("post-verification-workspace-change-rejected",(RuntimeError,TransitionError),lambda:store.transition("FINALIZE","stale verification workspace"))
+        work=Path(directory); store,_=_verified_state(work)
+        (work/"src"/"semantic_probe.py").write_text("VALUE = 2\n",encoding="utf-8")
+        book.expect(
+            "post-verification-workspace-change-rejected",
+            (RuntimeError, TransitionError),
+            lambda: (
+                store.transition("FINAL_AUDIT", "stale verification workspace"),
+                store.audit_complete(),
+            ),
+        )
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
         store = StateStore(work); store.create("illegal")
         before = store.load()
         book.expect("illegal-transition-no-side-effect", TransitionError, lambda: store.transition("FINALIZE", "skip"))
         after = store.load()
         book.check("illegal-transition-revision-stable", before["revision"] == after["revision"] and before["transitions"] == after["transitions"])
-        store.transition("PRECHECK", "start"); store.transition("BLOCKED", "external blocker")
+        store.transition("DISCOVER", "start"); store.transition("BLOCKED", "external blocker")
         book.expect("blocked-only-previous", TransitionError, lambda: store.transition("IMPLEMENT", "skip"))
-        book.check("blocked-resume", store.transition("PRECHECK", "resume")["state"] == "PRECHECK")
+        book.check("blocked-resume", store.transition("DISCOVER", "resume")["state"] == "DISCOVER")
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("reasons")
-        book.expect("transition-reason-trimmed-nonempty",ValueError,lambda:store.transition("PRECHECK","   "))
-        store.transition("PRECHECK","start"); store.transition("BLOCKED","documented blocker")
-        blocked=store.load(); book.check("blocked-reason-recorded",blocked.get("block_reason")=="documented blocker" and blocked.get("previous_state")=="PRECHECK")
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); store.create("reasons")
+        book.expect("transition-reason-trimmed-nonempty",ValueError,lambda:store.transition("DISCOVER","   "))
+        store.transition("DISCOVER","start"); store.transition("BLOCKED","documented blocker")
+        blocked=store.load(); book.check("blocked-reason-recorded",blocked.get("block_reason")=="documented blocker" and blocked.get("previous_state")=="DISCOVER")
         book.expect("blocked-cannot-skip-phase",TransitionError,lambda:store.transition("TRIAGE","skip precheck"))
     for terminal in ("FAILED","CANCELLED","ABANDONED"):
         with tempfile.TemporaryDirectory() as directory:
-            work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create(terminal.lower()); ended=store.transition(terminal,"explicit terminal")
+            work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); store.create(terminal.lower()); ended=store.transition(terminal,"explicit terminal")
             book.check("terminal-state-"+terminal.lower(),ended["state"]==terminal and ALLOWED[terminal]==set())
             book.expect("terminal-mutation-rejected-"+terminal.lower(),RuntimeError,lambda:store.mutate(lambda task:task.update(title="changed")))
     book.check(
@@ -861,44 +1099,60 @@ def _workflow(root: Path) -> FamilyOutcome:
         ),
     )
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("xl",complexity="XL",risk="low"); _advance_precheck(store,work)
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); store.create("xl",complexity="XL",risk="low"); _advance_precheck(store,work)
         book.expect("xl-direct-implement-rejected",TransitionError,lambda:store.transition("IMPLEMENT","skip plan"))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("mutating skip audit",risk="low"); _advance_precheck(store,work); store.transition("IMPLEMENT","work")
+        work=Path(directory); store=_implemented_state(work,title="mutating skip audit")
         book.expect("mutating-implement-direct-final-audit-rejected",TransitionError,lambda:store.transition("FINAL_AUDIT","skip verification"))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("epochs",risk="low"); _advance_precheck(store,work)
+        work=Path(directory); store=StateStore(work); store.create("epochs",risk="low"); _advance_precheck(store,work); store.transition("PLAN","plan"); _design_and_baseline(store,work)
         before=store.load()["change_epoch"]; implemented=store.transition("IMPLEMENT","first implementation")
         book.check("implement-increments-epoch-once",implemented["change_epoch"]==before+1)
         reviewed=store.transition("DIAGNOSE","diagnose"); book.check("nonmutating-transition-keeps-epoch",reviewed["change_epoch"]==implemented["change_epoch"])
-        remediated=store.transition("REMEDIATE","fix"); book.check("remediate-increments-epoch-once",remediated["change_epoch"]==implemented["change_epoch"]+1)
+        _design_and_baseline(store,work,remediation=True); remediated=store.transition("REMEDIATE","fix"); book.check("remediate-increments-epoch-once",remediated["change_epoch"]==implemented["change_epoch"]+1)
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("proof invalidation",risk="low"); _advance_precheck(store,work); store.transition("IMPLEMENT","work")
-        store.mutate(lambda task:(task.__setitem__("verification_evidence",["E-old"]),task.__setitem__("verification_epoch",task["change_epoch"]),task["gates"].append({"id":"G1","description":"proof","severity":"high","status":"PROVEN","evidence":["E-old"],"created_revision":0}),task.__setitem__("final_audit_complete",True),task.__setitem__("final_audit_workspace",{"available":True,"sha256":"old"})))
-        store.transition("DIAGNOSE","changed"); changed=store.transition("REMEDIATE","new implementation")
+        work=Path(directory); store,_=_audited_state(work); store.transition("TEST_DESIGN","new regression after audit")
+        (work/"tests"/"test_semantic_probe.py").write_text(
+            "import unittest\nfrom src.semantic_probe import VALUE\n\n"
+            "class SemanticProbeContract(unittest.TestCase):\n"
+            "    def test_value(self):\n        self.assertEqual(VALUE, 2)\n",
+            encoding="utf-8",
+        )
+        (work/"tests"/"oracle.txt").write_text("VALUE must equal 2\n",encoding="utf-8")
+        design_tdd(work,adapter_kind="unittest",test_id="tests.test_semantic_probe.SemanticProbeContract.test_value",test_paths=["tests/test_semantic_probe.py"],oracle_paths=["tests/oracle.txt"])
+        red,authorized=observe_baseline(work,semantic_reason="the newly discovered value-two behavior is absent",timeout=10)
+        if not authorized or red.get("classification")!="EXPECTED_BEHAVIORAL_RED": raise RuntimeError(f"remediation fixture RED failed: {red}")
+        store.transition("BASELINE","remediation RED"); changed=store.transition("REMEDIATE","new implementation")
         book.check("epoch-change-invalidates-verification",changed["verification_evidence"]==[] and changed["verification_epoch"] is None)
         book.check("epoch-change-invalidates-gate-proofs",changed["gates"][0]["status"]=="OPEN" and changed["gates"][0]["evidence"]==[])
         book.check("epoch-change-invalidates-final-audit",changed["final_audit_complete"] is False and "final_audit_workspace" not in changed)
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("read claim",mode="read",risk="low"); _advance_precheck(store,work); store.transition("IMPLEMENT","analyze"); store.transition("VERIFY","verify")
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); store.create("read claim",mode="read",risk="low"); _advance_precheck(store,work); store.transition("PLAN","analysis plan"); store.transition("VERIFY","verify")
         book.expect("read-material-claim-needs-direct-evidence",TransitionError,lambda:store.transition("FINAL_AUDIT","claim"))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("active child",risk="low"); _advance_precheck(store,work); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
-        store.mutate(lambda task:task.__setitem__("active_child",{"role":"reviewer","opened":"now","lease_id":"L-test"}))
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); store.create("active child",mode="read",risk="low"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("VERIFY","verify")
+        _cli_json(work,"subagent","open","--role","reviewer")
         book.expect("active-child-blocks-parent-mutation",RuntimeError,lambda:store.mutate(lambda task:task["precheck"].__setitem__("late",True)))
         book.expect("active-child-blocks-final-audit",RuntimeError,lambda:store.transition("FINAL_AUDIT","blocked"))
     for declared_risk in ("high", "critical"):
         with tempfile.TemporaryDirectory() as directory:
-            work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("review required",mode="read",risk=declared_risk); _advance_precheck(store,work); store.transition("PLAN","required plan"); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
-            record=_append_verified_observation(work/".agents"/"runtime"/"tasks"/task["id"],"observation","direct proof",task_id=task["id"],change_epoch=store.load()["change_epoch"],task_revision=store.load()["revision"],workspace=workspace_fingerprint(work))
+            work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("review required",mode="read",risk=declared_risk); _advance_precheck(store,work); store.transition("PLAN","required plan"); store.transition("VERIFY","verify")
+            record=_append_verified_observation(tasks_dir(work)/task["id"],"observation","direct proof",task_id=task["id"],change_epoch=store.load()["change_epoch"],task_revision=store.load()["revision"],workspace=workspace_fingerprint(work))
             store.mutate(lambda current:(current.__setitem__("verification_evidence",[record["id"]]),current.__setitem__("verification_epoch",current["change_epoch"]),current.__setitem__("evidence_head",record["record_sha256"])))
-            book.expect(declared_risk+"-risk-review-cannot-be-skipped",TransitionError,lambda:store.transition("FINAL_AUDIT","without review"))
+            book.expect(
+                declared_risk + "-risk-review-cannot-be-skipped",
+                (RuntimeError, TransitionError),
+                lambda: (
+                    store.transition("FINAL_AUDIT", "without review"),
+                    store.audit_complete(),
+                ),
+            )
     for stale in (True,False):
         with tempfile.TemporaryDirectory() as directory:
-            work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("current external claim",mode="read",risk="low"); _advance_precheck(store,work); store.transition("RESEARCH","current source"); store.transition("TRIAGE","source collected"); store.transition("IMPLEMENT","analyze"); store.transition("VERIFY","verify")
+            work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("current external claim",mode="read",risk="low"); _advance_precheck(store,work); store.transition("RESEARCH","current source"); store.transition("TRIAGE","source collected"); store.transition("PLAN","analysis plan"); store.transition("VERIFY","verify")
             observed_at="2000-01-01T00:00:00+00:00" if stale else datetime.now(timezone.utc).isoformat()
             record=_append_framework_evidence(
-                work/".agents"/"runtime"/"tasks"/task["id"],"external-source","bound current source",
+                tasks_dir(work)/task["id"],"external-source","bound current source",
                 provenance="external-source",task_id=task["id"],change_epoch=store.load()["change_epoch"],task_revision=store.load()["revision"],
                 source_identity="https://example.invalid/source",source_fingerprint="sha256:verified",observed_at=observed_at,ttl_seconds=3600,
                 workspace=workspace_fingerprint(work),
@@ -915,7 +1169,7 @@ def _workflow(root: Path) -> FamilyOutcome:
         book.check("transition-revisions-monotonic",[item["revision"] for item in history]==sorted({item["revision"] for item in history}))
         book.check("transition-epochs-match-state-history",all(isinstance(item["epoch"],int) and item["epoch"]<=final_audit["change_epoch"] for item in history))
         from unittest.mock import patch
-        with patch("agentinfra.state_store.workspace_fingerprint",return_value={"schema":2,"available":False,"reason":"seeded"}):
+        with patch("agentinfra.final_audit_runtime.workspace_fingerprint",return_value={"schema":2,"available":False,"reason":"seeded"}):
             book.expect("final-audit-unavailable-workspace-rejected",RuntimeError,lambda:store.audit_complete())
     with tempfile.TemporaryDirectory() as directory:
         work=Path(directory); store,_=_audited_state(work); store.mutate(lambda task:task.__setitem__("active_child",{"role":"reviewer","opened":"now","lease_id":"L-final"}))
@@ -936,20 +1190,29 @@ def _gates(root: Path) -> FamilyOutcome:
 
     def negative_gate_proof(label: str, variant: str) -> None:
         with tempfile.TemporaryDirectory() as directory:
-            work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("negative gate proof",risk="low"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
-            task_dir=work/".agents"/"runtime"/"tasks"/task["id"]
+            # This is deliberately a lower-level validator fixture: malformed
+            # evidence/state is injected only to prove fail-closed rejection.
+            work=Path(directory); runtime_dir(work).mkdir(parents=True)
+            if variant == "prior-epoch":
+                store, _ = _verified_state(work)
+                task = store.load()
+                gate_id = "G2"
+            else:
+                store=StateStore(work); task=store.create("negative gate proof",mode="read",risk="low"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("VERIFY","verify")
+                gate_id = "G1"
+            task_dir=tasks_dir(work)/task["id"]
             if variant == "predates":
-                current=store.load(); record=_append_verified_observation(task_dir,"observation","predating proof",task_id=task["id"],change_epoch=current["change_epoch"],task_revision=current["revision"],gate_ids=["G1"])
+                current=store.load(); record=_append_verified_observation(task_dir,"observation","predating proof",task_id=task["id"],change_epoch=current["change_epoch"],task_revision=current["revision"],gate_ids=[gate_id])
                 def install_predating(current):
-                    current["gates"].append({"id":"G1","description":"gate","severity":"high","status":"PROVEN","evidence":[record["id"]],"created_revision":current["revision"]+2})
+                    current["gates"].append({"id":gate_id,"description":"gate","severity":"high","status":"PROVEN","evidence":[record["id"]],"created_revision":current["revision"]+2})
                     current["verification_evidence"]=[record["id"]]; current["verification_epoch"]=current["change_epoch"]; current["evidence_head"]=record["record_sha256"]
                 store.mutate(install_predating)
             else:
-                store.mutate(lambda current:current["gates"].append({"id":"G1","description":"gate","severity":"high","status":"OPEN","evidence":[],"created_revision":current["revision"]+1}))
+                store.mutate(lambda current:current["gates"].append({"id":gate_id,"description":"gate","severity":"high","status":"OPEN","evidence":[],"created_revision":current["revision"]+1}))
                 current=store.load(); record=None
                 if variant != "other-task":
                     epoch=current["change_epoch"]-1 if variant == "prior-epoch" else current["change_epoch"]
-                    details={"task_revision":current["revision"],"gate_ids":[] if variant == "no-relevance" else ["G1"]}
+                    details={"task_revision":current["revision"],"gate_ids":[] if variant == "no-relevance" else [gate_id]}
                     if variant == "failed": details["command"]={"success":False,"exit_code":9,"timed_out":False}
                     if variant == "manual":
                         record=append_evidence(task_dir,"observation","negative proof",task_id=task["id"],change_epoch=epoch,**details)
@@ -959,7 +1222,8 @@ def _gates(root: Path) -> FamilyOutcome:
                         record=_append_verified_observation(task_dir,"observation","negative proof",task_id=task["id"],change_epoch=epoch,**details)
                 evidence_id="E-other-task" if record is None else record["id"]
                 def prove(current):
-                    current["gates"][0]["status"]="PROVEN"; current["gates"][0]["evidence"]=[evidence_id]
+                    gate=next(item for item in current["gates"] if item["id"] == gate_id)
+                    gate["status"]="PROVEN"; gate["evidence"]=[evidence_id]
                     current["verification_evidence"]=[evidence_id]; current["verification_epoch"]=current["change_epoch"]
                     if record is not None: current["evidence_head"]=record["record_sha256"]
                 store.mutate(prove)
@@ -975,11 +1239,10 @@ def _gates(root: Path) -> FamilyOutcome:
     ):
         negative_gate_proof(label,variant)
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
-        store = StateStore(work); store.create("gate negative"); _advance_precheck(store, work); store.transition("PLAN", "plan"); store.transition("IMPLEMENT", "work"); store.transition("VERIFY", "verify")
+        work = Path(directory); store, _ = _verified_state(work, include_gate=False)
         book.expect("missing-gate-blocks-audit", TransitionError, lambda: store.transition("FINAL_AUDIT", "no gate"))
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
         store = StateStore(work); store.create("gate schema")
         book.expect(
             "gate-description-trimmed-nonempty",
@@ -1021,13 +1284,13 @@ def _gates(root: Path) -> FamilyOutcome:
                 lambda severity=severity: store.mutate(lambda task: task["gates"].append({"id":"G5","description":"bad severity","severity":severity,"status":"OPEN","evidence":[],"created_revision":1})),
             )
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("all waived",risk="low"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
+        # Injecting an all-waived gate set is an adversarial validator fixture;
+        # every lifecycle and verification step around it uses public behavior.
+        work=Path(directory); store, record = _verified_state(work, include_gate=False)
         store.mutate(lambda current:current["gates"].append({"id":"G1","description":"waived","severity":"high","status":"WAIVED","evidence":[],"created_revision":current["revision"]+1,"waiver_reason":"external exception","waiver_authority":"policy:documented-exception"}))
-        current=store.load(); record=_append_verified_observation(work/".agents"/"runtime"/"tasks"/task["id"],"observation","direct verification",task_id=task["id"],change_epoch=current["change_epoch"],task_revision=current["revision"],workspace=workspace_fingerprint(work))
-        store.mutate(lambda value:(value.__setitem__("verification_evidence",[record["id"]]),value.__setitem__("verification_epoch",value["change_epoch"]),value.__setitem__("evidence_head",record["record_sha256"])))
         book.expect("all-gates-waived-cannot-bypass-validation",TransitionError,lambda:store.transition("FINAL_AUDIT","waivers are not proof"))
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
         store = StateStore(work); store.create("risk schema")
         book.expect("risk-description-trimmed-nonempty", RuntimeError, lambda: store.mutate(lambda task: task["risks"].append({"id":"R1","description":" ","severity":"high","status":"open"})))
         book.expect("risk-severity-library-validation", RuntimeError, lambda: store.mutate(lambda task: task["risks"].append({"id":"R2","description":"risk","severity":"severe","status":"open"})))
@@ -1045,17 +1308,18 @@ def _gates(root: Path) -> FamilyOutcome:
         book.expect("decision-statement-trimmed-nonempty", RuntimeError, lambda: store.mutate(lambda task: task["decisions"].append({"id":"D3","at":"now","statement":" ","rationale":"why","evidence":[]})))
         book.expect("decision-rationale-trimmed-nonempty", RuntimeError, lambda: store.mutate(lambda task: task["decisions"].append({"id":"D3","at":"now","statement":"what","rationale":" ","evidence":[]})))
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
-        store = StateStore(work); store.create("reopen risk",risk="low"); _advance_precheck(store,work)
-        store.mutate(lambda task: task["risks"].append({"id":"R1","description":"resolved","severity":"high","status":"resolved","resolution":"fixed"}))
+        work = Path(directory); store = StateStore(work); task = store.create("reopen risk",risk="low"); _advance_precheck(store,work); store.transition("PLAN", "plan")
+        _cli_json(work, "task", "risk-add", "resolved", "--id", "R1", "--severity", "high", "--task-id", task["id"])
+        _cli_json(work, "task", "risk-resolve", "R1", "--resolution", "fixed", "--task-id", task["id"])
+        _design_and_baseline(store, work)
         store.transition("IMPLEMENT","new implementation")
         reopened=store.load()["risks"][0]
         book.check("resolved-risk-reopens-on-implementation", reopened["status"] == "open" and "resolution" not in reopened)
     for severity in ("high","critical"):
         with tempfile.TemporaryDirectory() as directory:
-            work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("blocking risk",mode="read",risk="low"); _advance_precheck(store,work); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
-            current=store.load(); record=_append_verified_observation(work/".agents"/"runtime"/"tasks"/task["id"],"observation","proof",task_id=task["id"],change_epoch=current["change_epoch"],task_revision=current["revision"],workspace=workspace_fingerprint(work))
-            store.mutate(lambda value:(value["risks"].append({"id":"R1","description":"open blocker","severity":severity,"status":"open"}),value.__setitem__("verification_evidence",[record["id"]]),value.__setitem__("verification_epoch",value["change_epoch"]),value.__setitem__("evidence_head",record["record_sha256"])))
+            work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("blocking risk",mode="read",risk="low"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("VERIFY","verify")
+            _attach_current_verification(store, work)
+            _cli_json(work, "task", "risk-add", "open blocker", "--id", "R1", "--severity", severity, "--task-id", task["id"])
             book.expect("unresolved-"+severity+"-risk-blocks-final-audit",TransitionError,lambda:store.transition("FINAL_AUDIT","blocked risk"))
     with tempfile.TemporaryDirectory() as directory:
         work=Path(directory); store,_=_audited_state(work)
@@ -1063,15 +1327,15 @@ def _gates(root: Path) -> FamilyOutcome:
         changed=store.load()
         book.check("gate-change-invalidates-final-audit-and-proof-status",changed["final_audit_complete"] is False and changed["gates"][0]["status"]=="OPEN")
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
         critical = StateStore(work); critical.create("critical declared",risk="critical"); _advance_precheck(critical,work)
         book.expect("declared-critical-risk-requires-plan", TransitionError, lambda: critical.transition("IMPLEMENT","skip plan"))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); task=store.create("critical specialist",mode="read",risk="critical"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("IMPLEMENT","work"); store.transition("REVIEW","independent review"); store.transition("VERIFY","verify")
-        current=store.load(); record=_append_verified_observation(work/".agents"/"runtime"/"tasks"/task["id"],"observation","proof",task_id=task["id"],change_epoch=current["change_epoch"],task_revision=current["revision"],workspace=workspace_fingerprint(work))
-        store.mutate(lambda value:(value.__setitem__("verification_evidence",[record["id"]]),value.__setitem__("verification_epoch",value["change_epoch"]),value.__setitem__("evidence_head",record["record_sha256"])))
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); task=store.create("critical specialist",mode="read",risk="critical"); _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("VERIFY","verify")
+        record = _attach_current_verification(store, work)
         book.expect("critical-risk-specialist-review-required",TransitionError,lambda:store.transition("FINAL_AUDIT","generic review insufficient"))
-        store.mutate(lambda value:value["child_history"].append({"handoff_id":"H-specialist","role":"aegis_adversarial_reviewer","opened":"now","closed":"later","outcome":"accepted","summary":"independent adversarial review accepted","evidence":[]}))
+        store.transition("ADVERSARIAL_REVIEW", "specialist review required")
+        _close_current_review_handoff(store, work, record["id"], role="adversarial-reviewer")
         book.check("critical-risk-specialist-review-accepted",store.transition("FINAL_AUDIT","specialist review complete")["state"]=="FINAL_AUDIT")
     return book.finish()
 
@@ -1268,7 +1532,7 @@ def _workspace(root: Path) -> FamilyOutcome:
             book.check("workspace-declared-external-symlink-content-change",False,f"host cannot create test symlink: {exc}")
 
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True); (work / "preexisting-untracked.txt").write_text("user work")
+        work = Path(directory); runtime_dir(work).mkdir(parents=True); (work / "preexisting-untracked.txt").write_text("user work")
         store = StateStore(work); task = store.create("workspace baseline", mode="write", complexity="M", risk="high")
         _advance_precheck(store, work); recorded = store.load()["precheck"]["workspace_snapshot"]
         (work / "agent-change.txt").write_text("agent work"); final = workspace_fingerprint(work)
@@ -1298,21 +1562,22 @@ def _subagents(root: Path) -> FamilyOutcome:
         book.expect("corrupt-force-clear-refused", LockError, lambda: lease.force_clear(reason="audited"))
 
     with tempfile.TemporaryDirectory(prefix="Aegis subagent control ") as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
-        (work / ".agents" / "framework.toml").write_text("[framework]\nversion='4.0.0'\n")
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
+        (work / ".agents").mkdir(parents=True)
+        shutil.copy2(framework_dir(root) / "framework.toml", work / ".agents" / "framework.toml")
         _copy_codex(root, work)
         store = StateStore(work)
         first = store.create("first parent", mode="write", complexity="M", risk="high")
         second = store.create("second parent", mode="write", complexity="M", risk="high")
-        first_dir = work / ".agents" / "runtime" / "tasks" / first["id"]
+        first_dir = tasks_dir(work) / first["id"]
         fact = _append_verified_observation(first_dir, "observation", "password=context-secret", task_id=first["id"], change_epoch=0, task_revision=first["revision"])
         store.mutate(lambda task: task.update(evidence_head=fact["record_sha256"]), first["id"])
-        cli = root / ".agents" / "bin" / "agentctl.py"
+        cli = INFRA.parent / "bin" / "agentctl.py"
         def call(action, *arguments):
             return run_process([sys.executable, "-B", str(cli), "--root", str(work), "--json", "subagent", action, *arguments], cwd=root, timeout=30)
 
         opened = call("open", "--role", "reviewer", "--context-evidence", fact["id"], "--task-id", first["id"])
-        active = store.load(first["id"])["active_child"]; global_lease = LeaseLock(work / ".agents" / "runtime" / "subagent-lease.json", "single-active-subagent")
+        active = store.load(first["id"])["active_child"]; global_lease = LeaseLock(leases_dir(work) / "subagent-lease.json", "single-active-subagent")
         brief_bytes = json.dumps(active["context_brief"], sort_keys=True, separators=(",", ":")).encode()
         book.check("global-lease-and-task-child-open-consistent", opened.returncode == 0 and global_lease.inspect().get("lease_id") == active["lease_id"])
         book.check(
@@ -1354,7 +1619,7 @@ def _subagents(root: Path) -> FamilyOutcome:
         from argparse import Namespace
         from agentinfra.cli import cmd_subagent
         from unittest.mock import patch
-        close_args = Namespace(action="close", task_id=first["id"], lease_id=None, summary="transactional handoff", outcome="accepted", evidence=[])
+        close_args = Namespace(action="close", task_id=first["id"], lease_id=None, summary="transactional handoff", outcome="accepted", evidence=[], review_file=None)
         before = store.load(first["id"])
         with patch("agentinfra.cli.LeaseLock.release", side_effect=LockError("seeded release failure")):
             book.expect("close-release-failure-keeps-active-state", LockError, lambda: cmd_subagent(work, close_args))
@@ -1396,7 +1661,7 @@ def _subagents(root: Path) -> FamilyOutcome:
 def _context(root: Path) -> FamilyOutcome:
     book = Checkbook("context")
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True)
         source = work / "source.txt"; dependency = work / "dep.txt"; source.write_text("one"); dependency.write_text("dep-one")
         ledger = ContextLedger(work); entry = ledger.record_file(source, "token=do-not-store", [dependency])
         book.check("context-redaction-and-reuse", "do-not-store" not in json.dumps(entry) and ledger.check_file(source)["fresh"])
@@ -1425,7 +1690,7 @@ def _context(root: Path) -> FamilyOutcome:
         book.expect("context-path-confinement", SecurityError, lambda: ledger.record_file(work.parent / "outside"))
 
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); one=work/"one"; two=work/"two"; one.write_text("same-size-one"); two.write_text("same-size-two"); link=work/"link"
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); one=work/"one"; two=work/"two"; one.write_text("same-size-one"); two.write_text("same-size-two"); link=work/"link"
         try:
             link.symlink_to(one); ledger=ContextLedger(work); ledger.record_file(link,"symlink conclusion"); link.unlink(); link.symlink_to(two)
             book.check("context-symlink-retarget-invalidation",not ledger.check_file(link)["fresh"])
@@ -1433,7 +1698,7 @@ def _context(root: Path) -> FamilyOutcome:
             book.check("context-symlink-retarget-invalidation",False,f"host cannot create test symlink: {exc}")
 
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True); source = work / "source"; source.write_bytes(b"stable")
+        work = Path(directory); runtime_dir(work).mkdir(parents=True); source = work / "source"; source.write_bytes(b"stable")
         ledger = ContextLedger(work); ledger.record_file(source, "verified conclusion")
         import agentinfra.context_cache as context_module
         from unittest.mock import patch
@@ -1457,7 +1722,7 @@ def _context(root: Path) -> FamilyOutcome:
         book.check("context-corruption-preserves-forensics", ledger.path.read_bytes() == corrupt_bytes)
 
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True); ledger = ContextLedger(work)
+        work = Path(directory); cache_dir(work).mkdir(parents=True); ledger = ContextLedger(work)
         malformed = {"schema": 3, "sources": {"bad": {"kind": "file", "path": 3}}}
         ledger.path.write_text(json.dumps(malformed), encoding="utf-8")
         book.expect("context-malformed-entry-schema-rejected", RuntimeError, ledger.load)
@@ -1465,7 +1730,7 @@ def _context(root: Path) -> FamilyOutcome:
         book.expect("context-unknown-schema-rejected", RuntimeError, ledger.load)
 
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True); barrier = threading.Barrier(7); errors = []
+        work = Path(directory); runtime_dir(work).mkdir(parents=True); barrier = threading.Barrier(7); errors = []
         def writer(index):
             try:
                 barrier.wait(); ContextLedger(work).record_external(f"source-{index}", f"fingerprint-{index}", ttl_seconds=60, provenance="content-sha256")
@@ -1645,19 +1910,24 @@ def _modules(root: Path) -> FamilyOutcome:
     discovered = discover(root)
     book.check("builtin-discovery", {"codex", "xonsh", "python-meta"} <= set(discovered))
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents").mkdir(); (work / ".agents" / "VERSION").write_text("4.0.0\n")
+        work = Path(directory)
+        (work / "VERSION").write_text("4.0.0\n")
+        (work / "framework.toml").write_text("[framework]\nversion='4.0.0'\n")
+        (work / "infra" / "agentinfra").mkdir(parents=True)
+        (work / "laws").mkdir()
+        (work / "modules").mkdir()
         made = scaffold(work, "safe-module")
         loaded = discover(work)["safe-module"]
-        book.check("scaffold-strict-compatible", made["id"] == "safe-module" and loaded["manifest"]["module"]["requires_framework"] == ">=4.0.0,<5.0.0")
+        book.check("scaffold-strict-compatible", made["id"] == "safe-module" and Path(made["path"]) == work / "local-modules" / "safe-module" and loaded["manifest"]["module"]["requires_framework"] == ">=4.0.0,<5.0.0")
         from unittest.mock import patch
         with patch("agentinfra.modules.FileTransaction.commit",side_effect=OSError("seeded scaffold commit failure")):
             book.expect("module-scaffold-failure-cleans-partial-directory",OSError,lambda:scaffold(work,"faulty-scaffold"))
-        book.check("module-scaffold-atomic-cleanup",not (work/".agents"/"local-modules"/"faulty-scaffold").exists())
-        bad = work / ".agents" / "local-modules" / "bad"; bad.mkdir(); (bad / "POLICY.md").write_text("x")
+        book.check("module-scaffold-atomic-cleanup",not (work/"local-modules"/"faulty-scaffold").exists())
+        bad = work / "local-modules" / "bad"; bad.mkdir(); (bad / "POLICY.md").write_text("x")
         (bad / "module.toml").write_text('[module]\nid="bad"\nname="bad"\nversion="1"\nkind="agent-host"\npolicy=["POLICY.md"]\n')
         book.expect("invalid-semver-discovery", ModuleError, lambda: discover(work))
         shutil.rmtree(bad)
-        evil = work / ".agents" / "local-modules" / "evil"; evil.mkdir(); (evil / "POLICY.md").write_text("x")
+        evil = work / "local-modules" / "evil"; evil.mkdir(); (evil / "POLICY.md").write_text("x")
         (evil / "module.toml").write_text('[module]\nid="evil"\nname="evil"\nversion="1.0.0"\nkind="agent-host"\npolicy=["POLICY.md"]\n[install]\nverify=["python","../escape.py"]\n')
         book.expect("action-path-confinement", (ModuleError, SecurityError), lambda: discover(work))
     with tempfile.TemporaryDirectory() as directory:
@@ -1824,14 +2094,14 @@ def _codex_static(root: Path) -> FamilyOutcome:
         installed_config = (work / ".codex" / "config.toml").read_bytes()
         book.check("codex-install-preserves-bom-and-newlines",installed_config.startswith(b"\xef\xbb\xbf") and b"\r\n" in installed_config)
         book.check("codex-install-preserves-config-permissions",stat.S_IMODE((work/".codex"/"config.toml").stat().st_mode)==original_mode)
-        journal=work/".agents"/"persistent"/"install-state"/"codex"/"install.json"; journal_data=json.loads(journal.read_text(encoding="utf-8"))
+        journal=install_state_dir(work)/"codex"/"install.json"; journal_data=json.loads(journal.read_text(encoding="utf-8"))
         book.check("codex-install-journal-transactional-metadata",journal_data["schema"]==3 and all(item.get("installed_sha256") for item in journal_data["files"]))
         reinstall=codex_install(work,dry_run=False,schema_probe=_valid_probe())
         book.check("codex-reinstall-idempotent",not reinstall["changed"])
         managed_path=work/".codex"/"config.toml"; installed_bytes=managed_path.read_bytes(); managed_path.write_bytes(installed_bytes+b"# drift\n")
         book.expect("codex-uninstall-managed-drift-rejected",ConfigError,lambda:codex_uninstall(work,dry_run=False))
         book.check("codex-drift-rejection-preserves-file",managed_path.read_bytes().endswith(b"# drift\n")); managed_path.write_bytes(installed_bytes)
-        shutil.rmtree(work / ".agents" / "runtime", ignore_errors=True)
+        shutil.rmtree(runtime_dir(work), ignore_errors=True)
         codex_uninstall(work, dry_run=False)
         book.check("codex-byte-exact-runtime-independent-uninstall", (work / ".codex" / "config.toml").read_bytes() == original)
     with tempfile.TemporaryDirectory() as directory:
@@ -1930,12 +2200,12 @@ def _python_meta(root: Path) -> FamilyOutcome:
 
 def _cli(root: Path) -> FamilyOutcome:
     book = Checkbook("cli")
-    cli = root / ".agents" / "bin" / "agentctl.py"
+    cli = INFRA.parent / "bin" / "agentctl.py"
     with tempfile.TemporaryDirectory(prefix="Aegis CLI \u96ea ") as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True); (work / ".agents" / "framework.toml").write_text("[framework]\nversion='4.0.0'\n"); _copy_codex(root,work)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True); (work / ".agents").mkdir(parents=True,exist_ok=True); shutil.copy2(framework_dir(root) / "framework.toml", work / ".agents" / "framework.toml"); _copy_codex(root,work)
         def call(*arguments,timeout=30):
             return run_process([sys.executable,"-B",str(cli),"--root",str(work),"--json",*arguments],cwd=root,timeout=timeout)
-        created = run_process([sys.executable, "-B", str(cli), "--root", str(work), "--json", "task", "new", "--title", "cli task"], cwd=root, timeout=30)
+        created = run_process([sys.executable, "-B", str(cli), "--root", str(work), "--json", "task", "new", "--title", "cli task", "--mode", "read"], cwd=root, timeout=30)
         payload = json.loads(created.stdout)
         book.check("cli-json-task-create", created.returncode == 0 and payload["id"])
         stable_one=call("task","status"); stable_two=call("task","status")
@@ -1952,18 +2222,18 @@ def _cli(root: Path) -> FamilyOutcome:
             book.check(label,rejected.returncode==2 and "Traceback" not in rejected.stderr,rejected.stderr)
         book.check("cli-rejected-record-commands-zero-state-change",store.load()["revision"]==initial_revision)
         call("task","gate-add","waivable","--id","G1")
-        before=store.load()["revision"]; rejected=call("task","gate-waive","G1","--reason","   ","--authority","policy:test")
+        before=store.load()["revision"]; rejected=call("task","gate-waive","G1","--reason","   ","--evidence","E-missing")
         book.check("cli-gate-waiver-reason-rejected",rejected.returncode==2 and store.load()["revision"]==before)
         call("task","risk-add","risk","--id","R1","--severity","high")
         before=store.load()["revision"]; rejected=call("task","risk-resolve","R1","--resolution","   ")
         book.check("cli-risk-resolution-rejected",rejected.returncode==2 and store.load()["revision"]==before)
         unknown=call("subagent","open","--role","../unknown")
         book.check("cli-unknown-subagent-role-rejected",unknown.returncode==2 and store.load().get("active_child") is None)
-        td=work/".agents"/"runtime"/"tasks"/payload["id"]
+        td=tasks_dir(work)/payload["id"]
         success_script=work/"success.py"; success_script.write_text("print('ok')\n",encoding="utf-8"); fail_script=work/"fail.py"; fail_script.write_text("raise SystemExit(7)\n",encoding="utf-8")
         before_records=len(load_evidence(td)); outside_verify=call("evidence","add","--kind","verification-command","--summary","invalid state","--verification","--argv",sys.executable,str(success_script))
         book.check("cli-verification-state-validated-before-append",outside_verify.returncode==2 and len(load_evidence(td))==before_records,outside_verify.stderr)
-        _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("IMPLEMENT","work"); store.transition("VERIFY","verify")
+        _advance_precheck(store,work); store.transition("PLAN","plan"); store.transition("VERIFY","verify")
         before_records=len(load_evidence(td)); failed=call("evidence","add","--kind","verification-command","--summary","expected failure","--verification","--argv",sys.executable,str(fail_script))
         book.check("cli-rejected-verification-zero-ledger-side-effects",failed.returncode==2 and len(load_evidence(td))==before_records,failed.stderr)
         successful=call("evidence","add","--kind","verification-command","--summary","success","--verification","--argv",sys.executable,str(success_script))
@@ -2028,12 +2298,12 @@ def _persistent(root: Path) -> FamilyOutcome:
         original_mode = stat.S_IMODE(target.stat().st_mode)
         bootstrap_install(work, apply=True)
         installed = target.read_bytes()
-        journal_path = work / ".agents" / "persistent" / "install-state" / "bootstrap" / "install.json"
+        journal_path = install_state_dir(work) / "bootstrap" / "install.json"
         journal = json.loads(journal_path.read_text(encoding="utf-8"))
         backup = confined_path(work, journal["backup"], must_exist=True, reject_symlinks=True)
         book.check(
             "bootstrap-recovery-metadata-outside-runtime",
-            journal_path.is_file() and ".agents/runtime" not in journal_path.as_posix() and ".agents/runtime" not in backup.as_posix(),
+            journal_path.is_file() and ".aegis/runtime" not in journal_path.as_posix() and ".aegis/runtime" not in backup.as_posix(),
         )
         book.check("bootstrap-persistent-journal-schema", journal.get("schema") == 2)
         book.check("persistent-backup-original-mode-recorded",journal.get("original_mode")==original_mode)
@@ -2051,7 +2321,7 @@ def _persistent(root: Path) -> FamilyOutcome:
             and not Path(journal["destination"]).is_absolute()
             and ".." not in Path(journal["destination"]).parts,
         )
-        shutil.rmtree(work / ".agents" / "runtime", ignore_errors=True)
+        shutil.rmtree(runtime_dir(work), ignore_errors=True)
         bootstrap_uninstall(work, apply=True)
         book.check(
             "bootstrap-runtime-deletion-preserves-exact-uninstall",
@@ -2077,7 +2347,7 @@ def _persistent(root: Path) -> FamilyOutcome:
         work = Path(directory); _copy_bootstrap(root, work)
         target = work / "AGENTS.md"; target.write_bytes(b"original")
         bootstrap_install(work, apply=True); installed = target.read_bytes()
-        journal_path = work / ".agents" / "persistent" / "install-state" / "bootstrap" / "install.json"
+        journal_path = install_state_dir(work) / "bootstrap" / "install.json"
         journal = json.loads(journal_path.read_text(encoding="utf-8")); backup = work / journal["backup"]
         backup.write_bytes(b"attacker-controlled rollback bytes")
         book.expect("bootstrap-backup-integrity-preflight", BootstrapError, lambda: bootstrap_uninstall(work, apply=True))
@@ -2093,7 +2363,7 @@ def _persistent(root: Path) -> FamilyOutcome:
 
     def seed_pending(work: Path, name: str, target: Path, before: bytes, after: bytes) -> Path:
         txid=name+"-seeded"
-        directory=work/".agents"/"persistent"/"transactions"/txid; directory.mkdir(parents=True,exist_ok=True)
+        directory=persistent_dir(work)/"transactions"/txid; directory.mkdir(parents=True,exist_ok=True)
         journal={
             "schema":1,"id":txid,"name":name,"root":str(work.resolve()),"created":"seeded","phase":"APPLYING","applied":1,
             "records":[{"index":0,"path":target.relative_to(work).as_posix(),"before_sha256":hashlib.sha256(before).hexdigest(),"after_sha256":hashlib.sha256(after).hexdigest(),"before_base64":base64.b64encode(before).decode("ascii"),"mode":0o644,"operation":"replace"}],
@@ -2116,7 +2386,7 @@ def _persistent(root: Path) -> FamilyOutcome:
         work=Path(directory); target=work/"target"; before=b"before"; after=b"after"; target.write_bytes(before)
         pending=seed_pending(work,"ambiguous",target,before,after); target.write_bytes(b"third-party-drift")
         from agentinfra.transaction import recover_named_transactions
-        book.expect("recovery-ambiguous-destination-never-guessed",TransactionError,lambda:recover_named_transactions(work/".agents"/"persistent"/"transactions",expected_root=work,names=("ambiguous",)))
+        book.expect("recovery-ambiguous-destination-never-guessed",TransactionError,lambda:recover_named_transactions(persistent_dir(work)/"transactions",expected_root=work,names=("ambiguous",)))
         book.check("recovery-ambiguity-has-zero-mutation-and-durable-plan",target.read_bytes()==b"third-party-drift" and (pending/"journal.json").is_file())
 
     with tempfile.TemporaryDirectory() as directory:
@@ -2130,7 +2400,7 @@ def _persistent(root: Path) -> FamilyOutcome:
             "recovery-batch-later-ambiguity-rejected",
             TransactionError,
             lambda:recover_named_transactions(
-                work/".agents"/"persistent"/"transactions",
+                persistent_dir(work)/"transactions",
                 expected_root=work,
                 names=("a-install","b-uninstall"),
             ),
@@ -2158,12 +2428,12 @@ def _persistent(root: Path) -> FamilyOutcome:
         original_mode = stat.S_IMODE(config.stat().st_mode)
         codex_install(work, dry_run=False, schema_probe=_valid_probe())
         installed = config.read_bytes()
-        journal_path = work / ".agents" / "persistent" / "install-state" / "codex" / "install.json"
+        journal_path = install_state_dir(work) / "codex" / "install.json"
         journal = json.loads(journal_path.read_text(encoding="utf-8"))
         book.check(
             "codex-recovery-metadata-outside-runtime",
             journal_path.is_file()
-            and all(".agents/runtime" not in str(item.get("backup") or "") for item in journal["files"]),
+            and all(".aegis/runtime" not in str(item.get("backup") or "") for item in journal["files"]),
         )
         book.check("codex-persistent-journal-schema", journal.get("schema") == 3)
         book.check(
@@ -2180,7 +2450,7 @@ def _persistent(root: Path) -> FamilyOutcome:
                 for item in journal["files"]
             ),
         )
-        shutil.rmtree(work / ".agents" / "runtime", ignore_errors=True)
+        shutil.rmtree(runtime_dir(work), ignore_errors=True)
         codex_uninstall(work, dry_run=False)
         role_files = list((work / ".codex" / "agents").glob("*.toml")) if (work / ".codex" / "agents").exists() else []
         book.check(
@@ -2206,7 +2476,7 @@ def _persistent(root: Path) -> FamilyOutcome:
         work = Path(directory); (work / ".agents").mkdir(); _copy_codex(root, work)
         config = work / ".codex" / "config.toml"; config.parent.mkdir(); config.write_bytes(b"approval_policy='never'\n")
         codex_install(work, dry_run=False, schema_probe=_valid_probe()); installed = config.read_bytes()
-        journal_path = work / ".agents" / "persistent" / "install-state" / "codex" / "install.json"
+        journal_path = install_state_dir(work) / "codex" / "install.json"
         journal = json.loads(journal_path.read_text(encoding="utf-8"))
         record = next(item for item in journal["files"] if item.get("backup"))
         backup = work / record["backup"]; backup.write_bytes(b"corrupt backup")
@@ -2275,13 +2545,13 @@ def _security(root: Path) -> FamilyOutcome:
         evidence = append_evidence(task_dir, "observation", "token=environment-value", task_id="evidence-task", change_epoch=0, password="details-secret")
         ledger_bytes = (task_dir / "evidence.jsonl").read_bytes()
         book.check("evidence-redacts-before-persistence", b"environment-value" not in ledger_bytes and b"details-secret" not in ledger_bytes and "[REDACTED]" in json.dumps(evidence))
-        (work/".agents"/"runtime").mkdir(parents=True,exist_ok=True)
+        runtime_dir(work).mkdir(parents=True,exist_ok=True)
         context=ContextLedger(work); context.record_external("secret-source","fingerprint","token=environment-value",ttl_seconds=60,provenance="content-sha256")
         state_store=StateStore(work); state_store.create("environment secret isolation")
-        persistent_control=b"\n".join(path.read_bytes() for path in (work/".agents").rglob("*") if path.is_file())
+        persistent_control=b"\n".join(path.read_bytes() for path in aegis_dir(work).rglob("*") if path.is_file())
         book.check("environment-secrets-absent-from-state-evidence-context-logs",b"environment-value" not in persistent_control and b"details-secret" not in persistent_control)
         if os.name != "nt":
-            modes=[stat.S_IMODE(path.stat(follow_symlinks=False).st_mode) for path in (work/".agents"/"runtime").rglob("*") if path.is_file()]
+            modes=[stat.S_IMODE(path.stat(follow_symlinks=False).st_mode) for path in aegis_dir(work).rglob("*") if path.is_file()]
             book.check("runtime-control-files-not-group-world-writable",bool(modes) and all(mode&0o077==0 for mode in modes),repr(modes))
         else:
             book.check("runtime-control-files-not-group-world-writable",True,"POSIX permission bits are not a Windows contract")
@@ -2556,7 +2826,7 @@ def _fault(root: Path) -> FamilyOutcome:
         for thread in threads: thread.join()
         book.check("race-one-child-winner", len(winners) == 1 and len(failures) == 1)
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True)
+        work=Path(directory); runtime_dir(work).mkdir(parents=True)
         store=StateStore(work); store.create("mutation race")
         revision=store.load()["revision"]; winners=[]; failures=[]; barrier=threading.Barrier(3)
         def mutate(index):
@@ -2569,7 +2839,7 @@ def _fault(root: Path) -> FamilyOutcome:
         for thread in threads: thread.join()
         book.check("race-task-revision-one-winner",len(winners)==1 and len(failures)==1 and "stale task revision" in failures[0],repr((winners,failures)))
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); store,_=_audited_state(work); task=store.load(); td=work/".agents"/"runtime"/"tasks"/task["id"]
+        work=Path(directory); store,_=_audited_state(work); task=store.load(); td=tasks_dir(work)/task["id"]
         barrier=threading.Barrier(3); results=[]
         def finalize():
             try: barrier.wait(); store.transition("FINALIZE","race"); results.append("finalized")
@@ -2749,19 +3019,21 @@ def _mutation(root: Path) -> FamilyOutcome:
 
 def _migration(root: Path) -> FamilyOutcome:
     book = Checkbook("migration")
-    fixture = json.loads((root / ".agents" / "infra" / "law_tests" / "fixtures" / "v4_state.json").read_text(encoding="utf-8"))
+    fixture = json.loads((framework_dir(root) / "infra" / "law_tests" / "fixtures" / "v4_state.json").read_text(encoding="utf-8"))
     with tempfile.TemporaryDirectory() as directory:
         work = Path(directory); task_dir = work / ".agents" / "runtime" / "tasks" / fixture["id"]; task_dir.mkdir(parents=True)
         (task_dir / "state.json").write_text(json.dumps(fixture), encoding="utf-8"); (work / ".agents" / "runtime" / "current-task").write_text(fixture["id"] + "\n")
-        store = StateStore(work); loaded = store.load(); book.check("v4-schema-load", loaded["schema"] == 2)
-        migrated = store.mutate(lambda task: task["precheck"].update(instructions_discovered=True))
-        book.check("v4-schema-migrated-and-anchored", migrated["schema"] == 3 and (work / ".agents" / "persistent" / "task-anchors" / f"{fixture['id']}.json").is_file())
+        from agentinfra.runtime_migration import migrate_runtime
+        migrate_runtime(work, apply=True)
+        store = StateStore(work); loaded = store.load(fixture["id"]); book.check("v4-schema-load", loaded["schema"] == 2)
+        migrated = store.mutate(lambda task: task["precheck"].update(instructions_discovered=True), fixture["id"])
+        book.check("v4-schema-migrated-and-anchored", migrated["schema"] == 3 and (persistent_dir(work) / "task-anchors" / f"{fixture['id']}.json").is_file())
     with tempfile.TemporaryDirectory() as directory:
         work = Path(directory); (work / ".agents").mkdir(); (work / ".agents" / "VERSION").write_text("5.0.0\n")
         module = work / ".agents" / "modules" / "x"; module.mkdir(parents=True); (module / "POLICY.md").write_text("x")
         (module / "module.toml").write_text('[module]\nid="x"\nname="x"\nversion="1.0.0"\nkind="agent-host"\npolicy=["POLICY.md"]\nrequires_framework="<5.0.0"\n')
         book.expect("module-major-mismatch", ModuleError, lambda: discover(work))
-    flaws = json.loads((root / ".agents" / "infra" / "law_tests" / "v4_flaws.json").read_text(encoding="utf-8"))
+    flaws = json.loads((framework_dir(root) / "infra" / "law_tests" / "v4_flaws.json").read_text(encoding="utf-8"))
     book.check("v4-flaw-catalog-unique-complete", flaws["version"] == "4.0.0" and len(flaws["flaws"]) >= 10 and len({item["id"] for item in flaws["flaws"]}) == len(flaws["flaws"]))
     from agentinfra.migration import UpgradeError, plan_upgrade, upgrade
     manifest_ok, manifest_detail = verify_manifest(root, require_release_anchor=True)
@@ -2789,7 +3061,7 @@ def _migration(root: Path) -> FamilyOutcome:
             book.check("framework-upgrade-preserves-project-local-module", applied["applied"] and (local / "module.toml").is_file() and discover(target)["project-local"]["source"] == "local")
             book.check("framework-upgrade-preserves-project-laws", project_law.read_bytes() == project_law_bytes and any(result.id == "project.local" and result.passed for result in LawRunner(target).run([project_law])))
             book.check("framework-upgrade-preserves-root-agents-user-bytes", (target / "AGENTS.md").read_bytes() == agents_text)
-            book.check("framework-upgrade-replaces-declared-files-and-removes-bytecode", (target / ".agents" / "README.md").read_bytes() == (root / ".agents" / "README.md").read_bytes() and not stale.exists())
+            book.check("framework-upgrade-replaces-declared-files-and-removes-bytecode", (target / ".agents" / "README.md").read_bytes() == (framework_dir(root) / "README.md").read_bytes() and not stale.exists())
             second = upgrade(root, target, apply=True)
             book.check("framework-upgrade-idempotent", second["applied"] is False and second["mutation_count"] == 0)
 
@@ -2824,11 +3096,11 @@ def _migration(root: Path) -> FamilyOutcome:
             }
             (runtime / "codex-install.json").write_text(json.dumps(legacy_codex))
             migrated = upgrade(root, target, apply=True)
-            durable_bootstrap = target / ".agents" / "persistent" / "install-state" / "bootstrap" / "install.json"
-            durable_codex = target / ".agents" / "persistent" / "install-state" / "codex" / "install.json"
+            durable_bootstrap = install_state_dir(target) / "bootstrap" / "install.json"
+            durable_codex = install_state_dir(target) / "codex" / "install.json"
             book.check("v4-runtime-install-journals-migrate-to-persistent-storage", migrated["applied"] and durable_bootstrap.is_file() and durable_codex.is_file() and not (runtime / "bootstrap-install.json").exists() and not (runtime / "codex-install.json").exists())
             migrated_journals = [json.loads(durable_bootstrap.read_text()), json.loads(durable_codex.read_text())]
-            book.check("migrated-install-backups-remain-hash-bound-and-confined", all(".agents/persistent/" in str(value) for value in (migrated_journals[0]["backup"], migrated_journals[1]["files"][0]["backup"])))
+            book.check("migrated-install-backups-remain-hash-bound-and-confined", all(".aegis/state/" in str(value).replace("\\", "/") for value in (migrated_journals[0]["backup"], migrated_journals[1]["files"][0]["backup"])))
     else:
         book.check("migration-source-release-must-be-trusted", False, str(manifest_detail))
 
@@ -2861,7 +3133,7 @@ def _migration(root: Path) -> FamilyOutcome:
 def _performance(root: Path) -> FamilyOutcome:
     book = Checkbook("performance")
     with tempfile.TemporaryDirectory() as directory:
-        work=Path(directory); (work/".agents"/"runtime").mkdir(parents=True); store=StateStore(work); store.create("large auditable history")
+        work=Path(directory); runtime_dir(work).mkdir(parents=True); store=StateStore(work); store.create("large auditable history")
         decisions=[{"id":f"D{index:04d}","at":"now","statement":f"decision {index}","rationale":"retained audit history","evidence":[]} for index in range(500)]
         store.mutate(lambda value:value["decisions"].extend(decisions))
         started=time.monotonic(); loaded=store.load(); elapsed=time.monotonic()-started
@@ -2893,7 +3165,7 @@ def _performance(root: Path) -> FamilyOutcome:
         book.check("large-build-excluded", fingerprint["available"] and all("build/large" not in str(item) for item in fingerprint.get("details", {}).get("items", [])))
         book.check("law-runner-large-output-memory-bounded",result.stdout_truncated and len(result.stdout)==4096 and len(result.stdout_sha256)==64)
     with tempfile.TemporaryDirectory() as directory:
-        work = Path(directory); (work / ".agents" / "runtime").mkdir(parents=True); ledger = ContextLedger(work)
+        work = Path(directory); runtime_dir(work).mkdir(parents=True); ledger = ContextLedger(work)
         data = {"schema": 3, "sources": {}}
         for index in range(1000):
             source = f"source-{index}"; data["sources"]["external:" + hashlib.sha256(source.encode()).hexdigest()] = {
@@ -2944,13 +3216,13 @@ def _performance(root: Path) -> FamilyOutcome:
     book.check("agentctl-doctor-expensive-probes-not-repeated",doctor_exit==0 and shell_probe.call_count==1 and package_probe.call_count==1,f"shell={shell_probe.call_count} packages={package_probe.call_count}")
     run_family(str(root.resolve()), "lawlib"); first_cache = run_family.cache_info(); run_family(str(root.resolve()), "lawlib"); second_cache = run_family.cache_info()
     book.check("semantic-family-expensive-probes-cached", second_cache.hits == first_cache.hits + 1)
-    with (root / ".agents" / "framework.toml").open("rb") as stream: runtime_policy = tomllib.load(stream).get("runtime", {})
+    with (framework_dir(root) / "framework.toml").open("rb") as stream: runtime_policy = tomllib.load(stream).get("runtime", {})
     book.check("runtime-retention-policy-explicit-and-nondestructive", runtime_policy.get("retention_policy") == "manual-audited-only" and runtime_policy.get("automatic_cleanup") is False)
     law_runner = run_family(str(root.resolve()), "law-runner"); law_obs = {label: passed for label, passed, _ in law_runner.observations}
     book.check("law-timeout-and-descendant-cleanup-bounded", law_obs.get("law-timeout-kills-descendant-group") is True and law_obs.get("timeout-reported") is True)
     security = run_family(str(root.resolve()), "security"); security_obs = {label: passed for label, passed, _ in security.observations}
     book.check("default-operations-require-no-network", security_obs.get("no-implicit-repository-exfiltration") is True)
-    book.check("bounded-retry-structure", "delays = (0.0, 0.005, 0.015, 0.04, 0.1)" in (root / ".agents" / "infra" / "agentinfra" / "atomic.py").read_text(encoding="utf-8"))
+    book.check("bounded-retry-structure", "delays = (0.0, 0.005, 0.015, 0.04, 0.1)" in (framework_dir(root) / "infra" / "agentinfra" / "atomic.py").read_text(encoding="utf-8"))
     return book.finish()
 
 
@@ -3057,8 +3329,65 @@ def _source_assurance(root: Path) -> FamilyOutcome:
     return book.finish()
 
 
+def _historical_integrity(root: Path) -> FamilyOutcome:
+    book = Checkbook("historical-integrity")
+    try:
+        from .historical_integrity import HARD_MUTATION_PROOFS, run_historical_integrity_campaign
+    except ImportError:
+        from historical_integrity import HARD_MUTATION_PROOFS, run_historical_integrity_campaign
+
+    report = run_historical_integrity_campaign(root)
+    v4 = report["v4_flaw_campaign"]
+    mutation = report["hard_mutation_campaign"]
+    hard = report["hard_invariant_campaign"]
+    process = report["actual_process_campaign"]
+    release = report["clean_release_campaign"]
+    semantic = report["semantic_mapping_audit"]
+    book.check(
+        "v4-canonical-execution-complete",
+        v4["required"] == v4["seeded_red"] == v4["fixed_green"]
+        and not v4["missing"],
+        v4["digest"],
+    )
+    book.check(
+        "hard-mutation-canonical-complete",
+        mutation["effective_completeness"] == 1.0 and not mutation["missing_targets"],
+        mutation["digest"],
+    )
+    book.check(
+        "hard-invariant-canonical-complete",
+        hard["effective_completeness"] == 1.0 and not hard["missing_targets"],
+        hard["digest"],
+    )
+    book.check(
+        "actual-process-concurrency-complete",
+        process["status"] == "PASS" and process["actual_processes"] is True,
+        process["evidence_digest"],
+    )
+    book.check(
+        "release-clean-artifact-full-sequence-complete",
+        release["status"] == "PASS" and len(release["phases"]) >= 6,
+        release["evidence_digest"],
+    )
+    book.check(
+        "elevated-semantic-mapping-audit-complete",
+        semantic["reviewed"] == semantic["required"] and not semantic["weaker"],
+        semantic["digest"],
+    )
+    mutation_records = {item["target_id"]: item for item in mutation["records"]}
+    for target, label in HARD_MUTATION_PROOFS.items():
+        record = mutation_records.get(target, {})
+        book.check(
+            label,
+            record.get("status") in {"KILLED", "EQUIVALENT_STRONGER_PROOF"},
+            str(record.get("proof_digest", "missing")),
+        )
+    return book.finish()
+
+
 FAMILIES = {
     "source-assurance": _source_assurance,
+    "historical-integrity": _historical_integrity,
     "release": _release,
     "atomic-transaction": _atomic,
     "bootstrap": _bootstrap,

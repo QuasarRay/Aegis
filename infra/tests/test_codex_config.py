@@ -10,7 +10,7 @@ class TestCodex(unittest.TestCase):
     def _fixture(self,td):
         src=Path(__file__).resolve().parents[2];r=Path(td)
         shutil.copytree(src/"modules"/"codex",r/".agents"/"modules"/"codex")
-        (r/".agents"/"runtime").mkdir(parents=True)
+        (r/".aegis"/"runtime").mkdir(parents=True)
         shutil.copy2(src/"VERSION",r/".agents"/"VERSION")
         return r
     def test_merge_preserves_user(self):
