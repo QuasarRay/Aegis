@@ -83,10 +83,12 @@ class Contracts(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             result = run_process([sys.executable, "-c", "pass"], cwd=Path(td))
         o = plan()["obligations"][0]
-        good = "Checking harness proofs::kernel_typeof...\n - Status: SUCCESS\nVERIFICATION:- SUCCESSFUL\n"
-        for text in ["", good*2, good.replace("proofs::kernel_typeof", "other"), good+"UNREACHABLE", good+"FAILURE"]:
+        good = "Checking harness proofs::kernel_typeof...\n - Status: SUCCESS\nVERIFICATION:- SUCCESSFUL\nComplete - 1 successfully verified harnesses, 0 failures, 1 total.\n"
+        for text in ["", good*2, good.replace("proofs::kernel_typeof", "other"), good+" - Status: UNREACHABLE\n", good+" - Status: FAILURE\n"]:
             self.assertFalse(checked_output(o, replace(result, stdout=text)))
         self.assertTrue(checked_output(o, replace(result, stdout=good)))
+        # A solver's UNSAT result establishes the assertion; it is not a cover status.
+        self.assertTrue(checked_output(o, replace(result, stdout=good+"SAT checker: instance is UNSATISFIABLE\n")))
         for kwargs in ({"returncode": 1}, {"timed_out": True}, {"stdout_truncated": True}):
             self.assertFalse(checked_output(o, replace(result, stdout=good, **kwargs)))
         o.update(method="verus", entry="src/proofs.rs", expected_checks=2)

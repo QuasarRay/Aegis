@@ -34,10 +34,11 @@ def checked_output(o, result):
     out = result.stdout + "\n" + result.stderr
     if o["method"] == "kani":
         harnesses = re.findall(r"^Checking harness (.+?)\.\.\.$", out, re.M)
+        statuses = re.findall(r"^\s*- Status: ([A-Z_]+)\s*$", out, re.M)
         return (harnesses == [o["entry"]] and out.count("VERIFICATION:- SUCCESSFUL") == 1
-                and re.search(r"- Status: SUCCESS\b", out) is not None
+                and "SUCCESS" in statuses and set(statuses) <= {"SUCCESS", "SATISFIED"}
                 and "VERIFICATION:- FAILED" not in out
-                and not re.search(r"\b(?:FAILURE|UNDETERMINED|UNREACHABLE|UNSATISFIABLE)\b", out))
+                and "Complete - 1 successfully verified harnesses, 0 failures, 1 total." in out)
     summaries = re.findall(r"verification results::?\s*(\d+) verified, (\d+) errors", out)
     return summaries == [(str(o["expected_checks"]), "0")]
 
