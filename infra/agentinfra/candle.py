@@ -18,11 +18,13 @@ import uuid
 from .atomic import atomic_write_json
 from .contracts import ContractError, digest, file_digest, load_authority, validate_plan
 from .locks import FileLock
-from .governance import _checkpoint_instruction_copies
+from .governance import _checkpoint_instruction_copies, checkpoint_instruction_targets
 from .paths import framework_dir
 from .security import SecurityError, confined_path
 from .verification import proof_manifest, run_kani, version
 from .transaction import FileTransaction, Mutation, recover_named_transactions
+from .workspace import _file_fingerprint
+from .kani_report import validate_kani_report
 
 
 def git(root, *arguments):
@@ -33,6 +35,8 @@ def git(root, *arguments):
 
 
 def git_repository(root):
+    if Path(git(root, "rev-parse", "--show-toplevel")).resolve() != root:
+        raise ContractError("Use the full repository root, not a nested working directory")
     remote = git(root, "remote", "get-url", "origin")
     allowed = {"https://github.com/QuasarRay/Candle-rs", "https://github.com/QuasarRay/Candle-rs.git",
                "git@github.com:QuasarRay/Candle-rs.git", "ssh://git@github.com/QuasarRay/Candle-rs.git"}
@@ -44,14 +48,14 @@ def git_repository(root):
 def source_snapshot(root):
     # Git-visible files include new nonignored files; build and runtime output
     # are excluded explicitly. This does not attest undeclared external inputs.
-    raw = subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=root)
+    raw = subprocess.check_output(["git", "ls-files", "--cached", "--others", "--exclude-standard", "-z"], cwd=root, timeout=30)
     entries = {}
     for name in sorted(set(raw.decode().split("\0")) - {""}):
         if name.split("/", 1)[0] in {".aegis", "target", "__pycache__"}:
             continue
         path = confined_path(root, name)
         if path.is_file():
-            entries[name] = file_digest(path)
+            entries[name] = _file_fingerprint(path)
         elif path.exists():
             raise ContractError(f"Unsupported source entry (including submodules): {name}")
     return {"digest": digest(entries), "files": entries}
@@ -67,7 +71,7 @@ def framework_snapshot(framework):
             path = Path(directory) / name
             relative = path.relative_to(framework)
             checked = confined_path(framework, relative, must_exist=True)
-            entries[relative.as_posix()] = file_digest(checked)
+            entries[relative.as_posix()] = _file_fingerprint(checked)
     return digest(entries)
 
 
@@ -114,7 +118,7 @@ def locked(root):
     try:
         state = read_state(root)
         if state.get("active"):
-            with _checkpoint_instruction_copies(root, state["active"]["plan"]["id"]):
+            with _checkpoint_instruction_copies(root, state["active"]["plan"]["id"], state["active"]["plan"]["scope"]):
                 recover_named_transactions(confined_path(root, ".aegis/candle/transactions"),
                                            expected_root=root, names=["checkpoint-packet"])
             state = read_state(root)
@@ -127,6 +131,7 @@ def active_task(root, state, framework):
     task = state.get("active")
     if not task:
         raise ContractError("No active obligation batch")
+    git_repository(root)
     contract = load_authority(framework)
     if task["authority_digest"] != contract["digest"] or task["framework_digest"] != framework_snapshot(framework):
         raise ContractError("Bound authority or coordinator changed; preserve the old checkpoint and replan")
@@ -155,6 +160,11 @@ def begin(root, plan, framework=None):
     contract = load_authority(framework)
     validate_plan(plan, contract)
     git_repository(root)
+    ignored = subprocess.run(["git", "check-ignore", "--stdin", "-z"], cwd=root,
+                             input=b"\0".join(name.encode() for name in plan["scope"]) + b"\0",
+                             capture_output=True, timeout=30)
+    if ignored.returncode not in {0, 1} or ignored.stdout:
+        raise ContractError("Implementation scope contains ignored paths or ignore discovery failed")
     with locked(root) as state:
         if state["active"]:
             raise ContractError("Publish and record the current stacked PR before starting another batch")
@@ -207,7 +217,7 @@ def verify(root, framework=None):
                                 "available": tools["available"],
                                 "version": tools.get("result", {}).get("stdout", "")}})
         for item in task["evidence"]:
-            if item["cache_key"] == cache_key:
+            if item["cache_key"] == cache_key and item["status"] != "STALE":
                 report = confined_path(root, item["path"], must_exist=True)
                 if file_digest(report) != item["sha256"]:
                     raise ContractError("Cached evidence changed")
@@ -238,6 +248,7 @@ def verify(root, framework=None):
                   "source_sha256": before["digest"], "commit": git(root, "rev-parse", "HEAD"),
                   "dirty": bool(git(root, "status", "--porcelain", "--untracked-files=normal")),
                   "authority_digest": contract["digest"], "plan_digest": digest(plan), "tool": tools,
+                  "framework_digest": task["framework_digest"],
                   "source_unchanged": before == after, "result": result, "refinement": "OPEN"}
         path = confined_path(root, f".aegis/candle/evidence/{attempt}.json")
         atomic_write_json(path, record, root=root, mode=0o600)
@@ -296,17 +307,23 @@ def prepare_checkpoint(root, framework=None):
                 current_results.append({"attempt": attempt, "status": "INTERRUPTED", "current": False})
         summary = {"plan": task["plan"], "source_sha256": snapshot["digest"],
                    "authority_digest": task["authority_digest"], "results": current_results,
+                   "framework_digest": task["framework_digest"], "baseline_commit": task["base_commit"],
+                   "implementation_snapshot": snapshot,
+                   "source_identity_format": "git-visible-file-mode-sha256-v1",
+                   "evidence": [{"file": Path(x["path"]).name, "sha256": x["sha256"]} for x in task["evidence"]],
                    "refinement": "OPEN", "claim": "Checkpoint of implementation progress; no unbounded equivalence claim"}
         retain(base + "/summary.json", (json.dumps(summary, indent=2) + "\n").encode())
-        # Required instruction copies are generated only into newly created packet directories.
+        # Canonical copies are generated for packet and scoped implementation directories.
         canonical = confined_path(root, "AGENTS.md", must_exist=True).read_bytes()
-        for name in ("supervision/AGENTS.md", "supervision/checkpoints/AGENTS.md", base + "/AGENTS.md"):
-            destination = confined_path(root, name)
+        for destination in checkpoint_instruction_targets(root, task["plan"]["id"], task["plan"]["scope"]):
+            name = destination.relative_to(root).as_posix()
             if destination.exists():
                 if destination.read_bytes() != canonical:
-                    raise ContractError("Existing supervision instructions diverge from root")
+                    raise ContractError("Existing scoped instructions diverge from root")
             else:
                 retain(name, canonical)
+        summary["generated_files"] = sorted(files)
+        retain(base + "/summary.json", (json.dumps(summary, indent=2) + "\n").encode())
         task["packet"] = {"directory": base, "files": files, "implementation_snapshot": snapshot}
         state_path = confined_path(root, ".aegis/candle/state.json", must_exist=True)
         sealed = seal_state(state, "PACKET_PREPARED", {"batch": task["plan"]["id"], "files": files})
@@ -314,11 +331,74 @@ def prepare_checkpoint(root, framework=None):
                      for name, data in payloads.items()]
         mutations.append(Mutation(state_path, (json.dumps(sealed, indent=2, sort_keys=True) + "\n").encode(),
                                   expected_sha256=file_digest(state_path), expected_exists=True, mode=0o600))
-        with _checkpoint_instruction_copies(root, task["plan"]["id"]):
+        with _checkpoint_instruction_copies(root, task["plan"]["id"], task["plan"]["scope"]):
             FileTransaction(root, mutations, state_dir=confined_path(root, ".aegis/candle/transactions"),
                             name="checkpoint-packet").commit(retain=False)
         return {"directory": base, "results": current_results,
                 "next": "Commit the packet and implementation, push the planned branch, open a draft stacked PR, then record checkpoint"}
+
+
+def inspect_checkpoint(root, batch, framework=None):
+    """Inspect committed evidence without trusting disposable coordinator state.
+
+    This verifies recorded identities/inventory, not the truth of tool execution.
+    An independent supervisor still reruns Kani and the eventual Candle proof.
+    """
+    root = root.resolve(strict=True)
+    git_repository(root)
+    framework = framework or framework_dir(root)
+    contract = load_authority(framework)
+    targets = checkpoint_instruction_targets(root, batch)
+    base = f"supervision/checkpoints/{batch}"
+    summary = json.loads(confined_path(root, base + "/summary.json", must_exist=True).read_text())
+    plan = validate_plan(summary["plan"], contract)
+    if plan["id"] != batch or summary["authority_digest"] != contract["digest"]:
+        raise ContractError("Checkpoint identity or original authority differs")
+    if summary["framework_digest"] != framework_snapshot(framework):
+        raise ContractError("Inspect using the exact recorded coordinator; its identity differs")
+    if summary.get("source_identity_format") != "git-visible-file-mode-sha256-v1":
+        raise ContractError("Unsupported checkpoint source identity format")
+    targets = checkpoint_instruction_targets(root, batch, plan["scope"])
+    allowed = {p.relative_to(root).as_posix() for p in targets} | {base + "/summary.json"}
+    for name in summary["generated_files"]:
+        if name not in allowed and not re.fullmatch(re.escape(base) + r"/[0-9a-f]{32}(?:-kani)?\.json", name):
+            raise ContractError("Checkpoint excludes an unexpected implementation file")
+        confined_path(root, name, must_exist=True)
+    current = source_snapshot(root)
+    application = {k: v for k, v in current["files"].items() if k not in summary["generated_files"]}
+    snapshot = summary["implementation_snapshot"]
+    if application != snapshot["files"] or digest(application) != summary["source_sha256"]:
+        raise ContractError("Checkout no longer matches the implementation in this packet")
+    for path in targets:
+        if path.read_bytes() != confined_path(root, "AGENTS.md", must_exist=True).read_bytes():
+            raise ContractError("Checkpoint instructions differ from the canonical project instructions")
+    outcomes = []
+    for item in summary["evidence"]:
+        if not re.fullmatch(r"[0-9a-f]{32}\.json", item["file"]):
+            raise ContractError("Invalid evidence filename")
+        path = confined_path(root, base + "/" + item["file"], must_exist=True)
+        if file_digest(path) != item["sha256"]:
+            raise ContractError("Persisted evidence changed")
+        record = json.loads(path.read_text())
+        if (record["authority_digest"] != contract["digest"] or record["plan_digest"] != digest(plan)
+                or record["framework_digest"] != summary["framework_digest"] or record["batch"] != batch
+                or record["refinement"] != "OPEN"):
+            raise ContractError("Evidence is bound to another contract, coordinator or plan")
+        result = record["result"]
+        if result.get("report_sha256"):
+            raw = confined_path(root, base + "/" + record["attempt"] + "-kani.json", must_exist=True)
+            if file_digest(raw) != result["report_sha256"]:
+                raise ContractError("Persisted raw Kani export changed")
+        if result["status"] == "BOUNDED_PASS" and record["source_sha256"] == summary["source_sha256"]:
+            if not result.get("report_sha256"):
+                raise ContractError("Bounded pass has no raw Kani evidence")
+            checked = validate_kani_report(json.loads(raw.read_text()), proof_manifest(root, plan, contract))
+            if not checked["passed"]:
+                raise ContractError("Persisted bounded result fails independent inventory validation")
+        outcomes.append({"attempt": record["attempt"], "status": result["status"],
+                         "current": record["source_sha256"] == summary["source_sha256"]})
+    return {"ok": True, "kind": "RECORDED_EVIDENCE_INTEGRITY", "results": outcomes,
+            "refinement": "OPEN", "claim": "Record integrity only; independently rerun tools to confirm execution"}
 
 
 def github_pr(number):

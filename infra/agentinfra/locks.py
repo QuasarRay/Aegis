@@ -86,6 +86,7 @@ class FileLock:
     path: Path
     purpose: str
     _owner: dict | None = field(default=None, init=False, repr=False)
+    _guard_fd: int | None = field(default=None, init=False, repr=False)
 
     def _try_create(self, payload: dict) -> None:
         fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
@@ -96,6 +97,38 @@ class FileLock:
             os.fsync(stream.fileno())
 
     def acquire(self, *, timeout: float = 10.0) -> dict:
+        if self._owner is not None:
+            raise LockError("lock object already owns a lease")
+        if timeout < 0 or timeout != timeout or timeout == float("inf"):
+            raise ValueError("lock timeout must be finite and non-negative")
+        deadline = time.monotonic() + timeout
+        try:
+            if os.name != "nt":
+                # Never unlink this guard: a stable inode serializes stale-record
+                # reclamation and prevents two processes deleting a new owner.
+                import fcntl
+                self.path.parent.mkdir(parents=True, exist_ok=True)
+                self._guard_fd = os.open(str(self.path) + ".guard",
+                                         os.O_CREAT | os.O_RDWR | getattr(os, "O_NOFOLLOW", 0), 0o600)
+                while True:
+                    try:
+                        fcntl.flock(self._guard_fd, fcntl.LOCK_EX | fcntl.LOCK_NB)
+                        break
+                    except BlockingIOError:
+                        if time.monotonic() >= deadline:
+                            raise LockError(f"process lock is held: {self.path}")
+                        time.sleep(min(0.05, max(0.001, deadline - time.monotonic())))
+            return self._acquire_record(timeout=max(0, deadline - time.monotonic()))
+        except BaseException:
+            self._release_guard()
+            raise
+
+    def _release_guard(self):
+        if self._guard_fd is not None:
+            os.close(self._guard_fd)
+            self._guard_fd = None
+
+    def _acquire_record(self, *, timeout: float) -> dict:
         if self._owner is not None:
             raise LockError("lock object already owns a lease")
         if timeout < 0 or timeout != timeout or timeout == float("inf"):
@@ -171,6 +204,13 @@ class FileLock:
         return data
 
     def release(self, *, nonce: str | None = None) -> None:
+        try:
+            self._release_record(nonce=nonce)
+        finally:
+            if self._owner is None:
+                self._release_guard()
+
+    def _release_record(self, *, nonce: str | None = None) -> None:
         if self._owner is None:
             raise LockError("this lock object does not own the process lock")
         info = self.inspect()
@@ -198,113 +238,3 @@ class FileLock:
         else:
             raise LockError(f"owned process lock could not be released after bounded sharing retries: {last_error}")
         self._owner = None
-
-
-@dataclass
-class LeaseLock:
-    """Long-lived logical lease for sequential subagents across CLI invocations."""
-
-    path: Path
-    purpose: str
-
-    def acquire(self, *, task_id: str, role: str, parent_id: str | None = None) -> dict:
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        payload = {
-            "schema": 2,
-            "lease_id": "L-" + uuid.uuid4().hex,
-            "owner_nonce": uuid.uuid4().hex,
-            "task_id": task_id,
-            "role": role,
-            "parent_id": parent_id,
-            "opened_by_pid": os.getpid(),
-            "process_identity": _process_identity(os.getpid()),
-            "host": socket.gethostname(),
-            "created": _now(),
-            "purpose": self.purpose,
-        }
-        raw = (json.dumps(payload, sort_keys=True) + "\n").encode("utf-8")
-        try:
-            fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-        except FileExistsError as exc:
-            raise LockError(f"subagent lease already exists: {self.inspect()}") from exc
-        with os.fdopen(fd, "wb") as stream:
-            stream.write(raw)
-            stream.flush()
-            os.fsync(stream.fileno())
-        return payload
-
-    def inspect(self) -> dict:
-        try:
-            data = json.loads(self.path.read_text(encoding="utf-8"))
-        except FileNotFoundError:
-            return {"exists": False}
-        except Exception as exc:
-            return {"exists": True, "corrupt": True, "error": str(exc)}
-        required = ("lease_id", "owner_nonce", "task_id", "role", "host")
-        if not isinstance(data, dict) or any(not isinstance(data.get(key), str) or not data[key] for key in required):
-            return {"exists": True, "corrupt": True, "error": "invalid lease schema"}
-        data["exists"] = True
-        try:
-            data["age_seconds"] = max(0.0, time.time() - self.path.stat().st_mtime)
-        except OSError:
-            data["age_seconds"] = None
-        return data
-
-    def release(
-        self,
-        lease_id: str,
-        *,
-        owner_nonce: str | None = None,
-        task_id: str | None = None,
-        role: str | None = None,
-    ) -> None:
-        info = self.inspect()
-        if not info.get("exists"):
-            raise LockError("subagent lease does not exist")
-        if info.get("corrupt"):
-            raise LockError("subagent lease is corrupt")
-        checks = {
-            "lease_id": lease_id,
-            "owner_nonce": owner_nonce,
-            "task_id": task_id,
-            "role": role,
-        }
-        for key, expected in checks.items():
-            if expected is not None and info.get(key) != expected:
-                raise LockError(f"subagent lease {key} mismatch")
-        self.path.unlink()
-
-    def force_clear(self, *, reason: str, expected_task_id: str | None = None) -> dict:
-        if not reason.strip():
-            raise LockError("force-clear requires a non-empty reason")
-        info = self.inspect()
-        if not info.get("exists"):
-            return info
-        if info.get("corrupt"):
-            raise LockError("corrupt lease requires forensic recovery; automatic force-clear refused")
-        if expected_task_id is not None and info.get("task_id") != expected_task_id:
-            raise LockError("refusing to clear another task's lease")
-        self.path.unlink()
-        return info
-
-    def restore(self, payload: dict) -> None:
-        """Restore an exactly captured lease after a surrounding transaction aborts.
-
-        This is intentionally narrower than acquire: it accepts only a complete schema-2
-        payload and never overwrites another owner's lease.
-        """
-        required = {"schema", "lease_id", "owner_nonce", "task_id", "role", "host", "purpose"}
-        if not isinstance(payload, dict) or payload.get("schema") != 2 or not required <= set(payload):
-            raise LockError("refusing to restore an invalid lease payload")
-        if payload.get("purpose") != self.purpose:
-            raise LockError("refusing to restore lease for a different purpose")
-        self.path.parent.mkdir(parents=True, exist_ok=True)
-        raw = (json.dumps({key: value for key, value in payload.items() if key not in {"exists", "age_seconds"}}, sort_keys=True) + "\n").encode("utf-8")
-        try:
-            fd = os.open(self.path, os.O_CREAT | os.O_EXCL | os.O_WRONLY, 0o600)
-        except FileExistsError as exc:
-            raise LockError("cannot restore lease because another lease now exists") from exc
-        with os.fdopen(fd, "wb") as stream:
-            stream.write(raw)
-            stream.flush()
-            os.fsync(stream.fileno())

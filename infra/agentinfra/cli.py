@@ -5,6 +5,7 @@ import argparse
 import json
 from pathlib import Path
 import sys
+import subprocess
 
 from . import candle
 from .contracts import load_authority
@@ -23,6 +24,8 @@ def main(argv=None):
     write.add_argument("path")
     checkpoint = commands.add_parser("checkpoint")
     checkpoint.add_argument("--pr", required=True)
+    inspect = commands.add_parser("inspect-checkpoint")
+    inspect.add_argument("batch")
     package = commands.add_parser("package")
     package.add_argument("destination", type=Path)
     args = parser.parse_args(argv)
@@ -48,6 +51,8 @@ def main(argv=None):
             result = candle.prepare_checkpoint(root, framework)
         elif args.command == "checkpoint":
             result = candle.checkpoint(root, args.pr, framework)
+        elif args.command == "inspect-checkpoint":
+            result = candle.inspect_checkpoint(root, args.batch, framework)
         elif args.command == "status":
             result = candle.status(root, framework)
         else:
@@ -57,7 +62,7 @@ def main(argv=None):
         if args.command == "verify":
             return 0 if result["result"]["status"] == "BOUNDED_PASS" else 1
         return 0 if result.get("ok", True) else 1
-    except (OSError, ValueError, RuntimeError, KeyError, TypeError) as error:
+    except (OSError, ValueError, RuntimeError, KeyError, TypeError, subprocess.SubprocessError) as error:
         print(json.dumps({"ok": False, "error": str(error)}), file=sys.stderr)
         return 2
 

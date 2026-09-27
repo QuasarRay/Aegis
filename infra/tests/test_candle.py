@@ -159,6 +159,36 @@ class Workflow(unittest.TestCase):
         with self.assertRaisesRegex(ContractError, 'budget exhausted'):
             self.verify_missing()
 
+    def test_ignored_implementation_scope_is_rejected(self):
+        with (self.root / '.gitignore').open('a') as stream:
+            stream.write('ignored/\n')
+        self.git('add', '.')
+        self.git('commit', '-qm', 'ignore fixture')
+        self.git('update-ref', 'refs/remotes/origin/master', self.git('rev-parse', 'HEAD'))
+        self.plan['scope'].append('ignored/implementation.rs')
+        with self.assertRaisesRegex(ContractError, 'ignored paths'):
+            self.begin()
+
+    def test_mode_change_invalidates_source_identity(self):
+        path = self.root / 'src/lib.rs'
+        before = candle.source_snapshot(self.root)
+        path.chmod(0o755)
+        self.assertNotEqual(before['digest'], candle.source_snapshot(self.root)['digest'])
+
+    def test_stale_evidence_is_not_reused_when_original_source_returns(self):
+        self.begin()
+        path = self.root / 'src/lib.rs'
+        original = path.read_text()
+        def drift(*args):
+            path.write_text('// changed by checker')
+            return {'status':'BOUNDED_PASS'}
+        with patch('agentinfra.candle.version', return_value={'available':True}), patch('agentinfra.candle.run_kani', side_effect=drift):
+            self.assertEqual(candle.verify(self.root, FRAMEWORK)['result']['status'], 'STALE')
+        path.write_text(original)
+        with patch('agentinfra.candle.version', return_value={'available':True}), patch('agentinfra.candle.run_kani', return_value={'status':'FAILED'}) as check:
+            self.assertEqual(candle.verify(self.root, FRAMEWORK)['result']['status'], 'FAILED')
+            check.assert_called_once()
+
     def test_raw_export_cache_tampering_rejected(self):
         self.begin()
         def fake_run(root, plan, manifest, export):
@@ -209,6 +239,31 @@ class Workflow(unittest.TestCase):
             candle.authorize_write(self.root, 'src/lib.rs', FRAMEWORK)
         with self.assertRaisesRegex(ContractError, 'frozen'):
             candle.verify(self.root, FRAMEWORK)
+
+    def test_new_scoped_directories_get_canonical_instructions_transactionally(self):
+        self.plan['scope'].append('src/new/component.rs')
+        self.begin()
+        path = self.root / 'src/new/component.rs'
+        path.parent.mkdir()
+        path.write_text('// new scoped implementation')
+        self.verify_missing()
+        candle.prepare_checkpoint(self.root, FRAMEWORK)
+        self.assertEqual((path.parent / 'AGENTS.md').read_bytes(), (self.root / 'AGENTS.md').read_bytes())
+        response, git_with_remote = self.remote_fixture()
+        with patch('agentinfra.candle.github_pr', return_value=response), patch('agentinfra.candle.git', side_effect=git_with_remote):
+            candle.checkpoint(self.root, 'https://github.com/QuasarRay/Candle-rs/pull/1', FRAMEWORK)
+
+    def test_committed_packet_can_be_inspected_without_private_state(self):
+        self.prepared()
+        shutil.rmtree(self.root / '.aegis')
+        result = candle.inspect_checkpoint(self.root, self.plan['id'], FRAMEWORK)
+        self.assertTrue(result['ok'])
+        self.assertEqual(result['kind'], 'RECORDED_EVIDENCE_INTEGRITY')
+        self.assertEqual(result['results'][0]['status'], 'UNAVAILABLE')
+        packet = self.root / 'supervision/checkpoints' / self.plan['id']
+        next(path for path in packet.glob('*.json') if path.name != 'summary.json').write_text('{}')
+        with self.assertRaisesRegex(ContractError, 'Persisted evidence changed'):
+            candle.inspect_checkpoint(self.root, self.plan['id'], FRAMEWORK)
 
     def test_packet_write_failure_rolls_back_and_allows_retry(self):
         self.begin()

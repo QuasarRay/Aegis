@@ -131,7 +131,7 @@ def _manifest(entries: list[tuple[str, bytes]]) -> bytes:
 
 
 def _validate_destination(root: Path, destination: Path) -> Path:
-    target = destination.resolve(strict=False)
+    target = confined_path(root, destination)
     try:
         relative = target.relative_to(root)
     except ValueError as exc:
