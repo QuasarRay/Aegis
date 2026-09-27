@@ -1,0 +1,48 @@
+{
+  "schema": 1,
+  "task": "kernel-typeof",
+  "authority_sha256": "df66c887e8cd5cc5e8a3c88e607c1c1db42d999f619f07d2f15c381cdfacf25c",
+  "paper_sections": [
+    "3.1",
+    "3.3"
+  ],
+  "reuse": {
+    "strategy": "generate",
+    "sources": [
+      "pinned CakeML/cakeml original theory",
+      "Kani proof harness pattern"
+    ],
+    "license": "REPLACE: inspect source licenses before copying",
+    "reason": "REPLACE: record evaluated reuse alternatives",
+    "generator": [
+      "python3",
+      "tools/generate_kernel_obligations.py"
+    ]
+  },
+  "adr": "docs/adr/0001-kernel-refinement.md",
+  "remote": {
+    "repository": "QuasarRay/Candle-rs",
+    "base": "main"
+  },
+  "obligations": [
+    {
+      "id": "kernel-typeof",
+      "anchor": "candle/standard/syntax/holSyntaxScript.sml",
+      "symbol": "typeof_def",
+      "statement": "REPLACE: exact Rust/HOL4 representation relation and domain",
+      "rust_paths": [
+        "src/kernel.rs",
+        "src/proofs.rs"
+      ],
+      "method": "kani",
+      "entry": "proofs::kernel_typeof",
+      "expected_checks": 1,
+      "assumptions": [
+        "REPLACE: list trusted correspondence and environment assumptions"
+      ],
+      "limits": [
+        "REPLACE: bounded term depth, allocation, unwind and input domain"
+      ]
+    }
+  ]
+}

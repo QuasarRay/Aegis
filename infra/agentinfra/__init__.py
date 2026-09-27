@@ -1,2 +1,2 @@
-"""Aegis agent infrastructure."""
-__version__ = "4.0.0"
+"""Candle-specific Aegis contract control plane."""
+__version__ = "6.0.0-candle.1"
