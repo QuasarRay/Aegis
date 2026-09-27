@@ -90,7 +90,7 @@ def audit(root: Path):
         issues.append(f"Codex role registry: {exc}")
     source_ok, source_detail = verify_managed_source(root)
     if not source_ok: issues.append(f"Codex managed source: {source_detail}")
-    if TOP != {"model": "gpt-5.6-sol", "model_reasoning_effort": "max"}: issues.append("Codex parent model/effort not pinned")
+    if TOP != {"model": "gpt-6-astra", "model_reasoning_effort": "max"}: issues.append("Codex parent model/effort not pinned")
     if AGENTS.get("max_concurrent_threads_per_session") != 1: issues.append("Codex active-child cap not pinned")
     if AGENTS.get("max_depth") != 1: issues.append("Codex nesting defense cap not pinned")
     if V2.get("max_concurrent_threads_per_session") != 2: issues.append("Codex V2 root+one-child cap not pinned")
