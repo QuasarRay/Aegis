@@ -1,6 +1,9 @@
 from pathlib import Path
-import subprocess,sys
-framework=Path(__file__).resolve().parents[1]
-root=framework.parent if framework.name==".agents" else framework
-cmd=[sys.executable,str(framework/"bin"/"agentctl.py"),"--root",str(root),"law","run"]
-raise SystemExit(subprocess.call(cmd,cwd=root))
+import subprocess
+import sys
+root = Path(__file__).resolve().parents[1]
+for argv in ([sys.executable, "-B", "scripts/generate.py", "--check"],
+             [sys.executable, "-B", "-m", "unittest", "discover", "-s", "infra/tests", "-q"]):
+    result = subprocess.run(argv, cwd=root)
+    if result.returncode:
+        raise SystemExit(result.returncode)
