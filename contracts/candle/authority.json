@@ -56,5 +56,61 @@
     "interpretation": "Original HOL4 definitions carry the executable mathematical contract; discrepancies with the paper remain blocked until explicitly resolved."
   },
   "target_repository": "QuasarRay/Candle-rs",
-  "model": "gpt-6-astra"
+  "model": "gpt-6-astra",
+  "reuse_sources": [
+    {
+      "repository": "candle",
+      "path": "candle/kernel.ml",
+      "local": "contracts/candle/reuse/candle/kernel.ml",
+      "git_blob": "87703cb9b2959e08d6cdf51c90459899e1d73410",
+      "sha256": "6ef26962e67f7e5e647074af8864800b5765a51c792ac58eaf3d6352f688c206"
+    },
+    {
+      "repository": "candle",
+      "path": "candle/compute.ml",
+      "local": "contracts/candle/reuse/candle/compute.ml",
+      "git_blob": "87cad1a93650efd4cfccc192720cf61d53373d0f",
+      "sha256": "cf327c067fa7cb127ed14bb5909cbbecb9f9ac48b13f59d576c9ca2230cbb6d9"
+    },
+    {
+      "repository": "candle",
+      "path": "candle/insulate.py",
+      "local": "contracts/candle/reuse/candle/insulate.py",
+      "git_blob": "301365dc3f608ea96ecee02a979e235306eac008",
+      "sha256": "22ba8e2b0eb599e3eb9ce47aa6ee9d4580dd8dc8c2b0581e0ae0899c10559f26"
+    },
+    {
+      "repository": "candle",
+      "path": "candle.sh",
+      "local": "contracts/candle/reuse/candle.sh",
+      "git_blob": "057585e3c66bd7410cf49828fabd8652a1b756bc",
+      "sha256": "f0bcbae631bdb2214d43c223b6bf4770e51e1d0af78ae6a8d75f94a38aaca387"
+    },
+    {
+      "repository": "candle",
+      "path": "build-instructions.sh",
+      "local": "contracts/candle/reuse/build-instructions.sh",
+      "git_blob": "c1824bc6f2baa1aa8a18742dc97c964953e0720c",
+      "sha256": "b73877c3e28d81550e33d50fd0ba3d3fda9c6df4f7a8d05856bb1ca64ece5cd8"
+    },
+    {
+      "repository": "candle",
+      "path": "LICENSE",
+      "local": "contracts/candle/reuse/LICENSE",
+      "git_blob": "a6bdfdd6cca58694e08e7c948170e32c98a377f3",
+      "sha256": "fd1a38c49a5b6acbdf1baa9e544006be3e889cd83703745a42b36a68dc084481"
+    }
+  ],
+  "final_verification": {
+    "checker": "Original Candle",
+    "status": "OPEN",
+    "policy": "Final equivalence requires checking the exact Rust source against the shared original HOL contract using Original Candle itself. Kani is supplementary bounded evidence.",
+    "required_connections": [
+      "Rust source semantics and unsupported-feature accounting",
+      "Semantics-preserving connection from byte-identical HOL4 theories to the Candle frontend",
+      "Complete refinement statement including errors, state, assumptions and termination",
+      "Pinned original Candle executable and reproducible proof replay with axiom accounting"
+    ],
+    "implemented_adapter": false
+  }
 }

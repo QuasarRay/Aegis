@@ -124,7 +124,7 @@ class _Capture:
 
 
 def _kill_tree(proc: subprocess.Popen, job=None) -> None:
-    if proc.poll() is not None:
+    if os.name == "nt" and proc.poll() is not None:
         if job is not None and os.name == "nt":
             ctypes.windll.kernel32.TerminateJobObject(job, 1)
         return
@@ -221,6 +221,10 @@ def run_process(
             _kill_tree(proc, job)
             proc.wait(timeout=10)
         finally:
+            # POSIX descendants may still hold pipes after their parent exits.
+            # Kill the private process group even when the direct child is done.
+            if os.name != "nt":
+                _kill_tree(proc)
             # Closing a kill-on-close job also removes descendants that kept
             # running after a normally exiting direct child.
             _close_job(job)

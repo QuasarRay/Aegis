@@ -1,5 +1,8 @@
 from pathlib import Path
-import subprocess,sys
-framework=Path(__file__).resolve().parents[1]
-root=framework.parent if framework.name==".agents" else framework
-raise SystemExit(subprocess.call([sys.executable,str(framework/"bin"/"agentctl.py"),"--root",str(root),"audit"],cwd=root))
+import sys,json
+root=Path(__file__).resolve().parents[1]
+sys.path.insert(0,str(root/"infra"))
+from agentinfra.audit import audit_source
+result=audit_source(root)
+print(json.dumps(result,indent=2))
+raise SystemExit(0 if result["ok"] else 1)

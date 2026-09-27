@@ -67,6 +67,51 @@ def _governing_instruction_update(root: Path, target: Path):
         _INSTRUCTION_UPDATE_TARGETS.reset(token)
 
 
+@contextmanager
+def _checkpoint_instruction_copies(root: Path, batch: str):
+    """Permit only canonical instruction copies in a checkpoint transaction."""
+    import re
+    if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", batch):
+        raise GovernanceViolation("Invalid checkpoint identity")
+    project = root.resolve(strict=True)
+    canonical = (project / "AGENTS.md").read_bytes()
+    names = ["supervision/AGENTS.md", "supervision/checkpoints/AGENTS.md",
+             f"supervision/checkpoints/{batch}/AGENTS.md"]
+    from .security import confined_path
+    targets = [confined_path(project, name) for name in names]
+    for path in targets:
+        if path.exists() and path.read_bytes() != canonical:
+            raise GovernanceViolation("Refusing to replace divergent checkpoint instructions")
+    token = _INSTRUCTION_UPDATE_TARGETS.set(_INSTRUCTION_UPDATE_TARGETS.get() | {_path_key(p) for p in targets})
+    try:
+        yield
+    finally:
+        _INSTRUCTION_UPDATE_TARGETS.reset(token)
+
+
+@contextmanager
+def _artifact_instruction_copies(root: Path, target: Path, paths):
+    """Allow canonical AGENTS copies only in a new, inactive release artifact."""
+    from .security import confined_path
+    project = root.resolve(strict=True)
+    destination = confined_path(project, target)
+    relative = destination.relative_to(project)
+    if relative.parts[0] in {".agents", ".aegis"}:
+        raise GovernanceViolation("Release copies cannot target active governance")
+    targets = []
+    for path in paths:
+        checked = confined_path(project, path)
+        checked.relative_to(destination / ".agents")
+        if checked.name != "AGENTS.md" or checked.exists():
+            raise GovernanceViolation("Only absent release instruction copies may be created")
+        targets.append(checked)
+    token = _INSTRUCTION_UPDATE_TARGETS.set(_INSTRUCTION_UPDATE_TARGETS.get() | {_path_key(p) for p in targets})
+    try:
+        yield
+    finally:
+        _INSTRUCTION_UPDATE_TARGETS.reset(token)
+
+
 def _identity(path: Path) -> tuple[int, int] | None:
     try:
         stat_result = path.stat(follow_symlinks=False)

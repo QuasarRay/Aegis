@@ -8,7 +8,7 @@ def _is_source_framework(root: Path) -> bool:
             root / "VERSION",
             root / "framework.toml",
             root / "infra" / "agentinfra",
-            root / "laws",
+            root / "contracts" / "candle",
             root / "modules",
         )
     )

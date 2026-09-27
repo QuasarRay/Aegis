@@ -1,40 +1,26 @@
 [framework]
-name = "Aegis Sequential Max Agent Framework"
-version = "4.0.0"
-project_independent = true
+name = "Aegis for Candle-rs"
+version = "5.0.0"
+project_independent = false
 
-[reasoning]
-default_effort = "max"
-allow_silent_downgrade = false
-cost_strategy = "reduce_calls_context_bandwidth_rework_not_reasoning"
+[authority]
+paper = "10.4230/LIPIcs.ITP.2022.3"
+contract = "contracts/candle/authority.json"
+semantics = "Original HOL4 theories; no replacement specification language"
 
-[subagents]
-sequential_only = true
-max_active = 1
-nested_delegation = false
-fresh_bounded_context = true
-parent_owns_canonical_state = true
-
-[context]
-avoid_redundant_fetch = true
-content_hash_freshness = true
-compact_between_phases = true
+[model]
+name = "gpt-6-astra"
+effort = "max"
+silent_fallback = false
 
 [workflow]
-hardened_state_machine = true
-acceptance_gates_required_for_mutating_tasks = true
-evidence_required_for_finalization = true
+obligation_first = true
+reuse_decision_required = true
+stacked_checkpoint_required = true
+proof_claims_separate_from_progress = true
 
-[laws]
-enabled = true
-production_path_only = true
-hash_law_files_before_and_after = true
-
-[modules]
-path = ".agents/modules"
-local_path = ".agents/local-modules"
-auto_execute_module_code = false
-
-[runtime]
-retention_policy = "manual-audited-only"
-automatic_cleanup = false
+[cost]
+optional_campaigns = false
+content_bound_result_reuse = true
+bounded_verifier_attempts = true
+automatic_delegation = false

@@ -38,6 +38,15 @@ Target Project Repository: "https://github.com/QuasarRay/Candle-rs.git"
   Handwritten code requires a recorded reason: no suitable reusable source, no
   reliable generation, or lower expected token/credit cost. Do not implement a
   generator where a smaller direct implementation costs less.
+- Ultimately check Rust-to-contract refinement in Original Candle itself. Every
+  batch must assess its proof replay, theorem-producing computation and code
+  generation at the pinned revision; use them when they save tokens/credits.
+  HOL4 scripts and Candle's HOL Light frontend are distinct interfaces. Preserve
+  the original specification bytes and prove any semantic bridge. A generated
+  model, printed theorem, added axiom or successful process exit is not evidence
+  that the actual Rust source refines those specifications. Keep the final claim
+  OPEN until Rust semantics, contract correspondence, assumptions and original
+  Candle replay are independently checked against the exact implementation.
 - Use GPT 6 Astra (gpt-6-astra). Do not silently select another model. Model
   configuration expresses intent; report actual host capability accurately.
 - Minimize tokens, credits, repeated context and redundant checks. No mandatory

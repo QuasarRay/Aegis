@@ -1,0 +1,698 @@
+{
+  "from_commit": "31fffa3e7c696459a10d277b3be31e185d903566",
+  "reason": "Remove generic TDD chronology, optional policy packs, duplicated validation inventories and unused adapters from the Candle-only branch. Retained primitives keep focused infrastructure regression checks. Historical contents remain in Git.",
+  "files": [
+    {
+      "path": "MANIFEST.sha256",
+      "git_blob": "8d5e52d2cd5be9f1ff0268973cca762dc88c41a0"
+    },
+    {
+      "path": "RELEASE.json",
+      "git_blob": "86b64b025d38980f68df73694ab9ea32e9df57a0"
+    },
+    {
+      "path": "bootstrap/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "bootstrap/README.md",
+      "git_blob": "660132b7bca6d4955ddc816133e7b26652b44df1"
+    },
+    {
+      "path": "bootstrap/install.py",
+      "git_blob": "9a61fc048c5a1aa7e9ee34780279b303f02e7924"
+    },
+    {
+      "path": "bootstrap/root-AGENTS.block.md",
+      "git_blob": "96d5265a8e48ea7e89bb836582837eb548bc1ed3"
+    },
+    {
+      "path": "bootstrap/uninstall.py",
+      "git_blob": "99deacf0d91f501e6b1c8cdb71a85ea5f94ae112"
+    },
+    {
+      "path": "core/00-charter.md",
+      "git_blob": "faf40c44322852e715737f86307417f0cd101aa9"
+    },
+    {
+      "path": "core/01-max-reasoning-and-cost.md",
+      "git_blob": "f9b6e01c0d8020e930ca2950f4a64ecb12c58989"
+    },
+    {
+      "path": "core/02-hardened-state-machine.md",
+      "git_blob": "9c4bb5e059875f83df482a85d50d7414f37bf7ed"
+    },
+    {
+      "path": "core/03-sequential-subagents.md",
+      "git_blob": "f276666572eb06e415b6545b35f0e2130f5a6386"
+    },
+    {
+      "path": "core/04-context-cache-bandwidth.md",
+      "git_blob": "81da3ce79e942d78fb2458b2954ef739d4c683fb"
+    },
+    {
+      "path": "core/05-evidence-claims.md",
+      "git_blob": "fa5aaa9781cb7e6559c4d0771df4694188bae661"
+    },
+    {
+      "path": "core/06-execution-workflow.md",
+      "git_blob": "ddde5f70f567afc9f7f3f19743edc69dcf1a8bc8"
+    },
+    {
+      "path": "core/07-code-architecture-quality.md",
+      "git_blob": "2bebc9cf6dd3940bad0fa8fc5e4c5303f4295cb8"
+    },
+    {
+      "path": "core/08-testing-and-laws.md",
+      "git_blob": "340bd9829bd5a6feaa94cf2ee19d5fe0b6e69eeb"
+    },
+    {
+      "path": "core/09-git-workspace.md",
+      "git_blob": "8395fd172590f5389f2052e450761e713c7be211"
+    },
+    {
+      "path": "core/10-tools-and-shells.md",
+      "git_blob": "78b8878c11421939ff0676c31692f7d324af17fd"
+    },
+    {
+      "path": "core/11-security-dependencies.md",
+      "git_blob": "d6804bb0372fdb3ae668a42ed1fe383b02b85a54"
+    },
+    {
+      "path": "core/12-failure-recovery.md",
+      "git_blob": "7296eda7e6d8eaba428bada597f44ee28c972842"
+    },
+    {
+      "path": "core/13-performance.md",
+      "git_blob": "bba7b632c0b60250f438b2fbc6d75bba49fa72fe"
+    },
+    {
+      "path": "core/14-reporting.md",
+      "git_blob": "bb6576af9bb76ba191bda39c6910d5d1900cb398"
+    },
+    {
+      "path": "infra/agentinfra/assurance.py",
+      "git_blob": "4307c1ef70094614a967e3e693dbf502423382a9"
+    },
+    {
+      "path": "infra/agentinfra/bootstrap.py",
+      "git_blob": "2f284fde40963c1db7a3693aac1deedbf96c379d"
+    },
+    {
+      "path": "infra/agentinfra/constitution.py",
+      "git_blob": "e5ce7095d873beeedec4c5fe363a660260454fbc"
+    },
+    {
+      "path": "infra/agentinfra/context_cache.py",
+      "git_blob": "cae76d6b023915a194eaf12883bb95235717df65"
+    },
+    {
+      "path": "infra/agentinfra/controls.py",
+      "git_blob": "16be0faa7bcab00be9047f0b369b14cfb0f75e0e"
+    },
+    {
+      "path": "infra/agentinfra/discovery.py",
+      "git_blob": "e607a490d72d5320f3850ba94d67fba5c83dcde6"
+    },
+    {
+      "path": "infra/agentinfra/evidence.py",
+      "git_blob": "3c5614f7e2b675e7996dcd49098b3ed8884bd381"
+    },
+    {
+      "path": "infra/agentinfra/falsification_runtime.py",
+      "git_blob": "b7ee3174fb065d10a368d4483de8ba07418ed167"
+    },
+    {
+      "path": "infra/agentinfra/final_audit.py",
+      "git_blob": "23dc7f99cbaf37b3479df72b3bd054471807339d"
+    },
+    {
+      "path": "infra/agentinfra/final_audit_runtime.py",
+      "git_blob": "fd8ce5b2a33d09ae505bca0e2f1ca7ccfed888ec"
+    },
+    {
+      "path": "infra/agentinfra/law_runtime.py",
+      "git_blob": "3aa1877df55f0608a5d34c9cc3ea7ad1c7a1fcfb"
+    },
+    {
+      "path": "infra/agentinfra/lawlib.py",
+      "git_blob": "dd50b20288c5e7b6a2561bf5eabe5ea9198608cd"
+    },
+    {
+      "path": "infra/agentinfra/laws.py",
+      "git_blob": "9912421309c98ffbf0494c4c646e909279359aca"
+    },
+    {
+      "path": "infra/agentinfra/manifest.py",
+      "git_blob": "086da726468e7f16390033a985e5328ab7df1fbe"
+    },
+    {
+      "path": "infra/agentinfra/migration.py",
+      "git_blob": "95e6e73ab28d422a4c5780bc971b7e353a62ce8f"
+    },
+    {
+      "path": "infra/agentinfra/modules.py",
+      "git_blob": "64a2d62bf2140e127cfb54ffaef36aa1dbcbbb02"
+    },
+    {
+      "path": "infra/agentinfra/policy.py",
+      "git_blob": "94d5bb6fdb97fd9632866987a445f759bddbfef0"
+    },
+    {
+      "path": "infra/agentinfra/precheck.py",
+      "git_blob": "8b94e42c393d4916e06a8a6a84253ceae8590a39"
+    },
+    {
+      "path": "infra/agentinfra/review.py",
+      "git_blob": "029944ee39ae432960790093dca1c51c1f04a027"
+    },
+    {
+      "path": "infra/agentinfra/review_runtime.py",
+      "git_blob": "05fc36521bcf046b0df9cc38d46368d0e0af4e7e"
+    },
+    {
+      "path": "infra/agentinfra/runtime_migration.py",
+      "git_blob": "2d7aac6ea2d6c953813539390bcaca27bf752ca7"
+    },
+    {
+      "path": "infra/agentinfra/scope.py",
+      "git_blob": "87da745596af695b44f8423fcfe26b739be926cb"
+    },
+    {
+      "path": "infra/agentinfra/shell_select.py",
+      "git_blob": "b8fabc5ca2a7c8f7fea32f53bbe0de12f190245c"
+    },
+    {
+      "path": "infra/agentinfra/state_machine.py",
+      "git_blob": "d1ef8cd686ddfda1ff12ac8c6cefa14f2f5cf9fb"
+    },
+    {
+      "path": "infra/agentinfra/state_store.py",
+      "git_blob": "cd03348a0eee2612a68e8840556338d6d88c90f8"
+    },
+    {
+      "path": "infra/agentinfra/tdd_runtime.py",
+      "git_blob": "aaee2a5c6636fc8623fc41d2bed558436c50916b"
+    },
+    {
+      "path": "infra/agentinfra/unittest_observer.py",
+      "git_blob": "508c9f9c5ca7ba9796940c1b0ca50dc43453c438"
+    },
+    {
+      "path": "infra/law_tests/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "infra/law_tests/README.md",
+      "git_blob": "942e5360df451d1dc32fc3815767c5f081353652"
+    },
+    {
+      "path": "infra/law_tests/build_traceability.py",
+      "git_blob": "8ff4dd04f0d83070ff09501d8403038c7952143a"
+    },
+    {
+      "path": "infra/law_tests/constitutional_catalog.py",
+      "git_blob": "e150fc39804604b6d0325b44b2aa1b1ab57ad3f6"
+    },
+    {
+      "path": "infra/law_tests/fixtures/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "infra/law_tests/fixtures/v4_state.json",
+      "git_blob": "63f7667947843f06a945b4a12e287eb2c9aa4976"
+    },
+    {
+      "path": "infra/law_tests/historical_campaign.py",
+      "git_blob": "44ffb3d281793eb23015a38ff8d2abe741f00902"
+    },
+    {
+      "path": "infra/law_tests/historical_integrity.py",
+      "git_blob": "1a4f8571e32c7f4299e528978b829f00857434b3"
+    },
+    {
+      "path": "infra/law_tests/run_suite.py",
+      "git_blob": "d4b9e9babcd9f97aff361ad522869635b2a1fd0a"
+    },
+    {
+      "path": "infra/law_tests/scenarios.py",
+      "git_blob": "aaa6810c96fe8d8edf1d07a2ba115689d339d0df"
+    },
+    {
+      "path": "infra/law_tests/semantic_catalog.json",
+      "git_blob": "4086028350d6c49e35d2cc07567889a963132f7c"
+    },
+    {
+      "path": "infra/law_tests/test_meta.py",
+      "git_blob": "159035c6af1124f19990343536fc7063a7e389cd"
+    },
+    {
+      "path": "infra/law_tests/test_specification.py",
+      "git_blob": "58fb152c2e19ab3e2462a3d57738148624e88369"
+    },
+    {
+      "path": "infra/law_tests/traceability.json",
+      "git_blob": "ff8455714c5c6196be7dd970ed87a530046eeb7b"
+    },
+    {
+      "path": "infra/law_tests/v4_flaws.json",
+      "git_blob": "e3628d40c34d25091af230ba19b51683763c33fc"
+    },
+    {
+      "path": "infra/laws/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "infra/laws/framework.toml",
+      "git_blob": "8f8c796e8c42846adea400b6c4bdcb4c066ac2b3"
+    },
+    {
+      "path": "infra/property_tests/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "infra/property_tests/__init__.py",
+      "git_blob": "13247f506b57a519fb7d9b03b3316e29445bd81e"
+    },
+    {
+      "path": "infra/property_tests/hypothesis_profiles.py",
+      "git_blob": "e04320d4d4b5e4990523a90ca52ba34655996858"
+    },
+    {
+      "path": "infra/property_tests/test_assurance_review_properties.py",
+      "git_blob": "3f61ac3526790f40454f76ab738e52941247342f"
+    },
+    {
+      "path": "infra/property_tests/test_discovery_integrity_properties.py",
+      "git_blob": "feb05e832ce0a9460470a625b5baaeeca6d19697"
+    },
+    {
+      "path": "infra/property_tests/test_final_audit_properties.py",
+      "git_blob": "434f53e57da8098b9b9b2460a98f665981b18ed1"
+    },
+    {
+      "path": "infra/property_tests/test_governance_runtime_properties.py",
+      "git_blob": "441585021a40c4024948484816ebebd370eb826e"
+    },
+    {
+      "path": "infra/property_tests/test_law_runner_source_layout_properties.py",
+      "git_blob": "2d6572b5d038e4ef3a512430fdb02a6cba206601"
+    },
+    {
+      "path": "infra/property_tests/test_law_runtime_properties.py",
+      "git_blob": "0d2c2fc2fe1279edef11c31357773abbdb0e0066"
+    },
+    {
+      "path": "infra/property_tests/test_operational_runtime_properties.py",
+      "git_blob": "1a730111b20d13b79077a2f0d835ed72cc406193"
+    },
+    {
+      "path": "infra/property_tests/test_policy_compiler_properties.py",
+      "git_blob": "50c94301bcb8bcc99844e258e9b06201086a59a2"
+    },
+    {
+      "path": "infra/property_tests/test_release_source_properties.py",
+      "git_blob": "456e0ba8a734623ed2d28c7e35f9181e1e9a3a92"
+    },
+    {
+      "path": "infra/property_tests/test_scope_controls_properties.py",
+      "git_blob": "6b86a0818e708a13e9b0adbc542102cecf400365"
+    },
+    {
+      "path": "infra/property_tests/test_state_assurance_integration_properties.py",
+      "git_blob": "259065aa6f87e5fb142d5c951fa6f7e6be05ddb7"
+    },
+    {
+      "path": "infra/property_tests/test_tdd_lifecycle_properties.py",
+      "git_blob": "34e6d07817942c174710e40327055b197cb35c9d"
+    },
+    {
+      "path": "infra/tests/test_bootstrap.py",
+      "git_blob": "56b95b5973bad99f346eeecf2d5691722075efb4"
+    },
+    {
+      "path": "infra/tests/test_cli_workflow.py",
+      "git_blob": "4c2d04611ed33419d45f53580854198495f51c94"
+    },
+    {
+      "path": "infra/tests/test_context_cache.py",
+      "git_blob": "544a7df03d3680f93afc745846c8a92068a5e5ca"
+    },
+    {
+      "path": "infra/tests/test_dynamic_write_authority.py",
+      "git_blob": "103ec1820da76227a7e78c663745b06c21ae23bc"
+    },
+    {
+      "path": "infra/tests/test_evidence.py",
+      "git_blob": "deb1925e21d4e8fef361e20fb4bc047516a7d0e3"
+    },
+    {
+      "path": "infra/tests/test_historical_semantic_integrity.py",
+      "git_blob": "7a918ca53285aeda4a04d357d02c3a531ea23246"
+    },
+    {
+      "path": "infra/tests/test_lawlib.py",
+      "git_blob": "e6d7aa76d467476b88d52b0531bcff8da6615de4"
+    },
+    {
+      "path": "infra/tests/test_laws.py",
+      "git_blob": "779afdcdabea533292993fb82917e2f19268d33c"
+    },
+    {
+      "path": "infra/tests/test_manifest.py",
+      "git_blob": "4c47f7877fbd10f758a9064f51e2b003f2fdcb07"
+    },
+    {
+      "path": "infra/tests/test_migration.py",
+      "git_blob": "27c3a7ed278e5931bb967989d4a91eee6d9d22ff"
+    },
+    {
+      "path": "infra/tests/test_modules.py",
+      "git_blob": "bc61c3fb14d0e7bb5e105d8a55fc8495f6c5f548"
+    },
+    {
+      "path": "infra/tests/test_public_falsification_workflow.py",
+      "git_blob": "33257d3ced5857df6b9f0de7a781bd3df650276a"
+    },
+    {
+      "path": "infra/tests/test_public_review_audit_workflow.py",
+      "git_blob": "242d94160ce9ad04f32422954fd1d69ca6d7f6b3"
+    },
+    {
+      "path": "infra/tests/test_shell_select.py",
+      "git_blob": "47ac554b2eacd3f72b8b3d185cec3dd12d6ea170"
+    },
+    {
+      "path": "infra/tests/test_state_machine.py",
+      "git_blob": "0286c7c66edbdfae2ee6840efc993fbfe384784e"
+    },
+    {
+      "path": "infra/tests/test_subagent_lease.py",
+      "git_blob": "a3e4dc76f202384bd7ed3fd4aea4054451d4330e"
+    },
+    {
+      "path": "infra/tests/test_tdd_abort_regression.py",
+      "git_blob": "03c1e1107c40f1ab6cdf675d4396f15900553292"
+    },
+    {
+      "path": "infra/tests/test_trusted_tdd_runtime.py",
+      "git_blob": "f3e1736982991a92e3f5534f9d8e132fae2167cf"
+    },
+    {
+      "path": "laws/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "laws/README.md",
+      "git_blob": "b0a83e11689873351ec3d9f2f67a052fb0f5ece8"
+    },
+    {
+      "path": "laws/template.toml",
+      "git_blob": "5efa563d001c7943c65d3cd67dc04f18a378c17b"
+    },
+    {
+      "path": "modules/codex/roles/architect.md",
+      "git_blob": "fb094f52cd1373168d8384d972e97b0d0abc471c"
+    },
+    {
+      "path": "modules/codex/roles/diagnostician.md",
+      "git_blob": "d6788436e2dcc64edfef6e949a48ebb3bd60240b"
+    },
+    {
+      "path": "modules/codex/roles/explorer.md",
+      "git_blob": "3082b3b1aced17ff16d16c26ab22fb510e9b636e"
+    },
+    {
+      "path": "modules/codex/roles/law-analyst.md",
+      "git_blob": "d80f7ff03ffe3c74307f378c13c1ec73f5b2ff95"
+    },
+    {
+      "path": "modules/codex/roles/migration-analyst.md",
+      "git_blob": "893f3f020c36825d6cf2ed5fc5737765de3b2440"
+    },
+    {
+      "path": "modules/codex/roles/performance-reviewer.md",
+      "git_blob": "60c697ba31d3f4c5500f3584b039f1d47964f1df"
+    },
+    {
+      "path": "modules/codex/roles/security-reviewer.md",
+      "git_blob": "40922a0b07a46cda70018cf0cf7a46c60b0b44cd"
+    },
+    {
+      "path": "modules/codex/roles/test-engineer.md",
+      "git_blob": "6a87a8c6e761c263745ab89e6f68e223d3ab2be1"
+    },
+    {
+      "path": "modules/example-agent/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "modules/example-agent/POLICY.md",
+      "git_blob": "06195e9b29ca019059445973024642f67cd7b944"
+    },
+    {
+      "path": "modules/example-agent/module.toml",
+      "git_blob": "d459da3181274b23132137946240326e394b7c6a"
+    },
+    {
+      "path": "modules/python-meta/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "modules/python-meta/OFFICIAL_SOURCES.md",
+      "git_blob": "2cd5cf97347050007bd7a93a59cbfd6015a7b154"
+    },
+    {
+      "path": "modules/python-meta/POLICY.md",
+      "git_blob": "e2accf96c8b55574e39ef0b2cf0d6f4dda6f2c79"
+    },
+    {
+      "path": "modules/python-meta/README.md",
+      "git_blob": "8f088d6334c305e896126c9259ccdc5df032633d"
+    },
+    {
+      "path": "modules/python-meta/module.toml",
+      "git_blob": "f698d97accf999af8c8e8206d96fbff4f1a784a1"
+    },
+    {
+      "path": "modules/python-meta/probe.py",
+      "git_blob": "bbd39e42b23dd854ed4e07cb3e33e5394c9c3a01"
+    },
+    {
+      "path": "modules/python-meta/requirements-optional.txt",
+      "git_blob": "b9965aa38b573283f8198c40749047f49a2cb34e"
+    },
+    {
+      "path": "modules/xonsh/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "modules/xonsh/OFFICIAL_SOURCES.md",
+      "git_blob": "3168eb95c8550b0b73e45e6679d9eca046b05772"
+    },
+    {
+      "path": "modules/xonsh/POLICY.md",
+      "git_blob": "c19d9e27017d24839a7965ba6df871366401a61d"
+    },
+    {
+      "path": "modules/xonsh/README.md",
+      "git_blob": "3df2370d791bd00fabb43dff60a9fc4b4e3fc7f8"
+    },
+    {
+      "path": "modules/xonsh/module.toml",
+      "git_blob": "32b5c8602a3d0dacd8c89bd0fd6b8e6cb54d8945"
+    },
+    {
+      "path": "modules/xonsh/rc.xsh",
+      "git_blob": "de4d6c985702a7d6f4b8769949b1982201b43c4d"
+    },
+    {
+      "path": "modules/xonsh/verify.py",
+      "git_blob": "da98676b0e5800a5400499a837f1da67710ef627"
+    },
+    {
+      "path": "protocols/ENVIRONMENT_SELECTION.md",
+      "git_blob": "b2dc698a4aad7069fecd6eb8021d90dcb6e7f46b"
+    },
+    {
+      "path": "protocols/LAW_TESTS.md",
+      "git_blob": "042946ac739c5c3ab40210d2e7d0fe5753bf2129"
+    },
+    {
+      "path": "protocols/MODULES.md",
+      "git_blob": "9eb87fb326136a851cd045575ffa27f22c311759"
+    },
+    {
+      "path": "protocols/STATE.md",
+      "git_blob": "6e552608f4e70e0f33ecb877d5a532a3c674c229"
+    },
+    {
+      "path": "protocols/SUBAGENT.md",
+      "git_blob": "b015c9b1fa97520507b75ff45bb0326e887afe94"
+    },
+    {
+      "path": "scripts/regenerate_manifest.py",
+      "git_blob": "ca8a67acfba9b2cf9bfd131155e7bd062068c1fc"
+    },
+    {
+      "path": "templates/acceptance-gates.md",
+      "git_blob": "f4dbf4c72a532da28179f272eb3dbb35640caaaf"
+    },
+    {
+      "path": "templates/decision.md",
+      "git_blob": "c3bc4cb106449f03ba4c7d7c07903dda0cdc5359"
+    },
+    {
+      "path": "templates/project-overlay.md",
+      "git_blob": "eb1074092abbc6e4f3d69fc853069c4d80e8de56"
+    },
+    {
+      "path": "templates/risk.md",
+      "git_blob": "dd001e94de817e3b868f889b8a573070d472b856"
+    },
+    {
+      "path": "templates/subagent-brief.md",
+      "git_blob": "ef70761726ea006df8d1da4fbf61ceac60e15091"
+    },
+    {
+      "path": "templates/subagent-result.md",
+      "git_blob": "4277dcd257a704f42d9011149ff22a2dc65d9931"
+    },
+    {
+      "path": "templates/task-objective.md",
+      "git_blob": "2ad43415ce83f23c477cecbba74fdcc3b54467ae"
+    },
+    {
+      "path": "tests-to-impl/00_existing_python_unit_tests.md",
+      "git_blob": "dcb22be1989b33161b63c9e05d7b9aa3733b36db"
+    },
+    {
+      "path": "tests-to-impl/01_existing_builtin_law_ids.md",
+      "git_blob": "523ecbcb44ea1e1968140dbc01d239299eed7b65"
+    },
+    {
+      "path": "tests-to-impl/02_existing_law_template_example_ids.md",
+      "git_blob": "b331deb0f0e8435d05439a98ecbda2203c32c64c"
+    },
+    {
+      "path": "tests-to-impl/10_release_distribution_and_manifest_integrity.md",
+      "git_blob": "b4cb141503fe1d8e627a46e2414d10e365c8a1fc"
+    },
+    {
+      "path": "tests-to-impl/11_atomic_filesystem_and_transaction_safety.md",
+      "git_blob": "5438529cc3f2370bc0ede913e1637603a1726a0e"
+    },
+    {
+      "path": "tests-to-impl/12_bootstrap_install_upgrade_uninstall.md",
+      "git_blob": "37f1e39f4e9dbc3afa995bbc662e5864baf29837"
+    },
+    {
+      "path": "tests-to-impl/13_state_identity_schema_and_path_confinement.md",
+      "git_blob": "f0c82d7180dc763f1724dccd41cdebf5f3a24adf"
+    },
+    {
+      "path": "tests-to-impl/14_workflow_state_machine_and_phase_invariants.md",
+      "git_blob": "b2550664cb819c3891fea289111f1419de8bab0d"
+    },
+    {
+      "path": "tests-to-impl/15_acceptance_gates_risks_waivers_and_decisions.md",
+      "git_blob": "8665dd2b127a2ce9262e192d6b4139cac45bf82b"
+    },
+    {
+      "path": "tests-to-impl/16_evidence_provenance_chain_and_command_capture.md",
+      "git_blob": "f5b92a85f35f5e36aa8982db56c47faf3f3aa999"
+    },
+    {
+      "path": "tests-to-impl/17_workspace_fingerprint_and_user_work_preservation.md",
+      "git_blob": "c56ce5461eeb708285eab809a96d5e0bea6caab3"
+    },
+    {
+      "path": "tests-to-impl/18_subagent_sequentiality_leases_and_handoffs.md",
+      "git_blob": "8aee1cf0ada404c50ad786b4e7eb760733a43d27"
+    },
+    {
+      "path": "tests-to-impl/19_context_cache_freshness_and_bandwidth.md",
+      "git_blob": "7bf93802ea92889377ee69a6f6f53ffaa98dd179"
+    },
+    {
+      "path": "tests-to-impl/20_law_runner_definition_integrity_and_process_isolation.md",
+      "git_blob": "e8b7798558f01f5e853b71248fa7539da0b57ed0"
+    },
+    {
+      "path": "tests-to-impl/21_law_library_property_semantics.md",
+      "git_blob": "fde2bb2e0cc51fe46ec2224e4ee87847c89f1085"
+    },
+    {
+      "path": "tests-to-impl/22_module_schema_discovery_replacement_and_execution.md",
+      "git_blob": "b287ec43be9954b2115526fb89d61289864310ea"
+    },
+    {
+      "path": "tests-to-impl/23_codex_adapter_current_schema_and_static_configuration.md",
+      "git_blob": "f9c6677e564dc7a6e0e27ec3f574764a2a685063"
+    },
+    {
+      "path": "tests-to-impl/24_codex_adapter_live_effective_runtime_guarantees.md",
+      "git_blob": "c299ef72ba8e0984c47bb8a04d965029e86fe9f9"
+    },
+    {
+      "path": "tests-to-impl/25_xonsh_and_interactive_environment_selection.md",
+      "git_blob": "d3e12268b48b6fa187b1b3857fb24584cdd53856"
+    },
+    {
+      "path": "tests-to-impl/26_python_meta_extension_safety_and_functionality.md",
+      "git_blob": "e440b0d41853d97a3302739492da43bd23bd34a3"
+    },
+    {
+      "path": "tests-to-impl/27_cli_contract_transactionality_and_error_handling.md",
+      "git_blob": "8141809ef3ae8cf50efc5d215b0fbb3d1723758c"
+    },
+    {
+      "path": "tests-to-impl/28_codex_and_bootstrap_persistent_install_recovery.md",
+      "git_blob": "a8310d2395e6847e599955631bff6937d4949a21"
+    },
+    {
+      "path": "tests-to-impl/29_security_secrets_permissions_and_supply_chain.md",
+      "git_blob": "838089d7cf3da6a564192314e9feeb16947bd97d"
+    },
+    {
+      "path": "tests-to-impl/30_portability_platform_and_filesystem_edge_cases.md",
+      "git_blob": "e9cc40dafd7721b4577853e4dbd62bde22da2f19"
+    },
+    {
+      "path": "tests-to-impl/31_reasoning_max_context_cost_and_tool_economy.md",
+      "git_blob": "d41771ae6229c683225d997ac949ba55edb48a68"
+    },
+    {
+      "path": "tests-to-impl/32_policy_executable_claim_consistency.md",
+      "git_blob": "1431d7e6b558512736e7c52bfe746f49e2cbe97a"
+    },
+    {
+      "path": "tests-to-impl/33_fault_injection_race_and_crash_recovery.md",
+      "git_blob": "1386e9288bc139d2cc0a71065def746b15d1dd77"
+    },
+    {
+      "path": "tests-to-impl/34_mutation_testing_and_adversarial_anti_cheating.md",
+      "git_blob": "0f799cfac38fc4871dfa32ddc3d374b8a0857767"
+    },
+    {
+      "path": "tests-to-impl/35_migration_upgrade_backward_compatibility.md",
+      "git_blob": "da9220a482fc364ca65af53cf2cd59e7c3c82a40"
+    },
+    {
+      "path": "tests-to-impl/36_performance_scalability_and_resource_bounds.md",
+      "git_blob": "7bb90fac6b3918edfad3846d7597f66cdf2335b7"
+    },
+    {
+      "path": "tests-to-impl/37_end_to_end_guarantee_and_completeness_meta_laws.md",
+      "git_blob": "5b356a08c66b634a6f6fb83bbea626698fbe9bf2"
+    },
+    {
+      "path": "tests-to-impl/AGENTS.md",
+      "git_blob": "8e774f7ddfb4753d25e74eebb198323a50879022"
+    },
+    {
+      "path": "tests-to-impl/INDEX.md",
+      "git_blob": "052bbf6e694104d14b97a427aac143ff12a4d5b0"
+    }
+  ]
+}

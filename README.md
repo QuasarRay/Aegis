@@ -1,89 +1,82 @@
-# Aegis Framework 4.0.0
+# Aegis Framework 5.0.0
 
-Aegis is a project-independent, constitutionally opinionated software-engineering framework for coding agents. Projects define domain correctness; they may strengthen Aegis, but they cannot weaken its requirements for Test-Driven Development, evidence, falsification, review, workspace integrity, or truthful completion.
+This `candle-rs` specialization coordinates the Rust implementation of Candle.
+The [Candle paper](https://doi.org/10.4230/LIPIcs.ITP.2022.3) is the ultimate
+scientific/architectural reference. Original, byte-identical HOL4 files provide
+the mathematical contract; their interpretation stays in HOL4. See
+[ADR-0001](docs/adr/0001-candle-authority-and-cost.md).
 
-## Trust and deployment model
+Implementation starts from an OPEN specification obligation and a reuse/generation
+decision. No failing test, property-testing campaign or RED/GREEN chronology is
+required. Auxiliary checks remain useful evidence.
 
-The three security domains are deliberately separate:
+## Source maintenance
 
-```text
-framework source/   trusted human development and release verification
-.agents/             deployed governing input; ordinary agents read but never write
-.aegis/              mutable task state, evidence, locks, caches, compiled policy, and audits
+Python 3.11+ and Git suffice on CachyOS. Runtime dependencies are standard library only.
+
+```sh
+python3 -B scripts/sync_agents.py
+python3 -B bin/agentctl.py --root . audit
+python3 -B scripts/selftest.py
+python3 -B bin/agentctl.py --root . package dist/candle-release
+python3 -B scripts/verify_release.py dist/candle-release
 ```
 
-This repository root is the authoritative framework source. The checked-in active `.agents` tree is not a development mirror and is never synchronized by source commands. A human maintainer verifies a deterministic artifact outside `.agents`, then manually copies that artifact to the target repository.
+The package builder reuses Aegis's filesystem transactions. Review the generated
+`dist/candle-release/.agents/` and commit it in the target before starting a batch.
+Merge its working agreement into the target's canonical goals and generate the
+target's instruction copies in that separate setup commit. Root `AGENTS.md` is
+canonical within this source package. Do not reread identical copies for context.
 
-Source-maintainer commands:
+## Candle implementation loop
 
-```text
-python -B bin/agentctl.py --root . doctor
-python -B bin/agentctl.py --root . audit
-python -B infra/law_tests/run_suite.py --root . --output .aegis/law-results/latest.json
-python -B scripts/verify_release.py
-python -B bin/agentctl.py --root . package build dist/aegis-governance
+In Candle-rs, ignore `.aegis/` and `target/`, commit setup changes and fetch the
+base. Adapt [the plan template](templates/candle-batch.json), including its branch,
+exact file scope, original HOL definitions and honest reuse assessment. Store the
+plan outside tracked source until `begin` binds it.
+
+```sh
+git switch -c codex/candle-types origin/master
+python3 -B .agents/bin/agentctl.py --root . begin /path/to/batch.json
+python3 -B .agents/bin/agentctl.py --root . authorize-write src/lib.rs
+# Implement/generate the registered slice, reusing existing code first.
+python3 -B .agents/bin/agentctl.py --root . verify
+python3 -B .agents/bin/agentctl.py --root . prepare-checkpoint
+# Commit implementation and supervision/checkpoints/<batch>/, push, open draft PR.
+python3 -B .agents/bin/agentctl.py --root . checkpoint --pr https://github.com/QuasarRay/Candle-rs/pull/NUMBER
+python3 -B .agents/bin/agentctl.py --root . status
 ```
 
-The last command produces `dist/aegis-governance/.agents/`. It never writes the active `.agents` tree. After verification, a human may copy that directory into a target repository and manually merge the reviewed block from `bootstrap/root-AGENTS.block.md` into the target root `AGENTS.md`. Ordinary agent execution exposes verification but no bootstrap install, uninstall, module install, module scaffold, manifest-write, or self-update command.
+The next batch starts from the preceding recorded remote branch. Aegis does not
+make paid model calls, commit, push, create PRs, merge or force-push automatically.
+The agent performs the authorized GitHub actions through its available integration;
+Aegis reads GitHub PR metadata and the remote ref to verify the exact checkpoint.
+A local commit alone is insufficient. Failed proofs can be checkpointed honestly.
 
-## Constitutional core
+## Evidence and limits
 
-The executable constitution defines AEGIS-I001 through AEGIS-I022. It enforces:
+Kani 0.68.0 runs the actual target crate and registered harnesses. The collector
+checks exact result inventory, source identity, bounds and successful assertions.
+Missing, timed-out and stale results remain non-passing. Identical attempts reuse
+content-bound results; source, plan, policy or reported tool-version changes
+invalidate that key. Budgets prevent indefinite identical retries.
 
-- immutable governing policy and frozen acceptance criteria;
-- no self-waiver and no weakening of HARD gates;
-- current implementation/evidence epochs and production-path truth;
-- contract-test and oracle integrity;
-- independent acceptance, epistemic honesty, and capability honesty;
-- controlled scope, user-work preservation, and minimal unjustified change;
-- one active child globally, no nested delegation, and parent canonical authority;
-- Max reasoning where supported, mandatory falsification, and reference/oracle integrity;
-- test-first implementation authority, frozen RED/characterization contracts, same-contract GREEN, property-first assurance, and regression-first remediation.
+BOUNDED_PASS does not close unbounded HOL refinement. **Original Candle itself is
+the required final proof checker.** Each plan must assess its proof replay,
+metaprogramming and generation facilities and use them when they save cost.
+The Rust semantics bridge, HOL4-to-Candle correspondence, complete refinement
+statement and reproducible original Candle replay remain OPEN. See
+[ADR-0002](docs/adr/0002-original-candle-refinement.md). Aegis
+cannot pronounce Candle complete, and the coordinator is not formally verified.
+Reuse Kani/Verus's original macros, models and libraries in the target project.
 
-Project contracts may add architecture, commands, laws, generated paths, compatibility requirements, dependencies, benchmarks, deployment targets, and stronger policy packs. Unknown constitutional keys or weakening values fail closed.
+Local hash seals are not signatures against an agent with the same OS account.
+Managed APIs check scope and integrity; external tools can bypass them. A supervisor
+must review and rerun from a separately trusted checkout/toolchain. The Git-visible
+snapshot does not attest undeclared external compiler inputs. Public GitHub is
+currently the checkpoint backend; private repository authentication and automatic
+stack retargeting are not implemented.
 
-## Enforced TDD lifecycle
-
-Mutating behavioral work follows an executable lifecycle:
-
-```text
-PRECHECK -> TRIAGE -> PLAN -> TEST_DESIGN -> BASELINE_EXECUTION
-         -> RED_OBSERVED | CHARACTERIZATION_OBSERVED | TEST_FIRST_OBSERVED
-         -> IMPLEMENT -> GREEN -> FALSIFY -> REVIEW -> VERIFY
-         -> FINAL_AUDIT -> FINALIZE
-```
-
-The compiled task contract selects `RED_REQUIRED`, `CHARACTERIZATION_REQUIRED`, or a justified non-behavioral test-first mode. Implementation write authority does not exist until the test/oracle digests are frozen and the required baseline observation is bound to the pre-implementation digest. GREEN must use the same frozen test and oracle against the current implementation epoch. A changed contract, oracle, governance snapshot, baseline, or harness revokes authority. A counterexample discovered after implementation starts a new regression-first cycle.
-
-Hypothesis is a development/test dependency, not a runtime dependency. The stdlib-only control plane remains recoverable without it. Profiles are `focused` (25 examples), `standard` (100), and `stress` (500); `RuleBasedStateMachine` models cover temporal TDD authority and evidence-cycle behavior.
-
-## Policy compiler and PRECHECK
-
-Structured project contracts compile into content-addressed artifacts under `.aegis/compiled-policy/`. Compilation performs monotonic task classification, applies non-weakenable policy packs, generates HARD/REQUIRED/ADVISORY gates, resolves source/generated/immutable/reference boundaries, freezes write scope and budgets, records command matrices, and derives review requirements. Reimplementation work requires a read-only reference contract, differential oracle, compatibility decisions, and reference digest.
-
-PRECHECK is artifact-based. It records governance and instruction provenance, repository discovery, workspace/user-change boundaries, test/law baselines, TDD plan, compiled policy, gates, budgets, commands, and review requirements. Boolean self-reports do not complete it.
-
-## State, evidence, review, and final audit
-
-Canonical task state lives under `.aegis/tasks/`; evidence, locks, cache, policy, audit, manifest, and migration state use distinct `.aegis` subdirectories. State transitions are locked, revisioned, append-only, epoch-aware, and anchor-history protected. Legacy `.agents/runtime` and `.agents/persistent` data can be copied into `.aegis` by the explicit, idempotent runtime migration command; migration never deletes or rewrites governance.
-
-Evidence distinguishes observation, external authority, inference, assumption, untested, unavailable, and blocked outcomes. Gate proof requires task/epoch relevance. REQUIRED waivers require current task-bound external user/host evidence; HARD gates cannot be waived. Review receipts bind reviewer independence, current diff, requirements, evidence, specialist role, findings, and concrete falsification attempts.
-
-Finalization requires the exact 40-check audit contract. Every check is evidence-sealed and workspace-bound; missing, manual-only, stale, blocked, or tampered observations fail closed. The final workspace fingerprint is recomputed on load after finalization.
-
-## Laws, properties, and capability truth
-
-The acceptance system has two exact inventories:
-
-- 834 historical `tests-to-impl` requirements with a deterministic machine-readable registry;
-- 105 constitutional/TDD laws bound to exact executed test methods or generated state-machine `runTest` cases.
-
-Properties may subsume multiple named regressions only through reviewed observation mappings. A collected-but-unstarted, incomplete, vacuous, skipped, mutated, or unsealed result cannot become PASS. Host limitations are recorded as `UNAVAILABLE`, `BLOCKED`, `UNTESTED`, or justified `NOT_APPLICABLE`; they are never relabeled PASS.
-
-## Threat model and limits
-
-Aegis prevents writes through its managed mutation APIs and independently detects out-of-band governance changes. Path checks cover traversal, case aliases, symlinks, Windows junctions/reparse points, rename endpoints, Git/codegen/formatter destinations, and redirected `.aegis` state. No in-process framework can prevent an already-privileged external process from editing files; digest checkpoints and final workspace verification make such changes invalidate the task. Platform behavior not exercised on the current host remains an explicit capability limitation.
-
-The recovery-critical implementation uses Python 3.11+ and the standard library. Optional `mcpyrate`, `unpythonic`, Xonsh, and host adapters are capability-scoped and cannot weaken the constitutional core.
-
-See [INDEX.md](INDEX.md), [MIGRATION.md](MIGRATION.md), [protocols/STATE.md](protocols/STATE.md), [protocols/LAW_TESTS.md](protocols/LAW_TESTS.md), and [infra/README.md](infra/README.md).
+No generic readability, idiom, benchmark, performance, concurrency, stress-test or
+delegation campaign is mandatory. The selected model is `gpt-6-astra`; configuration
+intent and actual host routing remain separate claims.

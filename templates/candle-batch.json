@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "id": "type-variables",
+  "base_branch": "master",
+  "branch": "codex/candle-types",
+  "obligations": [
+    "holKernelScript::mk_vartype_def"
+  ],
+  "scope": [
+    "src/lib.rs",
+    "src/proofs.rs",
+    "spec/obligations.json",
+    "docs/adr/type-variables.md"
+  ],
+  "architecture_record": "docs/adr/type-variables.md",
+  "reuse": {
+    "strategy": "reuse",
+    "reason": "Adapt this sample after inspecting reusable code and reliable generators.",
+    "candidates": [
+      {
+        "source": "CakeML/cakeml:candle/standard/monadic/holKernelScript.sml",
+        "revision": "bef5e6194c41e356441399d4344b965794dc0d1b",
+        "assessment": "Original mk_vartype_def is the shared contract; inspect the target's existing generated datatype.",
+        "license": "BSD-3-Clause; retain upstream notice"
+      },
+      {
+        "source": "model-checking/kani",
+        "revision": "kani-0.68.0",
+        "assessment": "Reuse proof/any/unwind machinery.",
+        "license": "Retain applicable upstream notices"
+      },
+      {
+        "source": "verus-lang/verus",
+        "revision": "record an inspected revision if used",
+        "assessment": "Reuse vstd/proof machinery where connected to original HOL; an independent model is not equivalence.",
+        "license": "Retain applicable upstream notices"
+      }
+    ],
+    "original_candle": {
+      "revision": "5b1888b9a0c1da7ca0ef2e80526b726f2e27df9d",
+      "proof_replay": {
+        "decision": "defer",
+        "saves_cost": false,
+        "reason": "This sample batch has no Rust semantics bridge yet; final replay remains mandatory and OPEN."
+      },
+      "metaprogramming": {
+        "decision": "defer",
+        "saves_cost": false,
+        "reason": "Assess candle/compute.ml against this obligation; it computes cval equations, not Rust source."
+      },
+      "code_generation": {
+        "decision": "defer",
+        "saves_cost": false,
+        "reason": "The inspected insulate.py generates CakeML API bindings, not Rust; reuse the existing target datatype generator for this batch."
+      }
+    }
+  },
+  "harnesses": [
+    "variable_roundtrip"
+  ],
+  "budget": {
+    "verifier_runs": 2,
+    "harness_seconds": 90
+  }
+}

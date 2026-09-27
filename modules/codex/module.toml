@@ -1,10 +1,10 @@
 [module]
 id = "codex"
 name = "Codex Sequential Max Adapter"
-version = "4.0.0"
+version = "5.0.0"
 kind = "agent-host"
 policy = ["POLICY.md"]
-requires_framework = ">=4.0.0"
+requires_framework = ">=5.0.0"
 
 [detect]
 executables = ["codex"]

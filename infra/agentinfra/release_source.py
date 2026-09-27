@@ -8,23 +8,25 @@ import stat
 import tomllib
 
 from .paths import persistent_dir
-from .security import is_path_redirect
+from .security import is_path_redirect, confined_path
 from .transaction import FileTransaction, Mutation, TransactionError
+from .governance import _artifact_instruction_copies
 
 
 SOURCE_DIRECTORIES = (
     "bin",
-    "bootstrap",
     "core",
     "infra",
-    "laws",
     "modules",
     "protocols",
     "scripts",
     "templates",
-    "tests-to-impl",
+    "contracts",
+    "docs",
 )
 SOURCE_FILES = (
+    "AGENTS.md",
+    "NOTICE.md",
     "VERSION",
     "README.md",
     "CHANGELOG.md",
@@ -96,7 +98,7 @@ def validate_version_consistency(root: Path) -> dict:
 def _source_files(root: Path) -> list[Path]:
     selected: list[Path] = []
     for relative in SOURCE_FILES:
-        path = root / relative
+        path = confined_path(root, relative)
         if path.is_file():
             selected.append(path)
     for relative in SOURCE_DIRECTORIES:
@@ -187,12 +189,20 @@ def build_deployment_tree(root: Path, destination: Path) -> dict:
         )
     )
     try:
-        FileTransaction(
-            project,
-            mutations,
-            state_dir=persistent_dir(project) / "transactions",
-            name="source-deployment-build",
-        ).commit(retain=False)
+        canonical = (project / "AGENTS.md").read_bytes()
+        instructions = []
+        for relative, payload in entries:
+            if Path(relative).name == "AGENTS.md":
+                if payload != canonical:
+                    raise ReleaseSourceError("Noncanonical instructions in release input")
+                instructions.append(target / ".agents" / relative)
+        with _artifact_instruction_copies(project, target, instructions):
+            FileTransaction(
+                project,
+                mutations,
+                state_dir=persistent_dir(project) / "transactions",
+                name="source-deployment-build",
+            ).commit(retain=False)
     except (TransactionError, OSError) as exc:
         raise ReleaseSourceError(f"deployment build transaction failed: {exc}") from exc
     verified = verify_deployment_tree(target)
@@ -211,16 +221,25 @@ def build_deployment_tree(root: Path, destination: Path) -> dict:
 
 def verify_deployment_tree(destination: Path) -> dict:
     target = Path(destination).resolve(strict=True)
-    agents = target / ".agents"
-    manifest_path = agents / "MANIFEST.sha256"
     try:
+        agents = confined_path(target, ".agents", must_exist=True)
+        manifest_path = confined_path(target, ".agents/MANIFEST.sha256", must_exist=True)
         manifest = manifest_path.read_bytes()
         declared: dict[str, str] = {}
         for line in manifest.decode("utf-8").splitlines():
             digest, relative = line.split("  ", 1)
-            if not re.fullmatch(r"[0-9a-f]{64}", digest) or not relative.startswith(".agents/"):
+            if (not re.fullmatch(r"[0-9a-f]{64}", digest) or not relative.startswith(".agents/")
+                    or "\\" in relative or any(p in {"", ".", ".."} for p in relative.split("/"))
+                    or relative in declared or relative == ".agents/MANIFEST.sha256"):
                 raise ValueError("invalid manifest line")
+            confined_path(target, relative)
             declared[relative] = digest
+        if not declared or list(declared) != sorted(declared):
+            raise ValueError("manifest must be nonempty and in canonical order")
+        for path in agents.rglob("*"):
+            confined_path(target, path)
+            if not path.is_dir() and not path.is_file():
+                raise ValueError("unsupported deployment entry")
         actual_files = {
             path.relative_to(target).as_posix()
             for path in agents.rglob("*")
@@ -232,8 +251,15 @@ def verify_deployment_tree(destination: Path) -> dict:
             if not (target / relative).is_file() or _sha((target / relative).read_bytes()) != digest
         ]
         extras = sorted(actual_files - set(declared))
-        release = json.loads((target / "RELEASE.json").read_text(encoding="utf-8"))
-        metadata_ok = release.get("manifest_sha256") == _sha(manifest)
+        release = json.loads(confined_path(target, "RELEASE.json", must_exist=True).read_text(encoding="utf-8"))
+        content = b"".join(relative.removeprefix(".agents/").encode() + b"\0"
+                          + str(len(payload)).encode() + b"\0" + payload
+                          for relative in declared
+                          for payload in [confined_path(target, relative, must_exist=True).read_bytes()])
+        versions = validate_version_consistency(agents)
+        metadata_ok = (release.get("schema") == 2 and release.get("manifest_sha256") == _sha(manifest)
+                       and release.get("content_sha256") == _sha(content)
+                       and versions["ok"] and release.get("version") == versions["version"])
         return {
             "ok": not mismatches and not extras and metadata_ok,
             "declared": len(declared),
