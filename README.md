@@ -12,6 +12,7 @@ Candle's end-to-end soundness theorem. See [authority](contracts/README.md).
 
 ## Work cycle
 
+Run the controller from a pinned source checkout; it is not a pip-distributed package.
 Python 3.11+ and Git are sufficient for the controller. Install Kani/Verus separately
 only for the selected obligation. This avoids expensive optional tool setup.
 

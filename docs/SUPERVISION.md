@@ -12,7 +12,10 @@ Aegis rejects stale, missing, duplicate, vacuous/unknown-output and failed resul
 requires exact declared Kani harness identity and a positive Verus verification count.
 It does not understand mathematical statements, prove the Rust/HOL4 semantic bridge,
 or determine whether an assertion is strong enough. Such claims remain human-reviewed
-obligations. The eight pinned anchors are starting references, not full import closure.
+obligations. The eight seed anchors are starting references, not full import closure. Additional
+HOL4 theories under the declared original-source roots are bound directly to Git
+objects from the same pinned CakeML commit. Symbol lookup is a navigation check,
+not a HOL4 parser or interpreter.
 
 The controller and selected verifier binaries are hashed; transitive compiler/solver,
 HOL4, package registry and host dependencies are not thereby fully attested. A real
@@ -35,3 +38,8 @@ protection is enabled or guarantee that nobody will later delete the branch.
 Network failures block checkpointing. Local commits still preserve work locally. Publish
 small PRs during development, including unresolved work, before expensive verification.
 This branch does not grant itself permission to merge PRs or overwrite global settings.
+
+An abandoned runtime lock fails closed. Stop competing control processes, inspect
+the recorded process/host identity, preserve state, and remove only that abandoned
+lock during exclusive recovery. Automatic stale-lock deletion was removed because
+concurrent recovery can otherwise delete a newly acquired lock.

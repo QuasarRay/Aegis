@@ -83,11 +83,11 @@ class Candle:
     def inputs(self, state):
         plan = state["plan"]
         require(read_json(confined_path(self.root, state["plan_path"], must_exist=True)) == plan, "contract file changed after binding")
-        verify_references(plan, state["references"])
+        originals = verify_references(plan, state["references"])
         for o in plan["obligations"]:
             for p in o["rust_paths"]:
                 require(confined_path(self.root, p, must_exist=True).is_file(), f"Rust source missing: {p}")
-        return source_snapshot(self.root)
+        return {**source_snapshot(self.root), "originals": originals}
 
     def verify(self, timeout=120):
         require(type(timeout) is int and 0 < timeout <= 3600, "verification budget must be 1..3600 seconds per obligation")

@@ -13,6 +13,14 @@ from agentinfra.security import SecurityError, ensure_private_control_file, mini
 
 
 class TestProcessSecurity(unittest.TestCase):
+    @unittest.skipIf(os.name == "nt", "POSIX process-group case")
+    def test_exited_parent_cannot_leave_descendant_holding_capture_pipes(self):
+        with tempfile.TemporaryDirectory() as td:
+            code = "import subprocess,sys;subprocess.Popen([sys.executable,'-c','import time;time.sleep(30)']);print('parent done',flush=True)"
+            result = run_process([sys.executable, "-c", code], cwd=Path(td), timeout=2)
+            self.assertEqual(result.returncode, 0)
+            self.assertEqual(result.stdout.strip(), "parent done")
+
     def test_posix_world_writable_control_adapter_is_rejected_before_use(self):
         class WorldWritableControl:
             def is_symlink(self):

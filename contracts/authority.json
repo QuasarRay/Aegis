@@ -85,5 +85,10 @@
     "Pinned 2026 sources are not asserted to be the exact paper artifact.",
     "Selected specification anchors are not a complete imported theory closure.",
     "Shared syntax and semantics require HOL4 replay and a separately verified Rust refinement bridge."
+  ],
+  "specification_roots": [
+    "candle/",
+    "compiler/repl/",
+    "compiler/bootstrap/compilation/x64/64/proofs/"
   ]
 }

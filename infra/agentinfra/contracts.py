@@ -64,7 +64,11 @@ def git(root, *args):
 
 
 def authority():
-    return read_json(FRAMEWORK / "contracts/authority.json")
+    value = read_json(FRAMEWORK / "contracts/authority.json")
+    require(value["paper"]["doi"] == "10.4230/LIPIcs.ITP.2022.3", "Candle ITP 2022 scientific authority cannot be replaced by another paper")
+    expected = {"candle": "https://github.com/CakeML/candle.git", "cakeml": "https://github.com/CakeML/cakeml.git"}
+    require({r["id"]: r["repository"] for r in value["repositories"]} == expected, "original repositories cannot be replaced by candidate oracles")
+    return value
 
 
 def authority_digest():
@@ -96,13 +100,14 @@ def validate_plan(plan):
     require(re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", plan["remote"]["repository"] or ""), "invalid GitHub repository")
     require(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_./-]*", plan["remote"]["base"] or ""), "invalid base branch")
     require(type(plan["obligations"]) is list and plan["obligations"], "nonempty obligation set required")
-    anchors = {s["path"] for s in authority()["specifications"]}
+    roots = authority()["specification_roots"]
     ids = set()
     for o in plan["obligations"]:
         keys(o, "id anchor symbol statement rust_paths method entry expected_checks assumptions limits", "obligation")
         require(isinstance(o["id"], str) and IDENT.fullmatch(o["id"]) and o["id"] not in ids, "invalid/duplicate obligation id")
         ids.add(o["id"])
-        require(o["anchor"] in anchors, "obligation needs an original specification anchor")
+        relative(o["anchor"])
+        require(o["anchor"].endswith("Script.sml") and any(o["anchor"].startswith(p) for p in roots), "obligation needs an original HOL4 specification anchor")
         require(isinstance(o["symbol"], str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_']*", o["symbol"]), "invalid HOL4 symbol")
         nonempty(o["statement"], "refinement statement")
         require(type(o["rust_paths"]) is list and o["rust_paths"] and len(set(o["rust_paths"])) == len(o["rust_paths"]), "nonempty unique Rust input paths required")
@@ -131,15 +136,25 @@ def verify_references(plan, roots):
         root = Path(roots[ref["id"]]).resolve(strict=True)
         require(git(root, "rev-parse", "HEAD").decode().strip() == ref["commit"], f"wrong {ref['id']} revision")
         require(not git(root, "status", "--porcelain", "--untracked-files=all"), f"{ref['id']} reference checkout is dirty")
-    for spec in lock["specifications"]:
+    # Verify only the selected source bytes. The entire repository revision is
+    # fixed above; the eight seed hashes need not limit future Candle coverage.
+    seeds = {s["path"]: s for s in lock["specifications"]}
+    originals = {}
+    for o in plan["obligations"]:
+        original = git(Path(roots["cakeml"]), "show", "HEAD:" + o["anchor"])
+        spec = {"repository": "cakeml", "path": o["anchor"], "sha256": digest(original),
+                "git_blob": git(Path(roots["cakeml"]), "rev-parse", "HEAD:" + o["anchor"]).decode().strip()}
+        if o["anchor"] in seeds:
+            require(spec == seeds[o["anchor"]], "seed identity differs from pinned upstream object")
         root = Path(roots[spec["repository"]])
         path = confined_path(root, spec["path"], must_exist=True)
         require(digest(path.read_bytes()) == spec["sha256"], f"original specification bytes changed: {spec['path']}")
         require(git(root, "rev-parse", f"HEAD:{spec['path']}").decode().strip() == spec["git_blob"], "original blob mismatch")
+        originals[o["anchor"]] = spec
     for o in plan["obligations"]:
         content = confined_path(Path(roots["cakeml"]), o["anchor"], must_exist=True).read_text()
         require(re.search(r"(?:Definition|Theorem)\s+" + re.escape(o["symbol"]) + r"\b", content), f"HOL4 symbol absent: {o['symbol']}")
-    return {r["id"]: r["commit"] for r in lock["repositories"]}
+    return {"repositories": {r["id"]: r["commit"] for r in lock["repositories"]}, "specifications": originals}
 
 
 def source_snapshot(root):
@@ -158,7 +173,9 @@ def source_snapshot(root):
 
 def framework_digest():
     files = {}
-    for folder in ("infra/agentinfra", "contracts"):
+    for name in ("AGENTS.md", "framework.toml", "VERSION"):
+        files[name] = digest((FRAMEWORK / name).read_bytes())
+    for folder in ("infra/agentinfra", "contracts", "modules/codex/config"):
         for p in sorted((FRAMEWORK / folder).rglob("*")):
             if p.is_file() and "__pycache__" not in p.parts:
                 files[p.relative_to(FRAMEWORK).as_posix()] = digest(p.read_bytes())
