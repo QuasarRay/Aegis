@@ -2,7 +2,8 @@
 
 1. Bind named original HOL definitions and an explicit file scope.
 2. Inspect reusable licensed code and reliable generation. Record the construction
-   decision and expected token/credit rationale.
+   decision and expected token/credit rationale. Assess Original Candle proof replay,
+   computation and generation explicitly; use each when it saves cost.
 3. Implement the OPEN obligations without a preliminary failing-test requirement.
 4. Run relevant Kani harnesses under an explicit budget. Preserve exact domains;
    a bounded pass is not unbounded refinement.
@@ -17,3 +18,7 @@ Reuse unchanged content-bound results. Do not repeat campaigns without a concret
 unresolved risk. No optional readability, idiom, performance or concurrency work
 is required. Retain necessary correctness and safety obligations. Preserve human
 work and failures; never narrow a domain or remove a harness to manufacture proof.
+
+Original Candle itself is the required final checker. Keep unbounded refinement
+OPEN until the exact Rust source, shared HOL semantics and Original Candle proof
+replay are connected. See ADR-0002 for the currently missing bridge.

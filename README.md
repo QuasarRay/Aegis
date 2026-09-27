@@ -53,13 +53,28 @@ The agent performs the authorized GitHub actions through its available integrati
 Aegis reads GitHub PR metadata and the remote ref to verify the exact checkpoint.
 A local commit alone is insufficient. Failed proofs can be checkpointed honestly.
 
+From a clean checkout of a checkpoint commit, a supervisor can inspect its saved
+packet without any `.aegis` state:
+
+```sh
+python3 -B .agents/bin/agentctl.py --root . inspect-checkpoint type-variables
+```
+
+This independently checks recorded source/mode identities, coordinator identity,
+contract, instruction copies and raw Kani result inventory. Its success means
+record integrity, not that logs cannot be forged. Rerun the recorded Kani command
+in a trusted environment; final Original Candle proof replay is still required.
+
 ## Evidence and limits
 
 Kani 0.68.0 runs the actual target crate and registered harnesses. The collector
 checks exact result inventory, source identity, bounds and successful assertions.
 Missing, timed-out and stale results remain non-passing. Identical attempts reuse
-content-bound results; source, plan, policy or reported tool-version changes
+content-bound results; source contents/modes, plan, policy or reported tool-version changes
 invalidate that key. Budgets prevent indefinite identical retries.
+Stale runs are never reused. Ignored paths cannot be implementation scope.
+Checkpoint preparation generates canonical instructions for new scoped source
+directories together with the durable evidence packet.
 
 BOUNDED_PASS does not close unbounded HOL refinement. **Original Candle itself is
 the required final proof checker.** Each plan must assess its proof replay,

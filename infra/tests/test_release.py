@@ -8,7 +8,8 @@ import tempfile
 import unittest
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from agentinfra.release_source import verify_deployment_tree
+from agentinfra.release_source import verify_deployment_tree, _validate_destination
+from agentinfra.security import SecurityError
 
 
 class ReleaseManifest(unittest.TestCase):
@@ -63,3 +64,11 @@ class ReleaseManifest(unittest.TestCase):
         extra.unlink()
         (self.root / '.agents/VERSION').unlink()
         self.assertFalse(verify_deployment_tree(self.root)['ok'])
+
+    def test_redirected_build_destination_rejected(self):
+        destination = self.root / 'real'
+        destination.mkdir()
+        alias = self.root / 'alias'
+        alias.symlink_to(destination, target_is_directory=True)
+        with self.assertRaises(SecurityError):
+            _validate_destination(self.root, alias)

@@ -6,6 +6,21 @@ sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
 from agentinfra.locks import FileLock
 
 class TestProcessLock(unittest.TestCase):
+    @unittest.skipIf(os.name == "nt", "POSIX stable-inode guard")
+    def test_live_guard_prevents_reclaiming_a_tampered_dead_pid_record(self):
+        with tempfile.TemporaryDirectory() as td:
+            path = Path(td) / 'control.lock'
+            owner = FileLock(path, 'owner')
+            record = owner.acquire()
+            changed = dict(record, pid=2147483647, process_identity=None)
+            path.write_text(json.dumps(changed))
+            from agentinfra.locks import LockError
+            with self.assertRaises(LockError):
+                FileLock(path, 'contender').acquire(timeout=0.02)
+            self.assertEqual(json.loads(path.read_text())['nonce'], record['nonce'])
+            path.write_text(json.dumps(record))
+            owner.release()
+
     @unittest.skipUnless(os.name == "nt", "Windows sharing violations are a Windows host behavior")
     def test_transient_permission_error_during_create_is_bounded_contention(self):
         with tempfile.TemporaryDirectory() as td:

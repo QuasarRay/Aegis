@@ -67,18 +67,29 @@ def _governing_instruction_update(root: Path, target: Path):
         _INSTRUCTION_UPDATE_TARGETS.reset(token)
 
 
-@contextmanager
-def _checkpoint_instruction_copies(root: Path, batch: str):
-    """Permit only canonical instruction copies in a checkpoint transaction."""
+def checkpoint_instruction_targets(root: Path, batch: str, scope=()):
+    """Canonical copies for checkpoint directories and explicit implementation scope."""
     import re
     if not re.fullmatch(r"[a-z0-9][a-z0-9-]{0,63}", batch):
         raise GovernanceViolation("Invalid checkpoint identity")
     project = root.resolve(strict=True)
-    canonical = (project / "AGENTS.md").read_bytes()
-    names = ["supervision/AGENTS.md", "supervision/checkpoints/AGENTS.md",
-             f"supervision/checkpoints/{batch}/AGENTS.md"]
+    names = {"supervision/AGENTS.md", "supervision/checkpoints/AGENTS.md",
+             f"supervision/checkpoints/{batch}/AGENTS.md"}
     from .security import confined_path
-    targets = [confined_path(project, name) for name in names]
+    for name in scope:
+        path = confined_path(project, name)
+        for parent in path.relative_to(project).parents:
+            if parent != Path('.'):
+                names.add((parent / "AGENTS.md").as_posix())
+    return [confined_path(project, name) for name in sorted(names)]
+
+
+@contextmanager
+def _checkpoint_instruction_copies(root: Path, batch: str, scope=()):
+    """Permit only canonical instruction copies in a checkpoint transaction."""
+    project = root.resolve(strict=True)
+    canonical = (project / "AGENTS.md").read_bytes()
+    targets = checkpoint_instruction_targets(root, batch, scope)
     for path in targets:
         if path.exists() and path.read_bytes() != canonical:
             raise GovernanceViolation("Refusing to replace divergent checkpoint instructions")
