@@ -16,7 +16,7 @@ class TestCodex(unittest.TestCase):
     def test_merge_preserves_user(self):
         with tempfile.TemporaryDirectory() as td:
             r=self._fixture(td);out=merge_conservative('approval_policy = "never"\n\n[features]\nfoo=true\n',r)
-            d=tomllib.loads(out);self.assertEqual(d["approval_policy"],"never");self.assertEqual(d["model"],"gpt-5.6-sol");self.assertEqual(d["model_reasoning_effort"],"max");self.assertEqual(d["agents"]["max_concurrent_threads_per_session"],1);self.assertEqual(d["agents"]["max_depth"],1);self.assertEqual(d["features"]["multi_agent_v2"]["max_concurrent_threads_per_session"],2);self.assertIn("aegis_verifier",d["agents"])
+            d=tomllib.loads(out);self.assertEqual(d["approval_policy"],"never");self.assertEqual(d["model"],"gpt-6-astra");self.assertEqual(d["model_reasoning_effort"],"max");self.assertEqual(d["agents"]["max_concurrent_threads_per_session"],1);self.assertEqual(d["agents"]["max_depth"],1);self.assertEqual(d["features"]["multi_agent_v2"]["max_concurrent_threads_per_session"],2);self.assertIn("aegis_verifier",d["agents"])
     def test_conflict_fails(self):
         with tempfile.TemporaryDirectory() as td:
             r=self._fixture(td)

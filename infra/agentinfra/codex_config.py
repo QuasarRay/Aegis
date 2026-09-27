@@ -8,12 +8,12 @@ from .process import run_process
 from .security import confined_path
 from .transaction import FileTransaction, Mutation, recover_named_transactions
 
-TOP={"model":"gpt-5.6-sol","model_reasoning_effort":"max"}
+TOP={"model":"gpt-6-astra","model_reasoning_effort":"max"}
 AGENTS={
     "enabled":True,
     "max_concurrent_threads_per_session":1,
     "max_depth":1,
-    "default_subagent_model":"gpt-5.6-sol",
+    "default_subagent_model":"gpt-6-astra",
     "default_subagent_reasoning_effort":"max",
     "interrupt_message":True,
 }
@@ -170,7 +170,7 @@ def render_role(root:Path,name:str):
     instructions=base+"\n\n"+role+"\n"
     return "\n".join([
         f"{MARKER} {name}",f"name = {_toml_value(name)}",f"description = {_toml_value(spec['description'])}",
-        'model = "gpt-5.6-sol"','model_reasoning_effort = "max"',f"sandbox_mode = {_toml_value(spec['sandbox_mode'])}",
+        'model = "gpt-6-astra"','model_reasoning_effort = "max"',f"sandbox_mode = {_toml_value(spec['sandbox_mode'])}",
         f"developer_instructions = {_toml_value(instructions)}","",
     ])
 
@@ -413,7 +413,7 @@ def verify_static(root:Path):
         if not rp.is_file():problems.append(f"role file missing: {rp}");continue
         try:rd=tomllib.loads(rp.read_text(encoding="utf-8"))
         except Exception as e:problems.append(f"role file malformed {rp}: {e}");continue
-        if rd.get("model")!="gpt-5.6-sol":problems.append(f"{n}.model={rd.get('model')!r}")
+        if rd.get("model")!="gpt-6-astra":problems.append(f"{n}.model={rd.get('model')!r}")
         if rd.get("model_reasoning_effort")!="max":problems.append(f"{n}.model_reasoning_effort={rd.get('model_reasoning_effort')!r}")
         if "Never spawn or delegate" not in rd.get("developer_instructions",""):problems.append(f"{n} missing no-delegation instruction")
     return not problems,{"problems":problems,"note":"Static verification cannot prove effective live Codex child configuration. Current Codex releases may have host/version-specific custom-agent application bugs; verify effective child metadata when the client exposes it."}

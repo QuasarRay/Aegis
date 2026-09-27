@@ -5,7 +5,7 @@ Use repository-root `AGENTS.md`, then `.agents/INDEX.md`, then this module only 
 ## Before delegation
 
 1. Prefer direct deterministic tools when delegation would add no independent reasoning value.
-2. When a child is justified, ensure the parent session is `gpt-5.6-sol` at `max` reasoning.
+2. When a child is justified, ensure the parent session is `gpt-6-astra` at `max` reasoning.
 3. Inspect effective Codex configuration with `/status` and `/debug-config` when available. Static TOML is
    configuration intent, not runtime proof.
 4. Acquire the Aegis logical child lease **before** spawning.
@@ -13,12 +13,12 @@ Use repository-root `AGENTS.md`, then `.agents/INDEX.md`, then this module only 
 
 ## Spawn
 
-Spawn exactly one child. Prefer the registered `aegis_*` role matching the mission. The role files pin Sol/Max
-and no-delegation, while the project-level defaults independently pin Sol/Max so model/effort remain correct
+Spawn exactly one child. Prefer the registered `aegis_*` role matching the mission. The role files pin Astra/Max
+and no-delegation, while the project-level defaults independently pin Astra/Max so model/effort remain correct
 if a client version falls back to parent inheritance.
 
 Codex multi-agent APIs can vary by backend/version. If the current spawn interface cannot select a registered
-custom role, do not pretend it did. Use a generic single child with explicit Sol/Max routing when supported and
+custom role, do not pretend it did. Use a generic single child with explicit Astra/Max routing when supported and
 include the relevant role mission + shared child invariants in the bounded spawn brief. Record the role-profile
 application as unverified. Never respond to a missing role selector by spawning additional children.
 

@@ -2023,7 +2023,7 @@ def _codex_static(root: Path) -> FamilyOutcome:
     book = Checkbook("codex-static")
     ok, detail = verify_managed_source(root)
     book.check("codex-static-managed-source", ok, str(detail))
-    book.check("codex-exact-model-effort-limits", TOP == {"model": "gpt-5.6-sol", "model_reasoning_effort": "max"} and AGENTS["max_concurrent_threads_per_session"] == 1 and AGENTS["max_depth"] == 1 and V2["max_concurrent_threads_per_session"] == 2)
+    book.check("codex-exact-model-effort-limits", TOP == {"model": "gpt-6-astra", "model_reasoning_effort": "max"} and AGENTS["max_concurrent_threads_per_session"] == 1 and AGENTS["max_depth"] == 1 and V2["max_concurrent_threads_per_session"] == 2)
     book.check("codex-agents-concurrency-limit-exactly-one",AGENTS["max_concurrent_threads_per_session"]==1)
     specs = load_role_specs(root)
     book.check("codex-role-identity-and-sandbox", len(specs) == len({item["slug"] for item in specs.values()}) and [name for name, item in specs.items() if item["sandbox_mode"] == "workspace-write"] == ["aegis_implementer"])
@@ -2031,7 +2031,7 @@ def _codex_static(root: Path) -> FamilyOutcome:
     book.check("codex-role-slugs-canonical-unique",len({item["slug"] for item in specs.values()})==len(specs) and all(re.fullmatch(r"[a-z0-9][a-z0-9-]{0,62}",item["slug"]) for item in specs.values()))
     book.check("codex-read-only-role-declarations",all(item["sandbox_mode"]==("workspace-write" if name=="aegis_implementer" else "read-only") for name,item in specs.items()))
     rendered={name:tomllib.loads(render_role(root,name)) for name in specs}
-    book.check("codex-every-role-max-model-effort",all(item["model"]=="gpt-5.6-sol" and item["model_reasoning_effort"]=="max" for item in rendered.values()))
+    book.check("codex-every-role-max-model-effort",all(item["model"]=="gpt-6-astra" and item["model_reasoning_effort"]=="max" for item in rendered.values()))
     book.check("codex-every-role-prohibits-nested-delegation",all("Never spawn or delegate" in item["developer_instructions"] for item in rendered.values()))
     book.check("codex-nested-guarantee-has-instruction-enforcement",AGENTS["max_depth"]==1 and all("Never spawn or delegate" in item["developer_instructions"] for item in rendered.values()))
     with tempfile.TemporaryDirectory() as directory:
@@ -2784,11 +2784,11 @@ def _policy(root: Path) -> FamilyOutcome:
     book.check("policy-direct-evidence-rejects-fabricated-claims", evidence_obs.get("failed-command-not-successful-verification") is True and workflow_obs.get("read-material-claim-needs-direct-evidence") is True)
     book.check("policy-host-support-version-or-capability-probed", codex_obs.get("codex-missing-executable-fails-closed") is True and (xonsh_obs.get("xonsh-version") is True or xonsh_obs.get("xonsh-absent-fallback") is True))
     readme = (root / ".agents" / "README.md").read_text(encoding="utf-8"); version = (root / ".agents" / "VERSION").read_text(encoding="utf-8").strip(); changelog = (root / ".agents" / "CHANGELOG.md").read_text(encoding="utf-8")
-    book.check("readme-capability-claims-match-executable-configuration", "gpt-5.6-sol" in readme and "Max" in readme and "sequential" in readme.casefold() and config["reasoning"]["default_effort"] == "max")
+    book.check("readme-capability-claims-match-executable-configuration", "gpt-6-astra" in readme and "Max" in readme and "sequential" in readme.casefold() and config["reasoning"]["default_effort"] == "max")
     book.check("changelog-version-claim-matches-release", version in changelog and version == config["framework"]["version"])
     book.check("policy-path-and-role-references-are-live", not [issue for issue in issues if "missing" in issue.casefold() or "role" in issue.casefold()])
     rendered_roles = [tomllib.loads(render_role(root, name)) for name in load_role_specs(root)]
-    book.check("hard-invariant-values-have-no-structured-conflict", all(role["model"] == "gpt-5.6-sol" and role["model_reasoning_effort"] == "max" for role in rendered_roles) and config["subagents"]["max_active"] == 1)
+    book.check("hard-invariant-values-have-no-structured-conflict", all(role["model"] == "gpt-6-astra" and role["model_reasoning_effort"] == "max" for role in rendered_roles) and config["subagents"]["max_active"] == 1)
     return book.finish()
 
 
@@ -2937,7 +2937,7 @@ def _mutation(root: Path) -> FamilyOutcome:
         original = managed.read_bytes()
         mutants = (
             ("max-reasoning-mutant", b'model_reasoning_effort = "max"', b'model_reasoning_effort = "low"'),
-            ("model-identity-mutant", b'model = "gpt-5.6-sol"', b'model = "other"'),
+            ("model-identity-mutant", b'model = "gpt-6-astra"', b'model = "other"'),
             ("sequential-child-limit-mutant", b'max_concurrent_threads_per_session = 1', b'max_concurrent_threads_per_session = 9'),
             ("nested-delegation-mutant", b'max_depth = 1', b'max_depth = 9'),
         )
