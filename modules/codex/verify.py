@@ -2,8 +2,9 @@ from pathlib import Path
 import json
 import sys
 
-ROOT=Path(__file__).resolve().parents[3]
-sys.path.insert(0,str(ROOT/".agents"/"infra"))
+FRAMEWORK=Path(__file__).resolve().parents[2]
+ROOT=FRAMEWORK.parent if FRAMEWORK.name==".agents" else FRAMEWORK
+sys.path.insert(0,str(FRAMEWORK/"infra"))
 
 from agentinfra.codex_config import verify_managed_source, verify_static
 

@@ -15,3 +15,5 @@ htmlcov/
 *.log
 *.tmp
 *.swp
+dist/
+target/

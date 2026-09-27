@@ -34,7 +34,7 @@ class TestCodex(unittest.TestCase):
             with self.assertRaises(ConfigError):uninstall(r,dry_run=False)
     def test_role_registry_is_single_source(self):
         with tempfile.TemporaryDirectory() as td:
-            root=self._fixture(td);specs=load_role_specs(root);self.assertGreaterEqual(len(specs),10);self.assertEqual(specs["aegis_implementer"]["sandbox_mode"],"workspace-write")
+            root=self._fixture(td);specs=load_role_specs(root);self.assertEqual(set(specs),{"aegis_researcher","aegis_implementer","aegis_verifier","aegis_adversarial_reviewer"});self.assertEqual(specs["aegis_implementer"]["sandbox_mode"],"workspace-write")
     def test_merge_with_existing_nested_agent_but_no_parent_table(self):
         with tempfile.TemporaryDirectory() as td:
             r=self._fixture(td);out=merge_conservative('[agents.custom]\ndescription="custom"\n',r);d=tomllib.loads(out);self.assertEqual(d["agents"]["custom"]["description"],"custom");self.assertEqual(d["features"]["multi_agent_v2"]["max_concurrent_threads_per_session"],2)
