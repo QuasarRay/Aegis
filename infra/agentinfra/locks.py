@@ -130,11 +130,9 @@ class FileLock:
                 last_contention = exc
             info = self.inspect()
             if info.get("exists") and info.get("same_host") and info.get("pid_alive_here") is False:
-                try:
-                    self.path.unlink()
-                except FileNotFoundError:
-                    pass
-                continue
+                # Observing a dead owner does not atomically authorize unlink:
+                # another recovery process may already have replaced the file.
+                raise LockError(f"abandoned lock requires exclusive recovery: {self.path} ({info})")
             if time.monotonic() >= deadline:
                 raise LockError(f"lock already exists or remains inaccessible: {self.path} ({info})") from last_contention
             time.sleep(min(0.05, max(0.001, deadline - time.monotonic())))
@@ -198,4 +196,3 @@ class FileLock:
         else:
             raise LockError(f"owned process lock could not be released after bounded sharing retries: {last_error}")
         self._owner = None
-

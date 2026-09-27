@@ -7,7 +7,7 @@ import os
 import re
 import shutil
 
-from .contracts import digest, require
+from .contracts import FRAMEWORK, digest, read_json, require
 from .process import run_process
 
 
@@ -48,8 +48,11 @@ def verify_one(root, o, timeout):
     version_argv = ["cargo", "kani", "--version"] if o["method"] == "kani" else ["verus", "--version"]
     # Reuse the process recorder but preserve installed Rust toolchain locations.
     env = {k: os.environ[k] for k in ("CARGO_HOME", "RUSTUP_HOME", "HOME") if k in os.environ}
+    env["NO_COLOR"] = "1"
     version = run_process(version_argv, cwd=root, timeout=min(timeout, 30), env=env)
-    require(version.returncode == 0 and not version.timed_out, "tool version probe failed")
+    require(version.returncode == 0 and not version.timed_out and not version.stdout_truncated and not version.stderr_truncated, "tool version probe failed")
+    expected = read_json(FRAMEWORK / "contracts/toolchain.json")[o["method"]]
+    require(expected in version.stdout + version.stderr, "verifier version differs from the qualified toolchain")
     result = run_process(argv, cwd=root, timeout=timeout, env=env)
     require(tool_identity(o["method"]) == identity, "verifier executable changed during execution")
     return {"id": o["id"], "method": o["method"], "status": "CHECKED" if checked_output(o, result) else "FAILED",

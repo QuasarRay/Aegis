@@ -8,6 +8,11 @@ import urllib.request
 from .contracts import git, require
 
 
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        return None
+
+
 def github_pr(repository, number):
     require(type(number) is int and number > 0, "PR number must be positive")
     url = f"https://api.github.com/repos/{repository}/pulls/{number}"
@@ -16,7 +21,8 @@ def github_pr(repository, number):
     if token:
         headers["Authorization"] = "Bearer " + token
     # Token is used only for this fixed GitHub API origin; never stored in evidence.
-    with urllib.request.urlopen(urllib.request.Request(url, headers=headers), timeout=30) as response:
+    opener = urllib.request.build_opener(NoRedirect)
+    with opener.open(urllib.request.Request(url, headers=headers), timeout=30) as response:
         require(response.url == url, "unexpected GitHub API redirect")
         return json.load(response)
 
@@ -35,7 +41,10 @@ def validate_pr(data, repository, base, head):
 def attest(root, remote, number):
     head = git(root, "rev-parse", "HEAD").decode().strip()
     data = github_pr(remote["repository"], number)
+    require(data.get("number") == number, "GitHub response is for another PR")
     receipt = validate_pr(data, remote["repository"], remote["base"], head)
     observed = git(root, "ls-remote", f"https://github.com/{remote['repository']}.git", "refs/heads/" + receipt["branch"]).decode().split()
     require(observed and observed[0] == head, "remote branch does not preserve the exact commit")
+    require(git(root, "rev-parse", "HEAD").decode().strip() == head, "HEAD changed during remote checkpoint")
+    require(not git(root, "status", "--porcelain", "--untracked-files=all"), "worktree changed during remote checkpoint")
     return receipt

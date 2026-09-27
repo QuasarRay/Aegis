@@ -3,7 +3,7 @@ from pathlib import Path
 import sys
 from unittest.mock import patch
 sys.path.insert(0,str(Path(__file__).resolve().parents[1]))
-from agentinfra.locks import FileLock
+from agentinfra.locks import FileLock, LockError
 
 class TestProcessLock(unittest.TestCase):
     @unittest.skipUnless(os.name == "nt", "Windows sharing violations are a Windows host behavior")
@@ -24,7 +24,10 @@ class TestProcessLock(unittest.TestCase):
             self.assertEqual(owner["pid"],os.getpid())
             lock.release()
 
-    def test_reclaims_proven_dead_same_host_lock(self):
+    def test_dead_owner_does_not_authorize_racy_lock_unlink(self):
         with tempfile.TemporaryDirectory() as td:
             p=Path(td)/"x.lock";p.write_text(json.dumps({"schema":2,"nonce":"abandoned-owner","pid":2147483647,"process_identity":None,"host":socket.gethostname(),"purpose":"old"}))
-            lock=FileLock(p,"new");info=lock.acquire();self.assertEqual(info["pid"],os.getpid());lock.release()
+            original=p.read_bytes()
+            with self.assertRaisesRegex(LockError,"exclusive recovery"):
+                FileLock(p,"new").acquire()
+            self.assertEqual(p.read_bytes(),original)

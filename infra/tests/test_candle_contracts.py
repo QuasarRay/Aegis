@@ -14,6 +14,8 @@ from agentinfra.checkpoints import validate_pr
 from agentinfra.contracts import ContractError, FRAMEWORK, digest, read_json, source_snapshot, validate_plan
 from agentinfra.process import run_process
 from agentinfra.verifiers import checked_output, invocation
+from agentinfra.atomic import atomic_write_bytes
+from agentinfra.governance import GovernanceViolation
 
 
 def plan():
@@ -26,6 +28,24 @@ def plan():
 
 
 class Contracts(unittest.TestCase):
+    def test_unfilled_template_is_not_an_implementation_contract(self):
+        with self.assertRaisesRegex(ContractError, "placeholders"):
+            validate_plan(read_json(FRAMEWORK / "templates/candle-plan.json"))
+
+    def test_retired_test_order_commands_are_not_reachable(self):
+        for command in ("task", "tdd", "law", "policy", "install"):
+            p = subprocess.run([sys.executable, str(FRAMEWORK / "bin/agentctl.py"), command], capture_output=True)
+            self.assertNotEqual(p.returncode, 0)
+
+    def test_uppercase_target_instruction_name_is_protected(self):
+        with tempfile.TemporaryDirectory() as td:
+            root = Path(td)
+            p = root / "AGENTS.MD"
+            p.write_text("governing instructions")
+            with self.assertRaises(OSError):
+                atomic_write_bytes(p, b"changed", root=root)
+            self.assertEqual(p.read_text(), "governing instructions")
+
     def test_contract_without_test_order_fields_is_valid(self):
         self.assertEqual(validate_plan(plan())["task"], "kernel-typeof")
 

@@ -110,8 +110,7 @@ def _instruction_files(root: Path) -> list[Path]:
     for directory, names, files in os.walk(root, topdown=True, followlinks=False):
         names[:] = sorted(name for name in names if name not in excluded)
         base = Path(directory)
-        if "AGENTS.md" in files:
-            found.append(base / "AGENTS.md")
+        found.extend(base / name for name in files if name.casefold() == "agents.md")
     return sorted(found, key=lambda item: item.relative_to(root).as_posix())
 
 
@@ -194,7 +193,7 @@ def assert_mutation_allowed(root: Path, *targets: Path, operation: str = "write"
             raise GovernanceViolation(f"AEGIS-I001: deployed .agents governance is immutable: {supplied}")
         if (
             relative_parts
-            and relative_parts[-1] == ("agents.md" if os.name == "nt" else "AGENTS.md")
+            and relative_parts[-1].casefold() == "agents.md"
             and not instruction_update
         ):
             raise GovernanceViolation(f"AEGIS-I001: governing instruction file is immutable: {supplied}")
