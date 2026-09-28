@@ -7,7 +7,7 @@ import tempfile
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "infra"))
 
-from agentinfra.hol4 import holmake, mcp_stdio_config
+from agentinfra.hol4 import holmake, mcp_stdio_config, mcp_smoke
 
 
 SCRIPT = r"""open HolKernel boolLib bossLib;
@@ -31,12 +31,14 @@ def main() -> int:
         theory.mkdir()
         (theory / "AegisHol4SmokeScript.sml").write_text(SCRIPT)
         config = mcp_stdio_config(root)
+        mcp = mcp_smoke(root)
         result = holmake(root, "theory", timeout=300)
         output = ROOT / ".aegis/hol4-qualification.json"
         output.parent.mkdir(exist_ok=True)
         output.write_text(json.dumps({
             "claim": "HOL4 adapter qualification only; not a Candle theorem",
             "mcp": config,
+            "mcp_smoke": mcp,
             "holmake": result,
         }, indent=2) + "\n")
         print(json.dumps({"status": result["status"], "claim": result["claim"]}))
