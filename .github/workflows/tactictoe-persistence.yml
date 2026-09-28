@@ -38,6 +38,10 @@ jobs:
           git clone https://github.com/HOL-Theorem-Prover/HOL.git "$HOLDIR"
           git -C "$HOLDIR" checkout --detach "$HOL4_SHA"
           cd "$HOLDIR"
+          poly_archive="$(find /usr/lib -name libpolymain.a -print -quit)"
+          test -n "$poly_archive"
+          poly_dir="$(dirname "$poly_archive")"
+          printf 'val polymllibdir = "%s";\\n' "$poly_dir" > tools-poly/poly-includes.ML
           poly --script tools/smart-configure.sml
           bin/build
 
