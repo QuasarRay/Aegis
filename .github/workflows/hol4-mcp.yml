@@ -6,6 +6,9 @@ on:
       - 'contracts/toolchain.json'
       - 'scripts/check_hol4.py'
       - '.github/workflows/hol4-mcp.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref }}
+  cancel-in-progress: true
 permissions:
   contents: read
 jobs:
