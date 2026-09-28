@@ -29,7 +29,7 @@ jobs:
           poly_archive="$(find /usr/lib -name libpolymain.a -print -quit)"
           test -n "$poly_archive"
           poly_dir="$(dirname "$poly_archive")"
-          printf 'val polymllibdir = "%s";\\n' "$poly_dir" > tools-poly/poly-includes.ML
+          printf 'val polymllibdir = "%s";\n' "$poly_dir" > tools-poly/poly-includes.ML
           poly --script tools/smart-configure.sml
           bin/build
           echo "HOLDIR=/tmp/HOL" >> "$GITHUB_ENV"
