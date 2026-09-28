@@ -7,6 +7,7 @@ from __future__ import annotations
 
 from dataclasses import asdict
 from pathlib import Path
+import asyncio
 import os
 import shutil
 
@@ -105,3 +106,39 @@ def holmake(root: Path, workdir: str = ".", timeout: int = 600) -> dict:
         "execution": asdict(result),
         "claim": "direct HOL4 kernel build; hol4-mcp is outside the trusted acceptance path",
     }
+
+
+async def _mcp_smoke_async(root: Path, timeout: int = 30) -> dict:
+    """Start the pinned hol4-mcp server and exercise one read-only tool."""
+    from mcp import ClientSession, StdioServerParameters
+    from mcp.client.stdio import stdio_client
+
+    root = Path(root).resolve(strict=True)
+    config = mcp_stdio_config(root)
+    params = StdioServerParameters(
+        command=config["command"],
+        args=config["args"],
+        env={**os.environ, **config["env"]},
+    )
+    async with asyncio.timeout(timeout):
+        async with stdio_client(params) as (read_stream, write_stream):
+            async with ClientSession(read_stream, write_stream) as session:
+                initialized = await session.initialize()
+                listed = await session.list_tools()
+                tool_names = sorted(tool.name for tool in listed.tools)
+                require("hol_sessions" in tool_names, "hol4-mcp did not expose hol_sessions")
+                probe = await session.call_tool("hol_sessions", {})
+                require(not probe.isError, "hol4-mcp hol_sessions probe failed")
+                server_info = getattr(initialized, "serverInfo", None)
+                return {
+                    "status": "READY",
+                    "server": str(server_info) if server_info is not None else None,
+                    "tools": tool_names,
+                    "probe": "hol_sessions",
+                    "claim": "MCP orchestration smoke test only; not proof evidence",
+                }
+
+
+def mcp_smoke(root: Path, timeout: int = 30) -> dict:
+    """Synchronously qualify the configured stdio MCP server."""
+    return asyncio.run(_mcp_smoke_async(root, timeout=timeout))
