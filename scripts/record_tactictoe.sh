@@ -24,7 +24,7 @@ cat >"$driver" <<EOF
 load "tttUnfold";
 open tttUnfold;
 load "${theory}Theory";
-ttt_record_opts [Scope (Ancestry "${theory}"), Parallel 2];
+ttt_record_thy "${theory}";
 OS.Process.exit OS.Process.success;
 EOF
 
