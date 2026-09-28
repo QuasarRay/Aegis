@@ -31,7 +31,7 @@ jobs:
           poly_dir="$(dirname "$poly_archive")"
           printf 'val polymllibdir = "%s";\n' "$poly_dir" > tools-poly/poly-includes.ML
           poly --script tools/smart-configure.sml
-          bin/build
+          bin/build --seq tools/sequences/core-theories -j2
           echo "HOLDIR=/tmp/HOL" >> "$GITHUB_ENV"
       - name: Install pinned hol4-mcp
         env:
