@@ -51,8 +51,6 @@ def main() -> int:
         (theory / "Holmakefile").write_text("INCLUDES = $(HOLDIR)/src/integer $(HOLDIR)/src/HolSmt\n")
         solver = Path(os.environ["HOL4_Z3_EXECUTABLE"])
         solver_before = executable_identity(solver)
-        config = mcp_stdio_config(root)
-        mcp = mcp_smoke(root)
         result = holmake(root, "theory", timeout=600)
         require(executable_identity(solver) == solver_before, "Z3 executable changed during replay")
         inspected = None
@@ -66,6 +64,14 @@ def main() -> int:
                 data = (theory / name).read_bytes()
                 require(bool(data), "theory export is empty")
                 artifacts[name] = digest(data)
+        config = None
+        try:
+            config = mcp_stdio_config(root)
+            mcp = mcp_smoke(root)
+        except Exception as exc:
+            # Preserve the direct replay observation even if the optional
+            # navigation service is broken. Overall qualification still fails.
+            mcp = {"status": "FAILED", "reason": str(exc), "claim": "MCP discovery only"}
         output = ROOT / ".aegis/hol4-qualification.json"
         output.parent.mkdir(exist_ok=True)
         output.write_text(json.dumps({
@@ -77,7 +83,7 @@ def main() -> int:
             "holmake": result,
         }, indent=2) + "\n")
         print(json.dumps({"status": result["status"], "claim": result["claim"]}))
-        return 0 if result["status"] == "CHECKED" else 1
+        return 0 if result["status"] == "CHECKED" and mcp["status"] == "READY" else 1
 
 
 if __name__ == "__main__":

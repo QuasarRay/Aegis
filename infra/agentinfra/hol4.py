@@ -44,14 +44,15 @@ def executable_identity(path: Path) -> dict:
     return {"path": str(path), "sha256": digest(path.read_bytes())}
 
 
-def identity() -> dict:
-    mcp = shutil.which("hol4-mcp")
-    require(mcp is not None, "required tool unavailable: hol4-mcp")
+def identity(*, require_mcp=False) -> dict:
     result = {
         "pins": pins(),
         "Holmake": executable_identity(hol4_home() / "bin/Holmake"),
-        "hol4-mcp": executable_identity(Path(mcp)),
     }
+    if require_mcp:
+        mcp = shutil.which("hol4-mcp")
+        require(mcp is not None, "required tool unavailable: hol4-mcp")
+        result["hol4-mcp"] = executable_identity(Path(mcp))
     if os.environ.get("HOL4_Z3_EXECUTABLE"):
         result["Z3"] = executable_identity(Path(os.environ["HOL4_Z3_EXECUTABLE"]))
     return result
@@ -91,7 +92,7 @@ def mcp_stdio_config(root: Path) -> dict:
             "HOLDIR": str(hol4_home()),
             "HOL4_TACTICTOE_CACHE": str(tactictoe_cache(root)),
         },
-        "identity": identity(),
+        "identity": identity(require_mcp=True),
         "claim": "orchestration only; final acceptance requires direct Holmake",
     }
 
@@ -108,7 +109,7 @@ def holmake(root: Path, workdir: str = ".", timeout: int = 600) -> dict:
         timeout=timeout,
         env=environment(root),
     )
-    require(identity() == before, "HOL4 or hol4-mcp executable changed during verification")
+    require(identity() == before, "HOL4 or solver executable changed during verification")
     checked = (
         result.returncode == 0
         and not result.timed_out
@@ -121,6 +122,12 @@ def holmake(root: Path, workdir: str = ".", timeout: int = 600) -> dict:
         "execution": asdict(result),
         "claim": "direct Holmake process observation; theorem scope and tags require separate inspection",
     }
+
+
+def validate_mcp_probe(probe):
+    # MCP 2.x uses snake_case Python fields; wire aliases remain stable.
+    payload = probe.model_dump(by_alias=True)
+    require(payload.get("isError") is False, "hol4-mcp hol_sessions probe failed or omitted its status")
 
 
 async def _mcp_smoke_async(root: Path, timeout: int = 30) -> dict:
@@ -143,8 +150,8 @@ async def _mcp_smoke_async(root: Path, timeout: int = 30) -> dict:
                 tool_names = sorted(tool.name for tool in listed.tools)
                 require("hol_sessions" in tool_names, "hol4-mcp did not expose hol_sessions")
                 probe = await session.call_tool("hol_sessions", {})
-                require(not probe.isError, "hol4-mcp hol_sessions probe failed")
-                server_info = getattr(initialized, "serverInfo", None)
+                validate_mcp_probe(probe)
+                server_info = initialized.model_dump(by_alias=True).get("serverInfo")
                 return {
                     "status": "READY",
                     "server": str(server_info) if server_info is not None else None,

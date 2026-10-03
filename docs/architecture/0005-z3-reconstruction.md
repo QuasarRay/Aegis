@@ -40,3 +40,11 @@ First cloud attempt 37107288124 failed before any theorem: the inherited
 The pinned upstream CI uses `upto-parallel`, which includes both kernel and
 core-theories. Reuse that sequence in HOL4 and TacticToe qualification; do not
 retry the same incomplete build. No proof was produced by the failed attempt.
+
+The next run 37107485843 built and cached HOL4, then exposed an inherited MCP
+SDK mismatch: installed mcp 2.3.0 exposes is_error rather than isError in Python.
+Use Pydantic's stable wire aliases and require an explicit false error flag.
+Record kernel replay independently before MCP discovery, so an orchestration
+failure cannot discard a completed replay observation. Direct HOL4 execution
+no longer requires an MCP executable. Overall qualification still requires
+both observations to succeed.

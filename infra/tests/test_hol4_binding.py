@@ -5,13 +5,25 @@ import sys
 import tempfile
 import unittest
 from unittest.mock import patch
+from types import SimpleNamespace
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from agentinfra.contracts import ContractError
-from agentinfra.hol4 import environment, hol4_home, pins
+from agentinfra.hol4 import environment, hol4_home, pins, validate_mcp_probe
 
 
 class Hol4Binding(unittest.TestCase):
+    def test_mcp_wire_alias_is_used_and_unknown_status_fails_closed(self):
+        calls = []
+        def dump(**kw):
+            calls.append(kw)
+            return {"isError": False}
+        validate_mcp_probe(SimpleNamespace(model_dump=dump))
+        self.assertEqual(calls, [{"by_alias": True}])
+        for data in ({}, {"isError": True}, {"isError": None}, {"isError": 0}):
+            with self.subTest(data=data), self.assertRaises(ContractError):
+                validate_mcp_probe(SimpleNamespace(model_dump=lambda **kw: data))
+
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)
