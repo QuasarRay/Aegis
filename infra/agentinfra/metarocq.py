@@ -89,22 +89,39 @@ class MetaRocq:
                 require(confined_path(self.root, p, must_exist=True).is_file(), f"Rust source missing: {p}")
         return {**source_snapshot(self.root), "originals": originals}
 
-    def extract(self, timeout=600):
+    def extract(self, timeout=600, retry_diagnosis=None):
         from .extraction import generate
+        from .extraction_budget import reserve
         with self.locked():
             s = self.state()
             require(s["phase"] == "BOUND", "extraction requires a bound, unverified cycle")
             require(read_json(confined_path(self.root, s["plan_path"], must_exist=True)) == s["plan"], "contract file changed after binding")
             originals = verify_references(s["plan"], s["references"])
+            if "extraction_path" in s:
+                old = read_json(confined_path(self.root, s["extraction_path"], must_exist=True))
+                require(digest(old) == s["extraction_digest"], "extraction observation changed after capture")
+                if old["status"] == "GENERATED":
+                    old = self.extraction_evidence(s)
+                    require(retry_diagnosis is None, "successful extraction is reused; new generation needs a new cycle")
+                    return {"status": old["status"], "evidence": s["extraction_path"],
+                            "reused": True, "claim": old["claim"]}
+            attempt = reserve(self.root, s, timeout, retry_diagnosis)
+            s.pop("extraction_path", None)
+            s.pop("extraction_digest", None)
+            # Reserve the full allowance BEFORE launch; crashes cannot reset it.
+            self.save(s)
             result = generate(self.root, s["plan"], timeout)
             require(verify_references(s["plan"], s["references"]) == originals, "upstream references changed during extraction")
             require(s["framework"] == framework_digest(), "control plane changed during extraction")
-            result.update(task=s["plan"]["task"], plan_digest=s["plan_digest"], framework=s["framework"], originals=originals)
+            result.update(task=s["plan"]["task"], plan_digest=s["plan_digest"], framework=s["framework"], originals=originals,
+                          attempt=dict(attempt))
             path = f".metarocq/evidence/{s['plan']['task']}-extraction-{digest(result)}.json"
             atomic_write_json(confined_path(self.root, path), result, root=self.root)
+            attempt.update(status=result["status"], evidence=path, evidence_digest=digest(result))
             s.update(extraction_path=path, extraction_digest=digest(result))
             self.save(s)
-            return {"status": result["status"], "evidence": path, "reason": result.get("reason"), "claim": result["claim"]}
+            return {"status": result["status"], "evidence": path, "reason": result.get("reason"),
+                    "reused": False, "attempt": attempt["number"], "claim": result["claim"]}
 
     def extraction_evidence(self, state):
         from .extraction import DRIVER, OUTPUTS
@@ -176,7 +193,8 @@ class MetaRocq:
             receipt.update(task=s["plan"]["task"], plan_digest=s["plan_digest"], statuses=statuses,
                            evidence=s.get("evidence_path"), evidence_digest=s.get("evidence_digest"),
                            extraction=s.get("extraction_path"), extraction_digest=s.get("extraction_digest"),
-                           extraction_status=extraction["status"] if extraction else "UNOBSERVED")
+                           extraction_status=extraction["status"] if extraction else "UNOBSERVED",
+                           extraction_attempts=s.get("extraction_attempts", []))
             s.update(phase="PUBLISHED", checkpoint=receipt)
             self.save(s)
             return receipt
