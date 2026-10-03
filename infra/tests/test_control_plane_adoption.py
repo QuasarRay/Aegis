@@ -39,6 +39,11 @@ class ControlPlaneAdoptionTests(unittest.TestCase):
             result = CONTROL.select_mode("legacy")
         self.assertEqual(result["selected"], "legacy")
 
+    def test_legacy_qualification_is_dependency_light(self):
+        result = CONTROL.legacy_validate(ROOT)
+        self.assertTrue(result["validated"])
+        self.assertIn("postgresql_driver", result["execution_dependencies"])
+
     def test_packet_keeps_initial_review_small(self):
         packet = json.loads((ROOT / "spec/astra-adoption.json").read_text())
         self.assertLessEqual(len(packet["must_read"]), packet["review_budget"]["must_read_limit"])
