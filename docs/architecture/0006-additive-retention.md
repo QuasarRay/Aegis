@@ -13,6 +13,14 @@ ASTs, and publish all outputs through the existing transaction only after succes
 Every output needs an explicit obligation; driver, support and recipe hashes are
 bound to generation, retry eligibility, reuse and artifact inspection.
 
+Observed at target run 37116424210: quotation, its kernel check and typed erasure
+completed, then the Rust backend exhausted a 3 GiB virtual-memory budget. Preserve
+each fresh typed AST as a content-addressed evidence checkpoint before invoking the
+backend. Bind it to the same source and executable identities, limit it to 32 MiB,
+and validate its bytes on inspection and reuse. It remains an intermediate even
+when the backend fails; successful Rust publication still requires all outputs.
+The checkpoint is not automatically re-executed or accepted as a semantic proof.
+
 MetaRocq tmQuoteRecTransp with true can capture opaque dependency bodies as AST
 data in Type. tmQuoteModule and tmQuoteConstant with true enable additive module
 snapshots. A snapshot is not automatically dependency closed. A quoted proof

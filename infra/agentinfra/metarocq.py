@@ -125,7 +125,7 @@ class MetaRocq:
 
     def extraction_evidence(self, state):
         from .extraction import DRIVER, OUTPUTS
-        from .extraction_recipe import recipe, outputs, input_hashes
+        from .extraction_recipe import recipe, outputs, input_hashes, frontend_files
         require("extraction_path" in state, "no captured extraction observation")
         result = read_json(confined_path(self.root, state["extraction_path"], must_exist=True))
         require(digest(result) == state["extraction_digest"], "extraction observation changed after capture")
@@ -137,6 +137,9 @@ class MetaRocq:
             require(result.get("recipe") == selected and result.get("recipe_inputs") == input_hashes(self.root, selected),
                     "extraction recipe or support module changed")
         require(result["status"] in {"GENERATED", "BLOCKED", "FAILED"}, "unknown extraction status")
+        for name, expected in frontend_files(result, selected).items():
+            require(digest(confined_path(self.root, name, must_exist=True).read_bytes()) == expected,
+                    "frontend checkpoint changed after extraction")
         if result["status"] == "GENERATED":
             require(set(result["outputs"]) == set(outputs(selected).values()), "incomplete extraction output inventory")
             for name, expected in result["outputs"].items():

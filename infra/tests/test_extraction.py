@@ -73,9 +73,20 @@ class Extraction(unittest.TestCase):
         def compiler(argv, **kw):
             result = self.compiler(argv, **kw)
             return replace(result, returncode=1) if argv[0] == "peregrine" else result
-        self.assertEqual(self.run_fixture(compiler)["status"], "FAILED")
+        result = self.run_fixture(compiler)
+        self.assertEqual(result["status"], "FAILED")
+        intermediate = result["frontend"]["generated/pcuic_isapp.ast"]
+        self.assertEqual((self.root / intermediate["path"]).read_text(), "fixture output; not executable proof\n")
+        self.assertEqual(result["outputs"], {})
         self.assertEqual(output.read_text(), "old candidate")
         self.assertFalse((self.root / "generated/pcuic_isapp.ast").exists())
+
+    def test_redirected_frontend_checkpoint_is_rejected(self):
+        (self.root / ".metarocq").mkdir()
+        (self.root / ".metarocq/evidence").symlink_to(self.root / "extraction", target_is_directory=True)
+        with self.assertRaises(RuntimeError):
+            self.run_fixture()
+        self.assertFalse((self.root / "generated").exists())
 
     def test_truncated_output_and_timeouts_are_not_success(self):
         for change in ({"timed_out": True}, {"stdout_truncated": True}, {"stderr_truncated": True}):

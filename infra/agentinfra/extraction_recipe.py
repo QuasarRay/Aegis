@@ -52,3 +52,18 @@ def input_hashes(root, value=None):
     if confined_path(root, RECIPE).exists():
         names.append(RECIPE)
     return {n: digest(confined_path(root, n, must_exist=True).read_bytes()) for n in names}
+
+
+def frontend_files(observation, selected):
+    """Validate optional intermediate metadata without promoting it to Rust output."""
+    value = observation.get("frontend", {})
+    require(type(value) is dict and set(value) <= {u["ast"] for u in selected["units"]},
+            "unexpected frontend checkpoint")
+    files = {}
+    for entry in value.values():
+        keys(entry, "path sha256", "frontend checkpoint")
+        sha = entry["sha256"]
+        require(isinstance(sha, str) and re.fullmatch(r"[0-9a-f]{64}", sha), "invalid frontend digest")
+        require(entry["path"] == f".metarocq/evidence/frontend-{sha}.ast", "invalid frontend checkpoint path")
+        files[entry["path"]] = sha
+    return files

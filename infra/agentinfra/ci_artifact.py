@@ -12,7 +12,7 @@ import zipfile
 from .contracts import digest, git, keys, load_json, read_json, require, source_snapshot
 from .extraction import DRIVER, OUTPUTS
 from .security import confined_path
-from .extraction_recipe import recipe, outputs, input_hashes
+from .extraction_recipe import recipe, outputs, input_hashes, frontend_files
 
 HEX256 = re.compile(r"[0-9a-f]{64}\Z")
 
@@ -66,7 +66,11 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
                     "artifact member digest mismatch")
         observations = [n for n in files if n.startswith(".metarocq/evidence/") and n.endswith(".json")]
         require(len(observations) <= 1, "ambiguous extraction observations")
-        permitted = set(output_map.values()) | set(observations) | {"Cargo.lock", ".aegis/opam-switch.export"}
+        observation = load_json(z.read(observations[0])) if observations else None
+        frontend = frontend_files(observation, selected) if observation else {}
+        for name, sha in frontend.items():
+            require(files.get(name) == sha and bool(z.read(name)), "frontend checkpoint missing or changed")
+        permitted = set(output_map.values()) | set(observations) | set(frontend) | {"Cargo.lock", ".aegis/opam-switch.export"}
         require(set(files) <= permitted, "unexpected artifact member")
         generated = steps["extract"] == "success"
         if generated:
@@ -75,7 +79,6 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
         else:
             require(not (set(output_map.values()) & set(files)), "failed or skipped extraction advertises candidate output")
         if observations:
-            observation = load_json(z.read(observations[0]))
             plan = read_json(root / ".metarocq/plan.json")
             require(observation["plan_digest"] == digest(plan), "extraction plan differs from checkout")
             require(observation["driver_sha256"] == digest(confined_path(root, selected["driver"], must_exist=True).read_bytes()),
@@ -91,10 +94,13 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
             require(observation["outputs"] == expected, "extraction/output binding mismatch")
             if generated:
                 require(all(bool(z.read(n)) for n in output_map.values()), "empty generated candidate")
+                require(all(files.get(n) == entry["sha256"] for n, entry in observation.get("frontend", {}).items()),
+                        "frontend checkpoint differs from published AST")
         if steps["compile"] == "success":
             require("Cargo.lock" in files, "successful Rust compilation lacks dependency lock")
         if steps["install"] == "success":
             require(".aegis/opam-switch.export" in files, "successful installation lacks dependency export")
     return {"status": "CONSISTENT", "run_id": expected_run, "head": expected_head,
             "generated": generated, "compiled": steps["compile"] == "success", "steps": steps,
+            "frontend_preserved": sorted(observation.get("frontend", {})) if observation else [],
             "claim": "artifact/run/source consistency only; no authenticated build provenance or semantic proof"}
