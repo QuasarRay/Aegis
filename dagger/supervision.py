@@ -10,12 +10,12 @@ import sys
 
 import dagger
 
-RUBY_FILES = [
-    "gitlab/overlay/route_aegis.rb",
-    "gitlab/overlay/supervision_controller.rb",
-    "gitlab/overlay/repository_snapshot.rb",
-    "gitlab/overlay/get_supervision_state_service.rb",
-]
+def ruby_files(source: Path) -> list[str]:
+    return sorted(
+        path.relative_to(source).as_posix()
+        for path in (source / "gitlab" / "overlay").glob("**/*.rb")
+        if path.is_file()
+    )
 
 
 async def run(source: Path) -> dict:
@@ -53,7 +53,7 @@ async def run(source: Path) -> dict:
             .with_workdir("/src")
         )
         checked = []
-        for path in RUBY_FILES:
+        for path in ruby_files(source):
             await ruby.with_exec(["ruby", "-c", path]).sync()
             checked.append(path)
 
