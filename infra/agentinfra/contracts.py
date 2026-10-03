@@ -29,15 +29,19 @@ def digest(value):
     return hashlib.sha256(data).hexdigest()
 
 
-def read_json(path):
+def load_json(data):
     def unique(items):
         result = {}
         for k, v in items:
             require(k not in result, f"duplicate JSON key: {k}")
             result[k] = v
         return result
-    return json.loads(Path(path).read_text(), object_pairs_hook=unique,
+    return json.loads(data, object_pairs_hook=unique,
                       parse_constant=lambda s: require(False, f"non-finite JSON: {s}"))
+
+
+def read_json(path):
+    return load_json(Path(path).read_text())
 
 
 def keys(obj, expected, label):
