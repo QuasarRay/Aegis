@@ -3,7 +3,10 @@
     "app/services/mcp/tools/base/custom_service.rb": "1961c82b49ced1b6e212898718bfa94503bb97a4",
     "app/services/mcp/tools/manager.rb": "56d5a1e29220ad36166cfde55801399756ea03fb",
     "config/routes.rb": "2bf3710000d3240a74b213e1a1e11fe321ccac04",
-    "lib/api/mcp/base.rb": "6cb089dfbe091a68ab0c7fdc038befc5d59ce9a1"
+    "lib/api/mcp/base.rb": "6cb089dfbe091a68ab0c7fdc038befc5d59ce9a1",
+    "lib/gitlab/github_import/client.rb": "2928d0f30f7385014055081ad1b31e9d785a6ebc",
+    "config/initializers/octokit.rb": "3b6b60a3d35a64cfab2adbc99277fdf1bc61a1d9",
+    "Gemfile": "8adcea493df616c61773e064b5f77f5a41d05e1b"
   },
   "claim": "Exact host/source pins and integration policy; not proof evidence.",
   "dagger": {
@@ -46,5 +49,15 @@
     },
     "whole_gitlab_transpile": "rejected_for_required_runtime_until_gitlab_conformance_and_supported_rails_surface_are_demonstrated"
   },
-  "schema": 1
+  "schema": 1,
+  "github_bridge": {
+    "authority": "optional_external_forge_not_boot_dependency",
+    "client": "Gitlab::GithubImport::Client + Octokit 9.x from pinned GitLab",
+    "credential_env": "AEGIS_GITHUB_TOKEN",
+    "host_env": "AEGIS_GITHUB_HOST",
+    "repository_map_env": "AEGIS_GITHUB_REPOSITORY_MAP",
+    "auto_map_env": "AEGIS_GITHUB_AUTO_MAP",
+    "writes": "require GitLab admin_project and host-admin map entry with write=true",
+    "independence": "all GitLab/Aegis local functions remain available with bridge disabled"
+  }
 }
