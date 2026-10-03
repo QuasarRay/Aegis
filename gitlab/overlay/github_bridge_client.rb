@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'cgi'
+
 module Aegis
   module GithubBridge
     class Client
@@ -80,9 +82,10 @@ module Aegis
       end
 
       def importer
+        explicit_host = URI.parse(configuration.api_host).host == 'github.com' ? nil : configuration.api_host
         @importer ||= Gitlab::GithubImport::Client.new(
           configuration.token,
-          host: configuration.api_host,
+          host: explicit_host,
           parallel: true
         )
       end
