@@ -203,6 +203,51 @@ class Lifecycle(unittest.TestCase):
         with self.assertRaisesRegex(ContractError, "commit all"):
             self.app.checkpoint(7)
 
+    def extraction_fixture(self, status="GENERATED"):
+        from agentinfra.extraction import DRIVER, OUTPUTS
+        (self.root / DRIVER).parent.mkdir(exist_ok=True)
+        (self.root / DRIVER).write_text("(* fixture; not a proof *)")
+        outputs = {}
+        if status == "GENERATED":
+            for name in OUTPUTS.values():
+                (self.root / name).parent.mkdir(exist_ok=True)
+                (self.root / name).write_text("fixture generated output")
+                outputs[name] = digest((self.root / name).read_bytes())
+        self.freeze()
+        result = {"status": status, "driver_sha256": digest((self.root / DRIVER).read_bytes()),
+                  "outputs": outputs, "claim": "fixture only"}
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.extraction.generate", return_value=result):
+            self.app.extract()
+        return self.app.state()
+
+    def test_extraction_digest_driver_and_output_tampering_are_rejected(self):
+        state = self.extraction_fixture()
+        with patch("agentinfra.metarocq.verify_references", return_value={}):
+            self.assertEqual(self.app.extraction_evidence(state)["status"], "GENERATED")
+            p = self.root / "generated/pcuic_isapp.rs"
+            p.write_text("substituted implementation")
+            with self.assertRaisesRegex(ContractError, "output changed"):
+                self.app.extraction_evidence(state)
+            p.write_text("fixture generated output")
+            (self.root / "extraction/Bootstrap.v").write_text("different extraction")
+            with self.assertRaisesRegex(ContractError, "driver changed"):
+                self.app.extraction_evidence(state)
+        (self.root / state["extraction_path"]).write_text("{}")
+        with self.assertRaisesRegex(ContractError, "observation changed"):
+            self.app.extraction_evidence(state)
+
+    def test_blocked_generation_cannot_be_promoted_to_verification(self):
+        p = plan()
+        p["reuse"].update(strategy="generate", sources=["fixture"], generator=["fixture-generator"])
+        (self.root / "plan.json").write_text(json.dumps(p))
+        self.extraction_fixture("BLOCKED")
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.metarocq.verify_one") as verifier:
+            with self.assertRaisesRegex(ContractError, "generation is blocked"):
+                self.app.verify()
+            verifier.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

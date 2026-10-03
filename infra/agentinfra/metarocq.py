@@ -106,11 +106,30 @@ class MetaRocq:
             self.save(s)
             return {"status": result["status"], "evidence": path, "reason": result.get("reason"), "claim": result["claim"]}
 
+    def extraction_evidence(self, state):
+        from .extraction import DRIVER, OUTPUTS
+        require("extraction_path" in state, "no captured extraction observation")
+        result = read_json(confined_path(self.root, state["extraction_path"], must_exist=True))
+        require(digest(result) == state["extraction_digest"], "extraction observation changed after capture")
+        require(result["plan_digest"] == state["plan_digest"] and result["framework"] == state["framework"], "extraction binding mismatch")
+        require(result["originals"] == verify_references(state["plan"], state["references"]), "extraction upstream binding mismatch")
+        require(result["driver_sha256"] == digest(confined_path(self.root, DRIVER, must_exist=True).read_bytes()), "extraction driver changed")
+        require(result["status"] in {"GENERATED", "BLOCKED", "FAILED"}, "unknown extraction status")
+        if result["status"] == "GENERATED":
+            require(set(result["outputs"]) == set(OUTPUTS.values()), "incomplete extraction output inventory")
+            for name, expected in result["outputs"].items():
+                require(digest(confined_path(self.root, name, must_exist=True).read_bytes()) == expected, "generated output changed after extraction")
+        else:
+            require(not result["outputs"], "failed extraction cannot advertise successful outputs")
+        return result
+
     def verify(self, timeout=120):
         require(type(timeout) is int and 0 < timeout <= 3600, "verification budget must be 1..3600 seconds per obligation")
         with self.locked():
             s = self.state()
             require(s["phase"] in {"BOUND", "EVIDENCE"}, "cycle already published")
+            if s["plan"]["reuse"]["strategy"] == "generate":
+                require(self.extraction_evidence(s)["status"] == "GENERATED", "generation is blocked or failed; cannot verify a substitute implementation")
             before = self.inputs(s)
             rows = []
             for o in s["plan"]["obligations"]:
@@ -151,11 +170,13 @@ class MetaRocq:
             # Bind the contract even when the Rust implementation is not yet available.
             require(read_json(confined_path(self.root, s["plan_path"], must_exist=True)) == s["plan"], "contract file drift")
             verify_references(s["plan"], s["references"])
+            extraction = self.extraction_evidence(s) if "extraction_path" in s else None
             statuses = [r["status"] for r in self.evidence(s)["results"]] if "evidence_path" in s else ["UNVERIFIED"]
             receipt = attest(self.root, s["plan"]["remote"], pr)
             receipt.update(task=s["plan"]["task"], plan_digest=s["plan_digest"], statuses=statuses,
                            evidence=s.get("evidence_path"), evidence_digest=s.get("evidence_digest"),
-                           extraction=s.get("extraction_path"), extraction_digest=s.get("extraction_digest"))
+                           extraction=s.get("extraction_path"), extraction_digest=s.get("extraction_digest"),
+                           extraction_status=extraction["status"] if extraction else "UNOBSERVED")
             s.update(phase="PUBLISHED", checkpoint=receipt)
             self.save(s)
             return receipt
