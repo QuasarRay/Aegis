@@ -1,0 +1,29 @@
+{
+  "anchors": {
+    "app/services/mcp/tools/base/custom_service.rb": "1961c82b49ced1b6e212898718bfa94503bb97a4",
+    "app/services/mcp/tools/manager.rb": "56d5a1e29220ad36166cfde55801399756ea03fb",
+    "config/routes.rb": "2bf3710000d3240a74b213e1a1e11fe321ccac04",
+    "lib/api/mcp/base.rb": "6cb089dfbe091a68ab0c7fdc038befc5d59ce9a1"
+  },
+  "claim": "Exact host/source pins and integration policy; not proof evidence.",
+  "dagger": {
+    "python_sdk": "0.21.10",
+    "rust_sdk": "0.21.10",
+    "version": "v0.21.10",
+    "commit": "02b2558d9997a77bf5d357032c45cdf5bf7d5ce1"
+  },
+  "host": {
+    "commit": "191678a37648bc14466c2bed346ed60eee7ddec6",
+    "github_mirror": "https://github.com/gitlabhq/gitlabhq.git",
+    "name": "GitLab Community Edition / FOSS",
+    "repository": "https://gitlab.com/gitlab-org/gitlab-foss.git",
+    "tag": "v19.4.1"
+  },
+  "ruby_rust": {
+    "magnus": "0.9.1",
+    "rails_to_rust_transpiler": "none-qualified",
+    "rb_sys": "0.9.130",
+    "strategy": "ffi_extension_only_when_profiled_or_contract-justified"
+  },
+  "schema": 1
+}
