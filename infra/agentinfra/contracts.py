@@ -1,4 +1,4 @@
-"""Candle contracts are original HOL4 source references, never test definitions."""
+"""MetaRocq contracts are original Rocq source references, never test definitions."""
 from __future__ import annotations
 
 import hashlib
@@ -53,7 +53,7 @@ def relative(value):
     nonempty(value, "path")
     p = Path(value)
     require(not p.is_absolute() and p.as_posix() == value and all(x not in {".", "..", ""} for x in value.split("/")), "noncanonical relative path")
-    require(p.parts[0] not in {".git", ".aegis", "target"} and not value.startswith(".candle/evidence/"), "path is runtime/output, not an input")
+    require(p.parts[0] not in {".git", ".aegis", "target"} and not value.startswith(".metarocq/evidence/"), "path is runtime/output, not an input")
     return value
 
 
@@ -65,8 +65,8 @@ def git(root, *args):
 
 def authority():
     value = read_json(FRAMEWORK / "contracts/authority.json")
-    require(value["paper"]["doi"] == "10.4230/LIPIcs.ITP.2022.3", "Candle ITP 2022 scientific authority cannot be replaced by another paper")
-    expected = {"candle": "https://github.com/CakeML/candle.git", "cakeml": "https://github.com/CakeML/cakeml.git"}
+    require(value["paper"]["doi"] == "10.1145/3706056", "MetaRocq JACM 2025 scientific authority cannot be replaced by another paper")
+    expected = {"metarocq": "https://github.com/MetaRocq/metarocq.git", "peregrine": "https://github.com/peregrine-project/peregrine-tool.git"}
     require({r["id"]: r["repository"] for r in value["repositories"]} == expected, "original repositories cannot be replaced by candidate oracles")
     return value
 
@@ -98,6 +98,7 @@ def validate_plan(plan):
     # The justification is a reviewable decision, not a machine-verifiable cost claim.
     keys(plan["remote"], "repository base", "remote")
     require(re.fullmatch(r"[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+", plan["remote"]["repository"] or ""), "invalid GitHub repository")
+    require(plan["remote"]["repository"] == "QuasarRay/MetaRocq-rs", "plan must target MetaRocq-rs")
     require(re.fullmatch(r"[A-Za-z0-9][A-Za-z0-9_./-]*", plan["remote"]["base"] or ""), "invalid base branch")
     require(type(plan["obligations"]) is list and plan["obligations"], "nonempty obligation set required")
     roots = authority()["specification_roots"]
@@ -107,8 +108,8 @@ def validate_plan(plan):
         require(isinstance(o["id"], str) and IDENT.fullmatch(o["id"]) and o["id"] not in ids, "invalid/duplicate obligation id")
         ids.add(o["id"])
         relative(o["anchor"])
-        require(o["anchor"].endswith("Script.sml") and any(o["anchor"].startswith(p) for p in roots), "obligation needs an original HOL4 specification anchor")
-        require(isinstance(o["symbol"], str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_']*", o["symbol"]), "invalid HOL4 symbol")
+        require(o["anchor"].endswith(".v") and any(o["anchor"].startswith(p) for p in roots), "obligation needs an original Rocq specification anchor")
+        require(isinstance(o["symbol"], str) and re.fullmatch(r"[A-Za-z_][A-Za-z0-9_']*", o["symbol"]), "invalid Rocq symbol")
         nonempty(o["statement"], "refinement statement")
         require(type(o["rust_paths"]) is list and o["rust_paths"] and len(set(o["rust_paths"])) == len(o["rust_paths"]), "nonempty unique Rust input paths required")
         for p in o["rust_paths"]:
@@ -131,19 +132,20 @@ def validate_plan(plan):
 
 def verify_references(plan, roots):
     lock = authority()
-    require(set(roots) == {r["id"] for r in lock["repositories"]}, "both pinned original repositories required")
+    require(set(roots) == {r["id"] for r in lock["repositories"]}, "both pinned upstream repositories required")
     for ref in lock["repositories"]:
         root = Path(roots[ref["id"]]).resolve(strict=True)
+        require(Path(git(root, "rev-parse", "--show-toplevel").decode().strip()).resolve() == root, "reference must be repository root")
         require(git(root, "rev-parse", "HEAD").decode().strip() == ref["commit"], f"wrong {ref['id']} revision")
         require(not git(root, "status", "--porcelain", "--untracked-files=all"), f"{ref['id']} reference checkout is dirty")
     # Verify only the selected source bytes. The entire repository revision is
-    # fixed above; the eight seed hashes need not limit future Candle coverage.
+    # fixed above; the seed hashes need not limit future MetaRocq coverage.
     seeds = {s["path"]: s for s in lock["specifications"]}
     originals = {}
     for o in plan["obligations"]:
-        original = git(Path(roots["cakeml"]), "show", "HEAD:" + o["anchor"])
-        spec = {"repository": "cakeml", "path": o["anchor"], "sha256": digest(original),
-                "git_blob": git(Path(roots["cakeml"]), "rev-parse", "HEAD:" + o["anchor"]).decode().strip()}
+        original = git(Path(roots["metarocq"]), "show", "HEAD:" + o["anchor"])
+        spec = {"repository": "metarocq", "path": o["anchor"], "sha256": digest(original),
+                "git_blob": git(Path(roots["metarocq"]), "rev-parse", "HEAD:" + o["anchor"]).decode().strip()}
         if o["anchor"] in seeds:
             require(spec == seeds[o["anchor"]], "seed identity differs from pinned upstream object")
         root = Path(roots[spec["repository"]])
@@ -152,8 +154,9 @@ def verify_references(plan, roots):
         require(git(root, "rev-parse", f"HEAD:{spec['path']}").decode().strip() == spec["git_blob"], "original blob mismatch")
         originals[o["anchor"]] = spec
     for o in plan["obligations"]:
-        content = confined_path(Path(roots["cakeml"]), o["anchor"], must_exist=True).read_text()
-        require(re.search(r"(?:Definition|Theorem)\s+" + re.escape(o["symbol"]) + r"\b", content), f"HOL4 symbol absent: {o['symbol']}")
+        content = confined_path(Path(roots["metarocq"]), o["anchor"], must_exist=True).read_text()
+        # This is only declaration indexing. It does not replace Rocq parsing/replay.
+        require(re.search(r"(?:Definition|Theorem|Lemma|Fixpoint|Inductive|Record)\s+" + re.escape(o["symbol"]) + r"\b", content), f"Rocq symbol absent: {o['symbol']}")
     return {"repositories": {r["id"]: r["commit"] for r in lock["repositories"]}, "specifications": originals}
 
 
@@ -163,7 +166,7 @@ def source_snapshot(root):
     names = git(root, "ls-files", "-z", "--cached", "--others", "--exclude-standard").decode().split("\0")
     entries = {}
     for name in sorted(set(names) - {""}):
-        if name.startswith((".aegis/", ".candle/evidence/")):
+        if name.startswith((".aegis/", ".metarocq/evidence/")):
             continue
         p = confined_path(root, name, must_exist=True)
         require(p.is_file(), f"input is not a regular file (submodules require an explicit binding): {name}")

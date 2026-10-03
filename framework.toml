@@ -1,15 +1,14 @@
 [framework]
-name = "Aegis for Candle-rs"
-version = "6.0.0-candle.1"
+name = "Aegis for MetaRocq-rs"
+version = "6.1.0-metarocq.1"
 project_independent = false
 
-[candle]
+[metarocq]
 authority = "contracts/authority.json"
-contract_language = "original HOL4 theories, unchanged"
-target_language = "Rust"
-model = "gpt-6-astra"
-workflow = "bind, implement by reuse/generation, verify, checkpoint"
-completion_claim = "scoped verifier observations"
+contract_language = "original Rocq/Gallina definitions, unchanged"
+target_language = "Rust via Peregrine typed extraction"
+workflow = "bind, generate, verify, checkpoint"
+completion_claim = "scoped verifier observations only"
 
 [cost]
 reuse_first = true
