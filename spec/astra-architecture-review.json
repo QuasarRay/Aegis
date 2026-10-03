@@ -53,5 +53,7 @@
     "Can the GitHub bridge be removed/disabled without affecting local Aegis formalization or supervision?"
   ],
   "expected_answer_shape": "approve/revise individual invariants and named integration points; do not re-read unchanged implementation files unless a listed invariant fails",
-  "token_policy": "review semantic deltas from ADRs/registry first; descend into code only for disputed claims or failing tests"
+  "token_policy": "review semantic deltas from ADRs/registry first; descend into code only for disputed claims or failing tests",
+  "successor_adoption_packet": "spec/astra-adoption.json",
+  "successor_entrypoint": "python3 -B scripts/control_plane.py adopt"
 }
