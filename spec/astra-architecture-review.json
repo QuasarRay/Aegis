@@ -17,7 +17,7 @@
         "purpose": "optional deep GitHub website/control bridge while preserving self-hosting"
       },
       {
-        "number": 23,
+        "number": 24,
         "purpose": "Ruby metaprogramming/token-efficiency review packet"
       }
     ]
