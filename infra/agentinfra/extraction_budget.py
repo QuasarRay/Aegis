@@ -4,11 +4,13 @@ import os
 from .contracts import FRAMEWORK, ContractError, digest, read_json, require
 from .extraction import DRIVER, tool_identity
 from .security import confined_path
+from .extraction_recipe import recipe, input_hashes
 
 
 def attempt_inputs(root, timeout):
     # Diagnostics and ADR edits cannot alone authorize the same failed build.
     files = {}
+    files.update(input_hashes(root, recipe(root)))
     for name in (DRIVER, "tools/bootstrap.py", "spec/toolchain.lock.json",
                  ".aegis/opam-switch.export"):
         path = confined_path(root, name)

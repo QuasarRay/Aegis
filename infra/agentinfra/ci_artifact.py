@@ -12,12 +12,15 @@ import zipfile
 from .contracts import digest, git, keys, load_json, read_json, require, source_snapshot
 from .extraction import DRIVER, OUTPUTS
 from .security import confined_path
+from .extraction_recipe import recipe, outputs, input_hashes
 
 HEX256 = re.compile(r"[0-9a-f]{64}\Z")
 
 
 def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
     root = Path(root).resolve(strict=True)
+    selected = recipe(root)
+    output_map = outputs(selected)
     require(type(expected_run) is int and expected_run > 0, "expected run id must be positive")
     require(re.fullmatch(r"[0-9a-f]{40}", expected_head) is not None, "expected checkout SHA required")
     require(HEX256.fullmatch(expected_sha256) is not None, "expected GitHub artifact digest required")
@@ -63,28 +66,31 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
                     "artifact member digest mismatch")
         observations = [n for n in files if n.startswith(".metarocq/evidence/") and n.endswith(".json")]
         require(len(observations) <= 1, "ambiguous extraction observations")
-        permitted = set(OUTPUTS.values()) | set(observations) | {"Cargo.lock", ".aegis/opam-switch.export"}
+        permitted = set(output_map.values()) | set(observations) | {"Cargo.lock", ".aegis/opam-switch.export"}
         require(set(files) <= permitted, "unexpected artifact member")
         generated = steps["extract"] == "success"
         if generated:
-            require(set(OUTPUTS.values()) <= set(files) and len(observations) == 1,
+            require(set(output_map.values()) <= set(files) and len(observations) == 1,
                     "successful extraction is missing outputs or observation")
         else:
-            require(not (set(OUTPUTS.values()) & set(files)), "failed or skipped extraction advertises candidate output")
+            require(not (set(output_map.values()) & set(files)), "failed or skipped extraction advertises candidate output")
         if observations:
             observation = load_json(z.read(observations[0]))
             plan = read_json(root / ".metarocq/plan.json")
             require(observation["plan_digest"] == digest(plan), "extraction plan differs from checkout")
-            require(observation["driver_sha256"] == digest(confined_path(root, DRIVER, must_exist=True).read_bytes()),
+            require(observation["driver_sha256"] == digest(confined_path(root, selected["driver"], must_exist=True).read_bytes()),
                     "extraction driver differs from checkout")
+            if (root / "extraction/recipe.json").exists():
+                require(observation.get("recipe") == selected and observation.get("recipe_inputs") == input_hashes(root, selected),
+                        "extraction recipe/support differs from checkout")
             require(observation["source"] == source_snapshot(root), "extraction source inventory differs from checkout")
             require(observations[0].endswith("-" + digest(observation) + ".json"), "observation name/digest mismatch")
             require(observation["status"] == "GENERATED" if generated else observation["status"] in {"FAILED", "BLOCKED"},
                     "step outcome and extraction status disagree")
-            expected = {n: files[n] for n in OUTPUTS.values()} if generated else {}
+            expected = {n: files[n] for n in output_map.values()} if generated else {}
             require(observation["outputs"] == expected, "extraction/output binding mismatch")
             if generated:
-                require(all(bool(z.read(n)) for n in OUTPUTS.values()), "empty generated candidate")
+                require(all(bool(z.read(n)) for n in output_map.values()), "empty generated candidate")
         if steps["compile"] == "success":
             require("Cargo.lock" in files, "successful Rust compilation lacks dependency lock")
         if steps["install"] == "success":

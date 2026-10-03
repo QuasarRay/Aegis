@@ -1,5 +1,6 @@
 """Adversarial recorder tests. Mock compiler output is never proof evidence."""
 from dataclasses import replace
+import json
 from pathlib import Path
 import subprocess
 import sys
@@ -105,3 +106,50 @@ class Extraction(unittest.TestCase):
         self.plan["obligations"][0]["symbol"] = "typecheck_program"
         with self.assertRaisesRegex(ContractError, "only"):
             generate(self.root, self.plan, 30)
+
+    def configure_retention(self):
+        value = {"schema": 1, "driver": "extraction/Bootstrap.v",
+                 "support": ["extraction/Retention.v"], "units": [{
+                     "stem": "candidate", "ast": "generated/retained.ast", "rust": "generated/retained.rs"}]}
+        (self.root / "extraction/Retention.v").write_text("fixture support")
+        (self.root / "extraction/recipe.json").write_text(json.dumps(value))
+        self.plan["obligations"][0]["rust_paths"].append("generated/retained.rs")
+        return value
+
+    def test_recipe_binds_support_and_output_scope(self):
+        self.configure_retention()
+        result = self.run_fixture()
+        self.assertEqual(result["status"], "GENERATED")
+        self.assertEqual(len(result["executions"]), 3)
+        self.assertIn("extraction/Retention.v", result["recipe_inputs"])
+        self.assertEqual(set(result["outputs"]), {"generated/retained.ast", "generated/retained.rs"})
+        self.plan["obligations"][0]["rust_paths"].remove("generated/retained.rs")
+        with self.assertRaisesRegex(ContractError, "obligation"):
+            self.run_fixture()
+
+    def test_recipe_cannot_escape_or_alias_destinations(self):
+        value = self.configure_retention()
+        for update in ({"driver": "../escape.v"}, {"support": ["extraction/Bootstrap.v"]},
+                       {"units": value["units"] * 2}):
+            (self.root / "extraction/recipe.json").write_text(json.dumps({**value, **update}))
+            with self.assertRaises(ContractError):
+                self.run_fixture()
+
+    def test_changed_support_prevents_publication(self):
+        self.configure_retention()
+        def compiler(argv, **kw):
+            result = self.compiler(argv, **kw)
+            (self.root / "extraction/Retention.v").write_text("changed support")
+            return result
+        result = self.run_fixture(compiler)
+        self.assertEqual(result["status"], "FAILED")
+        self.assertFalse((self.root / "generated/retained.rs").exists())
+
+    def test_missing_second_unit_never_publishes_partial_results(self):
+        value = self.configure_retention()
+        value["units"].append({"stem": "missing", "ast": "generated/missing.ast", "rust": "generated/missing.rs"})
+        (self.root / "extraction/recipe.json").write_text(json.dumps(value))
+        self.plan["obligations"][0]["rust_paths"].append("generated/missing.rs")
+        result = self.run_fixture()
+        self.assertEqual(result["status"], "FAILED")
+        self.assertFalse((self.root / "generated/retained.rs").exists())
