@@ -1,7 +1,7 @@
 # Control plane
 
 The Python standard-library runtime binds original-source contracts and captures verifier
-observations. `contracts.py` validates the plan and original files; `candle.py` owns the
+observations. `contracts.py` validates the plan and original files; `metarocq.py` owns the
 small lifecycle; `verifiers.py` constructs Kani/Verus invocations; `checkpoints.py` checks
 GitHub PR and commit identity. Every command returns compact JSON.
 
@@ -10,7 +10,7 @@ are reused. The general policy compiler, TDD lifecycle, performance/idiomaticnes
 role fan-out, generated historical-law claims, installer and stale distribution mirror
 were retired. Git preserves their original source.
 
-Runtime state uses `.aegis/`; durable plan/evidence use `.candle/`. Evidence captures the
+Runtime state uses `.aegis/`; durable plan/evidence use `.metarocq/`. Evidence captures the
 whole tracked/nonignored source snapshot, framework digest, exact declared obligation
 set, verifier executable hashes, version output, command, process result and proof limits.
-The runtime serializes its own writes; it does not impose concurrency work on Candle-rs.
+The runtime serializes its own writes; it does not impose concurrency work on MetaRocq-rs.

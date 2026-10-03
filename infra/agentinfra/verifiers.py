@@ -1,4 +1,4 @@
-"""Narrow evidence adapters. CHECKED is scoped evidence, not Candle soundness."""
+"""Narrow evidence adapters. CHECKED is scoped evidence, not MetaRocq soundness."""
 from __future__ import annotations
 
 from dataclasses import asdict

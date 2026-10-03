@@ -16,7 +16,7 @@ class NoRedirect(urllib.request.HTTPRedirectHandler):
 def github_pr(repository, number):
     require(type(number) is int and number > 0, "PR number must be positive")
     url = f"https://api.github.com/repos/{repository}/pulls/{number}"
-    headers = {"Accept": "application/vnd.github+json", "User-Agent": "Aegis-Candle/6"}
+    headers = {"Accept": "application/vnd.github+json", "User-Agent": "Aegis-MetaRocq/6"}
     token = os.environ.get("GITHUB_TOKEN")
     if token:
         headers["Authorization"] = "Bearer " + token
