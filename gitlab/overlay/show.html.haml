@@ -22,6 +22,9 @@
       .card-body
         %code= @snapshot.dig(:aegis_deployment, 'commit') || 'not recorded'
 
+%p.gl-mt-4
+  = link_to 'GitHub bridge and external-forge state', aegis_project_github_path(project_id: @project.id)
+
 %h2.gl-mt-6 Roadmap
 .table-responsive
   %table.table

@@ -23,7 +23,11 @@ OVERLAY_MAP = OVERLAY / "overlay.json"
 ROUTES_NEEDLE = "      draw :development\n"
 ROUTES_INSERT = ROUTES_NEEDLE + "      draw :aegis\n"
 MCP_NEEDLE = "      CUSTOM_TOOLS = {\n"
-MCP_ENTRY = "        'aegis_get_supervision_state' => ::Mcp::Tools::Aegis::GetSupervisionStateService,\n"
+MCP_ENTRIES = (
+    "        'aegis_get_supervision_state' => ::Mcp::Tools::Aegis::GetSupervisionStateService,\n"
+    "        'aegis_github_get_state' => ::Mcp::Tools::Aegis::GetGithubStateService,\n"
+    "        'aegis_github_mutate' => ::Mcp::Tools::Aegis::MutateGithubService,\n"
+)
 FORBIDDEN_TARGETS = {
     "Gemfile",
     "config/application.rb",
@@ -145,7 +149,11 @@ def build_manifest(host: Path, copied: list[str], lock: dict) -> dict:
         "aegis_overlay_files": copied,
         "result_sha256": hashes,
         "single_rails_application": True,
-        "mcp_tool": "aegis_get_supervision_state",
+        "mcp_tools": [
+            "aegis_get_supervision_state",
+            "aegis_github_get_state",
+            "aegis_github_mutate",
+        ],
         "claim": "assembly identity only; not semantic or formal proof evidence",
     }
 
@@ -165,7 +173,7 @@ def assemble(host: Path) -> dict:
     patch_once(
         host / "app/services/mcp/tools/manager.rb",
         MCP_NEEDLE,
-        MCP_NEEDLE + MCP_ENTRY,
+        MCP_NEEDLE + MCP_ENTRIES,
         "aegis_get_supervision_state",
     )
     manifest = build_manifest(host, copied, lock)
