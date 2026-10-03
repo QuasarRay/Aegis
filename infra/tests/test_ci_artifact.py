@@ -75,6 +75,37 @@ class Artifact(unittest.TestCase):
         self.assertTrue(result["compiled"])
         self.assertIn("no authenticated", result["claim"])
 
+    def add_frontend(self, *, failed=False, content=b"fixture AST"):
+        old = next(n for n in self.members if n.endswith(".json"))
+        observation = json.loads(self.members.pop(old))
+        sha = digest(content)
+        name = f".metarocq/evidence/frontend-{sha}.ast"
+        observation["frontend"] = {"generated/pcuic_isapp.ast": {"path": name, "sha256": sha}}
+        self.members[name] = content
+        if failed:
+            observation.update(status="FAILED", outputs={})
+            self.manifest["steps"].update(extract="failure", compile="skipped")
+            self.members = {n: b for n, b in self.members.items() if not n.startswith("generated/")}
+        self.members[".metarocq/evidence/fixture-extraction-" + digest(observation) + ".json"] = json.dumps(observation).encode()
+        return name
+
+    def test_frontend_survives_backend_failure_without_claiming_generation(self):
+        self.generated()
+        name = self.add_frontend(failed=True)
+        result = self.inspect()
+        self.assertEqual(result["frontend_preserved"], ["generated/pcuic_isapp.ast"])
+        self.assertFalse(result["generated"])
+        self.assertFalse(result["compiled"])
+        del self.members[name]
+        with self.assertRaisesRegex(ContractError, "frontend checkpoint missing"):
+            self.inspect()
+
+    def test_frontend_cannot_disagree_with_published_ast(self):
+        self.generated()
+        self.add_frontend(content=b"different AST")
+        with self.assertRaisesRegex(ContractError, "differs from published AST"):
+            self.inspect()
+
     def test_stale_rust_after_skipped_generation_is_rejected(self):
         self.members["generated/pcuic_isapp.rs"] = b"previous candidate"
         with self.assertRaisesRegex(ContractError, "advertises candidate"):

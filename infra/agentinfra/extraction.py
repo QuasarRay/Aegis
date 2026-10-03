@@ -66,6 +66,19 @@ def generate(root, plan, timeout):
                 if argv[0] == identity["peregrine"]["path"]:
                     candidate = confined_path(work, argv[2], must_exist=True)
                     require(candidate.is_file() and candidate.stat().st_size > 0, "frontend emitted no typed AST")
+                    require(candidate.stat().st_size <= 32 * 1024 * 1024, "frontend checkpoint exceeds 32 MiB budget")
+                    require(source_snapshot(root) == before and tool_identity() == identity,
+                            "source or extraction executable changed before frontend checkpoint")
+                    content = candidate.read_bytes()
+                    sha = digest(content)
+                    name = f".metarocq/evidence/frontend-{sha}.ast"
+                    saved = confined_path(root, name)
+                    exists = saved.exists()
+                    require(not exists or digest(saved.read_bytes()) == sha, "frontend checkpoint was changed")
+                    FileTransaction(root, [Mutation(Path(name), content, expected_exists=exists,
+                        expected_sha256=sha if exists else None)], state_dir=root / ".aegis/extraction-transactions",
+                        name="frontend").commit(retain=False)
+                    result.setdefault("frontend", {})[output_map[argv[2]]] = {"path": name, "sha256": sha}
                 remaining = deadline - time.monotonic()
                 require(remaining > 0, "extraction time budget exhausted")
                 observed = run_process(argv, cwd=work, timeout=remaining, env=env)
