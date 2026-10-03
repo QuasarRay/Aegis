@@ -14,10 +14,11 @@ The GitLab/Dagger/Rails architecture adds useful supervision and self-hosting ca
 
 The default `AEGIS_CONTROL_PLANE_MODE=auto` behaves as follows:
 
-1. If a GitLab URL is configured, probe GitLab `/-/readiness?all=1`.
-2. If GitLab and its dependent services are ready, select the GitLab Rails/MCP/Dagger control plane.
-3. If GitLab is unconfigured or the readiness/delegation path fails, select the existing legacy controller.
-4. Do not fork roadmap, evidence, PostgreSQL, `.aegis/`, or `.metarocq/` state when switching modes.
+1. If a GitLab URL is configured, probe the GitLab sign-in page by default. This avoids the monitoring-endpoint IP allowlist on external GitHub runners.
+2. A self-hosted deployment may set `AEGIS_GITLAB_READINESS_URL` to `/-/readiness?all=1` for a stronger dependency probe.
+3. If the selected probe passes, select the GitLab Rails/MCP/Dagger control plane.
+4. If GitLab is unconfigured or the availability/delegation path fails, select the existing legacy controller.
+5. Do not fork roadmap, evidence, PostgreSQL, `.aegis/`, or `.metarocq/` state when switching modes.
 
 Explicit `gitlab` mode is fail-closed: it does not silently fall back. Explicit `legacy` mode does not contact GitLab.
 
