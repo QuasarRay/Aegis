@@ -20,10 +20,31 @@
     "tag": "v19.4.1"
   },
   "ruby_rust": {
-    "magnus": "0.9.1",
-    "rails_to_rust_transpiler": "none-qualified",
-    "rb_sys": "0.9.130",
-    "strategy": "ffi_extension_only_when_profiled_or_contract-justified"
+    "strategy": "rails_in_ruby_rust_extensions_only_when_profiled_or_contract_justified",
+    "magnus": {
+      "repository": "https://github.com/matsadler/magnus.git",
+      "commit": "c08ca65b527e2cff2b347c46d3f8a029e17ca665",
+      "version": "0.10.0",
+      "status": "qualified_candidate_not_runtime_dependency"
+    },
+    "rb_sys": {
+      "repository": "https://github.com/oxidize-rb/rb-sys.git",
+      "commit": "7ade413d4472453c24d0741af53c728f5902cb38",
+      "version": "0.9.130",
+      "status": "qualified_candidate_not_runtime_dependency"
+    },
+    "roundhouse": {
+      "repository": "https://github.com/rubys/roundhouse.git",
+      "commit": "e87957f55f65499bb3d3111a1b1f467de8593e11",
+      "version": "2026.9.18",
+      "status": "experimental_optional_only"
+    },
+    "spinel": {
+      "repository": "https://github.com/matz/spinel.git",
+      "commit": "1d26ef67ceb9d46d1bbc9ee3373545483f1224d4",
+      "status": "experimental_optional_only"
+    },
+    "whole_gitlab_transpile": "rejected_for_required_runtime_until_gitlab_conformance_and_supported_rails_surface_are_demonstrated"
   },
   "schema": 1
 }
