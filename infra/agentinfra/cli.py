@@ -29,6 +29,11 @@ def main(argv=None):
     checkpoint = commands.add_parser("checkpoint")
     checkpoint.add_argument("--pr", type=int, required=True)
     commands.add_parser("audit")
+    inspect = commands.add_parser("inspect-artifact")
+    inspect.add_argument("archive", type=Path)
+    inspect.add_argument("--run", type=int, required=True)
+    inspect.add_argument("--head", required=True)
+    inspect.add_argument("--sha256", required=True)
     args = parser.parse_args(argv)
     try:
         app = MetaRocq(args.root)
@@ -44,6 +49,10 @@ def main(argv=None):
             out = app.verify(args.timeout)
         elif args.command == "checkpoint":
             out = app.checkpoint(args.pr)
+        elif args.command == "inspect-artifact":
+            from .ci_artifact import inspect
+            out = inspect(args.root, args.archive, expected_run=args.run,
+                          expected_head=args.head, expected_sha256=args.sha256)
         else:
             out = getattr(app, args.command)()
         print(json.dumps(out, sort_keys=True, separators=(",", ":")))
