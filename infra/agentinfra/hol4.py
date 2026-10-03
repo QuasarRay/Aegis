@@ -9,9 +9,10 @@ from dataclasses import asdict
 from pathlib import Path
 import asyncio
 import os
+import re
 import shutil
 
-from .contracts import FRAMEWORK, digest, read_json, require
+from .contracts import FRAMEWORK, digest, git, read_json, require
 from .process import run_process
 from .security import confined_path
 
@@ -32,6 +33,9 @@ def hol4_home() -> Path:
     require(bool(value), "HOLDIR must point at the pinned HOL4 checkout")
     home = Path(value).resolve(strict=True)
     require((home / "bin/Holmake").is_file(), "HOLDIR has no built bin/Holmake")
+    require(git(home, "rev-parse", "HEAD").decode().strip() == pins()["hol4_commit"],
+            "HOL4 checkout differs from the pinned source")
+    require(not git(home, "diff", "HEAD", "--"), "HOL4 tracked source is modified")
     return home
 
 
@@ -43,11 +47,14 @@ def executable_identity(path: Path) -> dict:
 def identity() -> dict:
     mcp = shutil.which("hol4-mcp")
     require(mcp is not None, "required tool unavailable: hol4-mcp")
-    return {
+    result = {
         "pins": pins(),
         "Holmake": executable_identity(hol4_home() / "bin/Holmake"),
         "hol4-mcp": executable_identity(Path(mcp)),
     }
+    if os.environ.get("HOL4_Z3_EXECUTABLE"):
+        result["Z3"] = executable_identity(Path(os.environ["HOL4_Z3_EXECUTABLE"]))
+    return result
 
 
 def tactictoe_cache(root: Path) -> Path:
@@ -58,11 +65,19 @@ def tactictoe_cache(root: Path) -> Path:
 
 
 def environment(root: Path) -> dict[str, str]:
-    return {
+    result = {
         "HOLDIR": str(hol4_home()),
         "HOL4_TACTICTOE_CACHE": str(tactictoe_cache(root)),
         **({"HOME": os.environ["HOME"]} if "HOME" in os.environ else {}),
     }
+    if os.environ.get("HOL4_Z3_EXECUTABLE"):
+        # HOL4's Z3 adapter interpolates this into a shell command.
+        solver = str(Path(os.environ["HOL4_Z3_EXECUTABLE"]).resolve(strict=True))
+        require(re.fullmatch(r"/[A-Za-z0-9_./+-]+", solver) is not None,
+                "Z3 executable path is not shell-safe for the upstream adapter")
+        require(os.access(solver, os.X_OK), "configured Z3 is not executable")
+        result["HOL4_Z3_EXECUTABLE"] = solver
+    return result
 
 
 def mcp_stdio_config(root: Path) -> dict:
@@ -104,7 +119,7 @@ def holmake(root: Path, workdir: str = ".", timeout: int = 600) -> dict:
         "status": "CHECKED" if checked else "FAILED",
         "tool_identity": before,
         "execution": asdict(result),
-        "claim": "direct HOL4 kernel build; hol4-mcp is outside the trusted acceptance path",
+        "claim": "direct Holmake process observation; theorem scope and tags require separate inspection",
     }
 
 
