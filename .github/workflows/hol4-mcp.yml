@@ -1,0 +1,50 @@
+name: HOL4 and hol4-mcp qualification
+on:
+  pull_request:
+    paths:
+      - 'infra/agentinfra/hol4.py'
+      - 'contracts/toolchain.json'
+      - 'scripts/check_hol4.py'
+      - '.github/workflows/hol4-mcp.yml'
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref }}
+  cancel-in-progress: true
+permissions:
+  contents: read
+jobs:
+  qualify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          ref: ${{ github.event.pull_request.head.sha || github.sha }}
+          persist-credentials: false
+      - name: Install HOL4 prerequisites
+        run: sudo apt-get update && sudo apt-get install -y build-essential polyml libpolyml-dev git python3-pip
+      - name: Build pinned HOL4
+        env:
+          HOL4_SHA: "40dd5b03de658f4bd9e3f4225fb0f1602ac90467"
+        run: |
+          git clone https://github.com/HOL-Theorem-Prover/HOL.git /tmp/HOL
+          git -C /tmp/HOL checkout --detach "$HOL4_SHA"
+          cd /tmp/HOL
+          poly_archive="$(find /usr/lib -name libpolymain.a -print -quit)"
+          test -n "$poly_archive"
+          poly_dir="$(dirname "$poly_archive")"
+          printf 'val polymllibdir = "%s";\n' "$poly_dir" > tools-poly/poly-includes.ML
+          poly --script tools/smart-configure.sml
+          bin/build --seq tools/sequences/core-theories -j2
+          echo "HOLDIR=/tmp/HOL" >> "$GITHUB_ENV"
+      - name: Install pinned hol4-mcp
+        env:
+          MCP_SHA: "5a8b59147059d581d510176c3405eb24d561c178"
+        run: python3 -m pip install --break-system-packages "git+https://github.com/HOL-Theorem-Prover/hol4-mcp.git@$MCP_SHA"
+      - name: Qualify direct HOL4 gate and MCP discovery
+        run: python3 -B scripts/check_hol4.py
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        if: always()
+        with:
+          name: hol4-qualification
+          path: .aegis/hol4-qualification.json
+          include-hidden-files: true
