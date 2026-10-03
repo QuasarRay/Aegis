@@ -17,7 +17,11 @@ from .extraction_recipe import recipe, outputs, input_hashes, frontend_files
 HEX256 = re.compile(r"[0-9a-f]{64}\Z")
 
 
-def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
+def inspect(root, archive, *, expected_run, expected_head, expected_sha256, max_expanded_mib=64):
+    # An operator may explicitly budget for the large, repetitive output of a
+    # proof-data printer. The archive cannot choose or remove this bound.
+    require(type(max_expanded_mib) is int and 1 <= max_expanded_mib <= 256,
+            "expanded inspection budget must be an integer from 1 to 256 MiB")
     root = Path(root).resolve(strict=True)
     selected = recipe(root)
     output_map = outputs(selected)
@@ -35,7 +39,8 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
     # Inspect the very bytes whose digest was checked, not a reopened path.
     with zipfile.ZipFile(io.BytesIO(data)) as z:
         infos = z.infolist()
-        require(len(infos) <= 128 and sum(i.file_size for i in infos) <= 64 * 1024 * 1024,
+        expanded_bytes = sum(i.file_size for i in infos)
+        require(len(infos) <= 128 and expanded_bytes <= max_expanded_mib * 1024 * 1024,
                 "expanded artifact exceeds inspection budget")
         names = [i.filename for i in infos]
         require(len(names) == len(set(names)), "duplicate ZIP member")
@@ -101,6 +106,7 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
         if steps["install"] == "success":
             require(".aegis/opam-switch.export" in files, "successful installation lacks dependency export")
     return {"status": "CONSISTENT", "run_id": expected_run, "head": expected_head,
+            "expanded_bytes": expanded_bytes, "max_expanded_mib": max_expanded_mib,
             "generated": generated, "compiled": steps["compile"] == "success", "steps": steps,
             "frontend_preserved": sorted(observation.get("frontend", {})) if observation else [],
             "claim": "artifact/run/source consistency only; no authenticated build provenance or semantic proof"}

@@ -34,6 +34,8 @@ def main(argv=None):
     inspect.add_argument("--run", type=int, required=True)
     inspect.add_argument("--head", required=True)
     inspect.add_argument("--sha256", required=True)
+    inspect.add_argument("--max-expanded-mib", type=int, default=64,
+                         help="explicit expanded ZIP budget, 1..256 MiB (default 64)")
     args = parser.parse_args(argv)
     try:
         app = MetaRocq(args.root)
@@ -52,7 +54,8 @@ def main(argv=None):
         elif args.command == "inspect-artifact":
             from .ci_artifact import inspect
             out = inspect(args.root, args.archive, expected_run=args.run,
-                          expected_head=args.head, expected_sha256=args.sha256)
+                          expected_head=args.head, expected_sha256=args.sha256,
+                          max_expanded_mib=args.max_expanded_mib)
         else:
             out = getattr(app, args.command)()
         print(json.dumps(out, sort_keys=True, separators=(",", ":")))
