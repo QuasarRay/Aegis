@@ -19,7 +19,7 @@ from urllib.request import Request, urlopen
 ROOT = Path(__file__).resolve().parents[1]
 PACKET = ROOT / "spec" / "astra-adoption.json"
 VALID_MODES = {"auto", "gitlab", "legacy"}
-READINESS_PATH = "/-/readiness?all=1"
+DEFAULT_PROBE_PATH = "/users/sign_in"
 
 
 def emit(value: dict) -> None:
@@ -36,7 +36,7 @@ def readiness_url() -> str | None:
     if override:
         return override
     base = os.environ.get("AEGIS_GITLAB_URL", "").strip().rstrip("/")
-    return f"{base}{READINESS_PATH}" if base else None
+    return f"{base}{DEFAULT_PROBE_PATH}" if base else None
 
 
 def probe_gitlab(*, opener=urlopen, timeout: float = 5.0) -> dict:
@@ -58,7 +58,7 @@ def probe_gitlab(*, opener=urlopen, timeout: float = 5.0) -> dict:
             "status": status,
             "url": url,
             "body": body[:1000],
-            "reason": "GitLab readiness passed" if status == 200 else "GitLab readiness returned non-200",
+            "reason": "GitLab availability probe passed" if status == 200 else "GitLab availability probe returned non-200",
         }
     except HTTPError as error:
         return {
@@ -66,14 +66,14 @@ def probe_gitlab(*, opener=urlopen, timeout: float = 5.0) -> dict:
             "ready": False,
             "status": error.code,
             "url": url,
-            "reason": "GitLab readiness HTTP failure",
+            "reason": "GitLab availability HTTP failure",
         }
     except (URLError, TimeoutError, OSError) as error:
         return {
             "configured": True,
             "ready": False,
             "url": url,
-            "reason": f"GitLab readiness transport failure: {type(error).__name__}",
+            "reason": f"GitLab availability transport failure: {type(error).__name__}",
         }
 
 
