@@ -153,3 +153,14 @@ class Extraction(unittest.TestCase):
         result = self.run_fixture()
         self.assertEqual(result["status"], "FAILED")
         self.assertFalse((self.root / "generated/retained.rs").exists())
+
+    def test_unused_legacy_driver_cannot_unlock_recipe_retry(self):
+        from agentinfra.extraction_budget import attempt_inputs
+        value = self.configure_retention()
+        value["driver"] = "extraction/Retained.v"
+        (self.root / "extraction/Retained.v").write_text("actual driver")
+        (self.root / "extraction/recipe.json").write_text(json.dumps(value))
+        with patch("agentinfra.extraction_budget.tool_identity", return_value=self.identity):
+            before = attempt_inputs(self.root, 30)
+            (self.root / "extraction/Bootstrap.v").write_text("unrelated change")
+            self.assertEqual(before, attempt_inputs(self.root, 30))
