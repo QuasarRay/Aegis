@@ -34,3 +34,9 @@ Validation: Python boundary regressions for wrong commits, modified sources,
 environment propagation and shell-path handling; real HOL4/Z3 CI is the gate
 for the positive and negative theorem-object checks. This architecture record
 uses ISO/IEC/IEEE 42010 concerns and correspondence without claiming conformance.
+
+First cloud attempt 37107288124 failed before any theorem: the inherited
+`core-theories` sequence starts at compute and omits the kernel bootstrap.
+The pinned upstream CI uses `upto-parallel`, which includes both kernel and
+core-theories. Reuse that sequence in HOL4 and TacticToe qualification; do not
+retry the same incomplete build. No proof was produced by the failed attempt.

@@ -46,7 +46,7 @@ jobs:
           poly_dir="$(dirname "$poly_archive")"
           printf 'val polymllibdir = "%s";\n' "$poly_dir" > tools-poly/poly-includes.ML
           poly --script tools/smart-configure.sml
-          bin/build --seq tools/sequences/core-theories -j2
+          bin/build --seq tools/sequences/upto-parallel -j2
 
       - name: Build a project-local theory
         run: |
