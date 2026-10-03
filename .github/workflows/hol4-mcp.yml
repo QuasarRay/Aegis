@@ -48,7 +48,7 @@ jobs:
           poly_dir="$(dirname "$poly_archive")"
           printf 'val polymllibdir = "%s";\n' "$poly_dir" > tools-poly/poly-includes.ML
           poly --script tools/smart-configure.sml
-          bin/build --seq tools/sequences/core-theories -j2
+          bin/build --seq tools/sequences/upto-parallel -j2
           cd src/HolSmt
           ../../bin/Holmake --qof -j2
       - name: Preserve built HOL4 before qualification
