@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 concurrency:
   group: ${{ github.workflow }}-${{ github.event.pull_request.head.ref || github.ref }}
-  cancel-in-progress: true
+  cancel-in-progress: false
 permissions:
   contents: read
 jobs:
@@ -34,10 +34,27 @@ jobs:
           restore-keys: |
             tactictoe-${{ runner.os }}-${{ env.HOL4_SHA }}-
 
-      - name: Install and build pinned HOL4
+      - name: Install prerequisites and identify image
+        id: image
         run: |
           sudo apt-get update
           sudo apt-get install -y build-essential polyml libpolyml-dev git
+          echo "id=$ImageOS-$ImageVersion" >> "$GITHUB_OUTPUT"
+      - name: Reuse the completed HOL4 qualification build
+        id: holcache
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
+        with:
+          path: /tmp/HOL
+          key: hol4-z3-v1-40dd5b03de658f4bd9e3f4225fb0f1602ac90467-${{ steps.image.outputs.id }}-${{ runner.arch }}
+      - name: Validate restored source
+        if: steps.holcache.outputs.cache-hit == 'true'
+        run: |
+          test "$(git -C /tmp/HOL rev-parse HEAD)" = "$HOL4_SHA"
+          git -C /tmp/HOL diff --exit-code HEAD --
+          test -x /tmp/HOL/bin/Holmake
+      - name: Build pinned HOL4 when no completed cache exists
+        if: steps.holcache.outputs.cache-hit != 'true'
+        run: |
           git clone https://github.com/HOL-Theorem-Prover/HOL.git "$HOLDIR"
           git -C "$HOLDIR" checkout --detach "$HOL4_SHA"
           cd "$HOLDIR"
@@ -46,7 +63,7 @@ jobs:
           poly_dir="$(dirname "$poly_archive")"
           printf 'val polymllibdir = "%s";\n' "$poly_dir" > tools-poly/poly-includes.ML
           poly --script tools/smart-configure.sml
-          bin/build --seq tools/sequences/core-theories -j2
+          bin/build --seq tools/sequences/upto-parallel -j2
 
       - name: Build a project-local theory
         run: |
