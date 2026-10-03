@@ -42,48 +42,46 @@ val _ = TextIO.closeOut out;
 
 
 def main() -> int:
-    with tempfile.TemporaryDirectory(prefix="aegis-hol4-") as td:
-        root = Path(td)
-        (root / ".aegis").mkdir()
-        theory = root / "theory"
-        theory.mkdir()
-        (theory / "AegisHol4SmokeScript.sml").write_text(SCRIPT)
-        (theory / "Holmakefile").write_text("INCLUDES = $(HOLDIR)/src/integer $(HOLDIR)/src/HolSmt\n")
-        solver = Path(os.environ["HOL4_Z3_EXECUTABLE"])
-        solver_before = executable_identity(solver)
-        result = holmake(root, "theory", timeout=600)
-        require(executable_identity(solver) == solver_before, "Z3 executable changed during replay")
-        inspected = None
-        artifacts = {}
-        if result["status"] == "CHECKED":
-            inspected = json.loads((theory / "inspection.json").read_text())
-            require(inspected == {"theorem": "AegisHol4Smoke.integer_interval", "goal_checked": True,
-                    "hypotheses": 0, "non_disk_oracles": 0, "local_axioms": 0, "negative_controls": 3},
-                    "unexpected theorem inspection result")
-            for name in ("AegisHol4SmokeTheory.sml", "AegisHol4SmokeTheory.sig"):
-                data = (theory / name).read_bytes()
+    packet = {"status": "FAILED", "script_sha256": digest(SCRIPT.encode()),
+              "claim": "Z3/HOL4 reconstruction and inspection qualification only; not MetaRocq refinement"}
+    try:
+        with tempfile.TemporaryDirectory(prefix="aegis-hol4-") as td:
+            root = Path(td)
+            (root / ".aegis").mkdir()
+            theory = root / "theory"
+            theory.mkdir()
+            (theory / "AegisHol4SmokeScript.sml").write_text(SCRIPT)
+            (theory / "Holmakefile").write_text("INCLUDES = $(HOLDIR)/src/integer $(HOLDIR)/src/HolSmt\n")
+            solver = Path(os.environ["HOL4_Z3_EXECUTABLE"])
+            packet["z3"] = executable_identity(solver)
+            packet["holmake"] = holmake(root, "theory", timeout=600)
+            require(executable_identity(solver) == packet["z3"], "Z3 executable changed during replay")
+            require(packet["holmake"]["status"] == "CHECKED", "direct HOL4 replay failed; see execution")
+            packet["inspection"] = json.loads((theory / "inspection.json").read_text())
+            require(packet["inspection"] == {
+                "theorem": "AegisHol4Smoke.integer_interval", "goal_checked": True,
+                "hypotheses": 0, "non_disk_oracles": 0, "local_axioms": 0, "negative_controls": 3},
+                "unexpected theorem inspection result")
+            packet["exports"] = {}
+            # Pinned Poly/ML HOL4 uses HFS_NameMunge.HOLOBJDIR, not the source directory.
+            for suffix in ("sml", "sig", "dat"):
+                name = "AegisHol4SmokeTheory." + suffix
+                data = (theory / ".hol/objs" / name).read_bytes()
                 require(bool(data), "theory export is empty")
-                artifacts[name] = digest(data)
-        config = None
-        try:
-            config = mcp_stdio_config(root)
-            mcp = mcp_smoke(root)
-        except Exception as exc:
-            # Preserve the direct replay observation even if the optional
-            # navigation service is broken. Overall qualification still fails.
-            mcp = {"status": "FAILED", "reason": str(exc), "claim": "MCP discovery only"}
-        output = ROOT / ".aegis/hol4-qualification.json"
-        output.parent.mkdir(exist_ok=True)
-        output.write_text(json.dumps({
-            "claim": "Z3/HOL4 reconstruction and inspection qualification only; not MetaRocq refinement",
-            "script_sha256": digest(SCRIPT.encode()), "z3": solver_before,
-            "inspection": inspected, "exports": artifacts,
-            "mcp": config,
-            "mcp_smoke": mcp,
-            "holmake": result,
-        }, indent=2) + "\n")
-        print(json.dumps({"status": result["status"], "claim": result["claim"]}))
-        return 0 if result["status"] == "CHECKED" and mcp["status"] == "READY" else 1
+                packet["exports"][name] = digest(data)
+            packet["mcp"] = mcp_stdio_config(root)
+            packet["mcp_smoke"] = mcp_smoke(root)
+            require(packet["mcp_smoke"]["status"] == "READY", "MCP discovery failed")
+            packet["status"] = "QUALIFIED"
+    except Exception as exc:
+        # A later packaging/MCP failure must not discard the direct replay log.
+        packet["reason"] = str(exc)
+    output = ROOT / ".aegis/hol4-qualification.json"
+    output.parent.mkdir(exist_ok=True)
+    output.write_text(json.dumps(packet, indent=2) + "\n")
+    print(json.dumps({"status": packet["status"], "claim": packet["claim"],
+                      "reason": packet.get("reason")}))
+    return 0 if packet["status"] == "QUALIFIED" else 1
 
 
 if __name__ == "__main__":
