@@ -9,7 +9,7 @@ import unittest
 from unittest.mock import patch
 
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
-from agentinfra.candle import Candle
+from agentinfra.metarocq import MetaRocq
 from agentinfra.checkpoints import validate_pr
 from agentinfra.contracts import ContractError, FRAMEWORK, digest, read_json, source_snapshot, validate_plan
 from agentinfra.process import run_process
@@ -19,9 +19,9 @@ from agentinfra.governance import GovernanceViolation
 
 
 def plan():
-    p = read_json(FRAMEWORK / "templates/candle-plan.json")
+    p = read_json(FRAMEWORK / "templates/metarocq-plan.json")
     p["reuse"].update(strategy="handwrite", sources=[], generator=[], license="new code", reason="No reusable binding; small direct adapter costs least.")
-    p["obligations"][0].update(statement="Rust type result refines typeof_def under the declared representation relation.",
+    p["obligations"][0].update(statement="Rust type result refines isApp under the declared representation relation.",
         assumptions=["The HOL4-to-Rust relation is independently reviewed, not established by this fixture."],
         limits=["finite model fixture, depth at most 2"])
     return p
@@ -30,7 +30,7 @@ def plan():
 class Contracts(unittest.TestCase):
     def test_unfilled_template_is_not_an_implementation_contract(self):
         with self.assertRaisesRegex(ContractError, "placeholders"):
-            validate_plan(read_json(FRAMEWORK / "templates/candle-plan.json"))
+            validate_plan(read_json(FRAMEWORK / "templates/metarocq-plan.json"))
 
     def test_retired_test_order_commands_are_not_reachable(self):
         for command in ("task", "tdd", "law", "policy", "install"):
@@ -47,7 +47,7 @@ class Contracts(unittest.TestCase):
             self.assertEqual(p.read_text(), "governing instructions")
 
     def test_contract_without_test_order_fields_is_valid(self):
-        self.assertEqual(validate_plan(plan())["task"], "kernel-typeof")
+        self.assertEqual(validate_plan(plan())["task"], "pcuic-isapp")
 
     def test_generated_schema_mutants_are_rejected(self):
         mutations = [lambda p: p.update(schema=True), lambda p: p.update(extra="ignored"),
@@ -59,7 +59,7 @@ class Contracts(unittest.TestCase):
             lambda p: p["obligations"][0].update(anchor="invented.spec"),
             lambda p: p["obligations"][0].update(entry="x; echo success"),
             lambda p: p["obligations"][0].update(rust_paths=["../outside.rs"]),
-            lambda p: p["obligations"][0].update(rust_paths=[".candle/evidence/trick.rs"]),
+            lambda p: p["obligations"][0].update(rust_paths=[".metarocq/evidence/trick.rs"]),
             lambda p: p["obligations"][0].update(limits=[]),
             lambda p: p["reuse"].update(reason=""),
             lambda p: p["reuse"].update(strategy="generate", generator=[]),
@@ -83,8 +83,8 @@ class Contracts(unittest.TestCase):
         with tempfile.TemporaryDirectory() as td:
             result = run_process([sys.executable, "-c", "pass"], cwd=Path(td))
         o = plan()["obligations"][0]
-        good = "Checking harness proofs::kernel_typeof...\n - Status: SUCCESS\nVERIFICATION:- SUCCESSFUL\nComplete - 1 successfully verified harnesses, 0 failures, 1 total.\n"
-        for text in ["", good*2, good.replace("proofs::kernel_typeof", "other"), good+" - Status: UNREACHABLE\n", good+" - Status: FAILURE\n"]:
+        good = "Checking harness proofs::pcuic_isapp...\n - Status: SUCCESS\nVERIFICATION:- SUCCESSFUL\nComplete - 1 successfully verified harnesses, 0 failures, 1 total.\n"
+        for text in ["", good*2, good.replace("proofs::pcuic_isapp", "other"), good+" - Status: UNREACHABLE\n", good+" - Status: FAILURE\n"]:
             self.assertFalse(checked_output(o, replace(result, stdout=text)))
         self.assertTrue(checked_output(o, replace(result, stdout=good)))
         # A solver's UNSAT result establishes the assertion; it is not a cover status.
@@ -118,13 +118,15 @@ class Lifecycle(unittest.TestCase):
         self.run_git("init", "-q")
         (self.root / ".gitignore").write_text(".aegis/\n")
         (self.root / "src").mkdir()
+        (self.root / "generated").mkdir()
+        (self.root / "generated/pcuic_isapp.rs").write_text("// fixture only\n")
         for name in ("kernel", "proofs"):
             (self.root / f"src/{name}.rs").write_text("// fixture, no Rust proof claimed\n")
         (self.root / "docs/adr").mkdir(parents=True)
-        (self.root / "docs/adr/0001-kernel-refinement.md").write_text("Fixture correspondence assumptions")
+        (self.root / "docs/adr/0001-extraction-boundary.md").write_text("Fixture correspondence assumptions")
         (self.root / "plan.json").write_text(json.dumps(plan()))
         self.commit()
-        self.app = Candle(self.root)
+        self.app = MetaRocq(self.root)
 
     def run_git(self, *args):
         return subprocess.check_output(["git", "-c", "user.name=Fixture", "-c", "user.email=fixture@example.invalid", *args], cwd=self.root, stderr=subprocess.DEVNULL)
@@ -134,11 +136,11 @@ class Lifecycle(unittest.TestCase):
         self.run_git("commit", "-qm", "fixture checkpoint")
 
     def freeze(self):
-        with patch("agentinfra.candle.verify_references", return_value={}):
+        with patch("agentinfra.metarocq.verify_references", return_value={}):
             return self.app.freeze("plan.json", {"candle": self.root, "cakeml": self.root})
 
     def observe(self, status="CHECKED"):
-        with patch("agentinfra.candle.verify_references", return_value={}), patch("agentinfra.candle.verify_one", return_value={"id": "kernel-typeof", "status": status}):
+        with patch("agentinfra.metarocq.verify_references", return_value={}), patch("agentinfra.metarocq.verify_one", return_value={"id": "pcuic-isapp", "status": status}):
             return self.app.verify()
 
     def test_production_cycle_accepts_contract_without_failing_test_and_requires_checkpoint(self):
@@ -148,8 +150,8 @@ class Lifecycle(unittest.TestCase):
         self.assertEqual(self.observe()["results"][0]["status"], "CHECKED")
         self.commit()
         receipt = {"head": self.run_git("rev-parse", "HEAD").decode().strip(), "pr": 7,
-                   "repository": "QuasarRay/Candle-rs", "branch": "child", "base": "main", "url": "fixture"}
-        with patch("agentinfra.candle.verify_references", return_value={}), patch("agentinfra.candle.attest", return_value=receipt):
+                   "repository": "QuasarRay/MetaRocq-rs", "branch": "child", "base": "main", "url": "fixture"}
+        with patch("agentinfra.metarocq.verify_references", return_value={}), patch("agentinfra.metarocq.attest", return_value=receipt):
             self.app.checkpoint(7)
             self.assertEqual(self.app.audit()["status"], "SCOPED_CHECKS_RECORDED")
 
@@ -157,7 +159,7 @@ class Lifecycle(unittest.TestCase):
         self.freeze()
         self.observe("BLOCKED")
         self.commit()
-        with patch("agentinfra.candle.verify_references", return_value={}), patch("agentinfra.candle.attest", return_value={"head": "a"*40, "pr": 7}):
+        with patch("agentinfra.metarocq.verify_references", return_value={}), patch("agentinfra.metarocq.attest", return_value={"head": "a"*40, "pr": 7}):
             self.app.checkpoint(7)
             with self.assertRaisesRegex(ContractError, "blocked"):
                 self.app.audit()
@@ -166,8 +168,8 @@ class Lifecycle(unittest.TestCase):
         self.freeze()
         self.observe()
         state = self.app.state()
-        (self.root / "src/kernel.rs").write_text("changed")
-        with patch("agentinfra.candle.verify_references", return_value={}):
+        (self.root / "generated/pcuic_isapp.rs").write_text("changed")
+        with patch("agentinfra.metarocq.verify_references", return_value={}):
             with self.assertRaisesRegex(ContractError, "stale"):
                 self.app.evidence(state)
         (self.root / state["evidence_path"]).write_text("{}")
@@ -180,12 +182,12 @@ class Lifecycle(unittest.TestCase):
     def test_source_change_during_verification_cannot_produce_evidence(self):
         self.freeze()
         def mutate(*args):
-            (self.root / "src/kernel.rs").write_text("changed during proof")
-            return {"id": "kernel-typeof", "status": "CHECKED"}
-        with patch("agentinfra.candle.verify_references", return_value={}), patch("agentinfra.candle.verify_one", side_effect=mutate):
+            (self.root / "generated/pcuic_isapp.rs").write_text("changed during proof")
+            return {"id": "pcuic-isapp", "status": "CHECKED"}
+        with patch("agentinfra.metarocq.verify_references", return_value={}), patch("agentinfra.metarocq.verify_one", side_effect=mutate):
             with self.assertRaisesRegex(ContractError, "source changed"):
                 self.app.verify()
-        self.assertFalse((self.root / ".candle/evidence").exists())
+        self.assertFalse((self.root / ".metarocq/evidence").exists())
 
     def test_source_snapshot_includes_untracked_inputs_and_rejects_symlinks(self):
         before = source_snapshot(self.root)
@@ -197,7 +199,7 @@ class Lifecycle(unittest.TestCase):
 
     def test_uncommitted_work_cannot_be_called_durable(self):
         self.freeze()
-        (self.root / "src/kernel.rs").write_text("uncommitted")
+        (self.root / "generated/pcuic_isapp.rs").write_text("uncommitted")
         with self.assertRaisesRegex(ContractError, "commit all"):
             self.app.checkpoint(7)
 

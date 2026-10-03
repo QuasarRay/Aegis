@@ -1,94 +1,87 @@
 {
   "schema": 1,
   "paper": {
-    "title": "Candle: A Verified Implementation of HOL Light",
-    "authors": [
-      "Oskar Abrahamsson",
-      "Magnus O. Myreen",
-      "Ramana Kumar",
-      "Thomas Sewell"
-    ],
-    "doi": "10.4230/LIPIcs.ITP.2022.3",
-    "url": "https://drops.dagstuhl.de/entities/document/10.4230/LIPIcs.ITP.2022.3",
-    "role": "ultimate scientific reference"
+    "title": "Correct and Complete Type Checking and Certified Erasure for Coq, in Coq",
+    "doi": "10.1145/3706056",
+    "url": "https://doi.org/10.1145/3706056",
+    "role": "scientific guide; pinned original Rocq definitions remain the shared contract"
   },
   "repositories": [
     {
-      "id": "candle",
-      "repository": "https://github.com/CakeML/candle.git",
-      "commit": "5b1888b9a0c1da7ca0ef2e80526b726f2e27df9d",
-      "role": "compatibility implementation"
+      "id": "metarocq",
+      "repository": "https://github.com/MetaRocq/metarocq.git",
+      "commit": "7197056adbb9c15288b4c8d43407bf25786f723e",
+      "release": "v1.5.1-9.1",
+      "role": "original contract and executable definitions"
     },
     {
-      "id": "cakeml",
-      "repository": "https://github.com/CakeML/cakeml.git",
-      "commit": "bef5e6194c41e356441399d4344b965794dc0d1b",
-      "role": "original HOL4 definitions and proofs"
+      "id": "peregrine",
+      "repository": "https://github.com/peregrine-project/peregrine-tool.git",
+      "commit": "d768b83ffa7dab35b8d72241f0570b5bb6aedae9",
+      "role": "typed extraction to candidate Rust source"
     }
   ],
   "specifications": [
     {
-      "repository": "cakeml",
-      "path": "candle/standard/syntax/holSyntaxScript.sml",
-      "sha256": "8c00adc7d30e141308fdde768bc9ce3b4d4058d7250b046447e1b135878adc47",
-      "git_blob": "3f59b52b8c79263a9062b6ced41838a77b84f2ff"
+      "repository": "metarocq",
+      "path": "template-rocq/theories/Ast.v",
+      "sha256": "5ba617985615c145ae003ebb4e6e549056c6fda1d19cd42de5408cb3311f1a58",
+      "git_blob": "85b94d06e83165179611e347b2efd80cee1c28e9"
     },
     {
-      "repository": "cakeml",
-      "path": "candle/standard/semantics/holSemanticsScript.sml",
-      "sha256": "7d2b81b5281abc2e37c31dbe722d95032d56aecdf99dfec181566aa3e906ce34",
-      "git_blob": "b3d8a43cb1d9db1ceb53ebf6a475bd356228149f"
+      "repository": "metarocq",
+      "path": "pcuic/theories/PCUICAst.v",
+      "sha256": "13d4957b2cf06a3107169a74c523cbc9c9fd983b1cd187029009f0df8ce85500",
+      "git_blob": "37d32c787e198eb17c98956216c6ce59ea6abc2e"
     },
     {
-      "repository": "cakeml",
-      "path": "candle/standard/semantics/holSoundnessScript.sml",
-      "sha256": "b4fc64da5429d9e016b797d76b155774a56e2c12c1db97c747e7313f50a29677",
-      "git_blob": "1c0df486e8ef9c606419fed77326097c76b5a086"
+      "repository": "metarocq",
+      "path": "pcuic/theories/PCUICTyping.v",
+      "sha256": "849f5ab38a62e319c3a6a4163dfc904ef1fcbe6c8a9f8f0c4457c25b2ec158ab",
+      "git_blob": "8a68e86385c261ca16017d5af742d38ad68e1d5b"
     },
     {
-      "repository": "cakeml",
-      "path": "candle/standard/monadic/holKernelScript.sml",
-      "sha256": "2e3c3966d93b910b9ecfaeffa77de1189735a91493eda5175abf40ee5f97e878",
-      "git_blob": "c3df6bdb2dd0be3cbaa6073702764237999f0802"
+      "repository": "metarocq",
+      "path": "safechecker/theories/PCUICSafeChecker.v",
+      "sha256": "45585561c27ba074fe049f9eee1faa863ed0a891500aec87dcf573fc2ce8b981",
+      "git_blob": "8691e1f5d25b8001c7d497f0e67a71c888c6b0db"
     },
     {
-      "repository": "cakeml",
-      "path": "candle/standard/monadic/holKernelProofScript.sml",
-      "sha256": "c21b7846ed01917d28995889b14e2f3464945c350dac8b69acb61b4c9aaa9d6c",
-      "git_blob": "1067d57a40ac57a7640074ed2469ad17f0999418"
+      "repository": "metarocq",
+      "path": "erasure/theories/ErasureFunction.v",
+      "sha256": "651414bbcf6d24b0acbbfd9d38a84eca41501f186a1b9045e27ef1ad1a9e6ac0",
+      "git_blob": "f092d9c1541c82fd9801de5f16c427922d57132a"
     },
     {
-      "repository": "cakeml",
-      "path": "candle/standard/ml_kernel/print_thmScript.sml",
-      "sha256": "e852084151c809d7cbd08feb2bb0c051b862079aa0118fb08390fdaa1ae55fc0",
-      "git_blob": "6700d38087529ccddc5f041352f3e8b3ab9bbb07"
-    },
-    {
-      "repository": "cakeml",
-      "path": "candle/prover/candle_prover_invScript.sml",
-      "sha256": "6ee219c9a3121e3e7044f928cef989c9abbbbdc6e9ff1af8e89ccaa997874839",
-      "git_blob": "eb5074ff952535617131570b062948bbed0a9d53"
-    },
-    {
-      "repository": "cakeml",
-      "path": "candle/prover/candle_prover_semanticsScript.sml",
-      "sha256": "3549acb33c574d90d8a00f04f4ac75fbc6fc9b55a134dad3a985ba0737dd3f59",
-      "git_blob": "321ff71c2f7eebbd1393d1bc3461e609e5b3743d"
+      "repository": "metarocq",
+      "path": "safechecker-plugin/theories/Extraction.v",
+      "sha256": "5a7cee9e9588d7aadaa1092f673292615e3eb64fd41f1d08908588e1c6454a90",
+      "git_blob": "c682baa73de30e2b31bd3168f9ce137d68f8796d"
     }
   ],
   "target": {
-    "repository": "https://github.com/QuasarRay/Candle-rs.git",
-    "instructions_commit": "80af1124f9d9c13173a05122b24512cdb8d690dc",
-    "instructions_path": "AGENTS.MD"
+    "repository": "https://github.com/QuasarRay/MetaRocq-rs.git",
+    "instructions_commit": "089c4137f8a88c1864175cae34299a72ce07afac",
+    "instructions_path": "AGENTS.MD",
+    "instructions_sha256": "415e531b6cc25e42c12d0139b7966feff4d290077ecff0eff90eb5f7ca61d2ec"
   },
-  "limitations": [
-    "Pinned 2026 sources are not asserted to be the exact paper artifact.",
-    "Selected specification anchors are not a complete imported theory closure.",
-    "Shared syntax and semantics require HOL4 replay and a separately verified Rust refinement bridge."
-  ],
   "specification_roots": [
-    "candle/",
-    "compiler/repl/",
-    "compiler/bootstrap/compilation/x64/64/proofs/"
+    "common/",
+    "utils/",
+    "template-rocq/",
+    "pcuic/",
+    "safechecker/",
+    "erasure/",
+    "safechecker-plugin/",
+    "erasure-plugin/",
+    "quotation/"
+  ],
+  "limitations": [
+    "This source release is compatible with the inspected Peregrine opam constraints; it is not asserted to be the exact paper artifact.",
+    "Peregrine doc/backends.md marks the Rust backend and printer unverified.",
+    "Rocq source bytes are not HOL4 input. A semantics-preserving PCUIC/Rocq-to-HOL4 bridge remains OPEN.",
+    "Z3_TAC reconstructs supported SMT proofs; it does not prove arbitrary MetaRocq or Rust metatheory automatically.",
+    "Rust semantics, primitive remappings, extraction correctness, macro certificates, compiler and machine-code refinement remain OPEN.",
+    "safechecker-plugin Extraction.v declares fake_abstract_guard_impl_properties; it cannot be silently promoted to a proved guard implementation."
   ]
 }

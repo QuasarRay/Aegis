@@ -14,16 +14,16 @@ from .security import confined_path
 from .verifiers import invocation, verify_one
 
 
-class Candle:
+class MetaRocq:
     def __init__(self, root):
         self.root = Path(root).resolve(strict=True)
         self.control = confined_path(self.root, ".aegis")
-        self.state_path = confined_path(self.root, ".aegis/candle.json")
+        self.state_path = confined_path(self.root, ".aegis/metarocq.json")
 
     @contextmanager
     def locked(self):
-        lock_path = confined_path(self.root, ".aegis/candle.lock")
-        lock = FileLock(lock_path, "Candle contract cycle")
+        lock_path = confined_path(self.root, ".aegis/metarocq.lock")
+        lock = FileLock(lock_path, "MetaRocq contract cycle")
         lock.acquire(timeout=0)
         try:
             yield
@@ -32,7 +32,7 @@ class Candle:
 
     def state(self):
         state = read_json(self.state_path)
-        require(state.get("schema") == 1, "legacy/unknown state: archive it; do not reinterpret it as Candle evidence")
+        require(state.get("schema") == 1, "legacy/unknown state: archive it; do not reinterpret it as MetaRocq evidence")
         require(state.get("framework") == framework_digest(), "control plane changed; explicit new cycle required")
         require(state.get("plan_digest") == digest(state.get("plan")), "frozen plan changed")
         validate_plan(state["plan"])
@@ -89,6 +89,23 @@ class Candle:
                 require(confined_path(self.root, p, must_exist=True).is_file(), f"Rust source missing: {p}")
         return {**source_snapshot(self.root), "originals": originals}
 
+    def extract(self, timeout=600):
+        from .extraction import generate
+        with self.locked():
+            s = self.state()
+            require(s["phase"] == "BOUND", "extraction requires a bound, unverified cycle")
+            require(read_json(confined_path(self.root, s["plan_path"], must_exist=True)) == s["plan"], "contract file changed after binding")
+            originals = verify_references(s["plan"], s["references"])
+            result = generate(self.root, s["plan"], timeout)
+            require(verify_references(s["plan"], s["references"]) == originals, "upstream references changed during extraction")
+            require(s["framework"] == framework_digest(), "control plane changed during extraction")
+            result.update(task=s["plan"]["task"], plan_digest=s["plan_digest"], framework=s["framework"], originals=originals)
+            path = f".metarocq/evidence/{s['plan']['task']}-extraction-{digest(result)}.json"
+            atomic_write_json(confined_path(self.root, path), result, root=self.root)
+            s.update(extraction_path=path, extraction_digest=digest(result))
+            self.save(s)
+            return {"status": result["status"], "evidence": path, "reason": result.get("reason"), "claim": result["claim"]}
+
     def verify(self, timeout=120):
         require(type(timeout) is int and 0 < timeout <= 3600, "verification budget must be 1..3600 seconds per obligation")
         with self.locked():
@@ -107,9 +124,9 @@ class Candle:
             evidence = {"schema": 1, "task": s["plan"]["task"], "plan_digest": s["plan_digest"],
                         "framework": s["framework"], "source": before, "results": rows,
                         "head_observed": git(self.root, "rev-parse", "HEAD").decode().strip(),
-                        "claim": "scoped verifier observations; NOT a proof of the entire Rust Candle prover"}
+                        "claim": "scoped verifier observations; NOT a proof of the entire Rust MetaRocq prover"}
             evidence_id = digest(evidence)
-            path = f".candle/evidence/{s['plan']['task']}-{evidence_id}.json"
+            path = f".metarocq/evidence/{s['plan']['task']}-{evidence_id}.json"
             atomic_write_json(confined_path(self.root, path), evidence, root=self.root)
             s.update(phase="EVIDENCE", evidence_path=path, evidence_digest=evidence_id)
             self.save(s)
@@ -137,7 +154,8 @@ class Candle:
             statuses = [r["status"] for r in self.evidence(s)["results"]] if "evidence_path" in s else ["UNVERIFIED"]
             receipt = attest(self.root, s["plan"]["remote"], pr)
             receipt.update(task=s["plan"]["task"], plan_digest=s["plan_digest"], statuses=statuses,
-                           evidence=s.get("evidence_path"), evidence_digest=s.get("evidence_digest"))
+                           evidence=s.get("evidence_path"), evidence_digest=s.get("evidence_digest"),
+                           extraction=s.get("extraction_path"), extraction_digest=s.get("extraction_digest"))
             s.update(phase="PUBLISHED", checkpoint=receipt)
             self.save(s)
             return receipt

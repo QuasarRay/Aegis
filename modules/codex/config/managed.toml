@@ -1,2 +1,2 @@
-model = "gpt-6-astra"
-# No mandatory effort, speed, delegation or optional quality premium.
+# Preserve the model selected by the execution host.
+# No model, reasoning, speed, delegation or optional quality premium is imposed.

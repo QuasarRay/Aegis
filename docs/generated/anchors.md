@@ -4,11 +4,9 @@ Generated from `contracts/authority.json`; not a completeness or proof claim.
 
 | Original path | SHA-256 |
 | --- | --- |
-| `candle/standard/syntax/holSyntaxScript.sml` | `8c00adc7d30e141308fdde768bc9ce3b4d4058d7250b046447e1b135878adc47` |
-| `candle/standard/semantics/holSemanticsScript.sml` | `7d2b81b5281abc2e37c31dbe722d95032d56aecdf99dfec181566aa3e906ce34` |
-| `candle/standard/semantics/holSoundnessScript.sml` | `b4fc64da5429d9e016b797d76b155774a56e2c12c1db97c747e7313f50a29677` |
-| `candle/standard/monadic/holKernelScript.sml` | `2e3c3966d93b910b9ecfaeffa77de1189735a91493eda5175abf40ee5f97e878` |
-| `candle/standard/monadic/holKernelProofScript.sml` | `c21b7846ed01917d28995889b14e2f3464945c350dac8b69acb61b4c9aaa9d6c` |
-| `candle/standard/ml_kernel/print_thmScript.sml` | `e852084151c809d7cbd08feb2bb0c051b862079aa0118fb08390fdaa1ae55fc0` |
-| `candle/prover/candle_prover_invScript.sml` | `6ee219c9a3121e3e7044f928cef989c9abbbbdc6e9ff1af8e89ccaa997874839` |
-| `candle/prover/candle_prover_semanticsScript.sml` | `3549acb33c574d90d8a00f04f4ac75fbc6fc9b55a134dad3a985ba0737dd3f59` |
+| `template-rocq/theories/Ast.v` | `5ba617985615c145ae003ebb4e6e549056c6fda1d19cd42de5408cb3311f1a58` |
+| `pcuic/theories/PCUICAst.v` | `13d4957b2cf06a3107169a74c523cbc9c9fd983b1cd187029009f0df8ce85500` |
+| `pcuic/theories/PCUICTyping.v` | `849f5ab38a62e319c3a6a4163dfc904ef1fcbe6c8a9f8f0c4457c25b2ec158ab` |
+| `safechecker/theories/PCUICSafeChecker.v` | `45585561c27ba074fe049f9eee1faa863ed0a891500aec87dcf573fc2ce8b981` |
+| `erasure/theories/ErasureFunction.v` | `651414bbcf6d24b0acbbfd9d38a84eca41501f186a1b9045e27ef1ad1a9e6ac0` |
+| `safechecker-plugin/theories/Extraction.v` | `5a7cee9e9588d7aadaa1092f673292615e3eb64fd41f1d08908588e1c6454a90` |
