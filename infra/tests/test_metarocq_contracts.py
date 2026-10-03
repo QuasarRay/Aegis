@@ -248,6 +248,64 @@ class Lifecycle(unittest.TestCase):
                 self.app.verify()
             verifier.assert_not_called()
 
+    def test_intact_generation_is_reused_without_another_process(self):
+        self.extraction_fixture()
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.extraction.generate") as compiler:
+            self.assertTrue(self.app.extract()["reused"])
+            self.assertEqual(len(self.app.state()["extraction_attempts"]), 1)
+            compiler.assert_not_called()
+
+    def test_retry_needs_diagnosis_changed_inputs_and_remaining_budget(self):
+        self.extraction_fixture("FAILED")
+        driver = self.root / "extraction/Bootstrap.v"
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.extraction.generate") as compiler:
+            with self.assertRaisesRegex(ContractError, "diagnosis"):
+                self.app.extract()
+            with self.assertRaisesRegex(ContractError, "unchanged"):
+                self.app.extract(retry_diagnosis="Blind retry must not launch")
+            # A documentation edit is not a change to generation inputs.
+            (self.root / "docs/diagnosis.md").write_text("diagnosis only")
+            with self.assertRaisesRegex(ContractError, "unchanged"):
+                self.app.extract(retry_diagnosis="Added a note only")
+            compiler.assert_not_called()
+            driver.write_text("(* corrected driver fixture *)")
+            compiler.return_value = {"status": "FAILED", "outputs": {}, "claim": "fixture only",
+                                     "driver_sha256": digest(driver.read_bytes())}
+            self.app.extract(retry_diagnosis="Corrected the unsupported frontend command")
+            driver.write_text("(* third fixture *)")
+            with self.assertRaisesRegex(ContractError, "budget exhausted"):
+                self.app.extract(retry_diagnosis="Third attempt must require a checkpoint")
+            self.assertEqual(compiler.call_count, 1)
+            self.assertEqual(len(self.app.state()["extraction_attempts"]), 2)
+
+    def test_interruption_reserves_budget_and_does_not_keep_stale_active_evidence(self):
+        self.extraction_fixture("FAILED")
+        (self.root / "extraction/Bootstrap.v").write_text("(* corrected driver *)")
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.extraction.generate", side_effect=RuntimeError("interrupted")):
+            with self.assertRaisesRegex(RuntimeError, "interrupted"):
+                self.app.extract(retry_diagnosis="Corrected frontend command")
+        restarted = MetaRocq(self.root)
+        state = restarted.state()
+        self.assertEqual(state["extraction_attempts"][-1]["status"], "RESERVED")
+        self.assertNotIn("extraction_path", state)
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.extraction.generate") as compiler:
+            with self.assertRaisesRegex(ContractError, "budget exhausted"):
+                restarted.extract(retry_diagnosis="Restart cannot reset attempts")
+            compiler.assert_not_called()
+
+    def test_budget_limits_are_enforced_before_tool_execution(self):
+        self.freeze()
+        with patch("agentinfra.metarocq.verify_references", return_value={}), \
+             patch("agentinfra.extraction.generate") as compiler:
+            for timeout in (True, 0, -1, 601):
+                with self.assertRaisesRegex(ContractError, "time budget"):
+                    self.app.extract(timeout)
+            compiler.assert_not_called()
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -25,6 +25,7 @@ def main(argv=None):
     verify.add_argument("--timeout", type=int, default=120)
     extract = commands.add_parser("extract")
     extract.add_argument("--timeout", type=int, default=600)
+    extract.add_argument("--retry-diagnosis", help="failure diagnosis and correction; changed inputs also required")
     checkpoint = commands.add_parser("checkpoint")
     checkpoint.add_argument("--pr", type=int, required=True)
     commands.add_parser("audit")
@@ -38,7 +39,7 @@ def main(argv=None):
         elif args.command == "freeze":
             out = app.freeze(args.plan, {"metarocq": args.metarocq, "peregrine": args.peregrine})
         elif args.command == "extract":
-            out = app.extract(args.timeout)
+            out = app.extract(args.timeout, retry_diagnosis=args.retry_diagnosis)
         elif args.command == "verify":
             out = app.verify(args.timeout)
         elif args.command == "checkpoint":
