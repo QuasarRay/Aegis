@@ -1,0 +1,11 @@
+{
+  "files": {
+    "aegis.gitlab-ci.yml": ".gitlab/ci/aegis.gitlab-ci.yml",
+    "get_supervision_state_service.rb": "app/services/mcp/tools/aegis/get_supervision_state_service.rb",
+    "repository_snapshot.rb": "app/services/aegis/repository_snapshot.rb",
+    "route_aegis.rb": "config/routes/aegis.rb",
+    "show.html.haml": "app/views/aegis/supervision/show.html.haml",
+    "supervision_controller.rb": "app/controllers/aegis/supervision_controller.rb"
+  },
+  "schema": 1
+}
