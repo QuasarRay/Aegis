@@ -18,7 +18,7 @@ module Aegis
       task_registry = read_json(TASKS)
       manifest = read_json(MANIFEST)
       deployment = read_json(DEPLOYMENT)
-      tasks = Array(roadmap['tasks'])
+      tasks = records(roadmap['tasks'])
 
       {
         schema: 1,
@@ -26,10 +26,10 @@ module Aegis
         implementation_gate: roadmap.dig('policy', 'implementation_gate'),
         policy: roadmap['policy'] || {},
         tasks: tasks.map { |task| task_view(task, manifest) },
-        registered_principals: Array(task_registry).map { |item| item.slice('task', 'principal') },
+        registered_principals: records(task_registry).map { |item| item.slice('task', 'principal') },
         persistence: {
           events: manifest['events'],
-          heads: manifest['heads'] || {},
+          heads: hash_or_empty(manifest['heads']),
           claim: manifest['claim']
         },
         aegis_deployment: deployment.slice('repository', 'commit', 'claim'),
@@ -54,20 +54,29 @@ module Aegis
       data = read_text(path)
       return {} if data.blank?
 
-      Gitlab::Json.parse(data)
+      parsed = Gitlab::Json.parse(data)
+      parsed.is_a?(Hash) || parsed.is_a?(Array) ? parsed : {}
     rescue JSON::ParserError
       { '_error' => "invalid JSON at #{path}" }
     end
 
+    def records(value)
+      value.is_a?(Array) ? value.select { |item| item.is_a?(Hash) } : []
+    end
+
+    def hash_or_empty(value)
+      value.is_a?(Hash) ? value : {}
+    end
+
     def task_view(task, manifest)
       id = task['id']
-      observed = (manifest['heads'] || {}).key?(id)
+      observed = hash_or_empty(manifest['heads']).key?(id)
       {
         id: id,
         kind: task['kind'],
         depends_on: Array(task['depends_on']),
         description: task['description'],
-        acceptance: task['acceptance'] || {},
+        acceptance: hash_or_empty(task['acceptance']),
         blockers: Array(task['blockers']),
         process_evidence_recorded: observed,
         proof_complete: false
