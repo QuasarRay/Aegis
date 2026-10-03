@@ -69,7 +69,7 @@ If a check fails, inspect that check's named files only. Historical PRs and unch
 
 ## CI fallback
 
-The GitHub bridge workflow attempts exact-SHA delegation to the self-hosted GitLab control plane. If GitLab is reachable but delegation fails, the workflow validates the existing legacy bootstrap controller and reports a degraded fallback. It does not claim GitLab succeeded.
+The GitHub bridge workflow attempts exact-SHA delegation to the self-hosted GitLab control plane. If GitLab is unavailable or delegation fails, the workflow validates the legacy machine-readable roadmap/controller contract without requiring a live PostgreSQL driver, then reports a degraded fallback. Actual legacy `status`, `run` and `recover` still require the existing PostgreSQL driver and DSN; those persistence dependencies remain hard blocks. It does not claim GitLab succeeded.
 
 This is intended to keep repository development available during a GitLab fault while making the degraded state explicit.
 
