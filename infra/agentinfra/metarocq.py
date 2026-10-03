@@ -125,15 +125,23 @@ class MetaRocq:
 
     def extraction_evidence(self, state):
         from .extraction import DRIVER, OUTPUTS
+        from .extraction_recipe import recipe, outputs, input_hashes, frontend_files
         require("extraction_path" in state, "no captured extraction observation")
         result = read_json(confined_path(self.root, state["extraction_path"], must_exist=True))
         require(digest(result) == state["extraction_digest"], "extraction observation changed after capture")
         require(result["plan_digest"] == state["plan_digest"] and result["framework"] == state["framework"], "extraction binding mismatch")
         require(result["originals"] == verify_references(state["plan"], state["references"]), "extraction upstream binding mismatch")
-        require(result["driver_sha256"] == digest(confined_path(self.root, DRIVER, must_exist=True).read_bytes()), "extraction driver changed")
+        selected = recipe(self.root)
+        require(result["driver_sha256"] == digest(confined_path(self.root, selected["driver"], must_exist=True).read_bytes()), "extraction driver changed")
+        if (self.root / "extraction/recipe.json").exists():
+            require(result.get("recipe") == selected and result.get("recipe_inputs") == input_hashes(self.root, selected),
+                    "extraction recipe or support module changed")
         require(result["status"] in {"GENERATED", "BLOCKED", "FAILED"}, "unknown extraction status")
+        for name, expected in frontend_files(result, selected).items():
+            require(digest(confined_path(self.root, name, must_exist=True).read_bytes()) == expected,
+                    "frontend checkpoint changed after extraction")
         if result["status"] == "GENERATED":
-            require(set(result["outputs"]) == set(OUTPUTS.values()), "incomplete extraction output inventory")
+            require(set(result["outputs"]) == set(outputs(selected).values()), "incomplete extraction output inventory")
             for name, expected in result["outputs"].items():
                 require(digest(confined_path(self.root, name, must_exist=True).read_bytes()) == expected, "generated output changed after extraction")
         else:

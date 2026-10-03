@@ -12,7 +12,7 @@ import tempfile
 import threading
 import time
 from pathlib import Path
-from typing import Iterable, Mapping
+from typing import Callable, Iterable, Mapping
 
 from .security import minimal_subprocess_env, redact_text
 
@@ -103,17 +103,25 @@ class ProcessResult:
 
 
 class _Capture:
-    def __init__(self, limit: int):
+    def __init__(self, limit: int, sink=None):
         self.limit = limit
         self.buffer = bytearray()
         self.digest = hashlib.sha256()
         self.size = 0
+        self.sink = sink
+        self.error = None
 
     def consume(self, stream) -> None:
         while True:
             chunk = stream.read(65536)
             if not chunk:
                 return
+            if self.sink is not None:
+                try:
+                    self.sink(chunk)
+                except BaseException as exc:
+                    self.error = exc
+                    return
             self.digest.update(chunk)
             self.size += len(chunk)
             if len(self.buffer) < self.limit:
@@ -154,6 +162,7 @@ def run_process(
     timeout: float = 60.0,
     env: Mapping[str, str] | None = None,
     capture_limit: int = 1_000_000,
+    event_sink: Callable[[str, bytes], None] | None = None,
 ) -> ProcessResult:
     command = tuple(argv)
     if not command or not all(isinstance(item, str) and item for item in command):
@@ -207,15 +216,28 @@ def run_process(
             start_new_session=os.name != "nt",
         )
         job = _assign_kill_job(proc)
-        stdout_capture = _Capture(capture_limit)
-        stderr_capture = _Capture(capture_limit)
+        stdout_capture = _Capture(capture_limit, None if event_sink is None else lambda b: event_sink('stdout', b))
+        stderr_capture = _Capture(capture_limit, None if event_sink is None else lambda b: event_sink('stderr', b))
         stdout_thread = threading.Thread(target=stdout_capture.consume, args=(proc.stdout,), daemon=True)
         stderr_thread = threading.Thread(target=stderr_capture.consume, args=(proc.stderr,), daemon=True)
         stdout_thread.start()
         stderr_thread.start()
         timed_out = False
         try:
-            proc.wait(timeout=timeout)
+            deadline = time.monotonic() + timeout
+            while True:
+                if stdout_capture.error or stderr_capture.error:
+                    _kill_tree(proc, job)
+                    proc.wait(timeout=10)
+                    raise RuntimeError('durable event capture failed') from (stdout_capture.error or stderr_capture.error)
+                remaining = deadline - time.monotonic()
+                if remaining <= 0:
+                    raise subprocess.TimeoutExpired(command, timeout)
+                try:
+                    proc.wait(timeout=min(0.1, remaining))
+                    break
+                except subprocess.TimeoutExpired:
+                    continue
         except subprocess.TimeoutExpired:
             timed_out = True
             _kill_tree(proc, job)
@@ -236,6 +258,8 @@ def run_process(
                 raise RuntimeError("subprocess output reader did not terminate")
             proc.stdout.close()
             proc.stderr.close()
+        if stdout_capture.error or stderr_capture.error:
+            raise RuntimeError('durable event capture failed') from (stdout_capture.error or stderr_capture.error)
         finished = time.monotonic()
         result = ProcessResult(
             argv=command,

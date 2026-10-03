@@ -12,6 +12,7 @@ from .contracts import ContractError, digest, require, source_snapshot
 from .process import run_process
 from .security import confined_path
 from .transaction import FileTransaction, Mutation
+from .extraction_recipe import recipe, outputs as recipe_outputs, input_hashes
 
 DRIVER = "extraction/Bootstrap.v"
 OUTPUTS = {"candidate.ast": "generated/pcuic_isapp.ast", "candidate.rs": "generated/pcuic_isapp.rs"}
@@ -31,15 +32,23 @@ def tool_identity():
 def generate(root, plan, timeout):
     require(type(timeout) is int and 0 < timeout <= 3600, "extraction budget must be 1..3600 seconds total")
     require(plan["reuse"]["strategy"] == "generate", "extraction needs a generation decision")
-    require(any(o["anchor"] == "pcuic/theories/PCUICAst.v" and o["symbol"] == "isApp"
+    root = Path(root).resolve(strict=True)
+    configured = (root / "extraction/recipe.json").exists()
+    selected = recipe(root)
+    output_map = recipe_outputs(selected)
+    require(configured or any(o["anchor"] == "pcuic/theories/PCUICAst.v" and o["symbol"] == "isApp"
                 and OUTPUTS["candidate.rs"] in o["rust_paths"] for o in plan["obligations"]),
             "this bootstrap adapter supports only the declared PCUIC isApp slice")
-    root = Path(root).resolve(strict=True)
-    driver = confined_path(root, DRIVER, must_exist=True)
+    require({u["rust"] for u in selected["units"]} <=
+            {p for o in plan["obligations"] for p in o["rust_paths"]},
+            "recipe output lacks a declared proof obligation")
+    driver = confined_path(root, selected["driver"], must_exist=True)
     before = source_snapshot(root)
     result = {"schema": 1, "status": "BLOCKED", "claim": CLAIM, "source": before,
               "driver_sha256": digest(driver.read_bytes()), "executions": [], "outputs": {},
               "installation_provenance": "Installed Rocq libraries must be independently tied to the pinned sources; executable hashes alone do not establish this."}
+    if configured:
+        result.update(recipe=selected, recipe_inputs=input_hashes(root, selected))
     try:
         identity = tool_identity()
         result["tool_identity"] = identity
@@ -47,9 +56,29 @@ def generate(root, plan, timeout):
         deadline = time.monotonic() + timeout
         with tempfile.TemporaryDirectory(prefix="aegis-metarocq-") as td:
             work = Path(td)
-            (work / "Bootstrap.v").write_bytes(driver.read_bytes())
-            for argv in ([identity["rocq"]["path"], "compile", "Bootstrap.v"],
-                         [identity["peregrine"]["path"], "rust", "candidate.ast", "-o", "candidate.rs"]):
+            inputs = [*selected["support"], selected["driver"]]
+            for name in inputs:
+                (work / Path(name).name).write_bytes(confined_path(root, name, must_exist=True).read_bytes())
+            commands = [[identity["rocq"]["path"], "compile", Path(n).name] for n in inputs]
+            commands += [[identity["peregrine"]["path"], "rust", u["stem"] + ".ast", "-o", u["stem"] + ".rs"]
+                         for u in selected["units"]]
+            for argv in commands:
+                if argv[0] == identity["peregrine"]["path"]:
+                    candidate = confined_path(work, argv[2], must_exist=True)
+                    require(candidate.is_file() and candidate.stat().st_size > 0, "frontend emitted no typed AST")
+                    require(candidate.stat().st_size <= 32 * 1024 * 1024, "frontend checkpoint exceeds 32 MiB budget")
+                    require(source_snapshot(root) == before and tool_identity() == identity,
+                            "source or extraction executable changed before frontend checkpoint")
+                    content = candidate.read_bytes()
+                    sha = digest(content)
+                    name = f".metarocq/evidence/frontend-{sha}.ast"
+                    saved = confined_path(root, name)
+                    exists = saved.exists()
+                    require(not exists or digest(saved.read_bytes()) == sha, "frontend checkpoint was changed")
+                    FileTransaction(root, [Mutation(Path(name), content, expected_exists=exists,
+                        expected_sha256=sha if exists else None)], state_dir=root / ".aegis/extraction-transactions",
+                        name="frontend").commit(retain=False)
+                    result.setdefault("frontend", {})[output_map[argv[2]]] = {"path": name, "sha256": sha}
                 remaining = deadline - time.monotonic()
                 require(remaining > 0, "extraction time budget exhausted")
                 observed = run_process(argv, cwd=work, timeout=remaining, env=env)
@@ -57,11 +86,8 @@ def generate(root, plan, timeout):
                 require(observed.returncode == 0 and not observed.timed_out and not observed.stdout_truncated
                         and not observed.stderr_truncated, "extraction failed, timed out, or produced truncated diagnostics")
                 # A zero-exit frontend without a fresh AST must not run the backend.
-                if argv[1] == "compile":
-                    candidate = confined_path(work, "candidate.ast", must_exist=True)
-                    require(candidate.is_file() and candidate.stat().st_size > 0, "frontend emitted no typed AST")
             outputs = {}
-            for name, destination in OUTPUTS.items():
+            for name, destination in output_map.items():
                 path = confined_path(work, name, must_exist=True)
                 require(path.is_file() and path.stat().st_size > 0, f"missing/empty generated artifact: {name}")
                 outputs[destination] = path.read_bytes()

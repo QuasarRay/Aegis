@@ -48,7 +48,7 @@ def verify_one(root, o, timeout):
     argv = invocation(o)
     version_argv = ["cargo", "kani", "--version"] if o["method"] == "kani" else ["verus", "--version"]
     # Reuse the process recorder but preserve installed Rust toolchain locations.
-    env = {k: os.environ[k] for k in ("CARGO_HOME", "RUSTUP_HOME", "HOME") if k in os.environ}
+    env = {k: os.environ[k] for k in ("CARGO_HOME", "RUSTUP_HOME", "KANI_HOME", "HOME") if k in os.environ}
     env["NO_COLOR"] = "1"
     version = run_process(version_argv, cwd=root, timeout=min(timeout, 30), env=env)
     require(version.returncode == 0 and not version.timed_out and not version.stdout_truncated and not version.stderr_truncated, "tool version probe failed")

@@ -15,7 +15,9 @@ jobs:
           persist-credentials: false
           ref: ${{ github.event.pull_request.head.sha || github.sha }}
       - name: Validate source and negative cases
-        run: python3 -B scripts/selftest.py
+        run: |
+          python3 -m pip install -r database/requirements.txt
+          python3 -B scripts/selftest.py
       - name: Qualify live PR checkpoint against the exact head
         if: github.event_name == 'pull_request'
         env:

@@ -75,6 +75,57 @@ class Artifact(unittest.TestCase):
         self.assertTrue(result["compiled"])
         self.assertIn("no authenticated", result["claim"])
 
+    def test_expanded_budget_is_explicit_bounded_and_does_not_skip_hashes(self):
+        # A compact ZIP with a real oversized member, not a fabricated pass.
+        self.members[".aegis/opam-switch.export"] = b"x" * (1024 * 1024 + 1)
+        self.manifest["files"] = {n: digest(b) for n, b in self.members.items()}
+        archive = self.base / "large.zip"
+        with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as z:
+            z.writestr("run.json", json.dumps(self.manifest))
+            for name, data in self.members.items():
+                z.writestr(name, data)
+        with self.assertRaisesRegex(ContractError, "exceeds inspection budget"):
+            self.inspect(archive, max_expanded_mib=1)
+        result = self.inspect(archive, max_expanded_mib=2)
+        self.assertGreater(result["expanded_bytes"], 1024 * 1024)
+        self.assertEqual(result["max_expanded_mib"], 2)
+        for budget in (0, 257, True, 1.5):
+            with self.subTest(budget=budget), self.assertRaisesRegex(ContractError, "budget must"):
+                self.inspect(archive, max_expanded_mib=budget)
+        with self.assertRaisesRegex(ContractError, "independently observed"):
+            self.inspect(archive, max_expanded_mib=256, expected_sha256="0" * 64)
+
+    def add_frontend(self, *, failed=False, content=b"fixture AST"):
+        old = next(n for n in self.members if n.endswith(".json"))
+        observation = json.loads(self.members.pop(old))
+        sha = digest(content)
+        name = f".metarocq/evidence/frontend-{sha}.ast"
+        observation["frontend"] = {"generated/pcuic_isapp.ast": {"path": name, "sha256": sha}}
+        self.members[name] = content
+        if failed:
+            observation.update(status="FAILED", outputs={})
+            self.manifest["steps"].update(extract="failure", compile="skipped")
+            self.members = {n: b for n, b in self.members.items() if not n.startswith("generated/")}
+        self.members[".metarocq/evidence/fixture-extraction-" + digest(observation) + ".json"] = json.dumps(observation).encode()
+        return name
+
+    def test_frontend_survives_backend_failure_without_claiming_generation(self):
+        self.generated()
+        name = self.add_frontend(failed=True)
+        result = self.inspect()
+        self.assertEqual(result["frontend_preserved"], ["generated/pcuic_isapp.ast"])
+        self.assertFalse(result["generated"])
+        self.assertFalse(result["compiled"])
+        del self.members[name]
+        with self.assertRaisesRegex(ContractError, "frontend checkpoint missing"):
+            self.inspect()
+
+    def test_frontend_cannot_disagree_with_published_ast(self):
+        self.generated()
+        self.add_frontend(content=b"different AST")
+        with self.assertRaisesRegex(ContractError, "differs from published AST"):
+            self.inspect()
+
     def test_stale_rust_after_skipped_generation_is_rejected(self):
         self.members["generated/pcuic_isapp.rs"] = b"previous candidate"
         with self.assertRaisesRegex(ContractError, "advertises candidate"):

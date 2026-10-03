@@ -1,3 +1,16 @@
+# MetaRocq bootstrap supervision
+
+The sequential controller, append-only PostgreSQL event store and automatic Markdown
+journal are implemented in `pipelines/` and `database/`. The runtime roadmap is
+`roadmaps/metarocq-bootstrap.json`. Deploy the exact committed tree to the target
+`.agents` using `scripts/deploy_metarocq.py`. See `pipelines/README.md` and
+`docs/architecture/0008-automatic-persistence.md`.
+
+**The metatheory bootstrap is not complete. Qualified semantic replay and provider-
+authenticated agent dispatch remain blocked; the full architecture is not production-ready.**
+Logging performs no model calls or agent-written summarization. Private internal
+reasoning is not accessible. Existing extraction and verifier work is preserved below.
+
 # Aegis for MetaRocq-rs
 
 This branch adapts the HOL4/MCP/TacticToe stack to the attached MetaRocq-rs goals.

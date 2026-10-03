@@ -12,12 +12,19 @@ import zipfile
 from .contracts import digest, git, keys, load_json, read_json, require, source_snapshot
 from .extraction import DRIVER, OUTPUTS
 from .security import confined_path
+from .extraction_recipe import recipe, outputs, input_hashes, frontend_files
 
 HEX256 = re.compile(r"[0-9a-f]{64}\Z")
 
 
-def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
+def inspect(root, archive, *, expected_run, expected_head, expected_sha256, max_expanded_mib=64):
+    # An operator may explicitly budget for the large, repetitive output of a
+    # proof-data printer. The archive cannot choose or remove this bound.
+    require(type(max_expanded_mib) is int and 1 <= max_expanded_mib <= 256,
+            "expanded inspection budget must be an integer from 1 to 256 MiB")
     root = Path(root).resolve(strict=True)
+    selected = recipe(root)
+    output_map = outputs(selected)
     require(type(expected_run) is int and expected_run > 0, "expected run id must be positive")
     require(re.fullmatch(r"[0-9a-f]{40}", expected_head) is not None, "expected checkout SHA required")
     require(HEX256.fullmatch(expected_sha256) is not None, "expected GitHub artifact digest required")
@@ -32,7 +39,8 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
     # Inspect the very bytes whose digest was checked, not a reopened path.
     with zipfile.ZipFile(io.BytesIO(data)) as z:
         infos = z.infolist()
-        require(len(infos) <= 128 and sum(i.file_size for i in infos) <= 64 * 1024 * 1024,
+        expanded_bytes = sum(i.file_size for i in infos)
+        require(len(infos) <= 128 and expanded_bytes <= max_expanded_mib * 1024 * 1024,
                 "expanded artifact exceeds inspection budget")
         names = [i.filename for i in infos]
         require(len(names) == len(set(names)), "duplicate ZIP member")
@@ -63,32 +71,42 @@ def inspect(root, archive, *, expected_run, expected_head, expected_sha256):
                     "artifact member digest mismatch")
         observations = [n for n in files if n.startswith(".metarocq/evidence/") and n.endswith(".json")]
         require(len(observations) <= 1, "ambiguous extraction observations")
-        permitted = set(OUTPUTS.values()) | set(observations) | {"Cargo.lock", ".aegis/opam-switch.export"}
+        observation = load_json(z.read(observations[0])) if observations else None
+        frontend = frontend_files(observation, selected) if observation else {}
+        for name, sha in frontend.items():
+            require(files.get(name) == sha and bool(z.read(name)), "frontend checkpoint missing or changed")
+        permitted = set(output_map.values()) | set(observations) | set(frontend) | {"Cargo.lock", ".aegis/opam-switch.export"}
         require(set(files) <= permitted, "unexpected artifact member")
         generated = steps["extract"] == "success"
         if generated:
-            require(set(OUTPUTS.values()) <= set(files) and len(observations) == 1,
+            require(set(output_map.values()) <= set(files) and len(observations) == 1,
                     "successful extraction is missing outputs or observation")
         else:
-            require(not (set(OUTPUTS.values()) & set(files)), "failed or skipped extraction advertises candidate output")
+            require(not (set(output_map.values()) & set(files)), "failed or skipped extraction advertises candidate output")
         if observations:
-            observation = load_json(z.read(observations[0]))
             plan = read_json(root / ".metarocq/plan.json")
             require(observation["plan_digest"] == digest(plan), "extraction plan differs from checkout")
-            require(observation["driver_sha256"] == digest(confined_path(root, DRIVER, must_exist=True).read_bytes()),
+            require(observation["driver_sha256"] == digest(confined_path(root, selected["driver"], must_exist=True).read_bytes()),
                     "extraction driver differs from checkout")
+            if (root / "extraction/recipe.json").exists():
+                require(observation.get("recipe") == selected and observation.get("recipe_inputs") == input_hashes(root, selected),
+                        "extraction recipe/support differs from checkout")
             require(observation["source"] == source_snapshot(root), "extraction source inventory differs from checkout")
             require(observations[0].endswith("-" + digest(observation) + ".json"), "observation name/digest mismatch")
             require(observation["status"] == "GENERATED" if generated else observation["status"] in {"FAILED", "BLOCKED"},
                     "step outcome and extraction status disagree")
-            expected = {n: files[n] for n in OUTPUTS.values()} if generated else {}
+            expected = {n: files[n] for n in output_map.values()} if generated else {}
             require(observation["outputs"] == expected, "extraction/output binding mismatch")
             if generated:
-                require(all(bool(z.read(n)) for n in OUTPUTS.values()), "empty generated candidate")
+                require(all(bool(z.read(n)) for n in output_map.values()), "empty generated candidate")
+                require(all(files.get(n) == entry["sha256"] for n, entry in observation.get("frontend", {}).items()),
+                        "frontend checkpoint differs from published AST")
         if steps["compile"] == "success":
             require("Cargo.lock" in files, "successful Rust compilation lacks dependency lock")
         if steps["install"] == "success":
             require(".aegis/opam-switch.export" in files, "successful installation lacks dependency export")
     return {"status": "CONSISTENT", "run_id": expected_run, "head": expected_head,
+            "expanded_bytes": expanded_bytes, "max_expanded_mib": max_expanded_mib,
             "generated": generated, "compiled": steps["compile"] == "success", "steps": steps,
+            "frontend_preserved": sorted(observation.get("frontend", {})) if observation else [],
             "claim": "artifact/run/source consistency only; no authenticated build provenance or semantic proof"}
