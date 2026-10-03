@@ -104,7 +104,7 @@ def holmake(root: Path, workdir: str = ".", timeout: int = 600) -> dict:
     require(cwd.is_dir(), "HOL4 workdir is not a directory")
     before = identity()
     result = run_process(
-        [str(hol4_home() / "bin/Holmake"), "--qof"],
+        [str(hol4_home() / "bin/Holmake"), "--qof", "--no-cache"],
         cwd=cwd,
         timeout=timeout,
         env=environment(root),

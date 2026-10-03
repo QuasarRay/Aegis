@@ -34,7 +34,14 @@ jobs:
         with:
           path: /tmp/HOL
           key: hol4-z3-v1-40dd5b03de658f4bd9e3f4225fb0f1602ac90467-${{ steps.image.outputs.id }}-${{ runner.arch }}
+      - name: Validate restored HOL4 source
+        if: steps.holcache.outputs.cache-hit == 'true'
+        run: |
+          test "$(git -C /tmp/HOL rev-parse HEAD)" = 40dd5b03de658f4bd9e3f4225fb0f1602ac90467
+          git -C /tmp/HOL diff --exit-code HEAD --
+          test -x /tmp/HOL/bin/Holmake
       - name: Build pinned HOL4
+        if: steps.holcache.outputs.cache-hit != 'true'
         env:
           HOL4_SHA: "40dd5b03de658f4bd9e3f4225fb0f1602ac90467"
         run: |

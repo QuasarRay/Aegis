@@ -48,3 +48,13 @@ Record kernel replay independently before MCP discovery, so an orchestration
 failure cannot discard a completed replay observation. Direct HOL4 execution
 no longer requires an MCP executable. Overall qualification still requires
 both observations to succeed.
+
+Run 37108188058 passed the theorem-object inspection, then failed packaging
+because pinned Poly/ML HOL4 exports into `.hol/objs`, as specified by
+`tools/Holmake/poly/HFS_NameMunge.sml`. Inspect SML, signature and theory data
+there. Always preserve the direct replay log even if packaging or MCP fails.
+The same run restored the 194 MiB HOL4 cache but the old unconditional
+configure/build invalidated its compilation state. A matching cache now gets
+source-pin/cleanliness checks and proceeds to fresh theorem replay. TacticToe
+can reuse the same completed build and queues instead of cancelling active
+recording work. Cached libraries remain a disclosed trust dependency.
