@@ -21,6 +21,15 @@ and validate its bytes on inspection and reuse. It remains an intermediate even
 when the backend fails; successful Rust publication still requires all outputs.
 The checkpoint is not automatically re-executed or accepted as a semantic proof.
 
+Target run 37119274257 generated 122,955,310 bytes of unchanged Rust after the
+operator explicitly increased the backend virtual-memory bound to 6 GiB. The ZIP
+contains 177,490,347 expanded bytes including duplicate frontend checkpoints.
+Keep the default inspection budget at 64 MiB; expose `--max-expanded-mib` with a
+hard ceiling of 256 MiB for this measured case. The operator supplies the budget,
+never the archive. Report expanded size and budget in the result, retaining every
+digest, source, path and observation check. This budget increase does not turn
+the observed compilation failure into a success.
+
 MetaRocq tmQuoteRecTransp with true can capture opaque dependency bodies as AST
 data in Type. tmQuoteModule and tmQuoteConstant with true enable additive module
 snapshots. A snapshot is not automatically dependency closed. A quoted proof

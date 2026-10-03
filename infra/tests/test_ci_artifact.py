@@ -75,6 +75,26 @@ class Artifact(unittest.TestCase):
         self.assertTrue(result["compiled"])
         self.assertIn("no authenticated", result["claim"])
 
+    def test_expanded_budget_is_explicit_bounded_and_does_not_skip_hashes(self):
+        # A compact ZIP with a real oversized member, not a fabricated pass.
+        self.members[".aegis/opam-switch.export"] = b"x" * (1024 * 1024 + 1)
+        self.manifest["files"] = {n: digest(b) for n, b in self.members.items()}
+        archive = self.base / "large.zip"
+        with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED) as z:
+            z.writestr("run.json", json.dumps(self.manifest))
+            for name, data in self.members.items():
+                z.writestr(name, data)
+        with self.assertRaisesRegex(ContractError, "exceeds inspection budget"):
+            self.inspect(archive, max_expanded_mib=1)
+        result = self.inspect(archive, max_expanded_mib=2)
+        self.assertGreater(result["expanded_bytes"], 1024 * 1024)
+        self.assertEqual(result["max_expanded_mib"], 2)
+        for budget in (0, 257, True, 1.5):
+            with self.subTest(budget=budget), self.assertRaisesRegex(ContractError, "budget must"):
+                self.inspect(archive, max_expanded_mib=budget)
+        with self.assertRaisesRegex(ContractError, "independently observed"):
+            self.inspect(archive, max_expanded_mib=256, expected_sha256="0" * 64)
+
     def add_frontend(self, *, failed=False, content=b"fixture AST"):
         old = next(n for n in self.members if n.endswith(".json"))
         observation = json.loads(self.members.pop(old))
