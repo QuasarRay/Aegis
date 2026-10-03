@@ -266,7 +266,10 @@ def main() -> int:
     elif args.command in {"diagnose", "adopt"}:
         result = diagnose()
         if args.command == "adopt":
-            result["next"] = continuation(ROOT)
+            result["next"] = {
+                "command": "python3 -B scripts/control_plane.py continue --root <MetaRocq-rs>",
+                "rule": "supply the existing MetaRocq-rs checkout; do not create or regenerate a roadmap",
+            }
     elif args.command == "continue":
         result = continuation(args.root)
     else:
