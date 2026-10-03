@@ -73,3 +73,7 @@ Target Project Repository: "https://github.com/QuasarRay/Aegis.git"
 - Keep the `metatheory-verified` implementation gate visible in every generated supervision surface.
 - Prefer schema-driven Rails views/presenters over a second frontend state machine. Generated UI must retain links to underlying evidence and blockers.
 - Ruby-to-Rust boundaries are allowed only for isolated, measurable kernels with explicit contracts; do not move Rails orchestration into Rust merely for language uniformity.
+
+- GitHub is an optional external forge. Aegis/GitLab must boot and retain local source hosting, CI, MCP, supervision and proof workflows with all GitHub configuration absent or the remote unreachable.
+- Never expose GitHub credentials to project files, browser responses, MCP results, agent prompts, or generated evidence. GitHub write mappings are host-admin configuration only.
+- Automatic GitHub repository mapping is read-only. GitHub mutations require GitLab `:admin_project` plus an explicit host-admin mapping with `"write": true`.
