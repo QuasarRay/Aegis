@@ -147,8 +147,10 @@ def legacy_validate(root: Path) -> dict:
     root = root.resolve(strict=True)
     # Keep CI/adoption qualification dependency-light: the validate operation needs
     # only the machine-readable roadmap, not a PostgreSQL connection or driver.
-    if str(ROOT) not in sys.path:
-        sys.path.insert(0, str(ROOT))
+    for search_path in (ROOT, ROOT / "infra"):
+        value = str(search_path)
+        if value not in sys.path:
+            sys.path.insert(0, value)
     from pipelines import roadmap as bootstrap_roadmap
 
     doc, tasks = bootstrap_roadmap.load(ROOT / "roadmaps" / "metarocq-bootstrap.json")
