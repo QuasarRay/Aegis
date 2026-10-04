@@ -17,7 +17,7 @@ The default `AEGIS_CONTROL_PLANE_MODE=auto` behaves as follows:
 1. If a GitLab URL is configured, probe the GitLab sign-in page by default. This avoids the monitoring-endpoint IP allowlist on external GitHub runners.
 2. A self-hosted deployment may set `AEGIS_GITLAB_READINESS_URL` to `/-/readiness?all=1` for a stronger dependency probe.
 3. If the selected probe passes, select the GitLab Rails/MCP/Dagger control plane.
-4. If GitLab is unconfigured or the availability/delegation path fails, select the existing legacy controller.
+4. If GitLab is unconfigured or its availability probe fails before delegation, select the existing legacy controller.
 5. Do not fork roadmap, evidence, PostgreSQL, `.aegis/`, or `.metarocq/` state when switching modes.
 
 Explicit `gitlab` mode is fail-closed: it does not silently fall back. Explicit `legacy` mode does not contact GitLab.
@@ -28,7 +28,7 @@ These are orchestration/availability failures and may use the legacy controller:
 
 - GitLab web/Rails unavailable;
 - GitLab MCP unavailable;
-- GitLab CI delegation unavailable;
+- GitLab CI delegation unavailable before dispatch;
 - Dagger/GitLab runner unavailable when an equivalent legacy controller operation exists;
 - GitHub bridge unavailable (GitLab itself remains primary when healthy).
 
@@ -69,7 +69,7 @@ If a check fails, inspect that check's named files only. Historical PRs and unch
 
 ## CI fallback
 
-The GitHub bridge workflow attempts exact-SHA delegation to the self-hosted GitLab control plane. If GitLab is unavailable or delegation fails, the workflow validates the legacy machine-readable roadmap/controller contract without requiring a live PostgreSQL driver, then reports a degraded fallback. Actual legacy `status`, `run` and `recover` still require the existing PostgreSQL driver and DSN; those persistence dependencies remain hard blocks. It does not claim GitLab succeeded.
+The GitHub bridge workflow attempts exact-SHA delegation to the self-hosted GitLab control plane. If its availability probe fails before dispatch, the workflow validates the legacy machine-readable roadmap/controller contract without requiring a live PostgreSQL driver, then reports a degraded fallback. After dispatch, any nonzero result blocks execution: the bridge cannot distinguish an availability-only fault from a failed proof, a commit mismatch, or an uncertain remote execution. A successful legacy qualification cannot replace that result. Explicit GitLab mode never falls back. Actual legacy `status`, `run` and `recover` still require the existing PostgreSQL driver and DSN; those persistence dependencies remain hard blocks. It does not claim GitLab succeeded.
 
 This is intended to keep repository development available during a GitLab fault while making the degraded state explicit.
 
