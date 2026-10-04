@@ -65,6 +65,33 @@ class ControlPlaneAdoptionTests(unittest.TestCase):
         self.assertEqual(result["selected"], "legacy")
         self.assertFalse(result["degraded"])
 
+    def test_failed_delegation_never_qualifies_legacy(self):
+        # Exit 1 includes a failed remote pipeline; exit 2 includes an exact
+        # SHA mismatch or an uncertain transport failure after dispatch.
+        for mode in ("auto", "gitlab"):
+            for code in (1, 2):
+                with self.subTest(mode=mode, code=code), \
+                     patch.dict(os.environ, {"AEGIS_CONTROL_PLANE_MODE": mode}), \
+                     patch.object(CONTROL, "select_mode", return_value={"selected": "gitlab"}), \
+                     patch.object(CONTROL, "run", return_value={"ok": False, "returncode": code}), \
+                     patch.object(CONTROL, "legacy_validate") as fallback:
+                    with self.assertRaisesRegex(RuntimeError, "cannot replace"):
+                        CONTROL.ci(ROOT, prevalidated=True)
+                    fallback.assert_not_called()
+
+    def test_skipped_remote_pipeline_is_not_execution_success(self):
+        spec = importlib.util.spec_from_file_location(
+            "aegis_github_bridge_control", ROOT / "gitlab/github_actions_bridge.py")
+        bridge = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(bridge)
+        sha = "a" * 40
+        env = {"AEGIS_GITLAB_URL": "https://gitlab.invalid",
+               "AEGIS_GITLAB_PROJECT": "project", "AEGIS_GITLAB_API_TOKEN": "test",
+               "AEGIS_GITLAB_REF": "main", "AEGIS_GITHUB_SHA": sha}
+        replies = [{"id": 1, "sha": sha}, {"id": 1, "sha": sha, "status": "skipped"}]
+        with patch.dict(os.environ, env), patch.object(bridge, "request", side_effect=replies):
+            self.assertEqual(bridge.main(), 1)
+
 
 if __name__ == "__main__":
     unittest.main()

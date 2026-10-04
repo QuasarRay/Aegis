@@ -15,7 +15,7 @@ from urllib.request import Request, urlopen
 from urllib.error import HTTPError, URLError
 
 TERMINAL = {"success", "failed", "canceled", "skipped", "manual"}
-SUCCESS = {"success", "skipped"}
+SUCCESS = {"success"}
 
 
 def required(name: str) -> str:
