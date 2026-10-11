@@ -41,10 +41,9 @@
       "target": "legacy controller"
     },
     {
-      "fault": "GitLab pipeline delegation fails",
-      "action": "fallback",
-      "target": "legacy controller qualification",
-      "degraded": true
+      "fault": "GitLab pipeline delegation fails after dispatch",
+      "action": "block; preserve the failed or uncertain execution result",
+      "target": null
     },
     {
       "fault": "GitHub unavailable",

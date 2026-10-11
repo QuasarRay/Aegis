@@ -185,17 +185,13 @@ def ci(root: Path, *, prevalidated: bool) -> dict:
                 "degraded": False,
                 "delegation": delegated,
             }
-        fallback = legacy_validate(root)
-        if os.environ.get("GITHUB_ACTIONS"):
-            print("::warning::GitLab delegation failed; Aegis qualified the legacy control-plane fallback.", file=sys.stderr)
-        return {
-            "schema": 1,
-            "selected": "legacy",
-            "degraded": True,
-            "reason": "GitLab pipeline delegation failed",
-            "failed_primary": delegated,
-            "fallback": fallback,
-        }
+        # A nonzero result may mean a failed proof, a commit mismatch, or an
+        # uncertain remote execution. The bridge cannot distinguish a safe
+        # availability-only retry here. Preserve the failure in every mode.
+        raise RuntimeError(
+            f"GitLab delegation failed (exit {delegated['returncode']}); "
+            "legacy qualification cannot replace its execution result"
+        )
 
     if selection["selected"] == "blocked":
         raise RuntimeError(f"GitLab was explicitly required but unavailable: {selection['reason']}")
