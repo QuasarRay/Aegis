@@ -1,7 +1,7 @@
 {
   "schema": 1,
   "objective": "REPLACE_describe_the_behavior_and_required_invariant",
-  "authority_sha256": "d7ea81d70cbaea56d5d424b82c4de12afc624123a5202d6a581becafda9aaac1",
+  "authority_sha256": "e5f0221696f05823a88ee83123d6be3d774da21e7eb284306090c42d405a1376",
   "reference_review": "REPLACE_explain_which_original_definition_and_revision_applies_and_resolve_the_catalog_CI_difference_for_this_scope",
   "reuse": {
     "strategy": "reuse",
@@ -23,13 +23,32 @@
         "verification/spec/src/formation.rs"
       ],
       "implementation": [
-        "src/runtime.rs"
+        "verification/spec/src/formation.rs"
       ],
       "proof_inputs": [
         "verification/kani/src/formation_contracts.rs"
       ],
       "assumptions": "REPLACE_record_actual_harness_value_domain_unwind_bounds_and_trusted_externals",
-      "limits": "REPLACE_record_unproved_engine_FFI_Python_and_reference_correspondence"
+      "limits": "REPLACE_record_unproved_engine_FFI_Python_and_reference_correspondence",
+      "manifest": "verification/kani/Cargo.toml",
+      "evidence": {
+        "kind": "spec_proved",
+        "original_cases": [
+          "python/destiny/test/test_ball.py::BallTest::test_free_formation_slot"
+        ],
+        "assertion_properties": [
+          "REPLACE_exact_assertion_property_from_regular_Kani_output"
+        ],
+        "reachability": [
+          {
+            "property": "REPLACE_exact_cover_property_from_regular_Kani_output",
+            "file": "verification/kani/src/formation_contracts.rs",
+            "line": 1
+          }
+        ],
+        "relation": "REPLACE_describe_the_original_assertions_and_specification_relation_checked_by_this_harness",
+        "review": "REPLACE_review_all_original_assertions_setup_assumptions_bounds_and_witness_placement"
+      }
     }
   ]
 }

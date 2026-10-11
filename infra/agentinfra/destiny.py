@@ -21,7 +21,8 @@ import uuid
 
 from .atomic import atomic_write_json
 from .context_cache import ContextLedger, sha256_file
-from .destiny_reuse import checked_output, digest, load_json
+from .destiny_reuse import digest, load_json
+from .evidence import proof_output
 from .locks import FileLock
 from .process import run_process
 from .security import confined_path, minimal_subprocess_env, redact_text
@@ -284,7 +285,14 @@ def run_check(root, profile, args):
         raise ValueError("--fresh requires --reason so repeated work is deliberate")
     if not math.isfinite(args.budget_seconds) or args.budget_seconds <= 0:
         raise ValueError("budget-seconds must be finite and positive")
-    spec = profile["checks"][args.check]
+    spec = dict(profile["checks"][args.check])
+    proof_inputs = getattr(args, "proof_input", None) or []
+    for name in proof_inputs:
+        if relative_path(name) != name or not confined_path(root, name, must_exist=True).is_file():
+            raise ValueError("canonical proof source files required")
+    spec["read_globs"] = list(spec.get("read_globs", [])) + proof_inputs
+    if args.harness or args.entry:
+        spec["timeout"] = spec.get("scoped_timeout", spec["timeout"])
     replacements = {"python": sys.executable, "project": str(root), "verus": args.verus,
                     "library": args.library or "", "original": args.original or ""}
     external = {}
@@ -312,15 +320,21 @@ def run_check(root, profile, args):
     if args.harness:
         if args.check != "kani" or not re.fullmatch(r"[A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)*", args.harness):
             raise ValueError("--harness requires a canonical exact Kani harness name")
-        commands = [["cargo", "kani", "--manifest-path", "verification/kani/Cargo.toml", "--harness", args.harness,
-                     "--exact", "--output-format", "regular"]]
-        obligation = {"method": "kani", "entry": args.harness, "expected_checks": 1}
+        manifest = getattr(args, "manifest", None) or "verification/kani/Cargo.toml"
+        if relative_path(manifest) != manifest or Path(manifest).name != "Cargo.toml":
+            raise ValueError("canonical Cargo.toml manifest required")
+        commands = [["cargo", "kani", "--manifest-path", manifest, "--harness", args.harness,
+                     "--exact", "--force-build", "--output-format", "regular"]]
+        obligation = {"method": "kani", "entry": args.harness, "expected_checks": 1, "manifest": manifest}
     if args.entry or args.expected_checks is not None:
         permitted = {command[-1] for command in spec["commands"]} if args.check == "verus" else set()
         if args.entry not in permitted or type(args.expected_checks) is not int or args.expected_checks < 1:
             raise ValueError("scoped Verus requires a profile entry and positive --expected-checks")
         commands = [[replacements["verus"], "--crate-type=lib", args.entry]]
         obligation = {"method": "verus", "entry": args.entry, "expected_checks": args.expected_checks}
+    if args.check in {"kani", "verus"} and not obligation and not getattr(args, "full_suite", False):
+        return {"status": "SCOPE_REQUIRED", "executed": False,
+                "reason": "Select one --harness or counted --entry. A broad verifier run requires explicit --full-suite."}
     identity_commands = commands + probes
     if args.check == "kani":
         identity_commands += [["cargo-kani"], ["rustc"]]
@@ -334,6 +348,9 @@ def run_check(root, profile, args):
         before = source_snapshot(root, spec.get("read_globs", []))
         tools_before = executable_identities(identity_commands, env)
         identity = {"schema": 1, "project": str(root), "source": before, "external": external,
+                    "external_paths": {name: replacements[name] for name in external},
+                    "proof_inputs": {name: sha256_file(confined_path(root, name, must_exist=True)) for name in proof_inputs},
+                    "read_globs": spec["read_globs"], "pinned_versions": spec.get("expect", []),
                     "profile": sha256_file(PROFILE), "runner": sha256_file(Path(__file__)),
                     "python": {"version": sys.version, "executable": sha256_file(Path(sys.executable))},
                     "environment": digest(env), "allow_network": bool(args.allow_network),
@@ -384,7 +401,7 @@ def run_check(root, profile, args):
                 status = "TIMEOUT" if result.timed_out else "FAILED"
                 returncode = result.returncode or 124
                 break
-            if obligation and not checked_output(obligation, result):
+            if obligation and not proof_output(obligation, result):
                 status, returncode = "FAILED", 1
                 break
         after = source_snapshot(root, spec.get("read_globs", []))
@@ -431,8 +448,30 @@ def main(argv=None):
     p.add_argument("--verus", default=os.environ.get("VERUS_BIN", "verus"))
     p.add_argument("--allow-network", action="store_true")
     p.add_argument("--harness", help="one exact Kani harness, checked with the existing Aegis output validator")
+    p.add_argument("--manifest", default="verification/kani/Cargo.toml", help="manifest containing the exact Kani harness")
+    p.add_argument("--proof-input", action="append", help="bind an explicit harness source digest, including ignored files")
     p.add_argument("--entry", help="one Verus entry from the reviewed profile")
     p.add_argument("--expected-checks", type=int, help="positive Verus obligation count for --entry")
+    p.add_argument("--full-suite", action="store_true", help="explicitly authorize a broad verifier sweep")
+    p = sub.add_parser("catalog", help="bounded original-case search; preserves duplicate fixture obligations")
+    p.add_argument("--query", default="")
+    p.add_argument("--unmarked", action="store_true")
+    p.add_argument("--limit", type=int, default=8)
+    p.add_argument("--offset", type=int, default=0)
+    p.add_argument("--original", type=Path)
+    p = sub.add_parser("queue", help="write all fixture-qualified obligations and distinct assurance levels to JSON")
+    p.add_argument("--original", type=Path)
+    p.add_argument("--output", help="path within the target checkout; defaults to .aegis/destiny/work-queue.json")
+    p.add_argument("--differential", help="reviewed mapping of original cases to current runtime receipts")
+    p = sub.add_parser("harness", help="automatically extract one fixture and its case from pinned original source")
+    p.add_argument("--case", required=True)
+    p.add_argument("--original", type=Path, help="local Git repository containing the catalog revision; defaults to the target")
+    p.add_argument("--max-bytes", type=int, default=12000)
+    p.add_argument("--fresh", action="store_true")
+    p.add_argument("--reason")
+    p = sub.add_parser("harness-close", help="record a result/blocker before opening another work item")
+    p.add_argument("--outcome", choices=("implemented", "reuse", "blocked"), required=True)
+    p.add_argument("--note", required=True)
     p = sub.add_parser("bind", help="bind a complete formal contract to the current source")
     p.add_argument("contract")
     p = sub.add_parser("verify", help="freshly verify one declared obligation in the active binding")
@@ -452,6 +491,16 @@ def main(argv=None):
             result = plan(root, profile, paths, args.release)
         elif args.action == "context":
             result = context(root, profile, args)
+        elif args.action in {"catalog", "queue", "harness", "harness-close"}:
+            from . import catalog
+            if args.action == "catalog":
+                result = catalog.search(root, args)
+            elif args.action == "queue":
+                result = catalog.work_queue(root, profile, args)
+            elif args.action == "harness":
+                result = catalog.brief(root, profile, args)
+            else:
+                result = catalog.close(root, args)
         elif args.action in {"bind", "verify", "audit"}:
             from . import formal
             if args.action == "bind":
@@ -465,4 +514,5 @@ def main(argv=None):
     except (OSError, ValueError, RuntimeError, KeyError, TypeError) as exc:
         result = {"status": "ERROR", "executed": False, "reason": redact_text(str(exc))}
     print(json.dumps(result, indent=2, sort_keys=True))
-    return 0 if result["status"] in {"PLANNED", "READ", "UNCHANGED", "OBSERVED_SUCCESS", "REUSED", "BOUND", "CHECKED_SCOPED"} else 1
+    return 0 if result["status"] in {"PLANNED", "READ", "UNCHANGED", "OBSERVED_SUCCESS", "REUSED", "BOUND", "CHECKED_SCOPED",
+                                   "CATALOG", "WORK_QUEUE", "HARNESS_BRIEF", "REUSED_PACKET", "WORK_RECORDED", "WORK_ALREADY_RECORDED"} else 1

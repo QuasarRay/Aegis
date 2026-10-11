@@ -116,6 +116,7 @@ probes = [["cargo", "kani", "--version"]]
 expect = ["0.68.0"]
 requires = ["kani-regression"]
 timeout = 900
+scoped_timeout = 120
 claim = "kani-harness-execution-bounded-by-harness-assumptions"
 
 [checks.verus]
@@ -130,6 +131,7 @@ commands = [
 probes = [["{verus}", "--version"]]
 expect = ["0.2026.09.20.aef82ed"]
 timeout = 300
+scoped_timeout = 120
 claim = "logical-model-verification-not-runtime-parity"
 
 [checks.native-configure]

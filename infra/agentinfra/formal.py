@@ -61,18 +61,26 @@ def validate_plan(root, profile, value):
     obligations = value["obligations"]
     require(type(obligations) is list and 1 <= len(obligations) <= 32, "declare between 1 and 32 scoped obligations")
     ids, entries, paths = set(), set(), set()
+    original_ids = None
     permitted = {command[-1] for command in profile["checks"]["verus"]["commands"]}
     for o in obligations:
-        exact_keys(o, "id invariant method entry expected_checks specification implementation proof_inputs assumptions limits", "obligation")
+        optional = " ".join(k for k in ("evidence", "manifest") if k in o)
+        exact_keys(o, "id invariant method entry expected_checks specification implementation proof_inputs assumptions limits " + optional, "obligation")
         require(isinstance(o["id"], str) and IDENT.fullmatch(o["id"]) and o["id"] not in ids, "unique canonical obligation id required")
         ids.add(o["id"])
         require(o["method"] in {"kani", "verus"} and isinstance(o["entry"], str), "supported proof method/entry required")
-        require((o["method"], o["entry"]) not in entries, "duplicate proof entry; combine its declared invariant instead of rerunning it")
-        entries.add((o["method"], o["entry"]))
+        proof_key = (o["method"], o.get("manifest", "verification/kani/Cargo.toml"), o["entry"])
+        require(proof_key not in entries, "duplicate proof entry; combine its declared invariant instead of rerunning it")
+        entries.add(proof_key)
         require(type(o["expected_checks"]) is int and o["expected_checks"] > 0, "positive reviewed proof inventory required")
         if o["method"] == "kani":
             require(RUST_PATH.fullmatch(o["entry"]) and o["expected_checks"] == 1, "Kani requires one canonical exact harness")
+            manifest = o.get("manifest", "verification/kani/Cargo.toml")
+            require(relative_path(manifest) == manifest and Path(manifest).name == "Cargo.toml", "canonical Kani manifest required")
+            require(confined_path(root, manifest, must_exist=True).is_file(), "Kani manifest missing")
+            paths.add(manifest)
         else:
+            require("manifest" not in o, "manifest applies only to Kani")
             require(o["entry"] in permitted, "Verus entry is outside the inspected profile")
             require(o["entry"] in o["proof_inputs"], "Verus entry must be included in proof_inputs")
         for field in ("invariant", "assumptions", "limits"):
@@ -84,6 +92,32 @@ def validate_plan(root, profile, value):
                 p = confined_path(root, name, must_exist=True)
                 require(p.is_file(), f"{field}: source must be a file")
                 paths.add(name)
+        if "evidence" in o:
+            from .catalog import qualified_index
+            if original_ids is None:
+                original_ids = {r["id"] for r in qualified_index(root)}
+            scope = o["evidence"]
+            exact_keys(scope, "kind original_cases assertion_properties reachability relation review", "evidence scope")
+            require(o["method"] == "kani", "classified Destiny refinement currently requires exact Kani evidence")
+            require(scope["kind"] in {"spec_proved", "production_rust_refinement_proved"}, "unknown proof assurance")
+            cases = scope["original_cases"]
+            require(type(cases) is list and 1 <= len(cases) <= 32 and all(isinstance(c, str) and c in original_ids for c in cases), "fixture-qualified original identities required")
+            require(len(cases) == len(set(cases)), "duplicate original identity")
+            props = scope["assertion_properties"]
+            require(type(props) is list and 1 <= len(props) <= 128 and all(isinstance(p, str) and re.fullmatch(r'\S+\.assertion\.\d+', p) for p in props), "exact behavioral assertion properties required")
+            require(len(props) == len(set(props)), "duplicate assertion property")
+            for field in ("relation", "review"):
+                prose(scope[field], field)
+            witnesses = scope["reachability"]
+            require(type(witnesses) is list and 1 <= len(witnesses) <= 32, "explicit non-vacuity witnesses required")
+            for witness in witnesses:
+                exact_keys(witness, "property file line", "reachability witness")
+                require(isinstance(witness["property"], str) and re.fullmatch(r'\S+\.cover\.\d+', witness["property"]), "exact Kani cover property required")
+                require(witness["file"] in o["proof_inputs"] + o["implementation"] + o["specification"], "witness must be a bound source")
+                require(type(witness["line"]) is int and 1 <= witness["line"] <= len(confined_path(root, witness["file"]).read_text().splitlines()), "witness line is outside source")
+            if scope["kind"] == "production_rust_refinement_proved":
+                require(any(w["file"] in o["implementation"] and w["file"].startswith("src/") for w in witnesses),
+                        "production refinement needs a reachable witness inside the bound production Rust source")
     return sorted(paths)
 
 
@@ -128,10 +162,11 @@ def bind(root, profile, name):
         lock.release()
 
 
-def active(root, profile):
+def active(root, profile, key=None):
     from .destiny import state_path
-    pointer = read(state_path(root, "active-binding.json"))
-    key = pointer.get("key")
+    if key is None:
+        pointer = read(state_path(root, "active-binding.json"))
+        key = pointer.get("key")
     require(isinstance(key, str) and re.fullmatch(r"[a-f0-9]{64}", key), "invalid active binding")
     binding = unseal(state_path(root, f"bindings/{key}.json"))
     require(digest(binding) == key, "binding identity differs")
@@ -142,6 +177,7 @@ def active(root, profile):
 
 def verify(root, profile, args):
     from .destiny import run_check, state_path
+    from .evidence import classified, current_receipt, proof_identity
     lock = FileLock(state_path(root, "formal.lock"), "destiny-formal-cycle")
     lock.acquire(timeout=0)
     try:
@@ -149,16 +185,26 @@ def verify(root, profile, args):
         found = [o for o in binding["contract"]["obligations"] if o["id"] == args.obligation]
         require(len(found) == 1, "obligation is not declared in the active binding")
         o = found[0]
+        proof = proof_identity(root, o)
         run_args = Namespace(check=o["method"], harness=o["entry"] if o["method"] == "kani" else None,
                              entry=o["entry"] if o["method"] == "verus" else None,
                              expected_checks=o["expected_checks"] if o["method"] == "verus" else None,
                              budget_seconds=args.budget_seconds, fresh=bool(args.reason), reason=args.reason,
-                             library=None, original=None, verus=args.verus, allow_network=args.allow_network)
+                             library=None, original=None, verus=args.verus, allow_network=args.allow_network,
+                             manifest=o.get("manifest", "verification/kani/Cargo.toml"), proof_input=o["proof_inputs"])
         result = run_check(root, profile, run_args)
         # Recheck the entire bound input, including ignored declared sources, after execution.
         active(root, profile)
         status = "CHECKED_SCOPED" if result.get("proof_output_checked") and result["status"] == "OBSERVED_SUCCESS" else result["status"]
+        assurance, blocker = "unclassified", None
+        if status == "CHECKED_SCOPED":
+            try:
+                assurance = classified(root, o, current_receipt(root, profile, result))
+            except (ValueError, OSError, KeyError) as exc:
+                status, blocker = "INCOMPLETE_EVIDENCE", str(exc)
         observation = {"binding": key, "id": o["id"], "status": status, "result": result,
+                       "assurance": assurance, "proof_identity": proof, "blocker": blocker,
+                       "original_cases": o.get("evidence", {}).get("original_cases", []),
                        "assumptions": o["assumptions"], "limits": o["limits"]}
         atomic_write_json(state_path(root, f"proofs/{key}/{o['id']}.json"), seal(observation))
         return {**observation, "notice": "Scoped observation of the declared obligation; completeness and end-to-end parity are not certified."}
@@ -166,40 +212,72 @@ def verify(root, profile, args):
         lock.release()
 
 
-def audit(root, profile):
-    from .destiny import environment, sha256_file, state_path
+def audit(root, profile, binding_key=None):
+    from .destiny import state_path
+    from .evidence import classified, current_receipt, proof_identity, proof_output
+    from types import SimpleNamespace
     lock = FileLock(state_path(root, "formal.lock"), "destiny-formal-cycle")
     lock.acquire(timeout=0)
     try:
-        key, binding = active(root, profile)
+        key, binding = active(root, profile, binding_key)
         rows = []
         for o in binding["contract"]["obligations"]:
             path = state_path(root, f"proofs/{key}/{o['id']}.json")
             status = "NOT_RUN"
+            assurance, blocker, record = "unclassified", None, None
             if path.exists():
                 record = unseal(path)
                 require(record["binding"] == key and record["id"] == o["id"], "observation belongs to another obligation")
                 status = record["status"]
                 if status == "CHECKED_SCOPED":
-                    result = record["result"]
-                    receipt_path = confined_path(root, result["receipt"], must_exist=True)
-                    require(receipt_path.parent == state_path(root, "receipts"), "receipt escaped its directory")
-                    receipt = unseal(receipt_path)
-                    require(receipt["proof_output_checked"] and receipt["status"] == "OBSERVED_SUCCESS", "receipt did not discharge a fresh exact observation")
-                    require(receipt["key"] == result["key"] and receipt["id"] == o["method"], "receipt identity differs")
-                    expected = {"method": o["method"], "entry": o["entry"], "expected_checks": o["expected_checks"]}
-                    require(receipt["identity"]["obligation"] == expected, "receipt proof scope differs")
-                    if digest(environment(root, receipt["identity"]["allow_network"])) != receipt["identity"]["environment"]:
-                        status = "STALE_ENVIRONMENT"
-                    for tool in receipt["identity"]["tools"].values():
-                        if not Path(tool["path"]).is_file() or sha256_file(Path(tool["path"])) != tool["sha256"]:
-                            status = "STALE_TOOL"
+                    try:
+                        require(record.get("proof_identity") == proof_identity(root, o), "source/harness digest differs")
+                        receipt = current_receipt(root, profile, record["result"])
+                        require(receipt["proof_output_checked"] and receipt["id"] == o["method"], "receipt did not discharge proof")
+                        expected = {"method": o["method"], "entry": o["entry"], "expected_checks": o["expected_checks"]}
+                        if o["method"] == "kani":
+                            expected["manifest"] = o.get("manifest", "verification/kani/Cargo.toml")
+                        require(receipt["identity"]["obligation"] == expected, "receipt proof scope differs")
+                        require(len(receipt["commands"]) == 1 and proof_output(expected, SimpleNamespace(**receipt["commands"][0])), "vacuous or invalid proof output")
+                        assurance = classified(root, o, receipt)
+                    except (ValueError, OSError, KeyError) as exc:
+                        blocker = str(exc)
+                        status = blocker if blocker.startswith("STALE_") else "UNAVAILABLE" if blocker.startswith("UNAVAILABLE:") else "INCOMPLETE_EVIDENCE"
             rows.append({"id": o["id"], "method": o["method"], "status": status,
+                         "entry": o["entry"], "assurance": assurance, "blocker": blocker or (record or {}).get("blocker"),
+                         "proof_identity": proof_identity(root, o),
+                         "pinned_version": profile["checks"][o["method"]]["expect"][0],
+                         "receipt": (record or {}).get("result", {}).get("receipt"),
+                         "original_cases": o.get("evidence", {}).get("original_cases", []),
                          "assumptions": o["assumptions"], "limits": o["limits"]})
         # Do not race a source edit made during audit into a fresh claim.
-        active(root, profile)
+        active(root, profile, key)
         return {"status": "CHECKED_SCOPED" if all(r["status"] == "CHECKED_SCOPED" for r in rows) else "INCOMPLETE",
                 "binding": key, "obligations": rows,
                 "notice": "Declared obligations only; specification adequacy and complete Destiny parity remain separate obligations."}
     finally:
         lock.release()
+
+
+def proof_inventory(root, profile):
+    """Keep proofs from earlier bindings visible; stale bindings get no credit."""
+    from .destiny import state_path
+    rows, blockers = [], []
+    paths = sorted(state_path(root, "bindings").glob("*.json"))
+    require(len(paths) <= 1024, "proof inventory exceeds bounded queue input; archive obsolete bindings")
+    for path in paths:
+        try:
+            result = audit(root, profile, path.stem)
+            rows.extend({**r, "binding": path.stem} for r in result["obligations"])
+        except (ValueError, RuntimeError, OSError, KeyError) as exc:
+            blockers.append({"binding": path.stem, "reason": str(exc)})
+            try:
+                binding = unseal(path)
+                for o in binding["contract"]["obligations"]:
+                    rows.append({"id": o["id"], "method": o["method"], "entry": o["entry"],
+                                 "original_cases": o.get("evidence", {}).get("original_cases", []),
+                                 "status": "STALE_OR_INVALID_BINDING", "assurance": "unclassified",
+                                 "binding": path.stem, "blocker": str(exc)})
+            except (ValueError, RuntimeError, OSError, KeyError):
+                pass  # The global blocker retains corrupt binding evidence.
+    return rows, blockers

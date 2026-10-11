@@ -1,0 +1,52 @@
+{
+  "extraction": {
+    "cpp_fixture": {
+      "bytes": 3884,
+      "case": "tests/TestBoxShape.cpp::RectangleSphereCollisionTest::CanCreate",
+      "fixture": "RectangleSphereCollisionTest",
+      "snippets": 3,
+      "source_hashes": {
+        "tests/TestBoxShape.cpp": "1dbc77986657b9aea70714f3c402ccb1106c2b76e7cc720ee50b472642241090"
+      }
+    },
+    "python_fixture": {
+      "bytes": 6471,
+      "case": "python/destiny/test/test_ball.py::BallTest::test_free_formation_slot",
+      "fixture": "BallTest",
+      "snippets": 8,
+      "source_hashes": {
+        "python/destiny/test/helpers.py": "d949e6103b7321ca39a7876ceff25c15868137b867fa5895c76fd86a2c2dd66a",
+        "python/destiny/test/test_ball.py": "eb79d55cf1e8b94b5895b9824f68c6f5d4fee7c61b384212316f9f284fe45d26"
+      }
+    }
+  },
+  "kani": {
+    "executed": false,
+    "id": "kani",
+    "reason": "required executable is missing: cargo-kani",
+    "status": "UNAVAILABLE"
+  },
+  "original_commit": "ef738406b61ad06bae2f402857e464735ab106a2",
+  "queue_summary": {
+    "assurance_counts": {
+      "mapped_or_marked": 109,
+      "production_rust_refinement_proved": 0,
+      "runtime_differential_evidence": 0,
+      "spec_proved": 0
+    },
+    "blockers": [
+      "UNAVAILABLE: missing cargo-kani"
+    ],
+    "obligations": 531,
+    "path": "/tmp/aegis-destiny-reference/.aegis/destiny/work-queue.json",
+    "qualified_identities": 531,
+    "status": "WORK_QUEUE",
+    "uncovered": 531
+  },
+  "source_identity": {
+    "digest": "4e3f2cd7df042d3f9c095ff65b79fc29b75dd1255083b1caab3dc36955debb8d",
+    "files": 130
+  },
+  "target_commit": "8eb7606f1db5e8f65336fa05f8f87ef85ab9e402",
+  "unchanged_packet_status": "REUSED_PACKET"
+}

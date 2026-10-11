@@ -1,69 +1,111 @@
 # Aegis for Destiny Rust
 
-This branch specializes Aegis for [QuasarRay/destiny, destiny-rs-dev](https://github.com/QuasarRay/destiny/tree/destiny-rs-dev).
-It uses specification and formal verification as the development contract, with bounded
-context, durable attempt budgets, conservative dependency planning and explicit proof scope.
-The target revision inspected is `8eb7606f1db5e8f65336fa05f8f87ef85ab9e402`.
+This branch specializes Aegis for [Destiny's destiny-rs-dev branch](https://github.com/QuasarRay/destiny/tree/destiny-rs-dev),
+inspected at `8eb7606f1db5e8f65336fa05f8f87ef85ab9e402`. Its acceptance scope is four capabilities:
 
-The design reuses the formal workflow introduced on Aegis's Candle branches and hardened
-on its MetaRocq branches. All 25 Aegis, 33 Destiny and 85 PMAT branch heads were inventoried;
-relevant distinct implementations were compared. See [branch review](modules/destiny/BRANCH_REVIEW.md)
-and [source provenance](modules/destiny/reuse-provenance.json). HOL4, MetaRocq, extraction,
-TacticToe and supervision implementations remain available at their pinned sibling branches.
-Destiny's existing Kani and Verus obligations are reused directly.
+1. Preserve all **531 original occurrences**, identified as `source::fixture::test`.
+2. Bind exact Kani evidence to the pinned version, harness, source and proof-input digests;
+   reject stale, cached, incomplete and vacuous observations, and report missing tools as `UNAVAILABLE`.
+3. Keep mapping, specification proof, production Rust refinement proof and runtime differential evidence separate.
+4. Write a machine-readable work queue with existing evidence, semantic families, gaps and blockers.
 
-## Use from this checkout
+Development uses specifications, explicit invariants and formal verification. It retains
+Max reasoning and saves work through small packets, source reuse, exact proof selection
+and durable attempt limits. These controls do not meter or cap provider token billing.
 
-Python 3.11+ and Git suffice for planning, context and binding. Verifiers are required
-only when selected, must match Destiny's pins, and are never installed automatically.
-Use either `bin/agentctl.py` or `bin/destinyctl.py`; they expose the same interface.
+## Start from the queue
 
-```sh
-python bin/agentctl.py --project /work/destiny plan --base origin/destiny-rs-dev
-python bin/agentctl.py --project /work/destiny context src/runtime.rs --start 100 --lines 80
-python bin/agentctl.py --project /work/destiny run proof-markers
-python bin/agentctl.py --project /work/destiny run repetition
-```
-
-Plans never execute commands. An unmapped change selects the complete matrix; a release
-plan includes all operational checks. Each `run` invokes one named recipe, with finite
-wall time, output and attempt budgets. Its prerequisites are displayed, not silently run.
-Unchanged report inputs reuse a hash-bound receipt. Formal verification is never memoized.
-These controls limit local work; they neither meter nor enforce provider token billing.
-
-For a formal cycle, copy [the plan template](modules/destiny/formal-plan.json) into the
-target checkout, replace every placeholder with real definitions and proof entries,
-implement the obligation, then bind and verify the exact source:
+Python 3.11+ and Git suffice. Run these commands from this checkout; `agentctl.py` and
+`destinyctl.py` expose the same interface. The target Git repository must contain the
+pinned original commit, or supply `--original /path/to/local/reference` to catalog/queue/harness.
+No reference code is executed and no repository or verifier is downloaded automatically.
 
 ```sh
-python bin/agentctl.py --project /work/destiny bind .destiny/plan.json
-python bin/agentctl.py --project /work/destiny verify formation-slot
-python bin/agentctl.py --project /work/destiny audit
+python -B bin/destinyctl.py --project /work/destiny queue
+python -B bin/destinyctl.py --project /work/destiny catalog --query formation --limit 8
+python -B bin/destinyctl.py --project /work/destiny harness \
+  --case 'python/destiny/test/test_ball.py::BallTest::test_free_formation_slot'
 ```
 
-A binding records specification/implementation/harness identities, assumptions, limits
-and reuse rationale. A changed input makes it stale. Only fresh, exact, non-vacuous
-verifier output can yield `CHECKED_SCOPED`. That status concerns declared obligations;
-it never certifies the completeness of their selection or end-to-end Destiny parity.
-Missing or incorrect tool versions are `UNAVAILABLE`, not passed checks.
+`queue` writes `.aegis/destiny/work-queue.json` and prints only a compact summary.
+All 531 identities are derived from the original source at
+`ef738406b61ad06bae2f402857e464735ab106a2`. The catalog's semantic inventory is pinned:
+dropping an occurrence fails validation. The previous collector reduced these to
+509 unqualified keys. A legacy marker shared by several fixtures cannot discharge any
+of those individual obligations; new markers use `// original-case: source::fixture::test`.
 
-## Assurance and maintenance
+`harness` automatically extracts the selected original method/body, fixture setup,
+inheritance and available helper dependencies. It records exact original file hashes,
+assertion lines, existing candidates and unresolved dependencies. Python extraction uses
+ASTs; C++ extraction handles the pinned GoogleTest declarations and balanced bodies.
+Imports, macros and dynamic semantics still need source review. Assertions are never
+silently truncated to fit a packet.
 
-[Destiny policy](modules/destiny/POLICY.md) defines correspondence boundaries; the existing
-marker collector is an inventory, and a duplication scanner supplies candidates. Neither
-is a proof. Native, Python, wheel and platform smoke/regression checks remain available
-as operational diagnostics alongside the formal contract.
+Only one work item may be open. Packets default to 12 KB; unchanged requests reuse the
+saved packet. After implementation, reuse or a blocker, record the decision:
 
 ```sh
-python scripts/check_formal.py --verus /opt/verus/verus
-python scripts/selftest.py
+python -B bin/destinyctl.py --project /work/destiny harness-close \
+  --outcome implemented --note 'Record the actual harness path and remaining gaps here.'
 ```
 
-The first command deductively checks [the controller model](verification/control.rs)
-with its separately pinned toolchain and records source/tool/output identity. The second
-exercises controller regression cases without any third-party Python dependency. The
-model's abstraction boundary and the absence of a proved refinement to Python are explicit.
-Neither command proves Destiny correct. See [migration](MIGRATION.md) and
-[verification scope](verification/README.md) before interpreting results.
+Closing a work item records progress. It does not establish proof.
 
-Actual observations and tool limitations are recorded in [the verification record](docs/VERIFICATION.md).
+## Bind and check one obligation
+
+Copy [the formal plan template](modules/destiny/formal-plan.json) into the target and
+replace every placeholder after reviewing the original behavior and actual Rust call path.
+The template starts at specification assurance; the existing formation harness must be
+reviewed and supplied with real assertion identities and reachability evidence before use.
+
+```sh
+python -B bin/destinyctl.py --project /work/destiny bind .destiny/plan.json
+python -B bin/destinyctl.py --project /work/destiny verify formation-slot --budget-seconds 120
+python -B bin/destinyctl.py --project /work/destiny audit
+python -B bin/destinyctl.py --project /work/destiny queue
+```
+
+Kani must be **0.68.0**. A scoped invocation uses an exact fully qualified harness,
+regular property output and a forced rebuild. It requires a successful behavioral
+assertion and a satisfied cover witness; failed, unreachable, undetermined, truncated
+or empty output gets no proof credit. Assumptions and bounds remain part of the claim.
+The cover witness must exercise the relevant scenario after its domain restrictions.
+The initial scoped time allowance is 120 seconds, with at most two attempts per identical
+input. Retrying requires a recorded diagnosis. A broad verifier run requires `--full-suite`.
+
+Every classified obligation declares its original identities, assertion property IDs,
+source-located reachability witnesses and reviewed relation. Production refinement also
+requires a satisfied witness inside the bound production `src/` implementation.
+Use the actual Cargo manifest containing that harness. Merely importing production source
+or running a specification-only harness cannot satisfy that requirement. Review must
+check that the relational assertions constrain the real implementation without substituting
+stubs or a separate model. Aegis checks evidence integrity and scope; it cannot infer
+semantic adequacy from Rust syntax or from a user's prose declaration.
+
+## Interpret the evidence
+
+| Queue field | Meaning |
+| --- | --- |
+| `mapped_or_marked` | An unambiguous source marker or declared case mapping exists. |
+| `spec_proved` | A current exact Kani observation discharged the declared specification scope. |
+| `production_rust_refinement_proved` | Current Kani evidence discharged the reviewed relation and located production reachability witnesses. |
+| `runtime_differential_evidence` | Reviewed original-case/scenario mappings have current successful native execution receipts. |
+
+The fields are independent. `uncovered` means production refinement evidence is absent.
+Earlier bindings remain visible; stale bindings carry blockers and get no proof credit.
+Unclassified older proofs are retained in `unmapped_proofs` for review. No marker count,
+compiler exit code, cached report or runtime comparison is promoted into refinement proof.
+Missing evidence is a gap, not evidence that no proof exists elsewhere.
+
+Runtime receipt mappings can be consumed with `queue --differential .aegis/destiny/runtime.json`;
+see [the command and schema guide](modules/destiny/README.md). Semantic families are
+advisory classifications by source/name. The catalog and formation CI cite different
+original revisions; correspondence between those authorities must remain explicit.
+
+All 25 Aegis, 33 Destiny and 85 PMAT branch heads were inventoried. The implementation
+reuses inspected Candle/MetaRocq helpers and the existing atomic, locking and process
+utilities. HOL4, MetaRocq and other specialized work is recorded at its sibling-branch pins.
+See [branch review](modules/destiny/BRANCH_REVIEW.md), [reuse provenance](modules/destiny/reuse-provenance.json)
+and [focused validation](docs/VERIFICATION.md). The historical controller model has no
+proved refinement to Python and establishes no Destiny theorem. No further Aegis-wide
+verification campaign is required for this customization's four-capability finish line.

@@ -1,5 +1,10 @@
 # Destiny formal development contract
 
+The customization is complete when it preserves the 531 fixture-qualified originals,
+checks exact current Kani evidence, separates the four assurance levels and emits the
+machine-readable work queue. Stop Aegis infrastructure work at that boundary. Do not
+launch an Aegis-wide campaign as a prerequisite for implementing a Destiny harness.
+
 ## Authority and obligations
 
 Use Destiny's original behavioral definitions, engine-independent Rust specification,
@@ -12,6 +17,9 @@ the reference that happens to make verification succeed.
 For each change, record a precise invariant, relevant original/specification definitions,
 implementation paths, selected exact Kani harness or counted Verus entry, assumptions,
 known bounds and unproved correspondence. Inspect existing equivalents before implementing.
+Extract fixtures and case bodies automatically from the pinned original Git blobs.
+Never invent fixture names, merge repeated test names, or use ambiguous legacy markers
+to cover multiple fixtures. Preserve every original assertion and its setup dependencies.
 Record reuse/license decisions and a generator recipe when generation is appropriate.
 Then implement, bind the actual source and run the selected proof obligation. A failed
 obligation requires diagnosis; do not weaken it to pass. Incomplete work remains explicit.
@@ -47,3 +55,9 @@ The native differential recipe requires a real library because a skipped native 
 is not success. Operational release recipes preserve Destiny's platform, packaging and
 transport diagnostics; one local host cannot certify their entire matrix. Never suppress
 a failure or skipped boundary by relabelling it as verified.
+
+Production refinement credit additionally requires exact successful relational assertions
+and a satisfied, source-located cover witness in the bound production implementation.
+Review the actual call path, adapters and assumptions; a specification harness or an
+unused production import does not establish production refinement. Runtime comparisons
+have their own evidence field and cannot discharge a formal obligation.

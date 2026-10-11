@@ -4,6 +4,8 @@
 - Authority and target: contracts/destiny.json and modules/destiny/SOURCES.md.
 - Existing work across all branch heads: modules/destiny/BRANCH_REVIEW.md.
 - Commands and examples: README.md and modules/destiny/README.md.
+- Fixture-qualified original source extraction and work queue: infra/agentinfra/catalog.py.
+- Kani non-vacuity, assurance classification and runtime evidence: infra/agentinfra/evidence.py.
 - Check selection, bounded context and execution: infra/agentinfra/destiny.py.
 - Declared proof obligations, binding and audit: infra/agentinfra/formal.py.
 - Reused strict JSON and verifier adapters: infra/agentinfra/destiny_reuse.py.

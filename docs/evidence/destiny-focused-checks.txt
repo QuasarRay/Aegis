@@ -1,0 +1,22 @@
+Observed 2026-10-11 in the local codex/destiny-rs-dev customization checkout.
+Scope: bounded controller checks for the user's four requested capabilities.
+Synthetic outputs are parsing/dispatch fixtures, not formal proof evidence.
+
+Command (one invocation):
+PYTHONPATH=infra:infra/tests python -B -m unittest -v \
+  test_catalog test_evidence \
+  test_formal_workflow.TestFormalWorkflow.test_exact_fresh_observation_audits_and_changed_tool_is_stale \
+  test_formal_workflow.TestFormalWorkflow.test_binding_is_not_completion_and_source_edits_invalidate_it \
+  test_formal_workflow.TestFormalWorkflow.test_wrong_count_and_mismatched_version_are_incomplete \
+  test_formal_workflow.TestFormalWorkflow.test_repeating_proof_needs_diagnosis_and_never_reuses_cache
+
+Result: 17 checks, all passed, 2.290 seconds. No skips.
+
+Additional real-target observations are recorded in destiny-focused.json:
+- full pinned-source catalog join: 531 occurrences, 531 fixture-qualified identities;
+- actual Python fixture/helper and C++ later-fixture extraction;
+- unchanged packet reuse;
+- exact Kani preflight: UNAVAILABLE, executed=false (cargo-kani absent);
+- JSON queue: 531 rows, 109 mapped/marked, no supplied proof/runtime credit.
+
+No full Aegis regression suite or deductive controller proof was rerun in this pass.

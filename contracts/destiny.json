@@ -6,9 +6,20 @@
   "original_catalog_commit": "ef738406b61ad06bae2f402857e464735ab106a2",
   "original_formation_ci_commit": "114e89fa584f0e1a81eb0a679aabf41af8870072",
   "reference_status": "EXPLICIT_REVIEW_REQUIRED: catalog and formation CI cite different original commits",
-  "specification_roots": ["verification/spec", "verification/README.md"],
+  "specification_roots": [
+    "verification/spec",
+    "verification/README.md"
+  ],
   "concrete_obligations": "verification/kani",
   "deductive_obligations": "verification/verus",
-  "correspondence": ["original definition", "engine-independent specification", "representation adapter", "concrete safety and behavior", "applicable deductive refinement"],
-  "trust_boundary": "Declared scoped observations do not certify complete original-to-runtime parity. Operational differential evidence can reveal gaps but is not a universal proof."
+  "correspondence": [
+    "original definition",
+    "engine-independent specification",
+    "representation adapter",
+    "concrete safety and behavior",
+    "applicable deductive refinement"
+  ],
+  "trust_boundary": "Declared scoped observations do not certify complete original-to-runtime parity. Operational differential evidence can reveal gaps but is not a universal proof.",
+  "original_occurrences": 531,
+  "catalog_occurrences_sha256": "472b1476b898028c44e89de5b64aad984e7f114d297dfb2f13a27cbc20f0d1a5"
 }
