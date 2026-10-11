@@ -1,0 +1,9 @@
+{
+  "schema": 1,
+  "verus": "0.2026.09.13.671956e",
+  "z3": "4.16.0",
+  "entry": "verification/control.rs",
+  "expected_checks": 10,
+  "timeout_seconds": 60,
+  "scope": "Controller deductive model only. Destiny uses its own, different Verus pin."
+}

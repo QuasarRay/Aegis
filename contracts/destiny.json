@@ -1,0 +1,14 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/QuasarRay/destiny.git",
+  "branch": "destiny-rs-dev",
+  "inspected_commit": "8eb7606f1db5e8f65336fa05f8f87ef85ab9e402",
+  "original_catalog_commit": "ef738406b61ad06bae2f402857e464735ab106a2",
+  "original_formation_ci_commit": "114e89fa584f0e1a81eb0a679aabf41af8870072",
+  "reference_status": "EXPLICIT_REVIEW_REQUIRED: catalog and formation CI cite different original commits",
+  "specification_roots": ["verification/spec", "verification/README.md"],
+  "concrete_obligations": "verification/kani",
+  "deductive_obligations": "verification/verus",
+  "correspondence": ["original definition", "engine-independent specification", "representation adapter", "concrete safety and behavior", "applicable deductive refinement"],
+  "trust_boundary": "Declared scoped observations do not certify complete original-to-runtime parity. Operational differential evidence can reveal gaps but is not a universal proof."
+}

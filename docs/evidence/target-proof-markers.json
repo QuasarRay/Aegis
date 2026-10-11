@@ -1,0 +1,73 @@
+{
+  "claim": "marker-inventory-only",
+  "commands": [
+    {
+      "argv": [
+        "/usr/bin/python",
+        "-I",
+        "-S",
+        "-B",
+        "verification/tools/proof_coverage.py"
+      ],
+      "returncode": 0,
+      "stderr": "",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_truncated": false,
+      "stdout": "original obligations: 509\nKani-marked:          109\nVerus-marked:         107\nmarked in both:       107\nmissing both:         400\n",
+      "stdout_bytes": 130,
+      "stdout_sha256": "7d578028e3161d989411027210b19946415168809180523c28a2b4255db924e7",
+      "stdout_truncated": false,
+      "timed_out": false
+    }
+  ],
+  "created_at": "2026-10-11T10:24:56.778325+00:00",
+  "duration_seconds": 0.09431896599926404,
+  "id": "proof-markers",
+  "identity": {
+    "allow_network": false,
+    "commands": [
+      [
+        "/usr/bin/python",
+        "-I",
+        "-S",
+        "-B",
+        "verification/tools/proof_coverage.py"
+      ]
+    ],
+    "environment": "38ed096ec51edd0b9172e36c289030662b4b95c3985a947c8cc3b6ebc35e5c50",
+    "external": {},
+    "helpers": "2d4cbf9a60dec24c9292224c6e86bb50aab8354a83979392ca4da52c94a29a7c",
+    "obligation": null,
+    "profile": "12ce2e7599a419c606cfce6e47527da2cb5f84db46a3df399a4b278d6655b27d",
+    "project": "/tmp/aegis-destiny-reference",
+    "python": {
+      "executable": "49a19868cd9b7fb186f5601f0b441b25ed2f623c0ca72186bbccd2aa51b94522",
+      "version": "3.14.7 (main, Sep 18 2026, 06:46:30) [GCC 16.2.1 20260810]"
+    },
+    "runner": "e5e74ccaf13ebe84358a5b3d7ea7bf00bff8e08f05905599b7f020355ce98951",
+    "schema": 1,
+    "source": {
+      "digest": "4e3f2cd7df042d3f9c095ff65b79fc29b75dd1255083b1caab3dc36955debb8d",
+      "files": 130
+    },
+    "tools": {
+      "/usr/bin/python": {
+        "path": "/usr/bin/python3.14",
+        "sha256": "49a19868cd9b7fb186f5601f0b441b25ed2f623c0ca72186bbccd2aa51b94522"
+      }
+    }
+  },
+  "key": "2dd10e3011a26937870ac5e3323bee1c4c8f9d15a64e7a380473b1475d102482",
+  "probes": [],
+  "proof_output_checked": false,
+  "reason": null,
+  "returncode": 0,
+  "schema": 1,
+  "sha256": "14c1792650b7b02d39d97748d704c77f86ee0a704e0af4c2705dbb2e3bc87bcf",
+  "source_after": {
+    "digest": "4e3f2cd7df042d3f9c095ff65b79fc29b75dd1255083b1caab3dc36955debb8d",
+    "files": 130
+  },
+  "status": "OBSERVED_SUCCESS"
+}

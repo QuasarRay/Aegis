@@ -181,18 +181,12 @@ def run_process(
         }
         for key, value in defaults.items():
             child_env.setdefault(key, value)
-        # Hypothesis defaults to ``Path.cwd() / ".hypothesis"``.  A property
-        # suite executed against a sealed deployment must never make its
-        # working governance tree dirty, and a caller-provided environment
-        # must not be able to re-enable that write path.
-        child_env["HYPOTHESIS_STORAGE_DIRECTORY"] = str(isolated_home / ".hypothesis")
         for key in (
             "APPDATA",
             "LOCALAPPDATA",
             "XDG_CACHE_HOME",
             "XONSH_DATA_DIR",
             "XONSH_CACHE_DIR",
-            "HYPOTHESIS_STORAGE_DIRECTORY",
         ):
             Path(child_env[key]).mkdir(parents=True, exist_ok=True)
         proc = subprocess.Popen(

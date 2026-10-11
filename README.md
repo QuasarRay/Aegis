@@ -1,89 +1,69 @@
-# Aegis Framework 4.0.0
+# Aegis for Destiny Rust
 
-Aegis is a project-independent, constitutionally opinionated software-engineering framework for coding agents. Projects define domain correctness; they may strengthen Aegis, but they cannot weaken its requirements for Test-Driven Development, evidence, falsification, review, workspace integrity, or truthful completion.
+This branch specializes Aegis for [QuasarRay/destiny, destiny-rs-dev](https://github.com/QuasarRay/destiny/tree/destiny-rs-dev).
+It uses specification and formal verification as the development contract, with bounded
+context, durable attempt budgets, conservative dependency planning and explicit proof scope.
+The target revision inspected is `8eb7606f1db5e8f65336fa05f8f87ef85ab9e402`.
 
-## Trust and deployment model
+The design reuses the formal workflow introduced on Aegis's Candle branches and hardened
+on its MetaRocq branches. All 25 Aegis, 33 Destiny and 85 PMAT branch heads were inventoried;
+relevant distinct implementations were compared. See [branch review](modules/destiny/BRANCH_REVIEW.md)
+and [source provenance](modules/destiny/reuse-provenance.json). HOL4, MetaRocq, extraction,
+TacticToe and supervision implementations remain available at their pinned sibling branches.
+Destiny's existing Kani and Verus obligations are reused directly.
 
-The three security domains are deliberately separate:
+## Use from this checkout
 
-```text
-framework source/   trusted human development and release verification
-.agents/             deployed governing input; ordinary agents read but never write
-.aegis/              mutable task state, evidence, locks, caches, compiled policy, and audits
+Python 3.11+ and Git suffice for planning, context and binding. Verifiers are required
+only when selected, must match Destiny's pins, and are never installed automatically.
+Use either `bin/agentctl.py` or `bin/destinyctl.py`; they expose the same interface.
+
+```sh
+python bin/agentctl.py --project /work/destiny plan --base origin/destiny-rs-dev
+python bin/agentctl.py --project /work/destiny context src/runtime.rs --start 100 --lines 80
+python bin/agentctl.py --project /work/destiny run proof-markers
+python bin/agentctl.py --project /work/destiny run repetition
 ```
 
-This repository root is the authoritative framework source. The checked-in active `.agents` tree is not a development mirror and is never synchronized by source commands. A human maintainer verifies a deterministic artifact outside `.agents`, then manually copies that artifact to the target repository.
+Plans never execute commands. An unmapped change selects the complete matrix; a release
+plan includes all operational checks. Each `run` invokes one named recipe, with finite
+wall time, output and attempt budgets. Its prerequisites are displayed, not silently run.
+Unchanged report inputs reuse a hash-bound receipt. Formal verification is never memoized.
+These controls limit local work; they neither meter nor enforce provider token billing.
 
-Source-maintainer commands:
+For a formal cycle, copy [the plan template](modules/destiny/formal-plan.json) into the
+target checkout, replace every placeholder with real definitions and proof entries,
+implement the obligation, then bind and verify the exact source:
 
-```text
-python -B bin/agentctl.py --root . doctor
-python -B bin/agentctl.py --root . audit
-python -B infra/law_tests/run_suite.py --root . --output .aegis/law-results/latest.json
-python -B scripts/verify_release.py
-python -B bin/agentctl.py --root . package build dist/aegis-governance
+```sh
+python bin/agentctl.py --project /work/destiny bind .destiny/plan.json
+python bin/agentctl.py --project /work/destiny verify formation-slot
+python bin/agentctl.py --project /work/destiny audit
 ```
 
-The last command produces `dist/aegis-governance/.agents/`. It never writes the active `.agents` tree. After verification, a human may copy that directory into a target repository and manually merge the reviewed block from `bootstrap/root-AGENTS.block.md` into the target root `AGENTS.md`. Ordinary agent execution exposes verification but no bootstrap install, uninstall, module install, module scaffold, manifest-write, or self-update command.
+A binding records specification/implementation/harness identities, assumptions, limits
+and reuse rationale. A changed input makes it stale. Only fresh, exact, non-vacuous
+verifier output can yield `CHECKED_SCOPED`. That status concerns declared obligations;
+it never certifies the completeness of their selection or end-to-end Destiny parity.
+Missing or incorrect tool versions are `UNAVAILABLE`, not passed checks.
 
-## Constitutional core
+## Assurance and maintenance
 
-The executable constitution defines AEGIS-I001 through AEGIS-I022. It enforces:
+[Destiny policy](modules/destiny/POLICY.md) defines correspondence boundaries; the existing
+marker collector is an inventory, and a duplication scanner supplies candidates. Neither
+is a proof. Native, Python, wheel and platform smoke/regression checks remain available
+as operational diagnostics alongside the formal contract.
 
-- immutable governing policy and frozen acceptance criteria;
-- no self-waiver and no weakening of HARD gates;
-- current implementation/evidence epochs and production-path truth;
-- contract-test and oracle integrity;
-- independent acceptance, epistemic honesty, and capability honesty;
-- controlled scope, user-work preservation, and minimal unjustified change;
-- one active child globally, no nested delegation, and parent canonical authority;
-- Max reasoning where supported, mandatory falsification, and reference/oracle integrity;
-- test-first implementation authority, frozen RED/characterization contracts, same-contract GREEN, property-first assurance, and regression-first remediation.
-
-Project contracts may add architecture, commands, laws, generated paths, compatibility requirements, dependencies, benchmarks, deployment targets, and stronger policy packs. Unknown constitutional keys or weakening values fail closed.
-
-## Enforced TDD lifecycle
-
-Mutating behavioral work follows an executable lifecycle:
-
-```text
-PRECHECK -> TRIAGE -> PLAN -> TEST_DESIGN -> BASELINE_EXECUTION
-         -> RED_OBSERVED | CHARACTERIZATION_OBSERVED | TEST_FIRST_OBSERVED
-         -> IMPLEMENT -> GREEN -> FALSIFY -> REVIEW -> VERIFY
-         -> FINAL_AUDIT -> FINALIZE
+```sh
+python scripts/check_formal.py --verus /opt/verus/verus
+python scripts/selftest.py
 ```
 
-The compiled task contract selects `RED_REQUIRED`, `CHARACTERIZATION_REQUIRED`, or a justified non-behavioral test-first mode. Implementation write authority does not exist until the test/oracle digests are frozen and the required baseline observation is bound to the pre-implementation digest. GREEN must use the same frozen test and oracle against the current implementation epoch. A changed contract, oracle, governance snapshot, baseline, or harness revokes authority. A counterexample discovered after implementation starts a new regression-first cycle.
+The first command deductively checks [the controller model](verification/control.rs)
+with its separately pinned toolchain and records source/tool/output identity. The second
+exercises controller regression cases without any third-party Python dependency. The
+model's abstraction boundary and the absence of a proved refinement to Python are explicit.
+Neither command proves Destiny correct. See [migration](MIGRATION.md) and
+[verification scope](verification/README.md) before interpreting results.
 
-Hypothesis is a development/test dependency, not a runtime dependency. The stdlib-only control plane remains recoverable without it. Profiles are `focused` (25 examples), `standard` (100), and `stress` (500); `RuleBasedStateMachine` models cover temporal TDD authority and evidence-cycle behavior.
-
-## Policy compiler and PRECHECK
-
-Structured project contracts compile into content-addressed artifacts under `.aegis/compiled-policy/`. Compilation performs monotonic task classification, applies non-weakenable policy packs, generates HARD/REQUIRED/ADVISORY gates, resolves source/generated/immutable/reference boundaries, freezes write scope and budgets, records command matrices, and derives review requirements. Reimplementation work requires a read-only reference contract, differential oracle, compatibility decisions, and reference digest.
-
-PRECHECK is artifact-based. It records governance and instruction provenance, repository discovery, workspace/user-change boundaries, test/law baselines, TDD plan, compiled policy, gates, budgets, commands, and review requirements. Boolean self-reports do not complete it.
-
-## State, evidence, review, and final audit
-
-Canonical task state lives under `.aegis/tasks/`; evidence, locks, cache, policy, audit, manifest, and migration state use distinct `.aegis` subdirectories. State transitions are locked, revisioned, append-only, epoch-aware, and anchor-history protected. Legacy `.agents/runtime` and `.agents/persistent` data can be copied into `.aegis` by the explicit, idempotent runtime migration command; migration never deletes or rewrites governance.
-
-Evidence distinguishes observation, external authority, inference, assumption, untested, unavailable, and blocked outcomes. Gate proof requires task/epoch relevance. REQUIRED waivers require current task-bound external user/host evidence; HARD gates cannot be waived. Review receipts bind reviewer independence, current diff, requirements, evidence, specialist role, findings, and concrete falsification attempts.
-
-Finalization requires the exact 40-check audit contract. Every check is evidence-sealed and workspace-bound; missing, manual-only, stale, blocked, or tampered observations fail closed. The final workspace fingerprint is recomputed on load after finalization.
-
-## Laws, properties, and capability truth
-
-The acceptance system has two exact inventories:
-
-- 834 historical `tests-to-impl` requirements with a deterministic machine-readable registry;
-- 105 constitutional/TDD laws bound to exact executed test methods or generated state-machine `runTest` cases.
-
-Properties may subsume multiple named regressions only through reviewed observation mappings. A collected-but-unstarted, incomplete, vacuous, skipped, mutated, or unsealed result cannot become PASS. Host limitations are recorded as `UNAVAILABLE`, `BLOCKED`, `UNTESTED`, or justified `NOT_APPLICABLE`; they are never relabeled PASS.
-
-## Threat model and limits
-
-Aegis prevents writes through its managed mutation APIs and independently detects out-of-band governance changes. Path checks cover traversal, case aliases, symlinks, Windows junctions/reparse points, rename endpoints, Git/codegen/formatter destinations, and redirected `.aegis` state. No in-process framework can prevent an already-privileged external process from editing files; digest checkpoints and final workspace verification make such changes invalidate the task. Platform behavior not exercised on the current host remains an explicit capability limitation.
-
-The recovery-critical implementation uses Python 3.11+ and the standard library. Optional `mcpyrate`, `unpythonic`, Xonsh, and host adapters are capability-scoped and cannot weaken the constitutional core.
-
-See [INDEX.md](INDEX.md), [MIGRATION.md](MIGRATION.md), [protocols/STATE.md](protocols/STATE.md), [protocols/LAW_TESTS.md](protocols/LAW_TESTS.md), and [infra/README.md](infra/README.md).
+Actual observations and tool limitations are recorded in [the verification record](docs/VERIFICATION.md).

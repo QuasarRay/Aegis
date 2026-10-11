@@ -1,0 +1,35 @@
+{
+  "schema": 1,
+  "objective": "REPLACE_describe_the_behavior_and_required_invariant",
+  "authority_sha256": "d7ea81d70cbaea56d5d424b82c4de12afc624123a5202d6a581becafda9aaac1",
+  "reference_review": "REPLACE_explain_which_original_definition_and_revision_applies_and_resolve_the_catalog_CI_difference_for_this_scope",
+  "reuse": {
+    "strategy": "reuse",
+    "sources": [
+      "REPLACE_existing_source_and_revision"
+    ],
+    "license": "REPLACE_reviewed_license",
+    "reason": "REPLACE_why_this_existing_spec_and_harness_fit",
+    "generator": []
+  },
+  "obligations": [
+    {
+      "id": "formation-slot",
+      "invariant": "REPLACE_precise_rule_for_reserving_the_first_free_formation_slot",
+      "method": "kani",
+      "entry": "formation_contracts::formation_reserve_selects_the_first_free_bit_and_changes_only_that_bit",
+      "expected_checks": 1,
+      "specification": [
+        "verification/spec/src/formation.rs"
+      ],
+      "implementation": [
+        "src/runtime.rs"
+      ],
+      "proof_inputs": [
+        "verification/kani/src/formation_contracts.rs"
+      ],
+      "assumptions": "REPLACE_record_actual_harness_value_domain_unwind_bounds_and_trusted_externals",
+      "limits": "REPLACE_record_unproved_engine_FFI_Python_and_reference_correspondence"
+    }
+  ]
+}

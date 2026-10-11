@@ -1,2 +1,2 @@
-"""Aegis agent infrastructure."""
-__version__ = "4.0.0"
+"""Aegis formal-contract infrastructure for Destiny."""
+__version__ = "7.0.0-destiny.1"

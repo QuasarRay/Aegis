@@ -1,14 +1,12 @@
-model = "gpt-5.6-sol"
+# Preference fragment; apply through the host's supported configuration workflow.
+# Preserve the user's model choice. No host settings are changed by the controller.
 model_reasoning_effort = "max"
 
 [agents]
-enabled = true
 max_concurrent_threads_per_session = 1
 max_depth = 1
-default_subagent_model = "gpt-5.6-sol"
 default_subagent_reasoning_effort = "max"
-interrupt_message = true
 
 [features.multi_agent_v2]
-# V2 counts the root. 2 = root + at most one child. Do not force enabled=true.
+# This host schema counts the parent. Do not automatically enable delegation.
 max_concurrent_threads_per_session = 2

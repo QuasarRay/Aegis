@@ -1,0 +1,495 @@
+{
+  "project_commit": "8eb7606f1db5e8f65336fa05f8f87ef85ab9e402",
+  "observations": [
+    {
+      "arguments": [
+        "plan",
+        "--changed",
+        "src/runtime.rs"
+      ],
+      "exit_code": 0,
+      "result": {
+        "changed": [
+          "src/runtime.rs"
+        ],
+        "checks": [
+          {
+            "claim": "executable-specification-tests",
+            "commands": [
+              [
+                "cargo",
+                "test",
+                "--manifest-path",
+                "verification/spec/Cargo.toml",
+                "--locked"
+              ]
+            ],
+            "id": "spec-test",
+            "status": "NOT_RUN",
+            "timeout": 120
+          },
+          {
+            "claim": "procedural-macro-compilation-only",
+            "commands": [
+              [
+                "cargo",
+                "check",
+                "--manifest-path",
+                "verification/meta/Cargo.toml",
+                "--locked"
+              ]
+            ],
+            "id": "meta-check",
+            "status": "NOT_RUN",
+            "timeout": 120
+          },
+          {
+            "claim": "metaverification-support-tests",
+            "commands": [
+              [
+                "cargo",
+                "test",
+                "--manifest-path",
+                "verification/meta-support/Cargo.toml",
+                "--locked"
+              ]
+            ],
+            "id": "meta-support-test",
+            "status": "NOT_RUN",
+            "timeout": 120
+          },
+          {
+            "claim": "ordinary-tests-not-kani-proofs",
+            "commands": [
+              [
+                "cargo",
+                "test",
+                "--manifest-path",
+                "verification/kani/Cargo.toml",
+                "--locked"
+              ]
+            ],
+            "id": "kani-regression",
+            "requires": [
+              "spec-test",
+              "meta-check",
+              "meta-support-test"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 180
+          },
+          {
+            "claim": "kani-harness-execution-bounded-by-harness-assumptions",
+            "commands": [
+              [
+                "cargo",
+                "kani",
+                "--manifest-path",
+                "verification/kani/Cargo.toml",
+                "--output-format=terse"
+              ]
+            ],
+            "expect": [
+              "0.68.0"
+            ],
+            "id": "kani",
+            "probes": [
+              [
+                "cargo",
+                "kani",
+                "--version"
+              ]
+            ],
+            "requires": [
+              "kani-regression"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 900
+          },
+          {
+            "claim": "cmake-configuration",
+            "commands": [
+              [
+                "cmake",
+                "-S",
+                ".",
+                "-B",
+                "build",
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DDBC_CARGO_LOCKED=ON"
+              ]
+            ],
+            "id": "native-configure",
+            "status": "NOT_RUN",
+            "timeout": 120
+          },
+          {
+            "claim": "linked-abi-tests-on-current-platform",
+            "commands": [
+              [
+                "cmake",
+                "--build",
+                "build",
+                "--config",
+                "Release",
+                "--parallel",
+                "2"
+              ],
+              [
+                "ctest",
+                "--test-dir",
+                "build",
+                "-C",
+                "Release",
+                "--output-on-failure"
+              ]
+            ],
+            "id": "native-build",
+            "requires": [
+              "native-configure"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 900
+          },
+          {
+            "claim": "native-vs-python-differential-scenarios",
+            "commands": [
+              [
+                "{python}",
+                "-B",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-p",
+                "test_backend_differential.py",
+                "-v"
+              ]
+            ],
+            "id": "native-differential",
+            "inputs": [
+              "library"
+            ],
+            "requires": [
+              "native-build"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 180
+          },
+          {
+            "cacheable": true,
+            "claim": "marker-inventory-only",
+            "commands": [
+              [
+                "{python}",
+                "-I",
+                "-S",
+                "-B",
+                "verification/tools/proof_coverage.py"
+              ]
+            ],
+            "id": "proof-markers",
+            "read_globs": [
+              "verification/kani/**/*.rs",
+              "verification/verus/**/*.rs",
+              "verification/spec/src/catalog.rs"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 30
+          },
+          {
+            "claim": "python-contract-tests-with-possible-native-skips",
+            "commands": [
+              [
+                "{python}",
+                "-B",
+                "-m",
+                "unittest",
+                "discover",
+                "-s",
+                "tests",
+                "-p",
+                "test_*.py",
+                "-v"
+              ]
+            ],
+            "id": "python-contract",
+            "status": "NOT_RUN",
+            "timeout": 180
+          },
+          {
+            "cacheable": true,
+            "claim": "lexical-duplication-candidates-only",
+            "commands": [
+              [
+                "{python}",
+                "-I",
+                "-S",
+                "-B",
+                "verification/tools/pattern_scan.py",
+                "--json"
+              ]
+            ],
+            "id": "repetition",
+            "read_globs": [
+              "src/runtime.rs",
+              "src/network.rs",
+              "src/ffi.rs",
+              "python/destiny/_facade.py",
+              "python/destiny/_backend.py"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 30
+          },
+          {
+            "claim": "format-check",
+            "commands": [
+              [
+                "cargo",
+                "fmt",
+                "--all",
+                "--",
+                "--check"
+              ]
+            ],
+            "expect": [
+              "1.95.0"
+            ],
+            "id": "rust-format",
+            "probes": [
+              [
+                "rustc",
+                "--version"
+              ]
+            ],
+            "status": "NOT_RUN",
+            "timeout": 60
+          },
+          {
+            "claim": "compilation-only",
+            "commands": [
+              [
+                "cargo",
+                "check",
+                "--all-features",
+                "--all-targets",
+                "--locked"
+              ]
+            ],
+            "id": "rust-check",
+            "requires": [
+              "rust-format"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 600
+          },
+          {
+            "claim": "lint-check",
+            "commands": [
+              [
+                "cargo",
+                "clippy",
+                "--all-features",
+                "--all-targets",
+                "--locked",
+                "--",
+                "-D",
+                "warnings"
+              ]
+            ],
+            "id": "rust-lint",
+            "requires": [
+              "rust-check"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 600
+          },
+          {
+            "claim": "rust-runtime-tests",
+            "commands": [
+              [
+                "cargo",
+                "test",
+                "--all-features",
+                "--locked"
+              ]
+            ],
+            "id": "rust-test",
+            "requires": [
+              "rust-check"
+            ],
+            "status": "NOT_RUN",
+            "timeout": 600
+          },
+          {
+            "claim": "logical-model-verification-not-runtime-parity",
+            "commands": [
+              [
+                "{verus}",
+                "--crate-type=lib",
+                "verification/verus/proofs.rs"
+              ],
+              [
+                "{verus}",
+                "--crate-type=lib",
+                "verification/verus/state_contracts.rs"
+              ],
+              [
+                "{verus}",
+                "--crate-type=lib",
+                "verification/verus/lifecycle_contracts.rs"
+              ],
+              [
+                "{verus}",
+                "--crate-type=lib",
+                "verification/verus/ball_contracts.rs"
+              ],
+              [
+                "{verus}",
+                "--crate-type=lib",
+                "verification/verus/visibility_contracts.rs"
+              ],
+              [
+                "{verus}",
+                "--crate-type=lib",
+                "verification/verus/geometry_contracts.rs"
+              ]
+            ],
+            "expect": [
+              "0.2026.09.20.aef82ed"
+            ],
+            "id": "verus",
+            "probes": [
+              [
+                "{verus}",
+                "--version"
+              ]
+            ],
+            "status": "NOT_RUN",
+            "timeout": 300
+          }
+        ],
+        "manual_gates": [
+          {
+            "description": "Run native, linked ABI and relocated consumers on Linux, macOS and Windows; one host cannot discharge the matrix.",
+            "id": "platform-matrix"
+          },
+          {
+            "description": "Install the wheel into a clean environment outside the source tree, prove native library discovery, and run the import scenario from RELEASE_GATES.md.",
+            "id": "clean-wheel-install"
+          },
+          {
+            "description": "Exercise two authenticated clients and a server over actual Lightyear transport, including retries, redaction, disconnect and recovery.",
+            "id": "real-carbon-deployment"
+          },
+          {
+            "description": "Resolve the catalog/CI original-reference commit discrepancy; connect each spec, adapter, Kani, Verus and differential observation before claiming proved parity.",
+            "id": "reference-and-parity-review"
+          }
+        ],
+        "notice": "Selection is a triage plan, never an acceptance waiver. Use --release for the complete matrix.",
+        "project": "/tmp/aegis-destiny-reference",
+        "schema": 1,
+        "status": "PLANNED",
+        "unmapped": []
+      }
+    },
+    {
+      "arguments": [
+        "run",
+        "proof-markers"
+      ],
+      "exit_code": 0,
+      "result": {
+        "claim": "marker-inventory-only",
+        "executed": true,
+        "id": "proof-markers",
+        "key": "2dd10e3011a26937870ac5e3323bee1c4c8f9d15a64e7a380473b1475d102482",
+        "notice": "Observation only; this receipt does not prove parity or discharge an Aegis gate.",
+        "output_truncated": false,
+        "proof_output_checked": false,
+        "receipt": ".aegis/destiny/receipts/e400147a0ee04384b6420a7f0786a5a1.json",
+        "returncode": 0,
+        "status": "OBSERVED_SUCCESS"
+      }
+    },
+    {
+      "arguments": [
+        "run",
+        "proof-markers"
+      ],
+      "exit_code": 0,
+      "result": {
+        "claim": "marker-inventory-only",
+        "executed": false,
+        "id": "proof-markers",
+        "key": "2dd10e3011a26937870ac5e3323bee1c4c8f9d15a64e7a380473b1475d102482",
+        "notice": "Observation only; this receipt does not prove parity or discharge an Aegis gate.",
+        "output_truncated": false,
+        "proof_output_checked": false,
+        "receipt": ".aegis/destiny/receipts/e400147a0ee04384b6420a7f0786a5a1.json",
+        "returncode": 0,
+        "status": "REUSED"
+      }
+    },
+    {
+      "arguments": [
+        "run",
+        "repetition"
+      ],
+      "exit_code": 0,
+      "result": {
+        "claim": "lexical-duplication-candidates-only",
+        "executed": true,
+        "id": "repetition",
+        "key": "edd75a606ba86b69162d43c1a534236fbf249891be8d764b900916eb699f9648",
+        "notice": "Observation only; this receipt does not prove parity or discharge an Aegis gate.",
+        "output_truncated": true,
+        "proof_output_checked": false,
+        "receipt": ".aegis/destiny/receipts/a1b16cb6d1dc47c7a9a02300c8dd85ec.json",
+        "returncode": 0,
+        "status": "OBSERVED_SUCCESS"
+      }
+    },
+    {
+      "arguments": [
+        "run",
+        "kani",
+        "--harness",
+        "formation_contracts::formation_reserve_selects_the_first_free_bit_and_changes_only_that_bit"
+      ],
+      "exit_code": 1,
+      "result": {
+        "executed": false,
+        "id": "kani",
+        "reason": "required executable is missing: cargo-kani",
+        "status": "UNAVAILABLE"
+      }
+    },
+    {
+      "arguments": [
+        "run",
+        "verus"
+      ],
+      "exit_code": 1,
+      "result": {
+        "executed": false,
+        "id": "verus",
+        "probes": [
+          {
+            "argv": [
+              "verus",
+              "--version"
+            ],
+            "returncode": 0,
+            "stderr": "",
+            "stdout": "Verus\n  Version: 0.2026.09.13.671956e\n  Profile: release\n  Platform: linux_x86_64\n  Toolchain: 1.98.1-x86_64-unknown-linux-gnu (overridden by environment variable RUSTUP_TOOLCHAIN)\n\n"
+          }
+        ],
+        "reason": "pinned tool version unavailable",
+        "status": "UNAVAILABLE"
+      }
+    }
+  ]
+}

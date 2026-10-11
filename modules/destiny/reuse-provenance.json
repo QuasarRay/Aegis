@@ -1,0 +1,115 @@
+{
+  "schema": 1,
+  "symbols": [
+    {
+      "symbol": "ContractError",
+      "repository": "QuasarRay/Aegis",
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "path": "infra/agentinfra/contracts.py",
+      "source_sha256": "ab7143ad65c7cf048b092aaa89b00cc82102450693a32ab3eec89dd9d400a925",
+      "symbol_sha256": "c48cc67e844db8f36ef0f0fcd7b1fd4cefd7183b4350fa85b0e878ae4e35f95b",
+      "reuse": "verbatim"
+    },
+    {
+      "symbol": "require",
+      "repository": "QuasarRay/Aegis",
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "path": "infra/agentinfra/contracts.py",
+      "source_sha256": "ab7143ad65c7cf048b092aaa89b00cc82102450693a32ab3eec89dd9d400a925",
+      "symbol_sha256": "7093c85aa42edb390bf04834f29ebe6d137b7da3c2ac86c31186a721ce9e2dc2",
+      "reuse": "verbatim"
+    },
+    {
+      "symbol": "digest",
+      "repository": "QuasarRay/Aegis",
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "path": "infra/agentinfra/contracts.py",
+      "source_sha256": "ab7143ad65c7cf048b092aaa89b00cc82102450693a32ab3eec89dd9d400a925",
+      "symbol_sha256": "7a4bdd6a9f1de8460d90a6f109462319652799ad54ad6d887d87fbe373e230e9",
+      "reuse": "verbatim"
+    },
+    {
+      "symbol": "load_json",
+      "repository": "QuasarRay/Aegis",
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "path": "infra/agentinfra/contracts.py",
+      "source_sha256": "ab7143ad65c7cf048b092aaa89b00cc82102450693a32ab3eec89dd9d400a925",
+      "symbol_sha256": "6ac9ebd20d8b5e95f74d104b6036137d81c32235326002a965fcb2a76ea6b413",
+      "reuse": "verbatim"
+    },
+    {
+      "symbol": "checked_output",
+      "repository": "QuasarRay/Aegis",
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "path": "infra/agentinfra/verifiers.py",
+      "source_sha256": "da8896da5f2dcc5c966d97d66cf855b98859d994cf7a3e5b52dc92f11cd72edb",
+      "symbol_sha256": "cd20b71e91534972caf3b6c564e3a3ff4658cb5c1cf5a89f7ffbb0cc4c9e4cdd",
+      "reuse": "verbatim"
+    }
+  ],
+  "retained_primitives": [
+    {
+      "path": "infra/agentinfra/atomic.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "d0a0d9b136aae61b7c42e0d704a413122cc8cea27f55dd7a70ce03d30fda2c8a",
+      "reuse": "verbatim"
+    },
+    {
+      "path": "infra/agentinfra/context_cache.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "e4a4be59dea1a3260014b6b9e720e9bf1ca9561b8bdc9512136a605995b455c9",
+      "reuse": "verbatim"
+    },
+    {
+      "path": "infra/agentinfra/governance.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "7501507b501383b3635b50f04e5315ef36758b49ff9f9e6b5ab448df884cce4c",
+      "reuse": "verbatim"
+    },
+    {
+      "path": "infra/agentinfra/locks.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "68fddd92dba08d508853629ae0c7953885da01ade39dcb20c638327664588b25",
+      "reuse": "verbatim"
+    },
+    {
+      "path": "infra/agentinfra/process.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "0124eeb4c5375319789e2c66fffebe9cf3f7980d9689a8f8ddfd0e1848da6605",
+      "reuse": "adapted: removed obsolete dependency-specific environment handling"
+    },
+    {
+      "path": "infra/agentinfra/security.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "04d36bdb77d90b2db9508fe38c43b36956cded142349f7318e860585cf9acf62",
+      "reuse": "verbatim"
+    },
+    {
+      "path": "infra/agentinfra/transaction.py",
+      "commit": "01060f8d731e0e9082a555bc23f47810aa9eec51",
+      "source_sha256": "2389c3a92057666a6dec7372c8abac4d896bad9415e5a1321d4c466d33dce19c",
+      "reuse": "verbatim"
+    }
+  ],
+  "adapted_components": [
+    {
+      "path": "infra/agentinfra/formal.py",
+      "sources": [
+        "infra/agentinfra/contracts.py",
+        "infra/agentinfra/metarocq.py"
+      ],
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "adaptation": "Destiny authority, bounded named obligations, exact source binding and scoped audit; no target-specific Rocq assumptions"
+    },
+    {
+      "path": "infra/agentinfra/destiny.py",
+      "sources": [
+        "infra/agentinfra/extraction_budget.py",
+        "infra/agentinfra/verifiers.py",
+        "pipelines/roadmap.py"
+      ],
+      "commit": "3ca3f2bb048b93d7b2399c17af083e30338465e9",
+      "adaptation": "Pre-launch durable reservations, exact tool observations, conservative deduplicated recipe selection"
+    }
+  ]
+}

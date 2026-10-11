@@ -1,0 +1,113 @@
+{
+  "claim": "Controller deductive model only. Destiny uses its own, different Verus pin.",
+  "environment": {
+    "CARGO_NET_OFFLINE": "true",
+    "HOME": "/home/astral",
+    "NO_COLOR": "1",
+    "RUSTUP_AUTO_INSTALL": "0",
+    "VERUS_Z3_PATH": "/opt/verus/z3"
+  },
+  "execution": {
+    "argv": [
+      "/opt/verus/verus",
+      "--crate-type=lib",
+      "--no-cheating",
+      "--num-threads",
+      "1",
+      "/tmp/aegis-destiny-customization/verification/control.rs"
+    ],
+    "cwd": "/tmp/aegis-destiny-customization",
+    "duration_seconds": 0.6153575000025739,
+    "finished_at": "2026-10-11T10:23:26.507316+00:00",
+    "returncode": 0,
+    "started_at": "2026-10-11T10:23:25.891839+00:00",
+    "stderr": "",
+    "stderr_bytes": 0,
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "stderr_truncated": false,
+    "stdout": "verification results:: 10 verified, 0 errors\n",
+    "stdout_bytes": 45,
+    "stdout_sha256": "0db84fdca805e20957a6a5f77ba941cb3a95665386d6103b420b85cfa71f3609",
+    "stdout_truncated": false,
+    "timed_out": false
+  },
+  "expected_checks": 10,
+  "identity": {
+    "helpers": {
+      "__init__.py": "3d777ea901d5bdd8c33b3e4599d4849cc76a582dd0a5f7d1d2513fe2015f61e6",
+      "__main__.py": "79ee6f134c5c5193377cf9b189cbdcc3e2095e49ba9cec310114441c15a917c4",
+      "atomic.py": "d0a0d9b136aae61b7c42e0d704a413122cc8cea27f55dd7a70ce03d30fda2c8a",
+      "cli.py": "18d6c276221a5aad9092ca67d23e1f9d741330b8eebefc306eab46d0bcd8745d",
+      "context_cache.py": "e4a4be59dea1a3260014b6b9e720e9bf1ca9561b8bdc9512136a605995b455c9",
+      "destiny.py": "e5e74ccaf13ebe84358a5b3d7ea7bf00bff8e08f05905599b7f020355ce98951",
+      "destiny_reuse.py": "ca2d4dcc5fd0669355e22765eae0703adde5bdac8e031b4e1fc424dc85736121",
+      "formal.py": "281e35c1e78fdc517da49b9512f32c9bb56dad810935fc37d49c875de2d4bd53",
+      "governance.py": "7501507b501383b3635b50f04e5315ef36758b49ff9f9e6b5ab448df884cce4c",
+      "locks.py": "68fddd92dba08d508853629ae0c7953885da01ade39dcb20c638327664588b25",
+      "paths.py": "fbdaa8f2897749051fa6af6bc1b5d01b694827299394484672cda1cba915aac8",
+      "process.py": "051175c3fc8b89c117747d7eba9583fc165c285e2bd2ef49dd33cbf133198e19",
+      "security.py": "04d36bdb77d90b2db9508fe38c43b36956cded142349f7318e860585cf9acf62",
+      "transaction.py": "2389c3a92057666a6dec7372c8abac4d896bad9415e5a1321d4c466d33dce19c"
+    },
+    "pin": "eb1dedd3f42d5f28282ce42635c2392cb4397e0fcc9cac71b3b25481829a04cd",
+    "runner": "6a644bc3cb5bebabd05468c5b5daa5578ea8c7194f0d9effc5f15335469a7deb",
+    "source": "72932ab37c7e9d1985df605f2f89a182924cfbcb1e933690bba4db4c9554d0e9",
+    "tools": {
+      "/opt/verus/libverus_builtin.rlib": "0dcc3687abccbc362c83fdc114f81ada48a47e1a01adcb2ca0f29d8a7d4ebcd8",
+      "/opt/verus/libverus_builtin_macros.d": "b0226bf024130a7d4cf1a430653c7fbb4b7fb91a0c7a8e0e5033c4448d8ecc62",
+      "/opt/verus/libverus_builtin_macros.so": "cbdb8b5c89843b4eec2651b1b9838e72ee6eb3ceaef4f8ef4ac4e635384d97ca",
+      "/opt/verus/libverus_state_machines_macros.d": "7806dfeb354e371c582a0dcc7637a28a8c7ce48fc4e386f1b6f42b338304bb5e",
+      "/opt/verus/libverus_state_machines_macros.so": "39a0842da9e0077eee397149888edf8fdc4a863818e8b27cc569514e849149c9",
+      "/opt/verus/libvstd.rlib": "5c19284a60104ef2bc599e31e65c612816c4bd585b8ba3deefdb7697951b866e",
+      "/opt/verus/rust_verify": "3cfacec957eceda46a5e2048695b762604cf25d2f2bc95c53c46d7bd4f501184",
+      "/opt/verus/verus": "2fe2fca366846ec5aaaaaf80edf061f7d19564c097cb9840c7638719e8bc1854",
+      "/opt/verus/vstd.vir": "ad33d161e8869e8783225857200b1c5fe59dc7861a665cb988efc8adfbccc089",
+      "/opt/verus/z3": "e583c4186a45e72411fa2cb2048401eed03f0f8e5f24694676a8f6271a50b765"
+    }
+  },
+  "probes": [
+    {
+      "argv": [
+        "/opt/verus/verus",
+        "--version"
+      ],
+      "cwd": "/tmp/aegis-destiny-customization",
+      "duration_seconds": 0.01660362199982046,
+      "finished_at": "2026-10-11T10:23:25.886625+00:00",
+      "returncode": 0,
+      "started_at": "2026-10-11T10:23:25.869821+00:00",
+      "stderr": "",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_truncated": false,
+      "stdout": "Verus\n  Version: 0.2026.09.13.671956e\n  Profile: release\n  Platform: linux_x86_64\n  Toolchain: 1.98.1-x86_64-unknown-linux-gnu (overridden by environment variable RUSTUP_TOOLCHAIN)\n\n",
+      "stdout_bytes": 182,
+      "stdout_sha256": "e57b2dde14d54b32d60e76dc12bbf058a409b60fe42d723abd36f60b6db4941b",
+      "stdout_truncated": false,
+      "timed_out": false
+    },
+    {
+      "argv": [
+        "/opt/verus/z3",
+        "--version"
+      ],
+      "cwd": "/tmp/aegis-destiny-customization",
+      "duration_seconds": 0.003971804999309825,
+      "finished_at": "2026-10-11T10:23:25.891467+00:00",
+      "returncode": 0,
+      "started_at": "2026-10-11T10:23:25.887396+00:00",
+      "stderr": "",
+      "stderr_bytes": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_truncated": false,
+      "stdout": "Z3 version 4.16.0 - 64 bit\n",
+      "stdout_bytes": 27,
+      "stdout_sha256": "b5a56c4665985ee7fe2444f5e4264a71463d7f635c992b47e85587d74c26cac5",
+      "stdout_truncated": false,
+      "timed_out": false
+    }
+  ],
+  "schema": 1,
+  "sha256": "62eaa3c9a19165ad139e8d6b349590002d6eafcf4b6659c32bf246b51767de7f",
+  "status": "CHECKED_MODEL"
+}

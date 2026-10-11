@@ -1,0 +1,198 @@
+schema = 1
+
+[project]
+name = "destiny-bevy-compat"
+repository = "https://github.com/QuasarRay/destiny.git"
+branch = "destiny-rs-dev"
+inspected_commit = "8eb7606f1db5e8f65336fa05f8f87ef85ab9e402"
+original_test_commit = "114e89fa584f0e1a81eb0a679aabf41af8870072"
+rust = "1.95.0"
+kani = "0.68.0"
+verus = "0.2026.09.20.aef82ed"
+
+[economy]
+context_bytes = 12000
+max_context_bytes = 64000
+output_bytes = 16000
+default_budget_seconds = 900
+max_attempts_per_input = 2
+
+[[routes]]
+paths = ["src/*", "tests/*.rs"]
+checks = ["rust-lint", "rust-test", "python-contract", "native-differential", "kani", "verus", "proof-markers", "repetition"]
+
+[[routes]]
+paths = ["python/*", "tests/test_*.py"]
+checks = ["python-contract", "spec-test", "native-differential", "kani", "verus", "repetition"]
+
+[[routes]]
+paths = ["verification/*"]
+checks = ["spec-test", "meta-check", "meta-support-test", "kani-regression", "kani", "verus", "rust-test", "python-contract", "proof-markers", "repetition", "original-formations"]
+
+[[routes]]
+paths = ["include/*", "cmake/*", "CMakeLists.txt", "tests/native/*", "tests/consumer/*"]
+checks = ["rust-test", "python-contract", "native-differential", "relocated-consumer", "wheel-build"]
+
+[[routes]]
+paths = ["registry/*", "tools/*", "src/generated_registry.rs"]
+checks = ["python-contract", "rust-test", "proof-markers"]
+
+[[routes]]
+paths = ["Cargo.toml", "Cargo.lock", "rust-toolchain.toml", "deny.toml", ".cargo/*", ".github/*", "pyproject.toml", "MANIFEST.in", ".gitignore"]
+checks = ["*"]
+
+[[routes]]
+paths = ["*.md", "LICENSE"]
+checks = []
+
+[checks.proof-markers]
+commands = [["{python}", "-I", "-S", "-B", "verification/tools/proof_coverage.py"]]
+timeout = 30
+cacheable = true
+claim = "marker-inventory-only"
+read_globs = ["verification/kani/**/*.rs", "verification/verus/**/*.rs", "verification/spec/src/catalog.rs"]
+
+[checks.repetition]
+commands = [["{python}", "-I", "-S", "-B", "verification/tools/pattern_scan.py", "--json"]]
+timeout = 30
+cacheable = true
+claim = "lexical-duplication-candidates-only"
+read_globs = ["src/runtime.rs", "src/network.rs", "src/ffi.rs", "python/destiny/_facade.py", "python/destiny/_backend.py"]
+
+[checks.python-contract]
+commands = [["{python}", "-B", "-m", "unittest", "discover", "-s", "tests", "-p", "test_*.py", "-v"]]
+timeout = 180
+claim = "python-contract-tests-with-possible-native-skips"
+
+[checks.rust-format]
+commands = [["cargo", "fmt", "--all", "--", "--check"]]
+probes = [["rustc", "--version"]]
+expect = ["1.95.0"]
+timeout = 60
+claim = "format-check"
+
+[checks.rust-check]
+commands = [["cargo", "check", "--all-features", "--all-targets", "--locked"]]
+requires = ["rust-format"]
+timeout = 600
+claim = "compilation-only"
+
+[checks.rust-lint]
+commands = [["cargo", "clippy", "--all-features", "--all-targets", "--locked", "--", "-D", "warnings"]]
+requires = ["rust-check"]
+timeout = 600
+claim = "lint-check"
+
+[checks.rust-test]
+commands = [["cargo", "test", "--all-features", "--locked"]]
+requires = ["rust-check"]
+timeout = 600
+claim = "rust-runtime-tests"
+
+[checks.spec-test]
+commands = [["cargo", "test", "--manifest-path", "verification/spec/Cargo.toml", "--locked"]]
+timeout = 120
+claim = "executable-specification-tests"
+
+[checks.meta-check]
+commands = [["cargo", "check", "--manifest-path", "verification/meta/Cargo.toml", "--locked"]]
+timeout = 120
+claim = "procedural-macro-compilation-only"
+
+[checks.meta-support-test]
+commands = [["cargo", "test", "--manifest-path", "verification/meta-support/Cargo.toml", "--locked"]]
+timeout = 120
+claim = "metaverification-support-tests"
+
+[checks.kani-regression]
+commands = [["cargo", "test", "--manifest-path", "verification/kani/Cargo.toml", "--locked"]]
+requires = ["spec-test", "meta-check", "meta-support-test"]
+timeout = 180
+claim = "ordinary-tests-not-kani-proofs"
+
+[checks.kani]
+commands = [["cargo", "kani", "--manifest-path", "verification/kani/Cargo.toml", "--output-format=terse"]]
+probes = [["cargo", "kani", "--version"]]
+expect = ["0.68.0"]
+requires = ["kani-regression"]
+timeout = 900
+claim = "kani-harness-execution-bounded-by-harness-assumptions"
+
+[checks.verus]
+commands = [
+  ["{verus}", "--crate-type=lib", "verification/verus/proofs.rs"],
+  ["{verus}", "--crate-type=lib", "verification/verus/state_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "verification/verus/lifecycle_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "verification/verus/ball_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "verification/verus/visibility_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "verification/verus/geometry_contracts.rs"],
+]
+probes = [["{verus}", "--version"]]
+expect = ["0.2026.09.20.aef82ed"]
+timeout = 300
+claim = "logical-model-verification-not-runtime-parity"
+
+[checks.native-configure]
+commands = [["cmake", "-S", ".", "-B", "build", "-DCMAKE_BUILD_TYPE=Release", "-DDBC_CARGO_LOCKED=ON"]]
+timeout = 120
+claim = "cmake-configuration"
+
+[checks.native-build]
+commands = [["cmake", "--build", "build", "--config", "Release", "--parallel", "2"], ["ctest", "--test-dir", "build", "-C", "Release", "--output-on-failure"]]
+requires = ["native-configure"]
+timeout = 900
+claim = "linked-abi-tests-on-current-platform"
+
+[checks.native-differential]
+commands = [["{python}", "-B", "-m", "unittest", "discover", "-s", "tests", "-p", "test_backend_differential.py", "-v"]]
+requires = ["native-build"]
+inputs = ["library"]
+timeout = 180
+claim = "native-vs-python-differential-scenarios"
+
+[checks.relocated-consumer]
+commands = [
+  ["cmake", "--install", "build", "--config", "Release", "--prefix", "{project}/stage"],
+  ["cmake", "-S", "tests/consumer", "-B", "consumer-build", "-DCMAKE_PREFIX_PATH={project}/stage"],
+  ["cmake", "--build", "consumer-build", "--config", "Release"],
+  ["ctest", "--test-dir", "consumer-build", "-C", "Release", "--output-on-failure"],
+]
+requires = ["native-build"]
+timeout = 300
+claim = "relocated-consumer-on-current-platform"
+
+[checks.wheel-build]
+commands = [["{python}", "-B", "-m", "build", "--no-isolation"]]
+timeout = 600
+claim = "wheel-sdist-build-not-clean-install"
+
+[checks.original-formations]
+commands = [
+  ["{python}", "-B", "verification/tools/run_original_formation_tests.py", "--original-root", "{original}"],
+  ["{python}", "-B", "verification/tools/run_original_formation_tests.py", "--original-root", "{original}", "--library", "{library}"],
+]
+requires = ["native-build"]
+inputs = ["original", "library"]
+timeout = 180
+claim = "unchanged-original-formation-tests-only"
+
+[checks.dependency-audit]
+commands = [["cargo", "audit", "--file", "Cargo.lock"], ["cargo", "deny", "check"]]
+timeout = 180
+claim = "dependency-policy-current-database-required"
+
+[[manual_gates]]
+id = "platform-matrix"
+description = "Run native, linked ABI and relocated consumers on Linux, macOS and Windows; one host cannot discharge the matrix."
+
+[[manual_gates]]
+id = "clean-wheel-install"
+description = "Install the wheel into a clean environment outside the source tree, prove native library discovery, and run the import scenario from RELEASE_GATES.md."
+
+[[manual_gates]]
+id = "real-carbon-deployment"
+description = "Exercise two authenticated clients and a server over actual Lightyear transport, including retries, redaction, disconnect and recovery."
+
+[[manual_gates]]
+id = "reference-and-parity-review"
+description = "Resolve the catalog/CI original-reference commit discrepancy; connect each spec, adapter, Kani, Verus and differential observation before claiming proved parity."
