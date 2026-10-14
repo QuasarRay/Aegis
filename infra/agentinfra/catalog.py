@@ -142,19 +142,21 @@ def work_queue(root, profile, args):
     import shutil
     snapshot = source_snapshot(root, profile["checks"]["proof-markers"]["read_globs"])
     rows, marked = qualified_index(root, getattr(args, "original", None)), existing(root)
+    from .coverage import assurance, mappings
+    case_mappings = mappings(root, rows)
     proof_rows, blockers = formal.proof_inventory(root, profile)
     output = []
     for row in rows:
         mapped, ambiguous = candidates_for(row, marked)
         proofs = [p for p in proof_rows if row["id"] in p.get("original_cases", [])]
-        checked = [p for p in proofs if p["status"] == "CHECKED_SCOPED"]
+        reviewed_mapping = case_mappings.get(row["id"])
         levels = {"mapped_or_marked": bool(mapped or proofs),
-                  "spec_proved": any(p.get("assurance") == "spec_proved" for p in checked),
-                  "production_rust_refinement_proved": any(p.get("assurance") == "production_rust_refinement_proved" for p in checked),
+                  **assurance(reviewed_mapping, proofs),
                   "runtime_differential_evidence": False}
         output.append({**row, "semantic_family": family(row), "family_basis": "source/name classification, advisory",
                        "assurance": levels, "uncovered": not levels["production_rust_refinement_proved"],
                        "existing_proofs": proofs, "marked_candidates": mapped, "ambiguous_candidates": ambiguous,
+                       "assertion_mapping": reviewed_mapping,
                        "gaps": [level for level, present in levels.items() if not present],
                        "blockers": (["legacy marker does not identify a unique fixture"] if ambiguous else []) +
                                    [p.get("blocker") or p["status"] for p in proofs if p["status"] != "CHECKED_SCOPED"]})
@@ -263,10 +265,24 @@ def python_case(source, name, fixture, read_original, completed=()):
         snippets.append({"path": path, "start": start, "end": node.end_lineno, "purpose": purpose,
                          "text": "\n".join(texts[path].splitlines()[start - 1:node.end_lineno])})
         names = {n.id for n in ast.walk(node) if isinstance(n, ast.Name) and isinstance(n.ctx, ast.Load)}
+        parents = {child: parent for parent in ast.walk(node) for child in ast.iter_child_nodes(parent)}
         for candidate in module(path).body:
             symbols = {candidate.name} if isinstance(candidate, (ast.FunctionDef, ast.ClassDef)) else {
                 n.id for target in getattr(candidate, "targets", []) for n in ast.walk(target) if isinstance(n, ast.Name)}
             if symbols & names:
+                if isinstance(candidate, ast.ClassDef) and any(
+                    item["source"] == path and item["class"] == candidate.name for item in fixture_chain
+                ):
+                    references = [n for n in ast.walk(node) if isinstance(n, ast.Name)
+                                  and isinstance(n.ctx, ast.Load) and n.id == candidate.name]
+                    # super(Fixture, self) names the already-resolved fixture
+                    # chain. Copying its entire class would pull unrelated
+                    # cases into this packet and repeat lifecycle/helpers. Keep
+                    # all other class uses (construction/static dispatch) whole.
+                    if references and all(isinstance(parents.get(n), ast.Call)
+                        and isinstance(parents[n].func, ast.Name) and parents[n].func.id == "super"
+                        and parents[n].args and parents[n].args[0] is n for n in references):
+                        continue
                 queue.append((path, candidate, "local dependency"))
         for n in ast.walk(node):
             if not isinstance(n, ast.Attribute) or not isinstance(n.value, ast.Name):

@@ -10,6 +10,17 @@ from agentinfra.catalog import candidates_for, cpp_case, inventory, python_case,
 
 
 class TestCatalogExtraction(unittest.TestCase):
+    def test_super_fixture_reference_does_not_copy_unrelated_cases(self):
+        sources={"case.py":"from destiny.test import helpers\nclass Selected(helpers.Base):\n def setUp(self):\n  super(Selected,self).setUp()\n  self.check_setup()\n def test_selected(self):\n  self.assertEqual(self.park,7)\n def test_unrelated(self):\n  self.assertTrue(False, 'unrelated sentinel')\n",
+                 "python/destiny/test/helpers.py":"import unittest\nclass Base(unittest.TestCase):\n def setUp(self):\n  self.park=7\n def check_setup(self):\n  self.assertEqual(self.park,7)\n def tearDown(self):\n  del self.park\n"}
+        value=python_case("case.py","test_selected","Selected",sources.__getitem__)
+        text="\n".join(s["text"] for s in value["snippets"])
+        self.assertNotIn("unrelated sentinel",text)
+        for required in ("super(Selected,self).setUp()","self.park=7","def check_setup","def tearDown","self.assertEqual(self.park,7)"):
+            self.assertIn(required,text)
+        self.assertEqual(value["assertion_lines"],[7])
+        self.assertEqual([row["class"] for row in value["fixture_chain"]],["Selected","Base"])
+
     def test_fixture_and_transitive_setup_are_extracted_from_source(self):
         sources = {
             "case.py": "from destiny.test import helpers\nclass Ball(helpers.Base):\n def test_slot(self):\n  ball = helpers.make(self.park)\n  self.assertEqual(ball.slot, helpers.SLOT)\n",

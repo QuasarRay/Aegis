@@ -15,6 +15,7 @@ from pathlib import Path, PurePosixPath
 import re
 import shutil
 import sys
+import tarfile
 import time
 import tomllib
 import uuid
@@ -131,13 +132,26 @@ def source_snapshot(root, read_globs=()):
     if cargo.is_dir():
         names.update(p.relative_to(root).as_posix() for p in cargo.rglob("*") if not p.is_dir() or p.is_symlink())
     entries = {}
+    repositories = {}
     for name in sorted(names):
         if not name or name.split("/", 1)[0].casefold() in {".aegis", ".git"}:
             continue
         name = relative_path(name)
         path = confined_path(root, name)
         if path.is_dir():
-            raise ValueError(f"submodule/directory input requires separate verification: {name}")
+            # Git collapses an embedded repository to its directory in --others.
+            # Bind it separately, including dirty/untracked source and its HEAD;
+            # never omit the controller or vendor inputs from the parent identity.
+            if Path(git(path, "rev-parse", "--show-toplevel").strip()).resolve() != path.resolve():
+                raise ValueError(f"directory input is not a separate Git repository: {name}")
+            nested_globs = [p[len(name) + 1:] for p in read_globs if p.startswith(name + "/")]
+            before_head = git(path, "rev-parse", "--verify", "HEAD^{commit}").strip()
+            nested = source_snapshot(path, nested_globs)
+            if git(path, "rev-parse", "--verify", "HEAD^{commit}").strip() != before_head:
+                raise RuntimeError(f"repository HEAD changed during fingerprint: {name}")
+            repositories[name] = {"commit": before_head, "source": nested}
+            entries[name] = {"repository": repositories[name]}
+            continue
         if not path.exists():
             entries[name] = {"missing": True}
             continue
@@ -149,7 +163,10 @@ def source_snapshot(root, read_globs=()):
         if (before.st_size, before.st_mtime_ns, before.st_ctime_ns) != (after.st_size, after.st_mtime_ns, after.st_ctime_ns):
             raise RuntimeError(f"source changed during fingerprint: {name}")
         entries[name] = {"sha256": sha, "mode": after.st_mode & 0o777}
-    return {"digest": digest(entries), "files": len(entries)}
+    result = {"digest": digest(entries), "files": len(entries)}
+    if repositories:
+        result["repositories"] = repositories
+    return result
 
 
 def state_path(root, suffix=""):
@@ -216,6 +233,9 @@ def environment(root, allow_network):
     # Preserve already installed toolchains while preventing rustup auto-install.
     for name, directory in (("CARGO_HOME", ".cargo"), ("RUSTUP_HOME", ".rustup")):
         env.setdefault(name, str(Path.home() / directory))
+    # run_process isolates HOME. Kani's installed bundle must be explicit so a
+    # version probe never starts an implicit download into that temporary HOME.
+    env.setdefault("KANI_HOME", str(Path.home() / ".kani"))
     env.update({"RUSTUP_AUTO_INSTALL": "0", "CARGO_NET_OFFLINE": "false" if allow_network else "true",
                 "CARGO_TERM_COLOR": "never", "NO_COLOR": "1", "GIT_TERMINAL_PROMPT": "0"})
     return env
@@ -278,6 +298,133 @@ def executable_identities(commands, env):
     return result
 
 
+def registry_source_files(root, manifest, env):
+    """Bind actual Cargo registry source consumed by a standalone proof crate.
+
+    Lockfile identities alone do not detect local changes to a cached math or
+    procedural-macro implementation. Missing/ambiguous registry trees fail before
+    a proof; package checksums identify the requested release, and every current
+    extracted file is hashed as part of the payload (including build scripts).
+    """
+    manifest = confined_path(root, manifest, must_exist=True)
+    lock = manifest.parent / "Cargo.lock"
+    if not lock.is_file():
+        raise ValueError("UNAVAILABLE: selected proof manifest requires its Cargo.lock")
+    packages = tomllib.loads(lock.read_text()).get("package", [])
+    home = Path(env["CARGO_HOME"]).resolve(strict=True)
+    paths = {lock}
+    paths.update(p for p in (home / "config", home / "config.toml") if p.is_file())
+    for package in packages:
+        source = package.get("source")
+        if source is None:  # path crates are separately bound by source_snapshot
+            continue
+        if source != "registry+https://github.com/rust-lang/crates.io-index":
+            raise ValueError("UNAVAILABLE: proof registry/git source needs a separately reviewed resolver")
+        name = package["name"] + "-" + package["version"]
+        candidates = [p for p in (home / "registry/src").glob("*/" + name) if p.is_dir()]
+        if len(candidates) != 1:
+            raise ValueError("UNAVAILABLE: missing or ambiguous proof registry source: " + name)
+        directory = candidates[0]
+        # Recent Cargo releases no longer create .cargo-checksum.json. Bind the
+        # locked archive instead and check its actual extracted source bytes.
+        archives = [p for p in (home / "registry/cache").glob("*/" + name + ".crate") if p.is_file()]
+        if len(archives) != 1 or sha256_file(archives[0]) != package.get("checksum"):
+            raise ValueError("UNAVAILABLE: proof registry release checksum differs: " + name)
+        paths.add(archives[0])
+        with tarfile.open(archives[0], "r:gz") as archive:
+            for member in archive:
+                if member.isdir():
+                    continue
+                parts = PurePosixPath(member.name).parts
+                if not member.isfile() or not parts or parts[0] != name or ".." in parts:
+                    raise ValueError("UNAVAILABLE: invalid locked proof registry archive")
+                extracted = directory.joinpath(*parts[1:])
+                if not extracted.is_file() or not extracted.resolve().is_relative_to(directory.resolve()):
+                    raise ValueError("UNAVAILABLE: incomplete proof registry extraction: " + name)
+                data = archive.extractfile(member).read()
+                if digest(data) != sha256_file(extracted):
+                    raise ValueError("UNAVAILABLE: proof registry source differs from locked archive: " + name)
+        paths.update(p for p in directory.rglob("*") if p.is_file())
+    return paths
+
+
+def tool_payload(root, profile, check, commands, env):
+    """Bind compiler/solver payloads behind launchers, including Kani's stdlib.
+
+    Hash real files each time. A rustup shim or a version string alone cannot
+    detect replacement of the compiler, embedded SAT solver or proof libraries.
+    """
+    paths = set()
+    toolchains = []
+    if check == "kani":
+        for argv in commands:
+            if "--manifest-path" in argv:
+                paths.update(registry_source_files(root, argv[argv.index("--manifest-path") + 1], env))
+        bundle = Path(env["KANI_HOME"]) / ("kani-" + profile["project"]["kani"])
+        if not bundle.is_dir():
+            raise ValueError("UNAVAILABLE: installed pinned Kani bundle is missing")
+        for name in ("rust-toolchain-version", "rustc-version"):
+            paths.add(bundle / name)
+        for name in ("cbmc", "goto-analyzer", "goto-cc", "goto-instrument", "kani-compiler", "kani-driver", "kissat"):
+            paths.add(bundle / "bin" / name)
+        paths.update(p for p in (bundle / "lib").rglob("*") if p.is_file())
+        toolchain = (bundle / "toolchain").resolve(strict=True)
+        if toolchain.name != (bundle / "rust-toolchain-version").read_text().strip():
+            raise ValueError("UNAVAILABLE: Kani compiler toolchain differs from bundle pin")
+        toolchains.append(toolchain)
+    if any(Path(argv[0]).name in {"cargo", "rustc"} for argv in commands):
+        result = run_process(["rustup", "which", "--toolchain", profile["project"]["rust"], "rustc"],
+                             cwd=root, env=env, timeout=10, capture_limit=4000)
+        if result.returncode or result.timed_out or result.stdout_truncated:
+            raise ValueError("UNAVAILABLE: pinned Rust compiler path cannot be resolved")
+        toolchains.append(Path(result.stdout.strip()).resolve(strict=True).parents[1])
+    for toolchain in toolchains:
+        paths.update(toolchain / "bin" / name for name in ("rustc", "cargo"))
+        paths.update(p for p in (toolchain / "lib").glob("*") if p.is_file())
+        paths.update((toolchain / "lib" / "rustlib").rglob("*.rlib"))
+    if check == "verus":
+        executable = Path(shutil.which(commands[0][0], path=env.get("PATH"))).resolve(strict=True)
+        directory = executable.parent
+        for name in ("z3", "rust_verify", "version.json", "vstd.vir"):
+            if (directory / name).is_file():
+                paths.add(directory / name)
+        paths.update(directory.glob("*.rlib"))
+        paths.update(directory.glob("*.so"))
+    return {str(p.resolve(strict=True)): sha256_file(p) for p in sorted(paths)}
+
+
+def scoped_verus_commands(commands, entry, replacements):
+    """Select one registered configuration without dropping verifier flags."""
+    selected = [command for command in commands if command[-1] == entry]
+    if len(selected) != 1:
+        raise ValueError("scoped Verus requires one unique registered command")
+    return expand_commands(selected, replacements)
+
+
+def scoped_kani_commands(commands, manifest, harness):
+    """Retain reviewed features/contract flags while selecting one exact proof."""
+    if len(commands) != 1 or commands[0][:2] != ["cargo", "kani"]:
+        raise ValueError("scoped Kani requires one registered cargo kani configuration")
+    command = commands[0]
+    retained = command[:2]
+    index = 2
+    while index < len(command):
+        argument = command[index]
+        if argument in {"--manifest-path", "--output-format"}:
+            if index + 1 >= len(command):
+                raise ValueError("incomplete registered Kani option")
+            index += 2
+        elif argument.startswith(("--manifest-path=", "--output-format=")):
+            index += 1
+        elif argument in {"--harness", "--exact", "--force-build"} or argument.startswith("--harness="):
+            raise ValueError("registered Kani command must not preselect a harness")
+        else:
+            retained.append(argument)
+            index += 1
+    return [retained + ["--manifest-path", manifest, "--harness", harness,
+                        "--exact", "--force-build", "--output-format", "regular"]]
+
+
 def run_check(root, profile, args):
     if args.check not in profile["checks"]:
         raise ValueError(f"unknown verification check: {args.check}")
@@ -323,14 +470,16 @@ def run_check(root, profile, args):
         manifest = getattr(args, "manifest", None) or "verification/kani/Cargo.toml"
         if relative_path(manifest) != manifest or Path(manifest).name != "Cargo.toml":
             raise ValueError("canonical Cargo.toml manifest required")
-        commands = [["cargo", "kani", "--manifest-path", manifest, "--harness", args.harness,
-                     "--exact", "--force-build", "--output-format", "regular"]]
+        commands = scoped_kani_commands(commands, manifest, args.harness)
         obligation = {"method": "kani", "entry": args.harness, "expected_checks": 1, "manifest": manifest}
     if args.entry or args.expected_checks is not None:
         permitted = {command[-1] for command in spec["commands"]} if args.check == "verus" else set()
         if args.entry not in permitted or type(args.expected_checks) is not int or args.expected_checks < 1:
             raise ValueError("scoped Verus requires a profile entry and positive --expected-checks")
-        commands = [[replacements["verus"], "--crate-type=lib", args.entry]]
+        # Preserve the registered target's flags (including feature/model and
+        # diagnostic controls). Rebuilding a generic command silently drops
+        # the reviewed configuration and its generated-symbol inventory.
+        commands = scoped_verus_commands(spec["commands"], args.entry, replacements)
         obligation = {"method": "verus", "entry": args.entry, "expected_checks": args.expected_checks}
     if args.check in {"kani", "verus"} and not obligation and not getattr(args, "full_suite", False):
         return {"status": "SCOPE_REQUIRED", "executed": False,
@@ -347,10 +496,12 @@ def run_check(root, profile, args):
     try:
         before = source_snapshot(root, spec.get("read_globs", []))
         tools_before = executable_identities(identity_commands, env)
+        payload_before = tool_payload(root, profile, args.check, commands, env)
         identity = {"schema": 1, "project": str(root), "source": before, "external": external,
                     "external_paths": {name: replacements[name] for name in external},
                     "proof_inputs": {name: sha256_file(confined_path(root, name, must_exist=True)) for name in proof_inputs},
                     "read_globs": spec["read_globs"], "pinned_versions": spec.get("expect", []),
+                    "tool_payload": payload_before,
                     "profile": sha256_file(PROFILE), "runner": sha256_file(Path(__file__)),
                     "python": {"version": sys.version, "executable": sha256_file(Path(sys.executable))},
                     "environment": digest(env), "allow_network": bool(args.allow_network),
@@ -385,11 +536,16 @@ def run_check(root, profile, args):
                 return {"status": "UNAVAILABLE", "id": args.check, "executed": False,
                         "reason": "pinned tool version unavailable", "probes": observations}
         outputs, returncode, status = [], 0, "OBSERVED_SUCCESS"
+        run_id = uuid.uuid4().hex
+        verus_inventory = None
         for argv in commands:
             remaining = spec["timeout"] - (time.monotonic() - start)
             if remaining <= 0:
                 status, returncode = "TIMEOUT", 124
                 break
+            if obligation and obligation["method"] == "verus":
+                from .verus_evidence import prepare_log
+                prepare_log(root, argv)
             result = run_process(argv, cwd=root, env=env, timeout=remaining,
                                  capture_limit=profile["economy"]["output_bytes"])
             outputs.append({"argv": argv, "returncode": result.returncode, "stdout": result.stdout,
@@ -397,6 +553,14 @@ def run_check(root, profile, args):
                             "stderr_sha256": result.stderr_sha256, "stdout_bytes": result.stdout_bytes,
                             "stderr_bytes": result.stderr_bytes, "stdout_truncated": result.stdout_truncated,
                             "stderr_truncated": result.stderr_truncated, "timed_out": result.timed_out})
+            if obligation and obligation["method"] == "verus":
+                from .verus_evidence import capture
+                try:
+                    verus_inventory = capture(root, argv, run_id)
+                except (ValueError, OSError) as error:
+                    status, returncode = "INCOMPLETE_EVIDENCE", 1
+                    outputs[-1]["inventory_error"] = str(error)
+                    break
             if result.timed_out or result.returncode:
                 status = "TIMEOUT" if result.timed_out else "FAILED"
                 returncode = result.returncode or 124
@@ -407,15 +571,18 @@ def run_check(root, profile, args):
         after = source_snapshot(root, spec.get("read_globs", []))
         external_after = {name: sha256_file(Path(replacements[name])) if name == "library" else source_snapshot(Path(replacements[name]))
                           for name in external}
-        if before != after or external != external_after or executable_identities(identity_commands, env) != tools_before:
+        if (before != after or external != external_after or executable_identities(identity_commands, env) != tools_before
+                or tool_payload(root, profile, args.check, commands, env) != payload_before):
             status, returncode = "INPUTS_CHANGED", 1
         record = {"schema": 1, "id": args.check, "key": key, "identity": identity,
                   "claim": spec["claim"], "status": status, "returncode": returncode, "probes": observations,
                   "proof_output_checked": bool(obligation and status == "OBSERVED_SUCCESS"),
                   "commands": outputs, "reason": args.reason, "source_after": after,
                   "created_at": datetime.now(timezone.utc).isoformat(), "duration_seconds": time.monotonic() - start}
+        if obligation and obligation["method"] == "verus":
+            record["verus_inventory"] = verus_inventory
         record["sha256"] = digest(record)
-        receipt = f"{CONTROL}/receipts/{uuid.uuid4().hex}.json"
+        receipt = f"{CONTROL}/receipts/{run_id}.json"
         atomic_write_json(confined_path(root, receipt), record)
         if cacheable and status in {"OBSERVED_SUCCESS", "FAILED"}:
             atomic_write_json(index_path, {"receipt": receipt, "sha256": record["sha256"]})

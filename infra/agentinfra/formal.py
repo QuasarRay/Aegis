@@ -21,7 +21,8 @@ RUST_PATH = re.compile(r"[A-Za-z_][A-Za-z0-9_]*(?:::[A-Za-z_][A-Za-z0-9_]*)*\Z")
 
 
 def read(path):
-    require(path.stat().st_size <= 256_000, "contract/receipt exceeds bounded JSON size")
+    # Two captured streams plus receipt identity and nested input inventories.
+    require(path.stat().st_size <= 6_000_000, "contract/receipt exceeds bounded JSON size")
     return load_json(path.read_text(encoding="utf-8"))
 
 
@@ -104,7 +105,8 @@ def validate_plan(root, profile, value):
             require(type(cases) is list and 1 <= len(cases) <= 32 and all(isinstance(c, str) and c in original_ids for c in cases), "fixture-qualified original identities required")
             require(len(cases) == len(set(cases)), "duplicate original identity")
             props = scope["assertion_properties"]
-            require(type(props) is list and 1 <= len(props) <= 128 and all(isinstance(p, str) and re.fullmatch(r'\S+\.assertion\.\d+', p) for p in props), "exact behavioral assertion properties required")
+            from .evidence import property_name
+            require(type(props) is list and 1 <= len(props) <= 128 and all(property_name(p, "assertion") for p in props), "exact behavioral assertion properties required")
             require(len(props) == len(set(props)), "duplicate assertion property")
             for field in ("relation", "review"):
                 prose(scope[field], field)
@@ -112,7 +114,7 @@ def validate_plan(root, profile, value):
             require(type(witnesses) is list and 1 <= len(witnesses) <= 32, "explicit non-vacuity witnesses required")
             for witness in witnesses:
                 exact_keys(witness, "property file line", "reachability witness")
-                require(isinstance(witness["property"], str) and re.fullmatch(r'\S+\.cover\.\d+', witness["property"]), "exact Kani cover property required")
+                require(property_name(witness["property"], "cover"), "exact Kani cover property required")
                 require(witness["file"] in o["proof_inputs"] + o["implementation"] + o["specification"], "witness must be a bound source")
                 require(type(witness["line"]) is int and 1 <= witness["line"] <= len(confined_path(root, witness["file"]).read_text().splitlines()), "witness line is outside source")
             if scope["kind"] == "production_rust_refinement_proved":
@@ -214,7 +216,7 @@ def verify(root, profile, args):
 
 def audit(root, profile, binding_key=None):
     from .destiny import state_path
-    from .evidence import classified, current_receipt, proof_identity, proof_output
+    from .evidence import classified, current_receipt, proof_identity, proof_output, kani_properties, property_location
     from types import SimpleNamespace
     lock = FileLock(state_path(root, "formal.lock"), "destiny-formal-cycle")
     lock.acquire(timeout=0)
@@ -225,6 +227,7 @@ def audit(root, profile, binding_key=None):
             path = state_path(root, f"proofs/{key}/{o['id']}.json")
             status = "NOT_RUN"
             assurance, blocker, record = "unclassified", None, None
+            assertion_locations = {}
             if path.exists():
                 record = unseal(path)
                 require(record["binding"] == key and record["id"] == o["id"], "observation belongs to another obligation")
@@ -240,11 +243,20 @@ def audit(root, profile, binding_key=None):
                         require(receipt["identity"]["obligation"] == expected, "receipt proof scope differs")
                         require(len(receipt["commands"]) == 1 and proof_output(expected, SimpleNamespace(**receipt["commands"][0])), "vacuous or invalid proof output")
                         assurance = classified(root, o, receipt)
+                        if o["method"] == "kani" and o.get("evidence"):
+                            properties=kani_properties(receipt["commands"][0]["stdout"]+"\n"+receipt["commands"][0]["stderr"])
+                            assertion_locations={name: property_location(root, o.get("manifest", "verification/kani/Cargo.toml"), properties[name])
+                                                 for name in o["evidence"]["assertion_properties"]}
+                            require(all(location is not None for location in assertion_locations.values()),
+                                    "behavioral assertion has no precise bound project-source location")
                     except (ValueError, OSError, KeyError) as exc:
                         blocker = str(exc)
                         status = blocker if blocker.startswith("STALE_") else "UNAVAILABLE" if blocker.startswith("UNAVAILABLE:") else "INCOMPLETE_EVIDENCE"
             rows.append({"id": o["id"], "method": o["method"], "status": status,
-                         "entry": o["entry"], "assurance": assurance, "blocker": blocker or (record or {}).get("blocker"),
+                         "entry": o["entry"], "manifest": o.get("manifest", "verification/kani/Cargo.toml"),
+                         "assertion_properties": o.get("evidence", {}).get("assertion_properties", []),
+                         "assertion_locations": assertion_locations,
+                         "assurance": assurance, "blocker": blocker or (record or {}).get("blocker"),
                          "proof_identity": proof_identity(root, o),
                          "pinned_version": profile["checks"][o["method"]]["expect"][0],
                          "receipt": (record or {}).get("result", {}).get("receipt"),
@@ -275,6 +287,7 @@ def proof_inventory(root, profile):
                 binding = unseal(path)
                 for o in binding["contract"]["obligations"]:
                     rows.append({"id": o["id"], "method": o["method"], "entry": o["entry"],
+                                 "manifest": o.get("manifest", "verification/kani/Cargo.toml"),
                                  "original_cases": o.get("evidence", {}).get("original_cases", []),
                                  "status": "STALE_OR_INVALID_BINDING", "assurance": "unclassified",
                                  "binding": path.stem, "blocker": str(exc)})

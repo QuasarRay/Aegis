@@ -7,6 +7,8 @@ import subprocess
 import sys
 import tempfile
 import unittest
+from types import SimpleNamespace
+from unittest.mock import patch
 
 FRAMEWORK = Path(__file__).resolve().parents[2]
 CLI = FRAMEWORK / "bin/destinyctl.py"
@@ -44,6 +46,31 @@ class DestinyFixture(unittest.TestCase):
 
 
 class TestDestiny(DestinyFixture):
+    def test_actual_queue_keeps_fixture_identities_and_independent_lanes(self):
+        sys.path.insert(0,str(FRAMEWORK/"infra"))
+        from agentinfra.catalog import work_queue
+        from agentinfra.destiny import load_profile
+        source="python/test_case.py"
+        first=source+"::FirstFixture::test_a"
+        second=source+"::SecondFixture::test_a"
+        self.write("verification/kani/src/proofs.rs",
+            f"// original-test: {source}::test_a\n// original-case: {first}\nfn scenario() {{ assert!(true); }}\n")
+        rows=[{"id":identity,"source":source,"fixture":fixture,"test":"test_a",
+               "line":1,"original_commit":"0"*40,"original_source_sha256":"1"*64,
+               "legacy_marker":source+"::test_a", "legacy_multiplicity":2}
+              for identity,fixture in ((first,"FirstFixture"),(second,"SecondFixture"))]
+        with patch("agentinfra.catalog.qualified_index",return_value=rows):
+            result=work_queue(self.root,load_profile(),SimpleNamespace(original=None,differential=None,output=None))
+        self.assertEqual(result["qualified_identities"],2)
+        document=json.loads(Path(result["path"]).read_text())
+        entries={r["id"]:r for r in document["obligations"]}
+        self.assertTrue(entries[first]["assurance"]["mapped_or_marked"])
+        self.assertFalse(entries[second]["assurance"]["mapped_or_marked"])
+        for row in entries.values():
+            self.assertFalse(row["assurance"]["spec_proved"])
+            self.assertFalse(row["assurance"]["production_rust_refinement_proved"])
+            self.assertFalse(row["assurance"]["runtime_differential_evidence"])
+
     def test_runtime_plan_is_ordered_and_deduplicated(self):
         plan = self.call("plan", "--changed", "src/runtime.rs", "--changed", "src/runtime.rs")
         ids = [row["id"] for row in plan["checks"]]

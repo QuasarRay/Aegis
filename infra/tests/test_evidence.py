@@ -11,7 +11,7 @@ from unittest.mock import patch
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 from agentinfra.destiny import load_profile, matches_version
 from agentinfra.destiny_reuse import digest
-from agentinfra.evidence import classified, current_receipt, differential_cases, proof_identity, proof_output
+from agentinfra.evidence import classified, current_receipt, differential_cases, kani_properties, proof_identity, proof_output, property_name, property_location
 from agentinfra.formal import AUTHORITY, validate_plan
 
 CASE = "case.py::OriginalFixture::test_value"
@@ -30,6 +30,35 @@ Complete - 1 successfully verified harnesses, 0 failures, 1 total.
 
 
 class TestEvidence(unittest.TestCase):
+    def test_exact_helper_and_trait_property_names_preserve_spaces(self):
+        for name in ("proofs::compare::<f64, 8>.assertion.1", "<f64 as std::cmp::PartialEq>::eq.assertion.1"):
+            self.assertTrue(property_name(name,"assertion"))
+        for name in ("x.assertion.1\n", " x.assertion.1", "x\t.assertion.1", "x.cover.1"):
+            self.assertFalse(property_name(name,"assertion"))
+
+    def test_assertion_location_is_bound_to_the_actual_manifest_source(self):
+        (self.root/"verification/kani/src/proofs.rs").write_text("assert!(true);\n")
+        self.assertEqual(property_location(self.root,"verification/kani/Cargo.toml",
+            {"location":"src/proofs.rs:1:5 in function proofs::compare::<f64, 8>"}),
+            {"file":"verification/kani/src/proofs.rs","line":1})
+        self.assertIsNone(property_location(self.root,"verification/kani/Cargo.toml",
+            {"location":"src/proofs.rs:2:5 in function proofs::compare::<f64, 8>"}))
+
+    def test_property_names_with_rust_type_spaces_are_never_dropped(self):
+        name = "std::cmp::<impl PartialEq for i8>::eq.pointer_dereference.1"
+        output = OUTPUT.replace("SUMMARY:", f"Check 3: {name}\n - Status: FAILURE\nSUMMARY:")
+        self.assertEqual(kani_properties(output)[name]["status"], "FAILURE")
+        self.assertFalse(proof_output(self.obligation, self.output(output)))
+
+    def test_incomplete_property_inventory_is_rejected(self):
+        for output in (OUTPUT.replace("Check 2:", "Check 3:"),
+                       OUTPUT.replace(" - Status: SATISFIED\n", "")):
+            self.assertFalse(proof_output(self.obligation, self.output(output)))
+
+    def test_manifest_relative_cover_locations_resolve_to_the_bound_source(self):
+        self.obligation["evidence"] = self.scope
+        receipt = {"commands": [{"stdout": OUTPUT.replace("src/runtime.rs:1:1", "src/../../../src/runtime.rs:1:1"), "stderr": ""}]}
+        self.assertEqual(classified(self.root, self.obligation, receipt), "production_rust_refinement_proved")
     def setUp(self):
         self.temp = tempfile.TemporaryDirectory()
         self.addCleanup(self.temp.cleanup)

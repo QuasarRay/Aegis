@@ -88,6 +88,15 @@ class TestFormalWorkflow(DestinyFixture):
         self.assertEqual(self.call("verify", "formation-slot", "--verus", tool, ok=False)["status"], "UNAVAILABLE")
         self.assertEqual(self.call("audit", ok=False)["status"], "INCOMPLETE")
 
+    def test_changed_solver_behind_unchanged_verifier_is_stale(self):
+        tool = self.verifier()
+        solver = Path(tool).parent / "z3"
+        solver.write_text("synthetic solver payload one")
+        self.bind()
+        self.call("verify", "formation-slot", "--verus", tool)
+        solver.write_text("synthetic solver payload two")
+        self.assertEqual(self.call("audit", ok=False)["obligations"][0]["status"], "STALE_TOOL_PAYLOAD")
+
     def test_ignored_declared_proof_changes_invalidate_binding(self):
         self.write(".gitignore", ".aegis/\nverification/verus/proofs.rs\n")
         self.bind()

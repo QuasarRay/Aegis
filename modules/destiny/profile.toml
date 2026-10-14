@@ -13,7 +13,11 @@ verus = "0.2026.09.20.aef82ed"
 [economy]
 context_bytes = 12000
 max_context_bytes = 64000
-output_bytes = 16000
+# Regular Kani property inventories must be retained in full for review.
+# The concrete proximity-period inventory is 2223404 stdout bytes. Retain it
+# completely within the formal receipt's 6 MB limit, including both streams,
+# without disabling safety/reachability checks or discarding properties.
+output_bytes = 2500000
 default_budget_seconds = 900
 max_attempts_per_input = 2
 
@@ -111,7 +115,7 @@ timeout = 180
 claim = "ordinary-tests-not-kani-proofs"
 
 [checks.kani]
-commands = [["cargo", "kani", "--manifest-path", "verification/kani/Cargo.toml", "--output-format=terse"]]
+commands = [["cargo", "kani", "-Z", "function-contracts", "-Z", "stubbing", "--manifest-path", "verification/kani/Cargo.toml", "--output-format=terse"]]
 probes = [["cargo", "kani", "--version"]]
 expect = ["0.68.0"]
 requires = ["kani-regression"]
@@ -121,12 +125,14 @@ claim = "kani-harness-execution-bounded-by-harness-assumptions"
 
 [checks.verus]
 commands = [
-  ["{verus}", "--crate-type=lib", "verification/verus/proofs.rs"],
-  ["{verus}", "--crate-type=lib", "verification/verus/state_contracts.rs"],
-  ["{verus}", "--crate-type=lib", "verification/verus/lifecycle_contracts.rs"],
-  ["{verus}", "--crate-type=lib", "verification/verus/ball_contracts.rs"],
-  ["{verus}", "--crate-type=lib", "verification/verus/visibility_contracts.rs"],
-  ["{verus}", "--crate-type=lib", "verification/verus/geometry_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-proofs-logs", "verification/verus/proofs.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-state_contracts-logs", "verification/verus/state_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-lifecycle_contracts-logs", "verification/verus/lifecycle_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-ball_contracts-logs", "verification/verus/ball_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-visibility_contracts-logs", "verification/verus/visibility_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-geometry_contracts-logs", "verification/verus/geometry_contracts.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-ffi-logs", "verification/verus/ffi_lifecycle.rs"],
+  ["{verus}", "--crate-type=lib", "--log", "vir", "--log-dir", ".aegis/destiny/verus-evolution-logs", "verification/verus/evolution_callbacks.rs"],
 ]
 probes = [["{verus}", "--version"]]
 expect = ["0.2026.09.20.aef82ed"]

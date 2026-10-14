@@ -7,17 +7,48 @@ from pathlib import Path
 import re
 
 from .destiny_reuse import checked_output, digest, require
-from .security import confined_path
+from .security import SecurityError, confined_path
+
+
+def property_name(value, kind):
+    # Rust demangled property names may contain spaces in traits or generic
+    # arguments. Preserve the exact name; reject line breaks/control bytes.
+    return (isinstance(value, str) and len(value) <= 2048 and value == value.strip()
+            and not any(ord(c) < 32 or ord(c) == 127 for c in value)
+            and re.fullmatch(r'.+\.' + re.escape(kind) + r'\.\d+', value) is not None)
+
+
+def property_location(root, manifest, row):
+    location = re.fullmatch(r'(.+?):(\d+)(?::\d+)?(?: in function .+)?', row.get("location", ""))
+    if location is None:
+        return None
+    actual = Path(location[1])
+    candidates = [actual] if actual.is_absolute() else [root / actual, (root / manifest).parent / actual]
+    for candidate in candidates:
+        try:
+            relative = candidate.resolve().relative_to(root.resolve()).as_posix()
+            source = confined_path(root, relative, must_exist=True)
+            line = int(location[2])
+            if source.is_file() and 1 <= line <= len(source.read_text().splitlines()):
+                return {"file": relative, "line": line}
+        except (ValueError, OSError, SecurityError):
+            continue
+    return None
 
 
 def kani_properties(output):
     rows = {}
-    for match in re.finditer(r'^Check \d+: (\S+)\s*\n(.*?)(?=^Check \d+:|^SUMMARY:|^VERIFICATION:|\Z)', output, re.M | re.S):
-        name, body = match.groups()
+    numbers = []
+    for match in re.finditer(r'^Check (\d+): ([^\r\n]+)\r?\n(.*?)(?=^Check \d+:|^SUMMARY:|^VERIFICATION:|\Z)', output, re.M | re.S):
+        number, name, body = match.groups()
+        name = name.strip()
+        numbers.append(int(number))
         status = re.findall(r'^\s*- Status: ([A-Z_]+)\s*$', body, re.M)
         location = re.findall(r'^\s*- Location: (.+?)\s*$', body, re.M)
         require(name not in rows and len(status) == 1, "duplicate or malformed Kani property")
         rows[name] = {"status": status[0], "location": location[0] if len(location) == 1 else ""}
+    require(len(rows) == len(re.findall(r'^Check \d+:', output, re.M)), "missing or malformed Kani property block")
+    require(numbers == list(range(1, len(numbers) + 1)), "skipped, duplicate or unordered Kani property inventory")
     return rows
 
 
@@ -49,7 +80,7 @@ def proof_identity(root, obligation):
 
 def current_receipt(root, profile, result):
     """Revalidate actual fresh output and its current identities, not a status label."""
-    from .destiny import PROFILE, environment, matches_version, sha256_file, source_snapshot, state_path
+    from .destiny import PROFILE, environment, matches_version, sha256_file, source_snapshot, state_path, tool_payload
     from .formal import unseal
     require(result.get("executed") is True and result.get("status") == "OBSERVED_SUCCESS", "cached/failed result is not fresh evidence")
     path = confined_path(root, result["receipt"], must_exist=True)
@@ -79,6 +110,8 @@ def current_receipt(root, profile, result):
     for tool in identity["tools"].values():
         require(Path(tool["path"]).is_file(), "UNAVAILABLE: recorded verifier/tool is missing")
         require(sha256_file(Path(tool["path"])) == tool["sha256"], "STALE_TOOL")
+    require(identity.get("tool_payload") == tool_payload(root, profile, receipt["id"], identity["commands"], env),
+            "STALE_TOOL_PAYLOAD")
     probes = receipt["probes"]
     require(identity.get("pinned_versions") == spec.get("expect", []), "pinned verifier identity differs")
     require(len(probes) == len(spec.get("expect", [])), "missing pinned version probes")
@@ -109,8 +142,11 @@ def classified(root, obligation, receipt):
         location = re.fullmatch(r'(.+?):(\d+)(?::\d+)?(?: in function .+)?', row.get("location", ""))
         require(location is not None, "reachability witness has no precise source location")
         actual = Path(location[1])
-        actual = actual if actual.is_absolute() else root / actual
-        require(actual.resolve() == (root / witness["file"]).resolve() and int(location[2]) == witness["line"], "reachability witness is in different source")
+        # Cargo's source locations may be relative to the selected manifest.
+        manifest_root = (root / obligation.get("manifest", "verification/kani/Cargo.toml")).parent
+        candidates = [actual] if actual.is_absolute() else [root / actual, manifest_root / actual]
+        require((root / witness["file"]).resolve() in {p.resolve() for p in candidates}
+                and int(location[2]) == witness["line"], "reachability witness is in different source")
     return scope["kind"]
 
 
