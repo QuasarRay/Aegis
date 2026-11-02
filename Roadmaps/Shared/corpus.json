@@ -224,6 +224,19 @@
       "owner": "A06",
       "status": "RETAINED_TEXT",
       "title": "rust-ecosystem-langgraph-like-frameworks.md"
+    },
+    {
+      "binding": {
+        "path": "python_rust_formal_verification_research_fixed.zip",
+        "sha256": "89bfeb33be5161c7ce242754cc619e5662a321a05a92b37923bd7540bb0e9971"
+      },
+      "edition": "supplied recovered research 2026-11-02",
+      "extraction_loss": "all 13 original member bytes retained with hashes; source claims unverified",
+      "id": "python-rust-formal-research",
+      "license": "retain archive provenance; redistribution qualification required",
+      "owner": "A09",
+      "status": "RETAINED_ORIGINAL_INDEXED",
+      "title": "python_rust_formal_verification_research_fixed.zip"
     }
   ]
 }

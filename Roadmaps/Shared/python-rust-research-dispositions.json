@@ -1,0 +1,437 @@
+{
+  "acceptance": "No candidate is promoted to production proof in this delivery.",
+  "archive": {
+    "path": "python_rust_formal_verification_research_fixed.zip",
+    "sha256": "89bfeb33be5161c7ce242754cc619e5662a321a05a92b37923bd7540bb0e9971"
+  },
+  "authority": "User supplied unverified research; claims are not guaranteed. Adopted roadmap policies take precedence.",
+  "chapters": [
+    {
+      "bytes": 2246,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+      "sha256": "004afdb514adbaac8bfdbd953816471c71ef612ef621de6d886dc45473fe8572"
+    },
+    {
+      "bytes": 2086,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+      "sha256": "05122ee9629dafbebce222e9bf356997b65ce18fb18fb39c0a789f980b55ede9"
+    },
+    {
+      "bytes": 2114,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+      "sha256": "65910aa4dc19a550bc8a14211fdfe7ed54eb9dd2848dcb610646072af9b20fbb"
+    },
+    {
+      "bytes": 4611,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+      "sha256": "a5014a56af38d7abee3ebba50be139eb4dcdb9616605b39b6d161d74a6039813"
+    },
+    {
+      "bytes": 14768,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Original_Report.md",
+      "sha256": "063dd0180353f8133ac0afee2b8f039a9fde9d76ac0a0b0059288ba5056b91a8"
+    },
+    {
+      "bytes": 1742,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+      "sha256": "a9f9b430cd1be4831dc4caf7ce3d87054412a2ed286f674cd8fddf69e748362d"
+    },
+    {
+      "bytes": 2183,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/README.md",
+      "sha256": "0b0670d46b1ca1591d7cb9ef3b1fb1f0f75f9791fdbf92e161de2c5c71acfd5b"
+    },
+    {
+      "bytes": 1922,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Recovery_Notes.md",
+      "sha256": "ac2ddf14dbccdc948788d6479b71ee784cfe427e0b8845e97a5dbfae2e4b706d"
+    },
+    {
+      "bytes": 1443,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Rust_Tools.md",
+      "sha256": "a829ccdc0c0d5556eaaf2d70787311ef8505c37486c341c1071f04a376e88146"
+    },
+    {
+      "bytes": 5352,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Sources.md",
+      "sha256": "56268b03ee7730117b1455720a5f88b858efeebea7c6f18960b12f0ba9905519"
+    },
+    {
+      "bytes": 1280,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Specification_Examples.md",
+      "sha256": "50bd96dd73c6240ca0e1f8680a669c85ead5f51be08d93636ee177db19191fad"
+    },
+    {
+      "bytes": 4676,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+      "sha256": "44cd3cfb9bf58f041325cad6e1d36309a4163b8c6d4375f6ab3bb4dc64e00135"
+    },
+    {
+      "bytes": 2774,
+      "disposition": "retain unchanged as unverified research input; source recommendations resolved explicitly",
+      "member": "Python_Rust_Formal_Verification_Research/Tools_Overview.md",
+      "sha256": "0259a6d802597c9d00b5ef7aa52f0411a0baf7d389f05b8dcc1e9da91477e78a"
+    }
+  ],
+  "primary_sources": [
+    "https://github.com/hyperionaidev/apex",
+    "https://deal.readthedocs.io/basic/verification.html",
+    "https://www.certora.com/blog/autoprover-agentic-formal-verification"
+  ],
+  "recommendations": [
+    {
+      "decision": "bounded_qualification_experiment",
+      "id": "PYRUST-01",
+      "owner_milestone": "A09",
+      "reason": "Model proof plus sampled fidelity is not accepted Python production equivalence; qualify actual supported translation and disable automatic fuzz/concurrency/provider dispatch.",
+      "recommendation": "Apex",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/README.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Specification_Examples.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "complementary_qualification_candidate",
+      "id": "PYRUST-02",
+      "owner_milestone": "A09",
+      "reason": "Qualify restricted pure production functions, unsupported skips and mutation limitations; no current proof credit.",
+      "recommendation": "Deal",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Specification_Examples.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "diagnostic_only",
+      "id": "PYRUST-03",
+      "owner_milestone": "A09",
+      "reason": "Explicit contract counterexamples; no-counterexample result is not unrestricted proof.",
+      "recommendation": "CrossHair",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-04",
+      "owner_milestone": "A09",
+      "reason": "Retain research; user-selected Rust route remains Kani then suitable Bolero/Kani.",
+      "recommendation": "Prusti",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "adopt_existing_route",
+      "id": "PYRUST-05",
+      "owner_milestone": "A09",
+      "reason": "Exact harness selection and production-linked assertions/covers; do not execute report shorthand blindly.",
+      "recommendation": "Kani",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Specification_Examples.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "exclude_current_python_route",
+      "id": "PYRUST-06",
+      "owner_milestone": "A09",
+      "reason": "No qualified Python production route; speculative future-language claims do not satisfy acceptance.",
+      "recommendation": "AutoProver",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/README.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-07",
+      "owner_milestone": "A09",
+      "reason": "Research orchestration pattern only; no new agent/provider pipeline or translated-model production credit.",
+      "recommendation": "AProver",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-08",
+      "owner_milestone": "A09",
+      "reason": "Benchmark claims and AI translation require independent semantic linkage; no acceptance route selected.",
+      "recommendation": "Neuro-Formal",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-09",
+      "owner_milestone": "A09",
+      "reason": "Research prototype recommendation; no qualified production Python semantics or independent integration evidence.",
+      "recommendation": "Axiom Zero",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Citation_Index.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "optional_contract_notation",
+      "id": "PYRUST-10",
+      "owner_milestone": "A09",
+      "reason": "May express contracts for supported diagnostic/verification routes; runtime contracts are not proof.",
+      "recommendation": "icontract",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-11",
+      "owner_milestone": "A09",
+      "reason": "No duplicate contract framework without demonstrated capability need; runtime checks are not proof.",
+      "recommendation": "PyContracts",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer_campaign",
+      "id": "PYRUST-12",
+      "owner_milestone": "A09",
+      "reason": "No automatic fuzz/property campaign or replacement of required exact original-test semantics.",
+      "recommendation": "Hypothesis",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer_concurrency_campaign",
+      "id": "PYRUST-13",
+      "owner_milestone": "A09",
+      "reason": "Formal concurrency campaign deferred; protocol models cannot substitute for actual domain proof.",
+      "recommendation": "TLA+",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/README.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Specification_Examples.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-14",
+      "owner_milestone": "A09",
+      "reason": "No new universal model stack; actual production semantic linkage required.",
+      "recommendation": "Alloy",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "retain_historical",
+      "id": "PYRUST-15",
+      "owner_milestone": "A09",
+      "reason": "Existing useful evidence/parsers remain; no universal mandatory refinement route.",
+      "recommendation": "Verus",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md"
+      ]
+    },
+    {
+      "decision": "defer",
+      "id": "PYRUST-16",
+      "owner_milestone": "A09",
+      "reason": "No alternative Rust verifier adoption without an authorized concrete need.",
+      "recommendation": "Creusot",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Rust_Tools.md"
+      ]
+    },
+    {
+      "decision": "backend_dependency_only",
+      "id": "PYRUST-17",
+      "owner_milestone": "A09",
+      "reason": "Solver success does not establish frontend translation or actual production equivalence.",
+      "recommendation": "Z3",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "model_proof_boundary",
+      "id": "PYRUST-18",
+      "owner_milestone": "A09",
+      "reason": "Kernel proof of a translated model is scoped to its semantics; establish production linkage separately.",
+      "recommendation": "Lean4",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Python_Tools.md",
+        "Python_Rust_Formal_Verification_Research/README.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "backend_dependency_only",
+      "id": "PYRUST-19",
+      "owner_milestone": "A09",
+      "reason": "Use through qualified selected routes; generated C/Rust models do not automatically prove Python.",
+      "recommendation": "CBMC",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Agentic_Pipelines.md",
+        "Python_Rust_Formal_Verification_Research/Original_Report.md",
+        "Python_Rust_Formal_Verification_Research/Sources.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Comparison.md",
+        "Python_Rust_Formal_Verification_Research/Tools_Overview.md"
+      ]
+    },
+    {
+      "decision": "adopt_with_additional_obligations",
+      "id": "PYRUST-20",
+      "owner_milestone": "A09",
+      "reason": "Retain explicit representation/lifetime/error/aliasing boundary obligations; independent component proofs are not composed equivalence.",
+      "recommendation": "Separate-and-compose FFI workflow",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md"
+      ]
+    },
+    {
+      "decision": "amend",
+      "id": "PYRUST-21",
+      "owner_milestone": "A09",
+      "reason": "One active Codex agent, bounded retry, observed max reasoning, human semantic review and named recipes only.",
+      "recommendation": "Automatic agent proof pipeline",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md"
+      ]
+    },
+    {
+      "decision": "reject_scope_reduction",
+      "id": "PYRUST-22",
+      "owner_milestone": "A09",
+      "reason": "Retain every required Python domain obligation; unsupported semantics require human engineering, never silent substitution.",
+      "recommendation": "Verify critical subsets and fuzz the rest",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md"
+      ]
+    },
+    {
+      "decision": "not_adopted",
+      "id": "PYRUST-23",
+      "owner_milestone": "A09",
+      "reason": "Research ranking is unverified and conflicts with prototype/limited-support qualifications.",
+      "recommendation": "Most mature or strongest ranking",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md"
+      ]
+    },
+    {
+      "decision": "qualification_input_only",
+      "id": "PYRUST-24",
+      "owner_milestone": "A09",
+      "reason": "Pin official tools/versions and supported CLI before declaring executable recipes; no automatic download or campaign.",
+      "recommendation": "Install and example commands",
+      "source_members": [
+        "Python_Rust_Formal_Verification_Research/Aegis_Integration.md",
+        "Python_Rust_Formal_Verification_Research/Limitations_Conclusion.md"
+      ]
+    }
+  ],
+  "schema": 1
+}

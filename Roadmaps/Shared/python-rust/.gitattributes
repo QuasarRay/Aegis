@@ -1,0 +1,3 @@
+*.md linguist-generated=true
+inventory.json linguist-generated=true
+units/*.json linguist-generated=true

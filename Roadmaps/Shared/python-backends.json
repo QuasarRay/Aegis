@@ -1,0 +1,57 @@
+{
+  "backends": [
+    {
+      "acceptance": "Actual supported Python production semantics and toolchain qualification",
+      "name": "Nagini",
+      "role": "deductive candidate",
+      "status": "NOT_QUALIFIED"
+    },
+    {
+      "acceptance": "Faithful explicit domain and production linkage; label finite limits",
+      "name": "ESBMC-Python",
+      "role": "bounded candidate",
+      "status": "NOT_QUALIFIED"
+    },
+    {
+      "acceptance": "Actual function support; no skipped/unsupported obligation credit",
+      "name": "Deal",
+      "role": "complementary pure-function candidate",
+      "status": "NOT_QUALIFIED"
+    },
+    {
+      "acceptance": "Model proof alone is insufficient; qualify production translation before any proof credit",
+      "name": "Apex",
+      "role": "bounded qualification experiment",
+      "status": "NOT_QUALIFIED"
+    },
+    {
+      "acceptance": "Never full-domain-proof credit",
+      "name": "CrossHair",
+      "role": "diagnostic",
+      "status": "NOT_QUALIFIED"
+    },
+    {
+      "acceptance": "No production proof credit",
+      "name": "PyVeritas",
+      "role": "deferred translated-model research",
+      "status": "NOT_QUALIFIED"
+    },
+    {
+      "acceptance": "No production proof credit",
+      "name": "Dafny-of-Python",
+      "role": "deferred translator research",
+      "status": "NOT_QUALIFIED"
+    }
+  ],
+  "invariants": [
+    "Actual maintained Python production targets",
+    "Complete required domain denominator",
+    "No model-only or sampled equivalence substitution",
+    "One active Codex agent",
+    "No automatic fuzz/concurrency campaigns",
+    "Scoped fresh human semantic review"
+  ],
+  "routing_document": "Roadmaps/Shared/PYTHON_VERIFICATION_ROUTING.md",
+  "schema": 1,
+  "selection_owner": "A09"
+}

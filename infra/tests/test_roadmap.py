@@ -17,7 +17,7 @@ from agentinfra.roadmap_policy import (SEMANTIC_FIELDS, authorize, correspondenc
 from agentinfra.roadmap_runtime import BudgetLedger
 from agentinfra.roadmap_codex import bind_goal, bind_plan, CodexReader
 from agentinfra.roadmap_review import render_packet, validate_decision, advance_review, adjudicate_findings, STAGES
-from agentinfra.roadmap_portability import inventory
+from agentinfra.roadmap_portability import inventory, shards
 from agentinfra.roadmap_knowledge import retrieve
 from agentinfra.locks import FileLock, LockError
 from agentinfra.roadmap_lease import WorkspaceLease
@@ -300,6 +300,14 @@ class RuntimeAndReviewTests(unittest.TestCase):
         before=inventory(self.root); kinds={u["kind"] for u in before["units"]}
         self.assertTrue({"Module","Assign","ListComp","Call","Try","ExceptHandler"} <= kinds)
         p.write_text(p.read_text().replace("range(3)","range(4)")); self.assertNotEqual(before["digest"],inventory(self.root)["digest"])
+
+    def test_bounded_inventory_shards_preserve_every_unit(self):
+        record=dict(coverage="fixture",files=[],units=[dict(id=str(i),body="x"*90) for i in range(12)],digest="fixture")
+        index, parts=shards(record,max_bytes=400)
+        self.assertEqual([u for part in parts.values() for u in part["units"]],record["units"])
+        self.assertEqual(sum(p["count"] for p in index["shards"]),12)
+        self.assertEqual((index,parts),shards(record,max_bytes=400))
+        with self.assertRaises(ContractError): shards(record,max_bytes=10)
 
     def test_corpus_exact_citations_versions_and_budget(self):
         (self.root/"text.md").write_text("first\nsecond\n")
