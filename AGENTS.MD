@@ -32,4 +32,6 @@ Project Goals:
 
 16. Analyze all branches of the project to ensure that no progress is duplicated or lost.
 
+17. Use Dagger + GitLab for CI/CD Pipelines to the fullest potential, to accelerate development, deployment, and reduce boilerplate for both Aegis and Carbon Projects.
+
 Target Project Repo: https://github.com/QuasarRay/Aegis.git
