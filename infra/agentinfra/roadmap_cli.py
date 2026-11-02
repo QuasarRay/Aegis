@@ -10,13 +10,16 @@ from .roadmap import compile_roadmaps, audit_evidence, packet, project_into_reco
 from .roadmap_codex import bind_goal, bind_plan, capabilities, read_native_goal
 from .roadmap_knowledge import retrieve, validate_skills
 from .roadmap_policy import authorize, goal_transition, proof_errors
-from .roadmap_portability import inventory, markdown, shards
+from .roadmap_portability import inventory, publish, check
 from .roadmap_records import ContractError, digest, read_json, require, validate_record
 from .roadmap_review import render_packet, validate_decision, adjudicate_findings
 from .roadmap_runtime import BudgetLedger, run_recipe
 from .roadmap_inventory import authority_inventory, reconcile_inventory, save_inventory
+from .roadmap_interfaces import observe_interfaces, compare_interfaces
+from .roadmap_project import ProjectAdapter
 from .roadmap_verification import reconcile_original_tests, reconcile_native_transition
 from .security import confined_path
+from .transaction import TransactionError
 
 
 def parser() -> argparse.ArgumentParser:
@@ -31,6 +34,7 @@ def parser() -> argparse.ArgumentParser:
     a = r.add_parser("reconcile"); a.add_argument("--inventory", type=Path, required=True)
     a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis"); a.add_argument("--milestone")
     a = r.add_parser("project"); a.add_argument("--record", required=True); a.add_argument("--expected-digest", required=True); a.add_argument("--evidence", type=Path, required=True)
+    r.add_parser("profile").add_argument("project")
     a = groups.add_parser("policy"); a.add_argument("action", choices=["explain"]); a.add_argument("operation"); a.add_argument("--context", type=Path, required=True)
     c = groups.add_parser("codex").add_subparsers(dest="action", required=True)
     c.add_parser("inspect")
@@ -51,6 +55,9 @@ def parser() -> argparse.ArgumentParser:
     a = groups.add_parser("skills"); a.add_argument("action", choices=["validate"])
     a = groups.add_parser("portability"); a.add_argument("action", choices=["build", "check"])
     a = groups.add_parser("knowledge"); a.add_argument("action", choices=["get"]); a.add_argument("--source", required=True); a.add_argument("--start", type=int, required=True); a.add_argument("--end", type=int, required=True)
+    i = groups.add_parser("interfaces").add_subparsers(dest="action", required=True)
+    i.add_parser("audit")
+    i.add_parser("compare").add_argument("--baseline-ref", required=True)
     return p
 
 
@@ -67,6 +74,7 @@ def execute(a) -> dict:
                 return save_inventory(root, record)
             return record
         if a.action == "reconcile": return reconcile_inventory(root, read_json(a.inventory))
+        if a.action == "profile": return ProjectAdapter(root, a.project, profiles=compiled["projects"]).describe()
         if a.action == "run": return run_recipe(root, compiled, a.recipe, diagnosis=a.diagnosis, milestone=a.milestone)
         evidence = read_json(a.evidence) if a.evidence else {"schema": 1, "compiled_digest": compiled["digest"], "receipts": []}
         audit = audit_evidence(root, compiled, evidence)
@@ -101,28 +109,12 @@ def execute(a) -> dict:
         decision = read_json(a.decision); validate_record(root, "ReviewDecision", decision); validate_decision(review, decision)
         return {"decision_valid": True, "proof_credit": False}
     if a.family == "skills": return validate_skills(root)
+    if a.family == "interfaces":
+        return observe_interfaces(root) if a.action == "audit" else compare_interfaces(root, a.baseline_ref)
     if a.family == "knowledge": return retrieve(root, a.source, a.start, a.end)
     if a.family == "portability":
-        record = inventory(root); destination = root / "Roadmaps/Shared/python-rust/inventory.json"
-        index, parts = shards(record)
-        if a.action == "build":
-            for name, value in parts.items():
-                atomic_write_json(destination.parent / "units" / name, value, root=root)
-            for source in record["files"]:
-                units = [u for u in record["units"] if u["file"] == source["path"]]
-                path = destination.parent / (source["path"].replace("/", "__") + ".md")
-                atomic_write_text(path, markdown(dict(record, files=[source], units=units)), root=root)
-            # Publish the index last. Interrupted generation cannot pass freshness checks.
-            atomic_write_json(destination, index, root=root)
-            return {"files": len(record["files"]), "units": len(record["units"]), "shards": len(parts), "digest": record["digest"]}
-        require(read_json(destination) == index, "Python-to-Rust mapping is missing or stale; regenerate and review changed blocks")
-        for name, value in parts.items():
-            require(read_json(destination.parent / "units" / name) == value, "Python-to-Rust inventory shard missing or changed")
-        for source in record["files"]:
-            path = destination.parent / (source["path"].replace("/", "__") + ".md")
-            units = [u for u in record["units"] if u["file"] == source["path"]]
-            require(path.read_text() == markdown(dict(record, files=[source], units=units)), "Rust migration description missing/stale")
-        return {"status": "CURRENT", "files": len(record["files"]), "units": len(record["units"])}
+        record = inventory(root)
+        return publish(root, record) if a.action == "build" else check(root, record)
     raise ContractError("unknown command family")
 
 
@@ -132,8 +124,9 @@ def main(argv=None) -> int:
         result = execute(args)
         print(json.dumps(result, indent=2, sort_keys=True, ensure_ascii=False))
         if any(result.get(field) is False for field in ("allowed", "accepted", "complete", "confirmed")): return 1
+        if result.get("structural_compatible") is False: return 1
         if args.family == "roadmap" and args.action == "run":
             return 0 if result["returncode"] == 0 and not result["timed_out"] and not result["truncated"] else 1
         return 0
-    except (ContractError, OSError, KeyError, TypeError, TimeoutError) as exc:
+    except (ContractError, OSError, KeyError, TypeError, TimeoutError, TransactionError) as exc:
         p.exit(2, f"roadmap rejected: {exc}\n")

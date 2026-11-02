@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 14. Inventory digest: `63d9b4ce678f83477859a5a2a6594f2f075d7513ff6c173c52897d613717dab1`.
+Files: 1. Behavioral units: 14. Inventory digest: `98c53be4b2d3aeb43bcc01ef3d9cfa9f726f7165d631e91bf82628e55cda62cd`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/cli.py::module::root::Module
 
-Source: `infra/agentinfra/cli.py:1`; AST `7cc1b472e305f4c9cbf1fbc3e8a52cf26469866ec3fc5797f2d798da6cafd350`.
+Source: `infra/agentinfra/cli.py:1`; AST `4ab3df945609c3356a74b8a7784a99eb4a7a76bc4cd1534cc83e5165cdd88e8a`.
 
 Rust module: `infra::agentinfra::cli`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -68,7 +68,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/cli.py::module::main::root.body[2]::FunctionDef
 
-Source: `infra/agentinfra/cli.py:5`; AST `74e90e285b8951f176bc47345a5ceaa3517f99e0ef9d233c0a52d8600166eedc`.
+Source: `infra/agentinfra/cli.py:5`; AST `67aea91731d1607359569a63de05a370920560d3f2591c912b4626ce85d2af1e`.
 
 Rust module: `infra::agentinfra::cli`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -128,7 +128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/cli.py::module::main::root.body[2].body[1]::Assign
 
-Source: `infra/agentinfra/cli.py:7`; AST `fbe65117ed79b96f19351f0d4c98fa029ca3cc8246e62144b8864a4235368c00`.
+Source: `infra/agentinfra/cli.py:7`; AST `d7656c484f07cb9c85581b4e0365d5712e548c2f7e000675815fb34198381a3a`.
 
 Rust module: `infra::agentinfra::cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 

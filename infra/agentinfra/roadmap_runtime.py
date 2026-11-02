@@ -133,9 +133,15 @@ def recipe_scope(root: Path, compiled: dict, name: str, milestone: str,
     WorkspaceLease(root).assert_owner(owner)
     created = goal.get("createdAt")
     require(type(created) is int and created > 0, "native Goal lifetime must be observed for legacy attribution")
+    continuation = record["continuation"]
+    started = continuation.get("started_ns")
+    if started is None and milestone == "A00":
+        started = created * 1_000_000_000  # Preserve the bootstrap's known attribution boundary.
+    require(type(started) is int and started >= created * 1_000_000_000,
+            "current work-unit start must be observed for legacy attribution")
     legacy = digest({"recipe": name, "root": str(root.resolve())})
     inherited = tuple(a["id"] for a in ledger.read()["attempts"]
-                      if a["work_id"] == legacy and a["created_ns"] >= created * 1_000_000_000)
+                      if a["work_id"] == legacy and a["created_ns"] >= started)
     work_id = digest({"recipe": name, "root": str(root.resolve()), "native_thread": thread,
                       "project": "Aegis", "milestone": milestone})
     return work_id, inherited

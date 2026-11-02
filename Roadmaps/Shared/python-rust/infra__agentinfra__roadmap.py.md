@@ -2,19 +2,19 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 454. Inventory digest: `63d9b4ce678f83477859a5a2a6594f2f075d7513ff6c173c52897d613717dab1`.
+Files: 1. Behavioral units: 464. Inventory digest: `8c414fb701e1430072743fe14c2b81d385ee2742c868cf52a5bc47706c6e07b7`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap.py:1`; AST `adfa5de104f6c1cf847ccd35689a10cea4a5342d5bbffdbcbb2ae72ebca8145b`.
+Source: `infra/agentinfra/roadmap.py:1`; AST `326f7ca20829f11307b6e45df41de4e3dcb015191ce2ea9c936f2aa6f6b373c9`.
 
 Rust module: `infra::agentinfra::roadmap`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: FENCE, FIXED_RECIPES, FileTransaction, GATES, Mutation, Path, accepted, active, actual, amendments, artifact, atomic_write_json, audit, bindings_current, blocks, bool, by_milestone, c, candidates, canonical, capability, compiled, confined_path, consume, contract, count, covered, covered_lines, d, dependencies, dependency, dict, digest, end, evidence, expected_digest, good, ident, ids, input_bindings, int, isinstance, item, len, lines, list, loads, m, mandatory_sources, max_bytes, milestone, milestones, minimum, missing, n, name, obligation, obligations, order, p, path, paths, policy, prefix, priority, profile, project, project_docs, proof, proof_errors, proofs, providers, r, range, raw, re, read_json, receipt, receipts, recipe, recipes, record, registry, rejected, relative, require, required, requirement, requirement_ids, requirements, result, result_proof, root, s, seen, set, shared, sorted, source, source_names, sources, start, state, str, type, updated, validate_record, visit, work. Outputs/bindings: FENCE, FIXED_RECIPES, GATES, accepted, active, actual, amendments, artifact, blocks, by_milestone, c, candidates, capability, consume, contract, count, covered, covered_lines, d, dependencies, dependency, end, good, ident, ids, input_bindings, item, lines, m, mandatory_sources, milestone, milestones, minimum, missing, n, name, obligation, obligations, order, p, path, paths, policy, prefix, priority, profile, project, project_docs, proof, proofs, providers, r, raw, receipt, receipts, recipe, recipes, record, registry, rejected, required, requirement, requirement_ids, requirements, result, result_proof, root, s, seen, shared, source, source_names, sources, start, state, updated, work.
-Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, (root / 'Roadmaps' / project).glob, (root / 'bin').glob, (root / 'infra').rglob, (root / 'scripts').glob, (root / 'verification/roadmap').glob, (root / source).read_text, (root / source).read_text().splitlines, (shared / 'ci').glob, (shared / 'codex-protocol').glob, (shared / 'skills').rglob, FENCE.findall, FileTransaction, FileTransaction(root, [Mutation(path, canonical(updated) + b'\n', expected_sha256=expected_digest)], state_dir=root / '.aegis/state/transactions', name='roadmap-projection').commit, Mutation, accepted.append, active.add, active.remove, atomic_write_json, bindings_current, bool, by_milestone.get, by_milestone.setdefault, by_milestone.setdefault(receipt['milestone'], []).append, candidates.add, canonical, confined_path, confined_path(root, artifact, must_exist=True).is_file, covered_lines.update, dict, digest, evidence.get, input_bindings.append, isinstance, len, list, loads, milestones.items, milestones.values, missing.append, obligations.extend, order.append, p.get, p.get('obligation', {}).get, path.read_bytes, path.read_text, path.read_text().splitlines, path.relative_to, path.relative_to(root).as_posix, policy.get, proof.get, proof_errors, providers.get, r.get, range, raw.decode, re.compile, read_json, receipt.get, receipt['configuration'].get, recipe.get, recipes.items, registry.get, registry['projects'].items, rejected.append, require, root.resolve, seen.add, set, set().union, shared.glob, sorted, type, validate_record, visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Inputs: FENCE, FIXED_RECIPES, FileTransaction, GATES, Mutation, Path, ProjectAdapter, accepted, active, actual, amendments, artifact, atomic_write_json, audit, bindings_current, blocks, bool, by_milestone, c, candidates, canonical, capability, compiled, confined_path, consume, contract, count, covered, covered_lines, d, dependencies, dependency, dict, digest, end, evidence, expected_digest, good, ident, ids, input_bindings, int, isinstance, item, len, lines, list, loads, m, mandatory_sources, max_bytes, milestone, milestones, minimum, missing, n, name, obligation, obligations, order, p, path, paths, policy, prefix, priority, profile, project, project_docs, proof, proof_errors, proofs, providers, r, range, raw, re, read_json, receipt, receipts, recipe, recipes, record, registry, registry_path, rejected, relative, require, required, requirement, requirement_ids, requirements, result, result_proof, root, s, seen, set, shared, sorted, source, source_names, sources, start, state, str, type, updated, validate_record, visit, work. Outputs/bindings: FENCE, FIXED_RECIPES, GATES, accepted, active, actual, amendments, artifact, blocks, by_milestone, c, candidates, capability, consume, contract, count, covered, covered_lines, d, dependencies, dependency, end, good, ident, ids, input_bindings, item, lines, m, mandatory_sources, milestone, milestones, minimum, missing, n, name, obligation, obligations, order, p, path, paths, policy, prefix, priority, profile, project, project_docs, proof, proofs, providers, r, raw, receipt, receipts, recipe, recipes, record, registry, registry_path, rejected, required, requirement, requirement_ids, requirements, result, result_proof, root, s, seen, shared, source, source_names, sources, start, state, updated, work.
+Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, (root / 'Roadmaps' / project).glob, (root / 'bin').glob, (root / 'infra').rglob, (root / 'scripts').glob, (root / 'verification/roadmap').glob, (root / source).read_text, (root / source).read_text().splitlines, (shared / 'ci').glob, (shared / 'codex-protocol').glob, (shared / 'skills').rglob, FENCE.findall, FileTransaction, FileTransaction(root, [Mutation(path, canonical(updated) + b'\n', expected_sha256=expected_digest)], state_dir=root / '.aegis/state/transactions', name='roadmap-projection').commit, Mutation, ProjectAdapter, ProjectAdapter(root, profiles=registry['projects']).update, accepted.append, active.add, active.remove, atomic_write_json, bindings_current, bool, by_milestone.get, by_milestone.setdefault, by_milestone.setdefault(receipt['milestone'], []).append, candidates.add, canonical, confined_path, confined_path(root, artifact, must_exist=True).is_file, covered_lines.update, dict, digest, evidence.get, input_bindings.append, isinstance, len, list, loads, milestones.items, milestones.values, missing.append, obligations.extend, order.append, p.get, p.get('obligation', {}).get, path.read_bytes, path.read_text, path.read_text().splitlines, path.relative_to, path.relative_to(root).as_posix, policy.get, proof.get, proof_errors, providers.get, r.get, range, raw.decode, re.compile, read_json, receipt.get, receipt['configuration'].get, recipe.get, recipes.items, registry.get, registry['projects'].items, registry_path.exists, rejected.append, require, root.resolve, seen.add, set, set().union, shared.glob, sorted, type, validate_record, visit.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -34,7 +34,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -54,7 +54,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -74,7 +74,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Import evaluation at root.body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -94,7 +94,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -114,7 +114,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -134,7 +134,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -154,7 +154,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -174,7 +174,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -194,7 +194,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -214,7 +214,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: re. Outputs/bindings: FENCE.
 Calls/effect boundaries: re.compile.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -234,7 +234,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: re. Outputs/bindings: (none).
 Calls/effect boundaries: re.compile.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -254,7 +254,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: FIXED_RECIPES.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -274,7 +274,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: GATES.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -294,7 +294,7 @@ Rust module: `infra::agentinfra::roadmap`. fn with explicit inputs and Result<T,
 
 Inputs: FENCE, FIXED_RECIPES, GATES, Path, active, amendments, artifact, bindings_current, blocks, c, capability, confined_path, consume, count, covered, covered_lines, dependency, dict, digest, end, ident, input_bindings, int, item, len, lines, list, loads, m, mandatory_sources, milestone, milestones, n, name, obligations, order, p, path, paths, policy, prefix, priority, profile, project, project_docs, providers, r, range, raw, read_json, recipe, recipes, registry, require, requirement, requirement_ids, requirements, result, root, s, seen, set, shared, sorted, source, source_names, sources, start, str, type, validate_record, visit. Outputs/bindings: active, amendments, artifact, blocks, c, capability, consume, count, covered, covered_lines, dependency, end, ident, input_bindings, item, lines, m, mandatory_sources, milestone, milestones, n, name, obligations, order, p, path, paths, policy, prefix, priority, profile, project, project_docs, providers, r, raw, recipe, recipes, registry, requirement, requirement_ids, requirements, result, root, s, seen, shared, source, source_names, sources, start.
 Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, (root / 'Roadmaps' / project).glob, (root / 'bin').glob, (root / 'infra').rglob, (root / 'scripts').glob, (root / 'verification/roadmap').glob, (root / source).read_text, (root / source).read_text().splitlines, (shared / 'ci').glob, (shared / 'codex-protocol').glob, (shared / 'skills').rglob, FENCE.findall, active.add, active.remove, bindings_current, confined_path, confined_path(root, artifact, must_exist=True).is_file, covered_lines.update, dict, digest, input_bindings.append, len, list, loads, milestones.items, milestones.values, obligations.extend, order.append, path.read_bytes, path.read_text, path.read_text().splitlines, path.relative_to, path.relative_to(root).as_posix, policy.get, providers.get, range, raw.decode, read_json, recipe.get, recipes.items, registry.get, registry['projects'].items, require, root.resolve, seen.add, set, set().union, shared.glob, sorted, type, validate_record, visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[12]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -314,7 +314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: root. Outputs/bindings: root.
 Calls/effect boundaries: root.resolve.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -334,7 +334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: root.resolve.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -354,7 +354,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: root. Outputs/bindings: shared.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -374,7 +374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: read_json, shared. Outputs/bindings: registry.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -394,7 +394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: read_json, shared. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -414,7 +414,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: registry, require. Outputs/bindings: (none).
 Calls/effect boundaries: registry.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -434,7 +434,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: registry, require. Outputs/bindings: (none).
 Calls/effect boundaries: registry.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -454,7 +454,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: registry. Outputs/bindings: (none).
 Calls/effect boundaries: registry.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[3].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -474,7 +474,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: read_json, shared. Outputs/bindings: policy.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -494,7 +494,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: read_json, shared. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -514,7 +514,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -534,7 +534,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -554,7 +554,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[5].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -574,7 +574,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[5].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -594,7 +594,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -614,7 +614,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -634,7 +634,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[6].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -654,7 +654,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[6].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -674,7 +674,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -694,7 +694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -714,7 +714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[7].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -734,7 +734,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[7].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -754,7 +754,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -774,7 +774,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy, require. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -794,7 +794,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[8].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -814,7 +814,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[8].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -834,7 +834,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: read_json, shared. Outputs/bindings: sources.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -854,7 +854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: read_json, shared. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -874,7 +874,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: mandatory_sources.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -894,7 +894,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: s, sources. Outputs/bindings: s, source_names.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -914,7 +914,7 @@ Rust module: `infra::agentinfra::roadmap`. iterator pipeline collected into Vec;
 
 Inputs: s, sources. Outputs/bindings: s.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[12].body[11].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -934,7 +934,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: len, mandatory_sources, require, set, source_names. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -954,7 +954,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, mandatory_sources, require, set, source_names. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -974,7 +974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, source_names. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[12].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -994,7 +994,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, set, source_names. Outputs/bindings: (none).
 Calls/effect boundaries: len, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[12].value.args[0].values[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1014,7 +1014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, source_names. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[12].value.args[0].values[0].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1034,7 +1034,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, source_names. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[12].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1054,7 +1054,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: bindings_current, require, root, source, sources. Outputs/bindings: source.
 Calls/effect boundaries: bindings_current, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[13]; no call, error or mutation may be omitted. Iteration: source in sources['files']
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1074,7 +1074,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: bindings_current, require, root, source. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[13].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1094,7 +1094,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, require, root, source. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[13].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1114,7 +1114,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, root, source. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[13].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1134,7 +1134,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: read_json, shared. Outputs/bindings: requirements.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[14]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1154,7 +1154,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: read_json, shared. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[14].value.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1174,7 +1174,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: confined_path, digest, end, len, lines, path, require, requirement, requirements, root, start. Outputs/bindings: end, lines, path, requirement, start.
 Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, confined_path, digest, len, path.read_text, path.read_text().splitlines, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[15]; no call, error or mutation may be omitted. Iteration: requirement in requirements
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1194,7 +1194,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: confined_path, requirement, root. Outputs/bindings: path.
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[15].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1214,7 +1214,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: confined_path, requirement, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1234,7 +1234,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: path. Outputs/bindings: lines.
 Calls/effect boundaries: path.read_text, path.read_text().splitlines.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[15].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1254,7 +1254,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.read_text, path.read_text().splitlines.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1274,7 +1274,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.read_text.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[1].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1294,7 +1294,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: requirement. Outputs/bindings: end, start.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[15].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1314,7 +1314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: end, len, lines, require, start. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[15].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1334,7 +1334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: end, len, lines, require, start. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1354,7 +1354,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, lines. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[3].value.args[0].comparators[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1374,7 +1374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: digest, end, lines, require, requirement, start. Outputs/bindings: (none).
 Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, digest, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[15].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1394,7 +1394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, end, lines, require, requirement, start. Outputs/bindings: (none).
 Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, digest, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1414,7 +1414,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, end, lines, start. Outputs/bindings: (none).
 Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode, digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[4].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1434,7 +1434,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: end, lines, start. Outputs/bindings: (none).
 Calls/effect boundaries: '\n'.join, '\n'.join(lines[start - 1:end]).encode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[4].value.args[0].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1454,7 +1454,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: end, lines, start. Outputs/bindings: (none).
 Calls/effect boundaries: '\n'.join.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[15].body[4].value.args[0].left.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1474,7 +1474,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: covered_lines, len, r, range, require, requirements, root, set, source. Outputs/bindings: covered_lines, r, source.
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines, covered_lines.update, len, range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[16]; no call, error or mutation may be omitted. Iteration: source in ('Blue_Prompt.md', 'Destiny_Prompt.md')
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1494,7 +1494,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: set. Outputs/bindings: covered_lines.
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[16].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1514,7 +1514,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1534,7 +1534,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: covered_lines, r, range, requirements, source. Outputs/bindings: r.
 Calls/effect boundaries: covered_lines.update, range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[16].body[1]; no call, error or mutation may be omitted. Iteration: r in requirements
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1554,7 +1554,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: covered_lines, r, range, source. Outputs/bindings: (none).
 Calls/effect boundaries: covered_lines.update, range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[12].body[16].body[1].body[0]; no call, error or mutation may be omitted. Condition: r['source'] == source
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1574,7 +1574,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: covered_lines, r, range. Outputs/bindings: (none).
 Calls/effect boundaries: covered_lines.update, range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[16].body[1].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1594,7 +1594,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: covered_lines, r, range. Outputs/bindings: (none).
 Calls/effect boundaries: covered_lines.update, range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[1].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1614,7 +1614,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: r, range. Outputs/bindings: (none).
 Calls/effect boundaries: range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[1].body[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1634,7 +1634,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: covered_lines, len, range, require, root, set, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines, len, range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[16].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1654,7 +1654,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: covered_lines, len, range, require, root, set, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines, len, range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1674,7 +1674,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, range, root, set, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines, len, range, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[2].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1694,7 +1694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, range, root, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines, len, range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[2].value.args[0].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1714,7 +1714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, root, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines, len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[2].value.args[0].comparators[0].args[0].args[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1734,7 +1734,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text, (root / source).read_text().splitlines.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[2].value.args[0].comparators[0].args[0].args[1].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1754,7 +1754,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root, source. Outputs/bindings: (none).
 Calls/effect boundaries: (root / source).read_text.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[16].body[2].value.args[0].comparators[0].args[0].args[1].left.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1774,7 +1774,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: r, requirements. Outputs/bindings: r, requirement_ids.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[17]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1794,7 +1794,7 @@ Rust module: `infra::agentinfra::roadmap`. iterator pipeline collected into Vec;
 
 Inputs: r, requirements. Outputs/bindings: r.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[12].body[17].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1814,7 +1814,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: len, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[18]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1834,7 +1834,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[18].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1854,7 +1854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[18].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1874,7 +1874,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[18].value.args[0].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1894,7 +1894,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, requirement_ids. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[18].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1914,7 +1914,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: registry, set. Outputs/bindings: amendments.
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[19]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1934,7 +1934,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: registry, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[19].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1954,7 +1954,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: amendments, policy, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[20]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1974,7 +1974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: amendments, policy, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[20].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -1994,7 +1994,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: policy, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[20].value.args[0].values[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2014,7 +2014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[20].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2034,7 +2034,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: n, range, require, requirement_ids, set. Outputs/bindings: n.
 Calls/effect boundaries: range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[21]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2054,7 +2054,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: n, range, require, requirement_ids, set. Outputs/bindings: n.
 Calls/effect boundaries: range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[21].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2074,7 +2074,7 @@ Rust module: `infra::agentinfra::roadmap`. source-compatible ordered evaluation 
 
 Inputs: n, range. Outputs/bindings: n.
 Calls/effect boundaries: range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered SetComp evaluation at root.body[12].body[21].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2094,7 +2094,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: range. Outputs/bindings: (none).
 Calls/effect boundaries: range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[21].value.args[0].left.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2114,7 +2114,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[21].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2134,7 +2134,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: count, n, prefix, range, require, requirement_ids, set. Outputs/bindings: count, n, prefix.
 Calls/effect boundaries: range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[22]; no call, error or mutation may be omitted. Iteration: (prefix, count) in (('BLUE-A', 14), ('BLUE-U', 22), ('DESTINY-A', 15))
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2154,7 +2154,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: count, n, prefix, range, require, requirement_ids, set. Outputs/bindings: n.
 Calls/effect boundaries: range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[22].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2174,7 +2174,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: count, n, prefix, range, require, requirement_ids, set. Outputs/bindings: n.
 Calls/effect boundaries: range, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[22].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2194,7 +2194,7 @@ Rust module: `infra::agentinfra::roadmap`. source-compatible ordered evaluation 
 
 Inputs: count, n, prefix, range. Outputs/bindings: n.
 Calls/effect boundaries: range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered SetComp evaluation at root.body[12].body[22].body[0].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2214,7 +2214,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: count, range. Outputs/bindings: (none).
 Calls/effect boundaries: range.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[22].body[0].value.args[0].left.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2234,7 +2234,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[22].body[0].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2254,7 +2254,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: registry. Outputs/bindings: recipes.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[23]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2274,7 +2274,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: FIXED_RECIPES, int, name, recipe, recipes, require, type. Outputs/bindings: name, recipe.
 Calls/effect boundaries: recipe.get, recipes.items, require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[24]; no call, error or mutation may be omitted. Iteration: (name, recipe) in recipes.items()
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2294,7 +2294,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipes. Outputs/bindings: (none).
 Calls/effect boundaries: recipes.items.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2314,7 +2314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: recipe, require. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[24].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2334,7 +2334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipe, require. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2354,7 +2354,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipe. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[0].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2374,7 +2374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: int, recipe, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[24].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2394,7 +2394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: int, recipe, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2414,7 +2414,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipe, type. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[1].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2434,7 +2434,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipe. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[1].value.args[0].values[0].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2454,7 +2454,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: int, recipe, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[24].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2474,7 +2474,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: int, recipe, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2494,7 +2494,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipe, type. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[2].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2514,7 +2514,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipe. Outputs/bindings: (none).
 Calls/effect boundaries: recipe.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[2].value.args[0].values[0].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2534,7 +2534,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: FIXED_RECIPES, name, recipe, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[12].body[24].body[3]; no call, error or mutation may be omitted. Condition: recipe['kind'] == 'local_validation'
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2554,7 +2554,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: FIXED_RECIPES, name, recipe, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[24].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2574,7 +2574,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: FIXED_RECIPES, name, recipe, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[24].body[3].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2594,7 +2594,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: milestones.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[25]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2614,7 +2614,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: list, sources. Outputs/bindings: input_bindings.
 Calls/effect boundaries: list.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[26]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2634,7 +2634,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: list, sources. Outputs/bindings: (none).
 Calls/effect boundaries: list.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[26].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2654,7 +2654,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: FENCE, GATES, amendments, artifact, blocks, confined_path, dict, digest, ident, input_bindings, item, len, loads, milestones, path, paths, profile, project, raw, recipes, registry, require, requirement_ids, root, set, sorted, validate_record. Outputs/bindings: artifact, blocks, ident, item, path, paths, profile, project, raw.
 Calls/effect boundaries: (root / 'Roadmaps' / project).glob, FENCE.findall, confined_path, confined_path(root, artifact, must_exist=True).is_file, dict, digest, input_bindings.append, len, loads, path.read_bytes, path.relative_to, path.relative_to(root).as_posix, raw.decode, registry['projects'].items, require, set, sorted, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[27]; no call, error or mutation may be omitted. Iteration: (project, profile) in registry['projects'].items()
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2674,7 +2674,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: registry. Outputs/bindings: (none).
 Calls/effect boundaries: registry['projects'].items.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2694,7 +2694,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: profile, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2714,7 +2714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: profile, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2734,7 +2734,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: project, root, sorted. Outputs/bindings: paths.
 Calls/effect boundaries: (root / 'Roadmaps' / project).glob, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[27].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2754,7 +2754,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: project, root, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'Roadmaps' / project).glob, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2774,7 +2774,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: project, root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'Roadmaps' / project).glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2794,7 +2794,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: len, paths, profile, project, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2814,7 +2814,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, paths, profile, project, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2834,7 +2834,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, paths. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[2].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2854,7 +2854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, profile. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[2].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2874,7 +2874,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: FENCE, GATES, amendments, artifact, blocks, confined_path, dict, digest, ident, input_bindings, item, len, loads, milestones, path, paths, profile, project, raw, recipes, registry, require, requirement_ids, root, set, validate_record. Outputs/bindings: artifact, blocks, ident, item, path, raw.
 Calls/effect boundaries: FENCE.findall, confined_path, confined_path(root, artifact, must_exist=True).is_file, dict, digest, input_bindings.append, len, loads, path.read_bytes, path.relative_to, path.relative_to(root).as_posix, raw.decode, require, set, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[27].body[3]; no call, error or mutation may be omitted. Iteration: path in paths
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2894,7 +2894,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: path. Outputs/bindings: raw.
 Calls/effect boundaries: path.read_bytes.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[27].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2914,7 +2914,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.read_bytes.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2934,7 +2934,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: FENCE, raw. Outputs/bindings: blocks.
 Calls/effect boundaries: FENCE.findall, raw.decode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[27].body[3].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2954,7 +2954,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: FENCE, raw. Outputs/bindings: (none).
 Calls/effect boundaries: FENCE.findall, raw.decode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2974,7 +2974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: raw. Outputs/bindings: (none).
 Calls/effect boundaries: raw.decode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -2994,7 +2994,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: blocks, len, path, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3014,7 +3014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: blocks, len, path, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3034,7 +3034,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: blocks, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[2].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3054,7 +3054,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: blocks, loads. Outputs/bindings: item.
 Calls/effect boundaries: loads.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[27].body[3].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3074,7 +3074,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: blocks, loads. Outputs/bindings: (none).
 Calls/effect boundaries: loads.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3094,7 +3094,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: item, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3114,7 +3114,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: item, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3134,7 +3134,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: item. Outputs/bindings: ident.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[27].body[3].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3154,7 +3154,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, milestones, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3174,7 +3174,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, milestones, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3194,7 +3194,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, item, profile, project, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3214,7 +3214,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, item, profile, project, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3234,7 +3234,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, item, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3254,7 +3254,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, item, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3274,7 +3274,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: item, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[8].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3294,7 +3294,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[8].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3314,7 +3314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: amendments, ident, item, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3334,7 +3334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: amendments, ident, item, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3354,7 +3354,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: item, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[9].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3374,7 +3374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, item, recipes, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3394,7 +3394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, item, recipes, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[10].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3414,7 +3414,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: item, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[10].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3434,7 +3434,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: recipes, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[10].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3454,7 +3454,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: GATES, ident, item, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3474,7 +3474,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: GATES, ident, item, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[11].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3494,7 +3494,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: item, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[11].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3514,7 +3514,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, item, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3534,7 +3534,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, item, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3554,7 +3554,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: ident, item, registry, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[12].body[27].body[3].body[13]; no call, error or mutation may be omitted. Condition: item['phase'] == 'modernization'
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3574,7 +3574,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, item, registry, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[13].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3594,7 +3594,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, item, registry, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[13].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3614,7 +3614,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: item, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[13].body[0].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3634,7 +3634,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: registry, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[13].body[0].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3654,7 +3654,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: artifact, confined_path, item, require, root. Outputs/bindings: artifact.
 Calls/effect boundaries: confined_path, confined_path(root, artifact, must_exist=True).is_file, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[27].body[3].body[14]; no call, error or mutation may be omitted. Iteration: artifact in item['references']
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3674,7 +3674,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: artifact, confined_path, require, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, confined_path(root, artifact, must_exist=True).is_file, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[14].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3694,7 +3694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: artifact, confined_path, require, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, confined_path(root, artifact, must_exist=True).is_file, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[14].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3714,7 +3714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: artifact, confined_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, confined_path(root, artifact, must_exist=True).is_file.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[14].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3734,7 +3734,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: artifact, confined_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[14].body[0].value.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3754,7 +3754,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: dict, ident, item, milestones, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: dict, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[27].body[3].body[15]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3774,7 +3774,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: dict, item, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: dict, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[15].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3794,7 +3794,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[15].value.keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3814,7 +3814,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[15].value.keywords[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3834,7 +3834,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: digest, input_bindings, path, raw, root. Outputs/bindings: (none).
 Calls/effect boundaries: digest, input_bindings.append, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[27].body[3].body[16]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3854,7 +3854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, input_bindings, path, raw, root. Outputs/bindings: (none).
 Calls/effect boundaries: digest, input_bindings.append, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[16].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3874,7 +3874,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[16].value.args[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3894,7 +3894,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[16].value.args[0].values[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3914,7 +3914,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, raw. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[27].body[3].body[16].value.args[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3934,7 +3934,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: m, milestones, set. Outputs/bindings: covered, m.
 Calls/effect boundaries: milestones.values, set, set().union.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[28]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3954,7 +3954,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: m, milestones, set. Outputs/bindings: m.
 Calls/effect boundaries: milestones.values, set, set().union.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[28].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3974,7 +3974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[28].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -3994,7 +3994,7 @@ Rust module: `infra::agentinfra::roadmap`. lazy iterator with captured environme
 
 Inputs: m, milestones, set. Outputs/bindings: m.
 Calls/effect boundaries: milestones.values, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered GeneratorExp evaluation at root.body[12].body[28].value.args[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4014,7 +4014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: m, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[28].value.args[0].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4034,7 +4034,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestones. Outputs/bindings: (none).
 Calls/effect boundaries: milestones.values.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[28].value.args[0].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4054,7 +4054,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: covered, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[29]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4074,7 +4074,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: covered, require, requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[29].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4094,7 +4094,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[29].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4114,7 +4114,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[29].value.args[1].values[1].value.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4134,7 +4134,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: ident, milestones, require, requirement, requirements, set. Outputs/bindings: ident, requirement.
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[30]; no call, error or mutation may be omitted. Iteration: requirement in requirements
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4154,7 +4154,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: milestones, require, requirement, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[30].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4174,7 +4174,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestones, require, requirement, set. Outputs/bindings: (none).
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[30].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4194,7 +4194,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: requirement, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[30].body[0].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4214,7 +4214,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestones, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[30].body[0].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4234,7 +4234,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: ident, milestones, require, requirement. Outputs/bindings: ident.
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[30].body[1]; no call, error or mutation may be omitted. Iteration: ident in requirement['milestones']
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4254,7 +4254,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, milestones, require, requirement. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[30].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4274,7 +4274,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, milestones, require, requirement. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[30].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4294,7 +4294,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: set. Outputs/bindings: active, order, seen.
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[31]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4314,7 +4314,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[31].value.elts[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4334,7 +4334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[31].value.elts[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4354,7 +4354,7 @@ Rust module: `infra::agentinfra::roadmap`. fn with explicit inputs and Result<T,
 
 Inputs: active, dependency, ident, milestones, order, require, seen, sorted, str, visit. Outputs/bindings: dependency.
 Calls/effect boundaries: active.add, active.remove, order.append, require, seen.add, sorted, visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[12].body[32]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4374,7 +4374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, milestones, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4394,7 +4394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, milestones, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4414,7 +4414,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: active, ident, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4434,7 +4434,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: active, ident, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4454,7 +4454,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: ident, seen. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[12].body[32].body[2]; no call, error or mutation may be omitted. Condition: ident in seen
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4474,7 +4474,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[12].body[32].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4494,7 +4494,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: active, ident. Outputs/bindings: (none).
 Calls/effect boundaries: active.add.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4514,7 +4514,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: active, ident. Outputs/bindings: (none).
 Calls/effect boundaries: active.add.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4534,7 +4534,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: dependency, ident, milestones, sorted, visit. Outputs/bindings: dependency.
 Calls/effect boundaries: sorted, visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[32].body[4]; no call, error or mutation may be omitted. Iteration: dependency in sorted(milestones[ident]['dependencies'])
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4554,7 +4554,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, milestones, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[4].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4574,7 +4574,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: dependency, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4594,7 +4594,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: dependency, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[4].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4614,7 +4614,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: active, ident. Outputs/bindings: (none).
 Calls/effect boundaries: active.remove.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4634,7 +4634,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: active, ident. Outputs/bindings: (none).
 Calls/effect boundaries: active.remove.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4654,7 +4654,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, seen. Outputs/bindings: (none).
 Calls/effect boundaries: seen.add.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4674,7 +4674,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, seen. Outputs/bindings: (none).
 Calls/effect boundaries: seen.add.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4694,7 +4694,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, order. Outputs/bindings: (none).
 Calls/effect boundaries: order.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[32].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4714,7 +4714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, order. Outputs/bindings: (none).
 Calls/effect boundaries: order.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[32].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4734,7 +4734,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: registry. Outputs/bindings: priority.
 Calls/effect boundaries: registry.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[33]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4754,7 +4754,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: registry. Outputs/bindings: (none).
 Calls/effect boundaries: registry.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[33].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4774,7 +4774,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: len, milestones, priority, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[34]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4794,7 +4794,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, milestones, priority, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[34].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4814,7 +4814,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, priority. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[34].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4834,7 +4834,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, milestones. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[34].value.args[0].values[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4854,7 +4854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: priority, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[34].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4874,7 +4874,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestones, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[34].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4894,7 +4894,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: ident, priority, visit. Outputs/bindings: ident.
 Calls/effect boundaries: visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[35]; no call, error or mutation may be omitted. Iteration: ident in priority
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4914,7 +4914,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ident, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[35].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4934,7 +4934,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ident, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[35].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4954,7 +4954,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: providers.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[36]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4974,7 +4974,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: obligations.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[37]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -4994,7 +4994,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: capability, ident, milestone, milestones, obligations, p, providers, require. Outputs/bindings: capability, ident, milestone, p.
 Calls/effect boundaries: milestones.items, obligations.extend, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[38]; no call, error or mutation may be omitted. Iteration: (ident, milestone) in milestones.items()
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5014,7 +5014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestones. Outputs/bindings: (none).
 Calls/effect boundaries: milestones.items.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[38].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5034,7 +5034,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: capability, ident, milestone, providers, require. Outputs/bindings: capability.
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[38].body[0]; no call, error or mutation may be omitted. Iteration: capability in milestone['provides']
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5054,7 +5054,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: capability, providers, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[38].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5074,7 +5074,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: capability, providers, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[38].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5094,7 +5094,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: capability, ident, providers. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[38].body[0].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5114,7 +5114,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: milestone, obligations, p. Outputs/bindings: p.
 Calls/effect boundaries: obligations.extend.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[38].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5134,7 +5134,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestone, obligations, p. Outputs/bindings: p.
 Calls/effect boundaries: obligations.extend.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[38].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5154,7 +5154,7 @@ Rust module: `infra::agentinfra::roadmap`. lazy iterator with captured environme
 
 Inputs: milestone, p. Outputs/bindings: p.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered GeneratorExp evaluation at root.body[12].body[38].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5174,7 +5174,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: len, obligations, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[39]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5194,7 +5194,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, obligations, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[39].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5214,7 +5214,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, obligations. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[39].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5234,7 +5234,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, obligations, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[39].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5254,7 +5254,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: obligations, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[39].value.args[0].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5274,7 +5274,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: c, consume, milestone, milestones, providers, require, set. Outputs/bindings: c, consume, milestone.
 Calls/effect boundaries: milestones.values, providers.get, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[40]; no call, error or mutation may be omitted. Iteration: milestone in milestones.values()
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5294,7 +5294,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestones. Outputs/bindings: (none).
 Calls/effect boundaries: milestones.values.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[40].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5314,7 +5314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: c, milestone, require, set. Outputs/bindings: c.
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[40].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5334,7 +5334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: c, milestone, require, set. Outputs/bindings: c.
 Calls/effect boundaries: require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[40].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5354,7 +5354,7 @@ Rust module: `infra::agentinfra::roadmap`. source-compatible ordered evaluation 
 
 Inputs: c, milestone. Outputs/bindings: c.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered SetComp evaluation at root.body[12].body[40].body[0].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5374,7 +5374,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: milestone, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[40].body[0].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5394,7 +5394,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: consume, milestone, providers, require. Outputs/bindings: consume.
 Calls/effect boundaries: providers.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[40].body[1]; no call, error or mutation may be omitted. Iteration: consume in milestone['consumes']
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5414,7 +5414,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: consume, providers, require. Outputs/bindings: (none).
 Calls/effect boundaries: providers.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[40].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5434,7 +5434,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: consume, providers, require. Outputs/bindings: (none).
 Calls/effect boundaries: providers.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[40].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5454,7 +5454,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: consume, providers. Outputs/bindings: (none).
 Calls/effect boundaries: providers.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[40].body[1].body[0].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5474,7 +5474,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: name, p, registry, root. Outputs/bindings: name, p, project_docs.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[41]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5494,7 +5494,7 @@ Rust module: `infra::agentinfra::roadmap`. source-compatible ordered evaluation 
 
 Inputs: name, p, registry, root. Outputs/bindings: name, p.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered SetComp evaluation at root.body[12].body[41].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5514,7 +5514,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: digest, input_bindings, path, project_docs, root, set, shared, sorted. Outputs/bindings: path.
 Calls/effect boundaries: (root / 'bin').glob, (root / 'infra').rglob, (root / 'scripts').glob, (root / 'verification/roadmap').glob, (shared / 'ci').glob, (shared / 'codex-protocol').glob, (shared / 'skills').rglob, digest, input_bindings.append, path.read_bytes, path.relative_to, path.relative_to(root).as_posix, set, shared.glob, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[12].body[42]; no call, error or mutation may be omitted. Iteration: path in sorted(set(shared.glob('*.json')) | set(shared.glob('*.md')) | set((shared / 'codex-protocol').glob('*.json')) | set((root / 'infra').rglob('*.py')) | set((root / 'scripts').glob('*.py')) | set((root / 'bin').glob('*.py')) | set((root / 'verification/roadmap').glob('*.py')) | set((shared / 'ci').glob('*.py')) | set((shared / 'skills').rglob('SKILL.md')) | project_docs)
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5534,7 +5534,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: project_docs, root, set, shared, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'bin').glob, (root / 'infra').rglob, (root / 'scripts').glob, (root / 'verification/roadmap').glob, (shared / 'ci').glob, (shared / 'codex-protocol').glob, (shared / 'skills').rglob, set, shared.glob, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5554,7 +5554,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, shared. Outputs/bindings: (none).
 Calls/effect boundaries: set, shared.glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.left.left.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5574,7 +5574,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: shared. Outputs/bindings: (none).
 Calls/effect boundaries: shared.glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.left.left.left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5594,7 +5594,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, shared. Outputs/bindings: (none).
 Calls/effect boundaries: set, shared.glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5614,7 +5614,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: shared. Outputs/bindings: (none).
 Calls/effect boundaries: shared.glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5634,7 +5634,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, shared. Outputs/bindings: (none).
 Calls/effect boundaries: (shared / 'codex-protocol').glob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5654,7 +5654,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: shared. Outputs/bindings: (none).
 Calls/effect boundaries: (shared / 'codex-protocol').glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5674,7 +5674,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root, set. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra').rglob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5694,7 +5694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra').rglob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5714,7 +5714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root, set. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'scripts').glob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5734,7 +5734,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'scripts').glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5754,7 +5754,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root, set. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'bin').glob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5774,7 +5774,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'bin').glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5794,7 +5794,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root, set. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'verification/roadmap').glob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5814,7 +5814,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'verification/roadmap').glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5834,7 +5834,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, shared. Outputs/bindings: (none).
 Calls/effect boundaries: (shared / 'ci').glob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5854,7 +5854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: shared. Outputs/bindings: (none).
 Calls/effect boundaries: (shared / 'ci').glob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5874,7 +5874,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set, shared. Outputs/bindings: (none).
 Calls/effect boundaries: (shared / 'skills').rglob, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5894,7 +5894,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: shared. Outputs/bindings: (none).
 Calls/effect boundaries: (shared / 'skills').rglob.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].iter.args[0].left.right.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5914,7 +5914,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: digest, input_bindings, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: digest, input_bindings.append, path.read_bytes, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12].body[42].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5934,7 +5934,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, input_bindings, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: digest, input_bindings.append, path.read_bytes, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5954,7 +5954,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].body[0].value.args[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5974,7 +5974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].body[0].value.args[0].values[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -5994,7 +5994,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, path. Outputs/bindings: (none).
 Calls/effect boundaries: digest, path.read_bytes.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].body[0].value.args[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6014,7 +6014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.read_bytes.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[42].body[0].value.args[0].values[1].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6034,7 +6034,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: input_bindings, milestones, order, policy, recipes, registry, requirement_ids. Outputs/bindings: result.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[43]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6054,7 +6054,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: digest, result. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[44]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6074,7 +6074,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, result. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[44].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6094,7 +6094,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: result. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[12].body[45]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6114,7 +6114,7 @@ Rust module: `infra::agentinfra::roadmap`. fn with explicit inputs and Result<T,
 
 Inputs: Path, accepted, actual, bindings_current, bool, by_milestone, candidates, compiled, contract, d, dependencies, dict, digest, evidence, good, ident, ids, isinstance, len, list, minimum, missing, obligation, p, proof, proof_errors, proofs, r, receipt, receipts, rejected, require, required, result, result_proof, root, set, sorted, state, validate_record. Outputs/bindings: accepted, actual, by_milestone, candidates, contract, d, dependencies, good, ident, ids, minimum, missing, obligation, p, proof, proofs, r, receipt, receipts, rejected, required, result, result_proof, state.
 Calls/effect boundaries: accepted.append, bindings_current, bool, by_milestone.get, by_milestone.setdefault, by_milestone.setdefault(receipt['milestone'], []).append, candidates.add, digest, evidence.get, isinstance, len, missing.append, p.get, p.get('obligation', {}).get, proof.get, proof_errors, r.get, receipt.get, receipt['configuration'].get, rejected.append, require, set, sorted, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[13]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6134,7 +6134,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6154,7 +6154,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: evidence, require. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6174,7 +6174,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: evidence, require. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6194,7 +6194,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: evidence. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6214,7 +6214,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: bindings_current, compiled, require, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6234,7 +6234,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, compiled, require, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6254,7 +6254,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, compiled, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[2].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6274,7 +6274,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: compiled, evidence, require. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6294,7 +6294,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: compiled, evidence, require. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6314,7 +6314,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: evidence. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[3].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6334,7 +6334,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: evidence. Outputs/bindings: receipts.
 Calls/effect boundaries: evidence.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6354,7 +6354,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: evidence. Outputs/bindings: (none).
 Calls/effect boundaries: evidence.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6374,7 +6374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: isinstance, list, receipts, require. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6394,7 +6394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: isinstance, list, receipts, require. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6414,7 +6414,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: isinstance, list, receipts. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[5].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6434,7 +6434,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: r, receipts. Outputs/bindings: ids, r.
 Calls/effect boundaries: r.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6454,7 +6454,7 @@ Rust module: `infra::agentinfra::roadmap`. iterator pipeline collected into Vec;
 
 Inputs: r, receipts. Outputs/bindings: r.
 Calls/effect boundaries: r.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6474,7 +6474,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[6].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6494,7 +6494,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: ids, len, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6514,7 +6514,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ids, len, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, require, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6534,7 +6534,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ids, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[7].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6554,7 +6554,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ids, len, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[7].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6574,7 +6574,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[7].value.args[0].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6594,7 +6594,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: by_milestone.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6614,7 +6614,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: by_milestone, compiled, receipt, receipts, require, root, validate_record. Outputs/bindings: receipt.
 Calls/effect boundaries: by_milestone.setdefault, by_milestone.setdefault(receipt['milestone'], []).append, require, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[9]; no call, error or mutation may be omitted. Iteration: receipt in receipts
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6634,7 +6634,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: receipt, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[9].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6654,7 +6654,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[9].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6674,7 +6674,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: compiled, receipt, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[9].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6694,7 +6694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: compiled, receipt, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[9].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6714,7 +6714,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: by_milestone, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: by_milestone.setdefault, by_milestone.setdefault(receipt['milestone'], []).append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[9].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6734,7 +6734,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: by_milestone, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: by_milestone.setdefault, by_milestone.setdefault(receipt['milestone'], []).append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[9].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6754,7 +6754,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: by_milestone, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: by_milestone.setdefault.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[9].body[2].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6774,7 +6774,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: result.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6794,7 +6794,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: accepted, actual, bindings_current, bool, by_milestone, candidates, compiled, contract, d, dependencies, digest, good, ident, len, minimum, missing, obligation, p, proof, proof_errors, proofs, receipt, rejected, require, required, result, result_proof, root, set, sorted, state, validate_record. Outputs/bindings: accepted, actual, candidates, contract, d, dependencies, good, ident, minimum, missing, obligation, p, proof, proofs, receipt, rejected, required, result_proof, state.
 Calls/effect boundaries: accepted.append, bindings_current, bool, by_milestone.get, candidates.add, digest, len, missing.append, p.get, p.get('obligation', {}).get, proof.get, proof_errors, receipt.get, receipt['configuration'].get, rejected.append, require, set, sorted, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[11]; no call, error or mutation may be omitted. Iteration: ident in compiled['order']
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6814,7 +6814,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: compiled, ident. Outputs/bindings: contract.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6834,7 +6834,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: accepted.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6854,7 +6854,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: set. Outputs/bindings: candidates.
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6874,7 +6874,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6894,7 +6894,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: rejected.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6914,7 +6914,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: accepted, actual, bindings_current, bool, by_milestone, candidates, contract, digest, good, ident, len, minimum, obligation, p, proof, proof_errors, proofs, receipt, rejected, require, required, result_proof, root, set, sorted, validate_record. Outputs/bindings: actual, good, minimum, obligation, p, proof, proofs, receipt, required, result_proof.
 Calls/effect boundaries: accepted.append, bindings_current, bool, by_milestone.get, candidates.add, digest, len, p.get, p.get('obligation', {}).get, proof.get, proof_errors, receipt.get, receipt['configuration'].get, rejected.append, require, set, sorted, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[11].body[4]; no call, error or mutation may be omitted. Iteration: receipt in by_milestone.get(ident, [])
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6934,7 +6934,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: by_milestone, ident. Outputs/bindings: (none).
 Calls/effect boundaries: by_milestone.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6954,7 +6954,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: contract, receipt, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[11].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6974,7 +6974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: contract, receipt, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -6994,7 +6994,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: bindings_current, contract, digest, receipt, root. Outputs/bindings: good.
 Calls/effect boundaries: bindings_current, digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7014,7 +7014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: contract, digest. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[1].value.values[2].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7034,7 +7034,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, receipt, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[1].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7054,7 +7054,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, receipt, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[1].value.values[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7074,7 +7074,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, receipt, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[1].value.values[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7094,7 +7094,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: contract, good, receipt, sorted. Outputs/bindings: good.
 Calls/effect boundaries: receipt['configuration'].get, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[11].body[4].body[2]; no call, error or mutation may be omitted. Condition: receipt['gate'] == 'implemented_outputs'
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7114,7 +7114,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: contract, good, receipt, sorted. Outputs/bindings: good.
 Calls/effect boundaries: receipt['configuration'].get, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7134,7 +7134,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: receipt['configuration'].get, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[2].body[0].value.values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7154,7 +7154,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt. Outputs/bindings: (none).
 Calls/effect boundaries: receipt['configuration'].get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[2].body[0].value.values[1].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7174,7 +7174,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: contract, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[2].body[0].value.values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7194,7 +7194,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: receipt['configuration'].get, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[2].body[0].value.values[2].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7214,7 +7214,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt. Outputs/bindings: (none).
 Calls/effect boundaries: receipt['configuration'].get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[2].body[0].value.values[2].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7234,7 +7234,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: contract, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[2].body[0].value.values[2].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7254,7 +7254,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: actual, bindings_current, bool, contract, good, len, minimum, obligation, p, proof, proof_errors, proofs, receipt, required, result_proof, root, set, sorted, validate_record. Outputs/bindings: actual, good, minimum, obligation, p, proof, proofs, required, result_proof.
 Calls/effect boundaries: bindings_current, bool, len, p.get, p.get('obligation', {}).get, proof.get, proof_errors, receipt.get, receipt['configuration'].get, set, sorted, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[11].body[4].body[3]; no call, error or mutation may be omitted. Condition: receipt['gate'] == 'full_domain_proof'
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7274,7 +7274,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: receipt. Outputs/bindings: proofs.
 Calls/effect boundaries: receipt.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7294,7 +7294,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt. Outputs/bindings: (none).
 Calls/effect boundaries: receipt.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7314,7 +7314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: receipt. Outputs/bindings: required.
 Calls/effect boundaries: receipt['configuration'].get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7334,7 +7334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt. Outputs/bindings: (none).
 Calls/effect boundaries: receipt['configuration'].get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7354,7 +7354,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: p, proofs. Outputs/bindings: actual, p.
 Calls/effect boundaries: p.get, p.get('obligation', {}).get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7374,7 +7374,7 @@ Rust module: `infra::agentinfra::roadmap`. iterator pipeline collected into Vec;
 
 Inputs: p, proofs. Outputs/bindings: p.
 Calls/effect boundaries: p.get, p.get('obligation', {}).get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[11].body[4].body[3].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7394,7 +7394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.get, p.get('obligation', {}).get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[2].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7414,7 +7414,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[2].value.elt.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7434,7 +7434,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: contract, p. Outputs/bindings: minimum, p.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7454,7 +7454,7 @@ Rust module: `infra::agentinfra::roadmap`. source-compatible ordered evaluation 
 
 Inputs: contract, p. Outputs/bindings: p.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered SetComp evaluation at root.body[13].body[11].body[4].body[3].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7474,7 +7474,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: actual, bool, good, len, minimum, required, set, sorted. Outputs/bindings: good.
 Calls/effect boundaries: bool, len, set, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7494,7 +7494,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bool, required. Outputs/bindings: (none).
 Calls/effect boundaries: bool.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7514,7 +7514,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: required, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[2].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7534,7 +7534,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, required. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[3].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7554,7 +7554,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: len, required, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[3].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7574,7 +7574,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: required, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[3].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7594,7 +7594,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: actual, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[4].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7614,7 +7614,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: required, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[4].value.values[4].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7634,7 +7634,7 @@ Rust module: `infra::agentinfra::roadmap`. for over a source-compatible iterator
 
 Inputs: bindings_current, good, obligation, proof, proof_errors, proofs, receipt, result_proof, root, validate_record. Outputs/bindings: good, obligation, proof, result_proof.
 Calls/effect boundaries: bindings_current, proof.get, proof_errors, validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[11].body[4].body[3].body[5]; no call, error or mutation may be omitted. Iteration: proof in proofs
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7654,7 +7654,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: proof. Outputs/bindings: obligation, result_proof.
 Calls/effect boundaries: proof.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[5].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7674,7 +7674,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: proof. Outputs/bindings: (none).
 Calls/effect boundaries: proof.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[5].body[0].value.elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7694,7 +7694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: proof. Outputs/bindings: (none).
 Calls/effect boundaries: proof.get.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[5].body[0].value.elts[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7714,7 +7714,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: obligation, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[11].body[4].body[3].body[5].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7734,7 +7734,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: obligation, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[5].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7754,7 +7754,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: bindings_current, good, obligation, proof_errors, receipt, result_proof, root. Outputs/bindings: good.
 Calls/effect boundaries: bindings_current, proof_errors.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[4].body[3].body[5].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7774,7 +7774,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: obligation, proof_errors, result_proof. Outputs/bindings: (none).
 Calls/effect boundaries: proof_errors.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[5].body[2].value.values[1].operand; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7794,7 +7794,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: bindings_current, obligation, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[3].body[5].body[2].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7814,7 +7814,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: accepted, candidates, good, receipt, rejected. Outputs/bindings: (none).
 Calls/effect boundaries: accepted.append, candidates.add, rejected.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[11].body[4].body[4]; no call, error or mutation may be omitted. Condition: good
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7834,7 +7834,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: accepted, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: accepted.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[11].body[4].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7854,7 +7854,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: accepted, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: accepted.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[4].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7874,7 +7874,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: candidates, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: candidates.add.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[11].body[4].body[4].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7894,7 +7894,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: candidates, receipt. Outputs/bindings: (none).
 Calls/effect boundaries: candidates.add.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[4].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7914,7 +7914,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: receipt, rejected. Outputs/bindings: (none).
 Calls/effect boundaries: rejected.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[11].body[4].body[4].orelse[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7934,7 +7934,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: receipt, rejected. Outputs/bindings: (none).
 Calls/effect boundaries: rejected.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[4].body[4].orelse[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7954,7 +7954,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: accepted, contract, set, sorted. Outputs/bindings: missing.
 Calls/effect boundaries: set, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7974,7 +7974,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: accepted, contract, set, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: set, sorted.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -7994,7 +7994,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: contract, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[5].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8014,7 +8014,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: accepted, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[5].value.args[0].right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8034,7 +8034,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: contract, d, result. Outputs/bindings: d, dependencies.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8054,7 +8054,7 @@ Rust module: `infra::agentinfra::roadmap`. iterator pipeline collected into Vec;
 
 Inputs: contract, d, result. Outputs/bindings: d.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[11].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8074,7 +8074,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: candidates, len, missing. Outputs/bindings: (none).
 Calls/effect boundaries: len, missing.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[11].body[7]; no call, error or mutation may be omitted. Condition: len(candidates) > 1
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8094,7 +8094,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: candidates, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[7].test.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8114,7 +8114,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: missing. Outputs/bindings: (none).
 Calls/effect boundaries: missing.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[11].body[7].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8134,7 +8134,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: missing. Outputs/bindings: (none).
 Calls/effect boundaries: missing.append.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[11].body[7].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8154,7 +8154,7 @@ Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-va
 
 Inputs: dependencies, missing. Outputs/bindings: state.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[11].body[8]; no call, error or mutation may be omitted. Condition: missing or dependencies
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8174,7 +8174,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: dependencies. Outputs/bindings: state.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[8].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8194,7 +8194,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: (none). Outputs/bindings: state.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[8].orelse[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8214,7 +8214,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: dependencies, ident, missing, rejected, result, state. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[11].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8234,7 +8234,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: compiled, result. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[13].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8254,7 +8254,7 @@ Rust module: `infra::agentinfra::roadmap`. fn with explicit inputs and Result<T,
 
 Inputs: audit, canonical, compiled, contract, dict, digest, ident, int, len, max_bytes, require, str, type, work. Outputs/bindings: contract, work.
 Calls/effect boundaries: canonical, digest, len, require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[14]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8274,7 +8274,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: compiled, ident, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8294,7 +8294,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: compiled, ident, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8314,7 +8314,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: int, max_bytes, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8334,7 +8334,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: int, max_bytes, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: require, type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8354,7 +8354,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: max_bytes, type. Outputs/bindings: (none).
 Calls/effect boundaries: type.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[1].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8374,7 +8374,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: audit, compiled, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8394,7 +8394,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: audit, compiled, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8414,7 +8414,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: compiled, ident. Outputs/bindings: contract.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8434,7 +8434,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: audit, compiled, contract, digest, ident. Outputs/bindings: work.
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8454,7 +8454,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: compiled, digest, ident. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[4].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8474,7 +8474,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: canonical, len, max_bytes, require, work. Outputs/bindings: (none).
 Calls/effect boundaries: canonical, len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8494,7 +8494,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: canonical, len, max_bytes, require, work. Outputs/bindings: (none).
 Calls/effect boundaries: canonical, len, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8514,7 +8514,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: canonical, len, work. Outputs/bindings: (none).
 Calls/effect boundaries: canonical, len.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[5].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8534,7 +8534,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: canonical, work. Outputs/bindings: (none).
 Calls/effect boundaries: canonical.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[5].value.args[0].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8554,7 +8554,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: work. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[14].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8568,13 +8568,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15]::FunctionDef
 
-Source: `infra/agentinfra/roadmap.py:225`; AST `54177ac12eb0c22eb5fb0dc180782919bd1c2f169e4a103d152bc38101f23bba`.
+Source: `infra/agentinfra/roadmap.py:225`; AST `21804a9eb0776efcced09b127836a194c90f7d2cab7169bc702cb30df4b39ee4`.
 
 Rust module: `infra::agentinfra::roadmap`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: FileTransaction, Mutation, Path, audit, canonical, confined_path, dict, digest, expected_digest, isinstance, loads, path, raw, record, relative, require, root, str, updated. Outputs/bindings: path, raw, record, updated.
-Calls/effect boundaries: FileTransaction, FileTransaction(root, [Mutation(path, canonical(updated) + b'\n', expected_sha256=expected_digest)], state_dir=root / '.aegis/state/transactions', name='roadmap-projection').commit, Mutation, canonical, confined_path, dict, digest, isinstance, loads, path.read_bytes, raw.decode, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Inputs: FileTransaction, Mutation, Path, ProjectAdapter, audit, canonical, confined_path, dict, digest, expected_digest, isinstance, loads, path, raw, read_json, record, registry, registry_path, relative, require, root, str, updated. Outputs/bindings: path, raw, record, registry, registry_path, updated.
+Calls/effect boundaries: FileTransaction, FileTransaction(root, [Mutation(path, canonical(updated) + b'\n', expected_sha256=expected_digest)], state_dir=root / '.aegis/state/transactions', name='roadmap-projection').commit, Mutation, ProjectAdapter, ProjectAdapter(root, profiles=registry['projects']).update, canonical, confined_path, dict, digest, isinstance, loads, path.read_bytes, raw.decode, read_json, registry_path.exists, require.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[15]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8594,7 +8594,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: confined_path, relative, root. Outputs/bindings: path.
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[15].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8614,7 +8614,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: confined_path, relative, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8634,7 +8634,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: path. Outputs/bindings: raw.
 Calls/effect boundaries: path.read_bytes.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[15].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8654,7 +8654,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.read_bytes.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8674,7 +8674,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: digest, expected_digest, raw, require. Outputs/bindings: (none).
 Calls/effect boundaries: digest, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[15].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8694,7 +8694,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, expected_digest, raw, require. Outputs/bindings: (none).
 Calls/effect boundaries: digest, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8714,7 +8714,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: digest, raw. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[2].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8734,7 +8734,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: loads, raw. Outputs/bindings: record.
 Calls/effect boundaries: loads, raw.decode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[15].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8754,7 +8754,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: loads, raw. Outputs/bindings: (none).
 Calls/effect boundaries: loads, raw.decode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8774,7 +8774,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: raw. Outputs/bindings: (none).
 Calls/effect boundaries: raw.decode.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[3].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8794,7 +8794,7 @@ Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation 
 
 Inputs: dict, isinstance, record, require. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[15].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8814,7 +8814,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: dict, isinstance, record, require. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, require.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8834,7 +8834,7 @@ Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; pr
 
 Inputs: dict, isinstance, record. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[4].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8848,13 +8848,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap.py:231`; AST `b01b7e304a80eb4a531c88daf27f556db585de3bf6bcf64a82f7c34a4924bd6f`.
+Source: `infra/agentinfra/roadmap.py:231`; AST `6c6398067ecfac429edb3e05b95490aff08467495994df9e5b6460a57a785012`.
 
 Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: audit, dict, record. Outputs/bindings: updated.
-Calls/effect boundaries: dict.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Inputs: root. Outputs/bindings: registry_path.
+Calls/effect boundaries: (none).
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[15].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -8866,17 +8866,217 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[5].value::Call
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6]::Assign
 
-Source: `infra/agentinfra/roadmap.py:231`; AST `db288ea7c8ea41ee39f7b40fac7f79af75f7d39badd2d3f7e4f3b894b69d6c04`.
+Source: `infra/agentinfra/roadmap.py:232`; AST `bec2afbc1dbd4c438ba30e8136e52924d3182cf099094dcc170c192bad859e4d`.
+
+Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: read_json, registry_path. Outputs/bindings: registry.
+Calls/effect boundaries: read_json, registry_path.exists.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Assign evaluation at root.body[15].body[6]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6].value.test::Call
+
+Source: `infra/agentinfra/roadmap.py:232`; AST `b1622850fd06bbc2d9dc1c35aab393c51e51ef0ec6dfe4839df51c11c9f2d604`.
+
+Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: registry_path. Outputs/bindings: (none).
+Calls/effect boundaries: registry_path.exists.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[15].body[6].value.test; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6].value.body::Call
+
+Source: `infra/agentinfra/roadmap.py:232`; AST `7193deef5dc52d03fdd6795bb006e4b1afb5634d3e47a2203ea12bc39d31affa`.
+
+Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: read_json, registry_path. Outputs/bindings: (none).
+Calls/effect boundaries: read_json.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[15].body[6].value.body; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[7]::If
+
+Source: `infra/agentinfra/roadmap.py:233`; AST `0106ccde7acee29f1f73eb64e9243eece543ece1745578487c3ad5c7cb1994f7`.
+
+Rust module: `infra::agentinfra::roadmap`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: ProjectAdapter, audit, confined_path, expected_digest, path, registry, root. Outputs/bindings: (none).
+Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, profiles=registry['projects']).update, confined_path.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered If evaluation at root.body[15].body[7]; no call, error or mutation may be omitted. Condition: registry and path == confined_path(root, registry['projects']['Aegis']['canonical_record'])
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[7].test.values[1].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap.py:233`; AST `6f5194fa2144b51492f727b5189670703447764512d5872079b0c036512173bb`.
+
+Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: confined_path, registry, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[15].body[7].test.values[1].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[7].body[0]::ImportFrom
+
+Source: `infra/agentinfra/roadmap.py:234`; AST `06018155a23f1f83c82d139847669324993143354a3dd3b3aaf896059cf1187a`.
+
+Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered ImportFrom evaluation at root.body[15].body[7].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[7].body[1]::Return
+
+Source: `infra/agentinfra/roadmap.py:235`; AST `b15f4e5235d100364e9a152d9a10cce4fe980916abecd51d16112544cb8c43bb`.
+
+Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: ProjectAdapter, audit, expected_digest, registry, root. Outputs/bindings: (none).
+Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, profiles=registry['projects']).update.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Return evaluation at root.body[15].body[7].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[7].body[1].value::Call
+
+Source: `infra/agentinfra/roadmap.py:235`; AST `7175525e140aceaf4e9988adbb2739b130a4b38f9c0fb0462a9f951f0a6e98f2`.
+
+Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ProjectAdapter, audit, expected_digest, registry, root. Outputs/bindings: (none).
+Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, profiles=registry['projects']).update.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[15].body[7].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[7].body[1].value.func.value::Call
+
+Source: `infra/agentinfra/roadmap.py:235`; AST `1d9e839d5392c1b2bae35d82259a28ec9d25ca50b4e55dedc677648509dc31e8`.
+
+Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ProjectAdapter, registry, root. Outputs/bindings: (none).
+Calls/effect boundaries: ProjectAdapter.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[15].body[7].body[1].value.func.value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[8]::Assign
+
+Source: `infra/agentinfra/roadmap.py:237`; AST `b01b7e304a80eb4a531c88daf27f556db585de3bf6bcf64a82f7c34a4924bd6f`.
+
+Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: audit, dict, record. Outputs/bindings: updated.
+Calls/effect boundaries: dict.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
+
+Invariants: Preserve ordered Assign evaluation at root.body[15].body[8]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[8].value::Call
+
+Source: `infra/agentinfra/roadmap.py:237`; AST `db288ea7c8ea41ee39f7b40fac7f79af75f7d39badd2d3f7e4f3b894b69d6c04`.
 
 Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: audit, dict, record. Outputs/bindings: (none).
 Calls/effect boundaries: dict.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[15].body[5].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[15].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8886,17 +9086,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6]::Return
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[9]::Return
 
-Source: `infra/agentinfra/roadmap.py:232`; AST `61713c720676d06952a67a9356bac7c03ba2537f9af2a647dbe740a973e45d80`.
+Source: `infra/agentinfra/roadmap.py:238`; AST `61713c720676d06952a67a9356bac7c03ba2537f9af2a647dbe740a973e45d80`.
 
 Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: FileTransaction, Mutation, canonical, expected_digest, path, root, updated. Outputs/bindings: (none).
 Calls/effect boundaries: FileTransaction, FileTransaction(root, [Mutation(path, canonical(updated) + b'\n', expected_sha256=expected_digest)], state_dir=root / '.aegis/state/transactions', name='roadmap-projection').commit, Mutation, canonical.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
-Invariants: Preserve ordered Return evaluation at root.body[15].body[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[15].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8906,17 +9106,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6].value::Call
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[9].value::Call
 
-Source: `infra/agentinfra/roadmap.py:232`; AST `4bcb3c27b2420156684fe55450b3edbcaded7926ee945be7adae1a772d742cbf`.
+Source: `infra/agentinfra/roadmap.py:238`; AST `4bcb3c27b2420156684fe55450b3edbcaded7926ee945be7adae1a772d742cbf`.
 
 Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: FileTransaction, Mutation, canonical, expected_digest, path, root, updated. Outputs/bindings: (none).
 Calls/effect boundaries: FileTransaction, FileTransaction(root, [Mutation(path, canonical(updated) + b'\n', expected_sha256=expected_digest)], state_dir=root / '.aegis/state/transactions', name='roadmap-projection').commit, Mutation, canonical.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[15].body[6].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[15].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8926,17 +9126,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6].value.func.value::Call
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[9].value.func.value::Call
 
-Source: `infra/agentinfra/roadmap.py:232`; AST `754763462a376d0181dcb18a3ed798d5e4d91d62af7e0d940cdb532f0d833fb9`.
+Source: `infra/agentinfra/roadmap.py:238`; AST `754763462a376d0181dcb18a3ed798d5e4d91d62af7e0d940cdb532f0d833fb9`.
 
 Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: FileTransaction, Mutation, canonical, expected_digest, path, root, updated. Outputs/bindings: (none).
 Calls/effect boundaries: FileTransaction, Mutation, canonical.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[15].body[6].value.func.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[15].body[9].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8946,17 +9146,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6].value.func.value.args[1].elts[0]::Call
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[9].value.func.value.args[1].elts[0]::Call
 
-Source: `infra/agentinfra/roadmap.py:232`; AST `ff97c09b3f4969467208b075f107207fb14391a19b30ed40062427e760336216`.
+Source: `infra/agentinfra/roadmap.py:238`; AST `ff97c09b3f4969467208b075f107207fb14391a19b30ed40062427e760336216`.
 
 Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: Mutation, canonical, expected_digest, path, updated. Outputs/bindings: (none).
 Calls/effect boundaries: Mutation, canonical.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[15].body[6].value.func.value.args[1].elts[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[15].body[9].value.func.value.args[1].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8966,17 +9166,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[6].value.func.value.args[1].elts[0].args[1].left::Call
+## infra/agentinfra/roadmap.py::module::project_into_record::root.body[15].body[9].value.func.value.args[1].elts[0].args[1].left::Call
 
-Source: `infra/agentinfra/roadmap.py:232`; AST `55c97ce00fe8675ff74e1eed48ded4cd22b3be31d967e0ab26715026d67f484e`.
+Source: `infra/agentinfra/roadmap.py:238`; AST `55c97ce00fe8675ff74e1eed48ded4cd22b3be31d967e0ab26715026d67f484e`.
 
 Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: canonical, updated. Outputs/bindings: (none).
 Calls/effect boundaries: canonical.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[15].body[6].value.func.value.args[1].elts[0].args[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[15].body[9].value.func.value.args[1].elts[0].args[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8988,13 +9188,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::save_compiled::root.body[16]::FunctionDef
 
-Source: `infra/agentinfra/roadmap.py:236`; AST `410ef4d2f84293b09a5c855d8337473f265b466cda80c1a6dc8163a0c7d5021f`.
+Source: `infra/agentinfra/roadmap.py:242`; AST `410ef4d2f84293b09a5c855d8337473f265b466cda80c1a6dc8163a0c7d5021f`.
 
 Rust module: `infra::agentinfra::roadmap`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
 Inputs: Path, atomic_write_json, compiled, dict, path, root. Outputs/bindings: path.
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[16]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -9008,13 +9208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::save_compiled::root.body[16].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap.py:237`; AST `83e1f91fc11cb9a36f1e3a80bb903eb6defec1b85c5384d90904727bf6984d53`.
+Source: `infra/agentinfra/roadmap.py:243`; AST `83e1f91fc11cb9a36f1e3a80bb903eb6defec1b85c5384d90904727bf6984d53`.
 
 Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: root. Outputs/bindings: path.
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -9028,13 +9228,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::save_compiled::root.body[16].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap.py:238`; AST `48c3c778fb98e175b53200a53c668afb3fb70889b8fc08fe346b91b58e6e62de`.
+Source: `infra/agentinfra/roadmap.py:244`; AST `48c3c778fb98e175b53200a53c668afb3fb70889b8fc08fe346b91b58e6e62de`.
 
 Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: atomic_write_json, compiled, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -9048,13 +9248,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::save_compiled::root.body[16].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap.py:238`; AST `3cd5dcb28a38db4ad27ca53c4ad6a5eaeba1c1d5397a7635f73bca2b94d8df2e`.
+Source: `infra/agentinfra/roadmap.py:244`; AST `3cd5dcb28a38db4ad27ca53c4ad6a5eaeba1c1d5397a7635f73bca2b94d8df2e`.
 
 Rust module: `infra::agentinfra::roadmap`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: atomic_write_json, compiled, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex
@@ -9068,13 +9268,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap.py::module::save_compiled::root.body[16].body[2]::Return
 
-Source: `infra/agentinfra/roadmap.py:239`; AST `6a83e41742422cefd09401a733b9520de25fdaca4b583a6ac2a8659697bf9fee`.
+Source: `infra/agentinfra/roadmap.py:245`; AST `6a83e41742422cefd09401a733b9520de25fdaca4b583a6ac2a8659697bf9fee`.
 
 Rust module: `infra::agentinfra::roadmap`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_records, security, transaction.
+Dependencies: __future__, atomic, pathlib, re, roadmap_policy, roadmap_project, roadmap_records, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[16].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex

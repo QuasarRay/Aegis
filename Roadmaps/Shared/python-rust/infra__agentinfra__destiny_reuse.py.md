@@ -2,7 +2,7 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 47. Inventory digest: `63d9b4ce678f83477859a5a2a6594f2f075d7513ff6c173c52897d613717dab1`.
+Files: 1. Behavioral units: 47. Inventory digest: `547b7dc7555a387a946f4940fbe429f2a0a8ba6e5ff0149f83fd3e11862a70d1`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 

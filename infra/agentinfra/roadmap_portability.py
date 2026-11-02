@@ -2,9 +2,13 @@
 from __future__ import annotations
 
 import ast
+import json
 from pathlib import Path
 
-from .roadmap_records import canonical, digest, read_json, require
+from .locks import FileLock
+from .roadmap_records import ContractError, bindings_current, canonical, digest, loads, read_json, require
+from .security import confined_path
+from .transaction import FileTransaction, Mutation, TransactionError, recover_named_transactions
 
 
 ROOTS = ("infra", "bin", "scripts", "verification/roadmap", "Roadmaps/Shared/ci")
@@ -42,7 +46,8 @@ def maintained_python(root: Path) -> list[Path]:
 def inventory(root: Path) -> dict:
     files, units = [], []
     overrides_path = root / "Roadmaps/Shared/python-rust-overrides.json"
-    overrides = read_json(overrides_path) if overrides_path.exists() else {"schema": 1, "units": {}}
+    raw_overrides = overrides_path.read_bytes() if overrides_path.exists() else None
+    overrides = loads(raw_overrides.decode()) if raw_overrides is not None else {"schema": 1, "units": {}}
     require(overrides.get("schema") == 1, "unknown Python/Rust mapping override schema")
     for path in maintained_python(root):
         relative = path.relative_to(root).as_posix()
@@ -107,8 +112,11 @@ def inventory(root: Path) -> dict:
         visit(tree, "module", "root")
     require(len({u["id"] for u in units}) == len(units), "duplicate Python behavioral unit")
     require(set(overrides["units"]) <= {u["id"] for u in units}, "migration refinement references removed Python unit")
-    return {"schema": 1, "coverage": "all maintained files, definitions, statements and designated expression/handler blocks",
-            "files": files, "units": units, "digest": digest({"files": files, "units": units})}
+    record = {"schema": 1, "coverage": "all maintained files, definitions, statements and designated expression/handler blocks",
+              "files": files, "units": units, "digest": digest({"files": files, "units": units}),
+              "configuration": {"overrides_sha256": digest(raw_overrides) if raw_overrides is not None else None}}
+    assert_sources(root, record)
+    return record
 
 
 def markdown(record: dict) -> str:
@@ -131,19 +139,175 @@ def markdown(record: dict) -> str:
 
 
 def shards(record: dict, max_bytes: int = 262144) -> tuple[dict, dict[str, dict]]:
-    """Bounded deterministic inventory files without omitting or truncating units."""
+    """Stable per-source shards bounded by actual canonical UTF-8 file bytes."""
     require(type(max_bytes) is int and max_bytes > 0, "invalid inventory shard budget")
-    parts, pending, size = {}, [], 0
+    parts, pending, ordinals = {}, [], {}
+    group = None
+    overhead = len(canonical({"schema": 1, "units": []})) + 1
+    size = overhead
+
+    def flush() -> None:
+        nonlocal pending, size
+        if not pending:
+            return
+        ordinal = ordinals.get(group, 0)
+        name = f"units-{digest(group.encode())}-{ordinal:04}.json"
+        value = {"schema": 1, "units": pending}
+        require(name not in parts and len(canonical(value)) + 1 <= max_bytes,
+                "inventory shard identity or byte bound violated")
+        parts[name] = value
+        ordinals[group] = ordinal + 1
+        pending, size = [], overhead
+
     for unit in record["units"]:
-        length = len(canonical(unit)) + 1
-        require(length < max_bytes, "single behavioral entry exceeds shard budget; refine representation without dropping semantics")
-        if pending and size + length >= max_bytes:
-            parts[f"units-{len(parts):04}.json"] = {"schema": 1, "units": pending}
-            pending, size = [], 0
-        pending.append(unit); size += length
-    if pending: parts[f"units-{len(parts):04}.json"] = {"schema": 1, "units": pending}
+        owner = unit.get("file", "")
+        require(isinstance(owner, str), "invalid Python source owner")
+        if owner != group:
+            flush()
+            group = owner
+        length = len(canonical(unit))
+        require(overhead + length <= max_bytes, "single behavioral entry exceeds shard budget; refine representation without dropping semantics")
+        if pending and size + length + 1 > max_bytes:
+            flush()
+        size += length + (1 if pending else 0)
+        pending.append(unit)
+    flush()
     index = {"schema": 1, "kind": "sharded_python_rust_inventory", "coverage": record["coverage"],
+             "layout": "source_shards_v1", "encoding": "canonical_utf8_json_lf", "shard_max_bytes": max_bytes,
              "files": record["files"], "unit_count": len(record["units"]), "digest": record["digest"],
-             "shards": [{"path": "units/" + name, "digest": digest(value), "count": len(value["units"])}
+             "shards": [{"path": "units/" + name, "digest": digest(value), "count": len(value["units"]),
+                         "sha256": digest(canonical(value) + b"\n"), "bytes": len(canonical(value)) + 1}
                         for name, value in parts.items()]}
     return index, parts
+
+
+def assert_sources(root: Path, record: dict) -> None:
+    require([p.relative_to(root).as_posix() for p in maintained_python(root)] == [f["path"] for f in record["files"]]
+            and (not record["files"] or bindings_current(root, record["files"])),
+            "Python source namespace or bytes changed during generation")
+    path = root / "Roadmaps/Shared/python-rust-overrides.json"
+    expected = record.get("configuration", {}).get("overrides_sha256")
+    require((digest(path.read_bytes()) if path.exists() else None) == expected,
+            "Python/Rust override configuration changed during generation")
+
+
+def file_record(record: dict, source: dict) -> dict:
+    units = [u for u in record["units"] if u["file"] == source["path"]]
+    return dict(record, files=[source], units=units, digest=digest({"files": [source], "units": units}))
+
+
+def _document_path(source: str) -> str:
+    return source.replace("/", "__") + ".md"
+
+
+def artifacts(record: dict) -> tuple[dict, dict[str, bytes]]:
+    index, parts = shards(record)
+    output = {"units/" + name: canonical(value) + b"\n" for name, value in parts.items()}
+    documents = []
+    for source in record["files"]:
+        path = _document_path(source["path"])
+        require(path not in output, "Python correspondence document path collision")
+        raw = markdown(file_record(record, source)).encode()
+        output[path] = raw
+        documents.append({"path": path, "source": source["path"], "sha256": digest(raw)})
+    index["documents"] = documents
+    index["configuration"] = record.get("configuration", {})
+    output["inventory.json"] = canonical(index) + b"\n"
+    return index, output
+
+
+def _previous_artifacts(base: Path) -> dict[str, bytes]:
+    path = base / "inventory.json"
+    if not path.exists():
+        return {}
+    raw_index = path.read_bytes()
+    index = loads(raw_index.decode())
+    require(index.get("schema") == 1 and index.get("kind") == "sharded_python_rust_inventory",
+            "unknown correspondence generation; explicit migration required")
+    layout = index.get("layout")
+    require(layout in {None, "source_shards_v1"}, "unsupported correspondence layout")
+    owned, units = {"inventory.json": raw_index}, []
+    for shard in index["shards"]:
+        relative = shard["path"]
+        require(relative.startswith("units/units-") and relative.endswith(".json") and relative not in owned,
+                "invalid or duplicate owned inventory shard")
+        raw = confined_path(base, relative, must_exist=True).read_bytes()
+        value = loads(raw.decode())
+        require(digest(value) == shard["digest"] and len(value["units"]) == shard["count"],
+                "owned correspondence shard was edited; preserve and reconcile it before generation")
+        expected = canonical(value) + b"\n" if layout else (json.dumps(value, indent=2, sort_keys=True) + "\n").encode()
+        require(raw == expected, "owned correspondence shard bytes were edited")
+        if layout:
+            require(digest(raw) == shard["sha256"] and len(raw) == shard["bytes"] and
+                    len(raw) <= index["shard_max_bytes"], "owned correspondence byte identity changed")
+        units.extend(value["units"])
+        owned[relative] = raw
+    require(len(units) == index["unit_count"] and len({u["id"] for u in units}) == len(units) and
+            digest({"files": index["files"], "units": units}) == index["digest"],
+            "previous correspondence denominator is incomplete or duplicated")
+    require({u["file"] for u in units} <= {f["path"] for f in index["files"]}, "unowned correspondence unit")
+    previous = dict(index, units=units)
+    for source in index["files"]:
+        relative = _document_path(source["path"])
+        require(relative not in owned, "previous correspondence document path collision")
+        local = file_record(previous, source) if layout else dict(previous, files=[source], units=[u for u in units if u["file"] == source["path"]])
+        expected = markdown(local).encode()
+        raw = confined_path(base, relative, must_exist=True).read_bytes()
+        require(raw == expected, "owned migration description was edited; preserve and reconcile it before generation")
+        owned[relative] = raw
+    return owned
+
+
+def publish(root: Path, record: dict) -> dict:
+    """CAS-publish owned artifacts with existing transaction recovery, index last."""
+    root = root.resolve()
+    base = root / "Roadmaps/Shared/python-rust"
+    state = root / ".aegis/state/transactions"
+    lock = FileLock(root / ".aegis/roadmaps/portability.lock", "correspondence generation")
+    lock.acquire()
+    try:
+        recover_named_transactions(state, expected_root=root, names=["aegis-portability"])
+        assert_sources(root, record)
+        previous = _previous_artifacts(base)
+        index, output = artifacts(record)
+        mutations = []
+        for relative in sorted(set(previous) | set(output)):
+            if relative == "inventory.json":
+                continue
+            path = confined_path(root, base / relative)
+            before = previous.get(relative)
+            if before is None and path.exists():
+                require(relative in output and path.read_bytes() == output[relative],
+                        "unowned correspondence artifact conflicts with generation")
+                before = path.read_bytes()
+            after = output.get(relative)
+            if before != after:
+                mutations.append(Mutation(path, after, expected_exists=before is not None,
+                                          expected_sha256=digest(before) if before is not None else None))
+        old_index = previous.get("inventory.json")
+        if old_index != output["inventory.json"]:
+            mutations.append(Mutation(base / "inventory.json", output["inventory.json"],
+                                      expected_exists=old_index is not None,
+                                      expected_sha256=digest(old_index) if old_index is not None else None))
+        assert_sources(root, record)
+        if mutations:
+            FileTransaction(root, mutations, state_dir=state, name="aegis-portability").commit()
+        assert_sources(root, record)
+        return {"files": len(record["files"]), "units": len(record["units"]), "shards": len(index["shards"]),
+                "digest": record["digest"], "artifacts_changed": len(mutations),
+                "status": "PUBLISHED" if mutations else "REUSED", "layout": index["layout"]}
+    except TransactionError as exc:
+        raise ContractError(f"correspondence transaction requires reconciliation: {exc}") from exc
+    finally:
+        lock.release()
+
+
+def check(root: Path, record: dict) -> dict:
+    assert_sources(root, record)
+    _, expected = artifacts(record)
+    base = root / "Roadmaps/Shared/python-rust"
+    for relative, raw in expected.items():
+        require(confined_path(root, base / relative, must_exist=True).read_bytes() == raw,
+                "Python-to-Rust mapping is missing, stale or edited; regenerate and review changed blocks")
+    assert_sources(root, record)
+    return {"status": "CURRENT", "files": len(record["files"]), "units": len(record["units"])}

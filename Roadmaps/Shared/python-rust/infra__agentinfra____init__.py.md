@@ -2,17 +2,17 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 3. Inventory digest: `63d9b4ce678f83477859a5a2a6594f2f075d7513ff6c173c52897d613717dab1`.
+Files: 1. Behavioral units: 5. Inventory digest: `bcfdb3fa5693d0f539bd3ceda0dd6859e68a9d5f1a6054bf814be8c820419b16`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/__init__.py::module::root::Module
 
-Source: `infra/agentinfra/__init__.py:1`; AST `c642028ed687cadc086f3ad77e019eb25f119ae38ce4c7b1cf3fa7f84c06afee`.
+Source: `infra/agentinfra/__init__.py:1`; AST `563d766cfb4bceb72ba4933bb55210f48abb14809a7b47be044b90fa652f18e7`.
 
 Rust module: `infra::agentinfra::__init__`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: (none). Outputs/bindings: __version__.
+Inputs: (none). Outputs/bindings: INTERFACE_VERSION, LEGACY_DESTINY_VERSION, __version__.
 Calls/effect boundaries: (none).
 Dependencies: (none).
 
@@ -28,7 +28,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/__init__.py::module::root.body[0]::Expr
 
-Source: `infra/agentinfra/__init__.py:1`; AST `4798376a1a11938f834f17d22f560cac4348def94c4ea9a77f373097a9f3f4f4`.
+Source: `infra/agentinfra/__init__.py:1`; AST `915af1ddf4b972423a0c0e79c4cbc5cfc0e7688e056af31ec65c38babf4b348d`.
 
 Rust module: `infra::agentinfra::__init__`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -48,7 +48,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/__init__.py::module::root.body[1]::Assign
 
-Source: `infra/agentinfra/__init__.py:2`; AST `4cac6062f64f7ce9912cda034c1a509b94bcf8c8684cf72ef4147af257f5a6e0`.
+Source: `infra/agentinfra/__init__.py:2`; AST `4461cbff0c61ec4544186453d395eb3857f1902980e8c5bc5f646ee467adea25`.
 
 Rust module: `infra::agentinfra::__init__`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -57,6 +57,46 @@ Calls/effect boundaries: (none).
 Dependencies: (none).
 
 Invariants: Preserve ordered Assign evaluation at root.body[1]; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/__init__.py::module::root.body[2]::Assign
+
+Source: `infra/agentinfra/__init__.py:3`; AST `450386d2b05707b77cb785f3c9c72b49c8717abae76f79b264237aee79ca0820`.
+
+Rust module: `infra::agentinfra::__init__`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: INTERFACE_VERSION.
+Calls/effect boundaries: (none).
+Dependencies: (none).
+
+Invariants: Preserve ordered Assign evaluation at root.body[2]; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/__init__.py::module::root.body[3]::Assign
+
+Source: `infra/agentinfra/__init__.py:4`; AST `5b96fff6759d5d1dd1b0f040bd2b555743e57b1c886ce0d161b516f9d501dc97`.
+
+Rust module: `infra::agentinfra::__init__`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: LEGACY_DESTINY_VERSION.
+Calls/effect boundaries: (none).
+Dependencies: (none).
+
+Invariants: Preserve ordered Assign evaluation at root.body[3]; no call, error or mutation may be omitted.
 Rust library candidates: standard Rust constructs; qualify external boundaries
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
