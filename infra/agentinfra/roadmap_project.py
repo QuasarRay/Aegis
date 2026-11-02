@@ -111,6 +111,10 @@ class ProjectAdapter:
                 if previous is not None:
                     require(type(previous) is int and type(observed) is int and observed >= previous,
                             "native accounting cannot be removed or reset by a record update")
+            created = binding.get("observation", {}).get("createdAt")
+            require(created is None or type(created) is int and type(changed.get("observation", {}).get("createdAt")) is int and
+                    changed["observation"]["createdAt"] == created,
+                    "generic updates cannot replace/recreate the native Goal")
         # The shared transaction name serializes inventory, projection and
         # execution bookkeeping. Every call preflights the same prior journal.
         return FileTransaction(self.root,
@@ -152,6 +156,9 @@ class ProjectAdapter:
                     observation["goal"]["status"] == "active" and observation["mode"] == "default" and
                     observation["effort"] == "max", "same active native execution must be established")
             prior_binding = execution["native_binding"]
+            created = prior_binding.get("observation", {}).get("createdAt")
+            require(created is None or type(created) is int and type(observation["goal"].get("createdAt")) is int and observation["goal"]["createdAt"] == created,
+                    "native process recovery cannot replace/recreate the Goal")
             binding = bind_goal(observation["goal"], thread_id=old["session"],
                                 objective=prior_binding["objective"], contract_hash=prior_binding["contract_digest"])
             for key in ("tokensUsed", "timeUsedSeconds"):

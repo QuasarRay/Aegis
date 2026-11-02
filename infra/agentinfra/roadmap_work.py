@@ -28,7 +28,29 @@ from .security import confined_path, minimal_subprocess_env
 
 
 INTERFACE_VERSION = 1
-PROJECT_RECIPES = {"production.build", "original.tests", "source.reconcile"}
+PROJECT_RECIPES = {"production.build", "original.tests", "source.reconcile", "native.protocol", "native.acceptance"}
+
+
+def selected_work_milestones(compiled: dict, record: dict, through: str) -> list[str]:
+    """Retain accepted work and the real dependency closure, including ready forks.
+
+    Historical projection state chooses which responsibilities must be reviewed
+    again; it grants no current acceptance. Every selected output/gate still
+    requires current artifacts, actual recipes and the normal evidence audit.
+    """
+    scope = record["execution"]["scope"]
+    require(through in scope, "work is outside the adopted scope")
+    selected = {m for m in scope if record.get("aegis_roadmap_projection", {}).get("milestones", {}).get(m, {}).get("state") == "SATISFIED"}
+    selected.add(through)
+    pending = list(selected)
+    while pending:
+        milestone = pending.pop()
+        for dependency in compiled["milestones"][milestone]["dependencies"]:
+            require(dependency in scope, "dependency is outside the adopted project scope")
+            if dependency not in selected:
+                selected.add(dependency)
+                pending.append(dependency)
+    return [m for m in compiled["order"] if m in selected]
 
 
 def toolchain() -> dict:
@@ -58,7 +80,11 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
     require(milestone in compiled["milestones"] and compiled["milestones"][milestone]["project"] == "Aegis",
             "only the adopted Aegis project recipes are qualified")
     contract = compiled["milestones"][milestone]
-    require(recipe in contract["checks"] and recipe in compiled["recipes"], "recipe outside the milestone contract")
+    inherited = []
+    if recipe not in contract["checks"]:
+        record = ProjectAdapter(root).read()
+        inherited = [m for m in selected_work_milestones(compiled, record, milestone) if recipe in compiled["milestones"][m]["checks"]]
+    require((recipe in contract["checks"] or inherited) and recipe in compiled["recipes"], "recipe outside the milestone contract")
     require(recipe in FIXED_RECIPES or recipe in PROJECT_RECIPES, "project recipe has no qualified implementation")
     inputs = {b["path"]: b for b in compiled["inputs"]}
     for path in maintained_python(root):
@@ -73,12 +99,38 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
     config = {"environment": environment, "isolated_home": True, "capture_bytes_per_stream": 4_000_000,
               "installed_artifact_acceptance": False, "source_roots": list(ROOTS)}
     tools = toolchain()
+    if int(milestone[1:]) >= 4:
+        from .roadmap_protocol import native_executable
+        tools["codex"] = native_executable()
+        execution = ProjectAdapter(root).read()["execution"]
+        config["native"] = {"selected_model": execution["native_turn_configuration"]["model"],
+                            "requested_effort": "max", "plan_source": execution.get("native_plan_source"),
+                            "state_home": str(Path(os.environ.get("CODEX_HOME") or Path.home() / ".codex").resolve())}
     candidate = digest({"compiled": compiled["digest"], "inputs": sorted(inputs.values(), key=lambda b: b["path"]),
                         "toolchain": tools, "configuration": config})
     output = f".aegis/roadmaps/work/{candidate}/{recipe}"
     selection = {"kind": "registered_local_validation"}
     if recipe in FIXED_RECIPES:
         argv = [sys.executable, *FIXED_RECIPES[recipe][1:]]
+    elif recipe == "native.protocol":
+        require(milestone == "A04" or "A04" in inherited, "native protocol export requires its adopted capability lineage")
+        argv = [tools["codex"]["path"], "app-server", "generate-json-schema", "--experimental", "--out", output + "/export"]
+        selection = {"kind": "installed_native_protocol", "executable": tools["codex"], "experimental": True}
+    elif recipe == "native.acceptance":
+        require(milestone == "A04" or "A04" in inherited, "native transport acceptance requires its adopted capability lineage")
+        record = ProjectAdapter(root).read()
+        binding = record.get("native_protocol")
+        require(binding and bindings_current(root, [binding]), "qualified current native protocol export required")
+        protocol = read_json(confined_path(root, binding["path"]))
+        require(protocol["executable"] == tools["codex"] and config["native"]["plan_source"], "native protocol/Plan source is mismatched or missing")
+        for dependency in [binding, *protocol["files"]]:
+            inputs[dependency["path"]] = dependency
+        argv = [sys.executable, "-B", "scripts/roadmap_native.py", "acceptance", "--protocol", binding["path"],
+                "--output", output + "/details.json", "--candidate", candidate]
+        selection = {"kind": "real_read_transport_and_active_host", "protocol": binding,
+                     "thread_id": record["execution"]["native_binding"]["thread_id"],
+                     "objective": record["execution"]["native_binding"]["objective"],
+                     "goal_created_at": record["execution"]["native_binding"]["observation"].get("createdAt")}
     elif recipe == "production.build":
         argv = [sys.executable, "-B", "-X", f"pycache_prefix={output}/pycache", "-m", "compileall", "-q", "-f",
                 "--invalidation-mode=checked-hash", *ROOTS]
@@ -99,6 +151,11 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
             "argv": argv, "selection": selection, "toolchain": tools, "configuration": config,
             "max_seconds": min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"]),
             "max_attempts": min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])}
+    spec["execution_environment"] = dict(environment)
+    if recipe == "native.acceptance":
+        # Preserve the existing native state location. The Python HOME remains
+        # isolated by the supervisor; no credential value is read or copied.
+        spec["execution_environment"]["CODEX_HOME"] = config["native"]["state_home"]
     spec["digest"] = digest(spec)
     return spec
 
@@ -140,6 +197,8 @@ def qualify_execution(root: Path, compiled: dict, milestone: str, recipe: str) -
         require(type(observation["goal"].get(field)) is int and
                 observation["goal"][field] >= binding.get("observation", {}).get(field, 0),
                 "native accounting cannot decrease at dispatch")
+    require(observation["goal"].get("createdAt") == binding.get("observation", {}).get("createdAt"),
+            "native Goal was replaced/recreated")
     require(observation["caller_is_descendant"] and observation["status"] == "active" and
             observation["mode"] == "default" and observation["effort"] == "max" and
             observation["model"] == execution["native_turn_configuration"]["model"],
@@ -231,12 +290,16 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
         directory = spec["target"]["output"] + "/" + spec["digest"]
         spec_binding = _immutable(root, directory + "/spec.json", spec)
         native_binding = _immutable(root, directory + "/native-" + observation["digest"] + ".json", observation)
+        adapter = ProjectAdapter(root)
+        owners = [m for m in selected_work_milestones(compiled, adapter.read(), milestone)
+                  if recipe in compiled["milestones"][m]["checks"]] if recipe not in compiled["milestones"][milestone]["checks"] else [milestone]
         unit = {"schema": 1, "work_id": work_id, "contract_digest": compiled["digest"],
-                "source_responsibility": list(compiled["milestones"][milestone]["requirements"]),
+                "source_responsibility": list(dict.fromkeys(r for m in [milestone, *owners] for r in compiled["milestones"][m]["requirements"])),
                 "inputs": spec["inputs"], "writer": owner["session"] + ":" + str(owner["fence"]),
                 "allowed_actions": [recipe], "continuation": {"milestone": milestone, "spec": spec_binding,
                     "native": native_binding, "status": "PREPARED", "domain_proof": False,
-                    "implementation_units": compiled["milestones"][milestone].get("implementation_units", [])}}
+                    "implementation_units": compiled["milestones"][milestone].get("implementation_units", []),
+                    "check_owners": owners}}
         adapter = ProjectAdapter(root)
         _save_unit(adapter, unit)
         ledger = BudgetLedger(root)
@@ -244,6 +307,9 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                      "runner": process_handle(os.getpid()), "owner": owner, "child": None,
                      "native_turn_id": observation["turn_id"], "prepared_ns": time.time_ns(),
                      "receipt_path": directory + "/receipt.json"}
+        previous = [a for a in ledger.read()["attempts"] if a["work_id"] == work_id]
+        if previous and previous[-1]["status"] == "SUCCESS" and previous[-1]["inputs"] != spec["digest"]:
+            operation["supersedes_success"] = previous[-1]["id"]
         attempt = ledger.reserve_operation(work_id, spec["digest"], spec["max_seconds"], operation, max_attempts=spec["max_attempts"],
                                  diagnosis=diagnosis, inherited_attempt_ids=inherited)
         if attempt.get("reused"):
@@ -261,14 +327,18 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
         spawn_attempted = False
         try:
             WorkspaceLease(root).assert_owner(owner)
-            require(bindings_current(root, spec["inputs"]) and spec["toolchain"] == toolchain(), "dispatch inputs changed")
+            current_tools = toolchain()
+            if "codex" in spec["toolchain"]:
+                from .roadmap_protocol import native_executable
+                current_tools["codex"] = native_executable()
+            require(bindings_current(root, spec["inputs"]) and spec["toolchain"] == current_tools, "dispatch inputs changed")
             dispatch_owner, dispatch_native, _, _ = qualify_execution(root, compiled, milestone, recipe)
             require(dispatch_owner == owner and dispatch_native["turn_id"] == observation["turn_id"],
                     "native owner or turn changed before dispatch")
             spawn_attempted = True
             with observe_process(started):
                 result = run_process(spec["argv"], cwd=root, timeout=spec["max_seconds"],
-                                     env=spec["configuration"]["environment"], capture_limit=4_000_000)
+                                     env=spec["execution_environment"], capture_limit=4_000_000)
             log = _immutable(root, directory + "/result.json", asdict(result))
             observed = operation_state(operation)
             require(observed["child"] == "GONE" and observed["process_group"] == "GONE",
@@ -276,14 +346,32 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
             WorkspaceLease(root).assert_owner(owner)
             require(materialize(root, compile_roadmaps(root), milestone, recipe) == spec, "operation semantic inputs changed")
             artifacts = [spec_binding, log]
+            if recipe == "native.protocol" and result.returncode == 0 and not result.timed_out:
+                from .roadmap_protocol import export_manifest
+                manifest = export_manifest(root, spec["target"]["output"] + "/export", spec["selection"]["executable"])
+                binding = _immutable(root, directory + "/protocol.json", manifest)
+                artifacts.extend([binding, *manifest["files"]])
+                adapter.update({"native_protocol": binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
             details = confined_path(root, spec["target"]["output"] + "/details.json")
             if details.exists():
                 details_record = read_json(details)
-                artifacts.append(_immutable(root, directory + "/details.json", details_record))
+                details_binding = _immutable(root, directory + "/details.json", details_record)
+                artifacts.append(details_binding)
                 require(details_record.get("candidate") == spec["candidate"] and details_record.get("domain_proof") is False,
                         "acceptance detail identity differs from the dispatched candidate")
                 if recipe == "source.reconcile":
                     artifacts.append(details_record["snapshot"]["inventory"])
+                if recipe == "native.acceptance":
+                    require(details_record.get("accepted") is True, "native transport qualification is incomplete")
+                    require(bindings_current(root, details_record.get("artifacts", [])), "native observation artifacts changed")
+                    artifacts.extend(details_record["artifacts"])
+                    update = {"native_transport_acceptance": details_binding, "native_capability_snapshot": details_record["capability_snapshot"],
+                              "native_plan_observation": details_record["plan_observation"]}
+                    current_record = adapter.read(); execution = dict(current_record["execution"])
+                    execution["native_plan_binding"] = details_record["plan_binding"]
+                    execution["plan_limitation"] = "Bound completed native Plan is byte-identical to the adopted source; managed inference/live Goal writes are separate qualified host capabilities."
+                    update["execution"] = execution
+                    adapter.update(update, expected_digest=digest(adapter.profile.path().read_bytes()))
             if recipe == "production.build":
                 import importlib.util as bytecode
                 for source in spec["selection"]["production"]:

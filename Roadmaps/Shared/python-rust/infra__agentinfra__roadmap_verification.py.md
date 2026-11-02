@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 92. Inventory digest: `56e691b3a1d9f968c093b5b2f74c5ea057196bf80a7609bf76e75d9595d5ed45`.
+Files: 1. Behavioral units: 98. Inventory digest: `b94d97a70a28e2ead889acc39a1ff42c0c77efefe95211d4f5f3bb9db249b056`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_verification.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_verification.py:1`; AST `7fb3bdcbd2d264bb6b73b7e520268c3f019152fe5bdc952b4cad2c4e5bda2a83`.
+Source: `infra/agentinfra/roadmap_verification.py:1`; AST `61f5340dc08f1573aa133916cd83f9bd5fb33a70d636e03935c791e7158e8552`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -1068,7 +1068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_verification.py:27`; AST `c3a99317564cde5a8620b7be6db72ed08137d708d02e1951c491124828d6d290`.
+Source: `infra/agentinfra/roadmap_verification.py:27`; AST `4e2cdc85daca7facbbdd27874e48c32c082a9c7de33304182dc35f24359f0379`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -1208,7 +1208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3]::If
 
-Source: `infra/agentinfra/roadmap_verification.py:32`; AST `313d079c7fd8bd53f2c2eee8305922b76f011a96db89383b2ebf1214aac7964c`.
+Source: `infra/agentinfra/roadmap_verification.py:32`; AST `f266fbb25be4fc690815fe8b5bd84b80aef10d1fbc993c3dfab10d2c17a57c2e`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -1666,9 +1666,129 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
+## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3].orelse[3]::If
+
+Source: `infra/agentinfra/roadmap_verification.py:44`; AST `4f7b0042dbdb5e6945b40a1039cfc1824bf7e188a06a99049bbc35cb55e251e0`.
+
+Rust module: `infra::agentinfra::roadmap_verification`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: after, before, int, reasons, type. Outputs/bindings: (none).
+Calls/effect boundaries: after.get, before.get, reasons.append, type.
+Dependencies: __future__, roadmap_records.
+
+Invariants: Preserve ordered If evaluation at root.body[5].body[3].orelse[3]; no call, error or mutation may be omitted. Condition: before.get('createdAt') is not None and (type(after.get('createdAt')) is not int or after['createdAt'] != before['createdAt'])
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3].orelse[3].test.values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_verification.py:44`; AST `77cb9428053a12f4b71b5909b3ecd3905ba4e0b02bb62bd65ab00e869b293be6`.
+
+Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: before. Outputs/bindings: (none).
+Calls/effect boundaries: before.get.
+Dependencies: __future__, roadmap_records.
+
+Invariants: Preserve ordered Call evaluation at root.body[5].body[3].orelse[3].test.values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3].orelse[3].test.values[1].values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_verification.py:44`; AST `c3467e69633ae948a46862da2fabb701ae5d7507debfb9580d25e4a249faf415`.
+
+Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after, type. Outputs/bindings: (none).
+Calls/effect boundaries: after.get, type.
+Dependencies: __future__, roadmap_records.
+
+Invariants: Preserve ordered Call evaluation at root.body[5].body[3].orelse[3].test.values[1].values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3].orelse[3].test.values[1].values[0].left.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_verification.py:44`; AST `1f1b8371a8a316f04aff5c4082c3777b05611337ca42a033c4f7ab449486c699`.
+
+Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after. Outputs/bindings: (none).
+Calls/effect boundaries: after.get.
+Dependencies: __future__, roadmap_records.
+
+Invariants: Preserve ordered Call evaluation at root.body[5].body[3].orelse[3].test.values[1].values[0].left.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3].orelse[3].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_verification.py:46`; AST `fa4218d92910970b5d77b66eb4eb702b704bdace09fbc46886ac6c5611530250`.
+
+Rust module: `infra::agentinfra::roadmap_verification`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: reasons. Outputs/bindings: (none).
+Calls/effect boundaries: reasons.append.
+Dependencies: __future__, roadmap_records.
+
+Invariants: Preserve ordered Expr evaluation at root.body[5].body[3].orelse[3].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[3].orelse[3].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_verification.py:46`; AST `0622a59cd8e6b4345c4c54982f7e893da7238fc4f03269fd44c0283754114b39`.
+
+Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: reasons. Outputs/bindings: (none).
+Calls/effect boundaries: reasons.append.
+Dependencies: __future__, roadmap_records.
+
+Invariants: Preserve ordered Call evaluation at root.body[5].body[3].orelse[3].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: standard Rust constructs; qualify external boundaries
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_verification.py:45`; AST `1f1d5738f5a7a364163843c9c472e9e55a1bd4be4c543ecea488d9f45578b870`.
+Source: `infra/agentinfra/roadmap_verification.py:48`; AST `1f1d5738f5a7a364163843c9c472e9e55a1bd4be4c543ecea488d9f45578b870`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1688,7 +1808,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[4].value.values[0]::Call
 
-Source: `infra/agentinfra/roadmap_verification.py:45`; AST `9595c2e99ac4bfa8bac2f3b8cb0e81df5d7a3f665c6fd91d4cfa2aa025572c88`.
+Source: `infra/agentinfra/roadmap_verification.py:48`; AST `9595c2e99ac4bfa8bac2f3b8cb0e81df5d7a3f665c6fd91d4cfa2aa025572c88`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -1708,7 +1828,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[4].value.values[1].operand::Call
 
-Source: `infra/agentinfra/roadmap_verification.py:45`; AST `62b1763421c6fabec79f5c324800748e18da068b87edafcc5db0ccdc61458845`.
+Source: `infra/agentinfra/roadmap_verification.py:48`; AST `62b1763421c6fabec79f5c324800748e18da068b87edafcc5db0ccdc61458845`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -1728,7 +1848,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[4].value.values[1].operand.args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_verification.py:45`; AST `998752cf80fb0ebcbe82534ae4ba54561548e6c9056bf573472f8953c3fd0c3a`.
+Source: `infra/agentinfra/roadmap_verification.py:48`; AST `998752cf80fb0ebcbe82534ae4ba54561548e6c9056bf573472f8953c3fd0c3a`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
@@ -1748,7 +1868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[5]::If
 
-Source: `infra/agentinfra/roadmap_verification.py:46`; AST `224a0ffe1885e4b522e2da4ef34662df3c10e54d9e975ae8e2971031b334fc85`.
+Source: `infra/agentinfra/roadmap_verification.py:49`; AST `224a0ffe1885e4b522e2da4ef34662df3c10e54d9e975ae8e2971031b334fc85`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -1768,7 +1888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[5].test.values[1]::Call
 
-Source: `infra/agentinfra/roadmap_verification.py:46`; AST `6d6a4d724bc2157548fba0988fa380e1c5875d31393eb9eb94e10826f774d2f0`.
+Source: `infra/agentinfra/roadmap_verification.py:49`; AST `6d6a4d724bc2157548fba0988fa380e1c5875d31393eb9eb94e10826f774d2f0`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -1788,7 +1908,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[5].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_verification.py:47`; AST `f82726c152e00d9eb9ebe3bd1f96ba663e6066073259f8710646216c3cac2cf6`.
+Source: `infra/agentinfra/roadmap_verification.py:50`; AST `f82726c152e00d9eb9ebe3bd1f96ba663e6066073259f8710646216c3cac2cf6`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1808,7 +1928,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[6]::Return
 
-Source: `infra/agentinfra/roadmap_verification.py:48`; AST `f833872ca873c54e5cc8cf8ea8bbe31fabc2c16771a001dc27d36c1ce7deac92`.
+Source: `infra/agentinfra/roadmap_verification.py:51`; AST `f833872ca873c54e5cc8cf8ea8bbe31fabc2c16771a001dc27d36c1ce7deac92`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1828,7 +1948,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_verification.py::module::reconcile_native_transition::root.body[5].body[6].value.values[2].body::Call
 
-Source: `infra/agentinfra/roadmap_verification.py:49`; AST `064cb3f084a888036f0d3d248443b4d6766fc289df8318e68a3ca4b89419389f`.
+Source: `infra/agentinfra/roadmap_verification.py:52`; AST `064cb3f084a888036f0d3d248443b4d6766fc289df8318e68a3ca4b89419389f`.
 
 Rust module: `infra::agentinfra::roadmap_verification`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 

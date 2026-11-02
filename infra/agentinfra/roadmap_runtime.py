@@ -39,9 +39,17 @@ class BudgetLedger:
         return self._reserve(work_id, inputs, seconds, max_attempts=max_attempts, total_seconds=total_seconds,
                              diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids, operation=operation)
 
+    def reserve_control(self, work_id: str, inputs: str, seconds: int, operation: dict, *,
+                        user_authorized: bool, diagnosis: str | None = None) -> dict:
+        require(user_authorized and operation.get("kind") == "native_lifecycle_control" and
+                operation.get("native_thread") and operation.get("authorization_id"), "explicit native control authorization required")
+        return self._reserve(work_id, inputs, seconds, max_attempts=2, total_seconds=120,
+                             diagnosis=diagnosis, operation=operation, native_control=True)
+
     def _reserve(self, work_id: str, inputs: str, seconds: int, *, max_attempts: int = 2,
                  total_seconds: int = 1800, diagnosis: str | None = None,
-                 inherited_attempt_ids: tuple[str, ...] = (), operation: dict | None = None) -> dict:
+                 inherited_attempt_ids: tuple[str, ...] = (), operation: dict | None = None,
+                 native_control: bool = False) -> dict:
         require(bool(work_id) and bool(inputs), "work and input identities required")
         require(type(seconds) is int and 0 < seconds <= total_seconds, "invalid finite reservation")
         require(type(max_attempts) is int and max_attempts > 0, "invalid attempt limit")
@@ -49,7 +57,8 @@ class BudgetLedger:
         lock.acquire()
         try:
             record = self.read()
-            require(not any(a["status"] == "RESERVED" for a in record["attempts"]),
+            require(not any(a["status"] == "RESERVED" and (not native_control or
+                            a.get("operation", {}).get("kind") == "native_lifecycle_control") for a in record["attempts"]),
                     "existing workspace operation requires recovery, not redispatch")
             by_id = {a["id"]: a for a in record["attempts"]}
             require(len(by_id) == len(record["attempts"]), "duplicate durable attempt identity")
@@ -64,6 +73,9 @@ class BudgetLedger:
                         selected.add(ancestor)
                         pending.append(ancestor)
             prior = [a for a in record["attempts"] if a["id"] in selected]
+            bounded_prior = prior
+            generation = 1
+            generation_parent = None
             if operation is not None:
                 require(operation.get("spec_digest") == inputs and operation.get("runner") and
                         operation.get("state") == "PREPARED", "bound operation journal required before dispatch")
@@ -77,13 +89,36 @@ class BudgetLedger:
                             successful["reuse_consumers"].append(work_id)
                         atomic_write_json(self.path, record, root=self.root, mode=0o600)
                         return dict(successful, reused=True)
+                if not native_control and prior:
+                    generation = prior[-1].get("generation", 1)
+                    supersedes = operation.get("supersedes_success")
+                    if supersedes:
+                        previous = prior[-1]
+                        require(previous["id"] == supersedes and previous["status"] == "SUCCESS" and
+                                previous["inputs"] != inputs, "new target generation requires the latest successful operation")
+                        from .roadmap_work import validate_tool_receipt
+                        spec_binding = previous.get("operation", {}).get("spec")
+                        require(spec_binding and bindings_current(self.root, [spec_binding]), "successful generation lacks its original specification")
+                        spec = read_json(confined_path(self.root, spec_binding["path"]))
+                        require(spec.get("digest") == previous["inputs"] == digest({k: v for k, v in spec.items() if k != "digest"}),
+                                "successful generation specification identity changed")
+                        validate_tool_receipt(self.root, spec, previous["receipt"])
+                        require(previous["receipt"]["returncode"] == 0 and not previous["receipt"]["timed_out"] and
+                                not previous["receipt"]["truncated"], "new generation cannot supersede unsuccessful work")
+                        generation += 1
+                        generation_parent = supersedes
+                        bounded_prior = []
+                    else:
+                        require(prior[-1]["status"] != "SUCCESS" or prior[-1]["inputs"] == inputs,
+                                "changed successful target requires explicit generation lineage")
+                        bounded_prior = [a for a in prior if a.get("generation", 1) == generation]
             require(not any(a["status"] == "RESERVED" for a in prior), "existing operation requires recovery, not redispatch")
             require(not any(a["status"] == "SUCCESS" and a["inputs"] == inputs for a in prior), "matching successful work already exists")
-            require(len(prior) < max_attempts, "durable attempt limit exhausted")
-            require(sum(a["reserved_seconds"] for a in prior) + seconds <= total_seconds, "durable time limit exhausted")
-            if prior:
+            require(len(bounded_prior) < max_attempts, "durable attempt limit exhausted")
+            require(sum(a["reserved_seconds"] for a in bounded_prior) + seconds <= total_seconds, "durable time limit exhausted")
+            if bounded_prior:
                 require(bool(diagnosis and diagnosis.strip()), "retry requires diagnosis")
-                require(prior[-1]["inputs"] != inputs, "unchanged failed inputs cannot retry")
+                require(bounded_prior[-1]["inputs"] != inputs, "unchanged failed inputs cannot retry")
             attempt = {"id": digest({"work": work_id, "inputs": inputs, "ordinal": len(prior) + 1}),
                        "work_id": work_id, "inputs": inputs, "reserved_seconds": seconds,
                        "status": "RESERVED", "diagnosis": diagnosis, "pid": os.getpid(),
@@ -92,6 +127,8 @@ class BudgetLedger:
                 attempt["inherited_attempt_ids"] = sorted(selected)
             if operation is not None:
                 attempt["operation"] = operation
+                attempt.update(generation=generation, generation_parent=generation_parent,
+                               attempt_in_generation=len(bounded_prior) + 1)
             record["attempts"].append(attempt)
             atomic_write_json(self.path, record, root=self.root, mode=0o600)
             return attempt
@@ -181,7 +218,7 @@ class BudgetLedger:
         value = {"schema": 1, "id": ident, "work_id": attempt["work_id"], "inputs": attempt["inputs"],
                  "reserved": attempt["reserved_seconds"], "consumed": attempt["reserved_seconds"],
                  "unknown_usage": type(attempt.get("receipt", {}).get("tool_microseconds")) is not int,
-                 "attempt": len(attempt.get("inherited_attempt_ids", [])) + 1, "status": attempt["status"],
+                 "attempt": attempt.get("attempt_in_generation", len(attempt.get("inherited_attempt_ids", [])) + 1), "status": attempt["status"],
                  "reconciliation": "Seconds of irrevocable attempt allocation; consumed allocation is not observed runtime or billing. Actual microseconds are separate, unknown when unavailable."}
         validate_record(self.root, "BudgetReservation", value)
         return value

@@ -34,6 +34,7 @@ def parser() -> argparse.ArgumentParser:
     a = r.add_parser("reconcile"); a.add_argument("--inventory", type=Path, required=True)
     a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis"); a.add_argument("--milestone")
     a = r.add_parser("accept-implementation"); a.add_argument("--through", required=True); a.add_argument("--review", required=True)
+    a = r.add_parser("refresh-dependencies"); a.add_argument("--work", required=True); a.add_argument("--review", required=True)
     a = r.add_parser("project"); a.add_argument("--record", required=True); a.add_argument("--expected-digest", required=True); a.add_argument("--evidence", type=Path, required=True)
     r.add_parser("profile").add_argument("project")
     a = groups.add_parser("policy"); a.add_argument("action", choices=["explain"]); a.add_argument("operation"); a.add_argument("--context", type=Path, required=True)
@@ -85,6 +86,9 @@ def execute(a) -> dict:
         if a.action == "accept-implementation":
             from .roadmap_acceptance import assemble_implementation
             return assemble_implementation(root, a.review, a.through)
+        if a.action == "refresh-dependencies":
+            from .roadmap_acceptance import refresh_implementation_dependencies
+            return refresh_implementation_dependencies(root, a.review, a.work)
         evidence = read_json(a.evidence) if a.evidence else {"schema": 1, "compiled_digest": compiled["digest"], "receipts": []}
         audit = audit_evidence(root, compiled, evidence)
         if a.action == "audit": return audit

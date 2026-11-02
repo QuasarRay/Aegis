@@ -104,6 +104,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
   ],
   "checks": [
     "roadmap.validate",
+    "native.protocol",
+    "native.acceptance",
     "source.reconcile",
     "production.build",
     "original.tests"
@@ -159,6 +161,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
 1. Pin installed host and app-server capability contracts.
 2. Bind Goals and native Plan items without accounting resets.
 3. Observe max effort, model, usage, interruptions and completion replies.
+
+The fixed `native.protocol` and `native.acceptance` checks materialize installed schema export and real read-transport qualification through the existing work engine. They preserve the original outputs, implementation units and gates. Live mutation capabilities are reported separately from actual read observations.
 
 Keep host authorization identical across transports. Model catalog support and requested effort do not establish effective effort. Plan mode forbids mutation; unknown completion responses require reconciliation.
 

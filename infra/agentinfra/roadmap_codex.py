@@ -12,11 +12,22 @@ import subprocess
 import time
 from pathlib import Path
 
-from .roadmap_records import canonical, digest, loads, require
+from .roadmap_records import ContractError, canonical, digest, loads, require
+from .security import redact_text
+
+
+class CodexRpcError(ContractError):
+    """An actual error reply, distinct from timeout or an unobserved outcome."""
+    def __init__(self, method: str, error: dict):
+        self.method = method
+        self.code = error.get("code")
+        self.message = redact_text(str(error.get("message", "native request rejected")))[:2000]
+        super().__init__(f"Codex protocol error: {self.code}: {self.message}")
 
 
 class CodexReader:
-    ALLOWED = {"initialize", "model/list", "thread/goal/get", "thread/read", "collaborationMode/list"}
+    ALLOWED = {"initialize", "model/list", "thread/goal/get", "thread/read", "collaborationMode/list",
+               "thread/list", "thread/turns/list", "thread/items/list"}
 
     def __init__(self, executable: str = "codex", timeout: float = 15, *, experimental: bool = False):
         require(0 < timeout <= 60, "protocol timeout must be finite and bounded")
@@ -28,13 +39,15 @@ class CodexReader:
         self.buffer = b""
         self.next_id = 0
         self.events = []
+        self.initialization = None
 
     def __enter__(self):
         self.proc = subprocess.Popen([self.executable, "app-server", "--listen", "stdio://"],
                                      stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                      stderr=subprocess.DEVNULL, bufsize=0)
         try:
-            self.call("initialize", {"clientInfo": {"name": "aegis-roadmap", "title": "Aegis roadmap", "version": "1.0.0"},
+            from . import __version__
+            self.initialization = self.call("initialize", {"clientInfo": {"name": "aegis-roadmap", "title": "Aegis roadmap", "version": __version__},
                                      "capabilities": {"experimentalApi": self.experimental}})
             self.proc.stdin.write(canonical({"method": "initialized"}) + b"\n")
         except BaseException:
@@ -54,7 +67,8 @@ class CodexReader:
                 line, self.buffer = self.buffer.split(b"\n", 1)
                 message = loads(line.decode())
                 if message.get("id") == ident:
-                    require("error" not in message, f"Codex protocol error: {message.get('error')}")
+                    if "error" in message:
+                        raise CodexRpcError(method, message["error"])
                     return message["result"]
                 self.events.append(message)
                 require(len(self.events) <= 1000, "too many unsolicited protocol events")

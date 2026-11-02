@@ -16,7 +16,7 @@ from .roadmap_portability import artifacts, check, inventory
 from .roadmap_project import ProjectAdapter
 from .roadmap_records import bindings_current, digest, file_binding, read_json, require, validate_record
 from .roadmap_runtime import BudgetLedger
-from .roadmap_work import _immutable, materialize, qualify_execution, validate_tool_receipt
+from .roadmap_work import _immutable, materialize, qualify_execution, selected_work_milestones, validate_tool_receipt
 from .security import confined_path
 
 
@@ -46,6 +46,15 @@ def unchanged_originals(root: Path, baseline: str) -> dict:
 
 
 def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
+    return _assemble(root, review_path, through, complete_current=True)
+
+
+def refresh_implementation_dependencies(root: Path, review_path: str, through: str) -> dict:
+    """Refresh accepted dependencies while the current implementation stays open."""
+    return _assemble(root, review_path, through, complete_current=False)
+
+
+def _assemble(root: Path, review_path: str, through: str, *, complete_current: bool) -> dict:
     root = root.resolve()
     compiled = compile_roadmaps(root)
     adapter = ProjectAdapter(root)
@@ -55,7 +64,13 @@ def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
     attempts = BudgetLedger(root).read()["attempts"]
     require(not any(a["status"] == "RESERVED" for a in attempts), "unresolved operations prevent acceptance")
     runs = {}
-    for name in ("roadmap.validate", "production.build", "original.tests", "source.reconcile"):
+    selected = selected_work_milestones(compiled, current, through)
+    if not complete_current:
+        selected = [m for m in selected if m != through]
+        require(bool(selected), "partial implementation has no accepted dependency scope to refresh")
+    names = list(dict.fromkeys(["roadmap.validate", "production.build", "original.tests", "source.reconcile",
+                               *[name for m in [*selected, through] for name in compiled["milestones"][m]["checks"]]]))
+    for name in names:
         spec = materialize(root, compiled, through, name)
         matches = [a for a in attempts if a["status"] == "SUCCESS" and a["inputs"] == spec["digest"]
                    and a.get("operation", {}).get("spec_digest") == spec["digest"]]
@@ -75,8 +90,11 @@ def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
             "current scoped implementation review is missing or unresolved")
     scope = current["execution"]["scope"]
     require(through in scope, "milestone is outside adopted scope")
-    selected = scope[:scope.index(through) + 1]
     require(set(review.get("milestones", {})) == set(selected), "review omits or adds an ancestor responsibility")
+    if not complete_current:
+        partial = review.get("partial_current", {})
+        require(partial.get("milestone") == through and partial.get("open_responsibilities") and partial.get("rationale"),
+                "unfinished current work must preserve its explicit open responsibilities")
     originals = unchanged_originals(root, review["original_tests_baseline"])
     test_details = next(b for b in runs["original.tests"]["receipt"]["artifacts"] if b["path"].endswith("/details.json"))
     tests = read_json(confined_path(root, test_details["path"]))
@@ -89,7 +107,10 @@ def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
     _, generated = artifacts(mapping)
     migration_bindings = [file_binding(root, "Roadmaps/Shared/python-rust/" + path) for path in generated]
     migration_index = file_binding(root, "Roadmaps/Shared/python-rust/inventory.json")
-    base = f".aegis/roadmaps/work/{candidate}/acceptance/{through}"
+    generation = digest({"review": review_binding, "runs": {name: {"attempt": run["attempt"],
+                          "inputs": run["receipt"]["inputs"], "artifacts": run["receipt"]["artifacts"]}
+                          for name, run in runs.items()}})
+    base = f".aegis/roadmaps/work/{candidate}/acceptance/{through}/{generation}"
     interfaces = _immutable(root, base + "/interfaces.json", observe_interfaces(root))
     compatibility = compare_interfaces(root, review["original_tests_baseline"])
     require(compatibility["structural_compatible"], "public API/record changes require explicit compatibility disposition")
@@ -98,7 +119,9 @@ def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
     compiled_binding = _immutable(root, base + "/compiled.json", compiled)
     native_binding = _immutable(root, base + "/native-" + native["digest"] + ".json", native)
     all_inputs = _unique([*runs["production.build"]["spec"]["inputs"], *migration_bindings])
-    common = [compiled_binding, review_binding, originals_binding, interfaces, compatibility_binding]
+    common = [compiled_binding, review_binding, originals_binding, interfaces, compatibility_binding,
+              *[b for name, run in runs.items() if name not in {"roadmap.validate", "production.build", "original.tests", "source.reconcile"}
+                for b in run["receipt"]["artifacts"]]]
     receipts = []
     for milestone in selected:
         contract = compiled["milestones"][milestone]
@@ -117,12 +140,13 @@ def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
         for gate, name in (("source_correspondence", "source.reconcile"), ("implemented_outputs", "roadmap.validate"),
                            ("production_build", "production.build"), ("applicable_original_tests", "original.tests")):
             run = runs[name]
-            receipt = {"schema": 1, "id": f"{milestone}-{gate}-{candidate}", "milestone": milestone, "gate": gate,
+            receipt = {"schema": 1, "id": f"{milestone}-{gate}-{candidate}-{generation}", "milestone": milestone, "gate": gate,
                 "producer": "agentinfra.roadmap_acceptance.assemble_implementation", "candidate": candidate,
                 "contract_digest": digest(contract), "inputs": all_inputs,
                 "artifacts": _unique([*common, *reviewed_artifacts, *run["receipt"]["artifacts"]]),
                 "command": [], "configuration": {"outputs": contract["outputs"], "implementation_units": contract["implementation_units"],
                     "actual_argv": run["spec"]["argv"], "ledger_attempt": run["attempt"], "execution_milestone": through,
+                    "acceptance_generation": generation, "required_recipe_attempts": {n: r["attempt"] for n, r in runs.items()},
                     "evidence_strength": "source review, structural reconciliation and source-host runtime acceptance",
                     "original_sources": originals_binding, "domain_proof": False, "installed_artifact_acceptance": False},
                 "outcome": "PASS", "scope": "production", "limits": ["Output adequacy is a scoped source-review trust boundary",
@@ -148,7 +172,9 @@ def assemble_implementation(root: Path, review_path: str, through: str) -> dict:
     adapter.update({"execution": execution, "roadmap_evidence": evidence_binding, "acceptance_history": history,
                     "aegis_roadmap_projection": audit, "module_interfaces": interfaces,
                     "compatibility_observation": compatibility_binding,
-                    "python_rust_correspondence": migration_index},
+                    "python_rust_correspondence": migration_index, "implementation_review": review_binding,
+                    "partial_current_work": review.get("partial_current") if not complete_current else None},
                    expected_digest=digest(adapter.profile.path().read_bytes()))
     return {"candidate": candidate, "accepted_milestones": selected, "evidence": evidence_binding,
-            "domain_proof": False, "native_goal_completed": False, "native_observation": native_binding}
+            "domain_proof": False, "native_goal_completed": False, "native_observation": native_binding,
+            "work_milestone": through, "work_milestone_complete": complete_current}
