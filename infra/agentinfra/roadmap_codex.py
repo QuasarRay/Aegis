@@ -1,7 +1,7 @@
 """Bounded Codex stdio protocol transport and native observation bindings.
 
-No method here creates a thread or starts a model turn. Live Goal mutations must
-be invoked through the current host's authorized native lifecycle interface.
+No method here creates a thread or starts a model turn. The default client is
+read-only; the private managed Goal client adds only audited lifecycle methods.
 """
 from __future__ import annotations
 
@@ -46,6 +46,7 @@ class CodexReader:
                                      stdin=subprocess.PIPE, stdout=subprocess.PIPE,
                                      stderr=subprocess.DEVNULL, bufsize=0)
         try:
+            self._started()
             from . import __version__
             self.initialization = self.call("initialize", {"clientInfo": {"name": "aegis-roadmap", "title": "Aegis roadmap", "version": __version__},
                                      "capabilities": {"experimentalApi": self.experimental}})
@@ -54,6 +55,9 @@ class CodexReader:
             self.__exit__()
             raise
         return self
+
+    def _started(self) -> None:
+        """Subclass hook to journal the real process before protocol dispatch."""
 
     def call(self, method: str, params: dict) -> dict:
         require(method in self.ALLOWED, "read-only Codex adapter refuses this method")

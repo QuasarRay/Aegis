@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 100. Inventory digest: `ea06021697e4bf8e5460b4a6ea131c917b0ad78fb27e6df6f7619219b5d47c0b`.
+Files: 1. Behavioral units: 100. Inventory digest: `7be18a013278a637c2095f5eaf5120b643996cef3b321324774938b38c4ded23`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## scripts/roadmap_native.py::module::root::Module
 
-Source: `scripts/roadmap_native.py:1`; AST `f4c1a4cd0af4517dcb8474d7e62841066f6510403238cb75f31fa810fb749c81`.
+Source: `scripts/roadmap_native.py:1`; AST `16746ce7fbc1eb15a5a5551e6ca7a00e765dde26b643fe3ec4145639970cdaf0`.
 
 Rust module: `scripts::roadmap_native`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -388,7 +388,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_native.py::module::collect::root.body[14]::FunctionDef
 
-Source: `scripts/roadmap_native.py:19`; AST `52e83f3b42b3ba92bd1578f588854c15d9ce86b1bc6e0f3570325082b08b13de`.
+Source: `scripts/roadmap_native.py:19`; AST `acd70e0fe90640ba00ffe037b64042c5fbbe683d77f851c4616d1c2b606be33a`.
 
 Rust module: `scripts::roadmap_native`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -1448,7 +1448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_native.py::module::collect::root.body[14].body[10]::Return
 
-Source: `scripts/roadmap_native.py:52`; AST `8a97bd0712393bb3b30e0d8c070c52bf14d565987e83d9df9ce47160d00de87a`.
+Source: `scripts/roadmap_native.py:52`; AST `0774983f7a161609ee311b04b538fd2edb6904079e9b871a5ad74568f669b3b7`.
 
 Rust module: `scripts::roadmap_native`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
