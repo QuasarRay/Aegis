@@ -1,0 +1,168 @@
+{
+  "acceptance": "Source bindings and proposed backend routes only; no missing future responsibility is waived and no proof/semantic approval is inferred.",
+  "denominator_targets": [
+    "agentinfra.roadmap:audit_evidence",
+    "agentinfra.roadmap_policy:all_satisfied",
+    "agentinfra.roadmap_policy:proof_errors",
+    "agentinfra.roadmap_python:python_proof_errors",
+    "agentinfra.roadmap_verification:reconcile_original_tests"
+  ],
+  "kind": "python_obligation_source_binding_policy",
+  "milestones": {
+    "A00": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_inventory"
+      ],
+      "retained_implementation_gaps": []
+    },
+    "A01": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap",
+        "agentinfra.roadmap_policy",
+        "agentinfra.governance",
+        "agentinfra.security"
+      ],
+      "retained_implementation_gaps": []
+    },
+    "A02": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_project",
+        "agentinfra.roadmap_interfaces",
+        "agentinfra.roadmap_portability",
+        "agentinfra.cli",
+        "agentinfra.__main__",
+        "agentinfra"
+      ],
+      "retained_implementation_gaps": []
+    },
+    "A03": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_runtime",
+        "agentinfra.roadmap_lease",
+        "agentinfra.roadmap_work",
+        "agentinfra.process",
+        "agentinfra.locks",
+        "agentinfra.atomic",
+        "agentinfra.transaction",
+        "agentinfra.context_cache"
+      ],
+      "retained_implementation_gaps": []
+    },
+    "A04": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_codex",
+        "agentinfra.roadmap_native",
+        "agentinfra.roadmap_protocol",
+        "agentinfra.roadmap_native_adapter",
+        "agentinfra.roadmap_managed"
+      ],
+      "retained_implementation_gaps": [
+        "Managed model-turn and live mutation qualification remain separate from accepted read transport; draft PR34 is not merged."
+      ]
+    },
+    "A05": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.catalog",
+        "agentinfra.roadmap_inventory",
+        "agentinfra.roadmap_portability"
+      ],
+      "retained_implementation_gaps": [
+        "Compiler-backed cross-language source/expansion relationship extraction and independent CPGSchema qualification are not supplied by these Python catalogs."
+      ]
+    },
+    "A06": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_knowledge",
+        "agentinfra.context_cache"
+      ],
+      "retained_implementation_gaps": [
+        "Complete lossless book/manual corpus acquisition and version-aware extraction/retrieval remain required."
+      ]
+    },
+    "A07": {
+      "maintained_source_patterns": [],
+      "production_modules": [],
+      "retained_implementation_gaps": [
+        "The required Rust macro/generation controller and real expansion/source maps are not implemented by a Python/Rust proposal inventory."
+      ]
+    },
+    "A08": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_verification",
+        "agentinfra.formal",
+        "agentinfra.evidence",
+        "agentinfra.coverage",
+        "agentinfra.verus_evidence"
+      ],
+      "retained_implementation_gaps": [
+        "Existing legacy verifier/evidence code does not qualify the required exact Kani/Bolero-Kani execution and semantic translation routes."
+      ]
+    },
+    "A09": {
+      "maintained_source_patterns": [
+        "scripts/roadmap_python.py",
+        "verification/roadmap/python/*.py"
+      ],
+      "production_modules": [
+        "agentinfra.roadmap_python",
+        "agentinfra.roadmap_download",
+        "agentinfra.roadmap_python_catalog"
+      ],
+      "retained_implementation_gaps": [
+        "Backend installation/ingestion and actual qualified Python proof execution/result adapters remain open."
+      ]
+    },
+    "A10": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_review"
+      ],
+      "retained_implementation_gaps": [
+        "Existing packet/decision helpers do not establish the complete required HTML/JSON supervision service or human semantic approvals."
+      ]
+    },
+    "A11": {
+      "maintained_source_patterns": [],
+      "production_modules": [
+        "agentinfra.roadmap_review"
+      ],
+      "retained_implementation_gaps": [
+        "Full sequential review-engine integration and actual controlled fixture acceptance remain required; broad flaw campaigns are deferred."
+      ]
+    },
+    "A12": {
+      "maintained_source_patterns": [
+        "Roadmaps/Shared/ci/*.py"
+      ],
+      "production_modules": [
+        "agentinfra.governance"
+      ],
+      "retained_implementation_gaps": [
+        "Current CI packaging/source is not evidence of identical real pinned Dagger/GitLab executions, deployed immutable releases or rollback qualification."
+      ]
+    },
+    "A13": {
+      "maintained_source_patterns": [
+        "infra/agentinfra/**/*.py",
+        "bin/*.py",
+        "scripts/*.py",
+        "verification/roadmap/**/*.py",
+        "Roadmaps/Shared/ci/*.py"
+      ],
+      "production_modules": [],
+      "retained_implementation_gaps": [
+        "All required production domain proof, composed integration, architecture and release acceptance remain open."
+      ]
+    }
+  },
+  "schema": 1,
+  "scope": "Aegis initial A00-A13; A14 remains separately adopted"
+}

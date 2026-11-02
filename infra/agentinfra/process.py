@@ -20,6 +20,7 @@ from .security import minimal_subprocess_env, redact_text
 
 
 _process_observer = ContextVar("aegis_process_observer", default=None)
+_recipe_group = ContextVar("aegis_recipe_process_group", default=None)
 
 
 @contextmanager
@@ -138,7 +139,7 @@ class _Capture:
         return redact_text(bytes(self.buffer).decode("utf-8", "replace"))
 
 
-def _kill_tree(proc: subprocess.Popen, job=None) -> None:
+def _kill_tree(proc: subprocess.Popen, job=None, *, group: int | None = None) -> None:
     if proc.poll() is not None:
         if job is not None and os.name == "nt":
             ctypes.windll.kernel32.TerminateJobObject(job, 1)
@@ -157,9 +158,32 @@ def _kill_tree(proc: subprocess.Popen, job=None) -> None:
             proc.kill()
     else:
         try:
-            os.killpg(proc.pid, signal.SIGKILL)
+            os.killpg(group if group is not None else proc.pid, signal.SIGKILL)
         except ProcessLookupError:
             pass
+
+
+def run_recipe_stage(
+    argv: Iterable[str],
+    *,
+    cwd: Path,
+    timeout: float = 60.0,
+    env: Mapping[str, str] | None = None,
+    capture_limit: int = 1_000_000,
+) -> ProcessResult:
+    """Run a fixed stage under the outer recipe's existing POSIX group owner.
+
+    A stage timeout kills the entire recipe group, including this process. The
+    outer supervisor then records the outcome using its actual creation handle.
+    Ordinary run_process callers retain their original version-one interface.
+    """
+    if os.name != "posix" or os.getsid(0) != os.getpid():
+        raise ValueError("inherited process group requires an owned POSIX recipe session")
+    token = _recipe_group.set(os.getpgrp())
+    try:
+        return run_process(argv, cwd=cwd, timeout=timeout, env=env, capture_limit=capture_limit)
+    finally:
+        _recipe_group.reset(token)
 
 
 def run_process(
@@ -170,6 +194,11 @@ def run_process(
     env: Mapping[str, str] | None = None,
     capture_limit: int = 1_000_000,
 ) -> ProcessResult:
+    # A fixed multi-stage recipe may keep all tools under the outer supervisor's
+    # actual process-group handle. This is allowed only for a POSIX session
+    # leader created by that supervisor. A stage timeout terminates that entire
+    # owned recipe group, including this process; the outer owner records it.
+    inherited_group = _recipe_group.get()
     command = tuple(argv)
     if not command or not all(isinstance(item, str) and item for item in command):
         raise ValueError("argv must be a non-empty sequence of non-empty strings")
@@ -213,7 +242,7 @@ def run_process(
             shell=False,
             env=child_env,
             creationflags=flags,
-            start_new_session=os.name != "nt",
+            start_new_session=os.name != "nt" and inherited_group is None,
         )
         job = _assign_kill_job(proc)
         stdout_capture = _Capture(capture_limit)
@@ -230,10 +259,10 @@ def run_process(
             proc.wait(timeout=timeout)
         except subprocess.TimeoutExpired:
             timed_out = True
-            _kill_tree(proc, job)
+            _kill_tree(proc, job, group=inherited_group)
             proc.wait(timeout=10)
         except BaseException:
-            _kill_tree(proc, job)
+            _kill_tree(proc, job, group=inherited_group)
             proc.wait(timeout=10)
             raise
         finally:
@@ -244,7 +273,7 @@ def run_process(
             stdout_thread.join(timeout=10)
             stderr_thread.join(timeout=10)
             if stdout_thread.is_alive() or stderr_thread.is_alive():
-                _kill_tree(proc, job)
+                _kill_tree(proc, job, group=inherited_group)
                 raise RuntimeError("subprocess output reader did not terminate")
             proc.stdout.close()
             proc.stderr.close()
