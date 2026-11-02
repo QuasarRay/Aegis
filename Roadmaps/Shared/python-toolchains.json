@@ -1,5 +1,8 @@
 {
   "backend": "nagini",
+  "download_dns": "https://1.1.1.1/dns-query",
+  "download_dns_primary_source": "https://developers.cloudflare.com/1.1.1.1/encryption/dns-over-https/make-api-requests/dns-json/",
+  "download_transport": "https-dns-original-host-tls-v1",
   "jre": {
     "digest": "sha256:9f41bf88c7900c7097444a1bdeb84146ae692bc08842490ab098063c74bf9a8a",
     "name": "OpenJDK17U-jre_x64_linux_hotspot_17.0.21_9.tar.gz",

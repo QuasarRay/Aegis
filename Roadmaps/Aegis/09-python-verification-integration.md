@@ -132,7 +132,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "Roadmaps/Shared/PYTHON_VERIFICATION_ROUTING.md",
     "Roadmaps/Shared/python-backends.json",
     "Roadmaps/Shared/python-rust-research-dispositions.json",
-    "Roadmaps/Shared/python-toolchains.json"
+    "Roadmaps/Shared/python-toolchains.json",
+    "Roadmaps/Shared/python-obligation-bindings.json"
   ],
   "provides": [
     "python_verification"

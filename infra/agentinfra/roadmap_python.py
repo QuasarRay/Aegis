@@ -23,29 +23,30 @@ DYNAMIC = {"eval", "exec", "__import__", "importlib.import_module", "getattr", "
 EFFECT_MODULES = {"os", "pathlib", "subprocess", "socket", "sqlite3", "threading", "multiprocessing", "ctypes"}
 
 
-def _modules(root: Path) -> dict[str, Path]:
+def _modules(root: Path, *, include_tests: bool = False) -> dict[str, Path]:
     result = {}
     for path in maintained_python(root):
         relative = path.relative_to(root).as_posix()
         if relative.startswith("infra/agentinfra/"):
             name = relative.removeprefix("infra/").removesuffix(".py").replace("/", ".")
             result[name.removesuffix(".__init__")] = path
+        elif include_tests and relative.startswith("infra/tests/"):
+            name = relative.removeprefix("infra/tests/").removesuffix(".py").replace("/", ".")
+            key = name.removesuffix(".__init__")
+            require(key not in result, "ambiguous maintained test module namespace")
+            result[key] = path
     return result
 
 
-def source_closure(root: Path, target: str) -> dict:
+def module_closure(root: Path, module: str, *, include_tests: bool = False) -> dict:
     """Retain whole transitive local modules, package initializers and hazards.
 
     No dead-code pruning: private functions, unused imports, conditional imports,
     module state and exception paths remain bound. External dependencies and
     dynamic dispatch stay explicit unsupported boundaries.
     """
-    modules = _modules(root)
-    module, separator, symbol = target.partition(":")
-    require(separator and module in modules and symbol, "unknown Python production target")
-    tree = ast.parse(modules[module].read_bytes())
-    declarations = [n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)) and n.name == symbol]
-    require(len(declarations) == 1, "missing or shadowed production target")
+    modules = _modules(root, include_tests=include_tests)
+    require(module in modules, "unknown maintained Python module")
     pending, visited, files, external, hazards = [module], set(), [], set(), []
     while pending:
         name = pending.pop()
@@ -58,8 +59,8 @@ def source_closure(root: Path, target: str) -> dict:
         tree = ast.parse(path.read_bytes(), filename=relative)
         package = name if path.name == "__init__.py" else name.rpartition(".")[0]
         dependencies = set()
-        for parent in name.split(".")[:-1]:
-            # All currently maintained modules live in the agentinfra package.
+        for count in range(1, len(name.split("."))):
+            parent = ".".join(name.split(".")[:count])
             if parent in modules:
                 dependencies.add(parent)
         for node in ast.walk(tree):
@@ -84,11 +85,25 @@ def source_closure(root: Path, target: str) -> dict:
         # Never import target modules while establishing source closure.
         external_rows.append({"module": name, "status": "REQUIRES_BACKEND_SEMANTIC_QUALIFICATION",
                               "runtime_effect_boundary": name.split(".")[0] in EFFECT_MODULES})
-    record = {"schema": 1, "target": target, "files": sorted(files, key=lambda b: b["path"]),
-              "target_ast_sha256": digest(ast.dump(declarations[0], include_attributes=False).encode()),
+    record = {"schema": 1, "module": module, "files": sorted(files, key=lambda b: b["path"]),
               "external": external_rows, "hazards": sorted(hazards, key=lambda h: (h["path"], h["line"], h["kind"])),
               "closure_kind": "whole transitive maintained modules; dynamic/external semantics unresolved",
               "semantic_closure_proved": False}
+    record["digest"] = digest(record)
+    return record
+
+
+def source_closure(root: Path, target: str) -> dict:
+    """Bind an exact unshadowed production declaration and its module closure."""
+    modules = _modules(root)
+    module, separator, symbol = target.partition(":")
+    require(separator and module in modules and symbol, "unknown Python production target")
+    tree = ast.parse(modules[module].read_bytes())
+    declarations = [n for n in tree.body if isinstance(n, (ast.FunctionDef, ast.AsyncFunctionDef, ast.ClassDef)) and n.name == symbol]
+    require(len(declarations) == 1, "missing or shadowed production target")
+    record = module_closure(root, module)
+    record.pop("digest")
+    record.update(target=target, target_ast_sha256=digest(ast.dump(declarations[0], include_attributes=False).encode()))
     record["digest"] = digest(record)
     return record
 
@@ -132,26 +147,15 @@ def original_occurrences(root: Path) -> list[dict]:
 
 
 def route(root: Path, compiled: dict, candidate: str) -> dict:
+    from .roadmap_python_catalog import obligation_catalog
     source_inventory = inventory(root)
-    rows = []
-    for milestone in compiled["order"]:
-        contract = compiled["milestones"][milestone]
-        if contract["project"] != "Aegis" or contract["phase"] == "modernization":
-            continue
-        for obligation in contract["proof_obligations"]:
-            rows.append({"id": obligation["id"], "milestone": milestone, "statement": obligation["statement"],
-                         "origin": obligation["origin"], "status": "OPEN_REQUIRES_PRODUCTION_TARGET_AND_SEMANTIC_CONTRACT",
-                         "backend_candidates": list(BACKENDS[:3]), "qualified_backend": None,
-                         "required_action": "Bind exact production target, original fixture closure where applicable, full domain, assertions, covers and source-to-contract review"})
-    require(rows and len(rows) == len({r["id"] for r in rows}), "empty or duplicate domain obligation denominator")
-    unit_rows = [{"id": u["id"], "file": u["file"], "source_sha256": u["source_sha256"],
-                  "ast_sha256": u["ast_sha256"], "span": u["span"], "kind": u["kind"],
-                  "status": "UNASSIGNED_SEMANTIC_COVERAGE_RETAINED"} for u in source_inventory["units"]]
+    locations = original_occurrences(root)
+    catalog = obligation_catalog(root, compiled, candidate, source_inventory, locations)
     closure = source_closure(root, "agentinfra.roadmap_policy:may_reserve")
     return {"schema": 1, "candidate": candidate, "domain_proof": False,
             "research": research_sources(root), "backends": read_json(root / "Roadmaps/Shared/python-backends.json"),
-            "source_files": source_inventory["files"], "source_units": unit_rows, "obligations": rows,
-            "original_test_locations": original_occurrences(root),
+            "source_files": source_inventory["files"], **catalog,
+            "original_test_locations": locations,
             "qualification_targets": [{"target": "agentinfra.roadmap_policy:may_reserve", "closure": closure,
                                        "origin": "infra/tests/test_roadmap.py::DomainPolicyTests::test_budgets_and_completion",
                                        "status": "CANDIDATE_INGESTION_ONLY_NOT_DOMAIN_CLOSURE"}],

@@ -8,7 +8,6 @@ import os
 from pathlib import Path
 import sys
 import tarfile
-import urllib.request
 import venv
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -16,6 +15,7 @@ sys.path.insert(0, str(ROOT / "infra"))
 
 from agentinfra.atomic import atomic_write_json
 from agentinfra.process import run_recipe_stage
+from agentinfra.roadmap_download import download_pinned, TRANSPORT
 from agentinfra.roadmap import compile_roadmaps
 from agentinfra.roadmap_python import classify_nagini, route, source_closure
 from agentinfra.roadmap_records import digest, file_binding, read_json, require
@@ -23,31 +23,14 @@ from agentinfra.security import confined_path, minimal_subprocess_env
 
 
 def _download(root: Path, entry: dict, directory: Path) -> Path:
-    directory.mkdir(parents=True, exist_ok=True)
-    path = directory / entry.get("filename", entry.get("name", "archive"))
-    require(path.parent == directory and path.suffix in {".whl", ".gz"}, "tool archive filename escapes the fixed download directory")
-    if not path.exists():
-        partial = path.with_suffix(path.suffix + ".partial")
-        try:
-            request = urllib.request.Request(entry["url"], headers={"User-Agent": "Aegis-A09-pinned-toolchain"})
-            with urllib.request.urlopen(request, timeout=45) as response, partial.open("wb") as output:
-                copied = 0
-                while chunk := response.read(262144):
-                    copied += len(chunk)
-                    require(copied <= entry["size"], "download exceeds pinned size")
-                    output.write(chunk)
-            require(partial.stat().st_size == entry["size"] and digest(partial.read_bytes()) == entry["sha256"], "download hash/size differs from reviewed pin")
-            partial.replace(path)
-        finally:
-            partial.unlink(missing_ok=True)
-    require(path.stat().st_size == entry["size"] and digest(path.read_bytes()) == entry["sha256"], "cached toolchain archive changed")
-    return path
+    return download_pinned(root, entry, directory)
 
 
 def provision(root: Path, output: Path) -> dict:
     lock = read_json(root / "Roadmaps/Shared/python-toolchains.json")
+    require(lock.get("download_transport") == TRANSPORT, "toolchain download transport differs from the reviewed profile")
     require(sys.platform == "linux" and os.uname().machine == "x86_64" and sys.version_info[:2] == (3, 14), "unqualified host platform/interpreter")
-    directory = root / ".aegis/toolchains" / digest(lock)
+    directory = confined_path(root, ".aegis/toolchains/" + digest(lock))
     directory.mkdir(parents=True, exist_ok=True)
     wheels = [_download(root, package, directory / "downloads") for package in lock["packages"]]
     archive = _download(root, lock["jre"], directory / "downloads")
@@ -74,12 +57,14 @@ def provision(root: Path, output: Path) -> dict:
     checked = run_recipe_stage([str(python), "-B", "-m", "pip", "check"], cwd=root, timeout=30, env=environment, capture_limit=1_000_000)
     atomic_write_json(output.parent / "pip-check.json", asdict(checked), root=root, mode=0o600)
     require(checked.returncode == 0, "pinned dependency closure is incomplete")
+    nagini = virtual / "bin/nagini"
+    require(nagini.is_file(), "pinned Nagini console entrypoint was not installed")
     java_version = run_recipe_stage([str(java[0]), "-version"], cwd=root, timeout=30, env=environment, capture_limit=1_000_000)
     atomic_write_json(output.parent / "java-version.json", asdict(java_version), root=root, mode=0o600)
     require(java_version.returncode == 0, "pinned JRE cannot execute")
     files = [file_binding(root, p.relative_to(root).as_posix()) for p in directory.rglob("*") if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts]
     return {"status": "INSTALLED_NOT_QUALIFIED", "lock": file_binding(root, "Roadmaps/Shared/python-toolchains.json"),
-            "python": str(python), "java": str(java[0]), "environment": environment,
+            "python": str(python), "nagini": str(nagini), "java": str(java[0]), "environment": environment,
             "files": sorted(files, key=lambda b: b["path"]),
             "artifacts": [file_binding(root, p.relative_to(root).as_posix()) for p in (output.parent / "pip-result.json", output.parent / "pip-check.json", output.parent / "java-version.json")]}
 
@@ -93,7 +78,7 @@ def qualify(root: Path, output: Path, toolchain_path: str) -> dict:
     for name in ("policy_positive.py", "policy_negative.py"):
         source = root / "verification/roadmap/python" / name
         environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"))
-        result = run_recipe_stage([toolchain["python"], "-B", "-m", "nagini_translation.main", str(source)],
+        result = run_recipe_stage([toolchain["python"], "-B", toolchain["nagini"], str(source)],
                                   cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
         path = output.parent / (name + ".result.json")
         atomic_write_json(path, asdict(result), root=root, mode=0o600)
