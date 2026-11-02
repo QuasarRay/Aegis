@@ -259,6 +259,16 @@ def recover_operation(root: Path, ident: str) -> dict:
     if attempt["status"] != "RESERVED":
         return {"status": attempt["status"], "attempt": ident, "already_terminal": True}
     operation = attempt.get("operation", {})
+    if operation.get("kind") in {"native_model_turn", "native_lifecycle_control"}:
+        from .roadmap_managed import ManagedTurnRunner
+        from .roadmap_native_adapter import NativeGoalAdapter
+        current = ProjectAdapter(root).read()
+        key = "managed_turn" if operation["kind"] == "native_model_turn" else "native_transition"
+        require(current["execution"].get(key, {}).get("attempt") == ident, "native recovery handle differs from canonical ownership")
+        protocol_binding = current["native_protocol"]
+        require(bindings_current(root, [protocol_binding]), "native recovery protocol changed")
+        adapter_type = ManagedTurnRunner if operation["kind"] == "native_model_turn" else NativeGoalAdapter
+        return adapter_type(root, read_json(confined_path(root, protocol_binding["path"]))).recover()
     observed = operation_state(operation)
     if observed["safe_interruption"]:
         receipt_path = operation.get("receipt_path")
@@ -303,10 +313,15 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
         adapter = ProjectAdapter(root)
         _save_unit(adapter, unit)
         ledger = BudgetLedger(root)
-        operation = {"state": "PREPARED", "spec_digest": spec["digest"], "spec": spec_binding,
+        operation = {"state": "PREPARED", "kind": "deterministic_recipe", "spec_digest": spec["digest"], "spec": spec_binding,
                      "runner": process_handle(os.getpid()), "owner": owner, "child": None,
                      "native_turn_id": observation["turn_id"], "prepared_ns": time.time_ns(),
                      "receipt_path": directory + "/receipt.json"}
+        execution = adapter.read()["execution"]
+        if execution.get("integration_path") == "managed_app_server":
+            parent = execution.get("managed_turn", {})
+            require(parent.get("turn_id") == observation["turn_id"] and parent.get("attempt"), "managed tool lacks its actual native parent turn")
+            operation["parent_native_attempt"] = parent["attempt"]
         previous = [a for a in ledger.read()["attempts"] if a["work_id"] == work_id]
         if previous and previous[-1]["status"] == "SUCCESS" and previous[-1]["inputs"] != spec["digest"]:
             operation["supersedes_success"] = previous[-1]["id"]

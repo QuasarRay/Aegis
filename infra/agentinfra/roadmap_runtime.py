@@ -57,8 +57,18 @@ class BudgetLedger:
         lock.acquire()
         try:
             record = self.read()
-            require(not any(a["status"] == "RESERVED" and (not native_control or
-                            a.get("operation", {}).get("kind") == "native_lifecycle_control") for a in record["attempts"]),
+            def blocks(candidate: dict) -> bool:
+                if candidate["status"] != "RESERVED": return False
+                parent = candidate.get("operation", {})
+                if native_control: return parent.get("kind") == "native_lifecycle_control"
+                if (operation and operation.get("parent_native_attempt") == candidate["id"] and
+                        operation.get("kind") == "deterministic_recipe" and
+                        parent.get("kind") == "native_model_turn" and operation.get("owner") == parent.get("owner") and
+                        parent.get("child") and parent.get("turn_id")):
+                    from .roadmap_native import inspect_process, is_process_ancestor
+                    return not (inspect_process(parent["child"]) == "LIVE" and is_process_ancestor(parent["child"]["pid"]))
+                return True
+            require(not any(blocks(a) for a in record["attempts"]),
                     "existing workspace operation requires recovery, not redispatch")
             by_id = {a["id"]: a for a in record["attempts"]}
             require(len(by_id) == len(record["attempts"]), "duplicate durable attempt identity")
@@ -84,6 +94,13 @@ class BudgetLedger:
                 for successful in reversed(reusable):
                     receipt = successful.get("receipt", {})
                     if bindings_current(self.root, receipt.get("artifacts", [])):
+                        if successful.get("operation", {}).get("kind") == "native_model_turn":
+                            from .roadmap_managed import validate_native_turn_receipt
+                            try:
+                                saved_spec = read_json(confined_path(self.root, successful["operation"]["spec"]["path"]))
+                                validate_native_turn_receipt(self.root, saved_spec, receipt, current_outputs=True)
+                            except ValueError:
+                                continue
                         successful.setdefault("reuse_consumers", [])
                         if work_id not in successful["reuse_consumers"]:
                             successful["reuse_consumers"].append(work_id)
@@ -96,15 +113,19 @@ class BudgetLedger:
                         previous = prior[-1]
                         require(previous["id"] == supersedes and previous["status"] == "SUCCESS" and
                                 previous["inputs"] != inputs, "new target generation requires the latest successful operation")
-                        from .roadmap_work import validate_tool_receipt
                         spec_binding = previous.get("operation", {}).get("spec")
                         require(spec_binding and bindings_current(self.root, [spec_binding]), "successful generation lacks its original specification")
                         spec = read_json(confined_path(self.root, spec_binding["path"]))
                         require(spec.get("digest") == previous["inputs"] == digest({k: v for k, v in spec.items() if k != "digest"}),
                                 "successful generation specification identity changed")
-                        validate_tool_receipt(self.root, spec, previous["receipt"])
-                        require(previous["receipt"]["returncode"] == 0 and not previous["receipt"]["timed_out"] and
-                                not previous["receipt"]["truncated"], "new generation cannot supersede unsuccessful work")
+                        if spec.get("kind") == "managed_native_turn":
+                            from .roadmap_managed import validate_native_turn_receipt
+                            validate_native_turn_receipt(self.root, spec, previous["receipt"])
+                        else:
+                            from .roadmap_work import validate_tool_receipt
+                            validate_tool_receipt(self.root, spec, previous["receipt"])
+                            require(previous["receipt"]["returncode"] == 0 and not previous["receipt"]["timed_out"] and
+                                    not previous["receipt"]["truncated"], "new generation cannot supersede unsuccessful work")
                         generation += 1
                         generation_parent = supersedes
                         bounded_prior = []

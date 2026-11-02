@@ -67,23 +67,34 @@ class CodexReader:
         self.proc.stdin.write(canonical({"id": ident, "method": method, "params": params}) + b"\n")
         deadline = time.monotonic() + self.timeout
         while time.monotonic() < deadline:
+            message = self._receive(max(0, deadline - time.monotonic()))
+            if message is None:
+                break
+            if message.get("id") == ident and "method" not in message:
+                if "error" in message:
+                    raise CodexRpcError(method, message["error"])
+                return message["result"]
+            self.events.append(message)
+            require(len(self.events) <= 1000, "too many unsolicited protocol events")
+        raise TimeoutError(f"Codex {method} exceeded {self.timeout}s")
+
+    def _receive(self, timeout: float) -> dict | None:
+        require(self.proc is not None and 0 <= timeout <= 60, "bounded initialized native read required")
+        deadline = time.monotonic() + timeout
+        while True:
             if b"\n" in self.buffer:
                 line, self.buffer = self.buffer.split(b"\n", 1)
                 message = loads(line.decode())
-                if message.get("id") == ident:
-                    if "error" in message:
-                        raise CodexRpcError(method, message["error"])
-                    return message["result"]
-                self.events.append(message)
-                require(len(self.events) <= 1000, "too many unsolicited protocol events")
-                continue
+                require(isinstance(message, dict), "native message must be a JSON object")
+                return message
             ready, _, _ = select.select([self.proc.stdout], [], [], max(0, deadline - time.monotonic()))
             if ready:
                 chunk = os.read(self.proc.stdout.fileno(), 65536)
                 require(bool(chunk), "Codex transport closed before response")
                 self.buffer += chunk
                 require(len(self.buffer) <= 2_000_000, "oversized Codex protocol response")
-        raise TimeoutError(f"Codex {method} exceeded {self.timeout}s")
+            elif time.monotonic() >= deadline:
+                return None
 
     def __exit__(self, *_):
         if self.proc:

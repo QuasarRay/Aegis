@@ -66,6 +66,7 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
     context = None
     lifecycle = None
     usage = None
+    routing = []
     with path.open("rb") as stream:
         while True:
             offset = stream.tell()
@@ -81,6 +82,8 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
             if kind == "session_meta":
                 session = {"id": payload.get("id"), "origin": origin}
             elif kind == "turn_context":
+                if context is None or context.get("turn_id") != payload.get("turn_id"):
+                    routing = []
                 context = {"model": payload.get("model"), "effort": payload.get("effort"),
                            "turn_id": payload.get("turn_id"),
                            "mode": payload.get("collaboration_mode", {}).get("mode"),
@@ -91,9 +94,12 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
                     lifecycle = {"kind": event_kind, "turn_id": payload.get("turn_id"), "origin": origin}
                 elif event_kind == "token_count" and payload.get("info"):
                     usage = {"totals": payload["info"].get("total_token_usage"), "origin": origin}
+                elif event_kind == "model_rerouted":
+                    routing.append({"turn_id": payload.get("turn_id"), "from_model": payload.get("from_model"),
+                                    "to_model": payload.get("to_model"), "origin": origin})
     require(session and session["id"] == thread_id, "native journal belongs to another chat")
     require(context and lifecycle and lifecycle.get("turn_id"), "native turn state is not established")
-    return {"session": session, "context": context, "lifecycle": lifecycle, "usage": usage}
+    return {"session": session, "context": context, "lifecycle": lifecycle, "usage": usage, "routing": routing}
 
 
 def observe_native_owner(root: Path, owner: dict) -> dict:
@@ -111,6 +117,7 @@ def observe_native_owner(root: Path, owner: dict) -> dict:
             "active-host owner must be the observed native executable")
     metadata = read_session_metadata(Path(thread["path"]), owner["session"])
     context = metadata["context"]
+    require(not metadata["routing"], "native journal reports a model reroute")
     require(context.get("turn_id") == metadata["lifecycle"]["turn_id"],
             "effective configuration is not bound to the observed native turn")
     require(thread.get("model") == context["model"] and thread.get("reasoningEffort") == context["effort"],

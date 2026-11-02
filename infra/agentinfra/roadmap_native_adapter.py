@@ -192,6 +192,10 @@ class NativeRpc:
 
 def observe_goal(root: Path, rpc: NativeRpc, compiled: dict, previous: dict) -> dict:
     goal = rpc.call("thread/goal/get", {"threadId": previous["thread_id"]})["goal"]
+    return _bind_observed_goal(root, compiled, previous, goal)
+
+
+def _bind_observed_goal(root: Path, compiled: dict, previous: dict, goal: dict | None) -> dict:
     require(isinstance(goal, dict), "native Goal is cleared; preserve its prior identity and accounting")
     binding = bind_goal(goal, thread_id=previous["thread_id"], objective=previous["objective"], contract_hash=compiled["digest"])
     created = previous.get("observation", {}).get("createdAt")
@@ -271,7 +275,7 @@ def capability_snapshot(root: Path, rpc: NativeRpc, native: dict) -> dict:
                           "event_feed": "read-only observer; managed inference stream is not subscribed or dispatched",
                           "goal_writes": "shared authorized host callback or managed stdio sender; no live Goal mutation exercised",
                           "managed_adapter": {"read_rpc": "EXERCISED", "goal_mutation_transport": "IMPLEMENTED_NOT_LIVE_QUALIFIED",
-                                              "turn_lifecycle": "REQUIRED_NOT_IMPLEMENTED"},
+                                              "turn_lifecycle": "IMPLEMENTED_NOT_LIVE_QUALIFIED"},
                           "managed_inference": "not dispatched by this active-host adapter"},
              "operations": sorted({c["method"] for c in rpc.calls if c["status"] == "OBSERVED"})}
     validate_record(root, "CapabilitySnapshot", value)
@@ -518,12 +522,39 @@ class NativeGoalAdapter:
             if not ledger_terminal:
                 BudgetLedger(self.root).close(transition["attempt"], state, {"artifacts": [*artifacts, binding],
                                              "native_reconciliation": result, "unknown_usage": True})
-            execution = dict(record["execution"])
-            execution["native_transition"] = dict(transition, state=state, recovery=binding)
-            if reply_binding:
-                execution["native_transition"]["reply"] = reply_binding
-            adapter.update({"execution": execution}, expected_digest=digest(adapter.profile.path().read_bytes()))
+            recovered = dict(transition, state=state, recovery=binding)
+            if reply_binding: recovered["reply"] = reply_binding
+            _save_recovered_transition(adapter, transition, recovered)
         return dict(observation, artifact=binding)
+
+
+def _save_recovered_transition(adapter: ProjectAdapter, previous: dict, recovered: dict) -> None:
+    """Repair this projection after readback, including a retired control driver."""
+    from .locks import FileLock
+    from .roadmap_native import inspect_process
+    from .roadmap_project import AEGIS_RECORD_WRITER
+    from .roadmap_records import canonical
+    from .transaction import FileTransaction, Mutation
+
+    root = adapter.root; lease = WorkspaceLease(root)
+    lock = FileLock(lease.lock_path, "native control recovery projection"); lock.acquire()
+    try:
+        before = adapter.profile.path().read_bytes(); current = adapter.read()
+        require(digest(before) == digest(adapter.profile.path().read_bytes()) and
+                current["execution"].get("native_transition") == previous,
+                "native control projection changed during recovery")
+        owner = current["execution"]["workspace_lease"]
+        execution = dict(current["execution"], native_transition=recovered)
+        if inspect_process(owner) in {"GONE", "REUSED_PID", "PREVIOUS_BOOT"}:
+            require(lease.read()["active"] == owner, "retired native control owner changed")
+            current["execution"] = execution
+            FileTransaction(root, [Mutation(adapter.profile.path(), canonical(current) + b"\n", expected_exists=True,
+                                            expected_sha256=digest(before))], state_dir=root / ".aegis/state/transactions",
+                            name=AEGIS_RECORD_WRITER).commit()
+        else:
+            adapter.update({"execution": execution}, expected_digest=digest(before))
+    finally:
+        lock.release()
 
 
 def _transition_outcome(root: Path, operation: dict, reconciliation: dict, response: dict | None) -> str:

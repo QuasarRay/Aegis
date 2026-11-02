@@ -150,6 +150,13 @@ class ProjectAdapter:
             require(inspect_process(old) in {"GONE", "REUSED_PID", "PREVIOUS_BOOT"}, "live or unknown owner prohibits recovery")
             require(not any(a["status"] == "RESERVED" for a in BudgetLedger(self.root).read()["attempts"]),
                     "recover existing operation handles before rebinding the native process")
+            if execution.get("integration_path") == "managed_app_server":
+                managed = execution["managed_runner"]
+                require(not managed.get("server") or inspect_process(managed["server"]) in {"GONE", "REUSED_PID", "PREVIOUS_BOOT"},
+                        "managed server remains live or unknown; active-host takeover is refused")
+                execution["managed_runner_history"] = [*execution.get("managed_runner_history", []), managed]
+                execution.pop("managed_runner")
+                execution["integration_path"] = "active_host"
             candidate = dict(old, **process_handle(pid))
             observation = observe_native_owner(self.root, candidate)
             require(observation["caller_is_descendant"] and observation["status"] == "active" and
@@ -183,6 +190,10 @@ class ProjectAdapter:
             return {"owner": owner, "observation": observation}
         finally:
             lock.release()
+
+    def adopt_managed_runner(self, protocol: dict, *, user_authorized: bool, authorization_id: str) -> dict:
+        from .roadmap_managed import adopt_managed_runner
+        return adopt_managed_runner(self, protocol, user_authorized=user_authorized, authorization_id=authorization_id)
 
     def describe(self) -> dict:
         profile = self.profile
