@@ -1,6 +1,6 @@
 [framework]
 name = "Aegis executable roadmaps"
-version = "8.0.0-roadmaps.6"
+version = "8.0.0-roadmaps.7"
 project_independent = true
 
 [roadmap]
