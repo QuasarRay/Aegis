@@ -164,6 +164,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
 
 The fixed `native.protocol` and `native.acceptance` checks materialize installed schema export and real read-transport qualification through the existing work engine. They preserve the original outputs, implementation units and gates. Live mutation capabilities are reported separately from actual read observations.
 
+The managed Goal sender uses the same lifecycle preparation, evidence audit and durable control reservation as the host callback path. Actual stdio fixtures cover request dispatch, rejection, reply persistence, process identity and readback recovery. Live mutation qualification and the managed model-turn lifecycle remain explicit unfinished responsibilities; neither receives credit from the read-transport recipe.
+
 Keep host authorization identical across transports. Model catalog support and requested effort do not establish effective effort. Plan mode forbids mutation; unknown completion responses require reconciliation.
 
 ## Interfaces and artifacts

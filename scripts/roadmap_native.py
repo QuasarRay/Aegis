@@ -54,7 +54,7 @@ def collect(root: Path, protocol: dict, candidate: str, output: str) -> dict:
             "plan_observation": artifacts["plan-observation"], "capability_snapshot": artifacts["capability-snapshot"],
             "artifacts": list(artifacts.values()), "domain_proof": False, "installed_native_executable": protocol["executable"],
             "limits": ["Real read RPCs and active-host observations; no new chat, model turn or live Goal mutation",
-                       "Host lifecycle dispatch/recovery uses explicit callbacks and separate durable reservations",
+                       "Host callbacks and the managed Goal sender share lifecycle policy and the existing durable ledger; live writes remain unqualified",
                        "Native service, local journal and host callback are explicit provenance/authorization trust boundaries"]}
 
 

@@ -19,7 +19,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/roadmap-execution/SKILL.md",
@@ -47,7 +47,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/source-correspondence/SKILL.md",
@@ -75,7 +75,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/original-tests/SKILL.md",
@@ -103,7 +103,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/exact-harness-translation/SKILL.md",
@@ -131,7 +131,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/kani-bolero-evidence/SKILL.md",
@@ -159,7 +159,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/python-verification/SKILL.md",
@@ -187,7 +187,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/bevy-state-scheduling/SKILL.md",
@@ -215,7 +215,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/pyo3-lifetime/SKILL.md",
@@ -243,7 +243,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/numeric-serialization/SKILL.md",
@@ -271,7 +271,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/cgp-macro-design/SKILL.md",
@@ -299,7 +299,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/human-proof-review/SKILL.md",
@@ -327,7 +327,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/evidence-recovery-cost/SKILL.md",
@@ -355,7 +355,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/generic-review/SKILL.md",
@@ -383,7 +383,7 @@
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "3cf07b89c522ef6cda5c515ca1e7531408b35e4027506a5b0efa2c2d3f1452ab"
+          "sha256": "41e21e845f4faba87e77bdb6c2a5f80296c033f40ca7b2fcb7d7919287726f68"
         }
       ],
       "path": "Roadmaps/Shared/skills/python-rust-mapping/SKILL.md",

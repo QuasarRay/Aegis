@@ -1,6 +1,6 @@
-"""Observed Goal/Plan adapters over pinned read-only native contracts.
+"""Observed Goal/Plan adapters and authorized managed Goal lifecycle transport.
 
-Native Goal writes stay with an explicitly supplied host lifecycle callback.
+Goal writes share one policy, journal and ledger across host and managed paths.
 These adapters never create/resume chats, start inference or replace objectives.
 Only final persisted Plan text, lifecycle/configuration metadata and hashes are
 retained; reasoning payloads and arbitrary tool output are not copied.
@@ -28,6 +28,66 @@ READ_CONTRACTS = {
     "thread/read": "ThreadRead", "thread/list": "ThreadList", "thread/goal/get": "ThreadGoalGet",
     "thread/turns/list": "ThreadTurnsList", "thread/items/list": "ThreadItemsList",
 }
+
+
+class _ManagedGoalClient(CodexReader):
+    """One prepared Goal request; no thread loading or model-turn methods."""
+    ALLOWED = CodexReader.ALLOWED | {"thread/goal/set", "thread/goal/clear"}
+
+    def __init__(self, root: Path, protocol: dict, request: dict, on_started: Callable[[dict], None]):
+        super().__init__(executable=protocol["executable"]["path"], experimental=True)
+        self.root = root
+        self.protocol = protocol
+        self.request = request
+        self.on_started = on_started
+        self.sent = False
+        self.observations = []
+
+    def _started(self) -> None:
+        from .roadmap_native import process_handle
+        self.on_started(process_handle(self.proc.pid))
+        executable = Path(f"/proc/{self.proc.pid}/exe")
+        require(executable.exists() and executable.resolve() == Path(self.executable).resolve() and
+                digest(executable.read_bytes()) == self.protocol["executable"]["sha256"],
+                "managed server process is not the pinned installed executable")
+
+    def call(self, method: str, params: dict) -> dict:
+        if method not in {"thread/goal/set", "thread/goal/clear"}:
+            return super().call(method, params)
+        require(not self.sent and {"method": method, "params": params} == self.request,
+                "managed Goal transport permits its single prepared lifecycle request only")
+        assert_protocol(self.root, self.protocol)
+        prefix = "ThreadGoalSet" if method == "thread/goal/set" else "ThreadGoalClear"
+        request_contract = self.protocol["selected"][prefix + "Params"]
+        response_contract = self.protocol["selected"][prefix + "Response"]
+        schema = read_json(confined_path(self.root, request_contract["path"]))
+        require(set(params) <= set(schema.get("properties", {})) and
+                set(schema.get("required", [])) <= set(params) and "objective" not in params,
+                "managed lifecycle request differs from installed native contract")
+        require(type(params.get("threadId")) is str and 0 < len(params["threadId"]) <= 128 and
+                params.get("origin") in {"user", "automatic"}, "native Goal identity/provenance required")
+        allowed = {"threadId", "origin", "status", "tokenBudget"} if method == "thread/goal/set" else {"threadId", "origin"}
+        require(set(params) <= allowed, "managed lifecycle request contains an unqualified field")
+        if "tokenBudget" in params:
+            require(type(params["tokenBudget"]) is int and 0 < params["tokenBudget"] <= 2 ** 63 - 1,
+                    "native token budget must preserve its positive int64 domain")
+        observed = {"method": method, "request_digest": digest(params), "request_contract": request_contract,
+                    "response_contract": response_contract, "observed_at": datetime.now(timezone.utc).isoformat()}
+        self.sent = True  # An uncertain write must never be repeated on this connection.
+        try:
+            reply = super().call(method, params)
+        except CodexRpcError as error:
+            self.observations.append(dict(observed, status="REJECTED", error_code=error.code, message=error.message))
+            raise
+        except (TimeoutError, OSError, ContractError, ValueError):
+            self.observations.append(dict(observed, status="UNKNOWN"))
+            raise
+        response_schema = read_json(confined_path(self.root, response_contract["path"]))
+        if not isinstance(reply, dict) or not set(response_schema.get("required", [])) <= set(reply):
+            self.observations.append(dict(observed, status="INVALID_NATIVE_REPLY", response_digest=digest(reply)))
+            raise ContractError("managed native reply omits required contract fields")
+        self.observations.append(dict(observed, status="OBSERVED", response_digest=digest(reply)))
+        return reply
 
 
 class NativeRpc:
@@ -209,8 +269,8 @@ def capability_snapshot(root: Path, rpc: NativeRpc, native: dict) -> dict:
                           "collaboration_modes": modes, "selected_model_catalog": selected[0],
                           "effective_effort_boundary": "verified native turn configuration",
                           "event_feed": "read-only observer; managed inference stream is not subscribed or dispatched",
-                          "goal_writes": "host lifecycle callback required; no live Goal mutation exercised",
-                          "managed_adapter": {"read_rpc": "EXERCISED", "goal_mutation_transport": "REQUIRED_NOT_IMPLEMENTED",
+                          "goal_writes": "shared authorized host callback or managed stdio sender; no live Goal mutation exercised",
+                          "managed_adapter": {"read_rpc": "EXERCISED", "goal_mutation_transport": "IMPLEMENTED_NOT_LIVE_QUALIFIED",
                                               "turn_lifecycle": "REQUIRED_NOT_IMPLEMENTED"},
                           "managed_inference": "not dispatched by this active-host adapter"},
              "operations": sorted({c["method"] for c in rpc.calls if c["status"] == "OBSERVED"})}
@@ -271,6 +331,24 @@ class NativeGoalAdapter:
 
     def dispatch(self, prepared: dict, host_transition: Callable[[dict], dict], *, user_authorized: bool,
                  authorization_id: str, host_identity: dict, diagnosis: str | None = None) -> dict:
+        return self._dispatch(prepared, host_transition, user_authorized=user_authorized,
+                              authorization_id=authorization_id, host_identity=host_identity, diagnosis=diagnosis)
+
+    def dispatch_managed(self, prepared: dict, *, user_authorized: bool,
+                         authorization_id: str, diagnosis: str | None = None) -> dict:
+        """Send the same audited request over the pinned installed stdio server.
+
+        This is an explicit lifecycle operation, not a Goal-continuation loop.
+        It cannot create a chat, load a thread, dispatch inference or change the
+        objective. Live qualification still requires an authorized user action.
+        """
+        identity = {"provider": "codex", "transport": "managed_app_server_stdio_goal",
+                    "identity": {"executable": self.protocol["executable"], "protocol_digest": self.protocol["digest"]}}
+        return self._dispatch(prepared, None, user_authorized=user_authorized,
+                              authorization_id=authorization_id, host_identity=identity, diagnosis=diagnosis, managed=True)
+
+    def _dispatch(self, prepared: dict, host_transition: Callable[[dict], dict] | None, *, user_authorized: bool,
+                  authorization_id: str, host_identity: dict, diagnosis: str | None, managed: bool = False) -> dict:
         from .roadmap_native import process_handle
         from .roadmap_runtime import BudgetLedger
         from .roadmap_work import _immutable
@@ -280,6 +358,9 @@ class NativeGoalAdapter:
         require(digest({k: v for k, v in prepared.items() if k != "digest"}) == prepared.get("digest"), "prepared native request was changed")
         require(user_authorized and bool(authorization_id) and host_identity.get("provider") == "codex" and
                 host_identity.get("transport") and host_identity.get("identity"), "identified authorized host lifecycle callback required")
+        require(managed or callable(host_transition), "native host lifecycle callback required")
+        if managed:
+            assert_protocol(self.root, self.protocol)
         token_budget = prepared["request"]["params"].get("tokenBudget")
         fresh = self.prepare(prepared["action"], user_authorized=user_authorized, token_budget=token_budget)
         require(fresh["request"] == prepared["request"] and fresh["owner"] == prepared["owner"] and
@@ -296,7 +377,7 @@ class NativeGoalAdapter:
         base = f".aegis/roadmaps/native-transitions/{identity}"
         prep_binding = _immutable(self.root, base + "/preparation-" + fresh["digest"] + ".json", fresh)
         operation = {"state": "PREPARED", "spec_digest": identity, "runner": process_handle(os.getpid()),
-                     "owner": fresh["owner"], "child": None, "transport": "explicit_host_lifecycle_callback",
+                     "owner": fresh["owner"], "child": None, "transport": host_identity["transport"] if managed else "explicit_host_lifecycle_callback",
                      "native_thread": fresh["binding"]["thread_id"], "preparation": prep_binding,
                      "kind": "native_lifecycle_control", "authorization_id": authorization_id}
         attempt = ledger.reserve_control(digest({"native_goal": fresh["binding"]["thread_id"], "action": fresh["action"],
@@ -314,32 +395,79 @@ class NativeGoalAdapter:
         ledger.journal(attempt["id"], operation)
         response = None
         unknown = None
+        transport = None
+        dispatched = None
+
+        def child_started(handle: dict) -> None:
+            operation["child"] = handle
+            ledger.journal(attempt["id"], operation)
+
         try:
-            response = host_transition(fresh["request"])
-        except (TimeoutError, OSError) as exc:
+            WorkspaceLease(self.root).assert_owner(fresh["owner"])
+            if managed:
+                transport = _ManagedGoalClient(self.root, self.protocol, fresh["request"], child_started)
+                with transport as client:
+                    # Reobserve on this connection immediately before the write.
+                    # The native API has no compare-and-swap parameter; other
+                    # noncooperating clients remain an explicit trust boundary.
+                    current = client.call("thread/goal/get", {"threadId": fresh["binding"]["thread_id"]})["goal"]
+                    valid = reconcile_native_transition(fresh["binding"]["observation"], None, current,
+                                                        fresh["binding"]["observation"]["status"])
+                    require(valid["confirmed"], "native Goal changed before managed lifecycle dispatch")
+                    WorkspaceLease(self.root).assert_owner(fresh["owner"])
+                    response = client.call(fresh["request"]["method"], fresh["request"]["params"])
+            else:
+                response = host_transition(fresh["request"])
+        except CodexRpcError as exc:
+            response = {"error": {"code": exc.code, "message": exc.message}, "method": exc.method}
+        except Exception as exc:
+            # A malformed reply, callback error or disconnect can follow an
+            # applied mutation. Retain the reservation and reconcile readback.
             unknown = type(exc).__name__
-        with NativeRpc(self.root, self.protocol) as rpc:
-            after = rpc.call("thread/goal/get", {"threadId": fresh["binding"]["thread_id"]})["goal"]
-            reads = list(rpc.calls)
-        desired = {"complete": "complete", "pause": "paused", "resume": "active"}.get(prepared["action"])
-        if desired:
-            reconciliation = reconcile_native_transition(fresh["binding"]["observation"], response, after, desired)
-        elif prepared["action"] == "clear":
-            reconciliation = {"confirmed": after is None, "scope": "explicitly authorized clear; previous accounting remains in prepared binding"}
-        else:
-            before = fresh["binding"]["observation"]
-            reconciliation = _budget_readback(before, response, after, token_budget, fresh["contract_digest"])
+        if transport is not None:
+            dispatched = transport.sent
+        if managed:
+            operation["native_request_sent"] = dispatched if transport is not None else False
+            ledger.journal(attempt["id"], operation)
+        reply = {"schema": INTERFACE_VERSION, "request_digest": fresh["digest"], "response": response,
+                 "observation_error": unknown, "managed_request_sent": dispatched,
+                 "transport_observations": transport.observations if transport is not None else [],
+                 "initialization_digest": digest(transport.initialization) if transport is not None and transport.initialization is not None else None}
+        # Preserve an actual rejection/success reply before attempting readback.
+        # An interrupted read must not turn a known reply into a missing one.
+        reply_binding = _immutable(self.root, base + "/reply-" + digest(reply) + ".json", reply)
+        operation["reply"] = reply_binding
+        ledger.journal(attempt["id"], operation)
+        current_record = adapter.read(); execution = dict(current_record["execution"])
+        execution["native_transition"] = {"state": "AWAITING_READBACK", "attempt": attempt["id"],
+                                          "preparation": prep_binding, "reply": reply_binding}
+        adapter.update({"execution": execution}, expected_digest=digest(adapter.profile.path().read_bytes()))
+        after, reads, read_error = self._readback(fresh)
+        reconciliation = _reconcile_goal(fresh, response, after) if read_error is None else {
+            "confirmed": False, "reasons": ["native readback is unknown"], "readback_error": read_error}
         result = {"schema": INTERFACE_VERSION, "request_digest": fresh["digest"], "response": response,
-                "observation_error": unknown, "after": after, "reconciliation": reconciliation, "read_observations": reads}
+                  "observation_error": unknown, "after": after, "reconciliation": reconciliation,
+                  "read_observations": reads, "reply": reply_binding}
+        terminal = _transition_outcome(self.root, operation, reconciliation, response)
+        result["state"] = terminal
         result_binding = _immutable(self.root, base + "/result-" + digest(result) + ".json", result)
-        terminal = "SUCCESS" if reconciliation["confirmed"] else "FAILED" if response and response.get("error") else "UNKNOWN"
         if terminal != "UNKNOWN":
-            ledger.close(attempt["id"], terminal, {"artifacts": [prep_binding, result_binding], "native_reconciliation": reconciliation,
+            ledger.close(attempt["id"], terminal, {"artifacts": [prep_binding, reply_binding, result_binding], "native_reconciliation": reconciliation,
                                                   "unknown_usage": True})
         current_record = adapter.read(); execution = dict(current_record["execution"])
-        execution["native_transition"] = {"state": terminal, "attempt": attempt["id"], "preparation": prep_binding, "result": result_binding}
+        execution["native_transition"] = {"state": terminal, "attempt": attempt["id"], "preparation": prep_binding,
+                                          "reply": reply_binding, "result": result_binding}
         adapter.update({"execution": execution}, expected_digest=digest(adapter.profile.path().read_bytes()))
         return dict(result, attempt=attempt["id"], state=terminal, result_binding=result_binding)
+
+    def _readback(self, prepared: dict) -> tuple[dict | None, list[dict], str | None]:
+        rpc = None
+        try:
+            with NativeRpc(self.root, self.protocol) as rpc:
+                after = rpc.call("thread/goal/get", {"threadId": prepared["binding"]["thread_id"]})["goal"]
+                return after, list(rpc.calls), None
+        except Exception as error:
+            return None, list(rpc.calls) if rpc is not None else [], type(error).__name__
 
     def recover(self) -> dict:
         """Reobserve the same native Goal; an unchanged/unknown state never retries."""
@@ -352,26 +480,78 @@ class NativeGoalAdapter:
         require(transition and transition["state"] not in {"SUCCESS", "FAILED"}, "no unresolved native transition")
         require(bindings_current(self.root, [transition["preparation"]]), "native preparation evidence changed")
         prepared = read_json(confined_path(self.root, transition["preparation"]["path"]))
-        with NativeRpc(self.root, self.protocol) as rpc:
-            after = rpc.call("thread/goal/get", {"threadId": prepared["binding"]["thread_id"]})["goal"]
-        desired = {"complete": "complete", "pause": "paused", "resume": "active"}.get(prepared["action"])
-        before = prepared["binding"]["observation"]
-        if desired:
-            result = reconcile_native_transition(before, None, after, desired)
-        elif prepared["action"] == "clear":
-            result = {"confirmed": after is None}
-        else:
-            result = _budget_readback(before, None, after, prepared["request"]["params"]["tokenBudget"], prepared["contract_digest"])
+        matches = [a for a in BudgetLedger(self.root).read()["attempts"] if a["id"] == transition["attempt"]]
+        require(len(matches) == 1, "native transition lost its durable reservation")
+        attempt = matches[0]
+        operation = attempt["operation"]
+        require(operation["preparation"] == transition["preparation"] and
+                operation["native_thread"] == prepared["binding"]["thread_id"], "native reservation lineage changed")
+        response = None
+        artifacts = [transition["preparation"]]
+        reply_binding = transition.get("reply") or operation.get("reply")
+        if reply_binding:
+            require(not transition.get("reply") or not operation.get("reply") or transition["reply"] == operation["reply"],
+                    "native reply journal disagrees with canonical transition")
+            require(bindings_current(self.root, [reply_binding]), "native reply evidence changed")
+            reply = read_json(confined_path(self.root, reply_binding["path"]))
+            require(reply["request_digest"] == prepared["digest"], "native reply belongs to another preparation")
+            response = reply["response"]
+            artifacts.append(reply_binding)
+        after, reads, read_error = self._readback(prepared)
+        result = _reconcile_goal(prepared, response, after) if read_error is None else {
+            "confirmed": False, "reasons": ["native readback is unknown"], "readback_error": read_error}
+        state = _transition_outcome(self.root, operation, result, response)
+        ledger_terminal = attempt["status"] in {"SUCCESS", "FAILED"}
+        if ledger_terminal:
+            require(bindings_current(self.root, attempt["receipt"].get("artifacts", [])) and
+                    bool(attempt["receipt"].get("artifacts")), "terminal native receipt evidence changed")
+            # A crash may happen after closing the ledger and before updating
+            # the canonical projection. Preserve that observed operation result;
+            # the fresh native state is still reported separately below.
+            state = attempt["status"]
         observation = {"schema": INTERFACE_VERSION, "after": after, "reconciliation": result,
+                       "response": response, "state": state, "read_observations": reads,
+                       "ledger_already_terminal": ledger_terminal,
                        "scope": "read-back of the same uncertain native transition; no redispatch"}
         binding = _immutable(self.root, str(Path(transition["preparation"]["path"]).parent / ("recovery-" + digest(observation) + ".json")), observation)
-        if result["confirmed"]:
-            BudgetLedger(self.root).close(transition["attempt"], "SUCCESS", {"artifacts": [transition["preparation"], binding],
-                                         "native_reconciliation": result, "unknown_usage": True})
+        if state != "UNKNOWN":
+            if not ledger_terminal:
+                BudgetLedger(self.root).close(transition["attempt"], state, {"artifacts": [*artifacts, binding],
+                                             "native_reconciliation": result, "unknown_usage": True})
             execution = dict(record["execution"])
-            execution["native_transition"] = dict(transition, state="SUCCESS", recovery=binding)
+            execution["native_transition"] = dict(transition, state=state, recovery=binding)
+            if reply_binding:
+                execution["native_transition"]["reply"] = reply_binding
             adapter.update({"execution": execution}, expected_digest=digest(adapter.profile.path().read_bytes()))
-        return dict(observation, state="SUCCESS" if result["confirmed"] else "UNKNOWN", artifact=binding)
+        return dict(observation, artifact=binding)
+
+
+def _transition_outcome(root: Path, operation: dict, reconciliation: dict, response: dict | None) -> str:
+    if operation.get("transport") == "managed_app_server_stdio_goal":
+        if operation.get("child"):
+            from .roadmap_native import inspect_process
+            process_state = inspect_process(operation["child"])
+            reconciliation["transport_process_state"] = process_state
+            if process_state not in {"GONE", "REUSED_PID", "PREVIOUS_BOOT"}:
+                return "UNKNOWN"
+        if operation.get("native_request_sent") is False:
+            reconciliation["request_not_dispatched"] = True
+            reconciliation["confirmed"] = False
+            return "FAILED"
+    if isinstance(response, dict) and response.get("error"):
+        return "FAILED"
+    return "SUCCESS" if reconciliation["confirmed"] else "UNKNOWN"
+
+
+def _reconcile_goal(prepared: dict, response: dict | None, after: dict | None) -> dict:
+    desired = {"complete": "complete", "pause": "paused", "resume": "active"}.get(prepared["action"])
+    before = prepared["binding"]["observation"]
+    if desired:
+        return reconcile_native_transition(before, response, after, desired)
+    if prepared["action"] == "clear":
+        return {"confirmed": after is None and not (isinstance(response, dict) and response.get("error")),
+                "scope": "explicitly authorized clear; previous accounting remains in prepared binding"}
+    return _budget_readback(before, response, after, prepared["request"]["params"]["tokenBudget"], prepared["contract_digest"])
 
 
 def _budget_readback(before: dict, response: dict | None, after: dict | None, budget: int, contract_digest: str) -> dict:
