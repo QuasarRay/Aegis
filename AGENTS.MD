@@ -34,4 +34,8 @@ Project Goals:
 
 17. Use Dagger + GitLab for CI/CD Pipelines to the fullest potential, to accelerate development, deployment, and reduce boilerplate for both Aegis and Carbon Projects.
 
+18. Implement Infrastructure for Human Supervision and review of Kani Harnesses and bolero property tests with Kani Backends and for Original Tests of Carbon projects Destiny and blue, so that Human Review needs minimal effort. An Optional suggestion is to use Tracing + Tracing-Tracy + Automatic Frontend generators such as Ruby-on-rails's(or loco framework if it is as rich as ruby on rails in its GUI) Django-Rest-framework-like, JHipster-like, or etc. can be used for generating frontends automatically in combination with tracing and tracing-tracy. This item will be updated in the future by human engineers after doing research for frontend generators.
+
+19. Engineer Comprehensive Agentic Pipelines for AGGRESSIVE Reviewing and Flaw Documenting. The Pipeline Must combine Markdown files for a general purpose Engineered Prompt/Roadmap for AGGRESSIVE Analysis and Review of any given input(code, prompt, roadmap, etc.), with Agentic Pipeline code that integrates with the markdowns.
+
 Target Project Repo: https://github.com/QuasarRay/Aegis.git
