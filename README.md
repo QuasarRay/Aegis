@@ -1,4 +1,30 @@
-# Aegis for Destiny Rust
+# Aegis executable roadmaps
+
+The current development direction is the [Aegis](Roadmaps/Aegis/README.md),
+[Carbon Blue](Roadmaps/Blue/README.md) and [Carbon Destiny](Roadmaps/Destiny/README.md)
+roadmap package. Its 40 milestone contracts share phase-aware policies, complete
+source requirement dispositions and a deterministic compiler. Start with
+[operations](Roadmaps/Shared/OPERATIONS.md) and
+[architecture](Roadmaps/Shared/ARCHITECTURE.md).
+
+```sh
+python -B bin/agentctl.py roadmap compile
+python -B bin/agentctl.py roadmap audit
+python -B bin/agentctl.py roadmap packet A00
+python -B scripts/validate_roadmaps.py
+```
+
+The compiler grants no product completion credit without current evidence. The
+adopted policy is Codex-only, implementation-first, sequential execution with
+observed max reasoning, exact domain verification at completion, and later CGP
+modernization after all three projects complete. The preserved prompts and root
+guidance are amended explicitly in [the shared policy](Roadmaps/Shared/policy.json).
+
+The earlier Destiny specialization below remains available through its legacy
+commands and original evidence lineage. Its historical count, verifier stack and
+workflow are not the current denominator or universal policy for the three projects.
+
+## Preserved Destiny specialization
 
 This branch specializes Aegis for [Destiny's destiny-rs-dev branch](https://github.com/QuasarRay/destiny/tree/destiny-rs-dev),
 inspected at `8eb7606f1db5e8f65336fa05f8f87ef85ab9e402`. Its acceptance scope is four capabilities:

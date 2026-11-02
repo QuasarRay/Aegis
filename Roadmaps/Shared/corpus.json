@@ -1,0 +1,229 @@
+{
+  "retention": "Raw originals stay at their pinned source locations; immutable deployment packages may include only license-permitted copies. Missing full manuals remain explicit A06 obligations.",
+  "schema": 1,
+  "sources": [
+    {
+      "binding": {
+        "path": "Learning Rust With Entirely Too Many Linked Lists.pdf",
+        "sha256": "7ce4af314ff85e6572c944bcdccd0c39501d072e8fd5549db26b03b87b31d033"
+      },
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "too-many-lists",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "RETAINED_ORIGINAL_EXTRACTION_PENDING",
+      "title": "Learning Rust with Entirely Too Many Linked Lists",
+      "url": "https://rust-unofficial.github.io/too-many-lists/"
+    },
+    {
+      "binding": {
+        "path": "rust-atomics-and-locks-markdown.zip",
+        "sha256": "a112a59082f3e808bb38c2f7bd44d00e0ee8ab092413e97b9f3d054f47327f5c"
+      },
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "rust-atomics",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "RETAINED_ORIGINAL_EXTRACTION_PENDING",
+      "title": "Rust Atomics and Locks",
+      "url": "https://marabos.nl/atomics/"
+    },
+    {
+      "binding": {
+        "path": "Context-Generic Programming Patterns (DRAFT).pdf",
+        "sha256": "0f500df9e8f352f8c15259f04e79263013a2e0f24d770827c63dbf6f096fb04a"
+      },
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "cgp-book",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "RETAINED_ORIGINAL_EXTRACTION_PENDING",
+      "title": "CGP book",
+      "url": "https://contextgeneric.dev/"
+    },
+    {
+      "binding": {
+        "path": "cgp/README.md",
+        "sha256": "8f0eedcfac8dfdfca7d5da152b488fc48150310dc2cac074c456943854f5c8b3"
+      },
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "cgp-docs",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "RETAINED_TEXT",
+      "title": "CGP official documentation",
+      "url": "https://contextgeneric.dev/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "kani-book",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "Kani Book",
+      "url": "https://model-checking.github.io/kani/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "derive-deftly",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "derive-deftly official documentation",
+      "url": "https://docs.rs/derive-deftly/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "agones",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "Agones official documentation",
+      "url": "https://agones.dev/site/docs/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "bevy",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "Bevy official documentation",
+      "url": "https://bevy.org/learn/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "rust-book",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "The Rust Programming Language",
+      "url": "https://doc.rust-lang.org/book/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "rust-reference",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "Rust Reference",
+      "url": "https://doc.rust-lang.org/reference/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "pyo3",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "PyO3 official documentation",
+      "url": "https://pyo3.rs/"
+    },
+    {
+      "binding": null,
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "bolero",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "MISSING_FULL_VERSIONED_CORPUS",
+      "title": "Bolero official documentation",
+      "url": "https://camshaft.github.io/bolero/"
+    },
+    {
+      "binding": {
+        "path": "Rust Design Patterns - rust-design-patterns.pdf",
+        "sha256": "8a812562e120d9485d41ff45d15268530068019c61d761c0f61d3411ed2d6556"
+      },
+      "edition": "source bytes pinned where supplied; full edition/license qualification in A06",
+      "extraction_loss": "not established; original bytes retained where available",
+      "id": "rust-patterns",
+      "license": "retain original license; verify redistribution before packaging corpus",
+      "owner": "A06",
+      "status": "RETAINED_ORIGINAL_EXTRACTION_PENDING",
+      "title": "Rust Design Patterns",
+      "url": "https://rust-unofficial.github.io/patterns/"
+    },
+    {
+      "binding": {
+        "path": "AGENTS.MD",
+        "sha256": "a05e77546f5ad80047eb65bdae4fa24deef8ed399a2ff7ad9d191c18b63c6a55"
+      },
+      "edition": "supplied 2026-11-02",
+      "extraction_loss": "none for raw UTF-8 text",
+      "id": "agents.md",
+      "license": "supplied project input; preserve provenance",
+      "owner": "A06",
+      "status": "RETAINED_TEXT",
+      "title": "AGENTS.MD"
+    },
+    {
+      "binding": {
+        "path": "Blue_Prompt.md",
+        "sha256": "b4d71287f7ba863dce3217148a38f07349a9e8ef27c5a9672fab93ca9925091e"
+      },
+      "edition": "supplied 2026-11-02",
+      "extraction_loss": "none for raw UTF-8 text",
+      "id": "blue_prompt",
+      "license": "supplied project input; preserve provenance",
+      "owner": "A06",
+      "status": "RETAINED_TEXT",
+      "title": "Blue_Prompt.md"
+    },
+    {
+      "binding": {
+        "path": "Destiny_Prompt.md",
+        "sha256": "7987f043d71bde0c56632069d2b60a967d7f127048477567e7d91c642d387e25"
+      },
+      "edition": "supplied 2026-11-02",
+      "extraction_loss": "none for raw UTF-8 text",
+      "id": "destiny_prompt",
+      "license": "supplied project input; preserve provenance",
+      "owner": "A06",
+      "status": "RETAINED_TEXT",
+      "title": "Destiny_Prompt.md"
+    },
+    {
+      "binding": {
+        "path": "Python_Verification_Research_Report_v1.md",
+        "sha256": "3f8fc8aa25d5708903084a5e5089921acbbc0ccbdce928d2e91888bd1a522a3c"
+      },
+      "edition": "supplied 2026-11-02",
+      "extraction_loss": "none for raw UTF-8 text",
+      "id": "python_verification_research_report_v1",
+      "license": "supplied project input; preserve provenance",
+      "owner": "A06",
+      "status": "RETAINED_TEXT",
+      "title": "Python_Verification_Research_Report_v1.md"
+    },
+    {
+      "binding": {
+        "path": "rust-ecosystem-langgraph-like-frameworks.md",
+        "sha256": "8bb51763e256cf5ac0bb2f7c7ece8cece203b5841916b41f035683d072f7852a"
+      },
+      "edition": "supplied 2026-11-02",
+      "extraction_loss": "none for raw UTF-8 text",
+      "id": "rust-ecosystem-langgraph-like-frameworks",
+      "license": "supplied project input; preserve provenance",
+      "owner": "A06",
+      "status": "RETAINED_TEXT",
+      "title": "rust-ecosystem-langgraph-like-frameworks.md"
+    }
+  ]
+}

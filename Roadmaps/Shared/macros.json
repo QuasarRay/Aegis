@@ -1,0 +1,166 @@
+{
+  "capabilities": [
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "genco",
+      "owner": "generator rules",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "source-derived Rust code generation"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "derive-deftly",
+      "owner": "source declaration and template",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "maintained template derivation"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "cgp",
+      "owner": "canonical source owner",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "context/provider composition; pervasive only after global barrier"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "arcane",
+      "owner": "selected macro definition",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "optional concrete macro capability after qualification"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "proc_macro2",
+      "owner": "calling generator",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "token stream infrastructure only"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "attribute",
+      "owner": "procedural macro crate",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "Rust proc_macro_attribute entry point; concrete implementation required"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "derive",
+      "owner": "procedural macro crate",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "Rust proc_macro_derive entry point; concrete implementation required"
+    },
+    {
+      "adoption": "available or qualification candidate; optional initially",
+      "id": "delegation",
+      "owner": "canonical source owner",
+      "qualification": "A07",
+      "required_inputs": [
+        "source identity",
+        "generator/macro version",
+        "configuration",
+        "toolchain"
+      ],
+      "required_outputs": [
+        "expansion map",
+        "diagnostics",
+        "generated-region ownership",
+        "reproducibility receipt",
+        "affected proof inputs"
+      ],
+      "role": "select concrete maintained implementation when needed; not a proc_macro2 feature"
+    }
+  ],
+  "rule": "One generated-region owner. Change rules and regenerate. Handwritten conversion requires recorded ownership transfer and overwrite prevention.",
+  "schema": 1
+}

@@ -1,0 +1,2 @@
+# Match the pinned stable engine; no model-provider SDK is introduced.
+dagger-io==0.21.11

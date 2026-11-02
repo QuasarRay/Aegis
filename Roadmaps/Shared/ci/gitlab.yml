@@ -1,0 +1,16 @@
+# Include this file from the adopting GitLab project's reviewed pipeline.
+# Runner provisioning and immutable image qualification belong to A12.
+aegis-roadmap:
+  stage: test
+  tags: [aegis-dagger-0.21.11]
+  resource_group: aegis-coordinated-workspace
+  timeout: 20m
+  script:
+    - python -B Roadmaps/Shared/ci/runner.py
+  artifacts:
+    when: always
+    paths:
+      - .aegis/ci/
+    expire_in: 30 days
+  rules:
+    - if: '$CI_COMMIT_BRANCH != "main"'

@@ -1,0 +1,338 @@
+{
+  "amendments": [
+    "AM01",
+    "AM02",
+    "AM03",
+    "AM04",
+    "AM05",
+    "AM06",
+    "AM07",
+    "AM08",
+    "AM09",
+    "AM10",
+    "AM11",
+    "AM12",
+    "AM13",
+    "AM14",
+    "AM15",
+    "AM16",
+    "AM17",
+    "AM18",
+    "AM19"
+  ],
+  "completion_milestones": [
+    "A13",
+    "B10",
+    "D11"
+  ],
+  "execution_priority": [
+    "A00",
+    "A01",
+    "A02",
+    "A03",
+    "A04",
+    "A05",
+    "B00",
+    "B01",
+    "B02",
+    "D00",
+    "D01",
+    "D02",
+    "A06",
+    "A07",
+    "B03",
+    "B04",
+    "D03",
+    "D04",
+    "B05",
+    "B06",
+    "D05",
+    "D06",
+    "D07",
+    "B07",
+    "D08",
+    "A12",
+    "B08",
+    "D09",
+    "A08",
+    "A09",
+    "A10",
+    "A11",
+    "A13",
+    "B09",
+    "B10",
+    "D10",
+    "D11",
+    "A14",
+    "B11",
+    "D12"
+  ],
+  "projects": {
+    "Aegis": {
+      "branch": "dev",
+      "canonical_record": ".aegis/project.json",
+      "capabilities": [
+        "codex",
+        "single_agent",
+        "max_reasoning",
+        "exact_correspondence"
+      ],
+      "language_boundary": "hybrid Python/Rust",
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14"
+      ],
+      "policies": [
+        "AM01",
+        "AM02",
+        "AM03",
+        "AM04",
+        "AM05",
+        "AM06",
+        "AM07",
+        "AM08",
+        "AM09",
+        "AM10",
+        "AM11",
+        "AM12",
+        "AM13",
+        "AM14",
+        "AM15",
+        "AM16",
+        "AM17",
+        "AM18",
+        "AM19"
+      ],
+      "project": "Aegis",
+      "repository": "/home/astral/Projects/Aegis",
+      "schema": 1,
+      "source_authorities": [
+        "AGENTS.MD"
+      ]
+    },
+    "Blue": {
+      "branch": "blue-rs-dev",
+      "canonical_record": "migration/work_queue.json",
+      "capabilities": [
+        "codex",
+        "single_agent",
+        "max_reasoning",
+        "exact_correspondence"
+      ],
+      "language_boundary": "Rust production with Python exposure; original test adapters only",
+      "milestones": [
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11"
+      ],
+      "policies": [
+        "AM01",
+        "AM02",
+        "AM03",
+        "AM04",
+        "AM05",
+        "AM06",
+        "AM07",
+        "AM08",
+        "AM09",
+        "AM10",
+        "AM11",
+        "AM12",
+        "AM13",
+        "AM14",
+        "AM15",
+        "AM16",
+        "AM17",
+        "AM18",
+        "AM19"
+      ],
+      "project": "Blue",
+      "repository": "/home/astral/Projects/blue",
+      "schema": 1,
+      "source_authorities": [
+        "AGENTS.MD",
+        "Blue_Prompt.md"
+      ]
+    },
+    "Destiny": {
+      "branch": "destiny-rs-dev",
+      "canonical_record": "verification/migration/next_batch.json",
+      "capabilities": [
+        "codex",
+        "single_agent",
+        "max_reasoning",
+        "exact_correspondence"
+      ],
+      "language_boundary": "Rust production with Python exposure; original test adapters only",
+      "milestones": [
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "policies": [
+        "AM01",
+        "AM02",
+        "AM03",
+        "AM04",
+        "AM05",
+        "AM06",
+        "AM07",
+        "AM08",
+        "AM09",
+        "AM10",
+        "AM11",
+        "AM12",
+        "AM13",
+        "AM14",
+        "AM15",
+        "AM16",
+        "AM17",
+        "AM18",
+        "AM19"
+      ],
+      "project": "Destiny",
+      "repository": "/home/astral/Projects/destiny",
+      "schema": 1,
+      "source_authorities": [
+        "AGENTS.MD",
+        "Destiny_Prompt.md"
+      ]
+    }
+  },
+  "recipes": {
+    "aegis.selftest": {
+      "argv": [
+        "python",
+        "-B",
+        "scripts/selftest.py"
+      ],
+      "kind": "local_validation",
+      "max_attempts": 2,
+      "max_seconds": 900
+    },
+    "cgp.revalidate": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "global completion barrier and all affected tests/proofs/packages",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "original.tests": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "complete applicable unchanged original suites against installed candidate",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "production.build": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "actual production artifact modes with pinned toolchains",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "proof.bolero-kani": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "qualified faithful Bolero generators routed to Kani",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "proof.kani": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "exact Kani harness selection with production linkage, assertions and covers",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "proof.python": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "report-selected qualified actual-Python backend and explicit evidence strength",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "release.accept": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "same-candidate packaging, architecture, remote integration and operational closure",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "roadmap.tests": {
+      "argv": [
+        "python",
+        "-B",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "infra/tests",
+        "-p",
+        "test_roadmap*.py",
+        "-q"
+      ],
+      "kind": "local_validation",
+      "max_attempts": 2,
+      "max_seconds": 180
+    },
+    "roadmap.validate": {
+      "argv": [
+        "python",
+        "-B",
+        "scripts/validate_roadmaps.py"
+      ],
+      "kind": "local_validation",
+      "max_attempts": 2,
+      "max_seconds": 120
+    },
+    "source.reconcile": {
+      "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "compiler-backed inventory and bidirectional declarations/configurations",
+      "status": "REQUIRES_PROJECT_QUALIFICATION"
+    }
+  },
+  "schema": 1
+}
