@@ -47,8 +47,34 @@ class WorkspaceLease:
     def assert_owner(self, owner: dict) -> None:
         require(self.read()["active"] == owner, "stale fencing generation or owner identity")
         require(owner["host"] == socket.gethostname() and _pid_alive(owner["pid"], owner["process_identity"]), "owner process not established")
+        if owner.get("boot_identity") is not None:
+            from .roadmap_native import inspect_process
+            require(inspect_process(owner) == "LIVE", "owner belongs to another boot or unknown process epoch")
+
+    def qualify(self, owner: dict) -> dict:
+        self.assert_owner(owner)
+        from .roadmap_native import observe_native_owner
+        observation = observe_native_owner(self.root, owner)
+        self.assert_owner(owner)
+        return observation
+
+    def release_observed(self, owner: dict, *, recovery: bool = False) -> None:
+        observation = self.qualify(owner)
+        require(observation["status"] == "idle" and observation["goal"]["status"] != "active",
+                "active, auto-continuing or ambiguous native ownership prohibits transfer")
+        self.release(owner, {"session": owner["session"], "status": "idle", "producer": "qualified_codex_transport",
+                             "observation_digest": observation["digest"]}, recovery=recovery)
 
     def release(self, owner: dict, native_observation: dict, *, recovery: bool = False) -> None:
+        canonical = self.root / ".aegis/project.json"
+        binding = read_json(canonical).get("execution", {}).get("native_binding", {}) if canonical.exists() else {}
+        if binding.get("thread_id") == owner["session"] and binding.get("native_accounting_preserved") is True:
+            # Legacy fixtures may supply transport observations. An adopted
+            # production Goal must always be checked against the actual service.
+            from .roadmap_native import observe_native_owner
+            observed = observe_native_owner(self.root, owner)
+            require(observed["status"] == "idle" and observed["goal"]["status"] != "active",
+                    "active or auto-continuing native Goal prohibits lease release")
         lock = FileLock(self.lock_path, "workspace lease release"); lock.acquire()
         try:
             state = self.read(); require(state["active"] == owner, "stale lease cannot release current owner")

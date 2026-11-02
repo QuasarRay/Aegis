@@ -1,6 +1,8 @@
 from __future__ import annotations
 
 from dataclasses import dataclass
+from contextlib import contextmanager
+from contextvars import ContextVar
 from datetime import datetime, timezone
 import hashlib
 import ctypes
@@ -12,9 +14,22 @@ import tempfile
 import threading
 import time
 from pathlib import Path
-from typing import Iterable, Mapping
+from typing import Callable, Iterable, Mapping
 
 from .security import minimal_subprocess_env, redact_text
+
+
+_process_observer = ContextVar("aegis_process_observer", default=None)
+
+
+@contextmanager
+def observe_process(callback: Callable[[subprocess.Popen], None]):
+    """Observe the existing supervisor's child without introducing another owner."""
+    token = _process_observer.set(callback)
+    try:
+        yield
+    finally:
+        _process_observer.reset(token)
 
 
 if os.name == "nt":
@@ -209,11 +224,18 @@ def run_process(
         stderr_thread.start()
         timed_out = False
         try:
+            observer = _process_observer.get()
+            if observer is not None:
+                observer(proc)
             proc.wait(timeout=timeout)
         except subprocess.TimeoutExpired:
             timed_out = True
             _kill_tree(proc, job)
             proc.wait(timeout=10)
+        except BaseException:
+            _kill_tree(proc, job)
+            proc.wait(timeout=10)
+            raise
         finally:
             # Closing a kill-on-close job also removes descendants that kept
             # running after a normally exiting direct child.

@@ -1,0 +1,320 @@
+"""Typed sequential work over the canonical project record and existing ledger.
+
+Specifications are derived from reviewed recipe implementations. JSON or prose
+cannot supply argv. Local tool execution confers no domain-proof credit.
+"""
+from __future__ import annotations
+
+from dataclasses import asdict
+import importlib.util
+import os
+from pathlib import Path
+import sys
+import sysconfig
+import time
+
+from .atomic import atomic_write_json
+from .locks import FileLock
+from .process import observe_process, run_process
+from .roadmap import FIXED_RECIPES, compile_roadmaps
+from .roadmap_inventory import GitInventory
+from .roadmap_lease import WorkspaceLease
+from .roadmap_native import inspect_process, process_handle
+from .roadmap_portability import ROOTS, maintained_python
+from .roadmap_project import ProjectAdapter
+from .roadmap_records import bindings_current, digest, file_binding, read_json, require, validate_record
+from .roadmap_runtime import BudgetLedger, recipe_scope
+from .security import confined_path, minimal_subprocess_env
+
+
+INTERFACE_VERSION = 1
+PROJECT_RECIPES = {"production.build", "original.tests", "source.reconcile"}
+
+
+def toolchain() -> dict:
+    modules = {}
+    for name in ("compileall", "py_compile", "unittest", "json", "subprocess"):
+        spec = importlib.util.find_spec(name)
+        require(spec is not None and spec.origin and Path(spec.origin).is_file(), "Python runtime module unavailable")
+        modules[name] = {"path": spec.origin, "sha256": digest(Path(spec.origin).read_bytes())}
+    stdlib = Path(sysconfig.get_path("stdlib"))
+    runtime = []
+    for directory, names, files in os.walk(stdlib):
+        names[:] = sorted(n for n in names if n not in {"site-packages", "__pycache__"})
+        for name in sorted(files):
+            path = Path(directory) / name
+            if path.suffix in {".py", ".so", ".pyd", ".dll"}:
+                runtime.append({"path": str(path), "sha256": digest(path.read_bytes())})
+    library = Path(sysconfig.get_config_var("LIBDIR") or "") / (sysconfig.get_config_var("LDLIBRARY") or "")
+    return {"executable": str(Path(sys.executable).resolve()), "sha256": digest(Path(sys.executable).read_bytes()),
+            "version": sys.version, "cache_tag": sys.implementation.cache_tag, "platform": sys.platform,
+            "modules": modules, "stdlib": runtime,
+            "python_library": {"path": str(library), "sha256": digest(library.read_bytes())} if library.is_file() else None}
+
+
+def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict:
+    root = root.resolve()
+    require(compiled == compile_roadmaps(root), "compiled authorities/source namespace changed")
+    require(milestone in compiled["milestones"] and compiled["milestones"][milestone]["project"] == "Aegis",
+            "only the adopted Aegis project recipes are qualified")
+    contract = compiled["milestones"][milestone]
+    require(recipe in contract["checks"] and recipe in compiled["recipes"], "recipe outside the milestone contract")
+    require(recipe in FIXED_RECIPES or recipe in PROJECT_RECIPES, "project recipe has no qualified implementation")
+    inputs = {b["path"]: b for b in compiled["inputs"]}
+    for path in maintained_python(root):
+        inputs[path.relative_to(root).as_posix()] = file_binding(root, path.relative_to(root).as_posix())
+    for name in ("framework.toml",):
+        inputs[name] = file_binding(root, name)
+    environment = minimal_subprocess_env()
+    # The process supervisor supplies a fresh isolated HOME; no ambient Python
+    # import path may redirect these source-owned recipes to another package.
+    require(not environment.get("PYTHONHOME") and not environment.get("PYTHONPATH") and
+            not environment.get("VIRTUAL_ENV"), "ambient Python routing requires explicit qualification")
+    config = {"environment": environment, "isolated_home": True, "capture_bytes_per_stream": 4_000_000,
+              "installed_artifact_acceptance": False, "source_roots": list(ROOTS)}
+    tools = toolchain()
+    candidate = digest({"compiled": compiled["digest"], "inputs": sorted(inputs.values(), key=lambda b: b["path"]),
+                        "toolchain": tools, "configuration": config})
+    output = f".aegis/roadmaps/work/{candidate}/{recipe}"
+    selection = {"kind": "registered_local_validation"}
+    if recipe in FIXED_RECIPES:
+        argv = [sys.executable, *FIXED_RECIPES[recipe][1:]]
+    elif recipe == "production.build":
+        argv = [sys.executable, "-B", "-X", f"pycache_prefix={output}/pycache", "-m", "compileall", "-q", "-f",
+                "--invalidation-mode=checked-hash", *ROOTS]
+        selection = {"kind": "checked_hash_bytecode", "roots": list(ROOTS),
+                     "production": [b for b in inputs.values() if b["path"].endswith(".py") and
+                                    not b["path"].startswith("infra/tests/")]}
+    else:
+        argv = [sys.executable, "-B", "scripts/roadmap_acceptance.py",
+                "tests" if recipe == "original.tests" else "source", "--output", output + "/details.json",
+                "--candidate", candidate]
+        selection = {"kind": "complete_unittest_discovery", "start": "infra/tests", "pattern": "test*.py",
+                     "files": [b for b in inputs.values() if b["path"].startswith("infra/tests/")]} if recipe == "original.tests" else {
+                         "kind": "all_branch_source_reconciliation", "refs": GitInventory(root).refs(),
+                         "worktree": GitInventory(root).worktree(), "remote_heads": GitInventory(root).remote_heads()}
+    spec = {"schema": INTERFACE_VERSION, "project": "Aegis", "recipe": recipe, "candidate": candidate,
+            "contract_digest": compiled["digest"], "inputs": sorted(inputs.values(), key=lambda b: b["path"]),
+            "target": {"root": str(root), "output": output, "acceptance": "source-host runtime only"},
+            "argv": argv, "selection": selection, "toolchain": tools, "configuration": config,
+            "max_seconds": min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"]),
+            "max_attempts": min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])}
+    spec["digest"] = digest(spec)
+    return spec
+
+
+def _immutable(root: Path, relative: str, record: dict) -> dict:
+    path = confined_path(root, relative)
+    if path.exists():
+        require(read_json(path) == record, "immutable operation artifact changed")
+    else:
+        atomic_write_json(path, record, root=root, mode=0o600)
+    return file_binding(root, relative)
+
+
+def _save_unit(adapter: ProjectAdapter, unit: dict) -> None:
+    validate_record(adapter.root, "WorkUnit", unit)
+    record = adapter.read()
+    units = dict(record.get("work_units", {}))
+    previous = units.get(unit["work_id"])
+    if previous and previous != unit:
+        history = list(previous["continuation"].get("history", []))
+        snapshot = dict(previous, continuation={k: v for k, v in previous["continuation"].items() if k != "history"})
+        unit["continuation"]["history"] = [*history, snapshot]
+    units[unit["work_id"]] = unit
+    adapter.update({"work_units": units}, expected_digest=digest(adapter.profile.path().read_bytes()))
+
+
+def qualify_execution(root: Path, compiled: dict, milestone: str, recipe: str) -> tuple[dict, dict, str, tuple[str, ...]]:
+    adapter = ProjectAdapter(root)
+    record = adapter.read()
+    execution = record["execution"]
+    work_id, inherited = recipe_scope(root, compiled, recipe, milestone, BudgetLedger(root))
+    owner = execution["workspace_lease"]
+    observation = WorkspaceLease(root).qualify(owner)
+    binding = execution["native_binding"]
+    require(observation["goal"]["objective"] == binding["objective"] and
+            observation["goal"]["threadId"] == binding["thread_id"] and observation["goal"]["status"] == "active",
+            "current native Goal differs from the adopted active objective")
+    for field in ("tokensUsed", "timeUsedSeconds"):
+        require(type(observation["goal"].get(field)) is int and
+                observation["goal"][field] >= binding.get("observation", {}).get(field, 0),
+                "native accounting cannot decrease at dispatch")
+    require(observation["caller_is_descendant"] and observation["status"] == "active" and
+            observation["mode"] == "default" and observation["effort"] == "max" and
+            observation["model"] == execution["native_turn_configuration"]["model"],
+            "active-host mode/model/effective max reasoning not established")
+    require(execution.get("monetary_cap") is None, "requested monetary cap cannot be enforced with unknown billing")
+    ledger = BudgetLedger(root)
+    goal = observation["goal"]
+    ledger.observe_usage(owner["session"], digest(goal), goal.get("tokensUsed"))
+    usage = observation["metadata"].get("usage")
+    if usage and usage.get("totals"):
+        ledger.observe_categories(owner["session"], usage["origin"]["sha256"], usage["totals"], usage["origin"])
+    return owner, observation, work_id, inherited
+
+
+def operation_state(operation: dict) -> dict:
+    """Observe actual creation handles. Neither timeout nor a lock is terminal."""
+    runner = inspect_process(operation.get("runner", {}))
+    child_handle = operation.get("child")
+    child = inspect_process(child_handle) if child_handle else "UNKNOWN"
+    group = "UNKNOWN"
+    if child == "PREVIOUS_BOOT":
+        group = "GONE_PREVIOUS_BOOT"
+    elif os.name == "posix" and child_handle and child_handle.get("host") == operation.get("runner", {}).get("host"):
+        # A reused group ID is ambiguous, never a target for termination.
+        if child in {"GONE", "LIVE"}:
+            try:
+                os.killpg(child_handle["pid"], 0)
+                group = "LIVE"
+            except ProcessLookupError:
+                group = "GONE"
+            except PermissionError:
+                pass
+    return {"runner": runner, "child": child, "process_group": group,
+            "safe_interruption": runner in {"GONE", "REUSED_PID", "PREVIOUS_BOOT"} and
+                child in {"GONE", "PREVIOUS_BOOT"} and group in {"GONE", "GONE_PREVIOUS_BOOT"}}
+
+
+def validate_tool_receipt(root: Path, spec: dict, receipt: dict) -> None:
+    require(receipt.get("inputs") == spec["digest"] and receipt.get("candidate") == spec["candidate"] and
+            receipt.get("argv") == spec["argv"] and receipt.get("domain_proof") is False and
+            receipt.get("installed_artifact_acceptance") is False and bindings_current(root, receipt.get("artifacts", [])),
+            "tool receipt input/artifact identity is stale or mismatched")
+    logs = [b for b in receipt["artifacts"] if b["path"].endswith("/result.json")]
+    require(len(logs) == 1, "tool receipt requires one actual supervisor result")
+    result = read_json(confined_path(root, logs[0]["path"]))
+    require(result["argv"] == spec["argv"] and result["cwd"] == str(root.resolve()) and
+            all(result[field] == receipt[field] for field in ("returncode", "timed_out", "stdout", "stderr")) and
+            receipt["truncated"] == (result["stdout_truncated"] or result["stderr_truncated"]) and
+            receipt["tool_microseconds"] == int(result["duration_seconds"] * 1_000_000),
+            "tool receipt contradicts the actual supervisor result")
+
+
+def recover_operation(root: Path, ident: str) -> dict:
+    ledger = BudgetLedger(root)
+    matches = [a for a in ledger.read()["attempts"] if a["id"] == ident]
+    require(len(matches) == 1, "unknown durable operation")
+    attempt = matches[0]
+    if attempt["status"] != "RESERVED":
+        return {"status": attempt["status"], "attempt": ident, "already_terminal": True}
+    operation = attempt.get("operation", {})
+    observed = operation_state(operation)
+    if observed["safe_interruption"]:
+        receipt_path = operation.get("receipt_path")
+        if receipt_path and confined_path(root, receipt_path).exists():
+            receipt = read_json(confined_path(root, receipt_path))
+            if (receipt.get("inputs") == attempt["inputs"] and receipt.get("domain_proof") is False and
+                    bindings_current(root, receipt.get("artifacts", [])) and bindings_current(root, [operation["spec"]])):
+                spec = read_json(confined_path(root, operation["spec"]["path"]))
+                if (spec.get("digest") == attempt["inputs"] == digest({k: v for k, v in spec.items() if k != "digest"}) and
+                        bindings_current(root, spec["inputs"]) and receipt.get("argv") == spec["argv"]):
+                    validate_tool_receipt(root, spec, receipt)
+                    outcome = "SUCCESS" if receipt["returncode"] == 0 and not receipt["timed_out"] and not receipt["truncated"] else "FAILED"
+                    ledger.close(ident, outcome, receipt)
+                    return {"status": outcome, "attempt": ident, "observed": observed, "completed_result_recovered": True}
+        ledger.close(ident, "INTERRUPTED", {"recovery": observed, "unknown_usage": True,
+                                           "reason": "verified runner, child and process group are gone"})
+        return {"status": "INTERRUPTED", "attempt": ident, "observed": observed}
+    return {"status": "UNRESOLVED", "attempt": ident, "observed": observed,
+            "next_action": "reobserve these same handles; do not redispatch or refund the reservation"}
+
+
+def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnosis: str | None = None) -> dict:
+    root = root.resolve()
+    lock = FileLock(root / ".aegis/roadmaps/execution.lock", "single canonical roadmap work unit")
+    lock.acquire(timeout=0)
+    try:
+        owner, observation, work_id, inherited = qualify_execution(root, compiled, milestone, recipe)
+        spec = materialize(root, compiled, milestone, recipe)
+        directory = spec["target"]["output"] + "/" + spec["digest"]
+        spec_binding = _immutable(root, directory + "/spec.json", spec)
+        native_binding = _immutable(root, directory + "/native-" + observation["digest"] + ".json", observation)
+        unit = {"schema": 1, "work_id": work_id, "contract_digest": compiled["digest"],
+                "source_responsibility": list(compiled["milestones"][milestone]["requirements"]),
+                "inputs": spec["inputs"], "writer": owner["session"] + ":" + str(owner["fence"]),
+                "allowed_actions": [recipe], "continuation": {"milestone": milestone, "spec": spec_binding,
+                    "native": native_binding, "status": "PREPARED", "domain_proof": False,
+                    "implementation_units": compiled["milestones"][milestone].get("implementation_units", [])}}
+        adapter = ProjectAdapter(root)
+        _save_unit(adapter, unit)
+        ledger = BudgetLedger(root)
+        operation = {"state": "PREPARED", "spec_digest": spec["digest"], "spec": spec_binding,
+                     "runner": process_handle(os.getpid()), "owner": owner, "child": None,
+                     "native_turn_id": observation["turn_id"], "prepared_ns": time.time_ns(),
+                     "receipt_path": directory + "/receipt.json"}
+        attempt = ledger.reserve_operation(work_id, spec["digest"], spec["max_seconds"], operation, max_attempts=spec["max_attempts"],
+                                 diagnosis=diagnosis, inherited_attempt_ids=inherited)
+        if attempt.get("reused"):
+            validate_tool_receipt(root, spec, attempt["receipt"])
+            unit["continuation"].update(status="REUSED", attempt=attempt["id"], receipt=attempt["receipt"])
+            _save_unit(adapter, unit)
+            return dict(attempt["receipt"], reused=True, attempt=attempt["id"])
+        unit["continuation"].update(status="RESERVED", attempt=attempt["id"], reservation=ledger.reservation_record(attempt["id"]))
+        _save_unit(adapter, unit)
+
+        def started(proc):
+            operation.update(state="RUNNING", child=process_handle(proc.pid), dispatched_ns=time.time_ns())
+            ledger.journal(attempt["id"], dict(operation))
+
+        spawn_attempted = False
+        try:
+            WorkspaceLease(root).assert_owner(owner)
+            require(bindings_current(root, spec["inputs"]) and spec["toolchain"] == toolchain(), "dispatch inputs changed")
+            dispatch_owner, dispatch_native, _, _ = qualify_execution(root, compiled, milestone, recipe)
+            require(dispatch_owner == owner and dispatch_native["turn_id"] == observation["turn_id"],
+                    "native owner or turn changed before dispatch")
+            spawn_attempted = True
+            with observe_process(started):
+                result = run_process(spec["argv"], cwd=root, timeout=spec["max_seconds"],
+                                     env=spec["configuration"]["environment"], capture_limit=4_000_000)
+            log = _immutable(root, directory + "/result.json", asdict(result))
+            observed = operation_state(operation)
+            require(observed["child"] == "GONE" and observed["process_group"] == "GONE",
+                    "supervisor returned but descendants/creation handles remain live or unknown")
+            WorkspaceLease(root).assert_owner(owner)
+            require(materialize(root, compile_roadmaps(root), milestone, recipe) == spec, "operation semantic inputs changed")
+            artifacts = [spec_binding, log]
+            details = confined_path(root, spec["target"]["output"] + "/details.json")
+            if details.exists():
+                details_record = read_json(details)
+                artifacts.append(_immutable(root, directory + "/details.json", details_record))
+                require(details_record.get("candidate") == spec["candidate"] and details_record.get("domain_proof") is False,
+                        "acceptance detail identity differs from the dispatched candidate")
+                if recipe == "source.reconcile":
+                    artifacts.append(details_record["snapshot"]["inventory"])
+            if recipe == "production.build":
+                import importlib.util as bytecode
+                for source in spec["selection"]["production"]:
+                    absolute = str(root / source["path"])
+                    path = root / spec["target"]["output"] / "pycache" / (absolute.lstrip("/").removesuffix(".py") + "." + sys.implementation.cache_tag + ".pyc")
+                    raw = path.read_bytes()
+                    require(raw[:4] == bytecode.MAGIC_NUMBER and int.from_bytes(raw[4:8], "little") == 3 and
+                            raw[8:16] == bytecode.source_hash((root / source["path"]).read_bytes()),
+                            "production bytecode does not bind current checked-hash source")
+                    artifacts.append(file_binding(root, path.relative_to(root).as_posix()))
+            receipt = {"schema": 1, "recipe": recipe, "inputs": spec["digest"], "candidate": spec["candidate"],
+                       "argv": spec["argv"], "returncode": result.returncode, "timed_out": result.timed_out,
+                       "truncated": result.stdout_truncated or result.stderr_truncated,
+                       "stdout": result.stdout, "stderr": result.stderr, "artifacts": artifacts,
+                       "tool_microseconds": int(result.duration_seconds * 1_000_000),
+                       "domain_proof": False, "installed_artifact_acceptance": False}
+            _immutable(root, directory + "/receipt.json", receipt)
+            ok = receipt["returncode"] == 0 and not receipt["timed_out"] and not receipt["truncated"]
+            ledger.close(attempt["id"], "SUCCESS" if ok else "FAILED", receipt)
+            unit["continuation"].update(status="SUCCESS" if ok else "FAILED", receipt=receipt,
+                                        reservation=ledger.reservation_record(attempt["id"]))
+            _save_unit(adapter, unit)
+            return dict(receipt, attempt=attempt["id"], reused=False)
+        except BaseException as exc:
+            observed = operation_state(operation)
+            # Unknown/live descendants keep their reservation. A crash between
+            # spawn and handle persistence also remains unknown on recovery.
+            if not spawn_attempted or observed["child"] == "GONE" and observed["process_group"] == "GONE":
+                if any(a["id"] == attempt["id"] and a["status"] == "RESERVED" for a in ledger.read()["attempts"]):
+                    ledger.close(attempt["id"], "INTERRUPTED", {"error_type": type(exc).__name__,
+                                 "observed": observed, "unknown_usage": True})
+            raise
+    finally:
+        lock.release()

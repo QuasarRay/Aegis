@@ -15,11 +15,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/roadmap-execution/SKILL.md",
@@ -43,11 +43,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/source-correspondence/SKILL.md",
@@ -71,11 +71,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/original-tests/SKILL.md",
@@ -99,11 +99,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/exact-harness-translation/SKILL.md",
@@ -127,11 +127,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/kani-bolero-evidence/SKILL.md",
@@ -155,11 +155,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/python-verification/SKILL.md",
@@ -183,11 +183,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/bevy-state-scheduling/SKILL.md",
@@ -211,11 +211,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/pyo3-lifetime/SKILL.md",
@@ -239,11 +239,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/numeric-serialization/SKILL.md",
@@ -267,11 +267,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/cgp-macro-design/SKILL.md",
@@ -295,11 +295,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/human-proof-review/SKILL.md",
@@ -323,11 +323,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/evidence-recovery-cost/SKILL.md",
@@ -351,11 +351,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/generic-review/SKILL.md",
@@ -379,11 +379,11 @@
         },
         {
           "path": "Roadmaps/Shared/ARCHITECTURE.md",
-          "sha256": "cf01b37075339f93d3de5833bf7da686cfacf2cda37e6763bcedb8f9336be541"
+          "sha256": "153212952e32605abf7de178ff330f945f929bc10d98c96dc7e04c1e9072c7ba"
         },
         {
           "path": "Roadmaps/Shared/OPERATIONS.md",
-          "sha256": "21260ad2a4174b694d3052a9b85ccdbec877477df8d3949a24cd6d32235d4522"
+          "sha256": "5b32d243194f67bd1dbd739515308a2bc46cf3833a978a3372870d7c751519b8"
         }
       ],
       "path": "Roadmaps/Shared/skills/python-rust-mapping/SKILL.md",
