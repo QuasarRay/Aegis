@@ -3,6 +3,7 @@
 The three separately maintained execution contracts are [Aegis](Aegis/README.md), [Carbon Blue](Blue/README.md) and [Carbon Destiny](Destiny/README.md). They contain 15, 12 and 13 sequential milestones respectively, with shared policy and cross-project capability dependencies.
 
 - [Architecture and decisions](Shared/ARCHITECTURE.md)
+- [Versioned controller interfaces](Shared/INTERFACES.md)
 - [Operational commands and recovery](Shared/OPERATIONS.md)
 - [Source requirement dispositions](Shared/REQUIREMENTS.md)
 - [Cross-project execution order](Shared/DEPENDENCIES.md)

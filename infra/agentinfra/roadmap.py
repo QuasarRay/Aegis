@@ -228,6 +228,12 @@ def project_into_record(root: Path, relative: str, audit: dict, expected_digest:
     require(digest(raw) == expected_digest, "canonical record changed")
     record = loads(raw.decode())
     require(isinstance(record, dict), "canonical record is not an object")
+    registry_path = root / "Roadmaps/Shared/registry.json"
+    registry = read_json(registry_path) if registry_path.exists() else None
+    if registry and path == confined_path(root, registry["projects"]["Aegis"]["canonical_record"]):
+        from .roadmap_project import ProjectAdapter
+        return ProjectAdapter(root, profiles=registry["projects"]).update(
+            {"aegis_roadmap_projection": audit}, expected_digest=expected_digest)
     updated = dict(record, aegis_roadmap_projection=audit)
     return FileTransaction(root, [Mutation(path, canonical(updated) + b"\n", expected_sha256=expected_digest)],
                            state_dir=root / ".aegis/state/transactions", name="roadmap-projection").commit()

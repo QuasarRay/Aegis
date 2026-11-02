@@ -19,8 +19,9 @@ import time
 from .process import run_process
 from .roadmap import compile_roadmaps
 from .roadmap_records import canonical, digest, loads, read_json, require
+from .roadmap_project import ProjectAdapter
 from .security import confined_path, minimal_subprocess_env
-from .transaction import FileTransaction, Mutation
+from .transaction import Mutation
 
 
 class GitInventory:
@@ -243,7 +244,8 @@ def save_inventory(root: Path, record: dict) -> dict:
             "source or branches changed before authority snapshot publication")
     if record["remote_heads"] is not None:
         require(git.remote_heads() == record["remote_heads"], "remote heads changed before authority snapshot publication")
-    path = confined_path(root, compiled["projects"]["Aegis"]["canonical_record"])
+    adapter = ProjectAdapter(root, profiles=compiled["projects"])
+    path = adapter.profile.path()
     before = path.read_bytes() if path.exists() else None
     current = loads(before.decode()) if before is not None else {"schema": 1, "project": "Aegis"}
     require(current.get("schema") == 1 and current.get("project") == "Aegis",
@@ -255,12 +257,10 @@ def save_inventory(root: Path, record: dict) -> dict:
     binding = {"path": relative, "sha256": digest(raw)}
     if current.get("authority_inventory") == binding:
         return {"status": "REUSED", "inventory": binding, "record": str(path)}
-    updated = dict(current, authority_inventory=binding)
-    FileTransaction(root, [Mutation(snapshot, raw, expected_exists=snapshot.exists(),
-                                    expected_sha256=digest(raw) if snapshot.exists() else None),
-                           Mutation(path, canonical(updated) + b"\n", expected_exists=before is not None,
-                                    expected_sha256=digest(before) if before is not None else None)],
-                    state_dir=root / ".aegis/state/transactions", name="aegis-authority-inventory").commit()
+    adapter.update({"authority_inventory": binding}, allow_create=True,
+                   expected_digest=digest(before) if before is not None else None,
+                   artifacts=(Mutation(snapshot, raw, expected_exists=snapshot.exists(),
+                                       expected_sha256=digest(raw) if snapshot.exists() else None),))
     return {"status": "RECORDED", "inventory": binding, "record": str(path)}
 
 
