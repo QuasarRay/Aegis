@@ -4,7 +4,7 @@ from __future__ import annotations
 import ast
 from pathlib import Path
 
-from .roadmap_records import digest, read_json, require
+from .roadmap_records import canonical, digest, read_json, require
 
 
 ROOTS = ("infra", "bin", "scripts", "verification/roadmap", "Roadmaps/Shared/ci")
@@ -128,3 +128,22 @@ def markdown(record: dict) -> str:
                       unit["numeric_contract"], unit["ownership_contract"], unit["error_contract"], "",
                       "Required evidence: " + "; ".join(unit["verification_required"]) + ".", ""])
     return "\n".join(lines)
+
+
+def shards(record: dict, max_bytes: int = 262144) -> tuple[dict, dict[str, dict]]:
+    """Bounded deterministic inventory files without omitting or truncating units."""
+    require(type(max_bytes) is int and max_bytes > 0, "invalid inventory shard budget")
+    parts, pending, size = {}, [], 0
+    for unit in record["units"]:
+        length = len(canonical(unit)) + 1
+        require(length < max_bytes, "single behavioral entry exceeds shard budget; refine representation without dropping semantics")
+        if pending and size + length >= max_bytes:
+            parts[f"units-{len(parts):04}.json"] = {"schema": 1, "units": pending}
+            pending, size = [], 0
+        pending.append(unit); size += length
+    if pending: parts[f"units-{len(parts):04}.json"] = {"schema": 1, "units": pending}
+    index = {"schema": 1, "kind": "sharded_python_rust_inventory", "coverage": record["coverage"],
+             "files": record["files"], "unit_count": len(record["units"]), "digest": record["digest"],
+             "shards": [{"path": "units/" + name, "digest": digest(value), "count": len(value["units"])}
+                        for name, value in parts.items()]}
+    return index, parts

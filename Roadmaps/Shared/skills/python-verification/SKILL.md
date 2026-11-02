@@ -29,3 +29,5 @@ This entry point provides progressive disclosure. It is not a lossless replaceme
 2. Evaluate Nagini for suitable deductive typed production kernels and ESBMC for explicitly bounded domains. Pin supported Python versions and actual import/exception/container semantics.
 3. Use CrossHair for contracts and counterexamples only. No-counterexample results and translated models cannot satisfy the full-domain-proof gate.
 4. Import actual maintained production functions into qualification harnesses. Preserve unsupported semantics and trust boundaries rather than making a simpler unused duplicate implementation.
+
+Read [Python verification routing](../../PYTHON_VERIFICATION_ROUTING.md) before choosing a backend. Classify every actual production obligation; qualify Nagini/ESBMC and suitable Deal subsets; investigate Apex only with its explicit source-to-model linkage barrier. Retain unsupported obligations and never replace their proof with sampled fidelity, runtime contracts, CrossHair success or fuzzing.

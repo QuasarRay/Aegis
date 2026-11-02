@@ -10,7 +10,7 @@ from .roadmap import compile_roadmaps, audit_evidence, packet, project_into_reco
 from .roadmap_codex import bind_goal, bind_plan, capabilities, read_native_goal
 from .roadmap_knowledge import retrieve, validate_skills
 from .roadmap_policy import authorize, goal_transition, proof_errors
-from .roadmap_portability import inventory, markdown
+from .roadmap_portability import inventory, markdown, shards
 from .roadmap_records import ContractError, digest, read_json, require, validate_record
 from .roadmap_review import render_packet, validate_decision, adjudicate_findings
 from .roadmap_runtime import BudgetLedger, run_recipe
@@ -95,14 +95,20 @@ def execute(a) -> dict:
     if a.family == "knowledge": return retrieve(root, a.source, a.start, a.end)
     if a.family == "portability":
         record = inventory(root); destination = root / "Roadmaps/Shared/python-rust/inventory.json"
+        index, parts = shards(record)
         if a.action == "build":
-            atomic_write_json(destination, record, root=root)
+            for name, value in parts.items():
+                atomic_write_json(destination.parent / "units" / name, value, root=root)
             for source in record["files"]:
                 units = [u for u in record["units"] if u["file"] == source["path"]]
                 path = destination.parent / (source["path"].replace("/", "__") + ".md")
                 atomic_write_text(path, markdown(dict(record, files=[source], units=units)), root=root)
-            return {"files": len(record["files"]), "units": len(record["units"]), "digest": record["digest"]}
-        require(read_json(destination) == record, "Python-to-Rust mapping is missing or stale; regenerate and review changed blocks")
+            # Publish the index last. Interrupted generation cannot pass freshness checks.
+            atomic_write_json(destination, index, root=root)
+            return {"files": len(record["files"]), "units": len(record["units"]), "shards": len(parts), "digest": record["digest"]}
+        require(read_json(destination) == index, "Python-to-Rust mapping is missing or stale; regenerate and review changed blocks")
+        for name, value in parts.items():
+            require(read_json(destination.parent / "units" / name) == value, "Python-to-Rust inventory shard missing or changed")
         for source in record["files"]:
             path = destination.parent / (source["path"].replace("/", "__") + ".md")
             units = [u for u in record["units"] if u["file"] == source["path"]]

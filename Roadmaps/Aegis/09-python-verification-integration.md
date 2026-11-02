@@ -65,7 +65,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
   "outputs": [
     "backend selection and qualification matrix",
     "actual Python proof harnesses",
-    "unsupported-semantics intervention packets"
+    "unsupported-semantics intervention packets",
+    "per-obligation Python backend route, qualified semantic coverage and retained unsupported-domain decisions"
   ],
   "write_scope": [
     "infra/**",
@@ -124,7 +125,10 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "Roadmaps/Shared/ARCHITECTURE.md",
     "Roadmaps/Shared/OPERATIONS.md",
     "Roadmaps/Shared/VERIFICATION.md",
-    "Roadmaps/Shared/ADOPTED_PLAN.md"
+    "Roadmaps/Shared/ADOPTED_PLAN.md",
+    "Roadmaps/Shared/PYTHON_VERIFICATION_ROUTING.md",
+    "Roadmaps/Shared/python-backends.json",
+    "Roadmaps/Shared/python-rust-research-dispositions.json"
   ],
   "provides": [
     "python_verification"
@@ -181,3 +185,5 @@ Inspect live operation handle and verified process identity; reconcile transacti
 Record source facts, assumptions, alternatives, decision, expected evidence and unresolved questions in a concise decision record. Preserve independent ready work when a required human decision blocks one unit. The native objective remains the complete adopted project contract.
 
 Write paths are repository-relative allow patterns; protected source/test/reference paths override them. Original-test byte changes need an exact separate decision. Expand adapter or package scope only through an authorized contract amendment. Every consumed capability is bound to its listed provider milestone and current evidence; finer capability receipts can be adopted explicitly without waiting for an unrelated whole project.
+
+Consume both supplied Python reports as unverified research. Follow the shared Python routing decision, including primary-source corrections, complementary Deal qualification and the Apex production-translation barrier. Do not adopt report rankings, other providers, automatic fuzz/concurrency routes, or a reduced proof denominator.

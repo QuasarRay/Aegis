@@ -53,6 +53,10 @@
       "sha256": "716b350734ccd0cd2e025077224db2be14d53c74de8163009f993df45168d13c"
     },
     {
+      "path": "python_rust_formal_verification_research_fixed.zip",
+      "sha256": "89bfeb33be5161c7ce242754cc619e5662a321a05a92b37923bd7540bb0e9971"
+    },
+    {
       "path": "rust-atomics-and-locks-markdown.zip",
       "sha256": "a112a59082f3e808bb38c2f7bd44d00e0ee8ab092413e97b9f3d054f47327f5c"
     },

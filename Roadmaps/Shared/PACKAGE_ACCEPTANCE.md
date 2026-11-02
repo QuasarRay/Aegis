@@ -9,10 +9,10 @@ Observed on 2026-11-02. This record concerns the roadmap package and its support
 | Destiny sequence | D00–D12: 13 maintained Markdown contracts |
 | Shared requirements | 130 dispositions: 19 root requirements, complete prompt sections, 51 named acceptance/U requirements and 19 amendment families |
 | Dependency graph | Deterministic, acyclic, complete; capability prerequisites validated; implementation-first execution preference |
-| Research | 252 archive recommendation dispositions and 3 supplemental source recommendations and 12 explicit Python-report recommendation dispositions |
+| Research | 252 archive recommendation dispositions and 3 supplemental source recommendations and 12 original Python-report dispositions, plus 24 later archive recommendations across 13 retained chapters |
 | Native skills | 14 specialized packages passed source-freshness checks and the native skill-creator packaging validator |
-| Python/Rust mapping | 50 maintained Python files, 10,631 behavioral units; source/AST inventory and per-file resolved Markdown; freshness check passed |
-| Runtime regression suite | 131 tests discovered: 129 passed, 2 host/platform-specific skips |
+| Python/Rust mapping | 50 maintained Python files, 10,696 behavioral units; source/AST inventory and per-file resolved Markdown; freshness check passed |
+| Runtime regression suite | 132 tests discovered: 130 passed, 2 host/platform-specific skips |
 | Finite production-policy harness | 2,467 scenarios passed; runtime evidence, not formal proof |
 | Named recipe execution | `roadmap.validate` passed through durable pre-dispatch reservation and bounded process supervision |
 | Real Codex path | Installed protocol generated; model capabilities discovered; existing current native Goal read and bound without objective mutation or accounting reset |
