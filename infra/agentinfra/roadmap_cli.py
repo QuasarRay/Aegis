@@ -33,12 +33,15 @@ def parser() -> argparse.ArgumentParser:
     a = r.add_parser("inventory"); a.add_argument("--remote", action="store_true"); a.add_argument("--save", action="store_true")
     a = r.add_parser("reconcile"); a.add_argument("--inventory", type=Path, required=True)
     a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis"); a.add_argument("--milestone")
+    a = r.add_parser("accept-implementation"); a.add_argument("--through", required=True); a.add_argument("--review", required=True)
     a = r.add_parser("project"); a.add_argument("--record", required=True); a.add_argument("--expected-digest", required=True); a.add_argument("--evidence", type=Path, required=True)
     r.add_parser("profile").add_argument("project")
     a = groups.add_parser("policy"); a.add_argument("action", choices=["explain"]); a.add_argument("operation"); a.add_argument("--context", type=Path, required=True)
     c = groups.add_parser("codex").add_subparsers(dest="action", required=True)
     c.add_parser("inspect")
     c.add_parser("read-goal").add_argument("--thread", required=True)
+    c.add_parser("owner")
+    c.add_parser("rebind-process").add_argument("--pid", required=True, type=int)
     a = c.add_parser("bind"); a.add_argument("--observation", type=Path, required=True); a.add_argument("--thread", required=True); a.add_argument("--objective", required=True); a.add_argument("--contract", required=True)
     a = c.add_parser("plan"); a.add_argument("--item", type=Path, required=True); a.add_argument("--milestones", required=True)
     a = c.add_parser("transition"); a.add_argument("--current", type=Path, required=True); a.add_argument("--request", type=Path, required=True)
@@ -48,6 +51,9 @@ def parser() -> argparse.ArgumentParser:
     a = v.add_parser("reconcile-tests"); a.add_argument("--inventory", type=Path, required=True); a.add_argument("--executed", type=Path, required=True); a.add_argument("--candidate", required=True)
     b = groups.add_parser("budget").add_subparsers(dest="action", required=True); b.add_parser("status")
     a = b.add_parser("observe"); a.add_argument("--thread", required=True); a.add_argument("--event", required=True); a.add_argument("--total", type=int)
+    b.add_parser("metrics")
+    a = b.add_parser("recover"); a.add_argument("--attempt", required=True)
+    a = b.add_parser("reservation"); a.add_argument("--attempt", required=True)
     r = groups.add_parser("review").add_subparsers(dest="action", required=True)
     a = r.add_parser("render"); a.add_argument("--packet", type=Path, required=True); a.add_argument("--output", required=True)
     a = r.add_parser("decision"); a.add_argument("--packet", type=Path, required=True); a.add_argument("--decision", type=Path, required=True)
@@ -76,6 +82,9 @@ def execute(a) -> dict:
         if a.action == "reconcile": return reconcile_inventory(root, read_json(a.inventory))
         if a.action == "profile": return ProjectAdapter(root, a.project, profiles=compiled["projects"]).describe()
         if a.action == "run": return run_recipe(root, compiled, a.recipe, diagnosis=a.diagnosis, milestone=a.milestone)
+        if a.action == "accept-implementation":
+            from .roadmap_acceptance import assemble_implementation
+            return assemble_implementation(root, a.review, a.through)
         evidence = read_json(a.evidence) if a.evidence else {"schema": 1, "compiled_digest": compiled["digest"], "receipts": []}
         audit = audit_evidence(root, compiled, evidence)
         if a.action == "audit": return audit
@@ -85,6 +94,11 @@ def execute(a) -> dict:
     if a.family == "codex":
         if a.action == "inspect": return capabilities()
         if a.action == "read-goal": return read_native_goal(a.thread)
+        if a.action == "rebind-process": return ProjectAdapter(root).rebind_native_process(a.pid)
+        if a.action == "owner":
+            from .roadmap_lease import WorkspaceLease
+            owner = ProjectAdapter(root).read()["execution"]["workspace_lease"]
+            return WorkspaceLease(root).qualify(owner)
         if a.action == "bind": return bind_goal(read_json(a.observation), thread_id=a.thread, objective=a.objective, contract_hash=a.contract)
         if a.action == "plan": return bind_plan(read_json(a.item), a.milestones.split(","), compile_roadmaps(root))
         if a.action == "reconcile": return reconcile_native_transition(read_json(a.before), read_json(a.response) if a.response else None, read_json(a.after) if a.after else None, a.desired)
@@ -98,6 +112,11 @@ def execute(a) -> dict:
         return {"accepted": not errors, "errors": errors, "limit": "record consistency; backend qualification and source-to-contract adequacy remain separate"}
     if a.family == "budget":
         ledger = BudgetLedger(root)
+        if a.action == "metrics": return ledger.metrics()
+        if a.action == "reservation": return ledger.reservation_record(a.attempt)
+        if a.action == "recover":
+            from .roadmap_work import recover_operation
+            return recover_operation(root, a.attempt)
         return ledger.read() if a.action == "status" else ledger.observe_usage(a.thread, a.event, a.total)
     if a.family == "review":
         if a.action == "findings": return {"findings": adjudicate_findings(root, read_json(a.input))}

@@ -20,3 +20,5 @@ implementation or proof credit.
 `python scripts/selftest.py` exercises operational regressions. Formal control invariants
 and their deductive proof entry point are in `verification/`; their scope is narrower than
 Python implementation correctness and is documented there.
+
+`roadmap run NAME --milestone ID` uses `roadmap_work` to bind complete semantic inputs, reserve before deterministic execution, retain native and child handles, and reuse current successful results. `budget metrics/recover/reservation` expose the same existing ledger. `roadmap_acceptance` assembles implementation gates from actual results plus scoped source review; full proof, installed artifacts and final release have separate gates. See [operating procedures](../Roadmaps/Shared/OPERATIONS.md).

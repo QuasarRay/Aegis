@@ -30,6 +30,18 @@ class BudgetLedger:
     def reserve(self, work_id: str, inputs: str, seconds: int, *, max_attempts: int = 2,
                 total_seconds: int = 1800, diagnosis: str | None = None,
                 inherited_attempt_ids: tuple[str, ...] = ()) -> dict:
+        return self._reserve(work_id, inputs, seconds, max_attempts=max_attempts, total_seconds=total_seconds,
+                             diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids)
+
+    def reserve_operation(self, work_id: str, inputs: str, seconds: int, operation: dict, *,
+                          max_attempts: int = 2, total_seconds: int = 1800, diagnosis: str | None = None,
+                          inherited_attempt_ids: tuple[str, ...] = ()) -> dict:
+        return self._reserve(work_id, inputs, seconds, max_attempts=max_attempts, total_seconds=total_seconds,
+                             diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids, operation=operation)
+
+    def _reserve(self, work_id: str, inputs: str, seconds: int, *, max_attempts: int = 2,
+                 total_seconds: int = 1800, diagnosis: str | None = None,
+                 inherited_attempt_ids: tuple[str, ...] = (), operation: dict | None = None) -> dict:
         require(bool(work_id) and bool(inputs), "work and input identities required")
         require(type(seconds) is int and 0 < seconds <= total_seconds, "invalid finite reservation")
         require(type(max_attempts) is int and max_attempts > 0, "invalid attempt limit")
@@ -37,6 +49,8 @@ class BudgetLedger:
         lock.acquire()
         try:
             record = self.read()
+            require(not any(a["status"] == "RESERVED" for a in record["attempts"]),
+                    "existing workspace operation requires recovery, not redispatch")
             by_id = {a["id"]: a for a in record["attempts"]}
             require(len(by_id) == len(record["attempts"]), "duplicate durable attempt identity")
             selected = {a["id"] for a in record["attempts"] if a["work_id"] == work_id}
@@ -50,6 +64,19 @@ class BudgetLedger:
                         selected.add(ancestor)
                         pending.append(ancestor)
             prior = [a for a in record["attempts"] if a["id"] in selected]
+            if operation is not None:
+                require(operation.get("spec_digest") == inputs and operation.get("runner") and
+                        operation.get("state") == "PREPARED", "bound operation journal required before dispatch")
+                reusable = [a for a in record["attempts"] if a["status"] == "SUCCESS" and a["inputs"] == inputs
+                            and a.get("operation", {}).get("spec_digest") == inputs]
+                for successful in reversed(reusable):
+                    receipt = successful.get("receipt", {})
+                    if bindings_current(self.root, receipt.get("artifacts", [])):
+                        successful.setdefault("reuse_consumers", [])
+                        if work_id not in successful["reuse_consumers"]:
+                            successful["reuse_consumers"].append(work_id)
+                        atomic_write_json(self.path, record, root=self.root, mode=0o600)
+                        return dict(successful, reused=True)
             require(not any(a["status"] == "RESERVED" for a in prior), "existing operation requires recovery, not redispatch")
             require(not any(a["status"] == "SUCCESS" and a["inputs"] == inputs for a in prior), "matching successful work already exists")
             require(len(prior) < max_attempts, "durable attempt limit exhausted")
@@ -63,11 +90,101 @@ class BudgetLedger:
                        "created_ns": time.time_ns()}
             if selected:
                 attempt["inherited_attempt_ids"] = sorted(selected)
+            if operation is not None:
+                attempt["operation"] = operation
             record["attempts"].append(attempt)
             atomic_write_json(self.path, record, root=self.root, mode=0o600)
             return attempt
         finally:
             lock.release()
+
+    def journal(self, ident: str, operation: dict) -> dict:
+        """CAS-like advancement of this ledger's existing nonterminal operation."""
+        lock = FileLock(self.lock, "roadmap operation observation"); lock.acquire()
+        try:
+            record = self.read()
+            matches = [a for a in record["attempts"] if a["id"] == ident]
+            require(len(matches) == 1 and matches[0]["status"] == "RESERVED", "operation is not reserved")
+            attempt = matches[0]
+            old = attempt.get("operation", {})
+            require(operation.get("state") == "RUNNING" and old.get("state") in {"PREPARED", "RUNNING"},
+                    "operation journal only advances a prepared/running dispatch")
+            require(old.get("spec_digest") == operation.get("spec_digest") and
+                    old.get("runner") == operation.get("runner") and old.get("owner") == operation.get("owner"),
+                    "operation identity/owner cannot change")
+            require(old.get("child") is None or old["child"] == operation.get("child"),
+                    "observed child creation identity cannot change")
+            attempt["operation"] = operation
+            atomic_write_json(self.path, record, root=self.root, mode=0o600)
+            return attempt
+        finally:
+            lock.release()
+
+    def observe_categories(self, thread_id: str, event_id: str, totals: dict, origin: dict) -> dict:
+        """Reconcile one native session series, separately from Goal accounting.
+
+        Cached input is part of input; reasoning output is part of output. These
+        categories are never added together to manufacture tokens or billing.
+        """
+        fields = {"input_tokens", "cached_input_tokens", "cache_write_input_tokens", "output_tokens",
+                  "reasoning_output_tokens", "total_tokens"}
+        require(bool(thread_id) and bool(event_id) and bool(origin) and set(totals) <= fields,
+                "native category observation identity/fields required")
+        require(all(v is None or type(v) is int and v >= 0 for v in totals.values()), "invalid native token category")
+        sample = {"totals": {k: totals.get(k) for k in sorted(fields)}, "origin": origin}
+        lock = FileLock(self.lock, "native category reconciliation"); lock.acquire()
+        try:
+            record = self.read()
+            series = record["usage"].setdefault("native-session:" + thread_id,
+                     {"kind": "native_session_cumulative", "thread_id": thread_id,
+                      "totals": {k: None for k in sorted(fields)}, "events": {}})
+            if event_id in series["events"]:
+                require(series["events"][event_id] == sample, "conflicting duplicate native category event")
+                return series
+            for field, value in sample["totals"].items():
+                previous = series["totals"][field]
+                require(value is None or previous is None or value >= previous,
+                        "decreasing native category requires reconciliation")
+            series["events"][event_id] = sample
+            for field, value in sample["totals"].items():
+                if value is not None:
+                    series["totals"][field] = value
+            atomic_write_json(self.path, record, root=self.root, mode=0o600)
+            return series
+        finally:
+            lock.release()
+
+    def metrics(self) -> dict:
+        record = self.read()
+        attempts = record["attempts"]
+        measured = [a["receipt"]["tool_microseconds"] for a in attempts
+                    if type(a.get("receipt", {}).get("tool_microseconds")) is int]
+        return {"schema": 1, "attempts": len(attempts),
+                "outcomes": {s: sum(a["status"] == s for a in attempts)
+                             for s in ("RESERVED", "SUCCESS", "FAILED", "INTERRUPTED")},
+                "reserved_seconds": sum(a["reserved_seconds"] for a in attempts),
+                "observed_tool_microseconds": sum(measured) if measured else None,
+                "tool_time_unknown_attempts": len(attempts) - len(measured),
+                "reuse_consumers": sum(len(a.get("reuse_consumers", [])) for a in attempts),
+                "native_series": {k: {f: v for f, v in s.items() if f != "events"} for k, s in record["usage"].items()},
+                "ci_microseconds": None, "storage_bytes": None, "price_estimate": None, "billed_amount": None,
+                "limits": ["No observed prices or billing; no enforceable monetary cap",
+                           "Goal totals and native session categories are separate cumulative series",
+                           "Historical reservations remain consumed; unknown measurements are not zero"]}
+
+    def reservation_record(self, ident: str) -> dict:
+        """Version-one quota record; consumed is allocation, not measured time."""
+        from .roadmap_records import validate_record
+        matches = [a for a in self.read()["attempts"] if a["id"] == ident]
+        require(len(matches) == 1, "unknown reservation")
+        attempt = matches[0]
+        value = {"schema": 1, "id": ident, "work_id": attempt["work_id"], "inputs": attempt["inputs"],
+                 "reserved": attempt["reserved_seconds"], "consumed": attempt["reserved_seconds"],
+                 "unknown_usage": type(attempt.get("receipt", {}).get("tool_microseconds")) is not int,
+                 "attempt": len(attempt.get("inherited_attempt_ids", [])) + 1, "status": attempt["status"],
+                 "reconciliation": "Seconds of irrevocable attempt allocation; consumed allocation is not observed runtime or billing. Actual microseconds are separate, unknown when unavailable."}
+        validate_record(self.root, "BudgetReservation", value)
+        return value
 
     def close(self, ident: str, outcome: str, receipt: dict) -> None:
         require(outcome in {"SUCCESS", "FAILED", "INTERRUPTED"}, "unknown terminal outcome")
@@ -78,6 +195,9 @@ class BudgetLedger:
             matches = [a for a in record["attempts"] if a["id"] == ident]
             require(len(matches) == 1 and matches[0]["status"] == "RESERVED", "unknown or already terminal attempt")
             matches[0].update(status=outcome, receipt=receipt)
+            if "operation" in matches[0]:
+                matches[0]["operation"]["state"] = outcome
+                matches[0]["operation"]["closed_ns"] = time.time_ns()
             atomic_write_json(self.path, record, root=self.root, mode=0o600)
         finally:
             lock.release()
@@ -149,6 +269,12 @@ def recipe_scope(root: Path, compiled: dict, name: str, milestone: str,
 
 def run_recipe(root: Path, compiled: dict, name: str, *, diagnosis: str | None = None,
                milestone: str | None = None) -> dict:
+    if milestone is not None:
+        from .roadmap_work import run_work
+        return run_work(root, compiled, milestone, name, diagnosis=diagnosis)
+    canonical_record = root / ".aegis/project.json"
+    require(not canonical_record.exists() or not read_json(canonical_record).get("execution"),
+            "adopted execution requires an explicit current milestone")
     require(bindings_current(root, compiled["inputs"]), "compiled execution inputs became stale")
     require(name in compiled["recipes"], "undeclared recipe")
     recipe = compiled["recipes"][name]
