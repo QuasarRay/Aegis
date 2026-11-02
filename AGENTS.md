@@ -22,7 +22,7 @@ Project Goals:
 
 11. Aegis must deeply integrate with Codex Goal Plugin and Plan Plugin.
 
-12. Since Aegis is growing larger, it should become more modular and more decoupled, therefore, if necessary, Langgraph + Langchain + Unpythonic must replace raw python code. And for the parts of project implemented in Rust, CGP + Derive Deftly + The Rust Frameworks listed in .md files and zip files for Agent Orchestration.
+12. Since Aegis is growing larger, it should become more modular and more decoupled, therefore, if necessary, Langgraph + Langchain + Unpythonic must replace raw python code. And for the parts of project implemented in Rust, CGP + Derive Deftly + Arcane Macros ("https://github.com/arcane-rs/arcane") + proc macro 2, proc macro 2 attribute, proc macro 2 derive and proc macro 2 delegate The Rust Frameworks listed in .md files and zip files for Agent Orchestration.
 
 13. In this development cycle, the project will be deeply designed around Developing the projects Carbon Blue and Carbon Destiny and Aegis itself
 
