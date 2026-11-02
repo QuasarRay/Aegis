@@ -14,6 +14,7 @@ from .roadmap_portability import inventory, markdown, shards
 from .roadmap_records import ContractError, digest, read_json, require, validate_record
 from .roadmap_review import render_packet, validate_decision, adjudicate_findings
 from .roadmap_runtime import BudgetLedger, run_recipe
+from .roadmap_inventory import authority_inventory, reconcile_inventory, save_inventory
 from .roadmap_verification import reconcile_original_tests, reconcile_native_transition
 from .security import confined_path
 
@@ -26,7 +27,9 @@ def parser() -> argparse.ArgumentParser:
     r.add_parser("compile").add_argument("--save", action="store_true")
     r.add_parser("audit").add_argument("--evidence", type=Path)
     a = r.add_parser("packet"); a.add_argument("milestone"); a.add_argument("--evidence", type=Path)
-    a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis")
+    a = r.add_parser("inventory"); a.add_argument("--remote", action="store_true"); a.add_argument("--save", action="store_true")
+    a = r.add_parser("reconcile"); a.add_argument("--inventory", type=Path, required=True)
+    a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis"); a.add_argument("--milestone")
     a = r.add_parser("project"); a.add_argument("--record", required=True); a.add_argument("--expected-digest", required=True); a.add_argument("--evidence", type=Path, required=True)
     a = groups.add_parser("policy"); a.add_argument("action", choices=["explain"]); a.add_argument("operation"); a.add_argument("--context", type=Path, required=True)
     c = groups.add_parser("codex").add_subparsers(dest="action", required=True)
@@ -58,7 +61,13 @@ def execute(a) -> dict:
         if a.action == "compile":
             if a.save: save_compiled(root, compiled)
             return compiled
-        if a.action == "run": return run_recipe(root, compiled, a.recipe, diagnosis=a.diagnosis)
+        if a.action == "inventory":
+            record = authority_inventory(root, remote=a.remote)
+            if a.save:
+                return save_inventory(root, record)
+            return record
+        if a.action == "reconcile": return reconcile_inventory(root, read_json(a.inventory))
+        if a.action == "run": return run_recipe(root, compiled, a.recipe, diagnosis=a.diagnosis, milestone=a.milestone)
         evidence = read_json(a.evidence) if a.evidence else {"schema": 1, "compiled_digest": compiled["digest"], "receipts": []}
         audit = audit_evidence(root, compiled, evidence)
         if a.action == "audit": return audit

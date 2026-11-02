@@ -1,6 +1,6 @@
 {
   "coverage": "all maintained files, definitions, statements and designated expression/handler blocks",
-  "digest": "970c3eadcf96469c0e1ea5385a7613f9f4554a12e8d99756e064ea632c0e48ad",
+  "digest": "63d9b4ce678f83477859a5a2a6594f2f075d7513ff6c173c52897d613717dab1",
   "files": [
     {
       "path": "Roadmaps/Shared/ci/runner.py",
@@ -80,11 +80,15 @@
     },
     {
       "path": "infra/agentinfra/roadmap_cli.py",
-      "sha256": "c3b5c50c4ffafc6f578263044e92362372be74a997027e3cd550b8b983269a2f"
+      "sha256": "7b4157fb2569e068cfe1ac2d3af7a3e0632006a037a90576e8dc793628cd2a9d"
     },
     {
       "path": "infra/agentinfra/roadmap_codex.py",
       "sha256": "4822475a02c49cefec55bedfbd0b3de287b34be449f2a02a6ece8444ab93f7f5"
+    },
+    {
+      "path": "infra/agentinfra/roadmap_inventory.py",
+      "sha256": "e561141f57a7391031d8c95a25dc6582cd32f7f61dc8e35b32eadc9bcab14582"
     },
     {
       "path": "infra/agentinfra/roadmap_knowledge.py",
@@ -112,7 +116,7 @@
     },
     {
       "path": "infra/agentinfra/roadmap_runtime.py",
-      "sha256": "23c32048f48038863041b7b70007fd316a45a4d84aeb8ab0dd72e39b64e57204"
+      "sha256": "f0bfd4897aa3dfedaf267df6346816881722e7abfefdc2923bb5e25c9621692b"
     },
     {
       "path": "infra/agentinfra/roadmap_scope.py",
@@ -181,6 +185,14 @@
     {
       "path": "infra/tests/test_roadmap.py",
       "sha256": "21e5668df916e854abc77dec58267ed6e7f7cbc77b6e4ffbb79f9e0024a051ef"
+    },
+    {
+      "path": "infra/tests/test_roadmap_inventory.py",
+      "sha256": "01b51c6a4068a5ac961356962dddc7d823f6386577dde54e154804ad868be319"
+    },
+    {
+      "path": "infra/tests/test_roadmap_runtime_scope.py",
+      "sha256": "c989095fd041280a957cc2cdee6a88481d5d05dc38594500f22555b578edcfa2"
     },
     {
       "path": "infra/tests/test_verus_evidence.py",
@@ -387,225 +399,260 @@
       "path": "units/units-0035.json"
     },
     {
-      "count": 137,
-      "digest": "1d782132bd8083c48b0e8acd73dba21c9309957d880d01e5e954ef58566b8090",
+      "count": 135,
+      "digest": "96c855a3e9b4765aa55116d70ae11d8adb68e9cdccfe164d5be7674b064dd8b3",
       "path": "units/units-0036.json"
     },
     {
-      "count": 134,
-      "digest": "5a364b98842bb25adda652acb814e71e1ff52570ef544f6489268e7e4476f7df",
+      "count": 133,
+      "digest": "ce38ba793fae2b0167e226df3cc1c1776bcf1ce779c4fb366b2f9ca96c8def51",
       "path": "units/units-0037.json"
     },
     {
-      "count": 133,
-      "digest": "0e4fefcf4e5352cffe0794b1a9414346cf5a01baa8205d769ad9235cba1ba7d9",
+      "count": 132,
+      "digest": "551f4cc516fca1d2aca1738937e3c7eab2c3349e95732e57a15f82f7128cbb0d",
       "path": "units/units-0038.json"
     },
     {
-      "count": 137,
-      "digest": "9dd409ce9301971110aa1c6422b3372ba36d2e686b1da27bb115c2205764b94b",
+      "count": 135,
+      "digest": "de415dee2b322197d7ee59252f2e75ae6aca305fbcc80ead9d9742642d84ae77",
       "path": "units/units-0039.json"
     },
     {
-      "count": 145,
-      "digest": "bdd538b1856fdc7e108535b1ceef64dce0964fb87aa4e20204a238f176bf9b8b",
+      "count": 128,
+      "digest": "3664732fc5fd657b864eb7f757b9d85c705b62a5cd4e9110dbc3d2b55a62d2ea",
       "path": "units/units-0040.json"
     },
     {
-      "count": 150,
-      "digest": "a66ab02ec6cd1a98b1266adce46c8cc99e16af4802c72772586349aaa58d873e",
+      "count": 126,
+      "digest": "b80cf9f60ea622d957c7cf15bbc211206520c7d15a57adae179b664d5b2bc745",
       "path": "units/units-0041.json"
     },
     {
-      "count": 155,
-      "digest": "2343700ff851004355bc4e384596cde080ac0605aabc619581fd352c79a26e06",
+      "count": 126,
+      "digest": "d4e7833c22e5c96d7d70a06c43c84274b9f85794bb9727923870d3c38238377a",
       "path": "units/units-0042.json"
     },
     {
-      "count": 126,
-      "digest": "530ba4cca342de659730a59f81d98d3acbd7e22bddd54af1321e12254dc37b98",
+      "count": 134,
+      "digest": "68516759c8362eaebe79e8e61c6f0d1ed53beff9bb347b8c8ef1a5ba6680f827",
       "path": "units/units-0043.json"
     },
     {
-      "count": 142,
-      "digest": "27f66cb9f501f3d47f30f2aa4277fe129ae49976d7a7e01b5a9d6c9ac10f4e02",
+      "count": 145,
+      "digest": "8919e41782aabbc99d5c9a87ced8b5c0db9e53a733e5d87b912ff254a146090c",
       "path": "units/units-0044.json"
     },
     {
-      "count": 145,
-      "digest": "968a09b9b827ab28a656769d734969c6cd12d71d9ad836bd09264d0939696a29",
+      "count": 155,
+      "digest": "c2576f92aed50a3795a41c6e79d15509d3a7dce97c1647cd30519b00e1150472",
       "path": "units/units-0045.json"
     },
     {
-      "count": 144,
-      "digest": "8f438758532a4cc79dab099aa77603cc06f37d5399859681470774326c01a0bc",
+      "count": 137,
+      "digest": "d78013e1b424102c6aac28a1b994e2a1def07342f1a161f27774d9d026507cda",
       "path": "units/units-0046.json"
     },
     {
-      "count": 140,
-      "digest": "fbf15827980e20c6992565665c598d0590d12f0319c833f857df0f98b53306a5",
+      "count": 138,
+      "digest": "311c6ea8b94c40e7e7c25a7ee8c8cc53773827ec8f3875fa7efe894eba7ef1f5",
       "path": "units/units-0047.json"
     },
     {
-      "count": 149,
-      "digest": "e73c6af1c9a007e267e82a74b09236302205f4c1ab94908cb6ffe4989f3a5fe0",
+      "count": 144,
+      "digest": "be4f50d2b38864dd0e01ae4ec947a5e968095e3d0aa648898a6c5175f06bebd1",
       "path": "units/units-0048.json"
     },
     {
-      "count": 145,
-      "digest": "e3d04a25538163aa4dcd595f48e38500bda46c84e0ec96136f763a488b15362c",
+      "count": 147,
+      "digest": "ec698cd507c7f2a1b36dc6083e8479c907b1b4aea4473089bf6bdbc6ccef6972",
       "path": "units/units-0049.json"
     },
     {
-      "count": 131,
-      "digest": "657101bf82d8ea1bfa117568af44f085d394139c39f9795c0c03e211eb514fcf",
+      "count": 138,
+      "digest": "61e7659b9e58f04d4ff9f3c22e5784a687c88410bf5d26a10838b68ccd28688f",
       "path": "units/units-0050.json"
     },
     {
-      "count": 136,
-      "digest": "974b997fe4abc48ce15fbaf3c789cb23531f7f996ddf829744b2d27b6d2bc837",
+      "count": 140,
+      "digest": "34f6f4e66c75afa1813e5f7f415e5d3154ce5fb59ac7e56cb02e078a25c0768c",
       "path": "units/units-0051.json"
     },
     {
-      "count": 137,
-      "digest": "ed99b466b8833166a6a9dff12080a492e0b33740dd539f6314e6654ae29e2af4",
+      "count": 147,
+      "digest": "08b5bac5687985ef8c9dfe32a0aed283e5df4ba4c46b283386cf3a2a62562987",
       "path": "units/units-0052.json"
     },
     {
-      "count": 143,
-      "digest": "65aafc959697c45c9b14880bf73bf85a5e08ad211101f34b6bffc1e88dca1d46",
+      "count": 146,
+      "digest": "260fca7b0efe1ed5025fe1f3aecd09d06d4e48a43aeccc7f8bc2f3a80a6010dd",
       "path": "units/units-0053.json"
     },
     {
-      "count": 148,
-      "digest": "06c970c05eadcd10fdb18990d12671f4ee34654ea2f460f76d091511e4f03ac6",
+      "count": 135,
+      "digest": "f0160e4287f700d1b21d6aca56fd7cd8f177333df7a603169ee2ed268cbc3418",
       "path": "units/units-0054.json"
     },
     {
-      "count": 131,
-      "digest": "ed136f4b65bbf1132da1ef4126c0219138bdc25377664c9d116c4d81acf01447",
+      "count": 136,
+      "digest": "6d22200969262fff10eba64c0d1d046eeed1e1f85dceb3589515d707af0d9804",
       "path": "units/units-0055.json"
     },
     {
-      "count": 128,
-      "digest": "db1146a70936e1d3f82f8f58ac45e57409905d5afd9b79fcabb3b5b674b8684a",
+      "count": 137,
+      "digest": "83a85bc084460f1464993d002c45a9fc7944f0dd040217f019014a6405ff086e",
       "path": "units/units-0056.json"
     },
     {
-      "count": 129,
-      "digest": "735dd448a089f6f033cd515e89717e96f8c9e0a6a65f14a559c33eded2f2c8c1",
+      "count": 140,
+      "digest": "e1990e8cd4cb1740ce88cd96c924812ef5a7805d5fa4b9def4a871fbec205d73",
       "path": "units/units-0057.json"
     },
     {
-      "count": 137,
-      "digest": "a53a3ded8bc519371c50a9c805964031122c4a76664aede1604bddae51a8ea38",
+      "count": 148,
+      "digest": "4162a13c1b95b5aa827a87089a79ba2a153ae8874cd791ab199bb89f9910cf26",
       "path": "units/units-0058.json"
     },
     {
-      "count": 144,
-      "digest": "5f5381f933a0df38af0a1f0a30a8cd1c4ba6296388c8c71c2745571e218d7eac",
+      "count": 133,
+      "digest": "9112c00631ecef68ea5e69421a9a64b21d714a9de848cf6b906cd9a583a0b32c",
       "path": "units/units-0059.json"
     },
     {
-      "count": 136,
-      "digest": "b360dcc55d40115048bdcc10f44846a47cbfc679a1cac38e61ee3d5d935ae550",
+      "count": 129,
+      "digest": "d7ab8945a6dc1dfd8b83a2c15feb88c07d5850866240b28b5f5babff46be0fdf",
       "path": "units/units-0060.json"
     },
     {
-      "count": 135,
-      "digest": "6677d93bc631892c61befec12ddad89f68f0e68ef8a43661381206d1967eec9e",
+      "count": 128,
+      "digest": "bafd81c12f0f4ffa0cd32ba950c70c61491095402494c445240ee5ed96aff11f",
       "path": "units/units-0061.json"
     },
     {
-      "count": 131,
-      "digest": "e25e7e5fc6faea9e2f5b3d5d353f1eb9f678bc832aff2ef686a361e6a7cae093",
+      "count": 135,
+      "digest": "03d584f5e41556736ff2837323ed82f6ae94680d8b637c99b50efd5e96204297",
       "path": "units/units-0062.json"
     },
     {
-      "count": 124,
-      "digest": "4364b9ccbb866dd095fa7d5372ce779d00f59d3fe9801037cb1da1dbeec53a24",
+      "count": 144,
+      "digest": "f3eef1e641defb703b3a0f7b4f16cf9ffbf44f807222807d93b2a877e99d2602",
       "path": "units/units-0063.json"
     },
     {
-      "count": 129,
-      "digest": "2f918c39205dff3c3201f5227fd1d10e1830435872f9b3686830d708009df795",
+      "count": 138,
+      "digest": "825058ee5b7bc583d7dd621b8b106c30199bc2dd86eedb9d765c599081d048cd",
       "path": "units/units-0064.json"
     },
     {
-      "count": 130,
-      "digest": "499b1e1b8cf644c78ceb15b9ad39966d3c9096853fa0b0b2c6e63bc16b03625d",
+      "count": 135,
+      "digest": "42610ece99519c9e3db26ea1962868d89dc38f03ed1b2de5c942587d21f3ee1f",
       "path": "units/units-0065.json"
     },
     {
-      "count": 133,
-      "digest": "263020ad84c8fd7227737ff81fded7f6f52f5afe9ef1bee50e2b160bad093b03",
+      "count": 134,
+      "digest": "ea970f1aa8d49d6478c09292859506e71d3519b2fa5f95e2796e9bc9d3d75151",
       "path": "units/units-0066.json"
     },
     {
-      "count": 138,
-      "digest": "212bc822e39aec2d86313d816963bcc0bc3bf87520eb943e927e8175b3abcbfb",
+      "count": 123,
+      "digest": "d157d66b0f5aa5b4c669ff855140d6ce1a1dfd69870b1511a6ccd1cd8c08c10e",
       "path": "units/units-0067.json"
     },
     {
-      "count": 140,
-      "digest": "ca3ebbbacd5bedd664c8348aec8f4c4edb64397f4db3733b25c92b790ce79820",
+      "count": 128,
+      "digest": "fa8dbed6f411593c276fc5d54f58a3ffcfd773ed421d619aa7db5b05d1ab1d4a",
       "path": "units/units-0068.json"
     },
     {
-      "count": 134,
-      "digest": "4334a2d6feecb2f15e77c7753ee5c75cbee9e863d91e15e62f423ae609955698",
+      "count": 130,
+      "digest": "01e2a9deeb2d1bbf04b790a076762f0c4bdb56ff928a388d0e5073a0193364fd",
       "path": "units/units-0069.json"
     },
     {
-      "count": 119,
-      "digest": "2f70419de11ee406762c48c0217e651a1a7069239dbe4fd320af9a1f4bfa7ce0",
+      "count": 134,
+      "digest": "10f735e7e08bf52a3159c892cad76ee948e088c16fa2a7e1a6ddd16e6bd40e79",
       "path": "units/units-0070.json"
     },
     {
-      "count": 123,
-      "digest": "79ce316919b90182b7bf94c44dcc9b15b2e07b85d9b03f59bd030eeb43d8542b",
+      "count": 136,
+      "digest": "fb20db440309dd24335bd479f9b801a6589a714b18c7cb1b09dd6647bd9c7d02",
       "path": "units/units-0071.json"
     },
     {
-      "count": 120,
-      "digest": "8bae7963e554761c38a95dd51252972afa4f3a0593058cbe887c64725ba63480",
+      "count": 141,
+      "digest": "ab00d3046fdb79b905fdf458fa23307b07713c89301cbeacb40462e797ff343b",
       "path": "units/units-0072.json"
     },
     {
-      "count": 120,
-      "digest": "b5da7e7c7ddd505e9083e443d873acf031ef966c3c988f195cc7e24c1152930f",
+      "count": 135,
+      "digest": "ba09e4e6b3e752655b5368e6b5617aedd984208183f6369265ba72ab2313ba70",
       "path": "units/units-0073.json"
     },
     {
-      "count": 120,
-      "digest": "50eca996f42e59c4fff10aae7a22f73dacf23141e7cf7aa168dcfa1104337ffc",
+      "count": 121,
+      "digest": "f476092c1b8d2a6ce263042e927dbebf91a80b5b6ae81769adc63325a63dddea",
       "path": "units/units-0074.json"
     },
     {
-      "count": 121,
-      "digest": "3b8c05f74b629209c35e844aba53869e306e8ccc8276fc4448d2ec4b9a5d3b6c",
+      "count": 123,
+      "digest": "43ad1d77d49e5fefad81de214f246ea51dfec48f59c43a0debe35ae10abebdab",
       "path": "units/units-0075.json"
     },
     {
-      "count": 131,
-      "digest": "88cafa3206434b5302c65e92b2120c24065d37418fb63a4ed75d1d3a02807a7a",
+      "count": 121,
+      "digest": "7280648c5565b76e971c12598ec1784e2cfda4f2044d9412ad295d8166fd9406",
       "path": "units/units-0076.json"
     },
     {
-      "count": 133,
-      "digest": "c504f03bcaaf198080aac82b840c6f70aadc1209ef5d415aa71d0dcd22596f6a",
+      "count": 119,
+      "digest": "1ae996f7c4bfe4bba570c26307f56bf64bfaef85c56d6d4b20a6a7d14e0c0d3f",
       "path": "units/units-0077.json"
     },
     {
-      "count": 141,
-      "digest": "2ff44ff5d7ef41dc4dddb25f10376a4a8ebc951d01c035ce47aae1ff6635fa89",
+      "count": 121,
+      "digest": "fb267b98cdf1689a25c24bbaafa6d92b8a17322de434a49a549a9736916cf235",
       "path": "units/units-0078.json"
     },
     {
-      "count": 21,
-      "digest": "c55fb8a5aff344ad8e684c544ab3450d6cbb8d9168128800e3a750b1740d6760",
+      "count": 121,
+      "digest": "51b11f730325409190bc89f70e35f6d4c73097ea7376153bedba35d477f2af93",
       "path": "units/units-0079.json"
+    },
+    {
+      "count": 125,
+      "digest": "fdfd254898d847ba5f2162187fa832a0712f3a7fc3c55173520dd953ef987655",
+      "path": "units/units-0080.json"
+    },
+    {
+      "count": 132,
+      "digest": "88fbf1e7ccb77b86c6d6b80fef76f621eb182132dd90b5135ee4b18ced1abdc1",
+      "path": "units/units-0081.json"
+    },
+    {
+      "count": 132,
+      "digest": "90d51338b4408419307725eabc5287f0e6d33bda500a653012f11ecfc3138ded",
+      "path": "units/units-0082.json"
+    },
+    {
+      "count": 132,
+      "digest": "afd60333fea5ea5cc490f112fe86eaf29e53c6a68254d85868d2ce980d0a2842",
+      "path": "units/units-0083.json"
+    },
+    {
+      "count": 138,
+      "digest": "b9b08d1d57e9665fbeb13ae787a68062ee684bf3f1d785ad478cea9dc499c40d",
+      "path": "units/units-0084.json"
+    },
+    {
+      "count": 132,
+      "digest": "e6ec4fd4379433ad66982d16c9d438a5066864c2ec78487427b209771a595457",
+      "path": "units/units-0085.json"
+    },
+    {
+      "count": 110,
+      "digest": "1e69d0aefec7becd93232904dd6c39ae719dd7d9e3ff5abf83eeb1818cfd6d06",
+      "path": "units/units-0086.json"
     }
   ],
-  "unit_count": 10696
+  "unit_count": 11683
 }
