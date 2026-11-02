@@ -69,7 +69,7 @@ def _assemble(root: Path, review_path: str, through: str, *, complete_current: b
         selected = [m for m in selected if m != through]
         require(bool(selected), "partial implementation has no accepted dependency scope to refresh")
     names = list(dict.fromkeys(["roadmap.validate", "production.build", "original.tests", "source.reconcile",
-                               *[name for m in [*selected, through] for name in compiled["milestones"][m]["checks"]]]))
+                               *[name for m in selected for name in compiled["milestones"][m]["checks"]]]))
     for name in names:
         spec = materialize(root, compiled, through, name)
         matches = [a for a in attempts if a["status"] == "SUCCESS" and a["inputs"] == spec["digest"]

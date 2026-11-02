@@ -21,7 +21,7 @@ LAYERS = {
     "policy": {"roadmap_policy", "roadmap_scope", "governance", "security"},
     "execution": {"roadmap_runtime", "roadmap_work", "roadmap_lease", "process", "locks", "atomic", "transaction"},
     "profiles": {"roadmap_project"},
-    "evidence": {"roadmap_records", "roadmap_acceptance", "roadmap_verification", "evidence", "verus_evidence", "coverage", "formal"},
+    "evidence": {"roadmap_records", "roadmap_acceptance", "roadmap_verification", "roadmap_python", "evidence", "verus_evidence", "coverage", "formal"},
     "source": {"roadmap_inventory", "roadmap_portability", "roadmap_interfaces", "catalog", "context_cache"},
     "native": {"roadmap_codex", "roadmap_native", "roadmap_protocol", "roadmap_native_adapter"},
     "knowledge": {"roadmap_knowledge"},

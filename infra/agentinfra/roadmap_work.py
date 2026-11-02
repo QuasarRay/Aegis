@@ -28,7 +28,8 @@ from .security import confined_path, minimal_subprocess_env
 
 
 INTERFACE_VERSION = 1
-PROJECT_RECIPES = {"production.build", "original.tests", "source.reconcile", "native.protocol", "native.acceptance"}
+PROJECT_RECIPES = {"production.build", "original.tests", "source.reconcile", "native.protocol", "native.acceptance",
+                   "python.route", "python.toolchain", "python.qualify"}
 
 
 def selected_work_milestones(compiled: dict, record: dict, through: str) -> list[str]:
@@ -112,6 +113,20 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
     selection = {"kind": "registered_local_validation"}
     if recipe in FIXED_RECIPES:
         argv = [sys.executable, *FIXED_RECIPES[recipe][1:]]
+    elif recipe in {"python.route", "python.toolchain", "python.qualify"}:
+        require(milestone == "A09" or "A09" in inherited, "Python qualification requires its adopted A09 capability lineage")
+        action = recipe.removeprefix("python.")
+        argv = [sys.executable, "-B", "scripts/roadmap_python.py", action, "--output", output + "/details.json", "--candidate", candidate]
+        selection = {"kind": "actual_python_source_qualification", "action": action, "domain_proof": False}
+        if recipe == "python.qualify":
+            binding = ProjectAdapter(root).read().get("python_toolchain_observation")
+            require(binding and bindings_current(root, [binding]), "current isolated Python toolchain observation required")
+            observed = read_json(confined_path(root, binding["path"]))
+            require(observed.get("status") == "INSTALLED_NOT_QUALIFIED" and bindings_current(root, observed["files"]), "isolated Python toolchain is missing or changed")
+            for dependency in [binding, *observed["files"]]:
+                inputs[dependency["path"]] = dependency
+            argv.extend(["--toolchain", binding["path"]])
+            selection["toolchain"] = binding
     elif recipe == "native.protocol":
         require(milestone == "A04" or "A04" in inherited, "native protocol export requires its adopted capability lineage")
         argv = [tools["codex"]["path"], "app-server", "generate-json-schema", "--experimental", "--out", output + "/export"]
@@ -361,6 +376,19 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                         "acceptance detail identity differs from the dispatched candidate")
                 if recipe == "source.reconcile":
                     artifacts.append(details_record["snapshot"]["inventory"])
+                if recipe in {"python.route", "python.toolchain", "python.qualify"}:
+                    dependencies = details_record.get("artifacts", [])
+                    require(not dependencies or bindings_current(root, dependencies), "Python observation artifacts changed")
+                    artifacts.extend(dependencies)
+                    if recipe == "python.toolchain" and result.returncode == 0:
+                        require(details_record.get("status") == "INSTALLED_NOT_QUALIFIED" and
+                                bindings_current(root, details_record["files"]), "isolated Python installation is incomplete")
+                        artifacts.extend(details_record["files"])
+                        adapter.update({"python_toolchain_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                    elif recipe == "python.route" and result.returncode == 0:
+                        adapter.update({"python_verification_routes": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                    elif recipe == "python.qualify" and result.returncode == 0:
+                        adapter.update({"python_qualification_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                 if recipe == "native.acceptance":
                     require(details_record.get("accepted") is True, "native transport qualification is incomplete")
                     require(bindings_current(root, details_record.get("artifacts", [])), "native observation artifacts changed")

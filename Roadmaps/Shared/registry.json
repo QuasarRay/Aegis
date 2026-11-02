@@ -250,6 +250,22 @@
       "purpose": "global completion barrier and all affected tests/proofs/packages",
       "status": "REQUIRES_PROJECT_QUALIFICATION"
     },
+    "native.acceptance": {
+      "activation": "Fixed read-only native acceptance producer with exact current protocol and completed adopted Plan source, real Goal/configuration observations, reservation and bounded output.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 180,
+      "purpose": "qualify real Goal/Plan reads and actual active-host settings without new inference or native Goal mutation",
+      "status": "REQUIRES_CURRENT_AEGIS_A04_RECEIPTS"
+    },
+    "native.protocol": {
+      "activation": "Fixed installed-executable export; preserve exact schemas, binary identity, current native ownership, reservation and complete bounded output before capability credit.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 120,
+      "purpose": "pin complete installed Codex app-server method and notification schemas",
+      "status": "QUALIFIED_AEGIS_A04_SCHEMA_EXPORT"
+    },
     "original.tests": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
@@ -289,6 +305,30 @@
       "max_seconds": 900,
       "purpose": "report-selected qualified actual-Python backend and explicit evidence strength",
       "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "python.qualify": {
+      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and finite reservation required.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "Positive and deliberately wrong assertions against unchanged production imports; no domain proof promotion",
+      "status": "IMPLEMENTED_QUALIFICATION_ONLY"
+    },
+    "python.route": {
+      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and finite reservation required.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "Complete maintained Python source and domain-obligation routing with unsupported semantics retained",
+      "status": "IMPLEMENTED_QUALIFICATION_ONLY"
+    },
+    "python.toolchain": {
+      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and finite reservation required.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 900,
+      "purpose": "Install exact hashed Nagini wheels and JRE in a private workspace toolchain; no global installation",
+      "status": "IMPLEMENTED_QUALIFICATION_ONLY"
     },
     "release.accept": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
@@ -332,22 +372,6 @@
       "max_seconds": 900,
       "purpose": "compiler-backed inventory and bidirectional declarations/configurations",
       "status": "REQUIRES_PROJECT_QUALIFICATION"
-    },
-    "native.protocol": {
-      "activation": "Fixed installed-executable export; preserve exact schemas, binary identity, current native ownership, reservation and complete bounded output before capability credit.",
-      "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 120,
-      "purpose": "pin complete installed Codex app-server method and notification schemas",
-      "status": "QUALIFIED_AEGIS_A04_SCHEMA_EXPORT"
-    },
-    "native.acceptance": {
-      "activation": "Fixed read-only native acceptance producer with exact current protocol and completed adopted Plan source, real Goal/configuration observations, reservation and bounded output.",
-      "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 180,
-      "purpose": "qualify real Goal/Plan reads and actual active-host settings without new inference or native Goal mutation",
-      "status": "REQUIRES_CURRENT_AEGIS_A04_RECEIPTS"
     }
   },
   "schema": 1

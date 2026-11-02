@@ -2,19 +2,19 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 415. Inventory digest: `7312ea8fd48174868891574e32afa06c2f0c38ca071fba09661a3cad3b6e8d4b`.
+Files: 1. Behavioral units: 418. Inventory digest: `232ca317b1233c53c4ad4e63d96052d18d9ec536f5def3a5ef5403e3c30f5155`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_cli.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_cli.py:1`; AST `db91df0d754f53ac703c57a864e797ade053f1d4ce943df62b249de68ebf0b08`.
+Source: `infra/agentinfra/roadmap_cli.py:1`; AST `4795a3ccf05b7cbf1ce6bb07bcb63beb79e7ed4e170dd7e4f58abe451186ea2a`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: BudgetLedger, ContractError, KeyError, OSError, Path, ProjectAdapter, TimeoutError, TransactionError, TypeError, WorkspaceLease, __doc__, __file__, a, adjudicate_findings, any, argparse, args, argv, assemble_implementation, atomic_write_text, audit, audit_evidence, authority_inventory, authorize, b, bind_goal, bind_plan, c, capabilities, check, compare_interfaces, compile_roadmaps, compiled, confined_path, decision, dict, digest, errors, evidence, exc, execute, field, goal_transition, groups, i, int, inventory, json, ledger, obligation, observe_interfaces, output, owner, p, packet, parser, print, project_into_record, proof_errors, publish, r, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, record, recover_operation, refresh_implementation_dependencies, render_packet, request, result, retrieve, review, root, run_recipe, save_compiled, save_inventory, str, v, validate_decision, validate_record, validate_skills. Outputs/bindings: a, args, audit, b, c, compiled, decision, errors, evidence, field, groups, i, ledger, obligation, output, owner, p, r, record, request, result, review, root, v.
-Calls/effect boundaries: BudgetLedger, ContractError, Path, Path(__file__).resolve, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).rebind_native_process, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe, WorkspaceLease, WorkspaceLease(root).qualify, a.add_argument, a.milestones.split, a.root.resolve, adjudicate_findings, any, argparse.ArgumentParser, assemble_implementation, atomic_write_text, audit_evidence, authority_inventory, authorize, b.add_parser, bind_goal, bind_plan, c.add_parser, c.add_parser('read-goal').add_argument, c.add_parser('rebind-process').add_argument, capabilities, check, compare_interfaces, compile_roadmaps, confined_path, digest, execute, goal_transition, groups.add_parser, groups.add_parser('budget').add_subparsers, groups.add_parser('codex').add_subparsers, groups.add_parser('interfaces').add_subparsers, groups.add_parser('review').add_subparsers, groups.add_parser('roadmap').add_subparsers, groups.add_parser('verification').add_subparsers, i.add_parser, i.add_parser('compare').add_argument, inventory, json.dumps, ledger.metrics, ledger.observe_usage, ledger.read, ledger.reservation_record, observe_interfaces, p.add_argument, p.add_subparsers, p.exit, p.parse_args, packet, parser, print, project_into_record, proof_errors, publish, r.add_parser, r.add_parser('audit').add_argument, r.add_parser('compile').add_argument, r.add_parser('profile').add_argument, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, recover_operation, refresh_implementation_dependencies, render_packet, request.get, result.get, retrieve, run_recipe, save_compiled, save_inventory, str, v.add_parser, validate_decision, validate_record, validate_skills.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Inputs: BudgetLedger, ContractError, KeyError, OSError, Path, ProjectAdapter, TimeoutError, TransactionError, TypeError, WorkspaceLease, __doc__, __file__, a, adjudicate_findings, any, argparse, args, argv, assemble_implementation, atomic_write_text, audit, audit_evidence, authority_inventory, authorize, b, bind_goal, bind_plan, c, capabilities, check, compare_interfaces, compile_roadmaps, compiled, confined_path, decision, dict, digest, errors, evidence, exc, execute, field, goal_transition, groups, i, int, inventory, json, ledger, obligation, observe_interfaces, output, owner, p, packet, parser, print, project_into_record, proof_errors, proof_result, publish, python_proof_errors, r, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, record, recover_operation, refresh_implementation_dependencies, render_packet, request, result, retrieve, review, root, run_recipe, save_compiled, save_inventory, str, v, validate_decision, validate_record, validate_skills. Outputs/bindings: a, args, audit, b, c, compiled, decision, errors, evidence, field, groups, i, ledger, obligation, output, owner, p, proof_result, r, record, request, result, review, root, v.
+Calls/effect boundaries: BudgetLedger, ContractError, Path, Path(__file__).resolve, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).rebind_native_process, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe, WorkspaceLease, WorkspaceLease(root).qualify, a.add_argument, a.milestones.split, a.root.resolve, adjudicate_findings, any, argparse.ArgumentParser, assemble_implementation, atomic_write_text, audit_evidence, authority_inventory, authorize, b.add_parser, bind_goal, bind_plan, c.add_parser, c.add_parser('read-goal').add_argument, c.add_parser('rebind-process').add_argument, capabilities, check, compare_interfaces, compile_roadmaps, confined_path, digest, execute, goal_transition, groups.add_parser, groups.add_parser('budget').add_subparsers, groups.add_parser('codex').add_subparsers, groups.add_parser('interfaces').add_subparsers, groups.add_parser('review').add_subparsers, groups.add_parser('roadmap').add_subparsers, groups.add_parser('verification').add_subparsers, i.add_parser, i.add_parser('compare').add_argument, inventory, json.dumps, ledger.metrics, ledger.observe_usage, ledger.read, ledger.reservation_record, observe_interfaces, p.add_argument, p.add_subparsers, p.exit, p.parse_args, packet, parser, print, project_into_record, proof_errors, publish, python_proof_errors, r.add_parser, r.add_parser('audit').add_argument, r.add_parser('compile').add_argument, r.add_parser('profile').add_argument, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, recover_operation, refresh_implementation_dependencies, render_packet, request.get, result.get, retrieve, run_recipe, save_compiled, save_inventory, str, v.add_parser, validate_decision, validate_record, validate_skills.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -34,7 +34,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -54,7 +54,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -74,7 +74,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Import evaluation at root.body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -94,7 +94,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Import evaluation at root.body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -114,7 +114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -134,7 +134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -154,7 +154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -174,7 +174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -194,7 +194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -214,7 +214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -234,7 +234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -254,7 +254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -274,7 +274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[12]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -294,7 +294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[13]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -314,7 +314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[14]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -334,7 +334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[15]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -354,7 +354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[16]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -374,7 +374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[17]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -394,7 +394,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[18]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -414,7 +414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[19]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -434,7 +434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. fn with explicit inputs and Resul
 
 Inputs: Path, __doc__, __file__, a, argparse, b, c, groups, i, int, p, r, v. Outputs/bindings: a, b, c, groups, i, p, r, v.
 Calls/effect boundaries: Path, Path(__file__).resolve, a.add_argument, argparse.ArgumentParser, b.add_parser, c.add_parser, c.add_parser('read-goal').add_argument, c.add_parser('rebind-process').add_argument, groups.add_parser, groups.add_parser('budget').add_subparsers, groups.add_parser('codex').add_subparsers, groups.add_parser('interfaces').add_subparsers, groups.add_parser('review').add_subparsers, groups.add_parser('roadmap').add_subparsers, groups.add_parser('verification').add_subparsers, i.add_parser, i.add_parser('compare').add_argument, p.add_argument, p.add_subparsers, r.add_parser, r.add_parser('audit').add_argument, r.add_parser('compile').add_argument, r.add_parser('profile').add_argument, v.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[20]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -454,7 +454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: __doc__, argparse. Outputs/bindings: p.
 Calls/effect boundaries: argparse.ArgumentParser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -474,7 +474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: __doc__, argparse. Outputs/bindings: (none).
 Calls/effect boundaries: argparse.ArgumentParser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -494,7 +494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, __file__, p. Outputs/bindings: (none).
 Calls/effect boundaries: Path, Path(__file__).resolve, p.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -514,7 +514,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, __file__, p. Outputs/bindings: (none).
 Calls/effect boundaries: Path, Path(__file__).resolve, p.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -534,7 +534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, __file__. Outputs/bindings: (none).
 Calls/effect boundaries: Path, Path(__file__).resolve.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[1].value.keywords[1].value.value.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -554,7 +554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, __file__. Outputs/bindings: (none).
 Calls/effect boundaries: Path.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[1].value.keywords[1].value.value.value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -574,7 +574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: p. Outputs/bindings: groups.
 Calls/effect boundaries: p.add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -594,7 +594,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -614,7 +614,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: r.
 Calls/effect boundaries: groups.add_parser, groups.add_parser('roadmap').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -634,7 +634,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser, groups.add_parser('roadmap').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -654,7 +654,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[3].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -674,7 +674,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser, r.add_parser('compile').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -694,7 +694,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser, r.add_parser('compile').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -714,7 +714,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[4].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -734,7 +734,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser, r.add_parser('audit').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -754,7 +754,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser, r.add_parser('audit').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -774,7 +774,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[5].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -794,7 +794,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -814,7 +814,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -834,7 +834,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -854,7 +854,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -874,7 +874,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -894,7 +894,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -914,7 +914,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -934,7 +934,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -954,7 +954,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -974,7 +974,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[10].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -994,7 +994,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1014,7 +1014,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[11].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1034,7 +1034,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1054,7 +1054,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1074,7 +1074,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[13]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1094,7 +1094,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[13].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1114,7 +1114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[14]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1134,7 +1134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[14].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1154,7 +1154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[15]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1174,7 +1174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[15].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1194,7 +1194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[16]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1214,7 +1214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[16].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1234,7 +1234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[17]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1254,7 +1254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[17].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1274,7 +1274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[18]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1294,7 +1294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[18].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1314,7 +1314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[19]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1334,7 +1334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[19].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1354,7 +1354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[20]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1374,7 +1374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[20].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1394,7 +1394,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[21]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1414,7 +1414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[21].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1434,7 +1434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[22]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1454,7 +1454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[22].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1474,7 +1474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[23]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1494,7 +1494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[23].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1514,7 +1514,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[24]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1534,7 +1534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[24].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1554,7 +1554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[25]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1574,7 +1574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[25].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1594,7 +1594,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[26]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1614,7 +1614,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[26].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1634,7 +1634,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[27]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1654,7 +1654,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[27].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1674,7 +1674,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser, r.add_parser('profile').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[28]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1694,7 +1694,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser, r.add_parser('profile').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[28].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1714,7 +1714,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[28].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1734,7 +1734,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: a.
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[29]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1754,7 +1754,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[29].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1774,7 +1774,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[30]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1794,7 +1794,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[30].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1814,7 +1814,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[31]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1834,7 +1834,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[31].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1854,7 +1854,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[32]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1874,7 +1874,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[32].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1894,7 +1894,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: c.
 Calls/effect boundaries: groups.add_parser, groups.add_parser('codex').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[33]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1914,7 +1914,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser, groups.add_parser('codex').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[33].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1934,7 +1934,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[33].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1954,7 +1954,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[34]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1974,7 +1974,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[34].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -1994,7 +1994,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser, c.add_parser('read-goal').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[35]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2014,7 +2014,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser, c.add_parser('read-goal').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[35].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2034,7 +2034,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[35].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2054,7 +2054,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[36]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2074,7 +2074,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[36].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2094,7 +2094,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c, int. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser, c.add_parser('rebind-process').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[37]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2114,7 +2114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c, int. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser, c.add_parser('rebind-process').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[37].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2134,7 +2134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[37].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2154,7 +2154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: a.
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[38]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2174,7 +2174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[38].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2194,7 +2194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[39]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2214,7 +2214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[39].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2234,7 +2234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[40]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2254,7 +2254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[40].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2274,7 +2274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[41]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2294,7 +2294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[41].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2314,7 +2314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[42]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2334,7 +2334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[42].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2354,7 +2354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: a.
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[43]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2374,7 +2374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[43].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2394,7 +2394,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[44]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2414,7 +2414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[44].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2434,7 +2434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[45]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2454,7 +2454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[45].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2474,7 +2474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: a.
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[46]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2494,7 +2494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[46].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2514,7 +2514,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[47]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2534,7 +2534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[47].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2554,7 +2554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[48]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2574,7 +2574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[48].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2594,7 +2594,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: c. Outputs/bindings: a.
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[49]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2614,7 +2614,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: c. Outputs/bindings: (none).
 Calls/effect boundaries: c.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[49].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2634,7 +2634,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[50]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2654,7 +2654,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[50].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2674,7 +2674,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[51]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2694,7 +2694,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[51].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2714,7 +2714,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[52]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2734,7 +2734,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[52].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2754,7 +2754,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[53]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2774,7 +2774,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[53].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2794,7 +2794,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: v.
 Calls/effect boundaries: groups.add_parser, groups.add_parser('verification').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[54]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2814,7 +2814,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser, groups.add_parser('verification').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[54].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2834,7 +2834,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[54].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2854,7 +2854,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: v. Outputs/bindings: a.
 Calls/effect boundaries: v.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[55]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2874,7 +2874,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: v. Outputs/bindings: (none).
 Calls/effect boundaries: v.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[55].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2894,7 +2894,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[56]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2914,7 +2914,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[56].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2934,7 +2934,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[57]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2954,7 +2954,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[57].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2974,7 +2974,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: v. Outputs/bindings: a.
 Calls/effect boundaries: v.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[58]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -2994,7 +2994,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: v. Outputs/bindings: (none).
 Calls/effect boundaries: v.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[58].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3014,7 +3014,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[59]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3034,7 +3034,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[59].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3054,7 +3054,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[60]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3074,7 +3074,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[60].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3094,7 +3094,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[61]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3114,7 +3114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[61].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3134,7 +3134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: b.
 Calls/effect boundaries: groups.add_parser, groups.add_parser('budget').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[62]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3154,7 +3154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser, groups.add_parser('budget').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[62].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3174,7 +3174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[62].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3194,7 +3194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[63]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3214,7 +3214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[63].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3234,7 +3234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: b. Outputs/bindings: a.
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[64]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3254,7 +3254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[64].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3274,7 +3274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[65]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3294,7 +3294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[65].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3314,7 +3314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[66]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3334,7 +3334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[66].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3354,7 +3354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, int. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[67]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3374,7 +3374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, int. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[67].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3394,7 +3394,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[68]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3414,7 +3414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[68].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3434,7 +3434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: b. Outputs/bindings: a.
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[69]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3454,7 +3454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[69].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3474,7 +3474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[70]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3494,7 +3494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[70].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3514,7 +3514,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: b. Outputs/bindings: a.
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[71]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3534,7 +3534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: b.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[71].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3554,7 +3554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[72]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3574,7 +3574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[72].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3594,7 +3594,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: r.
 Calls/effect boundaries: groups.add_parser, groups.add_parser('review').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[73]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3614,7 +3614,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser, groups.add_parser('review').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[73].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3634,7 +3634,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[73].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3654,7 +3654,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[74]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3674,7 +3674,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[74].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3694,7 +3694,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[75]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3714,7 +3714,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[75].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3734,7 +3734,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[76]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3754,7 +3754,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[76].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3774,7 +3774,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[77]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3794,7 +3794,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[77].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3814,7 +3814,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[78]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3834,7 +3834,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[78].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3854,7 +3854,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[79]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3874,7 +3874,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[79].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3894,7 +3894,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: r. Outputs/bindings: a.
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[80]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3914,7 +3914,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[80].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3934,7 +3934,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[81]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3954,7 +3954,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: Path, a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[81].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3974,7 +3974,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: a.
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[82]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -3994,7 +3994,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[82].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4014,7 +4014,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[83]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4034,7 +4034,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[83].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4054,7 +4054,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: a.
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[84]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4074,7 +4074,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[84].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4094,7 +4094,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[85]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4114,7 +4114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[85].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4134,7 +4134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: a.
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[86]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4154,7 +4154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[86].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4174,7 +4174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[87]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4194,7 +4194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[87].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4214,7 +4214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[88]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4234,7 +4234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[88].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4254,7 +4254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, int. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[89]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4274,7 +4274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, int. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[89].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4294,7 +4294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, int. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[90]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4314,7 +4314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, int. Outputs/bindings: (none).
 Calls/effect boundaries: a.add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[90].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4334,7 +4334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: groups. Outputs/bindings: i.
 Calls/effect boundaries: groups.add_parser, groups.add_parser('interfaces').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[20].body[91]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4354,7 +4354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser, groups.add_parser('interfaces').add_subparsers.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[91].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4374,7 +4374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: groups. Outputs/bindings: (none).
 Calls/effect boundaries: groups.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[91].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4394,7 +4394,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: i. Outputs/bindings: (none).
 Calls/effect boundaries: i.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[92]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4414,7 +4414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: i. Outputs/bindings: (none).
 Calls/effect boundaries: i.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[92].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4434,7 +4434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: i. Outputs/bindings: (none).
 Calls/effect boundaries: i.add_parser, i.add_parser('compare').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[20].body[93]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4454,7 +4454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: i. Outputs/bindings: (none).
 Calls/effect boundaries: i.add_parser, i.add_parser('compare').add_argument.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[93].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4474,7 +4474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: i. Outputs/bindings: (none).
 Calls/effect boundaries: i.add_parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[93].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4494,7 +4494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[20].body[94]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4508,13 +4508,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_cli.py:71`; AST `a26f09eed2d32998b48a89b0cbbd9e7bfdbcbd5cb3273d9151b3ad1a6dcaa530`.
+Source: `infra/agentinfra/roadmap_cli.py:71`; AST `595cae8d435362cf3e4c94eaa32c8ae7e1e9794856f64719e8cb269e93925643`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: BudgetLedger, ContractError, ProjectAdapter, WorkspaceLease, a, adjudicate_findings, assemble_implementation, atomic_write_text, audit, audit_evidence, authority_inventory, authorize, bind_goal, bind_plan, capabilities, check, compare_interfaces, compile_roadmaps, compiled, confined_path, decision, dict, digest, errors, evidence, goal_transition, inventory, ledger, obligation, observe_interfaces, output, owner, packet, project_into_record, proof_errors, publish, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, record, recover_operation, refresh_implementation_dependencies, render_packet, request, retrieve, review, root, run_recipe, save_compiled, save_inventory, str, validate_decision, validate_record, validate_skills. Outputs/bindings: audit, compiled, decision, errors, evidence, ledger, obligation, output, owner, record, request, review, root.
-Calls/effect boundaries: BudgetLedger, ContractError, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).rebind_native_process, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe, WorkspaceLease, WorkspaceLease(root).qualify, a.milestones.split, a.root.resolve, adjudicate_findings, assemble_implementation, atomic_write_text, audit_evidence, authority_inventory, authorize, bind_goal, bind_plan, capabilities, check, compare_interfaces, compile_roadmaps, confined_path, digest, goal_transition, inventory, ledger.metrics, ledger.observe_usage, ledger.read, ledger.reservation_record, observe_interfaces, packet, project_into_record, proof_errors, publish, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, recover_operation, refresh_implementation_dependencies, render_packet, request.get, retrieve, run_recipe, save_compiled, save_inventory, str, validate_decision, validate_record, validate_skills.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Inputs: BudgetLedger, ContractError, ProjectAdapter, WorkspaceLease, a, adjudicate_findings, assemble_implementation, atomic_write_text, audit, audit_evidence, authority_inventory, authorize, bind_goal, bind_plan, capabilities, check, compare_interfaces, compile_roadmaps, compiled, confined_path, decision, dict, digest, errors, evidence, goal_transition, inventory, ledger, obligation, observe_interfaces, output, owner, packet, project_into_record, proof_errors, proof_result, publish, python_proof_errors, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, record, recover_operation, refresh_implementation_dependencies, render_packet, request, retrieve, review, root, run_recipe, save_compiled, save_inventory, str, validate_decision, validate_record, validate_skills. Outputs/bindings: audit, compiled, decision, errors, evidence, ledger, obligation, output, owner, proof_result, record, request, review, root.
+Calls/effect boundaries: BudgetLedger, ContractError, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).rebind_native_process, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe, WorkspaceLease, WorkspaceLease(root).qualify, a.milestones.split, a.root.resolve, adjudicate_findings, assemble_implementation, atomic_write_text, audit_evidence, authority_inventory, authorize, bind_goal, bind_plan, capabilities, check, compare_interfaces, compile_roadmaps, confined_path, digest, goal_transition, inventory, ledger.metrics, ledger.observe_usage, ledger.read, ledger.reservation_record, observe_interfaces, packet, project_into_record, proof_errors, publish, python_proof_errors, read_json, read_native_goal, reconcile_inventory, reconcile_native_transition, reconcile_original_tests, recover_operation, refresh_implementation_dependencies, render_packet, request.get, retrieve, run_recipe, save_compiled, save_inventory, str, validate_decision, validate_record, validate_skills.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[21]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4534,7 +4534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a. Outputs/bindings: root.
 Calls/effect boundaries: a.root.resolve.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4554,7 +4554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.root.resolve.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4574,7 +4574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: ProjectAdapter, a, assemble_implementation, audit, audit_evidence, authority_inventory, compile_roadmaps, compiled, evidence, packet, project_into_record, read_json, reconcile_inventory, record, refresh_implementation_dependencies, root, run_recipe, save_compiled, save_inventory. Outputs/bindings: audit, compiled, evidence, record.
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe, assemble_implementation, audit_evidence, authority_inventory, compile_roadmaps, packet, project_into_record, read_json, reconcile_inventory, refresh_implementation_dependencies, run_recipe, save_compiled, save_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1]; no call, error or mutation may be omitted. Condition: a.family == 'roadmap'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4594,7 +4594,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: compile_roadmaps, root. Outputs/bindings: compiled.
 Calls/effect boundaries: compile_roadmaps.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4614,7 +4614,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: compile_roadmaps, root. Outputs/bindings: (none).
 Calls/effect boundaries: compile_roadmaps.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4634,7 +4634,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, compiled, root, save_compiled. Outputs/bindings: (none).
 Calls/effect boundaries: save_compiled.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[1]; no call, error or mutation may be omitted. Condition: a.action == 'compile'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4654,7 +4654,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, compiled, root, save_compiled. Outputs/bindings: (none).
 Calls/effect boundaries: save_compiled.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[1].body[0]; no call, error or mutation may be omitted. Condition: a.save
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4674,7 +4674,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: compiled, root, save_compiled. Outputs/bindings: (none).
 Calls/effect boundaries: save_compiled.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[1].body[1].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4694,7 +4694,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: compiled, root, save_compiled. Outputs/bindings: (none).
 Calls/effect boundaries: save_compiled.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[1].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4714,7 +4714,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: compiled. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[1].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4734,7 +4734,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, authority_inventory, record, root, save_inventory. Outputs/bindings: record.
 Calls/effect boundaries: authority_inventory, save_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[2]; no call, error or mutation may be omitted. Condition: a.action == 'inventory'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4754,7 +4754,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, authority_inventory, root. Outputs/bindings: record.
 Calls/effect boundaries: authority_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[1].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4774,7 +4774,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, authority_inventory, root. Outputs/bindings: (none).
 Calls/effect boundaries: authority_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4794,7 +4794,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, record, root, save_inventory. Outputs/bindings: (none).
 Calls/effect boundaries: save_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[2].body[1]; no call, error or mutation may be omitted. Condition: a.save
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4814,7 +4814,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: record, root, save_inventory. Outputs/bindings: (none).
 Calls/effect boundaries: save_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[2].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4834,7 +4834,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: record, root, save_inventory. Outputs/bindings: (none).
 Calls/effect boundaries: save_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[2].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4854,7 +4854,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: record. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[2].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4874,7 +4874,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, read_json, reconcile_inventory, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[3]; no call, error or mutation may be omitted. Condition: a.action == 'reconcile'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4894,7 +4894,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, read_json, reconcile_inventory, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4914,7 +4914,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json, reconcile_inventory, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[3].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4934,7 +4934,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[3].body[0].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4954,7 +4954,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: ProjectAdapter, a, compiled, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[4]; no call, error or mutation may be omitted. Condition: a.action == 'profile'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4974,7 +4974,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: ProjectAdapter, a, compiled, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -4994,7 +4994,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: ProjectAdapter, a, compiled, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root, a.project, profiles=compiled['projects']).describe.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[4].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5014,7 +5014,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: ProjectAdapter, a, compiled, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[4].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5034,7 +5034,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, compiled, root, run_recipe. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[5]; no call, error or mutation may be omitted. Condition: a.action == 'run'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5054,7 +5054,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, compiled, root, run_recipe. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[5].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5074,7 +5074,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, compiled, root, run_recipe. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[5].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5094,7 +5094,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, assemble_implementation, root. Outputs/bindings: (none).
 Calls/effect boundaries: assemble_implementation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[6]; no call, error or mutation may be omitted. Condition: a.action == 'accept-implementation'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5114,7 +5114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[21].body[1].body[6].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5134,7 +5134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, assemble_implementation, root. Outputs/bindings: (none).
 Calls/effect boundaries: assemble_implementation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[6].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5154,7 +5154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, assemble_implementation, root. Outputs/bindings: (none).
 Calls/effect boundaries: assemble_implementation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[6].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5174,7 +5174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, refresh_implementation_dependencies, root. Outputs/bindings: (none).
 Calls/effect boundaries: refresh_implementation_dependencies.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[7]; no call, error or mutation may be omitted. Condition: a.action == 'refresh-dependencies'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5194,7 +5194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[21].body[1].body[7].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5214,7 +5214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, refresh_implementation_dependencies, root. Outputs/bindings: (none).
 Calls/effect boundaries: refresh_implementation_dependencies.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[7].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5234,7 +5234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, refresh_implementation_dependencies, root. Outputs/bindings: (none).
 Calls/effect boundaries: refresh_implementation_dependencies.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[7].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5254,7 +5254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, compiled, read_json. Outputs/bindings: evidence.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[1].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5274,7 +5274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[8].value.body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5294,7 +5294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: audit_evidence, compiled, evidence, root. Outputs/bindings: audit.
 Calls/effect boundaries: audit_evidence.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[1].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5314,7 +5314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: audit_evidence, compiled, evidence, root. Outputs/bindings: (none).
 Calls/effect boundaries: audit_evidence.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5334,7 +5334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, audit. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[10]; no call, error or mutation may be omitted. Condition: a.action == 'audit'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5354,7 +5354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: audit. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[10].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5374,7 +5374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, audit, compiled, packet. Outputs/bindings: (none).
 Calls/effect boundaries: packet.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[1].body[11]; no call, error or mutation may be omitted. Condition: a.action == 'packet'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5394,7 +5394,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, audit, compiled, packet. Outputs/bindings: (none).
 Calls/effect boundaries: packet.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[11].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5414,7 +5414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, audit, compiled, packet. Outputs/bindings: (none).
 Calls/effect boundaries: packet.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[11].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5434,7 +5434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, audit, project_into_record, root. Outputs/bindings: (none).
 Calls/effect boundaries: project_into_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[1].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5454,7 +5454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, audit, project_into_record, root. Outputs/bindings: (none).
 Calls/effect boundaries: project_into_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5474,7 +5474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, authorize, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: authorize, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[2]; no call, error or mutation may be omitted. Condition: a.family == 'policy'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5494,7 +5494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, authorize, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: authorize, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5514,7 +5514,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, authorize, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: authorize, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5534,7 +5534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[2].body[0].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5554,7 +5554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: ProjectAdapter, WorkspaceLease, a, bind_goal, bind_plan, capabilities, compile_roadmaps, goal_transition, owner, read_json, read_native_goal, reconcile_native_transition, request, root. Outputs/bindings: owner, request.
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).rebind_native_process, WorkspaceLease, WorkspaceLease(root).qualify, a.milestones.split, bind_goal, bind_plan, capabilities, compile_roadmaps, goal_transition, read_json, read_native_goal, reconcile_native_transition, request.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3]; no call, error or mutation may be omitted. Condition: a.family == 'codex'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5574,7 +5574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, capabilities. Outputs/bindings: (none).
 Calls/effect boundaries: capabilities.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[0]; no call, error or mutation may be omitted. Condition: a.action == 'inspect'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5594,7 +5594,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: capabilities. Outputs/bindings: (none).
 Calls/effect boundaries: capabilities.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5614,7 +5614,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: capabilities. Outputs/bindings: (none).
 Calls/effect boundaries: capabilities.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5634,7 +5634,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, read_native_goal. Outputs/bindings: (none).
 Calls/effect boundaries: read_native_goal.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[1]; no call, error or mutation may be omitted. Condition: a.action == 'read-goal'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5654,7 +5654,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, read_native_goal. Outputs/bindings: (none).
 Calls/effect boundaries: read_native_goal.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5674,7 +5674,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_native_goal. Outputs/bindings: (none).
 Calls/effect boundaries: read_native_goal.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5694,7 +5694,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: ProjectAdapter, a, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).rebind_native_process.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[2]; no call, error or mutation may be omitted. Condition: a.action == 'rebind-process'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5714,7 +5714,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: ProjectAdapter, a, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).rebind_native_process.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5734,7 +5734,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: ProjectAdapter, a, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).rebind_native_process.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5754,7 +5754,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: ProjectAdapter, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[2].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5774,7 +5774,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: ProjectAdapter, WorkspaceLease, a, owner, root. Outputs/bindings: owner.
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read, WorkspaceLease, WorkspaceLease(root).qualify.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[3]; no call, error or mutation may be omitted. Condition: a.action == 'owner'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5794,7 +5794,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[21].body[3].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5814,7 +5814,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: ProjectAdapter, root. Outputs/bindings: owner.
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[3].body[3].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5834,7 +5834,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: ProjectAdapter, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[3].body[1].value.value.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5854,7 +5854,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: ProjectAdapter, root. Outputs/bindings: (none).
 Calls/effect boundaries: ProjectAdapter.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[3].body[1].value.value.value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5874,7 +5874,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: WorkspaceLease, owner, root. Outputs/bindings: (none).
 Calls/effect boundaries: WorkspaceLease, WorkspaceLease(root).qualify.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[3].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5894,7 +5894,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: WorkspaceLease, owner, root. Outputs/bindings: (none).
 Calls/effect boundaries: WorkspaceLease, WorkspaceLease(root).qualify.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[3].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5914,7 +5914,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: WorkspaceLease, root. Outputs/bindings: (none).
 Calls/effect boundaries: WorkspaceLease.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[3].body[2].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5934,7 +5934,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, bind_goal, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: bind_goal, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[4]; no call, error or mutation may be omitted. Condition: a.action == 'bind'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5954,7 +5954,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, bind_goal, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: bind_goal, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5974,7 +5974,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, bind_goal, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: bind_goal, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[4].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -5994,7 +5994,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[4].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6014,7 +6014,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, bind_plan, compile_roadmaps, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: a.milestones.split, bind_plan, compile_roadmaps, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[5]; no call, error or mutation may be omitted. Condition: a.action == 'plan'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6034,7 +6034,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, bind_plan, compile_roadmaps, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: a.milestones.split, bind_plan, compile_roadmaps, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[5].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6054,7 +6054,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, bind_plan, compile_roadmaps, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: a.milestones.split, bind_plan, compile_roadmaps, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[5].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6074,7 +6074,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[5].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6094,7 +6094,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a. Outputs/bindings: (none).
 Calls/effect boundaries: a.milestones.split.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[5].body[0].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6114,7 +6114,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: compile_roadmaps, root. Outputs/bindings: (none).
 Calls/effect boundaries: compile_roadmaps.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[5].body[0].value.args[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6134,7 +6134,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, read_json, reconcile_native_transition. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_native_transition.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[3].body[6]; no call, error or mutation may be omitted. Condition: a.action == 'reconcile'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6154,7 +6154,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, read_json, reconcile_native_transition. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_native_transition.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[6].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6174,7 +6174,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json, reconcile_native_transition. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_native_transition.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[6].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6194,7 +6194,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[6].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6214,7 +6214,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[6].body[0].value.args[1].body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6234,7 +6234,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[6].body[0].value.args[2].body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6254,7 +6254,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, read_json. Outputs/bindings: request.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[3].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6274,7 +6274,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6294,7 +6294,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, goal_transition, read_json, request. Outputs/bindings: (none).
 Calls/effect boundaries: goal_transition, read_json, request.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[3].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6314,7 +6314,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, goal_transition, read_json, request. Outputs/bindings: (none).
 Calls/effect boundaries: goal_transition, read_json, request.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[8].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6334,7 +6334,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[8].value.values[1].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6354,7 +6354,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: request. Outputs/bindings: (none).
 Calls/effect boundaries: request.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[8].value.values[1].keywords[0].value.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6374,7 +6374,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: request. Outputs/bindings: (none).
 Calls/effect boundaries: request.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].body[8].value.values[1].keywords[1].value.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6388,13 +6388,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:112`; AST `b0325d861cd7f635c005f0a371d08d9870564b47a06ec3aa0ac9e3a1c68fc65a`.
+Source: `infra/agentinfra/roadmap_cli.py:112`; AST `39f8c65447df81a6405aab3ad8bb3a75753deda49d36f2851185f57a23cec3ee`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
-Inputs: a, errors, obligation, proof_errors, read_json, reconcile_original_tests, root, validate_record. Outputs/bindings: errors, obligation.
-Calls/effect boundaries: proof_errors, read_json, reconcile_original_tests, validate_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Inputs: a, errors, obligation, proof_errors, proof_result, python_proof_errors, read_json, reconcile_original_tests, root, validate_record. Outputs/bindings: errors, obligation, proof_result.
+Calls/effect boundaries: proof_errors, python_proof_errors, read_json, reconcile_original_tests, validate_record.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[4]; no call, error or mutation may be omitted. Condition: a.family == 'verification'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6414,7 +6414,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python trut
 
 Inputs: a, read_json, reconcile_original_tests. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_original_tests.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[4].body[0]; no call, error or mutation may be omitted. Condition: a.action == 'reconcile-tests'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6434,7 +6434,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, read_json, reconcile_original_tests. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_original_tests.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[4].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6454,7 +6454,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json, reconcile_original_tests. Outputs/bindings: (none).
 Calls/effect boundaries: read_json, reconcile_original_tests.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6474,7 +6474,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6494,7 +6494,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[0].body[0].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6514,7 +6514,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: a, read_json. Outputs/bindings: obligation.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[4].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6534,7 +6534,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6554,7 +6554,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluat
 
 Inputs: obligation, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[4].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6574,7 +6574,7 @@ Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary
 
 Inputs: obligation, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6586,17 +6586,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[3]::Assign
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[3]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_cli.py:115`; AST `611937c2e59fd1a880627c83438ba725da7c90a78704820472c4117fbcd8c80f`.
+Source: `infra/agentinfra/roadmap_cli.py:115`; AST `40199cc11d0fa227ccd8f555dc15746ff5b1ed7b006f59ed7374a185cc092732`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: a, obligation, proof_errors, read_json. Outputs/bindings: errors.
-Calls/effect boundaries: proof_errors, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
-Invariants: Preserve ordered Assign evaluation at root.body[21].body[4].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ImportFrom evaluation at root.body[21].body[4].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6606,17 +6606,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[3].value::Call
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:115`; AST `74c99ca4c8373279712e0e6270d6c5dc6891c8e5a8bd256fb3cb4a54a0c6d195`.
+Source: `infra/agentinfra/roadmap_cli.py:116`; AST `7e6f879f2f5196e08fe3b4fc4c268b7923d61b58714fbeff10c4f60e7bc40bca`.
 
-Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: a, obligation, proof_errors, read_json. Outputs/bindings: (none).
-Calls/effect boundaries: proof_errors, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Inputs: a, read_json. Outputs/bindings: proof_result.
+Calls/effect boundaries: read_json.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[3].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[21].body[4].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6626,17 +6626,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[3].value.args[1]::Call
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:115`; AST `acba4d9b63c226ba10fba6d5989b51dd7451295c68d8547fff53be8f58968fb1`.
+Source: `infra/agentinfra/roadmap_cli.py:116`; AST `acba4d9b63c226ba10fba6d5989b51dd7451295c68d8547fff53be8f58968fb1`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[3].value.args[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6646,17 +6646,77 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[4]::Return
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:116`; AST `c30fad21d4bc965a0500e7e2fdbbbb9613d2d7d44477f1c0e9ae67aca9b0f372`.
+Source: `infra/agentinfra/roadmap_cli.py:117`; AST `8ee7d7406720e1267e37177d3f4e3d9181ae85708eb2b17372e161f857d5236d`.
+
+Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: obligation, proof_errors, proof_result, python_proof_errors, root. Outputs/bindings: errors.
+Calls/effect boundaries: proof_errors, python_proof_errors.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+
+Invariants: Preserve ordered Assign evaluation at root.body[21].body[4].body[5]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[5].value.left::Call
+
+Source: `infra/agentinfra/roadmap_cli.py:117`; AST `244b460f85de51418d6ae2ab3f1b40b7b73f319d22142c8d4115d1cdfa742429`.
+
+Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: obligation, proof_errors, proof_result. Outputs/bindings: (none).
+Calls/effect boundaries: proof_errors.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[5].value.left; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[5].value.right::Call
+
+Source: `infra/agentinfra/roadmap_cli.py:117`; AST `9fd63fef0fc01733354a17b88754025e1b93971f4b897974efcdbe0c84157250`.
+
+Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: obligation, proof_result, python_proof_errors, root. Outputs/bindings: (none).
+Calls/effect boundaries: python_proof_errors.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+
+Invariants: Preserve ordered Call evaluation at root.body[21].body[4].body[5].value.right; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[4].body[6]::Return
+
+Source: `infra/agentinfra/roadmap_cli.py:118`; AST `c30fad21d4bc965a0500e7e2fdbbbb9613d2d7d44477f1c0e9ae67aca9b0f372`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: errors. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
-Invariants: Preserve ordered Return evaluation at root.body[21].body[4].body[4]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[21].body[4].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6668,13 +6728,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:117`; AST `4006fb9e68c98249847a08dd4dcc795b8007318d0b49d94a4515afb03416aca8`.
+Source: `infra/agentinfra/roadmap_cli.py:119`; AST `4006fb9e68c98249847a08dd4dcc795b8007318d0b49d94a4515afb03416aca8`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: BudgetLedger, a, ledger, recover_operation, root. Outputs/bindings: ledger.
 Calls/effect boundaries: BudgetLedger, ledger.metrics, ledger.observe_usage, ledger.read, ledger.reservation_record, recover_operation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[5]; no call, error or mutation may be omitted. Condition: a.family == 'budget'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6688,13 +6748,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:118`; AST `dc2fd1ede60c6438c487511f87ef8eedec8bb87e6ab3d1c5380ff1542be015c2`.
+Source: `infra/agentinfra/roadmap_cli.py:120`; AST `dc2fd1ede60c6438c487511f87ef8eedec8bb87e6ab3d1c5380ff1542be015c2`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: BudgetLedger, root. Outputs/bindings: ledger.
 Calls/effect boundaries: BudgetLedger.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[5].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6708,13 +6768,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:118`; AST `df43247d3e9a1323119ce795d3f01353dada1c7e238477cf98ed400282fae762`.
+Source: `infra/agentinfra/roadmap_cli.py:120`; AST `df43247d3e9a1323119ce795d3f01353dada1c7e238477cf98ed400282fae762`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: BudgetLedger, root. Outputs/bindings: (none).
 Calls/effect boundaries: BudgetLedger.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6728,13 +6788,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[1]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:119`; AST `a85ba6f8bd31e906e6c0d816b7e9496c72e2430a9ecfc86dc98ffd3aaf6554c5`.
+Source: `infra/agentinfra/roadmap_cli.py:121`; AST `a85ba6f8bd31e906e6c0d816b7e9496c72e2430a9ecfc86dc98ffd3aaf6554c5`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.metrics.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[5].body[1]; no call, error or mutation may be omitted. Condition: a.action == 'metrics'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6748,13 +6808,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[1].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:119`; AST `2cf91c2819122e4a03efc5e03833ee20ecc14200534edc0d8f910c93c946bd65`.
+Source: `infra/agentinfra/roadmap_cli.py:121`; AST `2cf91c2819122e4a03efc5e03833ee20ecc14200534edc0d8f910c93c946bd65`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.metrics.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[5].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6768,13 +6828,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[1].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:119`; AST `a198a50182fcadb1fd405fbd30f49194d1fb2f7ef3cd1516ade9b3ccc3d97606`.
+Source: `infra/agentinfra/roadmap_cli.py:121`; AST `a198a50182fcadb1fd405fbd30f49194d1fb2f7ef3cd1516ade9b3ccc3d97606`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.metrics.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6788,13 +6848,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[2]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:120`; AST `a16680ec8fec3ef4051b5f0f740553c935eb443de8b922dc54c5d8bb52a8a44a`.
+Source: `infra/agentinfra/roadmap_cli.py:122`; AST `a16680ec8fec3ef4051b5f0f740553c935eb443de8b922dc54c5d8bb52a8a44a`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.reservation_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[5].body[2]; no call, error or mutation may be omitted. Condition: a.action == 'reservation'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6808,13 +6868,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[2].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:120`; AST `46e72f9031612e3230fa0e2d21c8a469f70be23e298c5473c00278bea59e870e`.
+Source: `infra/agentinfra/roadmap_cli.py:122`; AST `46e72f9031612e3230fa0e2d21c8a469f70be23e298c5473c00278bea59e870e`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.reservation_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[5].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6828,13 +6888,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[2].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:120`; AST `4600f7d5733e60c2a601a778bef145b7ba279dac27718bdb1e40597ce65d8d8f`.
+Source: `infra/agentinfra/roadmap_cli.py:122`; AST `4600f7d5733e60c2a601a778bef145b7ba279dac27718bdb1e40597ce65d8d8f`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.reservation_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6848,13 +6908,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[3]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:121`; AST `2c19c3fcbacc7bac9abff0a59516bb8b48388d4d950cb8f2db101d5ccce73988`.
+Source: `infra/agentinfra/roadmap_cli.py:123`; AST `2c19c3fcbacc7bac9abff0a59516bb8b48388d4d950cb8f2db101d5ccce73988`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, recover_operation, root. Outputs/bindings: (none).
 Calls/effect boundaries: recover_operation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[5].body[3]; no call, error or mutation may be omitted. Condition: a.action == 'recover'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6868,13 +6928,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[3].body[0]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_cli.py:122`; AST `79105e0b749ab57cf92b174e92d938d3032d7ae18d4a91a9c8541b2dd3cb0f2d`.
+Source: `infra/agentinfra/roadmap_cli.py:124`; AST `79105e0b749ab57cf92b174e92d938d3032d7ae18d4a91a9c8541b2dd3cb0f2d`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[21].body[5].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6888,13 +6948,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[3].body[1]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:123`; AST `fb32381cf1ae007cd22a83da3839a8c4dc85e53e30948d79f170d7f0ec5e9fce`.
+Source: `infra/agentinfra/roadmap_cli.py:125`; AST `fb32381cf1ae007cd22a83da3839a8c4dc85e53e30948d79f170d7f0ec5e9fce`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, recover_operation, root. Outputs/bindings: (none).
 Calls/effect boundaries: recover_operation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[5].body[3].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6908,13 +6968,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[3].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:123`; AST `e9547ab6cacb74bf2d5e5684ae522769a583f22a646dd1c8d61086f8b52d004e`.
+Source: `infra/agentinfra/roadmap_cli.py:125`; AST `e9547ab6cacb74bf2d5e5684ae522769a583f22a646dd1c8d61086f8b52d004e`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, recover_operation, root. Outputs/bindings: (none).
 Calls/effect boundaries: recover_operation.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].body[3].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6928,13 +6988,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[4]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:124`; AST `aedfa89cf3e2fd1225a8c78d487f9292ef60455f435c5da94adb1a58c1a08785`.
+Source: `infra/agentinfra/roadmap_cli.py:126`; AST `aedfa89cf3e2fd1225a8c78d487f9292ef60455f435c5da94adb1a58c1a08785`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.observe_usage, ledger.read.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[5].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6948,13 +7008,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[4].value.body::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:124`; AST `97bf15ee0985708addfb91473f1c9a324eb4e700d9a5a949145f8b93d423dbb2`.
+Source: `infra/agentinfra/roadmap_cli.py:126`; AST `97bf15ee0985708addfb91473f1c9a324eb4e700d9a5a949145f8b93d423dbb2`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.read.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].body[4].value.body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6968,13 +7028,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[5].body[4].value.orelse::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:124`; AST `6f635f7bccf485e753e97db386821c2065629b582c2b133f22a3c69ebd0e27ae`.
+Source: `infra/agentinfra/roadmap_cli.py:126`; AST `6f635f7bccf485e753e97db386821c2065629b582c2b133f22a3c69ebd0e27ae`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, ledger. Outputs/bindings: (none).
 Calls/effect boundaries: ledger.observe_usage.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].body[4].value.orelse; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -6988,13 +7048,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:125`; AST `d86e9a1c8d1ec0ed82150d93a263d5a78aefb1864a7c281bd51149d6ccf3caa1`.
+Source: `infra/agentinfra/roadmap_cli.py:127`; AST `d86e9a1c8d1ec0ed82150d93a263d5a78aefb1864a7c281bd51149d6ccf3caa1`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, adjudicate_findings, atomic_write_text, confined_path, decision, digest, output, read_json, render_packet, review, root, str, validate_decision, validate_record. Outputs/bindings: decision, output, review.
 Calls/effect boundaries: adjudicate_findings, atomic_write_text, confined_path, digest, read_json, render_packet, str, validate_decision, validate_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[6]; no call, error or mutation may be omitted. Condition: a.family == 'review'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7008,13 +7068,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[0]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:126`; AST `59b50194357d402467c8d0f51f72aa6465b150318853d0829791c2e312260e94`.
+Source: `infra/agentinfra/roadmap_cli.py:128`; AST `59b50194357d402467c8d0f51f72aa6465b150318853d0829791c2e312260e94`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, adjudicate_findings, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: adjudicate_findings, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[6].body[0]; no call, error or mutation may be omitted. Condition: a.action == 'findings'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7028,13 +7088,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[0].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:126`; AST `8030a303f2383dcd27c7e41e42d77419775bb87a0450a48e2276e718202af7ec`.
+Source: `infra/agentinfra/roadmap_cli.py:128`; AST `8030a303f2383dcd27c7e41e42d77419775bb87a0450a48e2276e718202af7ec`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, adjudicate_findings, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: adjudicate_findings, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[6].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7048,13 +7108,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[0].body[0].value.values[0]::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:126`; AST `fef85d040a556c5d551f2c3ce9d0c582785bb29ab412b211d4ef1138730cafe1`.
+Source: `infra/agentinfra/roadmap_cli.py:128`; AST `fef85d040a556c5d551f2c3ce9d0c582785bb29ab412b211d4ef1138730cafe1`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, adjudicate_findings, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: adjudicate_findings, read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[0].body[0].value.values[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7068,13 +7128,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[0].body[0].value.values[0].args[1]::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:126`; AST `ba2e037c249060aa994cb7cdd399af6ca6412389ec535254e4d71c8e3ec8b159`.
+Source: `infra/agentinfra/roadmap_cli.py:128`; AST `ba2e037c249060aa994cb7cdd399af6ca6412389ec535254e4d71c8e3ec8b159`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[0].body[0].value.values[0].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7088,13 +7148,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:127`; AST `2064d27d432cc4f1e728bb7c802ed2d030151c13e7a45af19d16ebaf8f9f21e7`.
+Source: `infra/agentinfra/roadmap_cli.py:129`; AST `2064d27d432cc4f1e728bb7c802ed2d030151c13e7a45af19d16ebaf8f9f21e7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, read_json. Outputs/bindings: review.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[6].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7108,13 +7168,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:127`; AST `1ce8bc32ec262e834458b495b0c1db54cccd88aa659286e524f2af778941ba4f`.
+Source: `infra/agentinfra/roadmap_cli.py:129`; AST `1ce8bc32ec262e834458b495b0c1db54cccd88aa659286e524f2af778941ba4f`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7128,13 +7188,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:128`; AST `23076d1b52a0112f303cbb78a05c805a7e8ca40df8ed2bafd58a17e0946fd786`.
+Source: `infra/agentinfra/roadmap_cli.py:130`; AST `23076d1b52a0112f303cbb78a05c805a7e8ca40df8ed2bafd58a17e0946fd786`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, atomic_write_text, confined_path, digest, output, render_packet, review, root, str. Outputs/bindings: output.
 Calls/effect boundaries: atomic_write_text, confined_path, digest, render_packet, str.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[6].body[2]; no call, error or mutation may be omitted. Condition: a.action == 'render'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7148,13 +7208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:129`; AST `9bc857a9c259ffb8498c8ad6aec0eb37b6a5c65d1337f5af179d4c3a6ead4a81`.
+Source: `infra/agentinfra/roadmap_cli.py:131`; AST `9bc857a9c259ffb8498c8ad6aec0eb37b6a5c65d1337f5af179d4c3a6ead4a81`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, confined_path, root. Outputs/bindings: output.
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[6].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7168,13 +7228,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:129`; AST `8772d9314c0b7dd22d22e6244a777898fc2b45883955c41d834a353f76d6647d`.
+Source: `infra/agentinfra/roadmap_cli.py:131`; AST `8772d9314c0b7dd22d22e6244a777898fc2b45883955c41d834a353f76d6647d`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, confined_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7188,13 +7248,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_cli.py:130`; AST `a1b81b41da846f5a98e45da83d505909f72b5c37c9a3983b607b9496a87da9dd`.
+Source: `infra/agentinfra/roadmap_cli.py:132`; AST `a1b81b41da846f5a98e45da83d505909f72b5c37c9a3983b607b9496a87da9dd`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: atomic_write_text, output, render_packet, review, root. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_text, render_packet.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[6].body[2].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7208,13 +7268,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:130`; AST `b4d27b01aed560cdc9e1a56b1c34f27455f8aa67ca08be44afac04f6a07004b7`.
+Source: `infra/agentinfra/roadmap_cli.py:132`; AST `b4d27b01aed560cdc9e1a56b1c34f27455f8aa67ca08be44afac04f6a07004b7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: atomic_write_text, output, render_packet, review, root. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_text, render_packet.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[2].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7228,13 +7288,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[1].value.args[1]::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:130`; AST `b7dc504ba7e9fb0b2705ec2c3dbaf8fd8adfc7cb27ea4f695fdb22c69cf39bf7`.
+Source: `infra/agentinfra/roadmap_cli.py:132`; AST `b7dc504ba7e9fb0b2705ec2c3dbaf8fd8adfc7cb27ea4f695fdb22c69cf39bf7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: render_packet, review, root. Outputs/bindings: (none).
 Calls/effect boundaries: render_packet.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[2].body[1].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7248,13 +7308,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[2]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:131`; AST `2a58ec5c2ada76640d8e0a0a11954672602fb55afdf2df2a6d6ed157c3fe61ad`.
+Source: `infra/agentinfra/roadmap_cli.py:133`; AST `2a58ec5c2ada76640d8e0a0a11954672602fb55afdf2df2a6d6ed157c3fe61ad`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: digest, output, review, str. Outputs/bindings: (none).
 Calls/effect boundaries: digest, str.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[6].body[2].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7268,13 +7328,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[2].value.values[0]::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:131`; AST `ac21b5e6705c69eec368406129c3927fb69226e1c7181f1f7830ab68cf750b41`.
+Source: `infra/agentinfra/roadmap_cli.py:133`; AST `ac21b5e6705c69eec368406129c3927fb69226e1c7181f1f7830ab68cf750b41`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: output, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[2].body[2].value.values[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7288,13 +7348,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[2].body[2].value.values[1]::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:131`; AST `d36ee616fab72f11a9b8fa05d8b03628acdcfc6aa2d8e2513c316f915994eead`.
+Source: `infra/agentinfra/roadmap_cli.py:133`; AST `d36ee616fab72f11a9b8fa05d8b03628acdcfc6aa2d8e2513c316f915994eead`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: digest, review. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[2].body[2].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7308,13 +7368,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:132`; AST `7ff3842184ad38d386d3fbda72d4b63b5dfe203d3173d1c290ff8e9ddcde0b0b`.
+Source: `infra/agentinfra/roadmap_cli.py:134`; AST `7ff3842184ad38d386d3fbda72d4b63b5dfe203d3173d1c290ff8e9ddcde0b0b`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, read_json. Outputs/bindings: decision.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[6].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7328,13 +7388,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:132`; AST `76628dd778b220d48ec2a53893457a3b78cd25f15167d52b9065ca1cafc6dbde`.
+Source: `infra/agentinfra/roadmap_cli.py:134`; AST `76628dd778b220d48ec2a53893457a3b78cd25f15167d52b9065ca1cafc6dbde`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7348,13 +7408,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_cli.py:132`; AST `9eff61797fbda476656325e1f568cf0c33d242e0294b5c1c8d340776f52f3edf`.
+Source: `infra/agentinfra/roadmap_cli.py:134`; AST `9eff61797fbda476656325e1f568cf0c33d242e0294b5c1c8d340776f52f3edf`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: decision, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[6].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7368,13 +7428,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:132`; AST `c7a602387eada360323a4fb3d1ca7d887a837880376ede3782c142d79c2301d7`.
+Source: `infra/agentinfra/roadmap_cli.py:134`; AST `c7a602387eada360323a4fb3d1ca7d887a837880376ede3782c142d79c2301d7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: decision, root, validate_record. Outputs/bindings: (none).
 Calls/effect boundaries: validate_record.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7388,13 +7448,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[5]::Expr
 
-Source: `infra/agentinfra/roadmap_cli.py:132`; AST `2ef727bf50ad878a6cef5f34097c625aabfb5dca20eda630d436c298577204cb`.
+Source: `infra/agentinfra/roadmap_cli.py:134`; AST `2ef727bf50ad878a6cef5f34097c625aabfb5dca20eda630d436c298577204cb`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: decision, review, validate_decision. Outputs/bindings: (none).
 Calls/effect boundaries: validate_decision.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[6].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7408,13 +7468,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:132`; AST `cfe68890edc351089e87f7bbe56be4d679ba4d6c38c06491b981791a1ad540d7`.
+Source: `infra/agentinfra/roadmap_cli.py:134`; AST `cfe68890edc351089e87f7bbe56be4d679ba4d6c38c06491b981791a1ad540d7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: decision, review, validate_decision. Outputs/bindings: (none).
 Calls/effect boundaries: validate_decision.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7428,13 +7488,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[6].body[6]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:133`; AST `fb44afbf6d110f4331989b733995932640bc207ef77c8376a16401ee04c9885d`.
+Source: `infra/agentinfra/roadmap_cli.py:135`; AST `fb44afbf6d110f4331989b733995932640bc207ef77c8376a16401ee04c9885d`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[6].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7448,13 +7508,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[7]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:134`; AST `25b790c0f2fbfe2cff60d496bed55873a0e4933be1e521a55040950f666ec9fa`.
+Source: `infra/agentinfra/roadmap_cli.py:136`; AST `25b790c0f2fbfe2cff60d496bed55873a0e4933be1e521a55040950f666ec9fa`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, root, validate_skills. Outputs/bindings: (none).
 Calls/effect boundaries: validate_skills.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[7]; no call, error or mutation may be omitted. Condition: a.family == 'skills'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7468,13 +7528,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[7].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:134`; AST `7fd1f5c078c677852c1a9e96ee1ad8cba91999b6edf00abb4f044dfdb23b5626`.
+Source: `infra/agentinfra/roadmap_cli.py:136`; AST `7fd1f5c078c677852c1a9e96ee1ad8cba91999b6edf00abb4f044dfdb23b5626`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: root, validate_skills. Outputs/bindings: (none).
 Calls/effect boundaries: validate_skills.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[7].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7488,13 +7548,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[7].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:134`; AST `058a684a59952bf7321b2dca779c67fea9fccce702659f76c7c2ae7f32107527`.
+Source: `infra/agentinfra/roadmap_cli.py:136`; AST `058a684a59952bf7321b2dca779c67fea9fccce702659f76c7c2ae7f32107527`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: root, validate_skills. Outputs/bindings: (none).
 Calls/effect boundaries: validate_skills.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[7].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7508,13 +7568,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[8]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:135`; AST `f86ba5f494caf44eddbb9de1d30122bf16c314f7b634a117e946b54c002eaf7c`.
+Source: `infra/agentinfra/roadmap_cli.py:137`; AST `f86ba5f494caf44eddbb9de1d30122bf16c314f7b634a117e946b54c002eaf7c`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, compare_interfaces, observe_interfaces, root. Outputs/bindings: (none).
 Calls/effect boundaries: compare_interfaces, observe_interfaces.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[8]; no call, error or mutation may be omitted. Condition: a.family == 'interfaces'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7528,13 +7588,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[8].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:136`; AST `daed15f00ae103b4fc73fcd8e4f016e926af736fb7c4509a17e60dd4f5c89cef`.
+Source: `infra/agentinfra/roadmap_cli.py:138`; AST `daed15f00ae103b4fc73fcd8e4f016e926af736fb7c4509a17e60dd4f5c89cef`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, compare_interfaces, observe_interfaces, root. Outputs/bindings: (none).
 Calls/effect boundaries: compare_interfaces, observe_interfaces.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[8].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7548,13 +7608,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[8].body[0].value.body::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:136`; AST `e3b835733344cc4702b993e1dfafa68c05951883e31c5b65824bdf1022d38cb1`.
+Source: `infra/agentinfra/roadmap_cli.py:138`; AST `e3b835733344cc4702b993e1dfafa68c05951883e31c5b65824bdf1022d38cb1`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: observe_interfaces, root. Outputs/bindings: (none).
 Calls/effect boundaries: observe_interfaces.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[8].body[0].value.body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7568,13 +7628,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[8].body[0].value.orelse::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:136`; AST `4095ec58ddcd88bcdd25f1d73c342e4b21d49422d5f713395bd022cac80f2e5d`.
+Source: `infra/agentinfra/roadmap_cli.py:138`; AST `4095ec58ddcd88bcdd25f1d73c342e4b21d49422d5f713395bd022cac80f2e5d`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, compare_interfaces, root. Outputs/bindings: (none).
 Calls/effect boundaries: compare_interfaces.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[8].body[0].value.orelse; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7588,13 +7648,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[9]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:137`; AST `38a7a387bb052cf16ed74202b8859039f0cbdab72698c229bbad3f1933069b3c`.
+Source: `infra/agentinfra/roadmap_cli.py:139`; AST `38a7a387bb052cf16ed74202b8859039f0cbdab72698c229bbad3f1933069b3c`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, retrieve, root. Outputs/bindings: (none).
 Calls/effect boundaries: retrieve.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[9]; no call, error or mutation may be omitted. Condition: a.family == 'knowledge'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7608,13 +7668,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[9].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:137`; AST `068483da203a4f6e539d8e5f83b4805e16509d2a447571683ccfceef37f22b6b`.
+Source: `infra/agentinfra/roadmap_cli.py:139`; AST `068483da203a4f6e539d8e5f83b4805e16509d2a447571683ccfceef37f22b6b`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, retrieve, root. Outputs/bindings: (none).
 Calls/effect boundaries: retrieve.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[9].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7628,13 +7688,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[9].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:137`; AST `f61c38307560937a0d84d223d433e8b69e32e24d21b8d5efdf1b3a44b3a051d7`.
+Source: `infra/agentinfra/roadmap_cli.py:139`; AST `f61c38307560937a0d84d223d433e8b69e32e24d21b8d5efdf1b3a44b3a051d7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: a, retrieve, root. Outputs/bindings: (none).
 Calls/effect boundaries: retrieve.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[9].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7648,13 +7708,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[10]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:138`; AST `93920b4b47e02417159a33da74438cde4b3b39773e0021918422e60c9ad20603`.
+Source: `infra/agentinfra/roadmap_cli.py:140`; AST `93920b4b47e02417159a33da74438cde4b3b39773e0021918422e60c9ad20603`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: a, check, inventory, publish, record, root. Outputs/bindings: record.
 Calls/effect boundaries: check, inventory, publish.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[10]; no call, error or mutation may be omitted. Condition: a.family == 'portability'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7668,13 +7728,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[10].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:139`; AST `015514a635c8911569abe27c13b24b38a29e13bb5116d66c13bbd87de1f4b7e2`.
+Source: `infra/agentinfra/roadmap_cli.py:141`; AST `015514a635c8911569abe27c13b24b38a29e13bb5116d66c13bbd87de1f4b7e2`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: inventory, root. Outputs/bindings: record.
 Calls/effect boundaries: inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[10].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7688,13 +7748,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[10].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:139`; AST `865ab48cd6a5f9f39dbe8c1a00c6302e98015cad7159c31875dcf06bf0c972b7`.
+Source: `infra/agentinfra/roadmap_cli.py:141`; AST `865ab48cd6a5f9f39dbe8c1a00c6302e98015cad7159c31875dcf06bf0c972b7`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: inventory, root. Outputs/bindings: (none).
 Calls/effect boundaries: inventory.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[10].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7708,13 +7768,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[10].body[1]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:140`; AST `5e000400d4fe3d3e9658547d062d302e080d922b476c255dbf47c7bdc4f72353`.
+Source: `infra/agentinfra/roadmap_cli.py:142`; AST `5e000400d4fe3d3e9658547d062d302e080d922b476c255dbf47c7bdc4f72353`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: a, check, publish, record, root. Outputs/bindings: (none).
 Calls/effect boundaries: check, publish.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[10].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7728,13 +7788,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[10].body[1].value.body::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:140`; AST `fb571239a3f2ae515097646dc54c2325136515606b0d75337a66a5f3c200fe98`.
+Source: `infra/agentinfra/roadmap_cli.py:142`; AST `fb571239a3f2ae515097646dc54c2325136515606b0d75337a66a5f3c200fe98`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: publish, record, root. Outputs/bindings: (none).
 Calls/effect boundaries: publish.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[10].body[1].value.body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7748,13 +7808,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[10].body[1].value.orelse::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:140`; AST `1f3f2facd3e136d60afefa95fd8cfdecefa0487485ed04cc0c9d289e1127ea29`.
+Source: `infra/agentinfra/roadmap_cli.py:142`; AST `1f3f2facd3e136d60afefa95fd8cfdecefa0487485ed04cc0c9d289e1127ea29`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: check, record, root. Outputs/bindings: (none).
 Calls/effect boundaries: check.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[10].body[1].value.orelse; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7768,13 +7828,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[11]::Raise
 
-Source: `infra/agentinfra/roadmap_cli.py:141`; AST `debed461b974cbf336edaea02428ffc216957df0d7a917536d6e2de5587e1315`.
+Source: `infra/agentinfra/roadmap_cli.py:143`; AST `debed461b974cbf336edaea02428ffc216957df0d7a917536d6e2de5587e1315`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: ContractError. Outputs/bindings: (none).
 Calls/effect boundaries: ContractError.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Raise evaluation at root.body[21].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7788,13 +7848,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::execute::root.body[21].body[11].exc::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:141`; AST `333142f0e1fa20905c27448d9162355696f52b65354b52edfbd65aa2378e21f1`.
+Source: `infra/agentinfra/roadmap_cli.py:143`; AST `333142f0e1fa20905c27448d9162355696f52b65354b52edfbd65aa2378e21f1`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ContractError. Outputs/bindings: (none).
 Calls/effect boundaries: ContractError.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[11].exc; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7808,13 +7868,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_cli.py:144`; AST `788d147c825afd76cbfaf6683109940b5b7acc546b3ec217b6a97644ea7e4acd`.
+Source: `infra/agentinfra/roadmap_cli.py:146`; AST `788d147c825afd76cbfaf6683109940b5b7acc546b3ec217b6a97644ea7e4acd`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
 Inputs: ContractError, KeyError, OSError, TimeoutError, TransactionError, TypeError, any, args, argv, exc, execute, field, int, json, p, parser, print, result. Outputs/bindings: args, field, p, result.
 Calls/effect boundaries: any, execute, json.dumps, p.exit, p.parse_args, parser, print, result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[22]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7828,13 +7888,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:145`; AST `9dc8c44f59c3161d0cc156f6aecd07f170ee9f31037805aa1f48124aef10b25a`.
+Source: `infra/agentinfra/roadmap_cli.py:147`; AST `9dc8c44f59c3161d0cc156f6aecd07f170ee9f31037805aa1f48124aef10b25a`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: parser. Outputs/bindings: p.
 Calls/effect boundaries: parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7848,13 +7908,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:145`; AST `df5895e3f1cab8e578b78958e7e659d10948f3aac705dca2c579407a606b00f5`.
+Source: `infra/agentinfra/roadmap_cli.py:147`; AST `df5895e3f1cab8e578b78958e7e659d10948f3aac705dca2c579407a606b00f5`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7868,13 +7928,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:145`; AST `3800b3ee5d4ab1b24a9a4cc9deecd976f4e7ffc367ecb2fe78fd2badbbff7645`.
+Source: `infra/agentinfra/roadmap_cli.py:147`; AST `3800b3ee5d4ab1b24a9a4cc9deecd976f4e7ffc367ecb2fe78fd2badbbff7645`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: argv, p. Outputs/bindings: args.
 Calls/effect boundaries: p.parse_args.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7888,13 +7948,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:145`; AST `9936886f5866377ccb6f8939c42f52f219208c2e43a6ba529ece17a973a13833`.
+Source: `infra/agentinfra/roadmap_cli.py:147`; AST `9936886f5866377ccb6f8939c42f52f219208c2e43a6ba529ece17a973a13833`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: argv, p. Outputs/bindings: (none).
 Calls/effect boundaries: p.parse_args.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7908,13 +7968,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2]::Try
 
-Source: `infra/agentinfra/roadmap_cli.py:146`; AST `217a39baba4d037b534f47e81346384c7fcdcf5fce7dd9c65177a4e1aeef5e56`.
+Source: `infra/agentinfra/roadmap_cli.py:148`; AST `217a39baba4d037b534f47e81346384c7fcdcf5fce7dd9c65177a4e1aeef5e56`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Result propagation plus typed error matching; finally via explicit cleanup on success/error/return, not Drop alone
 
 Inputs: ContractError, KeyError, OSError, TimeoutError, TransactionError, TypeError, any, args, exc, execute, field, json, p, print, result. Outputs/bindings: field, result.
 Calls/effect boundaries: any, execute, json.dumps, p.exit, print, result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Try evaluation at root.body[22].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7928,13 +7988,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_cli.py:147`; AST `a6c8557b1594077d4c64d47935b11cd262272a3adaf7bc565e76c7ae84138991`.
+Source: `infra/agentinfra/roadmap_cli.py:149`; AST `a6c8557b1594077d4c64d47935b11cd262272a3adaf7bc565e76c7ae84138991`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: args, execute. Outputs/bindings: result.
 Calls/effect boundaries: execute.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7948,13 +8008,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:147`; AST `5f653271dab8375b133a694587bc52c1b28bb67d9f643515cb52cb696d923ca5`.
+Source: `infra/agentinfra/roadmap_cli.py:149`; AST `5f653271dab8375b133a694587bc52c1b28bb67d9f643515cb52cb696d923ca5`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: args, execute. Outputs/bindings: (none).
 Calls/effect boundaries: execute.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7968,13 +8028,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_cli.py:148`; AST `1f1d4d7bd101d7f32b676d6e3e16cddb87fa100cab5023be61a29ac0cbfa582c`.
+Source: `infra/agentinfra/roadmap_cli.py:150`; AST `1f1d4d7bd101d7f32b676d6e3e16cddb87fa100cab5023be61a29ac0cbfa582c`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: json, print, result. Outputs/bindings: (none).
 Calls/effect boundaries: json.dumps, print.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[22].body[2].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -7988,13 +8048,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:148`; AST `1076a09dd0da2d2c92ba1f149118ae6010f84f733b08b2def2729c50cb9ed40d`.
+Source: `infra/agentinfra/roadmap_cli.py:150`; AST `1076a09dd0da2d2c92ba1f149118ae6010f84f733b08b2def2729c50cb9ed40d`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: json, print, result. Outputs/bindings: (none).
 Calls/effect boundaries: json.dumps, print.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8008,13 +8068,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[1].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:148`; AST `482b5db37e2273e04f7ab894193fdb1f74861d89d051bd1a93d17dfecf567250`.
+Source: `infra/agentinfra/roadmap_cli.py:150`; AST `482b5db37e2273e04f7ab894193fdb1f74861d89d051bd1a93d17dfecf567250`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: json, result. Outputs/bindings: (none).
 Calls/effect boundaries: json.dumps.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8028,13 +8088,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[2]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:149`; AST `fb28d1d9fcb889cfee33592bc4a09ad0cf3b797209cd5d02970e48217c8b9763`.
+Source: `infra/agentinfra/roadmap_cli.py:151`; AST `fb28d1d9fcb889cfee33592bc4a09ad0cf3b797209cd5d02970e48217c8b9763`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: any, field, result. Outputs/bindings: field.
 Calls/effect boundaries: any, result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[22].body[2].body[2]; no call, error or mutation may be omitted. Condition: any((result.get(field) is False for field in ('allowed', 'accepted', 'complete', 'confirmed')))
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8048,13 +8108,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[2].test::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:149`; AST `e051239d848cf33f499947b07608fce94dc603b4c39f21081d0468be4d308607`.
+Source: `infra/agentinfra/roadmap_cli.py:151`; AST `e051239d848cf33f499947b07608fce94dc603b4c39f21081d0468be4d308607`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: any, field, result. Outputs/bindings: field.
 Calls/effect boundaries: any, result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].body[2].test; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8068,13 +8128,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[2].test.args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_cli.py:149`; AST `58e5b651eeb8b83f249f4a96954e3ce3ca4d1d5222525a56f97652ee21192b7d`.
+Source: `infra/agentinfra/roadmap_cli.py:151`; AST `58e5b651eeb8b83f249f4a96954e3ce3ca4d1d5222525a56f97652ee21192b7d`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
 Inputs: field, result. Outputs/bindings: field.
 Calls/effect boundaries: result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered GeneratorExp evaluation at root.body[22].body[2].body[2].test.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8088,13 +8148,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[2].test.args[0].elt.left::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:149`; AST `9d473b3f36dfac6c9aaf2b6fabe3b438dcd768708fb7d8484e19c3445f685829`.
+Source: `infra/agentinfra/roadmap_cli.py:151`; AST `9d473b3f36dfac6c9aaf2b6fabe3b438dcd768708fb7d8484e19c3445f685829`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: field, result. Outputs/bindings: (none).
 Calls/effect boundaries: result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].body[2].test.args[0].elt.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8108,13 +8168,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[2].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:149`; AST `4d9e3bd49f1ca0e5c82918a80328eaa190b6c6419b7b4aa57c05de813ded1b78`.
+Source: `infra/agentinfra/roadmap_cli.py:151`; AST `4d9e3bd49f1ca0e5c82918a80328eaa190b6c6419b7b4aa57c05de813ded1b78`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[22].body[2].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8128,13 +8188,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[3]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:150`; AST `0e59426f4cd82f97b12a07fc02dd90621c0ade9e8ca922883b344b1253eb189a`.
+Source: `infra/agentinfra/roadmap_cli.py:152`; AST `0e59426f4cd82f97b12a07fc02dd90621c0ade9e8ca922883b344b1253eb189a`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: result. Outputs/bindings: (none).
 Calls/effect boundaries: result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[22].body[2].body[3]; no call, error or mutation may be omitted. Condition: result.get('structural_compatible') is False
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8148,13 +8208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[3].test.left::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:150`; AST `2955460cff0a61da6b294595b812c34fa96d7ea1a5ffb5491557500f1676c55e`.
+Source: `infra/agentinfra/roadmap_cli.py:152`; AST `2955460cff0a61da6b294595b812c34fa96d7ea1a5ffb5491557500f1676c55e`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: result. Outputs/bindings: (none).
 Calls/effect boundaries: result.get.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].body[3].test.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8168,13 +8228,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[3].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:150`; AST `4d9e3bd49f1ca0e5c82918a80328eaa190b6c6419b7b4aa57c05de813ded1b78`.
+Source: `infra/agentinfra/roadmap_cli.py:152`; AST `4d9e3bd49f1ca0e5c82918a80328eaa190b6c6419b7b4aa57c05de813ded1b78`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[22].body[2].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8188,13 +8248,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[4]::If
 
-Source: `infra/agentinfra/roadmap_cli.py:151`; AST `c060bda3132b81a27d4f1d01c9c1a493e80e7d15f47c69c80bede2f55498187c`.
+Source: `infra/agentinfra/roadmap_cli.py:153`; AST `c060bda3132b81a27d4f1d01c9c1a493e80e7d15f47c69c80bede2f55498187c`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: args, result. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered If evaluation at root.body[22].body[2].body[4]; no call, error or mutation may be omitted. Condition: args.family == 'roadmap' and args.action == 'run'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8208,13 +8268,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[4].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:152`; AST `8dafa2403497ce3d782c0f2c34a3f25d163ce6f342082909b5bc39b1e5b7fa79`.
+Source: `infra/agentinfra/roadmap_cli.py:154`; AST `8dafa2403497ce3d782c0f2c34a3f25d163ce6f342082909b5bc39b1e5b7fa79`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: result. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[22].body[2].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8228,13 +8288,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].body[5]::Return
 
-Source: `infra/agentinfra/roadmap_cli.py:153`; AST `b2bbc444950f9b0b0b967dc529eb889a7cf0d4003be033124fc090f4e1571b48`.
+Source: `infra/agentinfra/roadmap_cli.py:155`; AST `b2bbc444950f9b0b0b967dc529eb889a7cf0d4003be033124fc090f4e1571b48`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Return evaluation at root.body[22].body[2].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8248,13 +8308,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].handlers[0]::ExceptHandler
 
-Source: `infra/agentinfra/roadmap_cli.py:154`; AST `c89313afaa1ceaee716b507ee78865a4bf3f0d6404b3f9e8656be968c2121978`.
+Source: `infra/agentinfra/roadmap_cli.py:156`; AST `c89313afaa1ceaee716b507ee78865a4bf3f0d6404b3f9e8656be968c2121978`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. match on source error enum preserving exception subtype matching and binding cleanup
 
 Inputs: ContractError, KeyError, OSError, TimeoutError, TransactionError, TypeError, exc, p. Outputs/bindings: (none).
 Calls/effect boundaries: p.exit.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered ExceptHandler evaluation at root.body[22].body[2].handlers[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8268,13 +8328,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].handlers[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_cli.py:155`; AST `5f7322c48418c569c165551f656c775fae092884420f03f0593047d7b35f2e3c`.
+Source: `infra/agentinfra/roadmap_cli.py:157`; AST `5f7322c48418c569c165551f656c775fae092884420f03f0593047d7b35f2e3c`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: exc, p. Outputs/bindings: (none).
 Calls/effect boundaries: p.exit.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Expr evaluation at root.body[22].body[2].handlers[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap
@@ -8288,13 +8348,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_cli.py::module::main::root.body[22].body[2].handlers[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_cli.py:155`; AST `082fec13c8186df8eeb6e9e284d04cda702d72d8c713be8d84307cbfe23799a0`.
+Source: `infra/agentinfra/roadmap_cli.py:157`; AST `082fec13c8186df8eeb6e9e284d04cda702d72d8c713be8d84307cbfe23799a0`.
 
 Rust module: `infra::agentinfra::roadmap_cli`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: exc, p. Outputs/bindings: (none).
 Calls/effect boundaries: p.exit.
-Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
+Dependencies: __future__, argparse, atomic, json, pathlib, roadmap, roadmap_acceptance, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_knowledge, roadmap_lease, roadmap_policy, roadmap_portability, roadmap_project, roadmap_python, roadmap_records, roadmap_review, roadmap_runtime, roadmap_verification, roadmap_work, security, transaction.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].handlers[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; clap

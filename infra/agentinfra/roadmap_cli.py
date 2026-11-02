@@ -112,7 +112,9 @@ def execute(a) -> dict:
     if a.family == "verification":
         if a.action == "reconcile-tests": return reconcile_original_tests(read_json(a.inventory), read_json(a.executed), a.candidate)
         obligation = read_json(a.obligation); validate_record(root, "ProofObligation", obligation)
-        errors = proof_errors(obligation, read_json(a.result))
+        from .roadmap_python import python_proof_errors
+        proof_result = read_json(a.result)
+        errors = proof_errors(obligation, proof_result) + python_proof_errors(root, obligation, proof_result)
         return {"accepted": not errors, "errors": errors, "limit": "record consistency; backend qualification and source-to-contract adequacy remain separate"}
     if a.family == "budget":
         ledger = BudgetLedger(root)

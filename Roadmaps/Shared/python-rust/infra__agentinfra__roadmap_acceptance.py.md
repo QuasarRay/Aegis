@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 278. Inventory digest: `3f3edcd13e4fc1248074f85c01b85cf369405241572c5c81fe90a7ab5d131ef1`.
+Files: 1. Behavioral units: 278. Inventory digest: `d5a133498a162fefd20b31944b9da7e678ac949572e7873f938da316390c6697`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_acceptance.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_acceptance.py:1`; AST `d54a4b35842d0fca27d17fa13e7f23e4bdba6ace9d60ba8f5f01862060be0424`.
+Source: `infra/agentinfra/roadmap_acceptance.py:1`; AST `4cffb06f80bb75a1243fbfdcbddc367a3301a7641fe0112aa0d71b3dba57df1e`.
 
 Rust module: `infra::agentinfra::roadmap_acceptance`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -1148,7 +1148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_acceptance.py::module::_assemble::root.body[18]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_acceptance.py:57`; AST `5f089fa332020391d6a8387d0650b8727e8189e28aad37547ba8c23487102c19`.
+Source: `infra/agentinfra/roadmap_acceptance.py:57`; AST `3030090f5ee2a28c54b29692fc74208a3da105296d462663129fca07e77dd909`.
 
 Rust module: `infra::agentinfra::roadmap_acceptance`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -1728,11 +1728,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_acceptance.py::module::_assemble::root.body[18].body[11]::Assign
 
-Source: `infra/agentinfra/roadmap_acceptance.py:71`; AST `e09fe084c48af3d66a0898609d3155e13d1a4d5a8c2441e24abb782ee1cebe87`.
+Source: `infra/agentinfra/roadmap_acceptance.py:71`; AST `86de5cc9753fc530cdd89931d418569760816b37a4931d0d0c396d6cc33e4785`.
 
 Rust module: `infra::agentinfra::roadmap_acceptance`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: compiled, dict, list, m, name, selected, through. Outputs/bindings: m, name, names.
+Inputs: compiled, dict, list, m, name, selected. Outputs/bindings: m, name, names.
 Calls/effect boundaries: dict.fromkeys, list.
 Dependencies: __future__, pathlib, roadmap, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_portability, roadmap_project, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -1748,11 +1748,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_acceptance.py::module::_assemble::root.body[18].body[11].value::Call
 
-Source: `infra/agentinfra/roadmap_acceptance.py:71`; AST `dbf5fc4cdf0916325bbeff5c45fe2ca13ec3e508b7af9b139d457592769d3b56`.
+Source: `infra/agentinfra/roadmap_acceptance.py:71`; AST `b5507e65031772c7f4734b0027bad50054278418116f91c917ec9eae6e725063`.
 
 Rust module: `infra::agentinfra::roadmap_acceptance`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: compiled, dict, list, m, name, selected, through. Outputs/bindings: m, name.
+Inputs: compiled, dict, list, m, name, selected. Outputs/bindings: m, name.
 Calls/effect boundaries: dict.fromkeys, list.
 Dependencies: __future__, pathlib, roadmap, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_portability, roadmap_project, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -1768,11 +1768,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_acceptance.py::module::_assemble::root.body[18].body[11].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_acceptance.py:71`; AST `378f38b690ddf61b5070b9b67b1d435dc2715a8af0a7b136065c725d5661d4c5`.
+Source: `infra/agentinfra/roadmap_acceptance.py:71`; AST `63d1d2abfd579ddb602d6e5131df4a7e5dabbc6a018f83a43c257d57ae795121`.
 
 Rust module: `infra::agentinfra::roadmap_acceptance`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: compiled, dict, m, name, selected, through. Outputs/bindings: m, name.
+Inputs: compiled, dict, m, name, selected. Outputs/bindings: m, name.
 Calls/effect boundaries: dict.fromkeys.
 Dependencies: __future__, pathlib, roadmap, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_portability, roadmap_project, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -1788,11 +1788,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_acceptance.py::module::_assemble::root.body[18].body[11].value.args[0].args[0].elts[4].value::ListComp
 
-Source: `infra/agentinfra/roadmap_acceptance.py:72`; AST `705a5052c83eb36d2709dce20ff71bf8574d01d5716a6504eec22dd157d600d3`.
+Source: `infra/agentinfra/roadmap_acceptance.py:72`; AST `c680c854d98f9a635b2984e0345c6a1755582a36a1803ce70edd65e9fb32c609`.
 
 Rust module: `infra::agentinfra::roadmap_acceptance`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
-Inputs: compiled, m, name, selected, through. Outputs/bindings: m, name.
+Inputs: compiled, m, name, selected. Outputs/bindings: m, name.
 Calls/effect boundaries: (none).
 Dependencies: __future__, pathlib, roadmap, roadmap_codex, roadmap_interfaces, roadmap_inventory, roadmap_portability, roadmap_project, roadmap_records, roadmap_runtime, roadmap_work, security.
 
