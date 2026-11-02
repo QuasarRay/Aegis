@@ -1,0 +1,9 @@
+# Maintained Python-to-Rust migration map
+
+`portability build` inventories every Python file under the maintained `infra`, `bin`, `scripts`, `verification/roadmap` and `Roadmaps/Shared/ci` roots. Vendored/reference projects retain their own ownership. The generated inventory includes modules, classes, functions/methods, executable statements, branches, loops, exception handlers, context managers, comprehensions, calls, lambdas, effects and error boundaries. Each entry resolves source/AST hashes, owner and AST route, inputs, outputs, calls, mutations, imports, invariants, numeric behavior, proposed Rust module/pattern, library candidates, ownership, exception behavior and required evidence.
+
+The JSON inventory and per-file Markdown live in `python-rust/`. These are precise source-bound migration proposals, not accepted semantic equivalence or a second Rust implementation. Dynamic typing, aliasing and external-call contracts remain explicit unresolved review responsibilities. Concrete semantics should be refined before a future replacement is accepted.
+
+Maintain reviewed refinements in `python-rust-overrides.json`, keyed by the generated unit ID. Each entry must contain the current `ast_sha256`, `source_sha256`, a nonempty `review` provenance and one or more refined fields: `rust_equivalent`, `ownership_contract`, `error_contract`, `numeric_contract`, `invariants`, `unresolved`, `rust_libraries`. The inventory resolves these refinements into every entry and its Markdown. A changed or removed source unit with an old refinement fails generation rather than silently retaining stale prose.
+
+Run `portability check` after edits and before packaging. Regenerate the inventory after source changes, review the affected entries, and retain any old evidence as historical. No full Rust migration is authorized merely because a proposed library or equivalent appears here.

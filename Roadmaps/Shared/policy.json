@@ -1,0 +1,37 @@
+{
+  "amendments": {
+    "AM01": "Hybrid Python/Rust; preserve reliable facilities; full future Rust migration requires semantic evidence.",
+    "AM02": "Codex only; exclude other provider adapters and compatibility research.",
+    "AM03": "Implementation first; early formal work requires concrete uncertainty reduction; full domain proof required for completion.",
+    "AM04": "Rust Kani first then faithful Bolero/Kani; Python report-selected production-linked backends, qualification required.",
+    "AM05": "Original tests and harnesses preserve exact semantics; concurrency original tests suffice now; performance/formal concurrency deferred.",
+    "AM06": "CGP optional initially; pervasive modernization after all three current PROJECT_COMPLETE receipts.",
+    "AM07": "One active agent across workspace; sequential specialists; max reasoning observed rather than assumed.",
+    "AM08": "Build review/flaw machinery; defer real project flaw campaigns.",
+    "AM09": "Complete Python behavioral Rust migration mapping; changes invalidate affected entries; no unused duplicate codebase.",
+    "AM10": "Native Goals/Plans preserve authorization, accounting, limits and scope; no emulated background goal loop.",
+    "AM11": "Durable budgets, bounded retries, exact freshness and reuse; unknown costs remain unknown; no invented token budget.",
+    "AM12": "Complete nominal/structural/behavioral correspondence, compiler-backed reconciliation and independent CPGSchema qualification.",
+    "AM13": "Lossless retained source corpus, exact retrieval, focused skills and every research recommendation disposition.",
+    "AM14": "Controlled macro provenance and single generated-region owner; proc_macro2 is infrastructure.",
+    "AM15": "Human proof packets and scoped fresh decisions; a review cannot manufacture a proof.",
+    "AM16": "Dagger/GitLab, dev-based stacked integration, .agents deployment, .aegis state and last-accepted governance.",
+    "AM17": "Preserve full Linux acceptance and portable core; retain explicit future Windows/macOS obligations.",
+    "AM18": "Separate implementation, domain verification, project completion and CGP completion; retire conflicting policy without deleting historical evidence.",
+    "AM19": "Roadmap package completion is distinct from implementation of the three projects; launchers remain inactive."
+  },
+  "cgp_requires_all_projects_complete": true,
+  "completion_states": [
+    "IMPLEMENTATION_READY",
+    "DOMAIN_VERIFIED",
+    "PROJECT_COMPLETE",
+    "CGP_MODERNIZATION_COMPLETE"
+  ],
+  "domain_proofs_at_completion": true,
+  "flaw_campaign": "deferred",
+  "initial_strategy": "implementation_first",
+  "max_active_agents": 1,
+  "provider": "codex",
+  "reasoning": "max",
+  "schema": 1
+}

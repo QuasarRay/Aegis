@@ -1,0 +1,2633 @@
+{
+  "coverage": "Every line of both preserved prompts belongs to a section requirement; acceptance and U requirements also have individual identities. All 19 root requirements and adopted amendment families are mapped.",
+  "requirements": [
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-01",
+      "lines": [
+        3,
+        4
+      ],
+      "milestones": [
+        "A02",
+        "A05",
+        "A06"
+      ],
+      "sha256": "83b13cd3b757a19be40ff9c26e9e5ec0bcb61237b9af83be0fdf68c48029dc6e",
+      "source": "AGENTS.MD",
+      "title": "1"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-02",
+      "lines": [
+        5,
+        6
+      ],
+      "milestones": [
+        "A12"
+      ],
+      "sha256": "c2a61a0538b8c3f202469ea44bbe949222f7b1958500ab28852355df150b21e4",
+      "source": "AGENTS.MD",
+      "title": "2"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-03",
+      "lines": [
+        7,
+        8
+      ],
+      "milestones": [
+        "A03",
+        "A06"
+      ],
+      "sha256": "db83fdfee209fc34d030bb842c24879f623bb6a3c672186e047db532972c341d",
+      "source": "AGENTS.MD",
+      "title": "3"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-04",
+      "lines": [
+        9,
+        10
+      ],
+      "milestones": [
+        "A03",
+        "A04"
+      ],
+      "sha256": "d92ee838cf02ae3eca881852ae4dc1142091afa7b10b0a3e7ee5b79439f0e0ab",
+      "source": "AGENTS.MD",
+      "title": "4"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-05",
+      "lines": [
+        11,
+        12
+      ],
+      "milestones": [
+        "A08",
+        "A09",
+        "B09",
+        "D10"
+      ],
+      "sha256": "298c994593ed5f5b45b70ed9db5d07311992c5b0018b43379ef27d6f94bd31c7",
+      "source": "AGENTS.MD",
+      "title": "5"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-06",
+      "lines": [
+        13,
+        14
+      ],
+      "milestones": [
+        "A14",
+        "B11",
+        "D12"
+      ],
+      "sha256": "933ab1d46494b90b282c18f9c6b955fc21188e882211af6cab729b2a46572e1a",
+      "source": "AGENTS.MD",
+      "title": "6"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-07",
+      "lines": [
+        15,
+        16
+      ],
+      "milestones": [
+        "A05",
+        "B03",
+        "D02"
+      ],
+      "sha256": "454b922d8427985eac57a016cfb2b0c80fea17b1f9044acfd164813aa9552413",
+      "source": "AGENTS.MD",
+      "title": "7"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-08",
+      "lines": [
+        17,
+        18
+      ],
+      "milestones": [
+        "A13",
+        "B10",
+        "D11"
+      ],
+      "sha256": "963de3fa42f9c8d0155d0d4aee30be01ec9d6ec5a454190b1c68781b2ebdf61e",
+      "source": "AGENTS.MD",
+      "title": "8"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-09",
+      "lines": [
+        19,
+        20
+      ],
+      "milestones": [
+        "A06"
+      ],
+      "sha256": "ee57860a6f903d2bd30ed57a36bc4350bf0da31ed72d48e4b13d001bba43f006",
+      "source": "AGENTS.MD",
+      "title": "9"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-10",
+      "lines": [
+        21,
+        22
+      ],
+      "milestones": [
+        "A04"
+      ],
+      "sha256": "7c485cbc70dc0b07588e53c0f73ac9bb1e77043c5fa2ef1fbac7b3b339791920",
+      "source": "AGENTS.MD",
+      "title": "10"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-11",
+      "lines": [
+        23,
+        24
+      ],
+      "milestones": [
+        "A04"
+      ],
+      "sha256": "b5a8d6a5e86cbcf0c39012d32b5fbb6791a05b89bc71d21b82abc5fbc6e320b2",
+      "source": "AGENTS.MD",
+      "title": "11"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-12",
+      "lines": [
+        25,
+        26
+      ],
+      "milestones": [
+        "A02",
+        "A07"
+      ],
+      "sha256": "1f312f5ed92cd77abacd79c4252ef8ec2d2a141429889896cbc2aa631661a27f",
+      "source": "AGENTS.MD",
+      "title": "12"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-13",
+      "lines": [
+        27,
+        28
+      ],
+      "milestones": [
+        "A05",
+        "B00",
+        "D00"
+      ],
+      "sha256": "d9098213927ab759a2816382379c55dbc4e4332cf111baade565e1f348f12352",
+      "source": "AGENTS.MD",
+      "title": "13"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-14",
+      "lines": [
+        29,
+        30
+      ],
+      "milestones": [
+        "A01"
+      ],
+      "sha256": "9fbbfc4accf37a87efb895b69fe5ee0faeea50f46aa4888af7b0b5b9092c72b7",
+      "source": "AGENTS.MD",
+      "title": "14"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-15",
+      "lines": [
+        31,
+        32
+      ],
+      "milestones": [
+        "A12",
+        "B10",
+        "D11"
+      ],
+      "sha256": "1f4dfacc1c9bbf59e8967366af961dda1c0c10dea2821f2b724e48c3164addd7",
+      "source": "AGENTS.MD",
+      "title": "15"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-16",
+      "lines": [
+        33,
+        34
+      ],
+      "milestones": [
+        "A00"
+      ],
+      "sha256": "4f1edc6a297aee4c55bda9f927e7b1a57c52b9a4021f6f4871943d9c60f62e81",
+      "source": "AGENTS.MD",
+      "title": "16"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-17",
+      "lines": [
+        35,
+        36
+      ],
+      "milestones": [
+        "A12"
+      ],
+      "sha256": "75f2e6279735968276aadf6e17d4beaf1d4c3157a9811bf0e50046bdf52f1c6c",
+      "source": "AGENTS.MD",
+      "title": "17"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-18",
+      "lines": [
+        37,
+        38
+      ],
+      "milestones": [
+        "A10"
+      ],
+      "sha256": "f2ea99a552289ae4c1f2ccff02922b29f1675cb36a8720bc18a82766c868410c",
+      "source": "AGENTS.MD",
+      "title": "18"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "ROOT-19",
+      "lines": [
+        39,
+        41
+      ],
+      "milestones": [
+        "A11"
+      ],
+      "sha256": "d68b7fa16ec2725a21eb0bf7e8eca1aeeb9b09ed359d90ee9c06002ec582ea5f",
+      "source": "AGENTS.MD",
+      "title": "19"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-00",
+      "lines": [
+        1,
+        8
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "92ab4cdfd22901d9c9b1f5fd9bd06db1171b4e9e87cceb72dd2ea3421f044eaf",
+      "source": "Blue_Prompt.md",
+      "title": "Preamble"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-01",
+      "lines": [
+        9,
+        31
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "4970698231239f93a436b84357876378c734b7ae2d5859f511d7b83265340557",
+      "source": "Blue_Prompt.md",
+      "title": "Contents"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-02",
+      "lines": [
+        32,
+        58
+      ],
+      "milestones": [
+        "B00"
+      ],
+      "sha256": "3e4d4aad7e9e0373c44aef15053801ada5a7402bc12cf70871fd75d6eea5f28f",
+      "source": "Blue_Prompt.md",
+      "title": "1. Authority, activation, and objective"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-03",
+      "lines": [
+        59,
+        97
+      ],
+      "milestones": [
+        "A04",
+        "B10"
+      ],
+      "sha256": "d3d4a0de4eb08b8d09e8846fd8f805f8c33c55592ba63d979469aa8a5e9d3d50",
+      "source": "Blue_Prompt.md",
+      "title": "2. Native Codex Goal lifecycle"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-04",
+      "lines": [
+        98,
+        158
+      ],
+      "milestones": [
+        "B00",
+        "B01"
+      ],
+      "sha256": "21bb094f0cab8f297c4efde37f8f6192d992afb03f92f79082c4b1bf189ae4b7",
+      "source": "Blue_Prompt.md",
+      "title": "3. Source authority, unified repository, and inventory"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-05",
+      "lines": [
+        159,
+        219
+      ],
+      "milestones": [
+        "A05",
+        "B02",
+        "B03",
+        "B07"
+      ],
+      "sha256": "381a52e9d15d2924a2875b7f98d487f6fe51d496fd0847a93432f00568e17afe",
+      "source": "Blue_Prompt.md",
+      "title": "4. Canonical correspondence and the Rust object model"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-06",
+      "lines": [
+        220,
+        241
+      ],
+      "milestones": [
+        "B03"
+      ],
+      "sha256": "3861285c9335cd059da873e09d65821c85f53c2b0751587e972117467abfdc42",
+      "source": "Blue_Prompt.md",
+      "title": "5. BlueExposure, PyO3, and Python identity"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-07",
+      "lines": [
+        242,
+        283
+      ],
+      "milestones": [
+        "B02",
+        "B04",
+        "B06"
+      ],
+      "sha256": "24b648b93ac77f8121e6e7f7e0eea524c747b87db4d06fc6019486b73ff3164a",
+      "source": "Blue_Prompt.md",
+      "title": "6. Bevy execution and state integration"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-08",
+      "lines": [
+        284,
+        327
+      ],
+      "milestones": [
+        "B03",
+        "B04"
+      ],
+      "sha256": "2b008731e3d1190a3fbc08db5846905db7ab9ecf72dfd28cb691719cfa437fa7",
+      "source": "Blue_Prompt.md",
+      "title": "7. Concurrent Python and lifecycle"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-09",
+      "lines": [
+        328,
+        366
+      ],
+      "milestones": [
+        "B01",
+        "B02",
+        "B07"
+      ],
+      "sha256": "bc93cc357de2b12107e68e81923b7e2ba0d18e0e59c8aceedda10c7b38a0c281",
+      "source": "Blue_Prompt.md",
+      "title": "8. Early feasibility and implementation sequence"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-10",
+      "lines": [
+        367,
+        417
+      ],
+      "milestones": [
+        "B08",
+        "B09"
+      ],
+      "sha256": "e55115413cb11304816225529379fcafe9b10529b8ab4163d1b7c34054853f7a",
+      "source": "Blue_Prompt.md",
+      "title": "9. Original tests and bounded execution"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-11",
+      "lines": [
+        418,
+        475
+      ],
+      "milestones": [
+        "A03",
+        "B00",
+        "B10"
+      ],
+      "sha256": "fa3dba318869ceed1dfffd8a84bb80847a1d319f03aee0ab854072130fd4402f",
+      "source": "Blue_Prompt.md",
+      "title": "10. Durable records, receipts, and continuation"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-12",
+      "lines": [
+        476,
+        516
+      ],
+      "milestones": [
+        "B05",
+        "B06",
+        "B08"
+      ],
+      "sha256": "92202e6c792ba07070f5db243da5a4d692cb425064bee5f2b7079b04cbce82e5",
+      "source": "Blue_Prompt.md",
+      "title": "11. Portable host support, builds, and packaging"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-13",
+      "lines": [
+        517,
+        556
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "532ef7e47681c9339255255890859d0488e3f4fec3249a18bab8d42defe8fd28",
+      "source": "Blue_Prompt.md",
+      "title": "12. Milestone publication and human decisions"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-14",
+      "lines": [
+        557,
+        589
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "e0a02c9d7a952643902e09c8a6a68fb84cfb6578446be99466fd47276529f196",
+      "source": "Blue_Prompt.md",
+      "title": "13. Acceptance and completion"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-15",
+      "lines": [
+        590,
+        675
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "6bc2ac746775c38adbc81277138ec67ee98ed97761ecc3352f7e70fa918a81a8",
+      "source": "Blue_Prompt.md",
+      "title": "Appendix A. Mechanical identity and naming specification"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-16",
+      "lines": [
+        676,
+        727
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "6e4d9c2a3b0793c637f15ef9d03a4cdd517845962c590308898c7ca28ca204a9",
+      "source": "Blue_Prompt.md",
+      "title": "Appendix B. Record and receipt contract"
+    },
+    {
+      "disposition": "retain historical findings; no new flaw campaign activated",
+      "id": "BLUE-SECTION-17",
+      "lines": [
+        728,
+        784
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "016769eaedfc06818693302dd2f5b571104ded5ba6facf5416cd1d3a29b7af49",
+      "source": "Blue_Prompt.md",
+      "title": "Appendix C. Finding resolutions F001–F048"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-18",
+      "lines": [
+        785,
+        815
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "148f6c8bb579f124f176cb2205b3d170b2207ec97a546d70cf98afcf53e440fb",
+      "source": "Blue_Prompt.md",
+      "title": "Appendix D. Preserved requirements U01–U22"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-SECTION-19",
+      "lines": [
+        816,
+        824
+      ],
+      "milestones": [
+        "B00",
+        "B10"
+      ],
+      "sha256": "94a28049bcfe087c203655887ec6cb676d045b831743f55a7cac4b15abaaee54",
+      "source": "Blue_Prompt.md",
+      "title": "Appendix E. Copyable Goal launcher"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A01",
+      "lines": [
+        567,
+        567
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "2ec5bd66591f6987fd05be062ae0b295e5127e4a97c53965115a4d2d75701d60",
+      "source": "Blue_Prompt.md",
+      "title": "Both libraries are implemented in the Blue workspace; no sibling checkout, gitlink or original C++ production dependency. References, licenses and provenance are intact."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A02",
+      "lines": [
+        568,
+        568
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "82e54b72d4dbb3c5b3b2b3262e4312c9ab16ba4c0f3b4b467a26e7c1e9397e81",
+      "source": "Blue_Prompt.md",
+      "title": "Every file/body/configuration and consumed external contract has a justified disposition. No unresolved required region or silently reduced applicability set remains."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A03",
+      "lines": [
+        569,
+        569
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "6b1ef1a36d00d4ad7e4c7185d6e42b3709058aff16ac8a425eef10a6a8fbfc36",
+      "source": "Blue_Prompt.md",
+      "title": "Every required Blue-specific entity/responsibility has exactly one canonical Rust counterpart. Behavioral, structural and nominal correspondence all hold, including names, public/private boundaries, owners, interfaces, bases, overrides and shared state."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A04",
+      "lines": [
+        570,
+        570
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "4f90902d382f6d6a13dd61a0f6d8a094d1f2a6fdd08cabf3c9d9c6afa2bd91d3",
+      "source": "Blue_Prompt.md",
+      "title": "Forward/reverse source-to-Rust reconciliation is current, with no canonical collisions, missing bodies, unowned production items or unsupported relationship claims."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A05",
+      "lines": [
+        571,
+        571
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "84962a571bc6d9b4fd3879b019f863aee0785e2580c9566d75899f7864b03506",
+      "source": "Blue_Prompt.md",
+      "title": "PyO3 replacements are explicit; Blue-specific discovery, registration, type/object identity, conversion, properties, callbacks, copying, persistence and lifecycle are implemented."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A06",
+      "lines": [
+        572,
+        572
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "f368b0b9abcb31bd2f3c94c2d79089935817f9e14bc82f9816766b29451ca51d",
+      "source": "Blue_Prompt.md",
+      "title": "Every applicable subsystem has a real vertical/horizontal production path with authoritative state, scheduling, resources and callback semantics. Headless Linux works."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A07",
+      "lines": [
+        573,
+        573
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "160edd9a9e5a733da1c7d519688f4d4dba33369c566351b905485b81b09e1675",
+      "source": "Blue_Prompt.md",
+      "title": "Default runtime is free-threaded with recorded GIL state after required imports. Ownership, borrowing, tasklet/context behavior, parallel work, async boundaries, cancellation and shutdown preserve required contracts."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A08",
+      "lines": [
+        574,
+        574
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "777910ab5565ad8fc84187c3331477db5a930aeaecc2ea4c2decaf7e30319042",
+      "source": "Blue_Prompt.md",
+      "title": "The current Linux host/target is identified; the core avoids unnecessary OS/distribution/version coupling. Required platform adapters and future Windows/macOS obligations are explicit."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A09",
+      "lines": [
+        575,
+        575
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "751769dd0c93d3362e3a83b73d1dd624e99251b6055a384882e8acbe15157289",
+      "source": "Blue_Prompt.md",
+      "title": "The Bevy version meets the timestamped newest-stable gate. Compatible maintained Rust/CPython/PyO3 dependencies are pinned. Deprecated production macros and recreated generic binding machinery are absent."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A10",
+      "lines": [
+        576,
+        576
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "5510cf1843df05c4a4d08a946775dcf511d5ae3e9e008de5fc30f8e00fb66005",
+      "source": "Blue_Prompt.md",
+      "title": "Every required native/extension/embedding/adapter mode builds. Actual final packages install with their required contents and correct artifact identities."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A11",
+      "lines": [
+        577,
+        577
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "15ab1ac3622302425c99081e15298fefdb4696f6d9c3718584a154961a56d370",
+      "source": "Blue_Prompt.md",
+      "title": "Complete applicable original suites/configurations execute successfully against the candidate, subject only to exact approved exceptions. Required skipped, missing, blocked, zero-case, interrupted or stale results do not count as passes."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A12",
+      "lines": [
+        578,
+        578
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "7dd81687f231d36dc41a39afe7c5f6a6b48430901bbf5260e6c43d1ea0baa434",
+      "source": "Blue_Prompt.md",
+      "title": "Review/build/test/package receipts match current semantic inputs and actual artifacts. Discovery, loaded modules, configurations, results and freshness are reconciled."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A13",
+      "lines": [
+        579,
+        579
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "62cde8fff900b807d33c2cac082e74cff2cb76caedb2747d25e4b95134306642",
+      "source": "Blue_Prompt.md",
+      "title": "Completed milestones are integrated into remote blue-rs-dev with evidence valid for that content. Visible checkout, main, upstream BlueExposure and unrelated work are accounted for and preserved."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-A14",
+      "lines": [
+        580,
+        580
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "651d4580a2db0c72b8f3785d3f2da0d7b75a711761903aea3b481ddfdc83c79f",
+      "source": "Blue_Prompt.md",
+      "title": "Queue, checkpoint, committed generation and live Goal agree. No required placeholder, omitted method, empty callback, hidden disabled feature, unapproved exception or unfinished obligation remains."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U01",
+      "lines": [
+        791,
+        791
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "f4798350137e8adf609dfdefc362109e1e7b1c399f5f71a849fbde355fe841bf",
+      "source": "Blue_Prompt.md",
+      "title": "Every required Blue-specific entity and responsibility has one canonical counterpart."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U02",
+      "lines": [
+        792,
+        792
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "8279bf54773ee8e306ce03938c5524db3f0561a928cb3ee33a3db07cd15f67c4",
+      "source": "Blue_Prompt.md",
+      "title": "Behavioral, structural and nominal equivalence apply simultaneously."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U03",
+      "lines": [
+        793,
+        793
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "e204f091066260d3d80dc3267dce79f01d25cd3355b02e707a41a484db825967",
+      "source": "Blue_Prompt.md",
+      "title": "Preserve names, state/method owners, interfaces, bases, overrides and responsibilities."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U04",
+      "lines": [
+        794,
+        794
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "b66b268c5c97ba0b45c38a189c3819a48a62a03f61cb50a781dea618bd4bf3de",
+      "source": "Blue_Prompt.md",
+      "title": "Use Rust structs/traits/supertraits/composition and distinguish logical ownership from actual impl items."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U05",
+      "lines": [
+        795,
+        795
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "d42b80faf54d13ff958fba9eb690dadf90ee362341a14939512fe184d4a23fcf",
+      "source": "Blue_Prompt.md",
+      "title": "Inventory both complete libraries, private bodies, configurations and exposure machinery."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U06",
+      "lines": [
+        796,
+        796
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "3c5525f5d9f93758c5487af5edede83ddaa9fe11018e4c50c99021ded9e2e15b",
+      "source": "Blue_Prompt.md",
+      "title": "One Blue-rooted Cargo workspace contains both Rust implementations and pinned references."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U07",
+      "lines": [
+        797,
+        797
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "8a75e5ee257b8a0140ffb3ec4b8376c1a3ebe8e0a9567f429eb29f38532d7328",
+      "source": "Blue_Prompt.md",
+      "title": "Reuse maintained PyO3 directly and retain only required Blue-specific adapters/policy."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U08",
+      "lines": [
+        798,
+        798
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "8f14482ef41cd80fe1b0e30a9e5671efc3c341cf2ec10ea4aa8287d7837dcef0",
+      "source": "Blue_Prompt.md",
+      "title": "Modernize mechanisms while preserving defined observable Blue behavior."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U09",
+      "lines": [
+        799,
+        799
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "476fb1f6fa4cfe74f4a2f7fc8608449b06eaf76de5e82a4d783f34cbbcf5800b",
+      "source": "Blue_Prompt.md",
+      "title": "Bevy owns substantive vertical/horizontal execution and state integration."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U10",
+      "lines": [
+        800,
+        800
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "d1e87a45bb85136cbbf2c071f2c3a6be9d3b5e7a60e6abb40ee4f4bf53e75450",
+      "source": "Blue_Prompt.md",
+      "title": "Newest stable Bevy is resolved, pinned and rechecked at a dated final gate."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U11",
+      "lines": [
+        801,
+        801
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "20ea05e26c50a163d1db04a9bde2ccc9a9fa1ae37dfc58d7b86e2586dd2fed4a",
+      "source": "Blue_Prompt.md",
+      "title": "Free-threaded concurrent, parallel, async and multithreaded Python is the default."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U12",
+      "lines": [
+        802,
+        802
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "8e92010ed3359bc677614d347116e282c1257a0b18b5dc4a5d0c601f9d275aba",
+      "source": "Blue_Prompt.md",
+      "title": "Canonical synchronous contracts remain; async adapters are additional infrastructure."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U13",
+      "lines": [
+        803,
+        803
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "27fc763bce69e79f395ebbd26a6f723e9939a3895e6987b37a4470abc0f65429",
+      "source": "Blue_Prompt.md",
+      "title": "Deprecated production macros are replaced with maintained facilities."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U14",
+      "lines": [
+        804,
+        804
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "04fe806d1cacca3330554f52a320f11d92f2177c09a9804b47df7cd81cb2b49e",
+      "source": "Blue_Prompt.md",
+      "title": "Tooling serves fastest complete delivery; CGP/generation and handwritten Rust are optional."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U15",
+      "lines": [
+        805,
+        805
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "822b69bfd5d70f9bb8541653cb50f28ba8cae22ddab120140e2289dc4543ff46",
+      "source": "Blue_Prompt.md",
+      "title": "Successful compilation and original tests remain the verification standard."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U16",
+      "lines": [
+        806,
+        806
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "67987d7b92086e1f2b665b910344e816f8c26e71852e2694db371a2711aea621",
+      "source": "Blue_Prompt.md",
+      "title": "Preserve original tests and require exact approval for semantic changes or retirement."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U17",
+      "lines": [
+        807,
+        807
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "67cf3b909c16a0d86a66cbfc9a6dde9ebe7f2386cf5919eec7450645db236ab5",
+      "source": "Blue_Prompt.md",
+      "title": "Linux/current-host acceptance comes first; portable design remains required and Windows/macOS remain future obligations."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U18",
+      "lines": [
+        808,
+        808
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "f4fd549e0b7a2d623c6be12de8c09fc2da70331a63444bf00ca6e7f9ad248f74",
+      "source": "Blue_Prompt.md",
+      "title": "Use native Goal lifecycle, one queue/checkpoint and durable, current evidence."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U19",
+      "lines": [
+        809,
+        809
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "8f5d0cca03738d20c6f4203727170c8fc82c59405086a65a92d2a72863c4f9ed",
+      "source": "Blue_Prompt.md",
+      "title": "Publish verified milestones to blue-rs-dev while preserving main and upstream BlueExposure."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U20",
+      "lines": [
+        810,
+        810
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "b66ce05bd92cbe02b0b656bfd36cd030c8531d8dff3a13de3864d7f8aa6e0c08",
+      "source": "Blue_Prompt.md",
+      "title": "Preserve user guidance and unrelated implementation work, including concurrent writers."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U21",
+      "lines": [
+        811,
+        811
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "7e8aba739d711b3c8395512ce5321dfe5b04beef01759ebdba25fa5e7e988d38",
+      "source": "Blue_Prompt.md",
+      "title": "Prompt authoring/review does not activate implementation or silently replace an active contract."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "BLUE-U22",
+      "lines": [
+        812,
+        812
+      ],
+      "milestones": [
+        "B10"
+      ],
+      "sha256": "ed38e40c786f3b8831e8ebbbfa271bd132ee082cca84f43b3a8fa910a3402985",
+      "source": "Blue_Prompt.md",
+      "title": "Report evidence channels, exceptions and publication separately; never call them formal proof."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-00",
+      "lines": [
+        1,
+        10
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "759fdf657dc00ba3504d13f37eb0b225056253b993025034523bb015247a4518",
+      "source": "Destiny_Prompt.md",
+      "title": "Preamble"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-01",
+      "lines": [
+        11,
+        33
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "8b3e76957edbee4bed2c200a5d4d87ebc40b92b025fcaa14113a0421b6cd05ee",
+      "source": "Destiny_Prompt.md",
+      "title": "Contents"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-02",
+      "lines": [
+        34,
+        69
+      ],
+      "milestones": [
+        "D00"
+      ],
+      "sha256": "d3ef37febfb4add2107ce21fa128536c6691f5ac1483ccbc7ac332776f312646",
+      "source": "Destiny_Prompt.md",
+      "title": "1. Authority, adopted decisions, and preservation"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-03",
+      "lines": [
+        70,
+        141
+      ],
+      "milestones": [
+        "A04",
+        "D11"
+      ],
+      "sha256": "0fe1411eb312e7b7c6d5d8ef5483711234d4b9017e2d4a011bd036123bdef9d6",
+      "source": "Destiny_Prompt.md",
+      "title": "2. Native Goal lifecycle and contract binding"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-04",
+      "lines": [
+        142,
+        200
+      ],
+      "milestones": [
+        "D00",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08"
+      ],
+      "sha256": "1ccba7d9a02fc5b2f3fbc3b9eeb8fb58fca626f9e88d80f0578e51a085f87f4a",
+      "source": "Destiny_Prompt.md",
+      "title": "3. Source authority, complete inventory, and finite dependency boundary"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-05",
+      "lines": [
+        201,
+        254
+      ],
+      "milestones": [
+        "A05",
+        "D02"
+      ],
+      "sha256": "88e4e69d014ed395eeccf8bdb827b6d6eb8fc58ffbb5046f780b4ad947854439",
+      "source": "Destiny_Prompt.md",
+      "title": "4. Canonical correspondence and public contracts"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-06",
+      "lines": [
+        255,
+        284
+      ],
+      "milestones": [
+        "D01",
+        "D02"
+      ],
+      "sha256": "53904e142bac8fa0ba6a3eadaedb41ef1fa5335252ecb523ea80d1c74d410c63",
+      "source": "Destiny_Prompt.md",
+      "title": "5. Current Blue, BlueExposure, and Python exposure"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-07",
+      "lines": [
+        285,
+        318
+      ],
+      "milestones": [
+        "D01",
+        "D03",
+        "D04"
+      ],
+      "sha256": "62d2c8a874d58f3080ce5838dc8be0c7cd330746d908680c3554d032dfc12565",
+      "source": "Destiny_Prompt.md",
+      "title": "6. Bevy execution, state, and scheduling"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-08",
+      "lines": [
+        319,
+        346
+      ],
+      "milestones": [
+        "D02",
+        "D06",
+        "D08"
+      ],
+      "sha256": "35e46487403d2a934a94f4e44af3184a85252a962158a19c5e33844c728fb280",
+      "source": "Destiny_Prompt.md",
+      "title": "7. Concurrent Python, reentrancy, and lifecycle"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-09",
+      "lines": [
+        347,
+        393
+      ],
+      "milestones": [
+        "D01",
+        "D02",
+        "D12"
+      ],
+      "sha256": "84d90d48e0baf014fe54e9975c366322dd8f4448ffc39797f1943138a627518c",
+      "source": "Destiny_Prompt.md",
+      "title": "8. Early integration, subsystem batches, and metaprogramming"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-10",
+      "lines": [
+        394,
+        442
+      ],
+      "milestones": [
+        "D09",
+        "D10"
+      ],
+      "sha256": "ecc934fb1dfaad18be23de5d8c00b4dc11006b24557fd927e2e05630c583c68d",
+      "source": "Destiny_Prompt.md",
+      "title": "9. Original tests and bounded execution"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-11",
+      "lines": [
+        443,
+        488
+      ],
+      "milestones": [
+        "A03",
+        "D00",
+        "D11"
+      ],
+      "sha256": "9c28f323dd6940cc9ac6e7638d0ecb60451adc346500efcc79c2160b707d5afc",
+      "source": "Destiny_Prompt.md",
+      "title": "10. Existing records, receipts, and continuation"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-12",
+      "lines": [
+        489,
+        516
+      ],
+      "milestones": [
+        "D07",
+        "D09"
+      ],
+      "sha256": "fe06c5acc61fc6a4a6e9b1a52bf423a83afcf328efc137da490234147d6dc45f",
+      "source": "Destiny_Prompt.md",
+      "title": "11. Linux acceptance, portability, formats, and packaging"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-13",
+      "lines": [
+        517,
+        550
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "1b693be4fc59df125ab4be1c9bd0712111a0a2d8f7587f7a55b677085f5beb53",
+      "source": "Destiny_Prompt.md",
+      "title": "12. Publication, exact guidance propagation, and human decisions"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-14",
+      "lines": [
+        551,
+        570
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "62c7635e38aebf00d8fd8219de81f2d6c7a390fef3aaf5a4e38c5d7bf840dd81",
+      "source": "Destiny_Prompt.md",
+      "title": "13. Architecture descriptions and decision records"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-15",
+      "lines": [
+        571,
+        601
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "6769b3d0b891361f2f7642969f4704e79b858c5334fb55bf45363356f505b03e",
+      "source": "Destiny_Prompt.md",
+      "title": "14. Complete acceptance"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-16",
+      "lines": [
+        602,
+        687
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "676ef12e65a37684640f8f0dad33ab0ff1f9d02aa6ee696ea9e53c177aa8401f",
+      "source": "Destiny_Prompt.md",
+      "title": "Appendix A. Mechanical identity and naming specification"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-17",
+      "lines": [
+        688,
+        742
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "1f41bf61fbe918d54b84731113dcb64672c3f332830152f310ee0c7aa248922b",
+      "source": "Destiny_Prompt.md",
+      "title": "Appendix B. Record and receipt contract"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-18",
+      "lines": [
+        743,
+        751
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "e3a0476ec949f32ccacdc2e5c5a280fe155ea269ab2b65134e743821203cef4f",
+      "source": "Destiny_Prompt.md",
+      "title": "Appendix C. Preserved supplied guidance"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-19",
+      "lines": [
+        752,
+        784
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "21dfea373078bff5da7f2c104c137d639e78986a6906dfa1fd7a2822d87feb96",
+      "source": "Destiny_Prompt.md",
+      "title": "Project Goals:"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-SECTION-20",
+      "lines": [
+        785,
+        793
+      ],
+      "milestones": [
+        "D00",
+        "D11"
+      ],
+      "sha256": "4e230d0d4480a62a3ff18d2c8b70039326ed33914e9b161403b9d88a76852096",
+      "source": "Destiny_Prompt.md",
+      "title": "Appendix D. Copyable Goal launcher"
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A01",
+      "lines": [
+        579,
+        579
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "58f4ff6796e2aa01abd5083555620fb6c2e07991220f4f882defb5776c1972cb",
+      "source": "Destiny_Prompt.md",
+      "title": "**Authority and scope closed:** original Destiny, consumed original Blue/BlueExposure, overlays, files/bodies/macros/templates/configurations and finite provider closure are pinned and accounted for; no required unresolved region or silent denominator reduction remains."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A02",
+      "lines": [
+        580,
+        580
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "ac012004974c4727d54a5e05be5606d29bf868c3622dd6a6a99cd16d908405b9",
+      "source": "Destiny_Prompt.md",
+      "title": "**Bijection and naming satisfied:** all required source entities/responsibilities have exactly one real canonical counterpart; actual declarations and expansions reconcile both ways; mechanical names, properties/fields/constants/registrations and logical/concrete owners are correct; auxiliary items are classified."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A03",
+      "lines": [
+        581,
+        581
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "606dc8b9b26c0ca1a39e095729247c1113e3b78b53c1288f732100af02282712",
+      "source": "Destiny_Prompt.md",
+      "title": "**Relationship and identity semantics satisfied:** complete base/interface/override graphs, inherited behavior, shared state, runtime identity, queries, copying and lifecycle have actual source-compatible paths, including the `Ball`, `Ballpark` and `IEveReferencePoint` examples."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A04",
+      "lines": [
+        582,
+        582
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "418d570143e5ce5801efd6d3d66dc4dc24529cdac1b08f9616da03cf378d8895",
+      "source": "Destiny_Prompt.md",
+      "title": "**All Destiny behavior implemented:** every world/host/client/server/private/configuration obligation has a real body and correct responsibility owner. No TODO, missing delegate, unconditional success, disabled required feature, empty shell or state-only facade remains."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A05",
+      "lines": [
+        583,
+        583
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "34e4755bfccb6eea59233adebe60f39a48769548a48f376c055060c480ead0f9",
+      "source": "Destiny_Prompt.md",
+      "title": "**Current Blue integration complete:** reproducible current Blue dependency, consumed providers, bounded fixes, actual registration/exposure/runtime access and one runtime/state authority across Python, interfaces, Destiny and Bevy are complete. No older nested baseline or undocumented sibling input remains."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A06",
+      "lines": [
+        584,
+        584
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "4798a667564bdf852566f785325161665c76710d29c29464f8a6429e4e866340",
+      "source": "Destiny_Prompt.md",
+      "title": "**Bevy integration complete:** all subsystem vertical/horizontal records point to real production execution/state, with compatible versions, final finite version gate, headless Linux operation, clock/schedule/callback/resource semantics and no duplicate physical-state authority."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A07",
+      "lines": [
+        585,
+        585
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "50c625e1f839bdd73e61b853d1fba45a5d1ecef71d646b1bec35c72a68c21d14",
+      "source": "Destiny_Prompt.md",
+      "title": "**Python and concurrency contracts complete:** free-threaded default and actual GIL state after required imports, canonical synchronous completion, public type graph, receiver contention, reentrancy, loop/task context, identity/weakrefs/GC, errors/cancellation, interpreter ownership and shutdown are implemented and reviewed with explicit original-test coverage/limits."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A08",
+      "lines": [
+        586,
+        586
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "dc17b96eae2c98b0af027efc9e05ae4438e935a398e19fbee5b8067544d73cdf",
+      "source": "Destiny_Prompt.md",
+      "title": "**Public boundaries and implementation quality complete:** stable canonical public APIs, private providers/plumbing, native Rust mechanisms, idiomatic Rust/Bevy refactoring and reproducible generation/recorded handwritten ownership are complete."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A09",
+      "lines": [
+        587,
+        587
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "5e7d72e16d1d90aa5ae2e96440562df6ce5c82786b949d70844f746c95e8e513",
+      "source": "Destiny_Prompt.md",
+      "title": "**Production builds and formats complete:** required actual-host configurations and artifact modes compile; stream/snapshot/replay/wire formats and references preserve required semantics; dependency/toolchain/ABI identities and future-platform obligations are accurate."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A10",
+      "lines": [
+        588,
+        588
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "d13ecf4e51c2b7f0083d70dbc4a54fddf44e2c86f4fa16703dbf6a71bec51368",
+      "source": "Destiny_Prompt.md",
+      "title": "**Original-test accounting complete:** every source occurrence has a justified disposition; every required applicable executable case passes against the intended installed Rust/Blue candidate or has an exact execution exception. Missing/zero execution, failures, unapproved skips, timeouts and unresolved C++ adapter routes cannot pass."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A11",
+      "lines": [
+        589,
+        589
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "7b6f15569de7b3b2a90c9c9d10eb031ca75f62a370ac5885fcd006dc53477523",
+      "source": "Destiny_Prompt.md",
+      "title": "**Evidence and decisions current:** source review, reconciliation, build, original-test, package and publication receipts form a continuous current chain; no required pending decision, stale inherited credit or fabricated proof result remains. Additional verification exists only within its authorization."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A12",
+      "lines": [
+        590,
+        590
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "3451a4efc38c27e8d51fe5ccfa38e4d2ab51cb82dfdd1d4e3400ebafd876a191",
+      "source": "Destiny_Prompt.md",
+      "title": "**Installed deliverables complete:** reproducible packages, native/Python interfaces, data, licenses, build/use instructions and original-test execution use the real installed candidate, with no original C++ production runtime dependency or stale import shadowing."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A13",
+      "lines": [
+        591,
+        591
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "0cfea31449e77ba1646f3a69ce03cec74331615eeabd676dd7f7a83c641c0418",
+      "source": "Destiny_Prompt.md",
+      "title": "**Guidance and architecture complete:** exact root-byte mirrors and CI sync/check operate under the maintained-directory boundary; references/user work are preserved; architecture views/ADRs reflect actual code and accurately state ISO alignment and evidence limits."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A14",
+      "lines": [
+        592,
+        592
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "692944fb9a9a9c1e02187d2b7b398f03907e9cacd7124c1a0dcc4e583fde4304",
+      "source": "Destiny_Prompt.md",
+      "title": "**Integrated publication complete:** verified Destiny milestones are integrated into `destiny-rs-dev`; required bounded Blue contributions are separately reviewed/integrated into `blue-rs-dev`; actual remote content matches validated semantic inputs; local/remote/visible-checkout state and any exact publication exception are reported."
+    },
+    {
+      "disposition": "retain with adopted amendments",
+      "id": "DESTINY-A15",
+      "lines": [
+        593,
+        593
+      ],
+      "milestones": [
+        "D11"
+      ],
+      "sha256": "85589ff9164461babdbe536a0f4e7d50e615dbeb180fdb4c1eab7ba7ec3a520f",
+      "source": "Destiny_Prompt.md",
+      "title": "**Operational closure complete:** canonical queue/generation and continuation reconcile all required obligations; no required `planned`, `partial`, `unresolved`, stale or blocked item remains; native Goal is bound to the adopted contract and only then marked complete under supported lifecycle rules."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM01",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Hybrid Python/Rust; preserve reliable facilities; full future Rust migration requires semantic evidence."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM02",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Codex only; exclude other provider adapters and compatibility research."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM03",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Implementation first; early formal work requires concrete uncertainty reduction; full domain proof required for completion."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM04",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Rust Kani first then faithful Bolero/Kani; Python report-selected production-linked backends, qualification required."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM05",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Original tests and harnesses preserve exact semantics; concurrency original tests suffice now; performance/formal concurrency deferred."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM06",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "CGP optional initially; pervasive modernization after all three current PROJECT_COMPLETE receipts."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM07",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "One active agent across workspace; sequential specialists; max reasoning observed rather than assumed."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM08",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Build review/flaw machinery; defer real project flaw campaigns."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM09",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Complete Python behavioral Rust migration mapping; changes invalidate affected entries; no unused duplicate codebase."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM10",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Native Goals/Plans preserve authorization, accounting, limits and scope; no emulated background goal loop."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM11",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Durable budgets, bounded retries, exact freshness and reuse; unknown costs remain unknown; no invented token budget."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM12",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Complete nominal/structural/behavioral correspondence, compiler-backed reconciliation and independent CPGSchema qualification."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM13",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Lossless retained source corpus, exact retrieval, focused skills and every research recommendation disposition."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM14",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Controlled macro provenance and single generated-region owner; proc_macro2 is infrastructure."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM15",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Human proof packets and scoped fresh decisions; a review cannot manufacture a proof."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM16",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Dagger/GitLab, dev-based stacked integration, .agents deployment, .aegis state and last-accepted governance."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM17",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Preserve full Linux acceptance and portable core; retain explicit future Windows/macOS obligations."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM18",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Separate implementation, domain verification, project completion and CGP completion; retire conflicting policy without deleting historical evidence."
+    },
+    {
+      "disposition": "adopted user amendment; takes precedence over conflicting preserved guidance",
+      "id": "AM19",
+      "lines": [
+        1,
+        555
+      ],
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
+      "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "title": "Roadmap package completion is distinct from implementation of the three projects; launchers remain inactive."
+    }
+  ],
+  "schema": 1
+}

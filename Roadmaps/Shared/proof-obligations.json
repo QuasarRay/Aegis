@@ -1,0 +1,197 @@
+{
+  "schema": 1,
+  "obligations": [
+    {
+      "id": "AEGIS-missing-obligation",
+      "production_target": "all_satisfied",
+      "domain_rule": "Required gate set is nonempty and unique; any missing gate denies completion",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-implementation-not-proof",
+      "production_target": "proof_errors",
+      "domain_rule": "Implementation or diagnostic receipts cannot satisfy required domain proofs",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-scope-denominator",
+      "production_target": "compile_roadmaps",
+      "domain_rule": "All preserved source sections and named requirements remain covered",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-duplicate-reservation",
+      "production_target": "BudgetLedger.reserve",
+      "domain_rule": "Active or successful identical work cannot reserve twice",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-restart-accounting",
+      "production_target": "BudgetLedger.reserve",
+      "domain_rule": "Persist attempts and failures across process restart",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-evidence-freshness",
+      "production_target": "audit_evidence",
+      "domain_rule": "All relevant inputs and actual artifacts must remain current",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-review-freshness",
+      "production_target": "validate_decision",
+      "domain_rule": "Changed semantic packet invalidates scoped review",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-canonical-bijection",
+      "production_target": "correspondence_errors",
+      "domain_rule": "No missing/duplicate source owner or shared canonical target",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-unsupported-proof",
+      "production_target": "proof_errors",
+      "domain_rule": "Unsupported, model-only, incomplete, stale or truncated results get no proof credit",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-native-completion",
+      "production_target": "reconcile_native_transition",
+      "domain_rule": "Unknown or rejected native transitions cannot confirm completion",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-policy-downgrade",
+      "production_target": "authorize",
+      "domain_rule": "No unauthorized provider, model, reasoning, scope or mode downgrade enables dispatch",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    },
+    {
+      "id": "AEGIS-global-cgp-barrier",
+      "production_target": "cgp_eligible",
+      "domain_rule": "All three current project completion states are required",
+      "backend": "SELECT_AND_QUALIFY_FROM_REPORT",
+      "origin": "adopted Aegis requirement",
+      "assertions": [
+        "rule holds on supported declared domain"
+      ],
+      "covers": [
+        "relevant accepted and rejected production paths reachable"
+      ],
+      "assumptions": "derive explicitly from production/tool semantics; do not narrow required behavior",
+      "status": "NOT_FORMALLY_VERIFIED",
+      "runtime_controls": "infra/tests/test_roadmap.py; verification/roadmap/policy_harness.py"
+    }
+  ]
+}

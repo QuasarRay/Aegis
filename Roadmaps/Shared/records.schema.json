@@ -1,0 +1,1099 @@
+{
+  "$defs": {
+    "BudgetReservation": {
+      "additionalProperties": false,
+      "properties": {
+        "attempt": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "consumed": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "inputs": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reconciliation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "reserved": {
+          "minimum": 0,
+          "type": "integer"
+        },
+        "schema": {
+          "const": 1
+        },
+        "status": {
+          "enum": [
+            "RESERVED",
+            "SUCCESS",
+            "FAILED",
+            "INTERRUPTED"
+          ]
+        },
+        "unknown_usage": {
+          "type": "boolean"
+        },
+        "work_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema",
+        "id",
+        "work_id",
+        "inputs",
+        "reserved",
+        "consumed",
+        "unknown_usage",
+        "attempt",
+        "status",
+        "reconciliation"
+      ],
+      "type": "object"
+    },
+    "CapabilitySnapshot": {
+      "additionalProperties": false,
+      "properties": {
+        "accepted_effort": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "effective_effort": {
+          "anyOf": [
+            {
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "observed_at": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "operations": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "provider": {
+          "const": "codex"
+        },
+        "requested_effort": {
+          "const": "max"
+        },
+        "schema": {
+          "const": 1
+        },
+        "transport": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "versions": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema",
+        "provider",
+        "versions",
+        "operations",
+        "requested_effort",
+        "accepted_effort",
+        "effective_effort",
+        "observed_at",
+        "transport"
+      ],
+      "type": "object"
+    },
+    "EvidenceReceipt": {
+      "additionalProperties": false,
+      "properties": {
+        "artifacts": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "candidate": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "command": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "configuration": {
+          "type": "object"
+        },
+        "contract_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "gate": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "inputs": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "limits": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "logs": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "milestone": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "outcome": {
+          "enum": [
+            "PASS",
+            "FAIL",
+            "INTERRUPTED",
+            "UNKNOWN"
+          ]
+        },
+        "producer": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "proofs": {
+          "items": {
+            "type": "object"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "const": 1
+        },
+        "scope": {
+          "enum": [
+            "production",
+            "model",
+            "diagnostic"
+          ]
+        }
+      },
+      "required": [
+        "schema",
+        "id",
+        "milestone",
+        "gate",
+        "producer",
+        "candidate",
+        "contract_digest",
+        "inputs",
+        "artifacts",
+        "command",
+        "configuration",
+        "outcome",
+        "scope",
+        "limits",
+        "logs"
+      ],
+      "type": "object"
+    },
+    "GoalBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "contract_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "native_accounting_preserved": {
+          "const": true
+        },
+        "objective": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "observation": {
+          "type": "object"
+        },
+        "observation_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        },
+        "thread_id": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema",
+        "thread_id",
+        "objective",
+        "contract_digest",
+        "observation",
+        "observation_digest",
+        "native_accounting_preserved"
+      ],
+      "type": "object"
+    },
+    "MilestoneContract": {
+      "additionalProperties": false,
+      "properties": {
+        "amendments": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "budget_policy": {
+          "type": "object"
+        },
+        "capabilities": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "checks": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "completion": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "consumes": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "capability": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "provider": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "capability",
+              "provider"
+            ],
+            "type": "object"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "contract_version": {
+          "const": 1
+        },
+        "dependencies": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "gates": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "id": {
+          "pattern": "^[ABD][0-9]{2}$",
+          "type": "string"
+        },
+        "implementation_units": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "outputs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "phase": {
+          "enum": [
+            "implementation",
+            "verification",
+            "completion",
+            "modernization"
+          ]
+        },
+        "project": {
+          "enum": [
+            "Aegis",
+            "Blue",
+            "Destiny"
+          ]
+        },
+        "proof_obligations": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "closure_phase": {
+                "const": "completion"
+              },
+              "id": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "origin": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "statement": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "status": {
+                "const": "REQUIRES_CURRENT_PRODUCTION_EVIDENCE"
+              }
+            },
+            "required": [
+              "id",
+              "statement",
+              "origin",
+              "closure_phase",
+              "status"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "protected_scope": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "provides": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "recovery": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "references": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "requirements": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "rollback": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        },
+        "title": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "write_scope": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "id",
+        "project",
+        "title",
+        "phase",
+        "contract_version",
+        "requirements",
+        "amendments",
+        "dependencies",
+        "capabilities",
+        "outputs",
+        "write_scope",
+        "implementation_units",
+        "proof_obligations",
+        "checks",
+        "gates",
+        "budget_policy",
+        "recovery",
+        "rollback",
+        "completion",
+        "references",
+        "provides",
+        "consumes",
+        "protected_scope"
+      ],
+      "type": "object"
+    },
+    "PlanBinding": {
+      "additionalProperties": false,
+      "properties": {
+        "activation": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "compiled_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "milestones": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "native_item_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "native_item_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        }
+      },
+      "required": [
+        "schema",
+        "native_item_digest",
+        "native_item_id",
+        "compiled_digest",
+        "milestones",
+        "activation"
+      ],
+      "type": "object"
+    },
+    "ProjectProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "branch": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "canonical_record": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "capabilities": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "language_boundary": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "milestones": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "policies": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "project": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "repository": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        },
+        "source_authorities": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "project",
+        "repository",
+        "branch",
+        "canonical_record",
+        "source_authorities",
+        "language_boundary",
+        "capabilities",
+        "milestones",
+        "policies"
+      ],
+      "type": "object"
+    },
+    "ProofObligation": {
+      "additionalProperties": false,
+      "properties": {
+        "assertions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "assumptions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "backend": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "bounds": {
+          "type": "object"
+        },
+        "candidate": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "contract_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "covers": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "harness_semantics": {
+          "type": "object"
+        },
+        "obligation_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "origin": {
+          "enum": [
+            "original_test",
+            "aegis_requirement"
+          ]
+        },
+        "original_semantics": {
+          "type": "object"
+        },
+        "production_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "production_target": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        },
+        "semantic_domain": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "source": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "toolchain": {
+          "type": "object"
+        },
+        "translation_review": {
+          "type": "object"
+        }
+      },
+      "required": [
+        "schema",
+        "obligation_id",
+        "origin",
+        "source",
+        "semantic_domain",
+        "candidate",
+        "production_digest",
+        "contract_digest",
+        "production_target",
+        "assumptions",
+        "bounds",
+        "backend",
+        "assertions",
+        "covers",
+        "toolchain"
+      ],
+      "type": "object"
+    },
+    "PythonRustCorrespondence": {
+      "additionalProperties": false,
+      "properties": {
+        "ast_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "dependencies": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "effects": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "evidence_required": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "exceptions": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "inputs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "invariants": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "libraries": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "numeric": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "outputs": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": "array",
+          "uniqueItems": true
+        },
+        "ownership": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "rust_pattern": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "rust_target": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        },
+        "source": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "unit_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "unresolved": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "unit_id",
+        "source",
+        "ast_digest",
+        "inputs",
+        "outputs",
+        "effects",
+        "invariants",
+        "numeric",
+        "exceptions",
+        "dependencies",
+        "ownership",
+        "rust_target",
+        "rust_pattern",
+        "libraries",
+        "evidence_required",
+        "unresolved"
+      ],
+      "type": "object"
+    },
+    "ReviewDecision": {
+      "additionalProperties": false,
+      "properties": {
+        "consequences": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "decision": {
+          "enum": [
+            "approve_translation",
+            "approve_classification",
+            "request_repair",
+            "human_intervention"
+          ]
+        },
+        "human": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "invalidation": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "packet_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "provenance": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "schema": {
+          "const": 1
+        },
+        "scope": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "schema",
+        "packet_digest",
+        "decision",
+        "human",
+        "scope",
+        "provenance",
+        "consequences",
+        "invalidation"
+      ],
+      "type": "object"
+    },
+    "WorkUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "allowed_actions": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "continuation": {
+          "type": "object"
+        },
+        "contract_digest": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "inputs": {
+          "items": {
+            "additionalProperties": false,
+            "properties": {
+              "path": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "sha256": {
+                "pattern": "^[a-f0-9]{64}$",
+                "type": "string"
+              }
+            },
+            "required": [
+              "path",
+              "sha256"
+            ],
+            "type": "object"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "schema": {
+          "const": 1
+        },
+        "source_responsibility": {
+          "items": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "minItems": 1,
+          "type": "array",
+          "uniqueItems": true
+        },
+        "work_id": {
+          "minLength": 1,
+          "type": "string"
+        },
+        "writer": {
+          "minLength": 1,
+          "type": "string"
+        }
+      },
+      "required": [
+        "schema",
+        "work_id",
+        "contract_digest",
+        "source_responsibility",
+        "inputs",
+        "writer",
+        "allowed_actions",
+        "continuation"
+      ],
+      "type": "object"
+    }
+  },
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

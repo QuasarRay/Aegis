@@ -1,0 +1,65 @@
+{
+  "files": [
+    {
+      "path": "AGENTS.MD",
+      "sha256": "a05e77546f5ad80047eb65bdae4fa24deef8ed399a2ff7ad9d191c18b63c6a55"
+    },
+    {
+      "path": "Blue_Prompt.md",
+      "sha256": "b4d71287f7ba863dce3217148a38f07349a9e8ef27c5a9672fab93ca9925091e"
+    },
+    {
+      "path": "Context-Generic Programming Patterns (DRAFT).pdf",
+      "sha256": "0f500df9e8f352f8c15259f04e79263013a2e0f24d770827c63dbf6f096fb04a"
+    },
+    {
+      "path": "Destiny_Prompt.md",
+      "sha256": "7987f043d71bde0c56632069d2b60a967d7f127048477567e7d91c642d387e25"
+    },
+    {
+      "path": "Learning Rust With Entirely Too Many Linked Lists.pdf",
+      "sha256": "7ce4af314ff85e6572c944bcdccd0c39501d072e8fd5549db26b03b87b31d033"
+    },
+    {
+      "path": "Python_Verification_Research_Report_v1.md",
+      "sha256": "3f8fc8aa25d5708903084a5e5089921acbbc0ccbdce928d2e91888bd1a522a3c"
+    },
+    {
+      "path": "Roadmaps/Aegis/AGENTS.MD",
+      "sha256": "12fe53020f093830d0a4cd204879de624283e07fd9d59a9462175738a020c754"
+    },
+    {
+      "path": "Roadmaps/Blue/AGENTS.MD",
+      "sha256": "12fe53020f093830d0a4cd204879de624283e07fd9d59a9462175738a020c754"
+    },
+    {
+      "path": "Roadmaps/Destiny/AGENTS.MD",
+      "sha256": "12fe53020f093830d0a4cd204879de624283e07fd9d59a9462175738a020c754"
+    },
+    {
+      "path": "Roadmaps/Shared/ADOPTED_PLAN.md",
+      "sha256": "c744915844950dcc4a2ea415d9fe3f5a53dea4b872db140a0a6ab401a9332f6d"
+    },
+    {
+      "path": "Rust Design Patterns - rust-design-patterns.pdf",
+      "sha256": "8a812562e120d9485d41ff45d15268530068019c61d761c0f61d3411ed2d6556"
+    },
+    {
+      "path": "aegis-agent-skills-ecosystem-research-2026-11-02-RECONSTRUCTED.zip",
+      "sha256": "625f16d2b5eb5496774dc822be2622b035c1b9764d3695012f67ab2669c003ea"
+    },
+    {
+      "path": "aegis-rust-native-ecosystem-research-2026-11-02-RECOVERED.zip",
+      "sha256": "716b350734ccd0cd2e025077224db2be14d53c74de8163009f993df45168d13c"
+    },
+    {
+      "path": "rust-atomics-and-locks-markdown.zip",
+      "sha256": "a112a59082f3e808bb38c2f7bd44d00e0ee8ab092413e97b9f3d054f47327f5c"
+    },
+    {
+      "path": "rust-ecosystem-langgraph-like-frameworks.md",
+      "sha256": "8bb51763e256cf5ac0bb2f7c7ece8cece203b5841916b41f035683d072f7852a"
+    }
+  ],
+  "schema": 1
+}

@@ -1,9 +1,16 @@
 [framework]
-name = "Aegis for Destiny Rust"
-version = "7.0.0-destiny.1"
-project_independent = false
+name = "Aegis executable roadmaps"
+version = "8.0.0-roadmaps.1"
+project_independent = true
+
+[roadmap]
+registry = "Roadmaps/Shared/registry.json"
+policy = "Roadmaps/Shared/policy.json"
+compiler = "agentinfra.roadmap"
+completion_claim = "roadmap package only; product completion requires current independent evidence"
 
 [destiny]
+status = "preserved specialization; historical policy lineage"
 authority = "contracts/destiny.json"
 profile = "modules/destiny/profile.toml"
 workflow = "specify, reuse, implement, bind, verify, audit"
