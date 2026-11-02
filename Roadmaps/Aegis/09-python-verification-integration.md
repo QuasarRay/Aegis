@@ -103,7 +103,10 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "roadmap.validate",
     "source.reconcile",
     "production.build",
-    "original.tests"
+    "original.tests",
+    "python.route",
+    "python.toolchain",
+    "python.qualify"
   ],
   "gates": [
     "source_correspondence",
@@ -128,7 +131,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "Roadmaps/Shared/ADOPTED_PLAN.md",
     "Roadmaps/Shared/PYTHON_VERIFICATION_ROUTING.md",
     "Roadmaps/Shared/python-backends.json",
-    "Roadmaps/Shared/python-rust-research-dispositions.json"
+    "Roadmaps/Shared/python-rust-research-dispositions.json",
+    "Roadmaps/Shared/python-toolchains.json"
   ],
   "provides": [
     "python_verification"

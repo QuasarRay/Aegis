@@ -2,7 +2,9 @@
   "backends": [
     {
       "acceptance": "Actual supported Python production semantics and toolchain qualification",
+      "execution": "Fixed isolated source-owned recipe; actual ingestion and semantic qualification required",
       "name": "Nagini",
+      "qualification_profile": "Roadmaps/Shared/python-toolchains.json",
       "role": "deductive candidate",
       "status": "NOT_QUALIFIED"
     },

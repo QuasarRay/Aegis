@@ -188,7 +188,9 @@ def audit_evidence(root: Path, compiled: dict, evidence: dict) -> dict:
                 for proof in proofs:
                     obligation, result_proof = proof.get("obligation", {}), proof.get("result", {})
                     validate_record(root, "ProofObligation", obligation)
+                    from .roadmap_python import python_proof_errors
                     good = (good and not proof_errors(obligation, result_proof)
+                            and not python_proof_errors(root, obligation, result_proof)
                             and obligation["candidate"] == receipt["candidate"]
                             and bindings_current(root, obligation["source"]))
             if good:

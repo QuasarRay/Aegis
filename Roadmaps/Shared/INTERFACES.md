@@ -9,6 +9,7 @@ Aegis uses the eleven version-one records in `records.schema.json` at its serial
 | Compiler and policy | `roadmap.compile_roadmaps`, `roadmap_policy.authorize` | Produces the graph and decisions from preserved requirements and adopted amendments. Does not dispatch a model. |
 | Execution | `roadmap_runtime.BudgetLedger`, `roadmap_lease.WorkspaceLease`, `roadmap_work` | Materializes typed source-owned work and retains reservations, native/child creation handles, recovery observations and fencing identity. A scoped local recipe inherits old unscoped attempts only within its current work-unit lifetime; bootstrap A00 can use the native Goal's original creation boundary. |
 | Evidence | `roadmap.audit_evidence`, `roadmap_records.validate_record`, `roadmap_verification` | Reconciles actual bound receipts and derives readiness. Producer trust, extraction adequacy and domain verification remain separate obligations. |
+| Python verification | `roadmap_python.source_closure/route/classify_nagini/python_proof_errors` | Binds whole maintained import modules, external/dynamic hazards, both research reports and every required obligation. Qualification observations confer no domain-proof credit. |
 | Native Codex | `roadmap_codex`, `roadmap_native`, `roadmap_native_adapter` | Observes the actual Goal, completed Plan, turn/configuration, process ancestry and category usage. Host and managed Goal controls share policy and accounting; managed model-turn dispatch remains A04 work. |
 | Knowledge and review | `roadmap_knowledge`, `roadmap_review` | Retains the source corpus, scoped retrieval and review records without adding another project owner. |
 
@@ -29,6 +30,8 @@ Blue and Destiny profiles can be inspected through the same typed interface. The
 The existing typed Python policy, transport, extraction and record facilities are retained. No unused Rust kernel is introduced. `portability build/check` provides the source-bound future Rust proposals described in `PYTHON_RUST.md`; an eventual Rust implementation needs its own semantic and compatibility evidence. Signature observations and migration proposals do not establish cross-language equivalence.
 
 `BudgetLedger.reserve` retains its version-one signature. `reserve_operation`, `journal`, `reservation_record`, `observe_categories` and `metrics` add bound deterministic execution and accounting. `process.observe_process` records the existing supervisor child without replacing its owner. `roadmap_acceptance.assemble_implementation` combines actual current ledger results with a complete scoped output review; its strength remains implementation/runtime acceptance. See [operations](OPERATIONS.md) for lifecycle, usage and recovery boundaries.
+
+`process.run_recipe_stage` lets fixed multistage POSIX recipes select the outer supervisor's existing group ownership, only from a supervised session leader. A stage timeout terminates that owned recipe group and the outer supervisor records the result. `process.run_process` retains its version-one signature and existing callers' prior process-group behavior.
 
 ## Installed native contracts and bindings
 
