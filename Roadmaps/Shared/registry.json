@@ -332,6 +332,22 @@
       "max_seconds": 900,
       "purpose": "compiler-backed inventory and bidirectional declarations/configurations",
       "status": "REQUIRES_PROJECT_QUALIFICATION"
+    },
+    "native.protocol": {
+      "activation": "Fixed installed-executable export; preserve exact schemas, binary identity, current native ownership, reservation and complete bounded output before capability credit.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 120,
+      "purpose": "pin complete installed Codex app-server method and notification schemas",
+      "status": "QUALIFIED_AEGIS_A04_SCHEMA_EXPORT"
+    },
+    "native.acceptance": {
+      "activation": "Fixed read-only native acceptance producer with exact current protocol and completed adopted Plan source, real Goal/configuration observations, reservation and bounded output.",
+      "kind": "project_specification",
+      "max_attempts": 2,
+      "max_seconds": 180,
+      "purpose": "qualify real Goal/Plan reads and actual active-host settings without new inference or native Goal mutation",
+      "status": "REQUIRES_CURRENT_AEGIS_A04_RECEIPTS"
     }
   },
   "schema": 1

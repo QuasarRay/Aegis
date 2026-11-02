@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 5. Inventory digest: `51b023b3b87a9d7cd08c637d609d0b24edd496d5c45446b8dd7950d413b14921`.
+Files: 1. Behavioral units: 5. Inventory digest: `211735562928c7e9c338f4b2376a5f7d64c91100b17f9c2acfd56051a0b6cae0`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/__init__.py::module::root::Module
 
-Source: `infra/agentinfra/__init__.py:1`; AST `b2cbce11cb990696fab2aaae06f38651de5cb75940c40066802fd3aca27532d2`.
+Source: `infra/agentinfra/__init__.py:1`; AST `9f66736e669045976e623911fc42e50143537e008517be25f6e9fd3c0ddd3c70`.
 
 Rust module: `infra::agentinfra::__init__`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -48,7 +48,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/__init__.py::module::root.body[1]::Assign
 
-Source: `infra/agentinfra/__init__.py:2`; AST `13e2893442dc99b1172d1befd1e7f4d452da8f0b0c48be71a2054feed9cce815`.
+Source: `infra/agentinfra/__init__.py:2`; AST `a48f6b159685d1c10dd42389fe65c2e2d5d14a7f0ccaa0000aac3259487c72f3`.
 
 Rust module: `infra::agentinfra::__init__`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 

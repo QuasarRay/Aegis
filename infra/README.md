@@ -22,3 +22,5 @@ and their deductive proof entry point are in `verification/`; their scope is nar
 Python implementation correctness and is documented there.
 
 `roadmap run NAME --milestone ID` uses `roadmap_work` to bind complete semantic inputs, reserve before deterministic execution, retain native and child handles, and reuse current successful results. `budget metrics/recover/reservation` expose the same existing ledger. `roadmap_acceptance` assembles implementation gates from actual results plus scoped source review; full proof, installed artifacts and final release have separate gates. See [operating procedures](../Roadmaps/Shared/OPERATIONS.md).
+
+Native integration uses `roadmap_protocol` for exact installed schema identities and `roadmap_native_adapter` for observed Goal/Plan bindings, bounded read RPCs, public notification reduction and authorized host-callback reconciliation. A completed native Plan must match its adopted source bytes. Native control journals and tool work share the existing budget ledger; current qualification is produced by the fixed `native.protocol` and `native.acceptance` recipes.

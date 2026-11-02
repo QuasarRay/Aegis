@@ -41,6 +41,9 @@ def reconcile_native_transition(before: dict, response: dict | None, after: dict
             old, new = before.get(field), after.get(field)
             if type(old) is not int or type(new) is not int or new < old:
                 reasons.append("native accounting missing or reset")
+        if before.get("createdAt") is not None and (type(after.get("createdAt")) is not int or
+                                                    after["createdAt"] != before["createdAt"]):
+            reasons.append("native Goal was replaced or recreated")
     # An ambiguous response may be resolved by an authoritative matching read-back.
     confirmed = bool(after) and not any(r != "transition response ambiguous or rejected" for r in reasons)
     if response and response.get("error"):
