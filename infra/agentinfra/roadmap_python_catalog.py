@@ -266,6 +266,11 @@ def qualification_receipt_dependencies(root: Path) -> list[dict]:
     return _qualification_evidence(root)[2]
 
 
+def qualification_lineage_digest(root: Path) -> str:
+    """Bind displayed attempt ancestry even when the canonical result is unchanged."""
+    return digest(_qualification_evidence(root)[0].get("retained_attempt_ids", []))
+
+
 def qualification_reports(root: Path, candidate: str, catalog: dict) -> dict:
     """Join actual backend diagnostics to complete source and fixture identities.
 
@@ -337,6 +342,7 @@ def qualification_reports(root: Path, candidate: str, catalog: dict) -> dict:
                 packet["id"] = digest(packet)
                 packets.append(packet)
     return {"qualification_observations": [dict(observation, runs=runs)], "qualification_dependencies": dependencies,
+            "qualification_lineage_digest": digest(observation.get("retained_attempt_ids", [])),
             "qualification_interventions": packets, "qualification_acceptance": "Actual or stale diagnostic observations only; no backend, translation, reachability or domain-proof approval"}
 
 
