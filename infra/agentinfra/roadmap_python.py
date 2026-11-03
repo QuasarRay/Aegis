@@ -25,13 +25,38 @@ EFFECT_MODULES = {"os", "pathlib", "subprocess", "socket", "sqlite3", "threading
 
 def qualification_backend(root: Path) -> str:
     backend = read_json(root / "Roadmaps/Shared/python-backends.json").get("active_qualification_backend", "nagini")
-    require(backend in {"nagini", "deal"}, "backend has no fixed qualification producer")
+    require(backend in {"nagini", "deal", "esbmc-python"}, "backend has no fixed qualification producer")
     return backend
 
 
 def backend_observation_key(backend: str, kind: str) -> str:
-    require(backend in {"nagini", "deal"} and kind in {"toolchain", "qualification"}, "unknown backend observation owner")
-    return "python_" + ("deal_" if backend == "deal" else "") + kind + "_observation"
+    require(backend in {"nagini", "deal", "esbmc-python"} and kind in {"toolchain", "qualification"}, "unknown backend observation owner")
+    return "python_" + {"nagini": "", "deal": "deal_", "esbmc-python": "esbmc_"}[backend] + kind + "_observation"
+
+
+def esbmc_arguments(root: Path, toolchain: dict, fixture: str, *, claims: bool = False) -> list[str]:
+    functions = {"verification/roadmap/python/policy_deal_positive.py": "original_budget_and_completion",
+                 "verification/roadmap/python/policy_deal_negative.py": "deliberately_wrong_budget_assertion"}
+    require(fixture in functions and toolchain.get("backend") == "esbmc-python", "unknown ESBMC control/toolchain")
+    argv = [toolchain["executable"], str(root / fixture), "--python", toolchain["python"], "--function", functions[fixture],
+            "--z3", "--ir", "--multi-property", "--timeout", "120s"]
+    if claims:
+        argv.append("--show-claims")
+    return argv
+
+
+def classify_esbmc(run: dict) -> dict:
+    """Observe native CLI strength; unsupported/model/bound gaps receive no proof."""
+    if run.get("timed_out") or run.get("stdout_truncated") or run.get("stderr_truncated"):
+        return {"outcome": "INDETERMINATE", "reason": "timeout or truncated ESBMC logs"}
+    output = run.get("stdout", "") + "\n" + run.get("stderr", "")
+    if re.search(r"(?i)traceback|unsupported|not supported|error:|parsing error|segmentation fault|terminate called|aborted", output):
+        return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "frontend/runtime/model diagnostic"}
+    if "VERIFICATION SUCCESSFUL" in output and run.get("returncode") == 0:
+        return {"outcome": "TOOL_VERDICT_PROPERTIES_UNQUALIFIED", "reason": "CLI verdict only; exact properties, reachability, source/model, integer and import semantics require qualification"}
+    if "VERIFICATION FAILED" in output and run.get("returncode") not in {None, 0}:
+        return {"outcome": "FAILURE_PROPERTY_UNREVIEWED", "reason": "failure is not proof of detecting the original wrong assertion; exact property identity/bounds need review"}
+    return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "no complete recognized ESBMC verdict"}
 
 
 def classify_deal(run: dict, observation: dict) -> dict:

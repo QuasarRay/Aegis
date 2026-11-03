@@ -162,7 +162,7 @@ def main() -> None:
     parser.add_argument("--output", required=True)
     parser.add_argument("--candidate", required=True)
     parser.add_argument("--toolchain")
-    parser.add_argument("--backend", choices=("nagini", "deal"), default="nagini")
+    parser.add_argument("--backend", choices=("nagini", "deal", "esbmc-python"), default="nagini")
     args = parser.parse_args()
     output = confined_path(ROOT, args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -171,10 +171,18 @@ def main() -> None:
         if args.action == "route":
             details.update(route(ROOT, compile_roadmaps(ROOT), args.candidate))
         elif args.action == "toolchain":
-            details.update(provision_deal(ROOT, output) if args.backend == "deal" else provision(ROOT, output))
+            if args.backend == "esbmc-python":
+                from roadmap_esbmc import provision_esbmc
+                details.update(provision_esbmc(ROOT, output))
+            else:
+                details.update(provision_deal(ROOT, output) if args.backend == "deal" else provision(ROOT, output))
         else:
             require(bool(args.toolchain), "current toolchain receipt required")
-            details.update(qualify_deal(ROOT, output, args.toolchain) if args.backend == "deal" else qualify(ROOT, output, args.toolchain))
+            if args.backend == "esbmc-python":
+                from roadmap_esbmc import qualify_esbmc
+                details.update(qualify_esbmc(ROOT, output, args.toolchain))
+            else:
+                details.update(qualify_deal(ROOT, output, args.toolchain) if args.backend == "deal" else qualify(ROOT, output, args.toolchain))
     except Exception as exc:
         details.update(status="ERROR", error={"type": type(exc).__name__, "message": str(exc)})
         atomic_write_json(output, details, root=ROOT, mode=0o600)

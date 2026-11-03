@@ -1,5 +1,5 @@
 {
-  "active_qualification_backend": "deal",
+  "active_qualification_backend": "esbmc-python",
   "backends": [
     {
       "acceptance": "Actual supported Python production semantics and toolchain qualification",
@@ -12,6 +12,7 @@
     {
       "acceptance": "Faithful explicit domain and production linkage; label finite limits",
       "name": "ESBMC-Python",
+      "qualification_profile": "Roadmaps/Shared/python-esbmc-toolchains.json",
       "role": "bounded candidate",
       "status": "NOT_QUALIFIED"
     },

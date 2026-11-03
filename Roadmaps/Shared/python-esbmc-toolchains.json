@@ -1,0 +1,65 @@
+{
+  "archive": {
+    "filename": "esbmc-linux.zip",
+    "name": "esbmc-linux.zip",
+    "sha256": "07b00b4a2590fe285edb5ce063ca2e5fbb368bbe556cfe139014c173717637f6",
+    "size": 265118119,
+    "sources": [
+      {
+        "provider": "esbmc-upstream",
+        "url": "https://github.com/esbmc/esbmc/releases/download/v8.6/esbmc-linux.zip"
+      },
+      {
+        "provider": "esbmc-upstream",
+        "url": "https://api.github.com/repos/esbmc/esbmc/releases/assets/640234221"
+      }
+    ],
+    "url": "https://github.com/esbmc/esbmc/releases/download/v8.6/esbmc-linux.zip",
+    "version": "v8.6"
+  },
+  "asset_id": 640234221,
+  "backend": "esbmc-python",
+  "download_policy": "Roadmaps/Shared/download-policy.json",
+  "download_transport": "reviewed-mirrors-original-host-tls-v1",
+  "packages": [
+    {
+      "filename": "ast2json-0.4-py2.py3-none-any.whl",
+      "license": "BSD",
+      "metadata_sha256": "99cef235f82f38acc3c3b632512c1e4b372ccdc21d8caa8d5cbda7d1f65a312e",
+      "metadata_url": "https://pypi.org/pypi/ast2json/0.4/json",
+      "name": "ast2json",
+      "requires_dist": null,
+      "sha256": "df60746b65384a7fdfc7ef29a6f703ef9cc6e643586e7636e0a44a9f47901810",
+      "size": 5495,
+      "sources": [
+        {
+          "provider": "tuna-pypi",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/packages/f0/ef/cc0efc91e4f0f98780ca77f073578f9b7e5e687c5577bdc5537a3b2d7bf3/ast2json-0.4-py2.py3-none-any.whl"
+        },
+        {
+          "provider": "ustc-pypi",
+          "url": "https://mirrors.ustc.edu.cn/pypi/packages/f0/ef/cc0efc91e4f0f98780ca77f073578f9b7e5e687c5577bdc5537a3b2d7bf3/ast2json-0.4-py2.py3-none-any.whl"
+        },
+        {
+          "provider": "pypi",
+          "url": "https://files.pythonhosted.org/packages/f0/ef/cc0efc91e4f0f98780ca77f073578f9b7e5e687c5577bdc5537a3b2d7bf3/ast2json-0.4-py2.py3-none-any.whl"
+        }
+      ],
+      "url": "https://files.pythonhosted.org/packages/f0/ef/cc0efc91e4f0f98780ca77f073578f9b7e5e687c5577bdc5537a3b2d7bf3/ast2json-0.4-py2.py3-none-any.whl",
+      "version": "0.4"
+    }
+  ],
+  "platform": "linux-x86_64",
+  "primary_sources": [
+    "https://github.com/esbmc/esbmc/releases/tag/v8.6",
+    "https://github.com/esbmc/esbmc/blob/5836d7c48443534e6a5c6df6d97b89955227ff44/src/python-frontend/README.md",
+    "https://github.com/esbmc/esbmc/blob/5836d7c48443534e6a5c6df6d97b89955227ff44/src/esbmc/options.cpp"
+  ],
+  "python": "3.14",
+  "qualification_status": "NOT_QUALIFIED",
+  "release_id": 412661765,
+  "schema": 1,
+  "semantic_limit": "Fixed original cases are ingestion controls. Integer/real solver encoding is requested; all frontend widths, operational models, defaults, import/state semantics and required full domains remain unqualified.",
+  "source_commit": "5836d7c48443534e6a5c6df6d97b89955227ff44",
+  "version": "v8.6"
+}

@@ -119,7 +119,8 @@ def download_with_mirrors(root: Path, entry: dict, directory: Path, deadline: fl
             opener = urllib.request.build_opener(urllib.request.ProxyHandler({}),
                         _MirrorHTTPS(events, provider["hosts"], source_deadline, policy),
                         _MirrorRedirect(provider["hosts"], policy["max_redirects"]))
-            request = urllib.request.Request(source["url"], headers={"User-Agent": "Aegis-pinned-mirror-delivery", "Accept-Encoding": "identity"})
+            request = urllib.request.Request(source["url"], headers={"User-Agent": "Aegis-pinned-mirror-delivery", "Accept-Encoding": "identity",
+                                                                     "Accept": "application/octet-stream"})
             hashed, count = hashlib.sha256(), 0
             with opener.open(request, timeout=policy["socket_timeout_seconds"]) as response:
                 with partial.open("xb") as output:

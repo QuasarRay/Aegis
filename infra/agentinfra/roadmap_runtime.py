@@ -45,7 +45,6 @@ def retry_limits(root: Path, milestone: str, recipe: str, max_attempts: int, tot
     require(type(extra) is int and 0 < extra <= 900 and limits == {
             "max_attempts": max_attempts + 1, "total_seconds": total_seconds + extra}, "retry amendment must add exactly one bounded attempt")
     dependencies = amendment.get("dependencies", [])
-    require(dependencies and bindings_current(root, dependencies), "retry amendment inputs changed; renewed user scope required")
     prior = amendment.get("prior_attempts", [])
     ledger = BudgetLedger(root).read()["attempts"]
     rows = {a["id"]: a for a in ledger}
@@ -68,6 +67,7 @@ def retry_limits(root: Path, milestone: str, recipe: str, max_attempts: int, tot
                 "consumed retry specification changed")
         if completed.get("candidate") != candidate:
             return {"max_attempts": max_attempts, "total_seconds": total_seconds}
+    require(dependencies and bindings_current(root, dependencies), "retry amendment inputs changed; renewed user scope required")
     return dict(limits, authorization=binding, dependencies=dependencies)
 
 

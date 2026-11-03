@@ -17,6 +17,16 @@
   ],
   "preserve_attempt_lineage": true,
   "providers": {
+    "esbmc-upstream": {
+      "hosts": [
+        "github.com",
+        "api.github.com",
+        "release-assets.githubusercontent.com",
+        "objects.githubusercontent.com"
+      ],
+      "review_source": "https://github.com/esbmc/esbmc/releases/tag/v8.6",
+      "trust_note": "Browser release URL and official public asset API are delivery alternatives for the same published asset digest, not independent trust authorities."
+    },
     "pypi": {
       "hosts": [
         "files.pythonhosted.org"
@@ -57,7 +67,7 @@
   "quarantine_integrity_failures": true,
   "schema": 1,
   "socket_timeout_seconds": 8,
-  "source_timeout_seconds": 75,
+  "source_timeout_seconds": 120,
   "stage_timeout_seconds": 600,
   "tls": "required_original_hostname",
   "transport": "reviewed-mirrors-original-host-tls-v1"

@@ -122,8 +122,8 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
             from .roadmap_python import qualification_backend
             backend = qualification_backend(root)
             selection["backend"] = backend
-            if backend == "deal":
-                argv.extend(["--backend", "deal"])
+            if backend != "nagini":
+                argv.extend(["--backend", backend])
         if recipe == "python.route":
             from .roadmap_python_catalog import test_receipt_dependencies, qualification_receipt_dependencies, qualification_lineage_digest
             dependencies = test_receipt_dependencies(root, compiled, candidate)
