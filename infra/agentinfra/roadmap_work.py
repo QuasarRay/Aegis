@@ -119,11 +119,15 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
         argv = [sys.executable, "-B", "scripts/roadmap_python.py", action, "--output", output + "/details.json", "--candidate", candidate]
         selection = {"kind": "actual_python_source_qualification", "action": action, "domain_proof": False}
         if recipe == "python.route":
-            from .roadmap_python_catalog import test_receipt_dependencies
+            from .roadmap_python_catalog import test_receipt_dependencies, qualification_receipt_dependencies
             dependencies = test_receipt_dependencies(root, compiled, candidate)
             for dependency in dependencies:
                 inputs[dependency["path"]] = dependency
             selection["original_test_dependencies"] = dependencies
+            qualification_dependencies = qualification_receipt_dependencies(root)
+            for dependency in qualification_dependencies:
+                inputs[dependency["path"]] = dependency
+            selection["qualification_dependencies"] = qualification_dependencies
         if recipe == "python.qualify":
             binding = ProjectAdapter(root).read().get("python_toolchain_observation")
             require(binding and bindings_current(root, [binding]), "current isolated Python toolchain observation required")
@@ -404,6 +408,8 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                     elif recipe == "python.route" and result.returncode == 0:
                         require(details_record.get("runtime_test_dependencies", []) == spec["selection"]["original_test_dependencies"],
                                 "Python route used runtime witnesses outside its materialized inputs")
+                        require(details_record.get("qualification_dependencies", []) == spec["selection"]["qualification_dependencies"],
+                                "Python route used backend observations outside its materialized inputs")
                         adapter.update({"python_verification_routes": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                     elif recipe == "python.qualify" and result.returncode == 0:
                         adapter.update({"python_qualification_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))

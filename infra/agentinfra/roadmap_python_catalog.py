@@ -8,10 +8,12 @@ from __future__ import annotations
 
 import ast
 from pathlib import Path
+import re
 
 from .roadmap_policy import SEMANTIC_FIELDS
 from .roadmap_python import module_closure, source_closure
 from .roadmap_records import bindings_current, digest, file_binding, read_json, require
+from .security import confined_path
 
 
 INTERFACE_VERSION = 1
@@ -176,6 +178,166 @@ def _actual_test_details(root: Path, compiled: dict, candidate: str) -> tuple[di
 def test_receipt_dependencies(root: Path, compiled: dict, candidate: str) -> list[dict]:
     """Bind runtime witnesses into the existing route work specification/cache."""
     return _actual_test_details(root, compiled, candidate)[2]
+
+
+def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
+    """Retain actual ledger evidence without making a historical run current proof.
+
+    The canonical pointer selects an observation, not an approved backend. All
+    immutable artifacts must agree with its original supervisor/specification.
+    Changed source/tool files remain explicit stale observations, never proof.
+    """
+    from .roadmap_project import ProjectAdapter
+    from .roadmap_runtime import BudgetLedger
+    from .roadmap_work import validate_tool_receipt
+    if not (root / ".aegis/project.json").is_file():
+        return {"status": "NOT_ATTEMPTED", "domain_proof": False}, None, []
+    binding = ProjectAdapter(root).read().get("python_qualification_observation")
+    if not binding:
+        return {"status": "NOT_ATTEMPTED", "domain_proof": False}, None, []
+    require(bindings_current(root, [binding]), "canonical Python qualification observation changed")
+    attempts = BudgetLedger(root).read()["attempts"]
+    matches = [a for a in attempts if a["status"] == "SUCCESS" and a.get("receipt", {}).get("recipe") == "python.qualify" and
+               binding in a["receipt"].get("artifacts", [])]
+    require(len(matches) == 1, "Python qualification lacks a unique actual ledger producer")
+    attempt = matches[0]
+    spec_binding = attempt.get("operation", {}).get("spec")
+    require(spec_binding and bindings_current(root, [spec_binding]), "qualification specification changed or is missing")
+    spec = read_json(confined_path(root, spec_binding["path"]))
+    receipt = attempt["receipt"]
+    details = read_json(confined_path(root, binding["path"]))
+    require(spec.get("digest") == attempt["inputs"] == receipt["inputs"] == digest({k: v for k, v in spec.items() if k != "digest"}) and
+            spec.get("recipe") == "python.qualify" and spec.get("project") == "Aegis" and
+            spec.get("selection", {}).get("kind") == "actual_python_source_qualification" and
+            spec["selection"].get("action") == "qualify" and spec["selection"].get("domain_proof") is False,
+            "qualification operation identity/producer differs")
+    require(details.get("schema") == 1 and details.get("action") == "qualify" and details.get("backend") == "nagini" and
+            details.get("candidate") == spec.get("candidate") == receipt.get("candidate") and details.get("domain_proof") is False,
+            "qualification details escaped their dispatched producer")
+    tool_binding = details.get("toolchain")
+    require(tool_binding and tool_binding == spec["selection"].get("toolchain") and
+            bindings_current(root, [tool_binding]), "qualification toolchain provenance is missing or changed")
+    toolchain = read_json(confined_path(root, tool_binding["path"]))
+    require(toolchain.get("status") == "INSTALLED_NOT_QUALIFIED" and toolchain.get("files"), "qualification lacks its installed toolchain manifest")
+    invoked = spec.get("argv", [None])[0]
+    require(isinstance(invoked, str) and Path(invoked).is_absolute() and
+            str(Path(invoked).resolve()) == spec["toolchain"]["executable"], "qualification interpreter differs from its pinned executable identity")
+    expected_argv = [invoked, "-B", "scripts/roadmap_python.py", "qualify", "--output",
+                     spec["target"]["output"] + "/details.json", "--candidate", spec["candidate"], "--toolchain", tool_binding["path"]]
+    require(spec.get("argv") == expected_argv and receipt.get("argv") == expected_argv and
+            binding["path"] == spec["target"]["output"] + "/" + spec["digest"] + "/details.json",
+            "qualification did not use the fixed source-owned driver/output")
+    original = details.get("original")
+    production = details.get("production", {})
+    require(original and production.get("target") and production.get("files") and
+            production.get("digest") == digest({k: v for k, v in production.items() if k != "digest"}),
+            "qualification lacks complete original/production source identity")
+    expected = [binding, spec_binding, tool_binding, original, *receipt["artifacts"], *production["files"], *toolchain["files"]]
+    dependencies, stale = {}, []
+    for item in expected:
+        path = confined_path(root, item["path"])
+        observed = file_binding(root, item["path"]) if path.is_file() else None
+        if observed != item:
+            stale.append({"expected": item, "observed": observed})
+        if observed:
+            require(item["path"] not in dependencies or dependencies[item["path"]] == observed, "qualification dependency identity conflicts")
+            dependencies[item["path"]] = observed
+    record = {"status": "RETAINED_ACTUAL_QUALIFICATION_OBSERVATION", "attempt": attempt["id"],
+              "observation": binding, "specification": spec_binding, "producer_candidate": spec["candidate"],
+              "recorded_status": details.get("status"), "domain_proof": False, "backend_qualified": False,
+              "producer_interpreter": {k: spec["toolchain"].get(k) for k in ("executable", "sha256", "version", "platform")},
+              "retained_attempt_ids": [a["id"] for a in attempts if a["work_id"] == attempt["work_id"]],
+              "producer_inputs_current": bindings_current(root, spec["inputs"]), "stale_bindings": stale}
+    if stale:
+        record["status"] = "STALE_QUALIFICATION_ARTIFACTS_NO_CURRENT_CREDIT"
+        return record, None, sorted(dependencies.values(), key=lambda b: b["path"])
+    validate_tool_receipt(root, spec, receipt)
+    require(receipt["returncode"] == 0 and receipt["timed_out"] is False and receipt["truncated"] is False,
+            "qualification producer did not complete its observation")
+    record["production_closure_current"] = production == source_closure(root, production["target"])
+    if not record["production_closure_current"]:
+        record["status"] = "STALE_PRODUCTION_CLOSURE_NO_CURRENT_CREDIT"
+        return record, None, sorted(dependencies.values(), key=lambda b: b["path"])
+    return record, details, sorted(dependencies.values(), key=lambda b: b["path"])
+
+
+def qualification_receipt_dependencies(root: Path) -> list[dict]:
+    """Make a changed real backend observation invalidate the route cache."""
+    return _qualification_evidence(root)[2]
+
+
+def qualification_reports(root: Path, candidate: str, catalog: dict) -> dict:
+    """Join actual backend diagnostics to complete source and fixture identities.
+
+    These are engineering packets. Even matching source closure and a successful
+    CLI result cannot approve a semantic translation, reachability or proof.
+    """
+    from .roadmap_python import classify_nagini
+    observation, details, dependencies = _qualification_evidence(root)
+    observation["same_code_candidate"] = observation.get("producer_candidate") == candidate
+    packets, runs = [], []
+    if details:
+        toolchain = read_json(confined_path(root, details["toolchain"]["path"]))
+        controls = details.get("runs", [])
+        require(len(controls) == 2 and [r.get("intent") for r in controls] == ["positive", "deliberately_wrong_assertion"],
+                "qualification omitted, duplicated or reordered its positive/negative controls")
+        closure = details["production"]
+        closure_files = {b["path"]: b for b in closure["files"]}
+        fixture_ids = [key for key, fixture in catalog["fixture_semantics"].items() if
+                       fixture["location"]["source"] == details["original"] and
+                       fixture["location"]["fixture"] == "DomainPolicyTests" and
+                       fixture["location"]["test"] == "test_budgets_and_completion"]
+        affected = [row["id"] for row in catalog["obligations"] if set(closure_files) & {b["path"] for b in row["source_bindings"]} or
+                    set(fixture_ids) & set(row["original_fixture_ids"])]
+        for control, name in zip(controls, ("policy_positive.py", "policy_negative.py"), strict=True):
+            fixture = control["fixture"]
+            require(fixture["path"] == "verification/roadmap/python/" + name and bindings_current(root, [fixture, control["result"]]) and
+                    fixture in details["artifacts"] and control["result"] in details["artifacts"], "qualification control source/result changed")
+            raw = read_json(confined_path(root, control["result"]["path"]))
+            prefix = [toolchain["python"], "-B", toolchain["nagini"]]
+            require(raw.get("argv") in (prefix + [str(root / fixture["path"])],
+                    prefix + ["--mypy-path", str(root / "infra"), str(root / fixture["path"])]) and raw.get("cwd") == str(root.resolve()),
+                    "qualification control did not ingest its actual fixture through the pinned console")
+            classification = classify_nagini(raw)
+            tree = ast.parse(confined_path(root, fixture["path"]).read_bytes())
+            assertions = [_node(n) for n in ast.walk(tree) if isinstance(n, ast.Call) and ast.unparse(n.func) == "Assert"]
+            row = {"intent": control["intent"], "fixture": fixture, "result": control["result"],
+                   "recorded_classification": control["classification"], "classification": classification,
+                   "assertion_source_nodes": assertions, "assertion_reachability": "NOT_ESTABLISHED",
+                   "negative_control_identity_review": "NOT_GRANTED", "domain_proof": False}
+            runs.append(row)
+            diagnostics = []
+            for channel in ("stdout", "stderr"):
+                for number, text in enumerate(raw.get(channel, "").splitlines(), 1):
+                    match = re.fullmatch(r"Type error: (.+) \(([A-Za-z_][\w.]*)@(\d+)\.(\d+)\)", text)
+                    if not match:
+                        continue
+                    message, module, line, column = match.groups()
+                    relative = "infra/" + module.replace(".", "/") + ".py"
+                    source = closure_files.get(relative)
+                    identities = [u["id"] for u in catalog["production_targets"].values() if source and u["source"] == source and
+                                  u["span"][0] <= int(line) <= u["span"][1]]
+                    diagnostics.append({"message": message, "module": module, "line": int(line), "column": int(column),
+                                        "log": control["result"], "channel": channel, "log_line": number,
+                                        "source": source, "containing_declaration_ids": identities,
+                                        "source_identity_status": "CURRENT_CLOSURE_LOCATION" if source and identities else "UNRESOLVED_LOCATION"})
+            if classification["outcome"] != "VERIFIED_TOOL_RESULT" or control["intent"] != "positive":
+                packet = {"kind": "python_backend_engineering_intervention", "backend": details["backend"],
+                          "observation": observation["observation"], "producer_attempt": observation["attempt"],
+                          "producer_candidate": observation["producer_candidate"], "route_candidate": candidate,
+                          "target": closure["target"], "production_closure": closure, "control": row,
+                          "diagnostics": diagnostics, "original_fixture_ids": fixture_ids,
+                          "potentially_affected_obligation_ids": affected, "domain_proof": False,
+                          "status": "UNRESOLVED_ENGINEERING_AND_SEMANTIC_REVIEW_REQUIRED",
+                          "required_behavior": "Preserve the complete maintained module/import/state closure, unchanged original fixtures, exact int/bool discrimination and unbounded Python integer semantics.",
+                          "required_actions": ["Resolve actual type/translation support without deleting unused production bodies, substituting stubs/models or reducing required input domains.",
+                                               "Qualify faithful ESBMC/Deal alternatives against the same production/source/original denominator and record unsupported cases.",
+                                               "Review exact original-to-harness semantics, assertion identities and reachability before any backend or proof promotion."],
+                          "semantic_translation_approved": False, "backend_qualified": False}
+                packet["id"] = digest(packet)
+                packets.append(packet)
+    return {"qualification_observations": [dict(observation, runs=runs)], "qualification_dependencies": dependencies,
+            "qualification_interventions": packets, "qualification_acceptance": "Actual or stale diagnostic observations only; no backend, translation, reachability or domain-proof approval"}
 
 
 def obligation_catalog(root: Path, compiled: dict, candidate: str, source_inventory: dict, locations: list[dict]) -> dict:

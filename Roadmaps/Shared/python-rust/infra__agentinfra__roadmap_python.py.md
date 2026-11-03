@@ -2,18 +2,18 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 288. Inventory digest: `9987a7a833569bbe1fb8336bebf5b1989c7c4ba11924c4ca257b9ac980ea7d6d`.
+Files: 1. Behavioral units: 289. Inventory digest: `bd151d59826fc507eadf54fba8e699c4ffd51d14e5ccfbb57ffbdbac909916bb`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_python.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_python.py:1`; AST `e5bed270397066e4148cfd310576f1cb1231a4b91990b717f7c51dfbd58ada74`.
+Source: `infra/agentinfra/roadmap_python.py:1`; AST `db509b277db231a4c0568a10fbe072a9347f7a67d54439b6d12b004457765079`.
 
 Rust module: `infra::agentinfra::roadmap_python`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: DYNAMIC, EFFECT_MODULES, Path, _modules, a, archive, ast, b, binding, bindings_current, bool, c, candidate, catalog, chapter, chapters, closure, cls, compiled, confined_path, count, declarations, dependencies, dependency, dict, digest, disposition, entry, errors, external, external_rows, file_binding, files, h, hazards, importlib, include_tests, inventory, isinstance, key, len, list, locations, maintained_python, module, module_closure, modules, n, name, next, node, obligation, obligation_catalog, original_occurrences, output, package, parent, path, pending, qualification, r, range, raw, re, read_json, recommendations, record, relative, require, research_sources, result, root, row, rows, run, separator, set, sorted, source_closure, source_inventory, str, symbol, target, tree, type, visited, zipfile. Outputs/bindings: BACKENDS, DYNAMIC, EFFECT_MODULES, INTERFACE_VERSION, a, archive, b, binding, c, catalog, chapter, chapters, closure, cls, count, declarations, dependencies, dependency, disposition, entry, errors, external, external_rows, files, hazards, key, locations, module, modules, n, name, node, output, package, parent, path, pending, qualification, r, raw, recommendations, record, relative, result, row, rows, separator, source_inventory, symbol, tree, visited.
-Calls/effect boundaries: '.'.join, (root / 'infra/tests').glob, _modules, archive.namelist, archive.read, ast.dump, ast.dump(declarations[0], include_attributes=False).encode, ast.dump(node, include_attributes=False).encode, ast.parse, ast.unparse, ast.walk, bindings_current, confined_path, dependencies.add, dependencies.update, digest, entry.get, errors.append, external.add, external_rows.append, file_binding, files.append, hazards.append, importlib.util.resolve_name, inventory, isinstance, len, maintained_python, module_closure, modules[module].read_bytes, name.removesuffix, name.rpartition, name.split, next, node.name.startswith, obligation.get, obligation_catalog, original_occurrences, path.read_bytes, path.relative_to, path.relative_to(root).as_posix, pending.append, pending.pop, qualification.get, range, re.search, read_json, record.pop, record.update, relative.removeprefix, relative.removeprefix('infra/').removesuffix, relative.removeprefix('infra/').removesuffix('.py').replace, relative.removeprefix('infra/tests/').removesuffix, relative.removeprefix('infra/tests/').removesuffix('.py').replace, relative.startswith, require, research_sources, result.get, rows.append, run.get, set, sorted, source_closure, target.partition, type, visited.add, zipfile.ZipFile.
+Inputs: DYNAMIC, EFFECT_MODULES, Path, _modules, a, archive, ast, b, binding, bindings_current, bool, c, candidate, catalog, chapter, chapters, closure, cls, compiled, confined_path, count, declarations, dependencies, dependency, dict, digest, disposition, entry, errors, external, external_rows, file_binding, files, h, hazards, importlib, include_tests, inventory, isinstance, key, len, list, locations, maintained_python, module, module_closure, modules, n, name, next, node, obligation, obligation_catalog, original_occurrences, output, package, parent, path, pending, qualification, qualification_reports, r, range, raw, re, read_json, recommendations, record, relative, require, research_sources, result, root, row, rows, run, separator, set, sorted, source_closure, source_inventory, str, symbol, target, tree, type, visited, zipfile. Outputs/bindings: BACKENDS, DYNAMIC, EFFECT_MODULES, INTERFACE_VERSION, a, archive, b, binding, c, catalog, chapter, chapters, closure, cls, count, declarations, dependencies, dependency, disposition, entry, errors, external, external_rows, files, hazards, key, locations, module, modules, n, name, node, output, package, parent, path, pending, qualification, r, raw, recommendations, record, relative, result, row, rows, separator, source_inventory, symbol, tree, visited.
+Calls/effect boundaries: '.'.join, (root / 'infra/tests').glob, _modules, archive.namelist, archive.read, ast.dump, ast.dump(declarations[0], include_attributes=False).encode, ast.dump(node, include_attributes=False).encode, ast.parse, ast.unparse, ast.walk, bindings_current, confined_path, dependencies.add, dependencies.update, digest, entry.get, errors.append, external.add, external_rows.append, file_binding, files.append, hazards.append, importlib.util.resolve_name, inventory, isinstance, len, maintained_python, module_closure, modules[module].read_bytes, name.removesuffix, name.rpartition, name.split, next, node.name.startswith, obligation.get, obligation_catalog, original_occurrences, path.read_bytes, path.relative_to, path.relative_to(root).as_posix, pending.append, pending.pop, qualification.get, qualification_reports, range, re.search, read_json, record.pop, record.update, relative.removeprefix, relative.removeprefix('infra/').removesuffix, relative.removeprefix('infra/').removesuffix('.py').replace, relative.removeprefix('infra/tests/').removesuffix, relative.removeprefix('infra/tests/').removesuffix('.py').replace, relative.startswith, require, research_sources, result.get, rows.append, run.get, set, sorted, source_closure, target.partition, type, visited.add, zipfile.ZipFile.
 Dependencies: __future__, ast, importlib.util, pathlib, re, roadmap_portability, roadmap_python_catalog, roadmap_records, security, zipfile.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
@@ -4428,12 +4428,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python.py::module::route::root.body[19]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python.py:149`; AST `13a2955886c28b4ed3396012c696d56b7d93b24fee962ac37f6e019faccbcb1c`.
+Source: `infra/agentinfra/roadmap_python.py:149`; AST `71ecdc3f710654a94e5ff0f3936f9e4c437415fcef855c61d0573df0e44f9bc8`.
 
 Rust module: `infra::agentinfra::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, candidate, catalog, closure, compiled, dict, inventory, locations, obligation_catalog, original_occurrences, read_json, research_sources, root, source_closure, source_inventory, str. Outputs/bindings: catalog, closure, locations, source_inventory.
-Calls/effect boundaries: inventory, obligation_catalog, original_occurrences, read_json, research_sources, source_closure.
+Inputs: Path, candidate, catalog, closure, compiled, dict, inventory, locations, obligation_catalog, original_occurrences, qualification_reports, read_json, research_sources, root, source_closure, source_inventory, str. Outputs/bindings: catalog, closure, locations, source_inventory.
+Calls/effect boundaries: inventory, obligation_catalog, original_occurrences, qualification_reports, read_json, research_sources, source_closure.
 Dependencies: __future__, ast, importlib.util, pathlib, re, roadmap_portability, roadmap_python_catalog, roadmap_records, security, zipfile.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[19]; no call, error or mutation may be omitted.
@@ -4448,7 +4448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python.py::module::route::root.body[19].body[0]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_python.py:150`; AST `153d5c6aad55650f9544ab2474a107d5779cf6b9110de0fa917a3b01e3b426c9`.
+Source: `infra/agentinfra/roadmap_python.py:150`; AST `d2eb98c986c0cb745aea657ee1ec69f9ccd92b0fa8610602759dceed6617d28e`.
 
 Rust module: `infra::agentinfra::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4628,12 +4628,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python.py::module::route::root.body[19].body[5]::Return
 
-Source: `infra/agentinfra/roadmap_python.py:155`; AST `f7b80bca22f86ef5fd622400721de6d81aa68bbeb29451cf28ede6d0eaab6413`.
+Source: `infra/agentinfra/roadmap_python.py:155`; AST `69d968b0ded492819b47d71eda5c6501793060917aa4d57b8dd23468dbc62258`.
 
 Rust module: `infra::agentinfra::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: candidate, catalog, closure, locations, read_json, research_sources, root, source_inventory. Outputs/bindings: (none).
-Calls/effect boundaries: read_json, research_sources.
+Inputs: candidate, catalog, closure, locations, qualification_reports, read_json, research_sources, root, source_inventory. Outputs/bindings: (none).
+Calls/effect boundaries: qualification_reports, read_json, research_sources.
 Dependencies: __future__, ast, importlib.util, pathlib, re, roadmap_portability, roadmap_python_catalog, roadmap_records, security, zipfile.
 
 Invariants: Preserve ordered Return evaluation at root.body[19].body[5]; no call, error or mutation may be omitted.
@@ -4677,6 +4677,26 @@ Calls/effect boundaries: read_json.
 Dependencies: __future__, ast, importlib.util, pathlib, re, roadmap_portability, roadmap_python_catalog, roadmap_records, security, zipfile.
 
 Invariants: Preserve ordered Call evaluation at root.body[19].body[5].value.values[4]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python.py::module::route::root.body[19].body[5].value.values[7]::Call
+
+Source: `infra/agentinfra/roadmap_python.py:157`; AST `986c40247fb90a74f786b8b7a095aba2f46e323f2bbeb20a9e7cd468236b8562`.
+
+Rust module: `infra::agentinfra::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: candidate, catalog, qualification_reports, root. Outputs/bindings: (none).
+Calls/effect boundaries: qualification_reports.
+Dependencies: __future__, ast, importlib.util, pathlib, re, roadmap_portability, roadmap_python_catalog, roadmap_records, security, zipfile.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[5].value.values[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 

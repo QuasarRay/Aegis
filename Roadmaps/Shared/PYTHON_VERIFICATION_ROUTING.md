@@ -50,3 +50,13 @@ The pinned download profile uses recipe-local HTTPS DNS after the host resolver 
 # Artifact delivery
 
 Backend provisioning follows the shared [reviewed mirror policy](OPERATIONS.md#reviewed-artifact-mirrors) and [finite download profile](download-policy.json). Try the explicit alternate sources in the pinned lock within the existing `python.toolchain` reservation. Preserve upstream versions, sizes, hashes, TLS verification, provenance and all failed-attempt accounting. Quarantine untrusted bytes. Installation remains separate from production ingestion controls, backend qualification, semantic review and full-domain proof.
+
+## Actual qualification observations and intervention packets
+
+The route producer binds the selected canonical qualification observation to its existing successful `python.qualify` ledger operation, immutable specification, actual supervisor result, pinned toolchain manifest and positive/negative control artifacts. These dependencies are materialized route inputs; a newly available result invalidates route reuse. An arbitrary qualification JSON is not an executed observation.
+
+Source-current retained diagnostics may be shown across code candidates only as historical observation evidence. The record preserves the producer candidate and specification, whether the complete producer inputs are current, and whether the actual production closure still matches. Changed/missing artifact bytes produce an explicit stale observation with no current credit. A retained diagnostic never supplies a current same-candidate qualification or proof receipt.
+
+Intervention packets preserve both controls, every source assertion node, the original fixture identities, complete production import/state closure, raw log locations, all containing declaration identities and potentially affected required obligations. Static source locations do not establish assertion reachability or approve a semantic translation. Unsupported type/import/translation outcomes cannot count as detecting the deliberately wrong assertion. All backend/domain responsibilities remain required.
+
+Primary-source alternatives remain candidates: [Deal's verifier requirements](https://deal.readthedocs.io/basic/verification.html) limit it to typed functions/static methods using supported pure Python and permit unsupported skips; [ESBMC's Python limitations](https://esbmc.github.io/docs/python/limitations/) retain explicit frontend/model restrictions. Qualify their actual behavior against the same required source and domains before granting any credit. Documentation or a successful search does not qualify an installation.
