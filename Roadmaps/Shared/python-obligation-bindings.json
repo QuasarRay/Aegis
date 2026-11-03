@@ -108,7 +108,8 @@
     "A09": {
       "maintained_source_patterns": [
         "scripts/roadmap_python.py",
-        "verification/roadmap/python/*.py"
+        "verification/roadmap/python/*.py",
+        "scripts/roadmap_deal.py"
       ],
       "production_modules": [
         "agentinfra.roadmap_python",

@@ -180,7 +180,7 @@ def test_receipt_dependencies(root: Path, compiled: dict, candidate: str) -> lis
     return _actual_test_details(root, compiled, candidate)[2]
 
 
-def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
+def _qualification_evidence(root: Path, backend: str = "nagini") -> tuple[dict, dict | None, list[dict]]:
     """Retain actual ledger evidence without making a historical run current proof.
 
     The canonical pointer selects an observation, not an approved backend. All
@@ -188,11 +188,12 @@ def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
     Changed source/tool files remain explicit stale observations, never proof.
     """
     from .roadmap_project import ProjectAdapter
+    from .roadmap_python import backend_observation_key
     from .roadmap_runtime import BudgetLedger
     from .roadmap_work import validate_tool_receipt
     if not (root / ".aegis/project.json").is_file():
         return {"status": "NOT_ATTEMPTED", "domain_proof": False}, None, []
-    binding = ProjectAdapter(root).read().get("python_qualification_observation")
+    binding = ProjectAdapter(root).read().get(backend_observation_key(backend, "qualification"))
     if not binding:
         return {"status": "NOT_ATTEMPTED", "domain_proof": False}, None, []
     require(bindings_current(root, [binding]), "canonical Python qualification observation changed")
@@ -211,7 +212,7 @@ def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
             spec.get("selection", {}).get("kind") == "actual_python_source_qualification" and
             spec["selection"].get("action") == "qualify" and spec["selection"].get("domain_proof") is False,
             "qualification operation identity/producer differs")
-    require(details.get("schema") == 1 and details.get("action") == "qualify" and details.get("backend") == "nagini" and
+    require(details.get("schema") == 1 and details.get("action") == "qualify" and details.get("backend") == backend and
             details.get("candidate") == spec.get("candidate") == receipt.get("candidate") and details.get("domain_proof") is False,
             "qualification details escaped their dispatched producer")
     tool_binding = details.get("toolchain")
@@ -223,7 +224,11 @@ def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
     require(isinstance(invoked, str) and Path(invoked).is_absolute() and
             str(Path(invoked).resolve()) == spec["toolchain"]["executable"], "qualification interpreter differs from its pinned executable identity")
     expected_argv = [invoked, "-B", "scripts/roadmap_python.py", "qualify", "--output",
-                     spec["target"]["output"] + "/details.json", "--candidate", spec["candidate"], "--toolchain", tool_binding["path"]]
+                     spec["target"]["output"] + "/details.json", "--candidate", spec["candidate"]]
+    if backend == "deal":
+        require(spec["selection"].get("backend") == "deal" and toolchain.get("backend") == "deal", "Deal producer selection differs")
+        expected_argv.extend(["--backend", "deal"])
+    expected_argv.extend(["--toolchain", tool_binding["path"]])
     require(spec.get("argv") == expected_argv and receipt.get("argv") == expected_argv and
             binding["path"] == spec["target"]["output"] + "/" + spec["digest"] + "/details.json",
             "qualification did not use the fixed source-owned driver/output")
@@ -242,7 +247,7 @@ def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
         if observed:
             require(item["path"] not in dependencies or dependencies[item["path"]] == observed, "qualification dependency identity conflicts")
             dependencies[item["path"]] = observed
-    record = {"status": "RETAINED_ACTUAL_QUALIFICATION_OBSERVATION", "attempt": attempt["id"],
+    record = {"status": "RETAINED_ACTUAL_QUALIFICATION_OBSERVATION", "backend": backend, "attempt": attempt["id"],
               "observation": binding, "specification": spec_binding, "producer_candidate": spec["candidate"],
               "recorded_status": details.get("status"), "domain_proof": False, "backend_qualified": False,
               "producer_interpreter": {k: spec["toolchain"].get(k) for k in ("executable", "sha256", "version", "platform")},
@@ -261,25 +266,49 @@ def _qualification_evidence(root: Path) -> tuple[dict, dict | None, list[dict]]:
     return record, details, sorted(dependencies.values(), key=lambda b: b["path"])
 
 
+def _backend_evidence(root: Path) -> list[tuple[dict, dict | None, list[dict]]]:
+    from .roadmap_project import ProjectAdapter
+    values = [_qualification_evidence(root)]
+    if (root / ".aegis/project.json").is_file() and ProjectAdapter(root).read().get("python_deal_qualification_observation"):
+        values.append(_qualification_evidence(root, "deal"))
+    return values
+
+
+def _evidence_dependencies(values: list[tuple[dict, dict | None, list[dict]]]) -> list[dict]:
+    result = {}
+    for _, _, dependencies in values:
+        for binding in dependencies:
+            require(binding["path"] not in result or result[binding["path"]] == binding, "backend dependency identities conflict")
+            result[binding["path"]] = binding
+    return sorted(result.values(), key=lambda b: b["path"])
+
+
+def _lineage(values: list[tuple[dict, dict | None, list[dict]]]) -> str:
+    return digest([{ "backend": record.get("backend", "nagini"), "attempts": record.get("retained_attempt_ids", [])}
+                   for record, _, _ in values])
+
+
 def qualification_receipt_dependencies(root: Path) -> list[dict]:
     """Make a changed real backend observation invalidate the route cache."""
-    return _qualification_evidence(root)[2]
+    return _evidence_dependencies(_backend_evidence(root))
 
 
 def qualification_lineage_digest(root: Path) -> str:
     """Bind displayed attempt ancestry even when the canonical result is unchanged."""
-    return digest(_qualification_evidence(root)[0].get("retained_attempt_ids", []))
+    return _lineage(_backend_evidence(root))
 
 
-def qualification_reports(root: Path, candidate: str, catalog: dict) -> dict:
+def _qualification_report(root: Path, candidate: str, catalog: dict, evidence: tuple) -> dict:
     """Join actual backend diagnostics to complete source and fixture identities.
 
     These are engineering packets. Even matching source closure and a successful
     CLI result cannot approve a semantic translation, reachability or proof.
     """
     from .roadmap_python import classify_nagini
-    observation, details, dependencies = _qualification_evidence(root)
+    observation, details, dependencies = evidence
     observation["same_code_candidate"] = observation.get("producer_candidate") == candidate
+    if details and details["backend"] == "deal":
+        return _deal_report(root, candidate, catalog, observation, details, dependencies)
     packets, runs = [], []
     if details:
         toolchain = read_json(confined_path(root, details["toolchain"]["path"]))
@@ -344,6 +373,64 @@ def qualification_reports(root: Path, candidate: str, catalog: dict) -> dict:
     return {"qualification_observations": [dict(observation, runs=runs)], "qualification_dependencies": dependencies,
             "qualification_lineage_digest": digest(observation.get("retained_attempt_ids", [])),
             "qualification_interventions": packets, "qualification_acceptance": "Actual or stale diagnostic observations only; no backend, translation, reachability or domain-proof approval"}
+
+
+def _deal_report(root: Path, candidate: str, catalog: dict, observation: dict, details: dict, dependencies: list[dict]) -> dict:
+    from .roadmap_python import classify_deal
+    toolchain = read_json(confined_path(root, details["toolchain"]["path"]))
+    controls = details.get("runs", [])
+    require(len(controls) == 2 and [c.get("intent") for c in controls] == ["positive", "deliberately_wrong_assertion"],
+            "Deal omitted, duplicated or reordered its fixed controls")
+    closure = details["production"]
+    files = {b["path"] for b in closure["files"]}
+    fixture_ids = [key for key, f in catalog["fixture_semantics"].items() if f["location"]["source"] == details["original"] and
+                   f["location"]["fixture"] == "DomainPolicyTests" and f["location"]["test"] == "test_budgets_and_completion"]
+    affected = [o["id"] for o in catalog["obligations"] if files & {b["path"] for b in o["source_bindings"]} or set(fixture_ids) & set(o["original_fixture_ids"])]
+    runs, packets = [], []
+    for control, name in zip(controls, ("policy_deal_positive.py", "policy_deal_negative.py"), strict=True):
+        fixture, result, binding = control["fixture"], control["result"], control.get("observation")
+        require(fixture["path"] == "verification/roadmap/python/" + name and binding and
+                all(b in details["artifacts"] for b in (fixture, result, binding)) and bindings_current(root, [fixture, result, binding]),
+                "Deal fixed source/result/API observation changed or is missing")
+        raw, api = read_json(confined_path(root, result["path"])), read_json(confined_path(root, binding["path"]))
+        expected = [toolchain["python"], "-B", "scripts/roadmap_deal.py", "--fixture", fixture["path"], "--output", binding["path"]]
+        require(raw.get("argv") == expected and raw.get("cwd") == str(root.resolve()) and api.get("backend") == "deal" and
+                api.get("fixture") == fixture and api.get("production") == closure and api.get("domain_proof") is False,
+                "Deal observation did not ingest its exact production/control identity")
+        assertions = [_node(n) for n in ast.walk(ast.parse(confined_path(root, fixture["path"]).read_bytes())) if isinstance(n, ast.Assert)]
+        require(api.get("source_assertions") == [{"span": n["span"], "ast_sha256": n["ast_sha256"]} for n in assertions],
+                "Deal source assertion identities were omitted or changed")
+        classification = classify_deal(raw, api)
+        row = {"intent": control["intent"], "fixture": fixture, "result": result, "api_observation": binding,
+               "classification": classification, "recorded_classification": control["classification"],
+               "assertion_source_nodes": assertions, "assertion_reachability": "NOT_ESTABLISHED", "domain_proof": False,
+               "proof": api.get("proof"), "error": api.get("error"), "skips": api.get("skips", []),
+               "solver_call_count": len(api.get("solver_results", [])), "inferred_production_calls": api.get("inferred_production_calls", []),
+               "versions": api.get("versions", {})}
+        runs.append(row)
+        packet = {"kind": "python_backend_engineering_intervention", "backend": "deal", "observation": observation["observation"],
+                  "producer_attempt": observation["attempt"], "producer_candidate": observation["producer_candidate"], "route_candidate": candidate,
+                  "target": closure["target"], "production_closure": closure, "control": row, "original_fixture_ids": fixture_ids,
+                  "potentially_affected_obligation_ids": affected, "domain_proof": False, "backend_qualified": False,
+                  "semantic_translation_approved": False, "status": "UNRESOLVED_ENGINEERING_AND_SEMANTIC_REVIEW_REQUIRED",
+                  "required_behavior": "Preserve complete actual production imports/bodies, original fixture semantics, exact integer/bool behavior and the full required domains.",
+                  "required_actions": ["Investigate actual Deal unsupported/skip/error behavior without replacing or simplifying the maintained function.",
+                                       "Qualify whole module/state and numeric semantics plus exact original assertion identities and reachability before promotion.",
+                                       "Investigate a faithful ESBMC route without shrinking domains or treating skipped/model-only results as proof."]}
+        packet["id"] = digest(packet)
+        packets.append(packet)
+    return {"qualification_observations": [dict(observation, runs=runs)], "qualification_dependencies": dependencies,
+            "qualification_interventions": packets}
+
+
+def qualification_reports(root: Path, candidate: str, catalog: dict) -> dict:
+    """Retain each actually attempted backend under the existing canonical owner."""
+    values = _backend_evidence(root)
+    reports = [_qualification_report(root, candidate, catalog, value) for value in values]
+    return {"qualification_observations": [o for report in reports for o in report["qualification_observations"]],
+            "qualification_dependencies": _evidence_dependencies(values), "qualification_lineage_digest": _lineage(values),
+            "qualification_interventions": [p for report in reports for p in report["qualification_interventions"]],
+            "qualification_acceptance": "Actual or stale diagnostics only; no backend, module/state, translation, reachability or domain-proof approval"}
 
 
 def obligation_catalog(root: Path, compiled: dict, candidate: str, source_inventory: dict, locations: list[dict]) -> dict:
