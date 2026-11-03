@@ -18,7 +18,7 @@ from agentinfra.atomic import atomic_write_json
 from agentinfra.process import run_recipe_stage
 from agentinfra.roadmap_mirrors import download_with_mirrors, read_download_policy, TRANSPORT
 from agentinfra.roadmap import compile_roadmaps
-from agentinfra.roadmap_python import classify_nagini, route, source_closure
+from agentinfra.roadmap_python import classify_nagini, classify_deal, route, source_closure
 from agentinfra.roadmap_records import digest, file_binding, read_json, require
 from agentinfra.security import confined_path, minimal_subprocess_env
 
@@ -96,12 +96,73 @@ def qualify(root: Path, output: Path, toolchain_path: str) -> dict:
             "qualification_limit": "Original-test translation, numeric/bool semantics, import closure, exact assertion locations and reachability require review; no domain proof is promoted"}
 
 
+def provision_deal(root: Path, output: Path) -> dict:
+    profile = "Roadmaps/Shared/python-deal-toolchains.json"
+    lock = read_json(root / profile)
+    require(lock.get("backend") == "deal" and lock.get("download_transport") == TRANSPORT and
+            sys.platform == "linux" and os.uname().machine == "x86_64" and sys.version_info[:2] == (3, 14),
+            "unqualified Deal download profile/platform/interpreter")
+    directory = confined_path(root, ".aegis/toolchains/deal/" + digest(lock))
+    directory.mkdir(parents=True, exist_ok=True)
+    deadline = time.monotonic() + read_download_policy(root)["stage_timeout_seconds"]
+    wheels = [_download(root, entry, directory / "downloads", deadline) for entry in lock["packages"]]
+    virtual = directory / "venv"
+    if not (virtual / "bin/python").exists():
+        venv.EnvBuilder(with_pip=True).create(virtual)
+    python = virtual / "bin/python"
+    environment = dict(minimal_subprocess_env(), PYTHONDONTWRITEBYTECODE="1")
+    artifacts = []
+    for name, argv in (("pip-result.json", [str(python), "-B", "-m", "pip", "install", "--no-index", "--no-deps", *map(str, wheels)]),
+                       ("pip-check.json", [str(python), "-B", "-m", "pip", "check"])):
+        result = run_recipe_stage(argv, cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+        path = output.parent / name
+        atomic_write_json(path, asdict(result), root=root, mode=0o600)
+        artifacts.append(file_binding(root, path.relative_to(root).as_posix()))
+        require(result.returncode == 0 and not result.timed_out and not result.stdout_truncated and not result.stderr_truncated,
+                "isolated Deal installation/dependency check failed")
+    files = [file_binding(root, p.relative_to(root).as_posix()) for p in directory.rglob("*")
+             if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts]
+    return {"backend": "deal", "status": "INSTALLED_NOT_QUALIFIED", "lock": file_binding(root, profile),
+            "python": str(python), "environment": environment, "files": sorted(files, key=lambda b: b["path"]), "artifacts": artifacts}
+
+
+def qualify_deal(root: Path, output: Path, toolchain_path: str) -> dict:
+    from agentinfra.roadmap_records import bindings_current
+    binding = file_binding(root, toolchain_path)
+    toolchain = read_json(confined_path(root, toolchain_path, must_exist=True))
+    require(toolchain.get("backend") == "deal" and toolchain.get("status") == "INSTALLED_NOT_QUALIFIED" and
+            bindings_current(root, [toolchain["lock"], *toolchain["files"]]), "Deal toolchain is missing or changed")
+    runs, artifacts = [], []
+    for name in ("policy_deal_positive.py", "policy_deal_negative.py"):
+        fixture = file_binding(root, "verification/roadmap/python/" + name)
+        observed_path = output.parent / (name + ".observation.json")
+        environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"))
+        result = run_recipe_stage([toolchain["python"], "-B", "scripts/roadmap_deal.py", "--fixture", fixture["path"],
+                                   "--output", observed_path.relative_to(root).as_posix()],
+                                  cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+        result_path = output.parent / (name + ".result.json")
+        atomic_write_json(result_path, asdict(result), root=root, mode=0o600)
+        observed = read_json(observed_path) if observed_path.is_file() else {"status": "MISSING_OBSERVATION"}
+        dependencies = [fixture, file_binding(root, result_path.relative_to(root).as_posix())]
+        if observed_path.is_file():
+            dependencies.append(file_binding(root, observed_path.relative_to(root).as_posix()))
+        artifacts.extend(dependencies)
+        runs.append({"fixture": fixture, "intent": "positive" if name == "policy_deal_positive.py" else "deliberately_wrong_assertion",
+                     "result": dependencies[1], "observation": dependencies[2] if len(dependencies) == 3 else None,
+                     "classification": classify_deal(asdict(result), observed)})
+    return {"backend": "deal", "status": "INGESTION_TRIAL_UNQUALIFIED", "toolchain": binding, "runs": runs,
+            "production": source_closure(root, "agentinfra.roadmap_policy:may_reserve"),
+            "original": file_binding(root, "infra/tests/test_roadmap.py"), "artifacts": artifacts,
+            "qualification_limit": "Actual imported AST inference, module initialization/state, numeric/bool semantics, original translation, assertion identities and reachability remain unqualified. Skips, empty/partial results and model-only results grant no domain proof."}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("action", choices=("route", "toolchain", "qualify"))
     parser.add_argument("--output", required=True)
     parser.add_argument("--candidate", required=True)
     parser.add_argument("--toolchain")
+    parser.add_argument("--backend", choices=("nagini", "deal"), default="nagini")
     args = parser.parse_args()
     output = confined_path(ROOT, args.output)
     output.parent.mkdir(parents=True, exist_ok=True)
@@ -110,10 +171,10 @@ def main() -> None:
         if args.action == "route":
             details.update(route(ROOT, compile_roadmaps(ROOT), args.candidate))
         elif args.action == "toolchain":
-            details.update(provision(ROOT, output))
+            details.update(provision_deal(ROOT, output) if args.backend == "deal" else provision(ROOT, output))
         else:
             require(bool(args.toolchain), "current toolchain receipt required")
-            details.update(qualify(ROOT, output, args.toolchain))
+            details.update(qualify_deal(ROOT, output, args.toolchain) if args.backend == "deal" else qualify(ROOT, output, args.toolchain))
     except Exception as exc:
         details.update(status="ERROR", error={"type": type(exc).__name__, "message": str(exc)})
         atomic_write_json(output, details, root=ROOT, mode=0o600)

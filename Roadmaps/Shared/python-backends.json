@@ -1,4 +1,5 @@
 {
+  "active_qualification_backend": "deal",
   "backends": [
     {
       "acceptance": "Actual supported Python production semantics and toolchain qualification",
@@ -17,6 +18,7 @@
     {
       "acceptance": "Actual function support; no skipped/unsupported obligation credit",
       "name": "Deal",
+      "qualification_profile": "Roadmaps/Shared/python-deal-toolchains.json",
       "role": "complementary pure-function candidate",
       "status": "NOT_QUALIFIED"
     },

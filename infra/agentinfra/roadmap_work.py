@@ -118,6 +118,12 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
         action = recipe.removeprefix("python.")
         argv = [sys.executable, "-B", "scripts/roadmap_python.py", action, "--output", output + "/details.json", "--candidate", candidate]
         selection = {"kind": "actual_python_source_qualification", "action": action, "domain_proof": False}
+        if recipe in {"python.toolchain", "python.qualify"}:
+            from .roadmap_python import qualification_backend
+            backend = qualification_backend(root)
+            selection["backend"] = backend
+            if backend == "deal":
+                argv.extend(["--backend", "deal"])
         if recipe == "python.route":
             from .roadmap_python_catalog import test_receipt_dependencies, qualification_receipt_dependencies, qualification_lineage_digest
             dependencies = test_receipt_dependencies(root, compiled, candidate)
@@ -130,7 +136,8 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
             selection["qualification_dependencies"] = qualification_dependencies
             selection["qualification_lineage_digest"] = qualification_lineage_digest(root)
         if recipe == "python.qualify":
-            binding = ProjectAdapter(root).read().get("python_toolchain_observation")
+            from .roadmap_python import backend_observation_key
+            binding = ProjectAdapter(root).read().get(backend_observation_key(backend, "toolchain"))
             require(binding and bindings_current(root, [binding]), "current isolated Python toolchain observation required")
             observed = read_json(confined_path(root, binding["path"]))
             require(observed.get("status") == "INSTALLED_NOT_QUALIFIED" and bindings_current(root, observed["files"]), "isolated Python toolchain is missing or changed")
@@ -405,7 +412,10 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                         require(details_record.get("status") == "INSTALLED_NOT_QUALIFIED" and
                                 bindings_current(root, details_record["files"]), "isolated Python installation is incomplete")
                         artifacts.extend(details_record["files"])
-                        adapter.update({"python_toolchain_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                        from .roadmap_python import backend_observation_key
+                        backend = spec["selection"]["backend"]
+                        require(details_record.get("backend", "nagini") == backend, "installed backend differs from its fixed selection")
+                        adapter.update({backend_observation_key(backend, "toolchain"): details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                     elif recipe == "python.route" and result.returncode == 0:
                         require(details_record.get("runtime_test_dependencies", []) == spec["selection"]["original_test_dependencies"],
                                 "Python route used runtime witnesses outside its materialized inputs")
@@ -415,7 +425,10 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                                 "Python route used qualification ancestry outside its materialized inputs")
                         adapter.update({"python_verification_routes": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                     elif recipe == "python.qualify" and result.returncode == 0:
-                        adapter.update({"python_qualification_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                        from .roadmap_python import backend_observation_key
+                        backend = spec["selection"]["backend"]
+                        require(details_record.get("backend") == backend, "qualification backend differs from its fixed selection")
+                        adapter.update({backend_observation_key(backend, "qualification"): details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                 if recipe == "native.acceptance":
                     require(details_record.get("accepted") is True, "native transport qualification is incomplete")
                     require(bindings_current(root, details_record.get("artifacts", [])), "native observation artifacts changed")

@@ -23,6 +23,35 @@ DYNAMIC = {"eval", "exec", "__import__", "importlib.import_module", "getattr", "
 EFFECT_MODULES = {"os", "pathlib", "subprocess", "socket", "sqlite3", "threading", "multiprocessing", "ctypes"}
 
 
+def qualification_backend(root: Path) -> str:
+    backend = read_json(root / "Roadmaps/Shared/python-backends.json").get("active_qualification_backend", "nagini")
+    require(backend in {"nagini", "deal"}, "backend has no fixed qualification producer")
+    return backend
+
+
+def backend_observation_key(backend: str, kind: str) -> str:
+    require(backend in {"nagini", "deal"} and kind in {"toolchain", "qualification"}, "unknown backend observation owner")
+    return "python_" + ("deal_" if backend == "deal" else "") + kind + "_observation"
+
+
+def classify_deal(run: dict, observation: dict) -> dict:
+    """Interpret a fixed API observer's complete result without proof promotion."""
+    if run.get("timed_out") or run.get("stdout_truncated") or run.get("stderr_truncated"):
+        return {"outcome": "INDETERMINATE", "reason": "timeout or truncated process logs"}
+    if run.get("returncode") != 0 or observation.get("error") or observation.get("status") != "OBSERVED_UNQUALIFIED":
+        return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "API ingestion failed or did not complete"}
+    proof = observation.get("proof", {})
+    calls = observation.get("solver_results", [])
+    if (observation.get("skips") or proof.get("conclusion") in {"SKIP", "PARTIAL"} or not calls or
+            proof.get("description") == "nothing to prove"):
+        return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "skipped, partial or empty solver evidence"}
+    if proof.get("conclusion") == "OK" and all(c.get("conclusion") == "OK" for c in calls):
+        return {"outcome": "TOOL_RESULT_SEMANTICS_UNQUALIFIED", "reason": "solver reported OK; import/state, assertion identity and semantic review remain required"}
+    if proof.get("conclusion") == "FAIL" and any(c.get("conclusion") == "FAIL" and c.get("description") == "assertion" for c in calls):
+        return {"outcome": "ASSERTION_COUNTEREXAMPLE_UNREVIEWED", "reason": "solver reported assertion failure; original assertion identity/reachability and translation require review"}
+    return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "no complete recognized Deal solver result"}
+
+
 def _modules(root: Path, *, include_tests: bool = False) -> dict[str, Path]:
     result = {}
     for path in maintained_python(root):
