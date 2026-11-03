@@ -34,6 +34,9 @@ def compile_roadmaps(root: Path) -> dict:
             "phase verification policy weakened")
     require(policy.get("flaw_campaign") == "deferred" and policy.get("cgp_requires_all_projects_complete") is True,
             "deferred phase policy weakened")
+    from .roadmap_mirrors import POLICY_PATH, read_download_policy
+    require(policy.get("artifact_download_policy") == POLICY_PATH, "reviewed mirror delivery policy required")
+    read_download_policy(root)
     sources = read_json(shared / "sources.json")
     mandatory_sources = {"AGENTS.MD", "Blue_Prompt.md", "Destiny_Prompt.md", "Roadmaps/Shared/ADOPTED_PLAN.md"}
     source_names = [s["path"] for s in sources["files"]]
