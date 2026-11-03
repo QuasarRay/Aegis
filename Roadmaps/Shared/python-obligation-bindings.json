@@ -113,7 +113,8 @@
       "production_modules": [
         "agentinfra.roadmap_python",
         "agentinfra.roadmap_download",
-        "agentinfra.roadmap_python_catalog"
+        "agentinfra.roadmap_python_catalog",
+        "agentinfra.roadmap_mirrors"
       ],
       "retained_implementation_gaps": [
         "Backend installation/ingestion and actual qualified Python proof execution/result adapters remain open."

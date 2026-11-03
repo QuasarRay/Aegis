@@ -20,6 +20,7 @@
     "AM18": "Separate implementation, domain verification, project completion and CGP completion; retire conflicting policy without deleting historical evidence.",
     "AM19": "Roadmap package completion is distinct from implementation of the three projects; launchers remain inactive."
   },
+  "artifact_download_policy": "Roadmaps/Shared/download-policy.json",
   "cgp_requires_all_projects_complete": true,
   "completion_states": [
     "IMPLEMENTATION_READY",

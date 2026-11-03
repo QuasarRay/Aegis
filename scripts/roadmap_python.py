@@ -8,6 +8,7 @@ import os
 from pathlib import Path
 import sys
 import tarfile
+import time
 import venv
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -15,15 +16,15 @@ sys.path.insert(0, str(ROOT / "infra"))
 
 from agentinfra.atomic import atomic_write_json
 from agentinfra.process import run_recipe_stage
-from agentinfra.roadmap_download import download_pinned, TRANSPORT
+from agentinfra.roadmap_mirrors import download_with_mirrors, read_download_policy, TRANSPORT
 from agentinfra.roadmap import compile_roadmaps
 from agentinfra.roadmap_python import classify_nagini, route, source_closure
 from agentinfra.roadmap_records import digest, file_binding, read_json, require
 from agentinfra.security import confined_path, minimal_subprocess_env
 
 
-def _download(root: Path, entry: dict, directory: Path) -> Path:
-    return download_pinned(root, entry, directory)
+def _download(root: Path, entry: dict, directory: Path, deadline: float) -> Path:
+    return download_with_mirrors(root, entry, directory, deadline)
 
 
 def provision(root: Path, output: Path) -> dict:
@@ -32,8 +33,9 @@ def provision(root: Path, output: Path) -> dict:
     require(sys.platform == "linux" and os.uname().machine == "x86_64" and sys.version_info[:2] == (3, 14), "unqualified host platform/interpreter")
     directory = confined_path(root, ".aegis/toolchains/" + digest(lock))
     directory.mkdir(parents=True, exist_ok=True)
-    wheels = [_download(root, package, directory / "downloads") for package in lock["packages"]]
-    archive = _download(root, lock["jre"], directory / "downloads")
+    deadline = time.monotonic() + read_download_policy(root)["stage_timeout_seconds"]
+    wheels = [_download(root, package, directory / "downloads", deadline) for package in lock["packages"]]
+    archive = _download(root, lock["jre"], directory / "downloads", deadline)
     java_root = directory / "java"
     if not java_root.exists():
         java_root.mkdir()
@@ -77,8 +79,8 @@ def qualify(root: Path, output: Path, toolchain_path: str) -> dict:
     runs = []
     for name in ("policy_positive.py", "policy_negative.py"):
         source = root / "verification/roadmap/python" / name
-        environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"))
-        result = run_recipe_stage([toolchain["python"], "-B", toolchain["nagini"], str(source)],
+        environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"), MYPYPATH=str(root / "infra"))
+        result = run_recipe_stage([toolchain["python"], "-B", toolchain["nagini"], "--mypy-path", str(root / "infra"), str(source)],
                                   cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
         path = output.parent / (name + ".result.json")
         atomic_write_json(path, asdict(result), root=root, mode=0o600)

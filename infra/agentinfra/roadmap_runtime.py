@@ -8,9 +8,109 @@ from pathlib import Path
 from .atomic import atomic_write_json
 from .locks import FileLock
 from .process import run_process
-from .roadmap_records import bindings_current, digest, read_json, require
+from .roadmap_records import bindings_current, digest, file_binding, read_json, require
 from .security import confined_path
 from .roadmap_lease import WorkspaceLease
+
+
+def retry_limits(root: Path, milestone: str, recipe: str, max_attempts: int, total_seconds: int, *, candidate: str | None = None) -> dict:
+    """Read a scoped user amendment through the existing canonical record owner."""
+    from .roadmap_project import ProjectAdapter
+    adapter = ProjectAdapter(root)
+    if not adapter.profile.path().exists():
+        return {"max_attempts": max_attempts, "total_seconds": total_seconds}
+    record = adapter.read()
+    execution = record.get("execution", {})
+    native = execution.get("native_binding", {})
+    work_id = digest({"recipe": recipe, "root": str(root.resolve()), "native_thread": native.get("thread_id"),
+                      "project": "Aegis", "milestone": milestone})
+    binding = execution.get("budget_amendments", {}).get(work_id)
+    if not binding:
+        return {"max_attempts": max_attempts, "total_seconds": total_seconds}
+    require(bindings_current(root, [binding]), "user retry amendment changed")
+    amendment = read_json(confined_path(root, binding["path"]))
+    require(amendment.get("schema") == 1 and amendment.get("kind") == "user_authorized_single_retry" and
+            amendment.get("work_id") == work_id and amendment.get("recipe") == recipe and
+            amendment.get("milestone") == milestone and amendment.get("native_thread") == native.get("thread_id") and
+            amendment.get("goal_created_at") == native.get("observation", {}).get("createdAt") and
+            amendment.get("objective") == native.get("objective"), "retry amendment escaped its adopted Goal/work unit")
+    source = amendment.get("source", {})
+    require(source.get("role") == "user" and source.get("content") and source.get("question_item_id") and
+            source.get("observed_native_turn"), "retry amendment lacks explicit user provenance")
+    require(amendment.get("base_limits") == {"max_attempts": max_attempts, "total_seconds": total_seconds} and
+            amendment.get("preserve_attempt_lineage") is True and amendment.get("domain_proof") is False,
+            "retry amendment changed its base limits or evidence strength")
+    limits = amendment.get("limits", {})
+    extra = amendment.get("additional_seconds")
+    require(type(extra) is int and 0 < extra <= 900 and limits == {
+            "max_attempts": max_attempts + 1, "total_seconds": total_seconds + extra}, "retry amendment must add exactly one bounded attempt")
+    dependencies = amendment.get("dependencies", [])
+    require(dependencies and bindings_current(root, dependencies), "retry amendment inputs changed; renewed user scope required")
+    prior = amendment.get("prior_attempts", [])
+    ledger = BudgetLedger(root).read()["attempts"]
+    rows = {a["id"]: a for a in ledger}
+    fields = ("id", "work_id", "inputs", "status", "reserved_seconds", "generation")
+    require(prior and all(p.get("work_id") == work_id and p.get("status") in {"FAILED", "INTERRUPTED"} and
+            p["id"] in rows and p == {k: rows[p["id"]].get(k) for k in fields} for p in prior),
+            "retry amendment lost or rewrote failed attempt history")
+    generation = prior[-1]["generation"]
+    current = [a for a in ledger if a["work_id"] == work_id and a.get("generation") == generation]
+    require([a["id"] for a in current[:len(prior)]] == [a["id"] for a in prior] and
+            len(current) <= limits["max_attempts"] and all(a.get("generation") == generation for a in prior),
+            "retry amendment cannot reset or replace its original generation")
+    if any(a["work_id"] == work_id and a.get("generation", 1) > generation for a in ledger):
+        return {"max_attempts": max_attempts, "total_seconds": total_seconds}
+    if candidate is not None and len(current) > len(prior) and current[-1]["status"] == "SUCCESS":
+        spec_binding = current[-1].get("operation", {}).get("spec")
+        require(spec_binding and bindings_current(root, [spec_binding]), "consumed retry lacks its immutable successful specification")
+        completed = read_json(confined_path(root, spec_binding["path"]))
+        require(completed.get("digest") == current[-1]["inputs"] == digest({k: v for k, v in completed.items() if k != "digest"}),
+                "consumed retry specification changed")
+        if completed.get("candidate") != candidate:
+            return {"max_attempts": max_attempts, "total_seconds": total_seconds}
+    return dict(limits, authorization=binding, dependencies=dependencies)
+
+
+def authorize_single_retry(root: Path, compiled: dict, milestone: str, recipe: str, *,
+                           user_authorized: bool, source: dict, dependencies: list[dict]) -> dict:
+    """Record the controlling agent's observed user directive; never infer approval from a Goal."""
+    from .roadmap_project import ProjectAdapter
+    require(user_authorized and source.get("role") == "user" and source.get("content") and
+            source.get("question_item_id") and source.get("observed_native_turn"), "explicit observed user retry authorization required")
+    adapter = ProjectAdapter(root)
+    record_digest = digest(adapter.profile.path().read_bytes())
+    record = adapter.read()
+    require(digest(adapter.profile.path().read_bytes()) == record_digest, "canonical record changed while reading retry authority")
+    execution = record["execution"]
+    observation = WorkspaceLease(root).qualify(execution["workspace_lease"])
+    require(observation["turn_id"] == source["observed_native_turn"] and observation["goal"]["status"] == "active",
+            "retry authorization must be recorded in the observed active native turn")
+    work_id, inherited = recipe_scope(root, compiled, recipe, milestone, BudgetLedger(root))
+    require(not inherited and work_id not in execution.get("budget_amendments", {}), "retry amendment already exists or has unresolved inherited accounting")
+    contract = compiled["milestones"][milestone]
+    require(recipe in contract["checks"] and dependencies and bindings_current(root, dependencies), "retry dependencies/scope are not current")
+    seconds = min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"])
+    attempts = min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])
+    prior = [a for a in BudgetLedger(root).read()["attempts"] if a["work_id"] == work_id]
+    require(len(prior) == attempts and all(a["status"] in {"FAILED", "INTERRUPTED"} and
+            a.get("generation", 1) == prior[-1].get("generation", 1) for a in prior) and
+            sum(a["reserved_seconds"] for a in prior) == 1800, "single retry requires intact exhausted failed history")
+    native = execution["native_binding"]
+    require(observation["goal"]["threadId"] == native["thread_id"] and observation["goal"]["objective"] == native["objective"] and
+            observation["goal"]["createdAt"] == native["observation"]["createdAt"], "retry authorization cannot replace the native Goal")
+    fields = ("id", "work_id", "inputs", "status", "reserved_seconds", "generation")
+    amendment = {"schema": 1, "kind": "user_authorized_single_retry", "work_id": work_id, "recipe": recipe,
+                 "milestone": milestone, "native_thread": native["thread_id"], "objective": native["objective"],
+                 "goal_created_at": native["observation"]["createdAt"], "source": source, "dependencies": dependencies,
+                 "base_limits": {"max_attempts": attempts, "total_seconds": 1800},
+                 "limits": {"max_attempts": attempts + 1, "total_seconds": 1800 + seconds}, "additional_seconds": seconds,
+                 "prior_attempts": [{k: a.get(k) for k in fields} for a in prior],
+                 "preserve_attempt_lineage": True, "domain_proof": False}
+    relative = ".aegis/roadmaps/authorizations/" + digest(amendment) + ".json"
+    atomic_write_json(confined_path(root, relative), amendment, root=root, mode=0o600)
+    execution = dict(execution, budget_amendments=dict(execution.get("budget_amendments", {}), **{work_id: file_binding(root, relative)}))
+    adapter.update({"execution": execution}, expected_digest=record_digest)
+    return amendment
 
 
 class BudgetLedger:

@@ -1,0 +1,64 @@
+{
+  "accounting": "Fallback delivery routes execute inside the existing named recipe reservation. Exhausted attempt/time limits require an explicit scoped user authorization; never alias or reset work.",
+  "allow_credentials": false,
+  "allow_tls_downgrade": false,
+  "dns_endpoint": "https://1.1.1.1/dns-query",
+  "identity": "exact_upstream_sha256_and_size",
+  "max_addresses_per_source": 2,
+  "max_redirects": 6,
+  "max_sources_per_artifact": 3,
+  "precautions": [
+    "Retain original upstream URL, pinned version, exact expected byte length and independent upstream SHA-256.",
+    "Use only reviewed explicit HTTPS sources and exact allowlisted redirect hostnames with verified certificates, original SNI/hostname and public DNS addresses.",
+    "Try alternate reviewed sources after transport, availability or integrity failure within finite source/address/redirect/stage limits.",
+    "Record each outcome and quarantine untrusted partial bytes; never install a changed artifact or weaken pins to make a mirror work.",
+    "Mirrors are delivery alternatives, not independent trust authorities. Download or installation does not qualify a backend or establish domain proof.",
+    "Do not copy retrieved commands, ambient indexes, authentication, proxy settings or system package changes into a recipe."
+  ],
+  "preserve_attempt_lineage": true,
+  "providers": {
+    "pypi": {
+      "hosts": [
+        "files.pythonhosted.org"
+      ],
+      "review_source": "https://pypi.org/pypi/nagini/1.3.1/json"
+    },
+    "temurin-upstream": {
+      "hosts": [
+        "github.com",
+        "release-assets.githubusercontent.com",
+        "objects.githubusercontent.com"
+      ],
+      "review_source": "https://github.com/adoptium/temurin17-binaries/releases/tag/jdk-17.0.21+9"
+    },
+    "tuna-adoptium": {
+      "hosts": [
+        "mirrors.tuna.tsinghua.edu.cn"
+      ],
+      "review_source": "https://mirrors.tuna.tsinghua.edu.cn/help/Adoptium/"
+    },
+    "tuna-pypi": {
+      "hosts": [
+        "mirrors.tuna.tsinghua.edu.cn",
+        "pypi.tuna.tsinghua.edu.cn"
+      ],
+      "review_source": "https://mirrors.tuna.tsinghua.edu.cn/help/pypi/"
+    },
+    "ustc-pypi": {
+      "hosts": [
+        "mirrors.ustc.edu.cn",
+        "mirrors.tuna.tsinghua.edu.cn",
+        "pypi.tuna.tsinghua.edu.cn"
+      ],
+      "review_source": "https://mirrors.ustc.edu.cn/help/pypi.html",
+      "trust_note": "USTC metadata syncs from TUNA; cache misses may redirect to TUNA."
+    }
+  },
+  "quarantine_integrity_failures": true,
+  "schema": 1,
+  "socket_timeout_seconds": 8,
+  "source_timeout_seconds": 75,
+  "stage_timeout_seconds": 600,
+  "tls": "required_original_hostname",
+  "transport": "reviewed-mirrors-original-host-tls-v1"
+}

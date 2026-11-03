@@ -23,7 +23,7 @@ from .roadmap_native import inspect_process, process_handle
 from .roadmap_portability import ROOTS, maintained_python
 from .roadmap_project import ProjectAdapter
 from .roadmap_records import bindings_current, digest, file_binding, read_json, require, validate_record
-from .roadmap_runtime import BudgetLedger, recipe_scope
+from .roadmap_runtime import BudgetLedger, recipe_scope, retry_limits
 from .security import confined_path, minimal_subprocess_env
 
 
@@ -173,6 +173,13 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
             "max_seconds": min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"]),
             "max_attempts": min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])}
     spec["execution_environment"] = dict(environment)
+    limits = retry_limits(root, milestone, recipe, spec["max_attempts"], 1800, candidate=candidate)
+    spec.update(max_attempts=limits["max_attempts"], total_seconds=limits["total_seconds"])
+    if "authorization" in limits:
+        spec["budget_authorization"] = limits["authorization"]
+        for dependency in [limits["authorization"], *limits["dependencies"]]:
+            inputs[dependency["path"]] = dependency
+        spec["inputs"] = sorted(inputs.values(), key=lambda b: b["path"])
     if recipe == "native.acceptance":
         # Preserve the existing native state location. The Python HOME remains
         # isolated by the supervisor; no credential value is read or copied.
@@ -328,10 +335,13 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                      "runner": process_handle(os.getpid()), "owner": owner, "child": None,
                      "native_turn_id": observation["turn_id"], "prepared_ns": time.time_ns(),
                      "receipt_path": directory + "/receipt.json"}
+        if spec.get("budget_authorization"):
+            operation["budget_authorization"] = spec["budget_authorization"]
         previous = [a for a in ledger.read()["attempts"] if a["work_id"] == work_id]
         if previous and previous[-1]["status"] == "SUCCESS" and previous[-1]["inputs"] != spec["digest"]:
             operation["supersedes_success"] = previous[-1]["id"]
         attempt = ledger.reserve_operation(work_id, spec["digest"], spec["max_seconds"], operation, max_attempts=spec["max_attempts"],
+                                 total_seconds=spec["total_seconds"],
                                  diagnosis=diagnosis, inherited_attempt_ids=inherited)
         if attempt.get("reused"):
             validate_tool_receipt(root, spec, attempt["receipt"])
