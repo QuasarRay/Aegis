@@ -147,14 +147,14 @@ def original_occurrences(root: Path) -> list[dict]:
 
 
 def route(root: Path, compiled: dict, candidate: str) -> dict:
-    from .roadmap_python_catalog import obligation_catalog
+    from .roadmap_python_catalog import obligation_catalog, qualification_reports
     source_inventory = inventory(root)
     locations = original_occurrences(root)
     catalog = obligation_catalog(root, compiled, candidate, source_inventory, locations)
     closure = source_closure(root, "agentinfra.roadmap_policy:may_reserve")
     return {"schema": 1, "candidate": candidate, "domain_proof": False,
             "research": research_sources(root), "backends": read_json(root / "Roadmaps/Shared/python-backends.json"),
-            "source_files": source_inventory["files"], **catalog,
+            "source_files": source_inventory["files"], **catalog, **qualification_reports(root, candidate, catalog),
             "original_test_locations": locations,
             "qualification_targets": [{"target": "agentinfra.roadmap_policy:may_reserve", "closure": closure,
                                        "origin": "infra/tests/test_roadmap.py::DomainPolicyTests::test_budgets_and_completion",
