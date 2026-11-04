@@ -23,7 +23,7 @@ from .roadmap_native import inspect_process, process_handle
 from .roadmap_portability import ROOTS, maintained_python
 from .roadmap_project import ProjectAdapter
 from .roadmap_records import bindings_current, digest, file_binding, read_json, require, validate_record
-from .roadmap_runtime import BudgetLedger, recipe_scope
+from .roadmap_runtime import BudgetLedger, recipe_scope, retry_limits
 from .security import confined_path, minimal_subprocess_env
 
 
@@ -118,17 +118,34 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
         action = recipe.removeprefix("python.")
         argv = [sys.executable, "-B", "scripts/roadmap_python.py", action, "--output", output + "/details.json", "--candidate", candidate]
         selection = {"kind": "actual_python_source_qualification", "action": action, "domain_proof": False}
+        if recipe in {"python.toolchain", "python.qualify"}:
+            from .roadmap_python import qualification_backend
+            backend = qualification_backend(root)
+            selection["backend"] = backend
+            if backend != "nagini":
+                argv.extend(["--backend", backend])
         if recipe == "python.route":
-            from .roadmap_python_catalog import test_receipt_dependencies
+            from .roadmap_python_catalog import test_receipt_dependencies, qualification_receipt_dependencies, qualification_lineage_digest
             dependencies = test_receipt_dependencies(root, compiled, candidate)
             for dependency in dependencies:
                 inputs[dependency["path"]] = dependency
             selection["original_test_dependencies"] = dependencies
+            qualification_dependencies = qualification_receipt_dependencies(root)
+            for dependency in qualification_dependencies:
+                inputs[dependency["path"]] = dependency
+            selection["qualification_dependencies"] = qualification_dependencies
+            selection["qualification_lineage_digest"] = qualification_lineage_digest(root)
         if recipe == "python.qualify":
-            binding = ProjectAdapter(root).read().get("python_toolchain_observation")
+            from .roadmap_python import backend_observation_key
+            binding = ProjectAdapter(root).read().get(backend_observation_key(backend, "toolchain"))
             require(binding and bindings_current(root, [binding]), "current isolated Python toolchain observation required")
             observed = read_json(confined_path(root, binding["path"]))
             require(observed.get("status") == "INSTALLED_NOT_QUALIFIED" and bindings_current(root, observed["files"]), "isolated Python toolchain is missing or changed")
+            if backend == "esbmc-python":
+                from .roadmap_python import esbmc_link_state
+                links = esbmc_link_state(root, observed)
+                require(all(x["safe"] and x["observed"] == x["expected"] for x in links), "ESBMC release symlink changed")
+                selection["toolchain_link_state"] = links
             for dependency in [binding, *observed["files"]]:
                 inputs[dependency["path"]] = dependency
             argv.extend(["--toolchain", binding["path"]])
@@ -173,6 +190,13 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
             "max_seconds": min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"]),
             "max_attempts": min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])}
     spec["execution_environment"] = dict(environment)
+    limits = retry_limits(root, milestone, recipe, spec["max_attempts"], 1800, candidate=candidate)
+    spec.update(max_attempts=limits["max_attempts"], total_seconds=limits["total_seconds"])
+    if "authorization" in limits:
+        spec["budget_authorization"] = limits["authorization"]
+        for dependency in [limits["authorization"], *limits["dependencies"]]:
+            inputs[dependency["path"]] = dependency
+        spec["inputs"] = sorted(inputs.values(), key=lambda b: b["path"])
     if recipe == "native.acceptance":
         # Preserve the existing native state location. The Python HOME remains
         # isolated by the supervisor; no credential value is read or copied.
@@ -338,6 +362,8 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                      "runner": process_handle(os.getpid()), "owner": owner, "child": None,
                      "native_turn_id": observation["turn_id"], "prepared_ns": time.time_ns(),
                      "receipt_path": directory + "/receipt.json"}
+        if spec.get("budget_authorization"):
+            operation["budget_authorization"] = spec["budget_authorization"]
         execution = adapter.read()["execution"]
         if execution.get("integration_path") == "managed_app_server":
             parent = execution.get("managed_turn", {})
@@ -347,6 +373,7 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
         if previous and previous[-1]["status"] == "SUCCESS" and previous[-1]["inputs"] != spec["digest"]:
             operation["supersedes_success"] = previous[-1]["id"]
         attempt = ledger.reserve_operation(work_id, spec["digest"], spec["max_seconds"], operation, max_attempts=spec["max_attempts"],
+                                 total_seconds=spec["total_seconds"],
                                  diagnosis=diagnosis, inherited_attempt_ids=inherited)
         if attempt.get("reused"):
             validate_tool_receipt(root, spec, attempt["receipt"])
@@ -355,7 +382,6 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
             return dict(attempt["receipt"], reused=True, attempt=attempt["id"])
         unit["continuation"].update(status="RESERVED", attempt=attempt["id"], reservation=ledger.reservation_record(attempt["id"]))
         _save_unit(adapter, unit)
-
         def started(proc):
             operation.update(state="RUNNING", child=process_handle(proc.pid), dispatched_ns=time.time_ns())
             ledger.journal(attempt["id"], dict(operation))
@@ -405,13 +431,23 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                         require(details_record.get("status") == "INSTALLED_NOT_QUALIFIED" and
                                 bindings_current(root, details_record["files"]), "isolated Python installation is incomplete")
                         artifacts.extend(details_record["files"])
-                        adapter.update({"python_toolchain_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                        from .roadmap_python import backend_observation_key
+                        backend = spec["selection"]["backend"]
+                        require(details_record.get("backend", "nagini") == backend, "installed backend differs from its fixed selection")
+                        adapter.update({backend_observation_key(backend, "toolchain"): details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                     elif recipe == "python.route" and result.returncode == 0:
                         require(details_record.get("runtime_test_dependencies", []) == spec["selection"]["original_test_dependencies"],
                                 "Python route used runtime witnesses outside its materialized inputs")
+                        require(details_record.get("qualification_dependencies", []) == spec["selection"]["qualification_dependencies"],
+                                "Python route used backend observations outside its materialized inputs")
+                        require(details_record.get("qualification_lineage_digest") == spec["selection"]["qualification_lineage_digest"],
+                                "Python route used qualification ancestry outside its materialized inputs")
                         adapter.update({"python_verification_routes": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                     elif recipe == "python.qualify" and result.returncode == 0:
-                        adapter.update({"python_qualification_observation": details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                        from .roadmap_python import backend_observation_key
+                        backend = spec["selection"]["backend"]
+                        require(details_record.get("backend") == backend, "qualification backend differs from its fixed selection")
+                        adapter.update({backend_observation_key(backend, "qualification"): details_binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
                 if recipe == "native.acceptance":
                     require(details_record.get("accepted") is True, "native transport qualification is incomplete")
                     require(bindings_current(root, details_record.get("artifacts", [])), "native observation artifacts changed")

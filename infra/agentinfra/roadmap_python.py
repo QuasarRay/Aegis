@@ -23,6 +23,81 @@ DYNAMIC = {"eval", "exec", "__import__", "importlib.import_module", "getattr", "
 EFFECT_MODULES = {"os", "pathlib", "subprocess", "socket", "sqlite3", "threading", "multiprocessing", "ctypes"}
 
 
+def qualification_backend(root: Path) -> str:
+    backend = read_json(root / "Roadmaps/Shared/python-backends.json").get("active_qualification_backend", "nagini")
+    require(backend in {"nagini", "deal", "esbmc-python"}, "backend has no fixed qualification producer")
+    return backend
+
+
+def backend_observation_key(backend: str, kind: str) -> str:
+    require(backend in {"nagini", "deal", "esbmc-python"} and kind in {"toolchain", "qualification"}, "unknown backend observation owner")
+    return "python_" + {"nagini": "", "deal": "deal_", "esbmc-python": "esbmc_"}[backend] + kind + "_observation"
+
+
+def esbmc_arguments(root: Path, toolchain: dict, fixture: str, *, claims: bool = False) -> list[str]:
+    functions = {"verification/roadmap/python/policy_deal_positive.py": "original_budget_and_completion",
+                 "verification/roadmap/python/policy_deal_negative.py": "deliberately_wrong_budget_assertion"}
+    require(fixture in functions and toolchain.get("backend") == "esbmc-python", "unknown ESBMC control/toolchain")
+    argv = [toolchain["executable"], str(root / fixture), "--python", toolchain["python"], "--function", functions[fixture],
+            "--z3", "--ir", "--multi-property", "--timeout", "120s"]
+    if claims:
+        argv.append("--show-claims")
+    return argv
+
+
+def esbmc_link_state(root: Path, toolchain: dict) -> list[dict]:
+    """Observe release symlink identities without following a link outside it."""
+    release = confined_path(root, toolchain["release_root"], must_exist=True)
+    rows = []
+    for entry in toolchain.get("symlinks", []):
+        relative = Path(entry["path"])
+        require(not relative.is_absolute() and ".." not in relative.parts, "invalid release link identity")
+        parent = confined_path(root, (root / relative).parent, must_exist=True)
+        require(parent.is_relative_to(release), "release link parent escaped its owner")
+        path = parent / relative.name
+        observed = path.readlink().as_posix() if path.is_symlink() else None
+        try:
+            safe = bool(observed is not None and path.resolve(strict=True).is_relative_to(release))
+        except (OSError, RuntimeError):
+            safe = False
+        rows.append({"path": entry["path"], "expected": entry["target"], "observed": observed, "safe": safe})
+    return rows
+
+
+def classify_esbmc(run: dict) -> dict:
+    """Observe native CLI strength; unsupported/model/bound gaps receive no proof."""
+    if run.get("timed_out") or run.get("stdout_truncated") or run.get("stderr_truncated"):
+        return {"outcome": "INDETERMINATE", "reason": "timeout or truncated ESBMC logs"}
+    output = run.get("stdout", "") + "\n" + run.get("stderr", "")
+    if re.search(r"(?i)timed out|time limit exceeded|^TIMEOUT", output):
+        return {"outcome": "INDETERMINATE", "reason": "native ESBMC time limit"}
+    if re.search(r"(?i)traceback|unsupported|not supported|error:|parsing error|segmentation fault|terminate called|aborted", output):
+        return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "frontend/runtime/model diagnostic"}
+    if "VERIFICATION SUCCESSFUL" in output and run.get("returncode") == 0:
+        return {"outcome": "TOOL_VERDICT_PROPERTIES_UNQUALIFIED", "reason": "CLI verdict only; exact properties, reachability, source/model, integer and import semantics require qualification"}
+    if "VERIFICATION FAILED" in output and run.get("returncode") not in {None, 0}:
+        return {"outcome": "FAILURE_PROPERTY_UNREVIEWED", "reason": "failure is not proof of detecting the original wrong assertion; exact property identity/bounds need review"}
+    return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "no complete recognized ESBMC verdict"}
+
+
+def classify_deal(run: dict, observation: dict) -> dict:
+    """Interpret a fixed API observer's complete result without proof promotion."""
+    if run.get("timed_out") or run.get("stdout_truncated") or run.get("stderr_truncated"):
+        return {"outcome": "INDETERMINATE", "reason": "timeout or truncated process logs"}
+    if run.get("returncode") != 0 or observation.get("error") or observation.get("status") != "OBSERVED_UNQUALIFIED":
+        return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "API ingestion failed or did not complete"}
+    proof = observation.get("proof", {})
+    calls = observation.get("solver_results", [])
+    if (observation.get("skips") or proof.get("conclusion") in {"SKIP", "PARTIAL"} or not calls or
+            proof.get("description") == "nothing to prove"):
+        return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "skipped, partial or empty solver evidence"}
+    if proof.get("conclusion") == "OK" and all(c.get("conclusion") == "OK" for c in calls):
+        return {"outcome": "TOOL_RESULT_SEMANTICS_UNQUALIFIED", "reason": "solver reported OK; import/state, assertion identity and semantic review remain required"}
+    if proof.get("conclusion") == "FAIL" and any(c.get("conclusion") == "FAIL" and c.get("description") == "assertion" for c in calls):
+        return {"outcome": "ASSERTION_COUNTEREXAMPLE_UNREVIEWED", "reason": "solver reported assertion failure; original assertion identity/reachability and translation require review"}
+    return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "no complete recognized Deal solver result"}
+
+
 def _modules(root: Path, *, include_tests: bool = False) -> dict[str, Path]:
     result = {}
     for path in maintained_python(root):
@@ -147,14 +222,14 @@ def original_occurrences(root: Path) -> list[dict]:
 
 
 def route(root: Path, compiled: dict, candidate: str) -> dict:
-    from .roadmap_python_catalog import obligation_catalog
+    from .roadmap_python_catalog import obligation_catalog, qualification_reports
     source_inventory = inventory(root)
     locations = original_occurrences(root)
     catalog = obligation_catalog(root, compiled, candidate, source_inventory, locations)
     closure = source_closure(root, "agentinfra.roadmap_policy:may_reserve")
     return {"schema": 1, "candidate": candidate, "domain_proof": False,
             "research": research_sources(root), "backends": read_json(root / "Roadmaps/Shared/python-backends.json"),
-            "source_files": source_inventory["files"], **catalog,
+            "source_files": source_inventory["files"], **catalog, **qualification_reports(root, candidate, catalog),
             "original_test_locations": locations,
             "qualification_targets": [{"target": "agentinfra.roadmap_policy:may_reserve", "closure": closure,
                                        "origin": "infra/tests/test_roadmap.py::DomainPolicyTests::test_budgets_and_completion",

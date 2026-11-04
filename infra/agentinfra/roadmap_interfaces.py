@@ -19,7 +19,7 @@ from .security import confined_path
 INTERFACE_VERSION = 1
 LAYERS = {
     "policy": {"roadmap_policy", "roadmap_scope", "governance", "security"},
-    "execution": {"roadmap_runtime", "roadmap_work", "roadmap_lease", "roadmap_download", "process", "locks", "atomic", "transaction"},
+    "execution": {"roadmap_runtime", "roadmap_work", "roadmap_lease", "roadmap_download", "roadmap_mirrors", "process", "locks", "atomic", "transaction"},
     "profiles": {"roadmap_project"},
     "evidence": {"roadmap_records", "roadmap_acceptance", "roadmap_verification", "roadmap_python", "roadmap_python_catalog", "evidence", "verus_evidence", "coverage", "formal"},
     "source": {"roadmap_inventory", "roadmap_portability", "roadmap_interfaces", "catalog", "context_cache"},

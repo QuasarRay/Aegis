@@ -11,6 +11,7 @@ import ipaddress
 from pathlib import Path
 import socket
 import ssl
+import time
 import urllib.parse
 import urllib.request
 
@@ -54,16 +55,23 @@ def _addresses(host: str, observations: list[dict]) -> list[str]:
 
 
 class _ResolvedConnection(http.client.HTTPSConnection):
-    def __init__(self, host: str, *, observations: list[dict], **kwargs):
+    def __init__(self, host: str, *, observations: list[dict], deadline: float | None = None,
+                 max_addresses: int = 16, **kwargs):
         super().__init__(host, **kwargs)
         self.observations = observations
+        self.deadline = deadline
+        self.max_addresses = max_addresses
 
     def connect(self) -> None:
         require(not self._tunnel_host, "pinned artifact transport does not use ambient tunnels")
         last_error = None
-        for address in _addresses(self.host, self.observations):
+        for address in _addresses(self.host, self.observations)[:self.max_addresses]:
             sock = None
             try:
+                if self.deadline is not None:
+                    remaining = self.deadline - time.monotonic()
+                    require(remaining > 0, "pinned source deadline exhausted")
+                    self.timeout = min(self.timeout, remaining)
                 sock = socket.create_connection((address, self.port), self.timeout, self.source_address)
                 self.sock = self._context.wrap_socket(sock, server_hostname=self.host)
                 self.observations.append({"kind": "tls_connection", "host": self.host, "address": address,
@@ -73,6 +81,8 @@ class _ResolvedConnection(http.client.HTTPSConnection):
             except OSError as exc:
                 if sock is not None:
                     sock.close()
+                self.observations.append({"kind": "tls_connection_failed", "host": self.host,
+                                          "address": address, "error_type": type(exc).__name__})
                 last_error = exc
         require(last_error is not None, "artifact connection was not attempted")
         raise last_error

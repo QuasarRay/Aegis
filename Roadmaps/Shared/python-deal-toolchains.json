@@ -1,0 +1,184 @@
+{
+  "backend": "deal",
+  "download_policy": "Roadmaps/Shared/download-policy.json",
+  "download_transport": "reviewed-mirrors-original-host-tls-v1",
+  "extras": "none; no automatic fuzzing or model/provider execution",
+  "packages": [
+    {
+      "filename": "deal-4.24.6-py3-none-any.whl",
+      "license": null,
+      "license_expression": null,
+      "metadata_sha256": "3253add9bcbbc6f75f4c2cc835a80688dcb5731fbd3b79f0c075231b64500776",
+      "metadata_url": "https://pypi.org/pypi/deal/4.24.6/json",
+      "name": "deal",
+      "requires_dist": [
+        "astroid>=2.11.0; extra == \"all\"",
+        "deal-solver>=0.1.2; extra == \"all\"",
+        "hypothesis; extra == \"all\"",
+        "pygments; extra == \"all\"",
+        "typeguard>=3.0.0; extra == \"all\"",
+        "vaa>=0.2.1; extra == \"all\"",
+        "m2r2>=0.3.3.post2; extra == \"docs\"",
+        "myst-parser; extra == \"docs\"",
+        "sphinx==7.*; extra == \"docs\"",
+        "sphinx-rtd-theme==2.*; extra == \"docs\"",
+        "astroid>=2.11.0; extra == \"integration\"",
+        "deal-solver>=0.1.2; extra == \"integration\"",
+        "hypothesis; extra == \"integration\"",
+        "pygments; extra == \"integration\"",
+        "typeguard<4.0.0; extra == \"integration\"",
+        "vaa>=0.2.1; extra == \"integration\"",
+        "sphinx>=4.5.0; extra == \"integration\"",
+        "flake8; extra == \"integration\"",
+        "marshmallow; extra == \"integration\"",
+        "flake8; extra == \"lint\"",
+        "flake8-commas; extra == \"lint\"",
+        "flake8-quotes; extra == \"lint\"",
+        "mypy>=0.900; extra == \"lint\"",
+        "mypy_test>=0.1.1; extra == \"lint\"",
+        "isort; extra == \"lint\"",
+        "deal-solver>=0.1.2; extra == \"lint\"",
+        "hypothesis; extra == \"lint\"",
+        "pygments; extra == \"lint\"",
+        "typeguard<4.0.0; extra == \"lint\"",
+        "coverage[toml]; extra == \"test\"",
+        "coverage-conditional-plugin; extra == \"test\"",
+        "docstring-parser; extra == \"test\"",
+        "pytest-cov; extra == \"test\"",
+        "pytest; extra == \"test\"",
+        "urllib3; extra == \"test\""
+      ],
+      "requires_python": ">=3.8",
+      "sha256": "44afc0b11df6be5a4edd81409c7cd02ab0188ad9e90e93a71b4ef3d46d04c546",
+      "size": 204440,
+      "sources": [
+        {
+          "provider": "tuna-pypi",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/packages/71/4d/2a940ef9caa02bb3d6ca2a78ecbcaf158e98da972a54bc3fd8f29f7d86a9/deal-4.24.6-py3-none-any.whl"
+        },
+        {
+          "provider": "ustc-pypi",
+          "url": "https://mirrors.ustc.edu.cn/pypi/packages/71/4d/2a940ef9caa02bb3d6ca2a78ecbcaf158e98da972a54bc3fd8f29f7d86a9/deal-4.24.6-py3-none-any.whl"
+        },
+        {
+          "provider": "pypi",
+          "url": "https://files.pythonhosted.org/packages/71/4d/2a940ef9caa02bb3d6ca2a78ecbcaf158e98da972a54bc3fd8f29f7d86a9/deal-4.24.6-py3-none-any.whl"
+        }
+      ],
+      "url": "https://files.pythonhosted.org/packages/71/4d/2a940ef9caa02bb3d6ca2a78ecbcaf158e98da972a54bc3fd8f29f7d86a9/deal-4.24.6-py3-none-any.whl",
+      "version": "4.24.6"
+    },
+    {
+      "filename": "deal_solver-0.1.2-py3-none-any.whl",
+      "license": "MIT",
+      "license_expression": null,
+      "metadata_sha256": "36bd47750ba485c00ab76d2e01c7dcc2d7cbe805c245b4f9d50651ffb0a2a961",
+      "metadata_url": "https://pypi.org/pypi/deal-solver/0.1.2/json",
+      "name": "deal-solver",
+      "requires_dist": [
+        "astroid",
+        "z3-solver",
+        "flake8 ; extra == \"lint\"",
+        "flake8-bugbear ; extra == \"lint\"",
+        "flake8-commas ; extra == \"lint\"",
+        "flake8-quotes ; extra == \"lint\"",
+        "isort ; extra == \"lint\"",
+        "unify ; extra == \"lint\"",
+        "mypy>=0.910 ; extra == \"lint\"",
+        "hypothesis ; extra == \"test\"",
+        "pytest ; extra == \"test\"",
+        "pytest-cov ; extra == \"test\"",
+        "pytest-xdist ; extra == \"test\""
+      ],
+      "requires_python": ">=3.7",
+      "sha256": "0d657a28368acd416f4031d3f42a86cc7db1b6ce3c08621e9895c6f41a85f3ec",
+      "size": 47958,
+      "sources": [
+        {
+          "provider": "tuna-pypi",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/packages/8e/7f/7716ba99fd0199a6c33d12ae537866da4dcabc61668091875a10343b8b41/deal_solver-0.1.2-py3-none-any.whl"
+        },
+        {
+          "provider": "ustc-pypi",
+          "url": "https://mirrors.ustc.edu.cn/pypi/packages/8e/7f/7716ba99fd0199a6c33d12ae537866da4dcabc61668091875a10343b8b41/deal_solver-0.1.2-py3-none-any.whl"
+        },
+        {
+          "provider": "pypi",
+          "url": "https://files.pythonhosted.org/packages/8e/7f/7716ba99fd0199a6c33d12ae537866da4dcabc61668091875a10343b8b41/deal_solver-0.1.2-py3-none-any.whl"
+        }
+      ],
+      "url": "https://files.pythonhosted.org/packages/8e/7f/7716ba99fd0199a6c33d12ae537866da4dcabc61668091875a10343b8b41/deal_solver-0.1.2-py3-none-any.whl",
+      "version": "0.1.2"
+    },
+    {
+      "filename": "astroid-4.3.4-py3-none-any.whl",
+      "license": null,
+      "license_expression": "LGPL-2.1-or-later",
+      "metadata_sha256": "f3ce3a8bd33925641f4eaa7744084bcd6f0100e5467931f19da7b817c7ec2aff",
+      "metadata_url": "https://pypi.org/pypi/astroid/4.3.4/json",
+      "name": "astroid",
+      "requires_dist": [
+        "typing-extensions>=4; python_version < \"3.11\""
+      ],
+      "requires_python": ">=3.10.0",
+      "sha256": "2bcd0d02648a443a4b818c952c3550091989daefac3c12d3b83b2289482e0818",
+      "size": 288310,
+      "sources": [
+        {
+          "provider": "tuna-pypi",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/packages/16/d4/f23c0ac6e6de33ba5686cb21c672c95e0c2d3d4c9351f16d3b5fed818652/astroid-4.3.4-py3-none-any.whl"
+        },
+        {
+          "provider": "ustc-pypi",
+          "url": "https://mirrors.ustc.edu.cn/pypi/packages/16/d4/f23c0ac6e6de33ba5686cb21c672c95e0c2d3d4c9351f16d3b5fed818652/astroid-4.3.4-py3-none-any.whl"
+        },
+        {
+          "provider": "pypi",
+          "url": "https://files.pythonhosted.org/packages/16/d4/f23c0ac6e6de33ba5686cb21c672c95e0c2d3d4c9351f16d3b5fed818652/astroid-4.3.4-py3-none-any.whl"
+        }
+      ],
+      "url": "https://files.pythonhosted.org/packages/16/d4/f23c0ac6e6de33ba5686cb21c672c95e0c2d3d4c9351f16d3b5fed818652/astroid-4.3.4-py3-none-any.whl",
+      "version": "4.3.4"
+    },
+    {
+      "filename": "z3_solver-5.3.3.0-py3-none-manylinux_2_27_x86_64.whl",
+      "license": "MIT License",
+      "license_expression": null,
+      "metadata_sha256": "62b859b655d97f97b437e4ab1ef697dd95bbb16c0d62bdb87508897e236e2e14",
+      "metadata_url": "https://pypi.org/pypi/z3-solver/5.3.3.0/json",
+      "name": "z3-solver",
+      "requires_dist": [
+        "importlib-resources; python_version < \"3.9\""
+      ],
+      "requires_python": null,
+      "sha256": "0431023a82278dab706c02a320f63178ee0755fb8f10a5c980f0bfe3c84f6f96",
+      "size": 37875123,
+      "sources": [
+        {
+          "provider": "tuna-pypi",
+          "url": "https://mirrors.tuna.tsinghua.edu.cn/pypi/web/packages/2e/04/d785e50a2f6cd78549bebe730f2afeab5187c62085fc19b7ac272602fb2f/z3_solver-5.3.3.0-py3-none-manylinux_2_27_x86_64.whl"
+        },
+        {
+          "provider": "ustc-pypi",
+          "url": "https://mirrors.ustc.edu.cn/pypi/packages/2e/04/d785e50a2f6cd78549bebe730f2afeab5187c62085fc19b7ac272602fb2f/z3_solver-5.3.3.0-py3-none-manylinux_2_27_x86_64.whl"
+        },
+        {
+          "provider": "pypi",
+          "url": "https://files.pythonhosted.org/packages/2e/04/d785e50a2f6cd78549bebe730f2afeab5187c62085fc19b7ac272602fb2f/z3_solver-5.3.3.0-py3-none-manylinux_2_27_x86_64.whl"
+        }
+      ],
+      "url": "https://files.pythonhosted.org/packages/2e/04/d785e50a2f6cd78549bebe730f2afeab5187c62085fc19b7ac272602fb2f/z3_solver-5.3.3.0-py3-none-manylinux_2_27_x86_64.whl",
+      "version": "5.3.3.0"
+    }
+  ],
+  "platform": "linux-x86_64",
+  "primary_sources": [
+    "https://deal.readthedocs.io/basic/verification.html",
+    "https://github.com/life4/deal-solver",
+    "https://github.com/life4/deal-solver/blob/e7521874022a14aa776f0499d649451cd1fb7c4d/deal_solver/_theorem.py"
+  ],
+  "python": "3.14",
+  "qualification_status": "NOT_QUALIFIED",
+  "schema": 1,
+  "source_review_limit": "Repository commit is review context, not a claim of release-source equality. Exact wheel identities and installed files are the execution authority."
+}
