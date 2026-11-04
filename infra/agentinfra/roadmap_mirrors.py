@@ -28,18 +28,21 @@ def read_download_policy(root: Path) -> dict:
             policy.get("identity") == "exact_upstream_sha256_and_size" and
             policy.get("tls") == "required_original_hostname" and policy.get("dns_endpoint") == DNS_ENDPOINT,
             "download identity/TLS/DNS policy is unsupported or weakened")
-    for field, maximum in (("max_sources_per_artifact", 4), ("max_addresses_per_source", 4),
-                           ("socket_timeout_seconds", 20), ("source_timeout_seconds", 120),
-                           ("stage_timeout_seconds", 600), ("max_redirects", 8)):
+    for field in ("max_sources_per_artifact", "max_addresses_per_source", "source_timeout_seconds"):
+        require(policy.get(field, "missing") is None or type(policy.get(field)) is int and policy[field] > 0,
+                "invalid delivery observation policy: " + field)
+    require(type(policy.get("socket_timeout_seconds")) is int and policy["socket_timeout_seconds"] > 0,
+            "socket observation window must be positive and may adapt to local connectivity")
+    for field, maximum in (("stage_timeout_seconds", 600), ("max_redirects", 8)):
         require(type(policy.get(field)) is int and 0 < policy[field] <= maximum, "unbounded mirror policy: " + field)
     require(policy.get("quarantine_integrity_failures") is True and policy.get("preserve_attempt_lineage") is True and
             policy.get("allow_credentials") is False and policy.get("allow_tls_downgrade") is False,
             "mirror precautions were weakened")
     providers = policy.get("providers", {})
-    require(providers and len(providers) <= 16, "empty or unbounded mirror provider registry")
+    require(providers, "empty reviewed mirror provider registry")
     for name, provider in providers.items():
-        require(name and provider.get("review_source") and provider.get("hosts") and len(provider["hosts"]) <= 16,
-                "mirror provider lacks reviewed provenance/host bounds")
+        require(name and provider.get("review_source") and provider.get("hosts"),
+                "mirror provider lacks reviewed provenance/hosts")
         for host in provider["hosts"]:
             require(_host("https://" + host) == host and "*" not in host, "mirror host allowlist must contain exact HTTPS hostnames")
     return policy
@@ -47,7 +50,9 @@ def read_download_policy(root: Path) -> dict:
 
 def _sources(entry: dict, policy: dict) -> list[dict]:
     sources = entry.get("sources")
-    require(isinstance(sources, list) and 1 <= len(sources) <= policy["max_sources_per_artifact"], "artifact needs a bounded reviewed source list")
+    maximum = policy["max_sources_per_artifact"]
+    require(isinstance(sources, list) and sources and (maximum is None or len(sources) <= maximum),
+            "artifact needs an explicit reviewed source list")
     require(len({source.get("url") for source in sources}) == len(sources), "duplicate mirror delivery route")
     for source in sources:
         provider = policy["providers"].get(source.get("provider"))
@@ -57,7 +62,7 @@ def _sources(entry: dict, policy: dict) -> list[dict]:
 
 
 class _MirrorHTTPS(urllib.request.HTTPSHandler):
-    def __init__(self, events: list[dict], hosts: list[str], deadline: float, policy: dict):
+    def __init__(self, events: list[dict], hosts: list[str], deadline: float | None, policy: dict):
         super().__init__(context=ssl.create_default_context())
         require(self._context.check_hostname and self._context.verify_mode == ssl.CERT_REQUIRED, "mirror TLS verification is required")
         self.events, self.hosts, self.deadline, self.policy = events, hosts, deadline, policy
@@ -66,7 +71,8 @@ class _MirrorHTTPS(urllib.request.HTTPSHandler):
         require(_host(request.full_url) in self.hosts, "mirror request left the reviewed provider hosts")
         def connection(host, **kwargs):
             return _ResolvedConnection(host, observations=self.events, deadline=self.deadline,
-                                       max_addresses=self.policy["max_addresses_per_source"], **kwargs)
+                                       max_addresses=self.policy["max_addresses_per_source"],
+                                       resolver_timeout=self.policy["socket_timeout_seconds"], **kwargs)
         return self.do_open(connection, request, context=self._context)
 
 
@@ -88,8 +94,12 @@ def _save(root: Path, directory: Path, name: str, record: dict) -> None:
     atomic_write_json(path, record, root=root, mode=0o600)
 
 
-def download_with_mirrors(root: Path, entry: dict, directory: Path, deadline: float) -> Path:
-    """Try bounded reviewed routes, admitting only identical pinned bytes."""
+def download_with_mirrors(root: Path, entry: dict, directory: Path, deadline: float | None) -> Path:
+    """Observe reviewed routes, admitting only identical pinned bytes.
+
+    None removes the overall stage deadline. Source/socket observation windows
+    still return control for an evidenced alternative route or later recovery.
+    """
     policy = read_download_policy(root)
     sources = _sources(entry, policy)
     directory = confined_path(root, directory)
@@ -98,7 +108,8 @@ def download_with_mirrors(root: Path, entry: dict, directory: Path, deadline: fl
     require(name and Path(name).name == name and name not in {".", ".."}, "artifact filename escapes its directory")
     require(type(entry.get("size")) is int and entry["size"] > 0 and len(entry.get("sha256", "")) == 64 and
             all(c in "0123456789abcdef" for c in entry["sha256"]), "artifact needs an exact reviewed size/SHA-256")
-    require(deadline > time.monotonic() and deadline - time.monotonic() <= policy["stage_timeout_seconds"] + 1,
+    require((deadline is None and "overall_job_deadline" in policy and policy["overall_job_deadline"] is None) or
+            (deadline is not None and deadline > time.monotonic() and deadline - time.monotonic() <= policy["stage_timeout_seconds"] + 1),
             "mirror stage deadline is expired or exceeds policy")
     target = confined_path(root, directory / name)
     if target.exists():
@@ -106,11 +117,14 @@ def download_with_mirrors(root: Path, entry: dict, directory: Path, deadline: fl
         return target
     results = []
     for ordinal, source in enumerate(sources):
-        require(time.monotonic() < deadline, "mirror stage deadline exhausted")
+        require(deadline is None or time.monotonic() < deadline, "mirror observation window exhausted; persistent recovery remains available")
         events, created = [], False
         partial = confined_path(root, directory / (name + ".source-" + str(ordinal) + ".partial"))
         require(not partial.exists(), "pre-existing partial artifact requires reconciliation")
-        source_deadline = min(deadline, time.monotonic() + policy["source_timeout_seconds"])
+        window = policy["source_timeout_seconds"]
+        source_deadline = time.monotonic() + window if window is not None else None
+        if deadline is not None:
+            source_deadline = min(deadline, source_deadline) if source_deadline is not None else deadline
         provider = policy["providers"][source["provider"]]
         record = {"schema": 1, "transport": TRANSPORT, "provider": source["provider"], "source_url": source["url"],
                   "upstream_url": entry["url"], "expected_sha256": entry["sha256"], "expected_size": entry["size"],
@@ -126,7 +140,8 @@ def download_with_mirrors(root: Path, entry: dict, directory: Path, deadline: fl
                 with partial.open("xb") as output:
                     created = True
                     while True:
-                        require(time.monotonic() < source_deadline, "mirror source deadline exhausted")
+                        require(source_deadline is None or time.monotonic() < source_deadline,
+                                "mirror source observation window exhausted; retained recovery is required")
                         chunk = response.read1(262144)
                         if not chunk:
                             break

@@ -30,7 +30,7 @@ class CodexReader:
                "thread/list", "thread/turns/list", "thread/items/list"}
 
     def __init__(self, executable: str = "codex", timeout: float = 15, *, experimental: bool = False):
-        require(0 < timeout <= 60, "protocol timeout must be finite and bounded")
+        require(0 < timeout <= 60, "protocol observation window must be finite and bounded; a job timeout is not terminal")
         self.executable = shutil.which(executable)
         require(bool(self.executable), "Codex executable unavailable")
         self.timeout = timeout
@@ -116,7 +116,7 @@ class CodexReader:
 
 def capabilities() -> dict:
     with CodexReader() as client:
-        version = subprocess.run([client.executable, "--version"], capture_output=True, text=True, timeout=10, check=True).stdout.strip()
+        version = subprocess.run([client.executable, "--version"], capture_output=True, text=True, timeout=None, check=True).stdout.strip()
         models, cursor = [], None
         for _ in range(20):
             result = client.call("model/list", {"cursor": cursor} if cursor else {})

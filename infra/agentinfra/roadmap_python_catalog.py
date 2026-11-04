@@ -230,7 +230,7 @@ def _qualification_evidence(root: Path, backend: str = "nagini") -> tuple[dict, 
         expected_argv.extend(["--backend", backend])
     expected_argv.extend(["--toolchain", tool_binding["path"]])
     require(spec.get("argv") == expected_argv and receipt.get("argv") == expected_argv and
-            binding["path"] == spec["target"]["output"] + "/" + spec["digest"] + "/details.json",
+            binding["path"] == str(Path(spec_binding["path"]).with_name("details.json")),
             "qualification did not use the fixed source-owned driver/output")
     original = details.get("original")
     production = details.get("production", {})
@@ -437,7 +437,7 @@ def _deal_report(root: Path, candidate: str, catalog: dict, observation: dict, d
 
 
 def _esbmc_report(root: Path, candidate: str, catalog: dict, observation: dict, details: dict, dependencies: list[dict]) -> dict:
-    from .roadmap_python import classify_esbmc, esbmc_arguments
+    from .roadmap_python import classify_esbmc, esbmc_command_policy
     toolchain = read_json(confined_path(root, details["toolchain"]["path"]))
     controls = details.get("runs", [])
     require(len(controls) == 2 and [c.get("intent") for c in controls] == ["positive", "deliberately_wrong_assertion"],
@@ -454,15 +454,19 @@ def _esbmc_report(root: Path, candidate: str, catalog: dict, observation: dict, 
                 all(b in details["artifacts"] for b in (fixture, result)) and bindings_current(root, [fixture, result]),
                 "ESBMC original control source/result changed")
         raw = read_json(confined_path(root, result["path"]))
-        require(raw.get("argv") == esbmc_arguments(root, toolchain, fixture["path"]) and raw.get("cwd") == str(root.resolve()),
-                "ESBMC did not use its fixed production-import control command")
+        command_policy = esbmc_command_policy(root, toolchain, fixture["path"], raw.get("argv"),
+                                              producer_inputs_current=observation["producer_inputs_current"])
+        require(raw.get("cwd") == str(root.resolve()), "ESBMC control workspace differs")
         claims = control.get("claims")
         if claims:
             require(claims in details["artifacts"] and bindings_current(root, [claims]), "ESBMC claims artifact changed")
             listed = read_json(confined_path(root, claims["path"]))
-            require(listed.get("argv") == esbmc_arguments(root, toolchain, fixture["path"], claims=True) and
-                    listed.get("cwd") == str(root.resolve()), "ESBMC claim selection differs from the actual control")
+            claims_policy = esbmc_command_policy(root, toolchain, fixture["path"], listed.get("argv"),
+                                                producer_inputs_current=observation["producer_inputs_current"], claims=True)
+            require(claims_policy == command_policy and listed.get("cwd") == str(root.resolve()),
+                    "ESBMC claim selection differs from the actual control")
         row = {"intent": control["intent"], "fixture": fixture, "result": result, "claims": claims,
+               "command_policy": command_policy,
                "classification": classify_esbmc(raw), "recorded_classification": control["classification"],
                "assertion_source_nodes": [_node(n) for n in ast.walk(ast.parse(confined_path(root, fixture["path"]).read_bytes())) if isinstance(n, ast.Assert)],
                "assertion_reachability": "NOT_ESTABLISHED", "property_identity_review": "NOT_GRANTED", "domain_proof": False}

@@ -19,7 +19,7 @@ from .security import confined_path
 INTERFACE_VERSION = 1
 LAYERS = {
     "policy": {"roadmap_policy", "roadmap_scope", "governance", "security"},
-    "execution": {"roadmap_runtime", "roadmap_work", "roadmap_lease", "roadmap_download", "roadmap_mirrors", "process", "locks", "atomic", "transaction"},
+    "execution": {"roadmap_runtime", "roadmap_work", "roadmap_persistence", "roadmap_lease", "roadmap_download", "roadmap_mirrors", "process", "locks", "atomic", "transaction"},
     "profiles": {"roadmap_project"},
     "evidence": {"roadmap_records", "roadmap_acceptance", "roadmap_verification", "roadmap_python", "roadmap_python_catalog", "evidence", "verus_evidence", "coverage", "formal"},
     "source": {"roadmap_inventory", "roadmap_portability", "roadmap_interfaces", "catalog", "context_cache"},
@@ -133,8 +133,10 @@ def observe_interfaces(root: Path) -> dict:
     schemas = read_json(root / "Roadmaps/Shared/records.schema.json")
     _schema_vocabulary(schemas)
     for name, definition in schemas["$defs"].items():
-        version = definition.get("properties", {}).get("schema", {}).get("const")
-        require(type(version) is int and version == 1,
+        variants = definition.get("anyOf", [definition])
+        versions = [v.get("properties", {}).get("schema", {}).get("const") for v in variants]
+        supported = [1, 2] if name == "BudgetReservation" and "anyOf" in definition else [1]
+        require(all(type(v) is int for v in versions) and versions == supported,
                 f"unsupported record interface version: {name}")
     for module in modules:
         require(file_binding(root, module["path"])["sha256"] == module["source_sha256"],
@@ -191,6 +193,18 @@ def compare_interfaces(root: Path, baseline_ref: str) -> dict:
                 changes.append({"module": name, "export": exported, "change": "removed_export"})
             elif not _compatible(signature, candidate):
                 changes.append({"module": name, "export": exported, "change": "changed_signature_or_class_shape"})
+                if len(candidate) < len(signature):
+                    changes.append({"module": name, "export": exported, "change": "removed_declaration_occurrence"})
+                for before, after in zip(signature, candidate):
+                    if before.get("kind") == "ClassDef":
+                        for method in sorted(set(before.get("methods", {})) - set(after.get("methods", {}))):
+                            changes.append({"module": name, "export": exported, "member": method,
+                                            "change": "removed_class_method"})
+                        before_fields = {f["name"] for f in before.get("fields", [])}
+                        after_fields = {f["name"] for f in after.get("fields", [])}
+                        for field in sorted(before_fields - after_fields):
+                            changes.append({"module": name, "export": exported, "member": field,
+                                            "change": "removed_class_field"})
     old_schemas = git.blob(git.read("rev-parse", baseline + ":Roadmaps/Shared/records.schema.json").strip())
     from .roadmap_records import loads
     previous_protocols = loads(old_schemas.decode())["$defs"]
@@ -202,3 +216,35 @@ def compare_interfaces(root: Path, baseline_ref: str) -> dict:
             "current_modules": len(now), "structural_compatible": not changes, "changes": changes,
             "added_modules": sorted(set(now) - set(old)), "domain_proof": False,
             "limits": current["limits"]}
+
+
+def validate_compatibility_disposition(root: Path, observation: dict, decision: dict) -> dict:
+    """Explicit AM20 source-review boundary; the structural result stays false.
+
+    This narrowly covers optional recovery/logging interfaces and versioned
+    reservation allocation. It cannot authorize removed APIs or other records.
+    """
+    from .roadmap_persistence import policy_binding
+    source = file_binding(root, "Roadmaps/Shared/AM20_PERSISTENT_EXECUTION.md")
+    require(observation.get("structural_compatible") is False and observation.get("changes") and
+            decision.get("schema") == 1 and decision.get("decision") == "accept_AM20_policy_migration" and
+            decision.get("observation_digest") == digest(observation) and
+            decision.get("source") == source and decision.get("policy") == policy_binding(root),
+            "explicit current AM20 compatibility disposition required")
+    require(decision.get("approved_changes") == observation["changes"] and
+            isinstance(decision.get("rationale"), str) and decision["rationale"].strip(),
+            "compatibility disposition omits changes or rationale")
+    allowed = {("agentinfra.process", "ProcessResult"), ("agentinfra.process", "run_process"),
+               ("agentinfra.process", "run_recipe_stage"), ("agentinfra.roadmap_mirrors", "download_with_mirrors"),
+               ("agentinfra.roadmap_native_adapter", "NativeGoalAdapter"),
+               ("agentinfra.roadmap_runtime", "BudgetLedger"), ("agentinfra.roadmap_runtime", "run_recipe"),
+               ("agentinfra.roadmap_work", "materialize"), ("agentinfra.roadmap_work", "run_work")}
+    for change in observation["changes"]:
+        require((change.get("change") == "changed_signature_or_class_shape" and
+                 (change.get("module"), change.get("export")) in allowed) or
+                change == {"record": "BudgetReservation", "change": "changed_serialized_record_contract"},
+                "AM20 disposition cannot authorize unrelated or removed interfaces")
+    return {"schema": 1, "kind": "explicit_policy_compatibility_disposition", "decision": decision,
+            "structural_compatible": False, "accepted_for_implementation": True, "domain_proof": False,
+            "limits": ["Scoped source-review decision; unchanged original tests remain required",
+                       "No semantic equivalence, installed-artifact or domain-proof credit"]}

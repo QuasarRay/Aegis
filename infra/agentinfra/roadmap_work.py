@@ -24,6 +24,7 @@ from .roadmap_portability import ROOTS, maintained_python
 from .roadmap_project import ProjectAdapter
 from .roadmap_records import bindings_current, digest, file_binding, read_json, require, validate_record
 from .roadmap_runtime import BudgetLedger, recipe_scope, retry_limits
+from .roadmap_persistence import policy_binding, recovery_packet, retained_history
 from .security import confined_path, minimal_subprocess_env
 
 
@@ -75,7 +76,7 @@ def toolchain() -> dict:
             "python_library": {"path": str(library), "sha256": digest(library.read_bytes())} if library.is_file() else None}
 
 
-def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict:
+def materialize(root: Path, compiled: dict, milestone: str, recipe: str, *, recovery: dict | None = None) -> dict:
     root = root.resolve()
     require(compiled == compile_roadmaps(root), "compiled authorities/source namespace changed")
     require(milestone in compiled["milestones"] and compiled["milestones"][milestone]["project"] == "Aegis",
@@ -183,15 +184,19 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
                      "files": [b for b in inputs.values() if b["path"].startswith("infra/tests/")]} if recipe == "original.tests" else {
                          "kind": "all_branch_source_reconciliation", "refs": GitInventory(root).refs(),
                          "worktree": GitInventory(root).worktree(), "remote_heads": GitInventory(root).remote_heads()}
+    persistent = compiled.get("policy", {}).get("execution_policy") is not None
     spec = {"schema": INTERFACE_VERSION, "project": "Aegis", "recipe": recipe, "candidate": candidate,
             "contract_digest": compiled["digest"], "inputs": sorted(inputs.values(), key=lambda b: b["path"]),
             "target": {"root": str(root), "output": output, "acceptance": "source-host runtime only"},
             "argv": argv, "selection": selection, "toolchain": tools, "configuration": config,
-            "max_seconds": min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"]),
-            "max_attempts": min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])}
+            "max_seconds": None if persistent else min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"]),
+            "max_attempts": None if persistent else min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])}
     spec["execution_environment"] = dict(environment)
-    limits = retry_limits(root, milestone, recipe, spec["max_attempts"], 1800, candidate=candidate)
+    limits = ({"max_attempts": None, "total_seconds": None} if persistent else
+              retry_limits(root, milestone, recipe, spec["max_attempts"], 1800, candidate=candidate))
     spec.update(max_attempts=limits["max_attempts"], total_seconds=limits["total_seconds"])
+    if persistent:
+        spec.update(execution_mode="persistent_unlimited", execution_policy=policy_binding(root))
     if "authorization" in limits:
         spec["budget_authorization"] = limits["authorization"]
         for dependency in [limits["authorization"], *limits["dependencies"]]:
@@ -202,6 +207,17 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
         # isolated by the supervisor; no credential value is read or copied.
         spec["execution_environment"]["CODEX_HOME"] = config["native"]["state_home"]
     spec["digest"] = digest(spec)
+    if recovery is not None:
+        require(persistent and bindings_current(root, [recovery]), "recovery requires current persistent policy/evidence")
+        # Keep each attempt's stage outputs immutable, including retries with
+        # unchanged semantic inputs. The existing work/ancestry identity stays.
+        base_digest, old_output = spec["digest"], spec["target"]["output"]
+        new_output = old_output + "/recovery-" + digest(recovery)
+        spec["target"] = dict(spec["target"], output=new_output)
+        spec["argv"] = [a.replace(old_output + "/", new_output + "/") for a in spec["argv"]]
+        spec["inputs"] = sorted({b["path"]: b for b in [*spec["inputs"], recovery]}.values(), key=lambda b: b["path"])
+        spec.update(recovery_base_digest=base_digest, recovery=recovery)
+        spec["digest"] = digest({k: v for k, v in spec.items() if k != "digest"})
     return spec
 
 
@@ -296,6 +312,27 @@ def validate_tool_receipt(root: Path, spec: dict, receipt: dict) -> None:
             "tool receipt contradicts the actual supervisor result")
 
 
+def current_success(root: Path, compiled: dict, milestone: str, recipe: str, attempts: list[dict]) -> dict:
+    """Resolve a current success, including an isolated, evidenced recovery."""
+    base = materialize(root, compiled, milestone, recipe)
+    matches = []
+    for attempt in attempts:
+        if attempt["status"] != "SUCCESS":
+            continue
+        if attempt["inputs"] == base["digest"]:
+            spec = base
+        elif (attempt.get("semantic_inputs") == base["digest"] and attempt.get("recovery") and
+              bindings_current(root, [attempt["recovery"]])):
+            spec = materialize(root, compiled, milestone, recipe, recovery=attempt["recovery"])
+        else:
+            continue
+        if attempt["inputs"] == spec["digest"] == attempt.get("operation", {}).get("spec_digest"):
+            validate_tool_receipt(root, spec, attempt["receipt"])
+            matches.append({"attempt": attempt["id"], "spec": spec, "receipt": attempt["receipt"]})
+    require(bool(matches), f"no successful current materialized {recipe} operation")
+    return matches[-1]
+
+
 def recover_operation(root: Path, ident: str) -> dict:
     ledger = BudgetLedger(root)
     matches = [a for a in ledger.read()["attempts"] if a["id"] == ident]
@@ -335,13 +372,22 @@ def recover_operation(root: Path, ident: str) -> dict:
             "next_action": "reobserve these same handles; do not redispatch or refund the reservation"}
 
 
-def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnosis: str | None = None) -> dict:
+def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnosis: str | None = None,
+             recovery: dict | None = None) -> dict:
     root = root.resolve()
     lock = FileLock(root / ".aegis/roadmaps/execution.lock", "single canonical roadmap work unit")
     lock.acquire(timeout=0)
     try:
         owner, observation, work_id, inherited = qualify_execution(root, compiled, milestone, recipe)
+        ledger = BudgetLedger(root)
         spec = materialize(root, compiled, milestone, recipe)
+        previous = [a for a in ledger.read()["attempts"] if a["work_id"] == work_id]
+        if recovery is None and previous and previous[-1]["status"] == "SUCCESS" and previous[-1].get("semantic_inputs") == spec["digest"]:
+            # A successful recovered operation is still reusable for the same
+            # source/selection. Its old recovery decision is provenance only.
+            recovery = previous[-1].get("recovery")
+        if recovery:
+            spec = materialize(root, compiled, milestone, recipe, recovery=recovery)
         directory = spec["target"]["output"] + "/" + spec["digest"]
         spec_binding = _immutable(root, directory + "/spec.json", spec)
         native_binding = _immutable(root, directory + "/native-" + observation["digest"] + ".json", observation)
@@ -357,13 +403,17 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                     "check_owners": owners}}
         adapter = ProjectAdapter(root)
         _save_unit(adapter, unit)
-        ledger = BudgetLedger(root)
         operation = {"state": "PREPARED", "kind": "deterministic_recipe", "spec_digest": spec["digest"], "spec": spec_binding,
                      "runner": process_handle(os.getpid()), "owner": owner, "child": None,
                      "native_turn_id": observation["turn_id"], "prepared_ns": time.time_ns(),
                      "receipt_path": directory + "/receipt.json"}
         if spec.get("budget_authorization"):
             operation["budget_authorization"] = spec["budget_authorization"]
+        if spec.get("execution_policy"):
+            operation["execution_policy"] = spec["execution_policy"]
+            operation["semantic_inputs"] = spec.get("recovery_base_digest", spec["digest"])
+        if recovery:
+            operation["recovery"] = recovery
         execution = adapter.read()["execution"]
         if execution.get("integration_path") == "managed_app_server":
             parent = execution.get("managed_turn", {})
@@ -374,7 +424,8 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
             operation["supersedes_success"] = previous[-1]["id"]
         attempt = ledger.reserve_operation(work_id, spec["digest"], spec["max_seconds"], operation, max_attempts=spec["max_attempts"],
                                  total_seconds=spec["total_seconds"],
-                                 diagnosis=diagnosis, inherited_attempt_ids=inherited)
+                                 diagnosis=diagnosis, inherited_attempt_ids=inherited,
+                                 persistent_policy=spec.get("execution_policy"), recovery=recovery)
         if attempt.get("reused"):
             validate_tool_receipt(root, spec, attempt["receipt"])
             unit["continuation"].update(status="REUSED", attempt=attempt["id"], receipt=attempt["receipt"])
@@ -400,20 +451,35 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
             spawn_attempted = True
             with observe_process(started):
                 result = run_process(spec["argv"], cwd=root, timeout=spec["max_seconds"],
-                                     env=spec["execution_environment"], capture_limit=4_000_000)
+                                     env=spec["execution_environment"], capture_limit=4_000_000,
+                                     output_directory=confined_path(root, directory + "/logs"))
             log = _immutable(root, directory + "/result.json", asdict(result))
             observed = operation_state(operation)
             require(observed["child"] == "GONE" and observed["process_group"] == "GONE",
                     "supervisor returned but descendants/creation handles remain live or unknown")
             WorkspaceLease(root).assert_owner(owner)
-            require(materialize(root, compile_roadmaps(root), milestone, recipe) == spec, "operation semantic inputs changed")
+            require(materialize(root, compile_roadmaps(root), milestone, recipe, recovery=recovery) == spec,
+                    "operation semantic inputs changed")
             artifacts = [spec_binding, log]
+            for raw_path, size, sha in ((result.stdout_path, result.stdout_bytes, result.stdout_sha256),
+                                        (result.stderr_path, result.stderr_bytes, result.stderr_sha256)):
+                if raw_path:
+                    binding = file_binding(root, Path(raw_path).relative_to(root).as_posix())
+                    require(binding["sha256"] == sha and Path(raw_path).stat().st_size == size,
+                            "complete process archive differs from the captured stream")
+                    artifacts.append(binding)
             if recipe == "native.protocol" and result.returncode == 0 and not result.timed_out:
                 from .roadmap_protocol import export_manifest
                 manifest = export_manifest(root, spec["target"]["output"] + "/export", spec["selection"]["executable"])
                 binding = _immutable(root, directory + "/protocol.json", manifest)
                 artifacts.extend([binding, *manifest["files"]])
-                adapter.update({"native_protocol": binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                current = adapter.read()
+                history = list(current.get("native_protocol_history", []))
+                previous_protocol = current.get("native_protocol")
+                if previous_protocol and previous_protocol != binding and previous_protocol not in history:
+                    history.append(previous_protocol)
+                adapter.update({"native_protocol": binding, "native_protocol_history": history},
+                               expected_digest=digest(adapter.profile.path().read_bytes()))
             details = confined_path(root, spec["target"]["output"] + "/details.json")
             if details.exists():
                 details_record = read_json(details)
@@ -480,6 +546,9 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
             ledger.close(attempt["id"], "SUCCESS" if ok else "FAILED", receipt)
             unit["continuation"].update(status="SUCCESS" if ok else "FAILED", receipt=receipt,
                                         reservation=ledger.reservation_record(attempt["id"]))
+            if not ok and spec.get("execution_policy"):
+                history = retained_history(ledger.read()["attempts"], work_id, inherited)
+                unit["continuation"]["recovery_required"] = recovery_packet(work_id, operation["semantic_inputs"], history)
             _save_unit(adapter, unit)
             return dict(receipt, attempt=attempt["id"], reused=False)
         except BaseException as exc:
@@ -490,6 +559,11 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                 if any(a["id"] == attempt["id"] and a["status"] == "RESERVED" for a in ledger.read()["attempts"]):
                     ledger.close(attempt["id"], "INTERRUPTED", {"error_type": type(exc).__name__,
                                  "observed": observed, "unknown_usage": True})
+                    unit["continuation"].update(status="INTERRUPTED", reservation=ledger.reservation_record(attempt["id"]))
+                    if spec.get("execution_policy"):
+                        history = retained_history(ledger.read()["attempts"], work_id, inherited)
+                        unit["continuation"]["recovery_required"] = recovery_packet(work_id, operation["semantic_inputs"], history)
+                    _save_unit(adapter, unit)
             raise
     finally:
         lock.release()

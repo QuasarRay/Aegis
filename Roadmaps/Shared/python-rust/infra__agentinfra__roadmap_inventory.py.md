@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 416. Inventory digest: `890725b44968fb2878de42e82218718710be28c96bf8504e795b35f64e805945`.
+Files: 1. Behavioral units: 415. Inventory digest: `2e23558c4c5e2333bf5a3ab1ab5ac6c1f920f1dedd5f299382d3e9ebbb31d5fa`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_inventory.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_inventory.py:1`; AST `843d20dc4988b4dc5bbdadcb0bf3d984e7f9e96fce4ec7833388d910d6c6d849`.
+Source: `infra/agentinfra/roadmap_inventory.py:1`; AST `5ad829bd53c94e830298f8b02438a78773a615d23e26093dc6995b5c2dce2919`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -368,7 +368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::root.body[17]::ClassDef
 
-Source: `infra/agentinfra/roadmap_inventory.py:27`; AST `ac938b08fffc81b1e3c1be6a972810f0ae5247ef0f1c3ff4467e6feb7dab7843`.
+Source: `infra/agentinfra/roadmap_inventory.py:27`; AST `4ef6026c1e63ff841ed87b27ea4e256049b52edbcab1bf5d1e0fcf9e2e98f699`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Original-named struct/enum plus trait and impl group; explicit fields and source-owned methods
 
@@ -408,12 +408,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::__init__::root.body[17].body[1]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_inventory.py:30`; AST `88c0398008e71c7d9a90ec042ef7ed5768c3c305c12d6ff795ccd60c3f18444b`.
+Source: `infra/agentinfra/roadmap_inventory.py:30`; AST `c41e0adcdd1ea034919a8bced3fe9926313edafe89bf47b12a520a0aa1a1460e`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, deadline, float, require, root, self, shutil, time. Outputs/bindings: (none).
-Calls/effect boundaries: require, root.resolve, shutil.which, time.monotonic.
+Inputs: Path, deadline, float, require, root, self, shutil. Outputs/bindings: (none).
+Calls/effect boundaries: require, root.resolve, shutil.which.
 Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[17].body[1]; no call, error or mutation may be omitted.
@@ -468,35 +468,15 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::__init__::root.body[17].body[1].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_inventory.py:32`; AST `31ea3256317d0f017eae08e0b7d18fbfd9a9da3838311ed4657e9b3280f71e23`.
+Source: `infra/agentinfra/roadmap_inventory.py:32`; AST `1df9d83f0be09b8d1144a6d40a828f54c7a85a8cda8706bede0eaab5cab8d7f4`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: deadline, self, time. Outputs/bindings: (none).
-Calls/effect boundaries: time.monotonic.
+Inputs: deadline, self. Outputs/bindings: (none).
+Calls/effect boundaries: (none).
 Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
 
 Invariants: Preserve ordered Assign evaluation at root.body[17].body[1].body[1]; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; std::process::Command with explicit process-group owner; std::time::Instant / SystemTime; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_inventory.py::module::GitInventory::__init__::root.body[17].body[1].body[1].value.body.left::Call
-
-Source: `infra/agentinfra/roadmap_inventory.py:32`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
-
-Rust module: `infra::agentinfra::roadmap_inventory`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: time. Outputs/bindings: (none).
-Calls/effect boundaries: time.monotonic.
-Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
-
-Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[1].value.body.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; std::process::Command with explicit process-group owner; std::time::Instant / SystemTime; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -588,7 +568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_inventory.py:36`; AST `633a46eb3d157638a7fb6d8df042721d76c0aabd745b8f5287f9f8b9a2dcfe4b`.
+Source: `infra/agentinfra/roadmap_inventory.py:36`; AST `f77dbb456d976770b79200d7cd54ea084c7e769b1eccbd1f26215e1049435556`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -608,7 +588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_inventory.py:37`; AST `1c6c3d9c41f79ddd67b7e18f233ea9b3b8966cd47080721568299b430d683ae8`.
+Source: `infra/agentinfra/roadmap_inventory.py:37`; AST `dd14f9f0e59b47114c944d168b7db3b65cda2a74b0f076d75158291c65a10373`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -626,7 +606,7 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[0].value.right::Call
+## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[0].value.orelse.right::Call
 
 Source: `infra/agentinfra/roadmap_inventory.py:37`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
 
@@ -636,7 +616,7 @@ Inputs: time. Outputs/bindings: (none).
 Calls/effect boundaries: time.monotonic.
 Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[2].body[0].value.right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[2].body[0].value.orelse.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; std::process::Command with explicit process-group owner; std::time::Instant / SystemTime; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -648,7 +628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_inventory.py:38`; AST `95bdfd302d43404163f3dadd8b47144aec814b6b359aa0aad21eb2425829b982`.
+Source: `infra/agentinfra/roadmap_inventory.py:38`; AST `e21ec7c93937e440c9ada302adb83629063a224c2b5ffe7dd1ace801f8b21101`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -668,7 +648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_inventory.py:38`; AST `e6f1f51af1b3481319d8815f1d4e285a686086633b1785ceb262e0a7f40c72e0`.
+Source: `infra/agentinfra/roadmap_inventory.py:38`; AST `77c4351c1cf1beb3032bf800fd3105ebb8baf57c983e6e9f1af539a2890b829b`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -688,7 +668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_inventory.py:39`; AST `2b38cb0eb6dba5e1d2bd36e37332d93a030717f32fb03e5ddbd6d3774a27e05a`.
+Source: `infra/agentinfra/roadmap_inventory.py:39`; AST `3df7c9b16716e709edcd802227d3c2d6fe02981663f467fb3e55ced96aa5adc4`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -708,7 +688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_inventory.py:39`; AST `bd77d20042fb18ca8e256e2abbccc63af599aa2f4384a31823ef2785d53a8060`.
+Source: `infra/agentinfra/roadmap_inventory.py:39`; AST `237740fdea02d852aba76b4479e718e405b294b9b17d8f7c7056b1e49f74bece`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -726,7 +706,7 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[2].value.keywords[1].value::Call
+## infra/agentinfra/roadmap_inventory.py::module::GitInventory::read::root.body[17].body[2].body[2].value.keywords[1].value.orelse::Call
 
 Source: `infra/agentinfra/roadmap_inventory.py:40`; AST `c91e42bb5f35ce8a2ee3671de913e74f8fd555fa1a8b54c654894209b419a332`.
 
@@ -736,7 +716,7 @@ Inputs: min, remaining. Outputs/bindings: (none).
 Calls/effect boundaries: min.
 Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[2].body[2].value.keywords[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[2].body[2].value.keywords[1].value.orelse; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; std::process::Command with explicit process-group owner; std::time::Instant / SystemTime; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -888,7 +868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_inventory.py:49`; AST `a06d88f4c66079100a0fd1737edbd53c7d5f37d07bbc1f6ab6de22a9d5b0bda9`.
+Source: `infra/agentinfra/roadmap_inventory.py:49`; AST `fac245edcb70f5564cfe92d8ac7f620b7fd8eac157b7801e4e50e533246239cb`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -1008,7 +988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1]::With
 
-Source: `infra/agentinfra/roadmap_inventory.py:54`; AST `fe420d137494b19f4a726ca92e7ea296e8b719acc1f0068fcfea4f7315f03058`.
+Source: `infra/agentinfra/roadmap_inventory.py:54`; AST `8137ab9c4fbebf75e06babf53c0b2d7f800b831708bffd061392f3acbba36129`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. scoped resource guard plus explicit enter/exit and exception-suppression result
 
@@ -1048,7 +1028,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_inventory.py:55`; AST `1c6c3d9c41f79ddd67b7e18f233ea9b3b8966cd47080721568299b430d683ae8`.
+Source: `infra/agentinfra/roadmap_inventory.py:55`; AST `dd14f9f0e59b47114c944d168b7db3b65cda2a74b0f076d75158291c65a10373`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1066,7 +1046,7 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[0].value.right::Call
+## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[0].value.orelse.right::Call
 
 Source: `infra/agentinfra/roadmap_inventory.py:55`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
 
@@ -1076,7 +1056,7 @@ Inputs: time. Outputs/bindings: (none).
 Calls/effect boundaries: time.monotonic.
 Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[3].body[1].body[0].value.right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[3].body[1].body[0].value.orelse.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; std::process::Command with explicit process-group owner; std::time::Instant / SystemTime; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -1088,7 +1068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_inventory.py:56`; AST `95bdfd302d43404163f3dadd8b47144aec814b6b359aa0aad21eb2425829b982`.
+Source: `infra/agentinfra/roadmap_inventory.py:56`; AST `e21ec7c93937e440c9ada302adb83629063a224c2b5ffe7dd1ace801f8b21101`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1108,7 +1088,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_inventory.py:56`; AST `e6f1f51af1b3481319d8815f1d4e285a686086633b1785ceb262e0a7f40c72e0`.
+Source: `infra/agentinfra/roadmap_inventory.py:56`; AST `77c4351c1cf1beb3032bf800fd3105ebb8baf57c983e6e9f1af539a2890b829b`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -1128,7 +1108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_inventory.py:57`; AST `4ca47e059995ff3c1d18ea3967aeff80dcd359fea262842fc8b9c6cbe155164a`.
+Source: `infra/agentinfra/roadmap_inventory.py:57`; AST `d85eb43c427d6fb64436f6019682b4d0fa3b976f8e9f362e9be584cc2ddf94c8`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1148,7 +1128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_inventory.py:57`; AST `f52ddf62e11d2b566123cf21e9e7bf1b628f126acb17b294e1fb11e752dcd66b`.
+Source: `infra/agentinfra/roadmap_inventory.py:57`; AST `42d4d33d059065b6526e05aa87f78305beb70686e0eb8ec4b6e0706591ba4d53`.
 
 Rust module: `infra::agentinfra::roadmap_inventory`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -1166,7 +1146,7 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[2].value.keywords[3].value::Call
+## infra/agentinfra/roadmap_inventory.py::module::GitInventory::blob::root.body[17].body[3].body[1].body[2].value.keywords[3].value.orelse::Call
 
 Source: `infra/agentinfra/roadmap_inventory.py:59`; AST `c91e42bb5f35ce8a2ee3671de913e74f8fd555fa1a8b54c654894209b419a332`.
 
@@ -1176,7 +1156,7 @@ Inputs: min, remaining. Outputs/bindings: (none).
 Calls/effect boundaries: min.
 Dependencies: __future__, ast, os, pathlib, process, roadmap, roadmap_project, roadmap_records, security, shutil, stat, subprocess, sys, tempfile, time, transaction.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[3].body[1].body[2].value.keywords[3].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[3].body[1].body[2].value.keywords[3].value.orelse; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; std::process::Command with explicit process-group owner; std::time::Instant / SystemTime; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 

@@ -84,6 +84,8 @@ def authorize_single_retry(root: Path, compiled: dict, milestone: str, recipe: s
     The controlling Goal alone never authorizes another attempt.
     """
     from .roadmap_project import ProjectAdapter
+    require(not compiled.get("policy", {}).get("execution_policy"),
+            "AM20 uses persistent evidenced recovery; a one-run allowance amendment is obsolete")
     require(user_authorized and source.get("role") == "user" and source.get("content") and
             source.get("question_item_id") and source.get("observed_native_turn"), "explicit observed user retry authorization required")
     adapter = ProjectAdapter(root)
@@ -142,32 +144,50 @@ class BudgetLedger:
                 and isinstance(record.get("usage"), dict), "unsupported/corrupt budget ledger")
         return record
 
-    def reserve(self, work_id: str, inputs: str, seconds: int, *, max_attempts: int = 2,
-                total_seconds: int = 1800, diagnosis: str | None = None,
-                inherited_attempt_ids: tuple[str, ...] = ()) -> dict:
+    def reserve(self, work_id: str, inputs: str, seconds: int | None, *, max_attempts: int | None = 2,
+                total_seconds: int | None = 1800, diagnosis: str | None = None,
+                inherited_attempt_ids: tuple[str, ...] = (), persistent_policy: dict | None = None,
+                recovery: dict | None = None) -> dict:
         return self._reserve(work_id, inputs, seconds, max_attempts=max_attempts, total_seconds=total_seconds,
-                             diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids)
+                             diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids,
+                             persistent_policy=persistent_policy, recovery=recovery)
 
-    def reserve_operation(self, work_id: str, inputs: str, seconds: int, operation: dict, *,
-                          max_attempts: int = 2, total_seconds: int = 1800, diagnosis: str | None = None,
-                          inherited_attempt_ids: tuple[str, ...] = ()) -> dict:
+    def reserve_operation(self, work_id: str, inputs: str, seconds: int | None, operation: dict, *,
+                          max_attempts: int | None = 2, total_seconds: int | None = 1800, diagnosis: str | None = None,
+                          inherited_attempt_ids: tuple[str, ...] = (), persistent_policy: dict | None = None,
+                          recovery: dict | None = None) -> dict:
         return self._reserve(work_id, inputs, seconds, max_attempts=max_attempts, total_seconds=total_seconds,
-                             diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids, operation=operation)
+                             diagnosis=diagnosis, inherited_attempt_ids=inherited_attempt_ids, operation=operation,
+                             persistent_policy=persistent_policy, recovery=recovery)
 
     def reserve_control(self, work_id: str, inputs: str, seconds: int, operation: dict, *,
                         user_authorized: bool, diagnosis: str | None = None) -> dict:
         require(user_authorized and operation.get("kind") == "native_lifecycle_control" and
                 operation.get("native_thread") and operation.get("authorization_id"), "explicit native control authorization required")
-        return self._reserve(work_id, inputs, seconds, max_attempts=2, total_seconds=120,
-                             diagnosis=diagnosis, operation=operation, native_control=True)
+        from .roadmap_persistence import POLICY_PATH, policy_binding
+        persistent = (self.root / POLICY_PATH).is_file()
+        return self._reserve(work_id, inputs, None if persistent else seconds,
+                             max_attempts=None if persistent else 2, total_seconds=None if persistent else 120,
+                             diagnosis=diagnosis, operation=operation, native_control=True,
+                             persistent_policy=policy_binding(self.root) if persistent else None,
+                             recovery=operation.get("recovery"))
 
-    def _reserve(self, work_id: str, inputs: str, seconds: int, *, max_attempts: int = 2,
-                 total_seconds: int = 1800, diagnosis: str | None = None,
+    def _reserve(self, work_id: str, inputs: str, seconds: int | None, *, max_attempts: int | None = 2,
+                 total_seconds: int | None = 1800, diagnosis: str | None = None,
                  inherited_attempt_ids: tuple[str, ...] = (), operation: dict | None = None,
-                 native_control: bool = False) -> dict:
+                 native_control: bool = False, persistent_policy: dict | None = None,
+                 recovery: dict | None = None) -> dict:
         require(bool(work_id) and bool(inputs), "work and input identities required")
-        require(type(seconds) is int and 0 < seconds <= total_seconds, "invalid finite reservation")
-        require(type(max_attempts) is int and max_attempts > 0, "invalid attempt limit")
+        persistent = persistent_policy is not None
+        if persistent:
+            from .roadmap_persistence import validate_policy_binding
+            validate_policy_binding(self.root, persistent_policy)
+            require(seconds is None and max_attempts is None and total_seconds is None,
+                    "persistent execution cannot carry an Aegis attempt/time ceiling")
+        else:
+            require(type(seconds) is int and type(total_seconds) is int and 0 < seconds <= total_seconds,
+                    "invalid finite reservation")
+            require(type(max_attempts) is int and max_attempts > 0, "invalid attempt limit")
         lock = FileLock(self.lock, "roadmap budget reservation")
         lock.acquire()
         try:
@@ -250,15 +270,30 @@ class BudgetLedger:
                         bounded_prior = [a for a in prior if a.get("generation", 1) == generation]
             require(not any(a["status"] == "RESERVED" for a in prior), "existing operation requires recovery, not redispatch")
             require(not any(a["status"] == "SUCCESS" and a["inputs"] == inputs for a in prior), "matching successful work already exists")
-            require(len(bounded_prior) < max_attempts, "durable attempt limit exhausted")
-            require(sum(a["reserved_seconds"] for a in bounded_prior) + seconds <= total_seconds, "durable time limit exhausted")
-            if bounded_prior:
+            recovery_decision = None
+            if persistent:
+                from .roadmap_persistence import validate_recovery
+                semantic_inputs = operation.get("semantic_inputs", inputs) if operation else inputs
+                recovery_decision = validate_recovery(self.root, recovery, work_id, semantic_inputs, prior)
+            else:
+                require(all(type(a["reserved_seconds"]) is int for a in bounded_prior),
+                        "unlimited history cannot be silently converted to a finite allowance")
+                require(len(bounded_prior) < max_attempts, "durable attempt limit exhausted")
+                require(sum(a["reserved_seconds"] for a in bounded_prior) + seconds <= total_seconds, "durable time limit exhausted")
+            if bounded_prior and not persistent:
                 require(bool(diagnosis and diagnosis.strip()), "retry requires diagnosis")
                 require(bounded_prior[-1]["inputs"] != inputs, "unchanged failed inputs cannot retry")
             attempt = {"id": digest({"work": work_id, "inputs": inputs, "ordinal": len(prior) + 1}),
                        "work_id": work_id, "inputs": inputs, "reserved_seconds": seconds,
                        "status": "RESERVED", "diagnosis": diagnosis, "pid": os.getpid(),
                        "created_ns": time.time_ns()}
+            if persistent:
+                attempt.update(execution_mode="persistent_unlimited", execution_policy=persistent_policy,
+                               semantic_inputs=semantic_inputs)
+            if recovery_decision:
+                attempt.update(recovery=recovery_decision["binding"],
+                               recovery_fingerprint=recovery_decision["fingerprint"],
+                               recovery_strategy=recovery_decision["strategy"])
             if selected:
                 attempt["inherited_attempt_ids"] = sorted(selected)
             if operation is not None:
@@ -335,7 +370,8 @@ class BudgetLedger:
         return {"schema": 1, "attempts": len(attempts),
                 "outcomes": {s: sum(a["status"] == s for a in attempts)
                              for s in ("RESERVED", "SUCCESS", "FAILED", "INTERRUPTED")},
-                "reserved_seconds": sum(a["reserved_seconds"] for a in attempts),
+                "reserved_seconds": sum(a["reserved_seconds"] for a in attempts if type(a["reserved_seconds"]) is int),
+                "unlimited_allocation_attempts": sum(a["reserved_seconds"] is None for a in attempts),
                 "observed_tool_microseconds": sum(measured) if measured else None,
                 "tool_time_unknown_attempts": len(attempts) - len(measured),
                 "reuse_consumers": sum(len(a.get("reuse_consumers", [])) for a in attempts),
@@ -346,16 +382,19 @@ class BudgetLedger:
                            "Historical reservations remain consumed; unknown measurements are not zero"]}
 
     def reservation_record(self, ident: str) -> dict:
-        """Version-one quota record; consumed is allocation, not measured time."""
+        """Versioned allocation record; consumed allocation is not measured time."""
         from .roadmap_records import validate_record
         matches = [a for a in self.read()["attempts"] if a["id"] == ident]
         require(len(matches) == 1, "unknown reservation")
         attempt = matches[0]
-        value = {"schema": 1, "id": ident, "work_id": attempt["work_id"], "inputs": attempt["inputs"],
+        value = {"schema": 2 if attempt["reserved_seconds"] is None else 1,
+                 "id": ident, "work_id": attempt["work_id"], "inputs": attempt["inputs"],
                  "reserved": attempt["reserved_seconds"], "consumed": attempt["reserved_seconds"],
                  "unknown_usage": type(attempt.get("receipt", {}).get("tool_microseconds")) is not int,
                  "attempt": attempt.get("attempt_in_generation", len(attempt.get("inherited_attempt_ids", [])) + 1), "status": attempt["status"],
                  "reconciliation": "Seconds of irrevocable attempt allocation; consumed allocation is not observed runtime or billing. Actual microseconds are separate, unknown when unavailable."}
+        if attempt["reserved_seconds"] is None:
+            value["reconciliation"] = "AM20 unlimited allocation (null), never zero cost. Historical finite allocations remain consumed; measured runtime and native accounting stay separate."
         validate_record(self.root, "BudgetReservation", value)
         return value
 
@@ -441,10 +480,10 @@ def recipe_scope(root: Path, compiled: dict, name: str, milestone: str,
 
 
 def run_recipe(root: Path, compiled: dict, name: str, *, diagnosis: str | None = None,
-               milestone: str | None = None) -> dict:
+               milestone: str | None = None, recovery: dict | None = None) -> dict:
     if milestone is not None:
         from .roadmap_work import run_work
-        return run_work(root, compiled, milestone, name, diagnosis=diagnosis)
+        return run_work(root, compiled, milestone, name, diagnosis=diagnosis, recovery=recovery)
     canonical_record = root / ".aegis/project.json"
     require(not canonical_record.exists() or not read_json(canonical_record).get("execution"),
             "adopted execution requires an explicit current milestone")
@@ -465,9 +504,12 @@ def run_recipe(root: Path, compiled: dict, name: str, *, diagnosis: str | None =
     lease = FileLock(root / ".aegis/roadmaps/execution.lock", "single roadmap recipe execution")
     lease.acquire(timeout=0)
     try:
+        from .roadmap_persistence import policy_binding
+        persistent = compiled.get("policy", {}).get("execution_policy") is not None
         attempt = ledger.reserve(work_id, inputs, recipe["max_seconds"],
                                  max_attempts=recipe["max_attempts"], diagnosis=diagnosis,
-                                 inherited_attempt_ids=inherited)
+                                 inherited_attempt_ids=inherited, total_seconds=None if persistent else 1800,
+                                 persistent_policy=policy_binding(root) if persistent else None, recovery=recovery)
         try:
             result = run_process(argv, cwd=root, timeout=recipe["max_seconds"], capture_limit=100_000)
             receipt = {"schema": 1, "recipe": name, "inputs": inputs, "argv": argv,

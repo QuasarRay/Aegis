@@ -334,12 +334,13 @@ class NativeGoalAdapter:
         return result
 
     def dispatch(self, prepared: dict, host_transition: Callable[[dict], dict], *, user_authorized: bool,
-                 authorization_id: str, host_identity: dict, diagnosis: str | None = None) -> dict:
+                 authorization_id: str, host_identity: dict, diagnosis: str | None = None,
+                 recovery: dict | None = None) -> dict:
         return self._dispatch(prepared, host_transition, user_authorized=user_authorized,
-                              authorization_id=authorization_id, host_identity=host_identity, diagnosis=diagnosis)
+                              authorization_id=authorization_id, host_identity=host_identity, diagnosis=diagnosis, recovery=recovery)
 
     def dispatch_managed(self, prepared: dict, *, user_authorized: bool,
-                         authorization_id: str, diagnosis: str | None = None) -> dict:
+                         authorization_id: str, diagnosis: str | None = None, recovery: dict | None = None) -> dict:
         """Send the same audited request over the pinned installed stdio server.
 
         This is an explicit lifecycle operation, not a Goal-continuation loop.
@@ -349,10 +350,11 @@ class NativeGoalAdapter:
         identity = {"provider": "codex", "transport": "managed_app_server_stdio_goal",
                     "identity": {"executable": self.protocol["executable"], "protocol_digest": self.protocol["digest"]}}
         return self._dispatch(prepared, None, user_authorized=user_authorized,
-                              authorization_id=authorization_id, host_identity=identity, diagnosis=diagnosis, managed=True)
+                              authorization_id=authorization_id, host_identity=identity, diagnosis=diagnosis, managed=True, recovery=recovery)
 
     def _dispatch(self, prepared: dict, host_transition: Callable[[dict], dict] | None, *, user_authorized: bool,
-                  authorization_id: str, host_identity: dict, diagnosis: str | None, managed: bool = False) -> dict:
+                  authorization_id: str, host_identity: dict, diagnosis: str | None, managed: bool = False,
+                  recovery: dict | None = None) -> dict:
         from .roadmap_native import process_handle
         from .roadmap_runtime import BudgetLedger
         from .roadmap_work import _immutable
@@ -384,6 +386,8 @@ class NativeGoalAdapter:
                      "owner": fresh["owner"], "child": None, "transport": host_identity["transport"] if managed else "explicit_host_lifecycle_callback",
                      "native_thread": fresh["binding"]["thread_id"], "preparation": prep_binding,
                      "kind": "native_lifecycle_control", "authorization_id": authorization_id}
+        if recovery:
+            operation["recovery"] = recovery
         attempt = ledger.reserve_control(digest({"native_goal": fresh["binding"]["thread_id"], "action": fresh["action"],
                                                 "authorization_id": authorization_id}), identity, 60, operation,
                                          user_authorized=user_authorized, diagnosis=diagnosis)

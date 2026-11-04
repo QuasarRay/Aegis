@@ -10,7 +10,7 @@
     "AM08": "Build review/flaw machinery; defer real project flaw campaigns.",
     "AM09": "Complete Python behavioral Rust migration mapping; changes invalidate affected entries; no unused duplicate codebase.",
     "AM10": "Native Goals/Plans preserve authorization, accounting, limits and scope; no emulated background goal loop.",
-    "AM11": "Durable budgets, bounded retries, exact freshness and reuse; unknown costs remain unknown; no invented token budget.",
+    "AM11": "Durable accounting, exact freshness and reuse; unknown costs remain unknown; no invented token budget. Internal attempt/time ceilings superseded by AM20.",
     "AM12": "Complete nominal/structural/behavioral correspondence, compiler-backed reconciliation and independent CPGSchema qualification.",
     "AM13": "Lossless retained source corpus, exact retrieval, focused skills and every research recommendation disposition.",
     "AM14": "Controlled macro provenance and single generated-region owner; proc_macro2 is infrastructure.",
@@ -18,7 +18,8 @@
     "AM16": "Dagger/GitLab, dev-based stacked integration, .agents deployment, .aegis state and last-accepted governance.",
     "AM17": "Preserve full Linux acceptance and portable core; retain explicit future Windows/macOS obligations.",
     "AM18": "Separate implementation, domain verification, project completion and CGP completion; retire conflicting policy without deleting historical evidence.",
-    "AM19": "Roadmap package completion is distinct from implementation of the three projects; launchers remain inactive."
+    "AM19": "Roadmap package completion is distinct from implementation of the three projects; launchers remain inactive.",
+    "AM20": "Persistent unlimited Aegis execution; enforced evidenced recovery and alternatives; preserve history, semantic safeguards and external authority."
   },
   "artifact_download_policy": "Roadmaps/Shared/download-policy.json",
   "cgp_requires_all_projects_complete": true,
@@ -34,5 +35,6 @@
   "max_active_agents": 1,
   "provider": "codex",
   "reasoning": "max",
-  "schema": 1
+  "schema": 1,
+  "execution_policy": "Roadmaps/Shared/execution-policy.json"
 }

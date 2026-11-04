@@ -23,7 +23,7 @@ from agentinfra.roadmap_records import digest, file_binding, read_json, require
 from agentinfra.security import confined_path, minimal_subprocess_env
 
 
-def _download(root: Path, entry: dict, directory: Path, deadline: float) -> Path:
+def _download(root: Path, entry: dict, directory: Path, deadline: float | None) -> Path:
     return download_with_mirrors(root, entry, directory, deadline)
 
 
@@ -33,7 +33,7 @@ def provision(root: Path, output: Path) -> dict:
     require(sys.platform == "linux" and os.uname().machine == "x86_64" and sys.version_info[:2] == (3, 14), "unqualified host platform/interpreter")
     directory = confined_path(root, ".aegis/toolchains/" + digest(lock))
     directory.mkdir(parents=True, exist_ok=True)
-    deadline = time.monotonic() + read_download_policy(root)["stage_timeout_seconds"]
+    deadline = None  # AM20: requests have observation windows; the job has no deadline.
     wheels = [_download(root, package, directory / "downloads", deadline) for package in lock["packages"]]
     archive = _download(root, lock["jre"], directory / "downloads", deadline)
     java_root = directory / "java"
@@ -53,15 +53,15 @@ def provision(root: Path, output: Path) -> dict:
         venv.EnvBuilder(with_pip=True).create(virtual)
     python = virtual / "bin/python"
     installed = run_recipe_stage([str(python), "-B", "-m", "pip", "install", "--no-index", "--no-deps", *map(str, wheels)],
-                                 cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+                                 cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
     atomic_write_json(output.parent / "pip-result.json", asdict(installed), root=root, mode=0o600)
     require(installed.returncode == 0 and not installed.timed_out, "isolated pinned wheel installation failed")
-    checked = run_recipe_stage([str(python), "-B", "-m", "pip", "check"], cwd=root, timeout=30, env=environment, capture_limit=1_000_000)
+    checked = run_recipe_stage([str(python), "-B", "-m", "pip", "check"], cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
     atomic_write_json(output.parent / "pip-check.json", asdict(checked), root=root, mode=0o600)
     require(checked.returncode == 0, "pinned dependency closure is incomplete")
     nagini = virtual / "bin/nagini"
     require(nagini.is_file(), "pinned Nagini console entrypoint was not installed")
-    java_version = run_recipe_stage([str(java[0]), "-version"], cwd=root, timeout=30, env=environment, capture_limit=1_000_000)
+    java_version = run_recipe_stage([str(java[0]), "-version"], cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
     atomic_write_json(output.parent / "java-version.json", asdict(java_version), root=root, mode=0o600)
     require(java_version.returncode == 0, "pinned JRE cannot execute")
     files = [file_binding(root, p.relative_to(root).as_posix()) for p in directory.rglob("*") if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts]
@@ -81,7 +81,7 @@ def qualify(root: Path, output: Path, toolchain_path: str) -> dict:
         source = root / "verification/roadmap/python" / name
         environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"), MYPYPATH=str(root / "infra"))
         result = run_recipe_stage([toolchain["python"], "-B", toolchain["nagini"], "--mypy-path", str(root / "infra"), str(source)],
-                                  cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+                                  cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
         path = output.parent / (name + ".result.json")
         atomic_write_json(path, asdict(result), root=root, mode=0o600)
         runs.append({"fixture": file_binding(root, source.relative_to(root).as_posix()),
@@ -104,7 +104,7 @@ def provision_deal(root: Path, output: Path) -> dict:
             "unqualified Deal download profile/platform/interpreter")
     directory = confined_path(root, ".aegis/toolchains/deal/" + digest(lock))
     directory.mkdir(parents=True, exist_ok=True)
-    deadline = time.monotonic() + read_download_policy(root)["stage_timeout_seconds"]
+    deadline = None  # AM20: requests have observation windows; the job has no deadline.
     wheels = [_download(root, entry, directory / "downloads", deadline) for entry in lock["packages"]]
     virtual = directory / "venv"
     if not (virtual / "bin/python").exists():
@@ -114,7 +114,7 @@ def provision_deal(root: Path, output: Path) -> dict:
     artifacts = []
     for name, argv in (("pip-result.json", [str(python), "-B", "-m", "pip", "install", "--no-index", "--no-deps", *map(str, wheels)]),
                        ("pip-check.json", [str(python), "-B", "-m", "pip", "check"])):
-        result = run_recipe_stage(argv, cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+        result = run_recipe_stage(argv, cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
         path = output.parent / name
         atomic_write_json(path, asdict(result), root=root, mode=0o600)
         artifacts.append(file_binding(root, path.relative_to(root).as_posix()))
@@ -139,7 +139,7 @@ def qualify_deal(root: Path, output: Path, toolchain_path: str) -> dict:
         environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"))
         result = run_recipe_stage([toolchain["python"], "-B", "scripts/roadmap_deal.py", "--fixture", fixture["path"],
                                    "--output", observed_path.relative_to(root).as_posix()],
-                                  cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+                                  cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
         result_path = output.parent / (name + ".result.json")
         atomic_write_json(result_path, asdict(result), root=root, mode=0o600)
         observed = read_json(observed_path) if observed_path.is_file() else {"status": "MISSING_OBSERVATION"}

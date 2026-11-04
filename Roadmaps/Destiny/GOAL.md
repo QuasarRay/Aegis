@@ -15,3 +15,6 @@ Use only after all three current initial PROJECT_COMPLETE receipts are valid and
 ```text
 /goal Complete D12 in /home/astral/Projects/Aegis/Roadmaps/Destiny/README.md under the current adopted shared contract. Revalidate the three-project completion barrier, preserve canonical ownership and public semantics, implement the declared CGP transformation, replay every affected acceptance obligation, and reach CGP_MODERNIZATION_COMPLETE only with current verified evidence.
 ```
+
+
+Execution follows [AM20 persistent execution and aggressive recovery](../Shared/AM20_PERSISTENT_EXECUTION.md): no Aegis-owned attempt or job-time ceiling; retain history and native accounting, reconcile handles, and bind evidenced recovery alternatives before retry.

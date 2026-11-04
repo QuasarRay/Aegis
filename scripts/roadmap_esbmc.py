@@ -85,7 +85,7 @@ def provision_esbmc(root: Path, output: Path) -> dict:
             sys.platform == "linux" and os.uname().machine == "x86_64" and sys.version_info[:2] == (3, 14), "unqualified ESBMC profile/platform")
     directory = confined_path(root, ".aegis/toolchains/esbmc/" + digest(lock))
     directory.mkdir(parents=True, exist_ok=True)
-    deadline = time.monotonic() + read_download_policy(root)["stage_timeout_seconds"]
+    deadline = None  # AM20: requests have observation windows; the job has no deadline.
     wheels = [download_with_mirrors(root, p, directory / "downloads", deadline) for p in lock["packages"]]
     archive = download_with_mirrors(root, lock["archive"], directory / "downloads", deadline)
     release = directory / "release"
@@ -101,7 +101,7 @@ def provision_esbmc(root: Path, output: Path) -> dict:
     for name, argv in (("pip-result.json", [str(python), "-B", "-m", "pip", "install", "--no-index", "--no-deps", *map(str, wheels)]),
                        ("pip-check.json", [str(python), "-B", "-m", "pip", "check"]),
                        ("esbmc-version.json", [str(executables[0]), "--version"])):
-        result = run_recipe_stage(argv, cwd=root, timeout=180, env=environment, capture_limit=1_000_000)
+        result = run_recipe_stage(argv, cwd=root, timeout=None, env=environment, capture_limit=1_000_000)
         path = output.parent / name
         atomic_write_json(path, asdict(result), root=root, mode=0o600)
         artifacts.append(file_binding(root, path.relative_to(root).as_posix()))
@@ -125,7 +125,7 @@ def qualify_esbmc(root: Path, output: Path, toolchain_path: str) -> dict:
     for name in ("policy_deal_positive.py", "policy_deal_negative.py"):
         fixture = file_binding(root, "verification/roadmap/python/" + name)
         environment = dict(toolchain["environment"], PYTHONPATH=str(root / "infra"))
-        result = run_recipe_stage(esbmc_arguments(root, toolchain, fixture["path"]), cwd=root, timeout=180,
+        result = run_recipe_stage(esbmc_arguments(root, toolchain, fixture["path"]), cwd=root, timeout=None,
                                   env=environment, capture_limit=1_000_000)
         path = output.parent / ("esbmc-" + name + ".result.json")
         atomic_write_json(path, asdict(result), root=root, mode=0o600)
@@ -134,7 +134,7 @@ def qualify_esbmc(root: Path, output: Path, toolchain_path: str) -> dict:
         classification = classify_esbmc(asdict(result))
         claims_binding = None
         if classification["outcome"] in {"TOOL_VERDICT_PROPERTIES_UNQUALIFIED", "FAILURE_PROPERTY_UNREVIEWED"}:
-            claims = run_recipe_stage(esbmc_arguments(root, toolchain, fixture["path"], claims=True), cwd=root, timeout=180,
+            claims = run_recipe_stage(esbmc_arguments(root, toolchain, fixture["path"], claims=True), cwd=root, timeout=None,
                                       env=environment, capture_limit=1_000_000)
             claims_path = output.parent / ("esbmc-" + name + ".claims.json")
             atomic_write_json(claims_path, asdict(claims), root=root, mode=0o600)

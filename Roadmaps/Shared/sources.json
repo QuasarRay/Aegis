@@ -63,6 +63,10 @@
     {
       "path": "rust-ecosystem-langgraph-like-frameworks.md",
       "sha256": "8bb51763e256cf5ac0bb2f7c7ece8cece203b5841916b41f035683d072f7852a"
+    },
+    {
+      "path": "Roadmaps/Shared/AM20_PERSISTENT_EXECUTION.md",
+      "sha256": "fcc3360312f4cf3ac1f95deb5dd9fbf9f05e9e2b0efdb62e9c47ca8cee260b1d"
     }
   ],
   "schema": 1

@@ -36,7 +36,14 @@ def compile_roadmaps(root: Path) -> dict:
             "deferred phase policy weakened")
     from .roadmap_mirrors import POLICY_PATH, read_download_policy
     require(policy.get("artifact_download_policy") == POLICY_PATH, "reviewed mirror delivery policy required")
-    read_download_policy(root)
+    delivery = read_download_policy(root)
+    require(all(delivery.get(k, "missing") is None for k in
+                ("overall_job_deadline", "max_sources_per_artifact", "max_addresses_per_source", "source_timeout_seconds")),
+            "persistent delivery reintroduced source/address/transfer lifetime ceilings")
+    from .roadmap_persistence import POLICY_PATH as EXECUTION_POLICY_PATH, read_execution_policy
+    require(policy.get("execution_policy") == EXECUTION_POLICY_PATH and "AM20" in policy.get("amendments", {}),
+            "adopted persistent execution policy required")
+    read_execution_policy(root)
     sources = read_json(shared / "sources.json")
     mandatory_sources = {"AGENTS.MD", "Blue_Prompt.md", "Destiny_Prompt.md", "Roadmaps/Shared/ADOPTED_PLAN.md"}
     source_names = [s["path"] for s in sources["files"]]
@@ -66,8 +73,9 @@ def compile_roadmaps(root: Path) -> dict:
     recipes = registry["recipes"]
     for name, recipe in recipes.items():
         require(recipe.get("kind") in {"local_validation", "project_specification"}, "unknown recipe class")
-        require(type(recipe.get("max_seconds")) is int and 0 < recipe["max_seconds"] <= 900, "unbounded recipe")
-        require(type(recipe.get("max_attempts")) is int and 0 < recipe["max_attempts"] <= 2, "unbounded attempts")
+        require(recipe.get("execution_mode") == "persistent_unlimited" and
+                recipe.get("max_seconds", "missing") is None and recipe.get("max_attempts", "missing") is None,
+                "recipe reintroduced an Aegis attempt/time ceiling")
         if recipe["kind"] == "local_validation":
             require(name in FIXED_RECIPES and recipe["argv"] == FIXED_RECIPES[name], "unreviewed executable recipe")
     milestones = {}
@@ -82,6 +90,12 @@ def compile_roadmaps(root: Path) -> dict:
             require(len(blocks) == 1, f"{path}: exactly one milestone contract required")
             item = loads(blocks[0])
             validate_record(root, "MilestoneContract", item)
+            budget = item["budget_policy"]
+            require(budget.get("execution_mode") == "persistent_unlimited" and
+                    budget.get("max_attempts", "missing") is None and
+                    budget.get("max_seconds_per_recipe", "missing") is None and
+                    "AM20" in item["amendments"] and "AM20" in item["requirements"],
+                    "milestone reintroduced an Aegis attempt/time ceiling")
             ident = item["id"]
             require(ident not in milestones, f"duplicate milestone {ident}")
             require(item["project"] == project and ident in profile["milestones"], f"wrong project owner: {ident}")

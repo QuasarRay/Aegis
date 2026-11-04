@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 61. Inventory digest: `c921637cb67ba957d263d5efcac21bfe096e17b9f05195bb0f97b1dc4829127a`.
+Files: 1. Behavioral units: 61. Inventory digest: `c26fff07f46aa8e69b895ab77c33a9054e6c669a5b43eb681ddb3a07aa694fe5`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## Roadmaps/Shared/ci/runner.py::module::root::Module
 
-Source: `Roadmaps/Shared/ci/runner.py:1`; AST `b5735dc5223e6f3546a9c566b1674811b4d34432936a87881077c9afa05c5611`.
+Source: `Roadmaps/Shared/ci/runner.py:1`; AST `10792615edb1e46d6563e05ee9c2a0f2a76b99dc9d047efb6ebda0c24cdd1121`.
 
 Rust module: `Roadmaps::Shared::ci::runner`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -328,7 +328,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## Roadmaps/Shared/ci/runner.py::module::run::root.body[13]::AsyncFunctionDef
 
-Source: `Roadmaps/Shared/ci/runner.py:23`; AST `a55c0fd88ade023900df43eccd82b9597caf5827586c67c96c562170492e37a8`.
+Source: `Roadmaps/Shared/ci/runner.py:23`; AST `d97afab9d25c253b1521ff9315ec2accfdd5c1120c90bf790de36179e631088c`.
 
 Rust module: `Roadmaps::Shared::ci::runner`. async fn with explicit cancellation/lifetime contract; preserve suspension and observable completion
 
@@ -368,7 +368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## Roadmaps/Shared/ci/runner.py::module::run::root.body[13].body[1]::Assign
 
-Source: `Roadmaps/Shared/ci/runner.py:25`; AST `a1830af564785726fc3999aea45331ead8b128a1206fe5fa12d56546056db376`.
+Source: `Roadmaps/Shared/ci/runner.py:25`; AST `c19ec15b97400c7df76b7862c9b92af67787a0385cd64ea7b4f4b0fb78b927dc`.
 
 Rust module: `Roadmaps::Shared::ci::runner`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -388,7 +388,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## Roadmaps/Shared/ci/runner.py::module::run::root.body[13].body[1].value.value::Call
 
-Source: `Roadmaps/Shared/ci/runner.py:25`; AST `a2a0a3c7158d2b53c88e354a1f10b3441cade714cb0e04dfc3047f81a798c492`.
+Source: `Roadmaps/Shared/ci/runner.py:25`; AST `a6704dd3d7721b0405a57356585bd9715ce225a76b2eecb312f00d65e144aed8`.
 
 Rust module: `Roadmaps::Shared::ci::runner`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 

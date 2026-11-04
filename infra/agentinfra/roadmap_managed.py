@@ -26,6 +26,7 @@ from .roadmap_project import AEGIS_RECORD_WRITER, ProjectAdapter
 from .roadmap_protocol import assert_protocol
 from .roadmap_records import ContractError, bindings_current, canonical, digest, file_binding, read_json, require, validate_record
 from .roadmap_runtime import BudgetLedger
+from .roadmap_persistence import policy_binding, recovery_packet, retained_history
 from .roadmap_work import _immutable
 from .security import confined_path
 from .transaction import FileTransaction, Mutation
@@ -208,14 +209,22 @@ class ManagedTurnRunner:
         _protocol(self.root, self.protocol)
         return adapter, record, execution
 
-    def prepare(self, text: str, *, role: str, authorization_id: str, seconds: int = 900) -> dict:
+    def prepare(self, text: str, *, role: str, authorization_id: str, seconds: int | None = None) -> dict:
         _, record, execution = self._record(); compiled = compile_roadmaps(self.root)
         require(role in {"executor", "specialist", "reviewer"} and type(text) is str and text.strip() and
                 len(text.encode()) <= 128000 and type(authorization_id) is str and 0 < len(authorization_id) <= 128,
                 "bounded explicitly attributed native input/role required")
         milestone = record["continuation"]["milestone"]; contract = compiled["milestones"][milestone]
-        require(milestone in execution["scope"] and type(seconds) is int and
-                0 < seconds <= contract["budget_policy"]["max_seconds_per_recipe"], "turn exceeds adopted work scope or finite budget")
+        require(milestone in execution["scope"], "turn exceeds adopted work scope")
+        persistent = compiled.get("policy", {}).get("execution_policy") is not None
+        if persistent:
+            require(seconds is None and contract["budget_policy"]["max_seconds_per_recipe"] is None and
+                    contract["budget_policy"]["max_attempts"] is None,
+                    "persistent native turns cannot carry an Aegis attempt/time ceiling")
+        else:
+            seconds = contract["budget_policy"]["max_seconds_per_recipe"] if seconds is None else seconds
+            require(type(seconds) is int and 0 < seconds <= contract["budget_policy"]["max_seconds_per_recipe"],
+                    "turn exceeds its explicit legacy finite allocation")
         require(execution.get("monetary_cap") is None, "managed native billing cap is not enforceable")
         evidence = record.get("roadmap_evidence")
         audit = audit_evidence(self.root, compiled, read_json(confined_path(self.root, evidence["path"])) if evidence and bindings_current(self.root, [evidence]) else None)
@@ -231,6 +240,8 @@ class ManagedTurnRunner:
                 "allowed_milestones": execution["scope"],
                 "input": [{"type": "text", "text": text}], "max_seconds": seconds,
                 "max_attempts": contract["budget_policy"]["max_attempts"], "source_responsibility": contract["implementation_units"]}
+        if persistent:
+            spec.update(execution_mode="persistent_unlimited", execution_policy=policy_binding(self.root), total_seconds=None)
         spec["work_id"] = digest({k: spec[k] for k in ("thread_id", "milestone", "role", "authorization_id")})
         spec["digest"] = digest(spec); return spec
 
@@ -247,11 +258,21 @@ class ManagedTurnRunner:
             "contract_digest": self.spec["contract_digest"], "source_responsibility": self.spec["source_responsibility"],
             "inputs": self.spec["inputs"], "writer": AEGIS_RECORD_WRITER, "allowed_actions": ["managed.native.turn"],
             "continuation": {"state": state, "attempt": self.attempt["id"], "native_turn": self.operation.get("turn_id")}}
+        previous = units.get(unit["work_id"])
+        if previous:
+            history = list(previous["continuation"].get("history", []))
+            if previous["continuation"].get("attempt") != self.attempt["id"]:
+                history.append(dict(previous, continuation={k: v for k, v in previous["continuation"].items() if k != "history"}))
+            if history:
+                unit["continuation"]["history"] = history
+        if extra.get("recovery_required"):
+            unit["continuation"]["recovery_required"] = extra["recovery_required"]
         validate_record(self.root, "WorkUnit", unit); units[unit["work_id"]] = unit
         adapter.update({"execution": execution, "work_units": units}, expected_digest=digest(adapter.profile.path().read_bytes()))
         return execution["managed_turn"]
 
-    def start(self, spec: dict, *, user_authorized: bool, diagnosis: str | None = None) -> dict:
+    def start(self, spec: dict, *, user_authorized: bool, diagnosis: str | None = None,
+              recovery: dict | None = None) -> dict:
         require(user_authorized and spec.get("digest") == digest({k: v for k, v in spec.items() if k != "digest"}), "authorized unchanged native specification required")
         _, record, execution = self._record()
         require(spec == self.prepare(spec["input"][0]["text"], role=spec["role"], authorization_id=spec["authorization_id"], seconds=spec["max_seconds"]),
@@ -277,12 +298,18 @@ class ManagedTurnRunner:
         self.operation = {"state": "PREPARED", "kind": "native_model_turn", "spec_digest": spec["digest"], "spec": binding,
             "runner": process_handle(os.getpid()), "owner": spec["owner"], "child": None, "native_thread": spec["thread_id"],
             "turn_id": None, "controls": [], "source_parent_turn": observation["turn_id"], "start_sent": False}
+        if spec.get("execution_policy"):
+            self.operation.update(execution_policy=spec["execution_policy"], semantic_inputs=spec["digest"])
+        if recovery:
+            self.operation["recovery"] = recovery
         ledger = BudgetLedger(self.root)
         prior_attempts = [a for a in ledger.read()["attempts"] if a["work_id"] == spec["work_id"]]
         if prior_attempts and prior_attempts[-1]["status"] == "SUCCESS" and prior_attempts[-1]["inputs"] != spec["digest"]:
             self.operation["supersedes_success"] = prior_attempts[-1]["id"]
         self.attempt = ledger.reserve_operation(spec["work_id"], spec["digest"], spec["max_seconds"], self.operation,
-            max_attempts=spec["max_attempts"], total_seconds=spec["max_seconds"] * spec["max_attempts"], diagnosis=diagnosis)
+            max_attempts=spec["max_attempts"],
+            total_seconds=None if spec.get("execution_policy") else spec["max_seconds"] * spec["max_attempts"],
+            diagnosis=diagnosis, persistent_policy=spec.get("execution_policy"), recovery=recovery)
         require(not self.attempt.get("reused"), "matching native turn is already successful; no redispatch")
         self._persist("PREPARED"); self.operation.update(state="RUNNING", started_ns=time.time_ns())
         ledger.journal(self.attempt["id"], self.operation); self.started_monotonic = time.monotonic()
@@ -291,13 +318,14 @@ class ManagedTurnRunner:
                 self.client = _TurnClient(self.root, self.protocol, self._started); self.client.__enter__()
             else:
                 self.operation["child"] = process_handle(self.client.proc.pid); ledger.journal(self.attempt["id"], self.operation)
-            models, cursor = [], None
-            for _ in range(20):
+            selected, cursor, seen_cursors = [], None, set()
+            while True:
                 page = self.client.call("model/list", {"limit": 20, **({"cursor": cursor} if cursor else {})})
-                models.extend(page["data"]); cursor = page.get("nextCursor")
+                selected.extend(m for m in page["data"] if m.get("model") == spec["selected_model"])
+                cursor = page.get("nextCursor")
                 if not cursor: break
-            require(not cursor, "model catalog exceeds its qualified bound")
-            selected = [m for m in models if m.get("model") == spec["selected_model"]]
+                require(type(cursor) is str and cursor not in seen_cursors, "native model catalog repeated an invalid continuation cursor")
+                seen_cursors.add(cursor)
             require(len(selected) == 1 and any(x["reasoningEffort"] == "max" for x in selected[0]["supportedReasoningEfforts"]), "selected model does not advertise max")
             self.operation["advertised_model_capability"] = {"model": selected[0]["model"], "entry_digest": digest(selected[0]),
                 "supported_efforts": [x["reasoningEffort"] for x in selected[0]["supportedReasoningEfforts"]]}
@@ -349,7 +377,6 @@ class ManagedTurnRunner:
         if not method: return
         if "id" in message:
             self.operation.setdefault("user_action_requests", []).append({"id": message["id"], "method": method, "sha256": digest(message)})
-            require(len(self.operation["user_action_requests"]) <= 200, "native user-action request bound exceeded")
             return
         if params.get("threadId") != self.spec["thread_id"]: return
         if method == "turn/plan/updated":
@@ -394,7 +421,8 @@ class ManagedTurnRunner:
             "plans": self.events.plans, "usage": self.events.usage, "blockers": self.events.blockers,
             "observed": self.events.observed}
         BudgetLedger(self.root).journal(self.attempt["id"], self.operation)
-        if self.started_monotonic is not None and time.monotonic() - self.started_monotonic >= self.spec["max_seconds"]:
+        if (self.spec.get("execution_mode") != "persistent_unlimited" and self.started_monotonic is not None and
+                time.monotonic() - self.started_monotonic >= self.spec["max_seconds"]):
             self.operation["deadline_exceeded"] = True
             if not any(c["action"] == "interrupt" for c in self.operation["controls"]) and self.operation.get("turn_id"):
                 self.interrupt(user_authorized=True, authorization_id="deadline:" + self.attempt["id"])
@@ -495,8 +523,14 @@ class ManagedTurnRunner:
         receipt = {"inputs": self.spec["digest"], "result": binding, "artifacts": [self.operation["spec"], binding],
                    "native_status": native_status, "native_turn_id": self.operation.get("turn_id"),
                    "domain_proof": False, "unknown_usage": not bool(self.operation.get("event_projection", {}).get("usage"))}
-        BudgetLedger(self.root).close(self.attempt["id"], outcome, receipt); self._persist(outcome, result=binding)
-        return {"state": outcome, "attempt": self.attempt["id"], "native_turn_id": self.operation.get("turn_id"), "native_status": native_status, "result": binding}
+        ledger = BudgetLedger(self.root); ledger.close(self.attempt["id"], outcome, receipt)
+        extra = {}
+        if self.spec.get("execution_policy") and outcome != "SUCCESS":
+            history = retained_history(ledger.read()["attempts"], self.spec["work_id"])
+            extra["recovery_required"] = recovery_packet(self.spec["work_id"], self.spec["digest"], history)
+        self._persist(outcome, result=binding, **extra)
+        return {"state": outcome, "attempt": self.attempt["id"], "native_turn_id": self.operation.get("turn_id"),
+                "native_status": native_status, "result": binding, **extra}
 
     def close(self) -> None:
         if self.client is not None:
