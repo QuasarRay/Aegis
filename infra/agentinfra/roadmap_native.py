@@ -13,7 +13,8 @@ import socket
 
 from .locks import _pid_alive, _process_identity
 from .roadmap_codex import CodexReader
-from .roadmap_records import digest, require
+from .roadmap_records import bindings_current, digest, read_json, require
+from .security import confined_path
 
 
 INTERFACE_VERSION = 1
@@ -96,19 +97,57 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
     return {"session": session, "context": context, "lifecycle": lifecycle, "usage": usage}
 
 
+def _reader_executable(root: Path, installed: dict, running_path: str, running_sha256: str,
+                       process_executable: str) -> dict:
+    """Use the kernel-retained active binary only with its prior exact pin."""
+    deleted = running_path.endswith(" (deleted)")
+    original_path = running_path.removesuffix(" (deleted)")
+    require(Path(original_path).resolve() == Path(installed["path"]).resolve(),
+            "active-host executable path differs from the installed native authority")
+    if not deleted:
+        require(running_sha256 == installed["sha256"], "active-host executable bytes differ from installed native authority")
+        return {"path": installed["path"], "sha256": running_sha256, "route": "installed_active_host"}
+    from .roadmap_project import ProjectAdapter
+    record = ProjectAdapter(root).read()
+    binding = record.get("native_protocol")
+    require(binding and bindings_current(root, [binding]), "retained native executable requires its unchanged prior protocol export")
+    expected = {"path": str(Path(original_path).resolve()), "sha256": running_sha256}
+    for index, candidate in enumerate([binding, *reversed(record.get("native_protocol_history", []))]):
+        if not bindings_current(root, [candidate]):
+            continue
+        manifest = read_json(confined_path(root, candidate["path"], must_exist=True))
+        valid = (manifest.get("schema") == 1 and manifest.get("kind") == "installed_codex_protocol_export" and
+                 manifest.get("digest") == digest({k: v for k, v in manifest.items() if k != "digest"}) and
+                 manifest.get("files") and bindings_current(root, manifest["files"]))
+        require(index != 0 or valid, "retained active-host bytes/protocol do not match their prior exact native authority")
+        if valid and manifest.get("executable") == expected:
+            return {"path": process_executable, "sha256": running_sha256,
+                    "route": "kernel_retained_pinned_active_host", "prior_protocol": candidate}
+    require(False, "retained active-host bytes/protocol do not match their prior exact native authority")
+
+
 def observe_native_owner(root: Path, owner: dict) -> dict:
     require(owner.get("host") == socket.gethostname() and
             _pid_alive(owner.get("pid", 0), owner.get("process_identity")), "native owner process is not established")
-    with CodexReader(experimental=True) as client:
+    from .roadmap_protocol import native_executable
+    installed = native_executable()
+    owner_executable = Path(f"/proc/{owner['pid']}/exe")
+    require(owner_executable.exists(), "active-host executable handle is unavailable")
+    running_path = os.readlink(owner_executable)
+    route = _reader_executable(root, installed, running_path, digest(owner_executable.read_bytes()), str(owner_executable))
+    require(_pid_alive(owner["pid"], owner["process_identity"]), "active-host creation identity changed during executable qualification")
+    with CodexReader(executable=route["path"], experimental=True) as client:
         goal = client.call("thread/goal/get", {"threadId": owner["session"]})["goal"]
         thread = client.call("thread/read", {"threadId": owner["session"], "includeTurns": False})["thread"]
         executable = {"path": client.executable, "sha256": digest(Path(client.executable).read_bytes())}
+        require(executable["sha256"] == route["sha256"], "native reader bytes changed during active-host observation")
     require(thread.get("id") == owner["session"] and goal and goal.get("threadId") == owner["session"],
             "native Goal/thread identity mismatch")
     require(Path(thread["cwd"]).resolve() == root.resolve(), "native chat belongs to another workspace")
-    owner_executable = Path(f"/proc/{owner['pid']}/exe")
     require(owner_executable.exists() and owner_executable.resolve() == Path(executable["path"]).resolve(),
             "active-host owner must be the observed native executable")
+    require(_pid_alive(owner["pid"], owner["process_identity"]) and
+            digest(owner_executable.read_bytes()) == route["sha256"], "active-host identity/bytes changed during native observation")
     metadata = read_session_metadata(Path(thread["path"]), owner["session"])
     context = metadata["context"]
     require(context.get("turn_id") == metadata["lifecycle"]["turn_id"],
@@ -122,6 +161,7 @@ def observe_native_owner(root: Path, owner: dict) -> dict:
               "mode": context["mode"], "turn_id": metadata["lifecycle"]["turn_id"],
               "owner_process": process_handle(owner["pid"]), "caller_is_descendant": is_process_ancestor(owner["pid"]),
               "observer_server_status": thread.get("status"), "executable": executable, "metadata": metadata,
+              "executable_route": route, "installed_executable": installed,
               "limits": ["Service/journal provenance is an explicit local trust boundary",
                          "notLoaded is observer-local and is never treated as idle",
                          "No inference, native Goal mutation or model rerouting is performed"]}
