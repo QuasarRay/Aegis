@@ -13,6 +13,7 @@ import subprocess
 import tempfile
 import threading
 import time
+import uuid
 from pathlib import Path
 from typing import Callable, Iterable, Mapping
 
@@ -116,24 +117,47 @@ class ProcessResult:
     started_at: str
     finished_at: str
     duration_seconds: float
+    stdout_path: str | None = None
+    stderr_path: str | None = None
 
 
 class _Capture:
-    def __init__(self, limit: int):
+    def __init__(self, limit: int, archive: Path | None = None):
         self.limit = limit
         self.buffer = bytearray()
         self.digest = hashlib.sha256()
         self.size = 0
+        self.archive = archive
+        self.error = None
 
     def consume(self, stream) -> None:
-        while True:
-            chunk = stream.read(65536)
-            if not chunk:
-                return
-            self.digest.update(chunk)
-            self.size += len(chunk)
-            if len(self.buffer) < self.limit:
-                self.buffer.extend(chunk[: self.limit - len(self.buffer)])
+        output = None
+        try:
+            if self.archive is not None:
+                fd = os.open(self.archive, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600)
+                output = os.fdopen(fd, "wb")
+            while True:
+                chunk = stream.read(65536)
+                if not chunk:
+                    return
+                self.digest.update(chunk)
+                self.size += len(chunk)
+                if output is not None:
+                    output.write(chunk)
+                if len(self.buffer) < self.limit:
+                    self.buffer.extend(chunk[: self.limit - len(self.buffer)])
+        except BaseException as exc:
+            self.error = exc
+            # Keep draining after archive failure; a full pipe must not deadlock
+            # the child. The owner rejects this incomplete capture below.
+            while stream.read(65536):
+                pass
+        finally:
+            if output is not None:
+                try:
+                    output.close()
+                except BaseException as exc:
+                    self.error = exc
 
     def text(self) -> str:
         return redact_text(bytes(self.buffer).decode("utf-8", "replace"))
@@ -167,7 +191,7 @@ def run_recipe_stage(
     argv: Iterable[str],
     *,
     cwd: Path,
-    timeout: float = 60.0,
+    timeout: float | None = 60.0,
     env: Mapping[str, str] | None = None,
     capture_limit: int = 1_000_000,
 ) -> ProcessResult:
@@ -181,7 +205,9 @@ def run_recipe_stage(
         raise ValueError("inherited process group requires an owned POSIX recipe session")
     token = _recipe_group.set(os.getpgrp())
     try:
-        return run_process(argv, cwd=cwd, timeout=timeout, env=env, capture_limit=capture_limit)
+        logs = cwd / ".aegis/roadmaps/stage-logs" / uuid.uuid4().hex if timeout is None else None
+        return run_process(argv, cwd=cwd, timeout=timeout, env=env, capture_limit=capture_limit,
+                           output_directory=logs)
     finally:
         _recipe_group.reset(token)
 
@@ -190,9 +216,10 @@ def run_process(
     argv: Iterable[str],
     *,
     cwd: Path,
-    timeout: float = 60.0,
+    timeout: float | None = 60.0,
     env: Mapping[str, str] | None = None,
     capture_limit: int = 1_000_000,
+    output_directory: Path | None = None,
 ) -> ProcessResult:
     # A fixed multi-stage recipe may keep all tools under the outer supervisor's
     # actual process-group handle. This is allowed only for a POSIX session
@@ -202,10 +229,14 @@ def run_process(
     command = tuple(argv)
     if not command or not all(isinstance(item, str) and item for item in command):
         raise ValueError("argv must be a non-empty sequence of non-empty strings")
-    if timeout <= 0 or timeout != timeout or timeout == float("inf"):
-        raise ValueError("timeout must be finite and positive")
+    if timeout is not None and (timeout <= 0 or timeout != timeout or timeout == float("inf")):
+        raise ValueError("timeout must be None (unlimited) or finite and positive")
     if capture_limit < 1024:
         raise ValueError("capture_limit must be at least 1024 bytes")
+    if output_directory is not None:
+        output_directory.mkdir(parents=True, exist_ok=True)
+    stdout_path = output_directory / "stdout.raw" if output_directory is not None else None
+    stderr_path = output_directory / "stderr.raw" if output_directory is not None else None
     started_wall = datetime.now(timezone.utc).isoformat()
     started = time.monotonic()
     flags = subprocess.CREATE_NEW_PROCESS_GROUP if os.name == "nt" else 0
@@ -245,8 +276,8 @@ def run_process(
             start_new_session=os.name != "nt" and inherited_group is None,
         )
         job = _assign_kill_job(proc)
-        stdout_capture = _Capture(capture_limit)
-        stderr_capture = _Capture(capture_limit)
+        stdout_capture = _Capture(capture_limit, stdout_path)
+        stderr_capture = _Capture(capture_limit, stderr_path)
         stdout_thread = threading.Thread(target=stdout_capture.consume, args=(proc.stdout,), daemon=True)
         stderr_thread = threading.Thread(target=stderr_capture.consume, args=(proc.stderr,), daemon=True)
         stdout_thread.start()
@@ -277,6 +308,8 @@ def run_process(
                 raise RuntimeError("subprocess output reader did not terminate")
             proc.stdout.close()
             proc.stderr.close()
+        if stdout_capture.error or stderr_capture.error:
+            raise RuntimeError("subprocess output archive failed") from (stdout_capture.error or stderr_capture.error)
         finished = time.monotonic()
         result = ProcessResult(
             argv=command,
@@ -294,5 +327,7 @@ def run_process(
             started_at=started_wall,
             finished_at=datetime.now(timezone.utc).isoformat(),
             duration_seconds=finished - started,
+            stdout_path=str(stdout_path.resolve()) if stdout_path else None,
+            stderr_path=str(stderr_path.resolve()) if stderr_path else None,
         )
     return result

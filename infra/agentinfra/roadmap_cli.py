@@ -32,7 +32,8 @@ def parser() -> argparse.ArgumentParser:
     a = r.add_parser("packet"); a.add_argument("milestone"); a.add_argument("--evidence", type=Path)
     a = r.add_parser("inventory"); a.add_argument("--remote", action="store_true"); a.add_argument("--save", action="store_true")
     a = r.add_parser("reconcile"); a.add_argument("--inventory", type=Path, required=True)
-    a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis"); a.add_argument("--milestone")
+    a = r.add_parser("run"); a.add_argument("recipe"); a.add_argument("--diagnosis"); a.add_argument("--milestone"); a.add_argument("--recovery")
+    a = r.add_parser("recovery"); a.add_argument("recipe"); a.add_argument("--milestone", required=True)
     a = r.add_parser("accept-implementation"); a.add_argument("--through", required=True); a.add_argument("--review", required=True)
     a = r.add_parser("refresh-dependencies"); a.add_argument("--work", required=True); a.add_argument("--review", required=True)
     a = r.add_parser("project"); a.add_argument("--record", required=True); a.add_argument("--expected-digest", required=True); a.add_argument("--evidence", type=Path, required=True)
@@ -82,7 +83,19 @@ def execute(a) -> dict:
             return record
         if a.action == "reconcile": return reconcile_inventory(root, read_json(a.inventory))
         if a.action == "profile": return ProjectAdapter(root, a.project, profiles=compiled["projects"]).describe()
-        if a.action == "run": return run_recipe(root, compiled, a.recipe, diagnosis=a.diagnosis, milestone=a.milestone)
+        if a.action == "run":
+            from .roadmap_records import file_binding
+            recovery = file_binding(root, a.recovery) if a.recovery else None
+            return run_recipe(root, compiled, a.recipe, diagnosis=a.diagnosis, milestone=a.milestone, recovery=recovery)
+        if a.action == "recovery":
+            from .roadmap_work import materialize
+            from .roadmap_runtime import recipe_scope
+            from .roadmap_persistence import recovery_packet, retained_history
+            ledger = BudgetLedger(root)
+            work_id, inherited = recipe_scope(root, compiled, a.recipe, a.milestone, ledger)
+            spec = materialize(root, compiled, a.milestone, a.recipe)
+            prior = retained_history(ledger.read()["attempts"], work_id, inherited)
+            return recovery_packet(work_id, spec["digest"], prior)
         if a.action == "accept-implementation":
             from .roadmap_acceptance import assemble_implementation
             return assemble_implementation(root, a.review, a.through)

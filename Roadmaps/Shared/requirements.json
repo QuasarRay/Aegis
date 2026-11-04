@@ -555,7 +555,7 @@
       ],
       "sha256": "016769eaedfc06818693302dd2f5b571104ded5ba6facf5416cd1d3a29b7af49",
       "source": "Blue_Prompt.md",
-      "title": "Appendix C. Finding resolutions F001–F048"
+      "title": "Appendix C. Finding resolutions F001\u2013F048"
     },
     {
       "disposition": "retain with adopted amendments",
@@ -570,7 +570,7 @@
       ],
       "sha256": "148f6c8bb579f124f176cb2205b3d170b2207ec97a546d70cf98afcf53e440fb",
       "source": "Blue_Prompt.md",
-      "title": "Appendix D. Preserved requirements U01–U22"
+      "title": "Appendix D. Preserved requirements U01\u2013U22"
     },
     {
       "disposition": "retain with adopted amendments",
@@ -2627,6 +2627,59 @@
       "sha256": "a5d61081e5a5fdfe8e80a91ad09cc4e40c7575eddce2711aca91f4e92ce12277",
       "source": "Roadmaps/Shared/ADOPTED_PLAN.md",
       "title": "Roadmap package completion is distinct from implementation of the three projects; launchers remain inactive."
+    },
+    {
+      "id": "AM20",
+      "title": "Persistent unlimited Aegis execution; enforced evidenced recovery and alternatives; preserve history, semantic safeguards and external authority.",
+      "source": "Roadmaps/Shared/AM20_PERSISTENT_EXECUTION.md",
+      "lines": [
+        1,
+        30
+      ],
+      "sha256": "ebb64afc2b63768a51d7a07d844e76654fe1d3823fc5a104bf3dec0a43f52da0",
+      "milestones": [
+        "A00",
+        "A01",
+        "A02",
+        "A03",
+        "A04",
+        "A05",
+        "A06",
+        "A07",
+        "A08",
+        "A09",
+        "A10",
+        "A11",
+        "A12",
+        "A13",
+        "A14",
+        "B00",
+        "B01",
+        "B02",
+        "B03",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B08",
+        "B09",
+        "B10",
+        "B11",
+        "D00",
+        "D01",
+        "D02",
+        "D03",
+        "D04",
+        "D05",
+        "D06",
+        "D07",
+        "D08",
+        "D09",
+        "D10",
+        "D11",
+        "D12"
+      ],
+      "disposition": "adopted user amendment; supersedes conflicting Aegis-owned limits while preserving external authority"
     }
   ],
   "schema": 1

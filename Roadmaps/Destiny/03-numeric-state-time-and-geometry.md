@@ -31,7 +31,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "AM16",
     "AM17",
     "AM18",
-    "AM19"
+    "AM19",
+    "AM20"
   ],
   "amendments": [
     "AM01",
@@ -52,7 +53,8 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "AM16",
     "AM17",
     "AM18",
-    "AM19"
+    "AM19",
+    "AM20"
   ],
   "dependencies": [
     "D02"
@@ -117,13 +119,14 @@ This is a maintained execution contract. Runtime progress is derived from curren
     "applicable_original_tests"
   ],
   "budget_policy": {
-    "max_attempts": 2,
-    "max_seconds_per_recipe": 900,
+    "max_attempts": null,
+    "max_seconds_per_recipe": null,
     "native_goal_token_budget": null,
     "monetary_cap": "unknown unless explicitly supplied and enforceable",
-    "retry": "diagnose and materially correct inputs before another failed attempt; preserve consumed attempts"
+    "retry": "AM20: no internal attempt/time ceiling; reconcile handles, record evidence and at least two supported recovery alternatives before retry; preserve all history and source/domain safeguards",
+    "execution_mode": "persistent_unlimited"
   },
-  "recovery": "Inspect live operation handle and verified process identity; reconcile transaction journal and current source hashes; preserve failures/reservations; resume only the same owned work or an explicitly amended unit.",
+  "recovery": "AM20 persistent recovery: reconcile the same durable handles, retain all history and native accounting, select an evidenced supported strategy from at least two alternatives; no blind duplicate dispatch, source/domain weakening or external authority evasion.",
   "rollback": "Restore the last committed record generation transactionally; retain failed receipts and spent budget. Revert only this unit's owned changes after checking concurrent edits; never reset branches or delete source references.",
   "completion": "ALL declared outputs and gates have current same-candidate receipts AND all dependencies are satisfied AND no required unresolved decision remains; no status prose or marker substitutes.",
   "references": [
@@ -186,3 +189,6 @@ Inspect live operation handle and verified process identity; reconcile transacti
 Record source facts, assumptions, alternatives, decision, expected evidence and unresolved questions in a concise decision record. Preserve independent ready work when a required human decision blocks one unit. The native objective remains the complete adopted project contract.
 
 Write paths are repository-relative allow patterns; protected source/test/reference paths override them. Original-test byte changes need an exact separate decision. Expand adapter or package scope only through an authorized contract amendment. Every consumed capability is bound to its listed provider milestone and current evidence; finer capability receipts can be adopted explicitly without waiting for an unrelated whole project.
+
+
+AM20 governs execution and recovery: no Aegis-owned attempt or job wall-clock ceiling. See [persistent execution policy](../Shared/AM20_PERSISTENT_EXECUTION.md).

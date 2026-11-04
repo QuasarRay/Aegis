@@ -1,64 +1,126 @@
 {
   "$defs": {
     "BudgetReservation": {
-      "additionalProperties": false,
-      "properties": {
-        "attempt": {
-          "minimum": 0,
-          "type": "integer"
+      "anyOf": [
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attempt": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "consumed": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "inputs": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reconciliation": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reserved": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "schema": {
+              "const": 1
+            },
+            "status": {
+              "enum": [
+                "RESERVED",
+                "SUCCESS",
+                "FAILED",
+                "INTERRUPTED"
+              ]
+            },
+            "unknown_usage": {
+              "type": "boolean"
+            },
+            "work_id": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema",
+            "id",
+            "work_id",
+            "inputs",
+            "reserved",
+            "consumed",
+            "unknown_usage",
+            "attempt",
+            "status",
+            "reconciliation"
+          ],
+          "type": "object"
         },
-        "consumed": {
-          "minimum": 0,
-          "type": "integer"
-        },
-        "id": {
-          "minLength": 1,
-          "type": "string"
-        },
-        "inputs": {
-          "minLength": 1,
-          "type": "string"
-        },
-        "reconciliation": {
-          "minLength": 1,
-          "type": "string"
-        },
-        "reserved": {
-          "minimum": 0,
-          "type": "integer"
-        },
-        "schema": {
-          "const": 1
-        },
-        "status": {
-          "enum": [
-            "RESERVED",
-            "SUCCESS",
-            "FAILED",
-            "INTERRUPTED"
-          ]
-        },
-        "unknown_usage": {
-          "type": "boolean"
-        },
-        "work_id": {
-          "minLength": 1,
-          "type": "string"
+        {
+          "additionalProperties": false,
+          "properties": {
+            "attempt": {
+              "minimum": 0,
+              "type": "integer"
+            },
+            "consumed": {
+              "type": "null"
+            },
+            "id": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "inputs": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reconciliation": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "reserved": {
+              "type": "null"
+            },
+            "schema": {
+              "const": 2
+            },
+            "status": {
+              "enum": [
+                "RESERVED",
+                "SUCCESS",
+                "FAILED",
+                "INTERRUPTED"
+              ]
+            },
+            "unknown_usage": {
+              "type": "boolean"
+            },
+            "work_id": {
+              "minLength": 1,
+              "type": "string"
+            }
+          },
+          "required": [
+            "schema",
+            "id",
+            "work_id",
+            "inputs",
+            "reserved",
+            "consumed",
+            "unknown_usage",
+            "attempt",
+            "status",
+            "reconciliation"
+          ],
+          "type": "object"
         }
-      },
-      "required": [
-        "schema",
-        "id",
-        "work_id",
-        "inputs",
-        "reserved",
-        "consumed",
-        "unknown_usage",
-        "attempt",
-        "status",
-        "reconciliation"
-      ],
-      "type": "object"
+      ]
     },
     "CapabilitySnapshot": {
       "additionalProperties": false,

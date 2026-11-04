@@ -4,7 +4,8 @@ aegis-roadmap:
   stage: test
   tags: [aegis-dagger-0.21.11]
   resource_group: aegis-coordinated-workspace
-  timeout: 20m
+  # AM20: no Aegis-owned job deadline. Runner/service limits remain external;
+  # A12 must qualify durable engine-handle/checkpoint recovery across them.
   script:
     - python -B Roadmaps/Shared/ci/runner.py
   artifacts:

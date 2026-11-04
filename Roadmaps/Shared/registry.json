@@ -18,7 +18,8 @@
     "AM16",
     "AM17",
     "AM18",
-    "AM19"
+    "AM19",
+    "AM20"
   ],
   "completion_milestones": [
     "A13",
@@ -239,104 +240,117 @@
         "scripts/selftest.py"
       ],
       "kind": "local_validation",
-      "max_attempts": 2,
-      "max_seconds": 900
+      "max_attempts": null,
+      "max_seconds": null,
+      "execution_mode": "persistent_unlimited"
     },
     "cgp.revalidate": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "global completion barrier and all affected tests/proofs/packages",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "native.acceptance": {
-      "activation": "Fixed read-only native acceptance producer with exact current protocol and completed adopted Plan source, real Goal/configuration observations, reservation and bounded output.",
+      "activation": "Fixed read-only native acceptance producer with exact current protocol and completed adopted Plan source, real Goal/configuration observations, reservation and archived output with bounded previews.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 180,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "qualify real Goal/Plan reads and actual active-host settings without new inference or native Goal mutation",
-      "status": "REQUIRES_CURRENT_AEGIS_A04_RECEIPTS"
+      "status": "REQUIRES_CURRENT_AEGIS_A04_RECEIPTS",
+      "execution_mode": "persistent_unlimited"
     },
     "native.protocol": {
-      "activation": "Fixed installed-executable export; preserve exact schemas, binary identity, current native ownership, reservation and complete bounded output before capability credit.",
+      "activation": "Fixed installed-executable export; preserve exact schemas, binary identity, current native ownership, reservation and complete archived output with bounded previews before capability credit.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 120,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "pin complete installed Codex app-server method and notification schemas",
-      "status": "QUALIFIED_AEGIS_A04_SCHEMA_EXPORT"
+      "status": "QUALIFIED_AEGIS_A04_SCHEMA_EXPORT",
+      "execution_mode": "persistent_unlimited"
     },
     "original.tests": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "complete applicable unchanged original suites against installed candidate",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "production.build": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "actual production artifact modes with pinned toolchains",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "proof.bolero-kani": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "qualified faithful Bolero generators routed to Kani",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "proof.kani": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "exact Kani harness selection with production linkage, assertions and covers",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "proof.python": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "report-selected qualified actual-Python backend and explicit evidence strength",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "python.qualify": {
-      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and finite reservation required.",
+      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and persistent accountable operation required.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "Positive and deliberately wrong assertions against unchanged production imports; no domain proof promotion",
-      "status": "IMPLEMENTED_QUALIFICATION_ONLY"
+      "status": "IMPLEMENTED_QUALIFICATION_ONLY",
+      "execution_mode": "persistent_unlimited"
     },
     "python.route": {
-      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and finite reservation required.",
+      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and persistent accountable operation required.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "Complete maintained Python source and domain-obligation routing with unsupported semantics retained",
-      "status": "IMPLEMENTED_QUALIFICATION_ONLY"
+      "status": "IMPLEMENTED_QUALIFICATION_ONLY",
+      "execution_mode": "persistent_unlimited"
     },
     "python.toolchain": {
-      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and finite reservation required.",
+      "activation": "Fixed source-owned A09 producer; exact source/toolchain hashes, active native owner and persistent accountable operation required.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "Install exact hashed Nagini wheels and JRE in a private workspace toolchain; no global installation",
-      "status": "IMPLEMENTED_QUALIFICATION_ONLY"
+      "status": "IMPLEMENTED_QUALIFICATION_ONLY",
+      "execution_mode": "persistent_unlimited"
     },
     "release.accept": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "same-candidate packaging, architecture, remote integration and operational closure",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     },
     "roadmap.tests": {
       "argv": [
@@ -352,8 +366,9 @@
         "-q"
       ],
       "kind": "local_validation",
-      "max_attempts": 2,
-      "max_seconds": 180
+      "max_attempts": null,
+      "max_seconds": null,
+      "execution_mode": "persistent_unlimited"
     },
     "roadmap.validate": {
       "argv": [
@@ -362,16 +377,18 @@
         "scripts/validate_roadmaps.py"
       ],
       "kind": "local_validation",
-      "max_attempts": 2,
-      "max_seconds": 120
+      "max_attempts": null,
+      "max_seconds": null,
+      "execution_mode": "persistent_unlimited"
     },
     "source.reconcile": {
       "activation": "Materialize reviewed argv, exact selection, tool/input hashes, authorization and reservation before execution; prose cannot execute.",
       "kind": "project_specification",
-      "max_attempts": 2,
-      "max_seconds": 900,
+      "max_attempts": null,
+      "max_seconds": null,
       "purpose": "compiler-backed inventory and bidirectional declarations/configurations",
-      "status": "REQUIRES_PROJECT_QUALIFICATION"
+      "status": "REQUIRES_PROJECT_QUALIFICATION",
+      "execution_mode": "persistent_unlimited"
     }
   },
   "schema": 1

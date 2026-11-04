@@ -86,7 +86,9 @@ def observe(root: Path, relative: str) -> dict:
                                                   "example": str(result.example) if result.example else None})
                 return result
 
-        theorems = list(ObservedTheorem.from_astroid(module=module, timeout=15.0))
+        # The pinned Deal implementation converts seconds to Z3 milliseconds.
+        # Z3's supported zero setting disables its wall-clock timeout.
+        theorems = list(ObservedTheorem.from_astroid(module=module, timeout=0.0))
         require([t.name for t in theorems] == [allowed[relative]], "Deal omitted/added/reordered qualification functions")
         theorem = theorems[0]
         proof = theorem.prove()

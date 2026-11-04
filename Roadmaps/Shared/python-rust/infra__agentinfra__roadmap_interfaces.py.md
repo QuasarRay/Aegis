@@ -2,19 +2,19 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 304. Inventory digest: `fc09c521a72d2b840bfe9adb36bb4c684430ebb5b4bd20e9215e3788c8c802c9`.
+Files: 1. Behavioral units: 367. Inventory digest: `72ae96dceedf0234ed426033cdcf97667f1d95a52ea8cf97f110c865a72a28b6`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_interfaces.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_interfaces.py:1`; AST `0b820ec1d8736abd4f62ceb51353f031ad656ac941e3ead241de01a1869311c1`.
+Source: `infra/agentinfra/roadmap_interfaces.py:1`; AST `bc7a92e692252f0e4cf59a8d83ad581a44275fe906e566820548111f2e0ae023`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: GitInventory, INTERFACE_VERSION, KEYWORDS, LAYERS, Path, _compatible, _exports, _module, _public, _schema_vocabulary, _signature, after, any, ast, baseline, baseline_ref, before, bool, bytes, candidate, changes, child, collection, compile, confined_path, constants, context, current, d, definition, dependencies, dependency, dict, digest, entry, exported, exports, field, fields, file_binding, getattr, git, guards, importlib, int, isinstance, k, key, layer, len, list, loads, m, method, methods, module, modules, n, name, names, next, node, now, observe_interfaces, old, old_schemas, owners, package, path, paths, predicates, previous, previous_protocols, raw, read_json, require, result, root, schema, schema_binding, schemas, set, signature, sorted, statements, str, sys, target, tree, tuple, type, v, value, version, visit, zip. Outputs/bindings: INTERFACE_VERSION, LAYERS, after, baseline, before, candidate, changes, child, collection, constants, context, current, d, definition, dependencies, dependency, entry, exported, exports, field, fields, git, k, key, layer, m, method, methods, module, modules, n, name, names, node, now, old, old_schemas, owners, package, path, paths, predicates, previous_protocols, result, root, schema, schema_binding, schemas, signature, target, tree, v, value, version.
-Calls/effect boundaries: (root / 'infra/agentinfra').rglob, GitInventory, LAYERS.items, Path, Path(sys.executable).read_bytes, _compatible, _exports, _module, _public, _schema_vocabulary, _signature, after.get, after.get('methods', {}).get, after.items, any, ast.dump, ast.iter_fields, ast.literal_eval, ast.parse, ast.unparse, ast.walk, before.get, before.items, before['methods'].items, bool, changes.append, compile, confined_path, confined_path(root, path, must_exist=True).read_bytes, current['record_protocols'].get, definition.get, definition.get('properties', {}).get, definition.get('properties', {}).get('schema', {}).get, dependencies.add, dependencies.update, dict, digest, entry['path'].endswith, entry['path'].startswith, exports.setdefault, exports.setdefault(node.name, []).append, file_binding, getattr, git.blob, git.read, git.read('rev-parse', '--verify', '--end-of-options', baseline_ref + '^{commit}').strip, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip, git.tree, importlib.util.resolve_name, isinstance, key.endswith, key.removesuffix, len, list, loads, methods.setdefault, methods.setdefault(method.name, []).append, module['exports'].items, name.endswith, name.rpartition, name.startswith, next, now[name]['exports'].get, observe_interfaces, old.items, old_schemas.decode, package['declared_versions'].get, path.relative_to, path.relative_to(root).as_posix, path.removeprefix, path.removeprefix('infra/agentinfra/').removesuffix, path.removeprefix('infra/agentinfra/').removesuffix('.py').replace, previous_protocols.items, read_json, require, root.resolve, schema.get, schema.get(collection, {}).values, schemas['$defs'].items, set, sorted, type, visit, zip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: GitInventory, INTERFACE_VERSION, KEYWORDS, LAYERS, Path, _compatible, _exports, _module, _public, _schema_vocabulary, _signature, after, after_fields, all, allowed, any, ast, baseline, baseline_ref, before, before_fields, bool, bytes, candidate, change, changes, child, collection, compile, confined_path, constants, context, current, d, decision, definition, dependencies, dependency, dict, digest, entry, exported, exports, f, field, fields, file_binding, getattr, git, guards, importlib, int, isinstance, k, key, layer, len, list, loads, m, method, methods, module, modules, n, name, names, next, node, now, observation, observe_interfaces, old, old_schemas, owners, package, path, paths, policy_binding, predicates, previous, previous_protocols, raw, read_json, require, result, root, schema, schema_binding, schemas, set, signature, sorted, source, statements, str, supported, sys, target, tree, tuple, type, v, value, variants, versions, visit, zip. Outputs/bindings: INTERFACE_VERSION, LAYERS, after, after_fields, allowed, baseline, before, before_fields, candidate, change, changes, child, collection, constants, context, current, d, definition, dependencies, dependency, entry, exported, exports, f, field, fields, git, k, key, layer, m, method, methods, module, modules, n, name, names, node, now, old, old_schemas, owners, package, path, paths, predicates, previous_protocols, result, root, schema, schema_binding, schemas, signature, source, supported, target, tree, v, value, variants, versions.
+Calls/effect boundaries: (root / 'infra/agentinfra').rglob, GitInventory, LAYERS.items, Path, Path(sys.executable).read_bytes, _compatible, _exports, _module, _public, _schema_vocabulary, _signature, after.get, after.get('methods', {}).get, after.items, all, any, ast.dump, ast.iter_fields, ast.literal_eval, ast.parse, ast.unparse, ast.walk, before.get, before.items, before['methods'].items, bool, change.get, changes.append, compile, confined_path, confined_path(root, path, must_exist=True).read_bytes, current['record_protocols'].get, decision.get, decision['rationale'].strip, definition.get, dependencies.add, dependencies.update, dict, digest, entry['path'].endswith, entry['path'].startswith, exports.setdefault, exports.setdefault(node.name, []).append, file_binding, getattr, git.blob, git.read, git.read('rev-parse', '--verify', '--end-of-options', baseline_ref + '^{commit}').strip, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip, git.tree, importlib.util.resolve_name, isinstance, key.endswith, key.removesuffix, len, list, loads, methods.setdefault, methods.setdefault(method.name, []).append, module['exports'].items, name.endswith, name.rpartition, name.startswith, next, now[name]['exports'].get, observation.get, observe_interfaces, old.items, old_schemas.decode, package['declared_versions'].get, path.relative_to, path.relative_to(root).as_posix, path.removeprefix, path.removeprefix('infra/agentinfra/').removesuffix, path.removeprefix('infra/agentinfra/').removesuffix('.py').replace, policy_binding, previous_protocols.items, read_json, require, root.resolve, schema.get, schema.get(collection, {}).values, schemas['$defs'].items, set, sorted, type, v.get, v.get('properties', {}).get, v.get('properties', {}).get('schema', {}).get, visit, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -34,7 +34,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -54,7 +54,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -74,7 +74,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Import evaluation at root.body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -94,7 +94,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Import evaluation at root.body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -114,7 +114,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -134,7 +134,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Import evaluation at root.body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -154,7 +154,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -174,7 +174,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -194,7 +194,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -214,7 +214,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: INTERFACE_VERSION.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -228,13 +228,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::root.body[10]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:20`; AST `09b3d5aa4ce77f0345eabc470219d281d48e448df05948f676a25e7030c95365`.
+Source: `infra/agentinfra/roadmap_interfaces.py:20`; AST `cfcacd143812bade37d6154e053e3bd0b14a18ab75c1e062023ebe94fd59f73b`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: LAYERS.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -254,7 +254,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs an
 
 Inputs: ast, d, dict, node, type. Outputs/bindings: d.
 Calls/effect boundaries: ast.dump, ast.unparse, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -274,7 +274,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: ast, d, node, type. Outputs/bindings: d.
 Calls/effect boundaries: ast.dump, ast.unparse, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[11].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -294,7 +294,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: node, type. Outputs/bindings: (none).
 Calls/effect boundaries: type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[11].body[0].value.values[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -314,7 +314,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, node. Outputs/bindings: (none).
 Calls/effect boundaries: ast.dump.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[11].body[0].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -334,7 +334,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, node. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[11].body[0].value.values[2].body; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -354,7 +354,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: ast, d, node. Outputs/bindings: d.
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[11].body[0].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -374,7 +374,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, d. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[11].body[0].value.values[3].elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -394,7 +394,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs an
 
 Inputs: bool, method, name, str. Outputs/bindings: (none).
 Calls/effect boundaries: name.endswith, name.startswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[12]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -414,7 +414,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: method, name. Outputs/bindings: (none).
 Calls/effect boundaries: name.endswith, name.startswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[12].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -434,7 +434,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: name. Outputs/bindings: (none).
 Calls/effect boundaries: name.startswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[0].value.values[0].operand; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -454,7 +454,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: name. Outputs/bindings: (none).
 Calls/effect boundaries: name.startswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[0].value.values[1].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -474,7 +474,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: name. Outputs/bindings: (none).
 Calls/effect boundaries: name.endswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[0].value.values[1].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -494,7 +494,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs an
 
 Inputs: _public, _signature, ast, context, dict, exports, field, fields, getattr, guards, isinstance, key, list, method, methods, n, node, predicates, statements, str, tree, tuple, type, value, visit. Outputs/bindings: context, exports, field, fields, key, method, methods, n, node, predicates, value.
 Calls/effect boundaries: _public, _signature, ast.dump, ast.iter_fields, ast.unparse, dict, exports.setdefault, exports.setdefault(node.name, []).append, getattr, isinstance, list, methods.setdefault, methods.setdefault(method.name, []).append, type, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[13]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -514,7 +514,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: exports.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -534,7 +534,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs an
 
 Inputs: _public, _signature, ast, context, dict, exports, field, fields, getattr, guards, isinstance, key, list, method, methods, n, node, predicates, statements, str, tuple, type, value, visit. Outputs/bindings: context, field, fields, key, method, methods, n, node, predicates, value.
 Calls/effect boundaries: _public, _signature, ast.dump, ast.iter_fields, ast.unparse, dict, exports.setdefault, exports.setdefault(node.name, []).append, getattr, isinstance, list, methods.setdefault, methods.setdefault(method.name, []).append, type, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[13].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -554,7 +554,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: _public, _signature, ast, context, dict, exports, field, fields, getattr, guards, isinstance, key, list, method, methods, n, node, predicates, statements, type, value, visit. Outputs/bindings: context, field, fields, key, method, methods, n, node, predicates, value.
 Calls/effect boundaries: _public, _signature, ast.dump, ast.iter_fields, ast.unparse, dict, exports.setdefault, exports.setdefault(node.name, []).append, getattr, isinstance, list, methods.setdefault, methods.setdefault(method.name, []).append, type, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[1].body[0]; no call, error or mutation may be omitted. Iteration: node in statements
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -574,7 +574,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: _public, _signature, ast, context, dict, exports, field, fields, getattr, guards, isinstance, key, list, method, methods, n, node, predicates, type, value, visit. Outputs/bindings: context, field, fields, key, method, methods, n, predicates, value.
 Calls/effect boundaries: _public, _signature, ast.dump, ast.iter_fields, ast.unparse, dict, exports.setdefault, exports.setdefault(node.name, []).append, getattr, isinstance, list, methods.setdefault, methods.setdefault(method.name, []).append, type, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0]; no call, error or mutation may be omitted. Condition: isinstance(node, (ast.FunctionDef, ast.AsyncFunctionDef))
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -594,7 +594,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, node. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -614,7 +614,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: _public, _signature, dict, exports, guards, list, node. Outputs/bindings: (none).
 Calls/effect boundaries: _public, _signature, dict, exports.setdefault, exports.setdefault(node.name, []).append, list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0].body[0]; no call, error or mutation may be omitted. Condition: _public(node.name)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -634,7 +634,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _public, node. Outputs/bindings: (none).
 Calls/effect boundaries: _public.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].body[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -654,7 +654,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _signature, dict, exports, guards, list, node. Outputs/bindings: (none).
 Calls/effect boundaries: _signature, dict, exports.setdefault, exports.setdefault(node.name, []).append, list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[1].body[0].body[0].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -674,7 +674,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _signature, dict, exports, guards, list, node. Outputs/bindings: (none).
 Calls/effect boundaries: _signature, dict, exports.setdefault, exports.setdefault(node.name, []).append, list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -694,7 +694,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: exports, node. Outputs/bindings: (none).
 Calls/effect boundaries: exports.setdefault.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].body[0].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -714,7 +714,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _signature, dict, guards, list, node. Outputs/bindings: (none).
 Calls/effect boundaries: _signature, dict, list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].body[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -734,7 +734,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _signature, node. Outputs/bindings: (none).
 Calls/effect boundaries: _signature.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].body[0].body[0].value.args[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -754,7 +754,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: guards, list. Outputs/bindings: (none).
 Calls/effect boundaries: list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].body[0].body[0].value.args[0].keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -774,7 +774,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: _public, _signature, ast, context, exports, field, fields, getattr, guards, isinstance, key, list, method, methods, n, node, predicates, type, value, visit. Outputs/bindings: context, field, fields, key, method, methods, n, predicates, value.
 Calls/effect boundaries: _public, _signature, ast.dump, ast.iter_fields, ast.unparse, exports.setdefault, exports.setdefault(node.name, []).append, getattr, isinstance, list, methods.setdefault, methods.setdefault(method.name, []).append, type, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0].orelse[0]; no call, error or mutation may be omitted. Condition: isinstance(node, ast.ClassDef)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -794,7 +794,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, node. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -814,7 +814,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: _public, node. Outputs/bindings: (none).
 Calls/effect boundaries: _public.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[0]; no call, error or mutation may be omitted. Condition: not _public(node.name)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -834,7 +834,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _public, node. Outputs/bindings: (none).
 Calls/effect boundaries: _public.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[0].test.operand; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -854,7 +854,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Continue evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -874,7 +874,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: methods.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -894,7 +894,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: _public, _signature, ast, isinstance, method, methods, node. Outputs/bindings: method.
 Calls/effect boundaries: _public, _signature, isinstance, methods.setdefault, methods.setdefault(method.name, []).append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2]; no call, error or mutation may be omitted. Iteration: method in node.body
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -914,7 +914,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: _public, _signature, ast, isinstance, method, methods. Outputs/bindings: (none).
 Calls/effect boundaries: _public, _signature, isinstance, methods.setdefault, methods.setdefault(method.name, []).append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0]; no call, error or mutation may be omitted. Condition: isinstance(method, (ast.FunctionDef, ast.AsyncFunctionDef)) and _public(method.name, method=True)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -934,7 +934,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, method. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0].test.values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -954,7 +954,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _public, method. Outputs/bindings: (none).
 Calls/effect boundaries: _public.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0].test.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -974,7 +974,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _signature, method, methods. Outputs/bindings: (none).
 Calls/effect boundaries: _signature, methods.setdefault, methods.setdefault(method.name, []).append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -994,7 +994,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _signature, method, methods. Outputs/bindings: (none).
 Calls/effect boundaries: _signature, methods.setdefault, methods.setdefault(method.name, []).append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1014,7 +1014,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: method, methods. Outputs/bindings: (none).
 Calls/effect boundaries: methods.setdefault.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1034,7 +1034,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _signature, method. Outputs/bindings: (none).
 Calls/effect boundaries: _signature.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[2].body[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1054,7 +1054,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _public, ast, isinstance, n, node. Outputs/bindings: fields, n.
 Calls/effect boundaries: _public, ast.unparse, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1074,7 +1074,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: _public, ast, isinstance, n, node. Outputs/bindings: n.
 Calls/effect boundaries: _public, ast.unparse, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1094,7 +1094,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, n. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3].value.elt.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1114,7 +1114,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, n. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3].value.elt.values[2].body; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1134,7 +1134,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, n. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3].value.generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1154,7 +1154,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, n. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3].value.generators[0].ifs[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1174,7 +1174,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _public, n. Outputs/bindings: (none).
 Calls/effect boundaries: _public.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[3].value.generators[0].ifs[0].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1194,7 +1194,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: ast, exports, fields, guards, list, methods, n, node. Outputs/bindings: n.
 Calls/effect boundaries: ast.unparse, exports.setdefault, exports.setdefault(node.name, []).append, list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1214,7 +1214,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, exports, fields, guards, list, methods, n, node. Outputs/bindings: n.
 Calls/effect boundaries: ast.unparse, exports.setdefault, exports.setdefault(node.name, []).append, list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1234,7 +1234,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: exports, node. Outputs/bindings: (none).
 Calls/effect boundaries: exports.setdefault.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1254,7 +1254,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: ast, n, node. Outputs/bindings: n.
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value.args[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1274,7 +1274,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, n. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value.args[0].values[1].elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1294,7 +1294,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: ast, n, node. Outputs/bindings: n.
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value.args[0].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1314,7 +1314,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, n. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value.args[0].values[2].elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1334,7 +1334,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: guards, list. Outputs/bindings: (none).
 Calls/effect boundaries: list.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].body[4].value.args[0].values[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1354,7 +1354,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: ast, getattr, isinstance, key, node. Outputs/bindings: key, predicates.
 Calls/effect boundaries: ast.dump, getattr, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1374,7 +1374,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. ordered evaluation into an
 
 Inputs: ast, getattr, isinstance, key, node. Outputs/bindings: key.
 Calls/effect boundaries: ast.dump, getattr, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered DictComp evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1394,7 +1394,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, getattr, key, node. Outputs/bindings: (none).
 Calls/effect boundaries: ast.dump, getattr.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[0].value.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1414,7 +1414,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: getattr, key, node. Outputs/bindings: (none).
 Calls/effect boundaries: getattr.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[0].value.value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1434,7 +1434,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, getattr, isinstance, key, node. Outputs/bindings: (none).
 Calls/effect boundaries: getattr, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[0].value.generators[0].ifs[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1454,7 +1454,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: getattr, key, node. Outputs/bindings: (none).
 Calls/effect boundaries: getattr.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[0].value.generators[0].ifs[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1474,7 +1474,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: ast, context, field, guards, isinstance, list, n, node, predicates, type, value, visit. Outputs/bindings: context, field, n, value.
 Calls/effect boundaries: ast.iter_fields, isinstance, type, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1]; no call, error or mutation may be omitted. Iteration: (field, value) in ast.iter_fields(node)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1494,7 +1494,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, node. Outputs/bindings: (none).
 Calls/effect boundaries: ast.iter_fields.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1514,7 +1514,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: field, guards, node, predicates, type. Outputs/bindings: context.
 Calls/effect boundaries: type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1534,7 +1534,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: node, type. Outputs/bindings: (none).
 Calls/effect boundaries: type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[0].value.right.elts[0].values[0].value.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1554,7 +1554,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: ast, context, isinstance, list, n, value, visit. Outputs/bindings: n.
 Calls/effect boundaries: isinstance, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1]; no call, error or mutation may be omitted. Condition: isinstance(value, list)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1574,7 +1574,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: isinstance, list, value. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1594,7 +1594,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: ast, context, isinstance, n, value, visit. Outputs/bindings: n.
 Calls/effect boundaries: isinstance, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1614,7 +1614,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, context, isinstance, n, value, visit. Outputs/bindings: n.
 Calls/effect boundaries: isinstance, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1634,7 +1634,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: ast, isinstance, n, value. Outputs/bindings: n.
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1654,7 +1654,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, n. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].body[0].value.args[0].generators[0].ifs[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1674,7 +1674,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: ast, context, isinstance, value, visit. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].orelse[0]; no call, error or mutation may be omitted. Condition: isinstance(value, (ast.stmt, ast.ExceptHandler, ast.match_case))
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1694,7 +1694,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, value. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].orelse[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1714,7 +1714,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: context, value, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].orelse[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1734,7 +1734,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: context, value, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[1].body[0].body[0].orelse[0].orelse[1].body[1].orelse[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1754,7 +1754,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: tree, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[13].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1774,7 +1774,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: tree, visit. Outputs/bindings: (none).
 Calls/effect boundaries: visit.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[13].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1794,7 +1794,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: exports. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[13].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1814,7 +1814,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs an
 
 Inputs: LAYERS, _exports, ast, bytes, compile, constants, dependencies, dependency, dict, digest, importlib, isinstance, key, layer, len, n, name, names, node, owners, package, path, raw, require, set, sorted, str, target, tree. Outputs/bindings: constants, dependencies, dependency, key, layer, n, name, names, node, owners, package, target, tree.
 Calls/effect boundaries: LAYERS.items, _exports, ast.literal_eval, ast.parse, ast.walk, compile, dependencies.add, dependencies.update, digest, importlib.util.resolve_name, isinstance, key.endswith, key.removesuffix, len, name.rpartition, path.removeprefix, path.removeprefix('infra/agentinfra/').removesuffix, path.removeprefix('infra/agentinfra/').removesuffix('.py').replace, require, set, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[14]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1834,7 +1834,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: ast, path, raw. Outputs/bindings: tree.
 Calls/effect boundaries: ast.parse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1854,7 +1854,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, path, raw. Outputs/bindings: (none).
 Calls/effect boundaries: ast.parse.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1874,7 +1874,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: compile, path, tree. Outputs/bindings: (none).
 Calls/effect boundaries: compile.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1894,7 +1894,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: compile, path, tree. Outputs/bindings: (none).
 Calls/effect boundaries: compile.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1914,7 +1914,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: path. Outputs/bindings: key.
 Calls/effect boundaries: path.removeprefix, path.removeprefix('infra/agentinfra/').removesuffix, path.removeprefix('infra/agentinfra/').removesuffix('.py').replace.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1934,7 +1934,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.removeprefix, path.removeprefix('infra/agentinfra/').removesuffix, path.removeprefix('infra/agentinfra/').removesuffix('.py').replace.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1954,7 +1954,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.removeprefix, path.removeprefix('infra/agentinfra/').removesuffix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[2].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1974,7 +1974,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: path. Outputs/bindings: (none).
 Calls/effect boundaries: path.removeprefix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[2].value.func.value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -1994,7 +1994,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: LAYERS, key, layer, names. Outputs/bindings: layer, names, owners.
 Calls/effect boundaries: LAYERS.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2014,7 +2014,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: LAYERS, key, layer, names. Outputs/bindings: layer, names.
 Calls/effect boundaries: LAYERS.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[14].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2034,7 +2034,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: LAYERS. Outputs/bindings: (none).
 Calls/effect boundaries: LAYERS.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[3].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2054,7 +2054,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: len, owners, path, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2074,7 +2074,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: len, owners, path, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2094,7 +2094,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: len, owners. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[4].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2114,7 +2114,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: key. Outputs/bindings: name.
 Calls/effect boundaries: key.removesuffix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2134,7 +2134,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: key. Outputs/bindings: (none).
 Calls/effect boundaries: key.removesuffix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[5].value.orelse.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2154,7 +2154,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: key, name. Outputs/bindings: package.
 Calls/effect boundaries: key.endswith, name.rpartition.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2174,7 +2174,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: key. Outputs/bindings: (none).
 Calls/effect boundaries: key.endswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[6].value.test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2194,7 +2194,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: name. Outputs/bindings: (none).
 Calls/effect boundaries: name.rpartition.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[6].value.orelse.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2214,7 +2214,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: set. Outputs/bindings: dependencies.
 Calls/effect boundaries: set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2234,7 +2234,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2254,7 +2254,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: ast, dependencies, dependency, importlib, isinstance, n, node, package, tree. Outputs/bindings: dependency, n, node.
 Calls/effect boundaries: ast.walk, dependencies.add, dependencies.update, importlib.util.resolve_name, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[14].body[8]; no call, error or mutation may be omitted. Iteration: node in ast.walk(tree)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2274,7 +2274,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, tree. Outputs/bindings: (none).
 Calls/effect boundaries: ast.walk.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[8].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2294,7 +2294,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: ast, dependencies, dependency, importlib, isinstance, n, node, package. Outputs/bindings: dependency, n.
 Calls/effect boundaries: dependencies.add, dependencies.update, importlib.util.resolve_name, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[14].body[8].body[0]; no call, error or mutation may be omitted. Condition: isinstance(node, ast.ImportFrom)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2314,7 +2314,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, node. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[8].body[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2334,7 +2334,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: importlib, node, package. Outputs/bindings: dependency.
 Calls/effect boundaries: importlib.util.resolve_name.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[8].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2354,7 +2354,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: importlib, node, package. Outputs/bindings: (none).
 Calls/effect boundaries: importlib.util.resolve_name.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[8].body[0].body[0].value.body; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2374,7 +2374,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: dependencies, dependency. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.add.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[14].body[8].body[0].body[1]; no call, error or mutation may be omitted. Condition: dependency
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2394,7 +2394,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: dependencies, dependency. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.add.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[8].body[0].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2414,7 +2414,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: dependencies, dependency. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.add.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[8].body[0].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2434,7 +2434,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: ast, dependencies, isinstance, n, node. Outputs/bindings: n.
 Calls/effect boundaries: dependencies.update, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[14].body[8].body[0].orelse[0]; no call, error or mutation may be omitted. Condition: isinstance(node, ast.Import)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2454,7 +2454,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, node. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[8].body[0].orelse[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2474,7 +2474,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: dependencies, n, node. Outputs/bindings: n.
 Calls/effect boundaries: dependencies.update.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[14].body[8].body[0].orelse[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2494,7 +2494,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: dependencies, n, node. Outputs/bindings: n.
 Calls/effect boundaries: dependencies.update.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[8].body[0].orelse[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2514,7 +2514,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. lazy iterator with capture
 
 Inputs: n, node. Outputs/bindings: n.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered GeneratorExp evaluation at root.body[14].body[8].body[0].orelse[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2534,7 +2534,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: (none). Outputs/bindings: constants.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2554,7 +2554,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: ast, constants, isinstance, node, target, tree. Outputs/bindings: node, target.
 Calls/effect boundaries: ast.literal_eval, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[14].body[10]; no call, error or mutation may be omitted. Iteration: node in tree.body
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2574,7 +2574,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: ast, constants, isinstance, node, target. Outputs/bindings: target.
 Calls/effect boundaries: ast.literal_eval, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[14].body[10].body[0]; no call, error or mutation may be omitted. Condition: isinstance(node, ast.Assign)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2594,7 +2594,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, node. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[10].body[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2614,7 +2614,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: ast, constants, isinstance, node, target. Outputs/bindings: target.
 Calls/effect boundaries: ast.literal_eval, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[14].body[10].body[0].body[0]; no call, error or mutation may be omitted. Iteration: target in node.targets
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2634,7 +2634,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: ast, constants, isinstance, node, target. Outputs/bindings: (none).
 Calls/effect boundaries: ast.literal_eval, isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[14].body[10].body[0].body[0].body[0]; no call, error or mutation may be omitted. Condition: isinstance(target, ast.Name) and target.id in {'INTERFACE_VERSION', '__version__'}
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2654,7 +2654,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, isinstance, target. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[10].body[0].body[0].body[0].test.values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2674,7 +2674,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: ast, constants, node, target. Outputs/bindings: (none).
 Calls/effect boundaries: ast.literal_eval.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[14].body[10].body[0].body[0].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2694,7 +2694,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: ast, node. Outputs/bindings: (none).
 Calls/effect boundaries: ast.literal_eval.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[10].body[0].body[0].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2714,7 +2714,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _exports, constants, dependencies, digest, name, owners, path, raw, sorted, tree. Outputs/bindings: (none).
 Calls/effect boundaries: _exports, digest, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[14].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2734,7 +2734,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: digest, raw. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[11].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2754,7 +2754,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _exports, tree. Outputs/bindings: (none).
 Calls/effect boundaries: _exports.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[11].value.values[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2774,7 +2774,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: dependencies, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[14].body[11].value.values[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2794,7 +2794,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs an
 
 Inputs: KEYWORDS, _schema_vocabulary, child, collection, dict, isinstance, key, require, schema, set. Outputs/bindings: child, collection, key.
 Calls/effect boundaries: _schema_vocabulary, isinstance, require, schema.get, schema.get(collection, {}).values, set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[15]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2814,7 +2814,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: KEYWORDS, dict, isinstance, require, schema, set. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, require, set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[15].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2834,7 +2834,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: KEYWORDS, dict, isinstance, require, schema, set. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, require, set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2854,7 +2854,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: dict, isinstance, schema. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[0].value.args[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2874,7 +2874,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: schema, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[0].value.args[0].values[1].operand.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2894,7 +2894,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: _schema_vocabulary, child, collection, schema. Outputs/bindings: child, collection.
 Calls/effect boundaries: _schema_vocabulary, schema.get, schema.get(collection, {}).values.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[15].body[1]; no call, error or mutation may be omitted. Iteration: collection in ('$defs', 'properties')
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2914,7 +2914,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: _schema_vocabulary, child, collection, schema. Outputs/bindings: child.
 Calls/effect boundaries: _schema_vocabulary, schema.get, schema.get(collection, {}).values.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[15].body[1].body[0]; no call, error or mutation may be omitted. Iteration: child in schema.get(collection, {}).values()
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2934,7 +2934,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: collection, schema. Outputs/bindings: (none).
 Calls/effect boundaries: schema.get, schema.get(collection, {}).values.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[1].body[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2954,7 +2954,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: collection, schema. Outputs/bindings: (none).
 Calls/effect boundaries: schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[1].body[0].iter.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2974,7 +2974,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _schema_vocabulary, child. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[15].body[1].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -2994,7 +2994,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _schema_vocabulary, child. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[1].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3014,7 +3014,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: _schema_vocabulary, dict, isinstance, key, schema. Outputs/bindings: key.
 Calls/effect boundaries: _schema_vocabulary, isinstance, schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[15].body[2]; no call, error or mutation may be omitted. Iteration: key in ('items', 'additionalProperties')
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3034,7 +3034,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Pyth
 
 Inputs: _schema_vocabulary, dict, isinstance, key, schema. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary, isinstance, schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[15].body[2].body[0]; no call, error or mutation may be omitted. Condition: isinstance(schema.get(key), dict)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3054,7 +3054,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: dict, isinstance, key, schema. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance, schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[2].body[0].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3074,7 +3074,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: key, schema. Outputs/bindings: (none).
 Calls/effect boundaries: schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[2].body[0].test.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3094,7 +3094,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _schema_vocabulary, key, schema. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[15].body[2].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3114,7 +3114,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _schema_vocabulary, key, schema. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[2].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3134,7 +3134,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatib
 
 Inputs: _schema_vocabulary, child, schema. Outputs/bindings: child.
 Calls/effect boundaries: _schema_vocabulary, schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[15].body[3]; no call, error or mutation may be omitted. Iteration: child in schema.get('anyOf', [])
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3154,7 +3154,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: schema. Outputs/bindings: (none).
 Calls/effect boundaries: schema.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[3].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3174,7 +3174,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _schema_vocabulary, child. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[15].body[3].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3194,7 +3194,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _schema_vocabulary, child. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[15].body[3].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3208,13 +3208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_interfaces.py:123`; AST `5c9e2676807217146cd90675091db3aadbf19765b1b0c5370ee2e8b6566f2293`.
+Source: `infra/agentinfra/roadmap_interfaces.py:123`; AST `e931b68847372ea7ef505db2d658604c65e998148611fa8cdd10a353249323e5`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: INTERFACE_VERSION, Path, _module, _schema_vocabulary, bool, confined_path, definition, dict, digest, file_binding, int, m, module, modules, name, next, package, path, paths, read_json, require, result, root, schema_binding, schemas, sorted, sys, type, version. Outputs/bindings: definition, m, module, modules, name, package, path, paths, result, root, schema_binding, schemas, version.
-Calls/effect boundaries: (root / 'infra/agentinfra').rglob, Path, Path(sys.executable).read_bytes, _module, _schema_vocabulary, bool, confined_path, confined_path(root, path, must_exist=True).read_bytes, definition.get, definition.get('properties', {}).get, definition.get('properties', {}).get('schema', {}).get, digest, file_binding, next, package['declared_versions'].get, path.relative_to, path.relative_to(root).as_posix, read_json, require, root.resolve, schemas['$defs'].items, sorted, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: INTERFACE_VERSION, Path, _module, _schema_vocabulary, all, bool, confined_path, definition, dict, digest, file_binding, int, m, module, modules, name, next, package, path, paths, read_json, require, result, root, schema_binding, schemas, sorted, supported, sys, type, v, variants, versions. Outputs/bindings: definition, m, module, modules, name, package, path, paths, result, root, schema_binding, schemas, supported, v, variants, versions.
+Calls/effect boundaries: (root / 'infra/agentinfra').rglob, Path, Path(sys.executable).read_bytes, _module, _schema_vocabulary, all, bool, confined_path, confined_path(root, path, must_exist=True).read_bytes, definition.get, digest, file_binding, next, package['declared_versions'].get, path.relative_to, path.relative_to(root).as_posix, read_json, require, root.resolve, schemas['$defs'].items, sorted, type, v.get, v.get('properties', {}).get, v.get('properties', {}).get('schema', {}).get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[16]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3234,7 +3234,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: root. Outputs/bindings: root.
 Calls/effect boundaries: root.resolve.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3254,7 +3254,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: root.resolve.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3274,7 +3274,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: root, sorted. Outputs/bindings: paths.
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3294,7 +3294,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: root, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3314,7 +3314,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3334,7 +3334,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: bool, paths, require. Outputs/bindings: (none).
 Calls/effect boundaries: bool, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3354,7 +3354,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: bool, paths, require. Outputs/bindings: (none).
 Calls/effect boundaries: bool, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3374,7 +3374,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: bool, paths. Outputs/bindings: (none).
 Calls/effect boundaries: bool.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[2].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3394,7 +3394,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _module, confined_path, path, paths, root. Outputs/bindings: modules, path.
 Calls/effect boundaries: _module, confined_path, confined_path(root, path, must_exist=True).read_bytes, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3414,7 +3414,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collecte
 
 Inputs: _module, confined_path, path, paths, root. Outputs/bindings: path.
 Calls/effect boundaries: _module, confined_path, confined_path(root, path, must_exist=True).read_bytes, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[16].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3434,7 +3434,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _module, confined_path, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: _module, confined_path, confined_path(root, path, must_exist=True).read_bytes, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[3].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3454,7 +3454,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: confined_path, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, confined_path(root, path, must_exist=True).read_bytes.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[3].value.elt.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3474,7 +3474,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: confined_path, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[3].value.elt.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3494,7 +3494,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[3].value.elt.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3514,7 +3514,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[3].value.elt.args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3534,7 +3534,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: m, modules, next. Outputs/bindings: m, package.
 Calls/effect boundaries: next.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3554,7 +3554,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: m, modules, next. Outputs/bindings: m.
 Calls/effect boundaries: next.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3574,7 +3574,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. lazy iterator with capture
 
 Inputs: m, modules. Outputs/bindings: m.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered GeneratorExp evaluation at root.body[16].body[4].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3594,7 +3594,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: INTERFACE_VERSION, int, package, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: package['declared_versions'].get, require, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3614,7 +3614,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: INTERFACE_VERSION, int, package, require, type. Outputs/bindings: (none).
 Calls/effect boundaries: package['declared_versions'].get, require, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3634,7 +3634,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: package, type. Outputs/bindings: (none).
 Calls/effect boundaries: package['declared_versions'].get, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[5].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3654,7 +3654,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: package. Outputs/bindings: (none).
 Calls/effect boundaries: package['declared_versions'].get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[5].value.args[0].values[0].left.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3674,7 +3674,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: file_binding, root. Outputs/bindings: schema_binding.
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3694,7 +3694,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: file_binding, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3714,7 +3714,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: read_json, root. Outputs/bindings: schemas.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3734,7 +3734,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3754,7 +3754,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's 
 
 Inputs: _schema_vocabulary, schemas. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3774,7 +3774,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: _schema_vocabulary, schemas. Outputs/bindings: (none).
 Calls/effect boundaries: _schema_vocabulary.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3788,13 +3788,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:135`; AST `0251d1903199bde952d96b67f59f54571e86fdacdbe567ffb38a0c461838b147`.
+Source: `infra/agentinfra/roadmap_interfaces.py:135`; AST `56864a9aa324c09d5adb6f374f926568dec2a2a412a2224ffd34277d266d3f86`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
-Inputs: definition, int, name, require, schemas, type, version. Outputs/bindings: definition, name, version.
-Calls/effect boundaries: definition.get, definition.get('properties', {}).get, definition.get('properties', {}).get('schema', {}).get, require, schemas['$defs'].items, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: all, definition, int, name, require, schemas, supported, type, v, variants, versions. Outputs/bindings: definition, name, supported, v, variants, versions.
+Calls/effect boundaries: all, definition.get, require, schemas['$defs'].items, type, v.get, v.get('properties', {}).get, v.get('properties', {}).get('schema', {}).get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[16].body[9]; no call, error or mutation may be omitted. Iteration: (name, definition) in schemas['$defs'].items()
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3814,7 +3814,7 @@ Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait b
 
 Inputs: schemas. Outputs/bindings: (none).
 Calls/effect boundaries: schemas['$defs'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[9].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3828,13 +3828,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:136`; AST `61beda9ebc40bef1913cf09a22462859e8cc1dc1b2a5cbd7792a25acf3e9a403`.
+Source: `infra/agentinfra/roadmap_interfaces.py:136`; AST `637dbed755f58225689672bd8cc227b19ade8816929573668be18342b722bf78`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: definition. Outputs/bindings: version.
-Calls/effect boundaries: definition.get, definition.get('properties', {}).get, definition.get('properties', {}).get('schema', {}).get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: definition. Outputs/bindings: variants.
+Calls/effect boundaries: definition.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[9].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3848,13 +3848,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:136`; AST `b43459baff1d783243c68645c10b588b2ba01cb04e0e2afa3871170219655272`.
+Source: `infra/agentinfra/roadmap_interfaces.py:136`; AST `0d46e45194cc11b365d6f9614815774cd4fae597bc128d781d6910d3e8b6c80a`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: definition. Outputs/bindings: (none).
-Calls/effect boundaries: definition.get, definition.get('properties', {}).get, definition.get('properties', {}).get('schema', {}).get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Calls/effect boundaries: definition.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3866,57 +3866,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[0].value.func.value::Call
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:136`; AST `66622330d2e6fe1e55d702eaf16c68d155d18338c09f43cf06848bb8b54ba0d6`.
-
-Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: definition. Outputs/bindings: (none).
-Calls/effect boundaries: definition.get, definition.get('properties', {}).get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
-
-Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[0].value.func.value; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[0].value.func.value.func.value::Call
-
-Source: `infra/agentinfra/roadmap_interfaces.py:136`; AST `cb5036afa8337faac3960c8e674c2255a2fb5f94ab4955a69f8952214ba39318`.
-
-Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: definition. Outputs/bindings: (none).
-Calls/effect boundaries: definition.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
-
-Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[0].value.func.value.func.value; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1]::Expr
-
-Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `75f97b0a91e6f08b8a0114896e4c4e36c0086249a6de07042178ba50fe8b39eb`.
+Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `2601d8c70a944188ef7edf6e6f8446ab3892f5398326cdd17155da19d59637dd`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: int, name, require, type, version. Outputs/bindings: (none).
-Calls/effect boundaries: require, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: v, variants. Outputs/bindings: v, versions.
+Calls/effect boundaries: v.get, v.get('properties', {}).get, v.get('properties', {}).get('schema', {}).get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
-Invariants: Preserve ordered Expr evaluation at root.body[16].body[9].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[16].body[9].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -3926,17 +3886,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1].value::Call
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1].value::ListComp
 
-Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `fe00c96324ccd233b899181076afd879f8a382f4afc91590e225c612ea4600f2`.
+Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `976844dde5f87c16071f09c52edde781ee4874227c33008948ce35c37c7d8c6f`.
 
-Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+Rust module: `infra::agentinfra::roadmap_interfaces`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
-Inputs: int, name, require, type, version. Outputs/bindings: (none).
-Calls/effect boundaries: require, type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: v, variants. Outputs/bindings: v.
+Calls/effect boundaries: v.get, v.get('properties', {}).get, v.get('properties', {}).get('schema', {}).get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
-Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[16].body[9].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -3946,17 +3906,177 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1].value.args[0].values[0].left::Call
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1].value.elt::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `2fd59e97a000d6cc2dc799ab534b5dc009f3203b64d9ddfb5419e4cd01179ffe`.
+Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `59d20714c9cac316a3056a872622ec31108e8a8a097c96c7912623e3835d23ca`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: type, version. Outputs/bindings: (none).
+Inputs: v. Outputs/bindings: (none).
+Calls/effect boundaries: v.get, v.get('properties', {}).get, v.get('properties', {}).get('schema', {}).get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[1].value.elt; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1].value.elt.func.value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `b1444bb5d06be0e6d5ef51a116b9c61f055058a4bd816a8a289fb2d21618aeb6`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: v. Outputs/bindings: (none).
+Calls/effect boundaries: v.get, v.get('properties', {}).get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[1].value.elt.func.value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[1].value.elt.func.value.func.value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:137`; AST `2ec8a3cdbdb202720c04ff34ab5cbe3e1bb5f8e65070e969a26d6890c2c4c174`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: v. Outputs/bindings: (none).
+Calls/effect boundaries: v.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[1].value.elt.func.value.func.value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_interfaces.py:138`; AST `c57b2e80e92c6bbed795d2db8381fe7a37aa4e6684e31789bf466861d3f144ae`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: definition, name. Outputs/bindings: supported.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Assign evaluation at root.body[16].body[9].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[3]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:139`; AST `7d28b098502b57f50128e22ec1ed1e69d0ff6ab4ba0e202fed6be7bfd3617405`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: all, int, name, require, supported, type, v, versions. Outputs/bindings: v.
+Calls/effect boundaries: all, require, type.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[16].body[9].body[3]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[3].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:139`; AST `8bf37f9d6e14e15692dcd62d8f45ff9c0c06f2833ac2a0ae328b8cbcbe6eeebd`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: all, int, name, require, supported, type, v, versions. Outputs/bindings: v.
+Calls/effect boundaries: all, require, type.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[3].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[3].value.args[0].values[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:139`; AST `7614b413d573fc6873a5a52371666b736458d3fa44044dc5a1a0dc57efbea343`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: all, int, type, v, versions. Outputs/bindings: v.
+Calls/effect boundaries: all, type.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[3].value.args[0].values[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[3].value.args[0].values[0].args[0]::GeneratorExp
+
+Source: `infra/agentinfra/roadmap_interfaces.py:139`; AST `f408e87da8b218b8646c9dc152de0072dc1c5a1bbc0ef8ccb0f026d08f2f22a2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. lazy iterator with captured environment and explicit exhaustion/error lifetime
+
+Inputs: int, type, v, versions. Outputs/bindings: v.
 Calls/effect boundaries: type.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
-Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[1].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[16].body[9].body[3].value.args[0].values[0].args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[9].body[3].value.args[0].values[0].args[0].elt.left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:139`; AST `e048786d0fd27242ac9513214da043edf756617a572829e1cb9725342ed3dd2b`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: type, v. Outputs/bindings: (none).
+Calls/effect boundaries: type.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[16].body[9].body[3].value.args[0].values[0].args[0].elt.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -3968,13 +4088,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[10]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:139`; AST `a182b7a1bd032579c62218c08ad94e5e0deb2893e54bcbedf4a5304ac433123b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:141`; AST `a182b7a1bd032579c62218c08ad94e5e0deb2893e54bcbedf4a5304ac433123b`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
 Inputs: file_binding, module, modules, require, root. Outputs/bindings: module.
 Calls/effect boundaries: file_binding, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[16].body[10]; no call, error or mutation may be omitted. Iteration: module in modules
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -3988,13 +4108,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[10].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:140`; AST `36c021fff321db2148c9e92aef933dbf9915687b59f03ab2338562630301e89d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `36c021fff321db2148c9e92aef933dbf9915687b59f03ab2338562630301e89d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: file_binding, module, require, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[10].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4008,13 +4128,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[10].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:140`; AST `f47aeb4efd5d8b30c5d2d5c63b32e56631548e97ce00f6e47081422f1a54b8ad`.
+Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `f47aeb4efd5d8b30c5d2d5c63b32e56631548e97ce00f6e47081422f1a54b8ad`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: file_binding, module, require, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[10].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4028,13 +4148,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[10].body[0].value.args[0].left.value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:140`; AST `5b69a3c9e9ca4b73a503223ba06d4bb002166d4da8dd94601eebc52dc44e8312`.
+Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `5b69a3c9e9ca4b73a503223ba06d4bb002166d4da8dd94601eebc52dc44e8312`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: file_binding, module, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[10].body[0].value.args[0].left.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4048,13 +4168,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[11]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `84432c2d8f83ed52f2db4ef7f7b8df123711430f7ae2422ca4ec710760737057`.
+Source: `infra/agentinfra/roadmap_interfaces.py:144`; AST `84432c2d8f83ed52f2db4ef7f7b8df123711430f7ae2422ca4ec710760737057`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: paths, require, root, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob, require, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4068,13 +4188,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[11].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `9f986141f733f3cb0a3c238a5f45481d6e732167764e9dd9a964b2ecb6065587`.
+Source: `infra/agentinfra/roadmap_interfaces.py:144`; AST `9f986141f733f3cb0a3c238a5f45481d6e732167764e9dd9a964b2ecb6065587`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: paths, require, root, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob, require, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[11].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4088,13 +4208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[11].value.args[0].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `ccc646b28a5c429ba81fb873cb9e6e09d32526c6b6ec9a3213fb328df566dc0b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:144`; AST `ccc646b28a5c429ba81fb873cb9e6e09d32526c6b6ec9a3213fb328df566dc0b`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: root, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[11].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4108,13 +4228,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[11].value.args[0].comparators[0].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:142`; AST `05e15ad63f351f2f75ccb5aac8df168637a8bf4a858d76d3dd89234a598221bf`.
+Source: `infra/agentinfra/roadmap_interfaces.py:144`; AST `05e15ad63f351f2f75ccb5aac8df168637a8bf4a858d76d3dd89234a598221bf`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / 'infra/agentinfra').rglob.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[11].value.args[0].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4128,13 +4248,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[12]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:143`; AST `c47257af4c6f9009e88345e18e2c5dc91af97fb7c1a9329460c9e897aca91ce7`.
+Source: `infra/agentinfra/roadmap_interfaces.py:145`; AST `c47257af4c6f9009e88345e18e2c5dc91af97fb7c1a9329460c9e897aca91ce7`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: file_binding, require, root, schema_binding. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[16].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4148,13 +4268,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[12].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:143`; AST `05efa6b19b37e5e6c15664d2236623741ce0645bb5801f7766bfc00c5a131953`.
+Source: `infra/agentinfra/roadmap_interfaces.py:145`; AST `05efa6b19b37e5e6c15664d2236623741ce0645bb5801f7766bfc00c5a131953`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: file_binding, require, root, schema_binding. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4168,13 +4288,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[12].value.args[0].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:143`; AST `6f441cc9003145b64752138a0d50c0ea344604a9a0def47e1b6c7c3e3868867f`.
+Source: `infra/agentinfra/roadmap_interfaces.py:145`; AST `6f441cc9003145b64752138a0d50c0ea344604a9a0def47e1b6c7c3e3868867f`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: file_binding, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[12].value.args[0].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4188,13 +4308,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[13]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:145`; AST `390c6a5e3315e7379fa8f2562a3011917d63fab4dff52b01f9cd6cf2f23da32e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:147`; AST `390c6a5e3315e7379fa8f2562a3011917d63fab4dff52b01f9cd6cf2f23da32e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: INTERFACE_VERSION, Path, digest, modules, schema_binding, schemas, sys. Outputs/bindings: result.
 Calls/effect boundaries: Path, Path(sys.executable).read_bytes, digest.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[13]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4208,13 +4328,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[13].value.values[3].values[1]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:146`; AST `528ea3efa8d833443ff176961af24a64957faeab5035acec50efb249cc33cc26`.
+Source: `infra/agentinfra/roadmap_interfaces.py:148`; AST `528ea3efa8d833443ff176961af24a64957faeab5035acec50efb249cc33cc26`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: Path, digest, sys. Outputs/bindings: (none).
 Calls/effect boundaries: Path, Path(sys.executable).read_bytes, digest.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[13].value.values[3].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4228,13 +4348,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[13].value.values[3].values[1].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:146`; AST `6ba59d0cde0384f15a99107ebe91ed97a2207941295cc5fe8bd44d690ab106cf`.
+Source: `infra/agentinfra/roadmap_interfaces.py:148`; AST `6ba59d0cde0384f15a99107ebe91ed97a2207941295cc5fe8bd44d690ab106cf`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: Path, sys. Outputs/bindings: (none).
 Calls/effect boundaries: Path, Path(sys.executable).read_bytes.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[13].value.values[3].values[1].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4248,13 +4368,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[13].value.values[3].values[1].args[0].func.value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:146`; AST `0dfff54cbeeb64407db17d4e6b154f3aff810a988368a772f2aaa5d71265f9f3`.
+Source: `infra/agentinfra/roadmap_interfaces.py:148`; AST `0dfff54cbeeb64407db17d4e6b154f3aff810a988368a772f2aaa5d71265f9f3`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: Path, sys. Outputs/bindings: (none).
 Calls/effect boundaries: Path.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[13].value.values[3].values[1].args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4268,13 +4388,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[14]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:152`; AST `ea550629d25e1f9e71896bf31374af5bfddb3e00134f1ff852e05146c14aecd2`.
+Source: `infra/agentinfra/roadmap_interfaces.py:154`; AST `ea550629d25e1f9e71896bf31374af5bfddb3e00134f1ff852e05146c14aecd2`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: digest, result. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[16].body[14]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4288,13 +4408,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[14].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:152`; AST `9ddec37ebb871d950d3273f3c19aaf26231ea1c560172aa64604b6f8dc8f2faf`.
+Source: `infra/agentinfra/roadmap_interfaces.py:154`; AST `9ddec37ebb871d950d3273f3c19aaf26231ea1c560172aa64604b6f8dc8f2faf`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: digest, result. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[16].body[14].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4308,13 +4428,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::observe_interfaces::root.body[16].body[15]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:153`; AST `7b1d642d8354b03513d85ddd38bf4e4911c5b147b5b68f50fd12c2072903af3e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:155`; AST `7b1d642d8354b03513d85ddd38bf4e4911c5b147b5b68f50fd12c2072903af3e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: result. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[16].body[15]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4328,13 +4448,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_interfaces.py:156`; AST `1465e2ab304a7236199e4dba997f0086fdd8ab5f42ee287a2e034daced2d9895`.
+Source: `infra/agentinfra/roadmap_interfaces.py:158`; AST `1465e2ab304a7236199e4dba997f0086fdd8ab5f42ee287a2e034daced2d9895`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
 Inputs: after, any, before, bool, current, dict, k, len, list, methods, name, previous, v, zip. Outputs/bindings: after, before, k, methods, name, v.
 Calls/effect boundaries: after.get, after.get('methods', {}).get, after.items, any, before.get, before.items, before['methods'].items, len, zip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[17]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4348,13 +4468,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:157`; AST `501ddb42a1c4d2320b73db3e55af3c729c4ce62948e6694df88cada2bf993bc2`.
+Source: `infra/agentinfra/roadmap_interfaces.py:159`; AST `501ddb42a1c4d2320b73db3e55af3c729c4ce62948e6694df88cada2bf993bc2`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: current, len, previous. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[17].body[0]; no call, error or mutation may be omitted. Condition: len(previous) != len(current)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4368,13 +4488,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[0].test.left::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:157`; AST `deab7c15b2307413a6b501148b1134b68fbf5f9aeffce480444ff277ecf5a92e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:159`; AST `deab7c15b2307413a6b501148b1134b68fbf5f9aeffce480444ff277ecf5a92e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: len, previous. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[0].test.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4388,13 +4508,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[0].test.comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:157`; AST `19be6a122c41a8259f17edddc4d1e66432f7782d6fe745b671c80f66dc997058`.
+Source: `infra/agentinfra/roadmap_interfaces.py:159`; AST `19be6a122c41a8259f17edddc4d1e66432f7782d6fe745b671c80f66dc997058`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: current, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[0].test.comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4408,13 +4528,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[0].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:158`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:160`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[17].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4428,13 +4548,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:159`; AST `ae10ba0e69510772336c53116cbf76ac6886ff6f223f57dcc964bfaa4dc92547`.
+Source: `infra/agentinfra/roadmap_interfaces.py:161`; AST `ae10ba0e69510772336c53116cbf76ac6886ff6f223f57dcc964bfaa4dc92547`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
 Inputs: after, any, before, current, k, methods, name, previous, v, zip. Outputs/bindings: after, before, k, methods, name, v.
 Calls/effect boundaries: after.get, after.get('methods', {}).get, after.items, any, before.get, before.items, before['methods'].items, zip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[17].body[1]; no call, error or mutation may be omitted. Iteration: (before, after) in zip(previous, current)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4448,13 +4568,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:159`; AST `f0564f04aa065beff87322f89ecd9319fb07bb6472b440e4bc9f27cc0863e754`.
+Source: `infra/agentinfra/roadmap_interfaces.py:161`; AST `f0564f04aa065beff87322f89ecd9319fb07bb6472b440e4bc9f27cc0863e754`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: current, previous, zip. Outputs/bindings: (none).
 Calls/effect boundaries: zip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4468,13 +4588,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:160`; AST `a7cf787888e58742d6c599acd7ec519ec98462381b3d2aa6dafdfef877748f8e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:162`; AST `a7cf787888e58742d6c599acd7ec519ec98462381b3d2aa6dafdfef877748f8e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: after, any, before, k, methods, name, v. Outputs/bindings: k, methods, name, v.
 Calls/effect boundaries: after.get, after.get('methods', {}).get, after.items, any, before.get, before.items, before['methods'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[17].body[1].body[0]; no call, error or mutation may be omitted. Condition: before.get('kind') != 'ClassDef'
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4488,13 +4608,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].test.left::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:160`; AST `40c16b2ca9a5ee22e0dce1b3d0de97b80528d69ffcb237af8280447a61e17875`.
+Source: `infra/agentinfra/roadmap_interfaces.py:162`; AST `40c16b2ca9a5ee22e0dce1b3d0de97b80528d69ffcb237af8280447a61e17875`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: before. Outputs/bindings: (none).
 Calls/effect boundaries: before.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].test.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4508,13 +4628,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].body[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:161`; AST `36b6dddf92e8b4e76eb57e32ce7951f39739c1c321ee5ac6bbf5fe5ebc14e135`.
+Source: `infra/agentinfra/roadmap_interfaces.py:163`; AST `36b6dddf92e8b4e76eb57e32ce7951f39739c1c321ee5ac6bbf5fe5ebc14e135`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: after, before. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[17].body[1].body[0].body[0]; no call, error or mutation may be omitted. Condition: before != after
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4528,13 +4648,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].body[0].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:162`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:164`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[17].body[1].body[0].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4548,13 +4668,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:164`; AST `2da14f1af73243e7f797d8bb78a1224122d5c0669b8fa72928fba6e484facaaa`.
+Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `2da14f1af73243e7f797d8bb78a1224122d5c0669b8fa72928fba6e484facaaa`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: after, before, k, v. Outputs/bindings: k, v.
 Calls/effect boundaries: after.items, before.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[17].body[1].body[0].orelse[0]; no call, error or mutation may be omitted. Condition: {k: v for k, v in before.items() if k != 'methods'} != {k: v for k, v in after.items() if k != 'methods'}
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4568,13 +4688,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[0].test.left::DictComp
 
-Source: `infra/agentinfra/roadmap_interfaces.py:164`; AST `cc03301751ecabbc7c33c2219d01cd13919b9839109592773055b4301e7a7093`.
+Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `cc03301751ecabbc7c33c2219d01cd13919b9839109592773055b4301e7a7093`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
 Inputs: before, k, v. Outputs/bindings: k, v.
 Calls/effect boundaries: before.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered DictComp evaluation at root.body[17].body[1].body[0].orelse[0].test.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4588,13 +4708,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[0].test.left.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:164`; AST `31c1cc9834ed51185d8d6607a332e507345848db7d6ab894058368465ee6f677`.
+Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `31c1cc9834ed51185d8d6607a332e507345848db7d6ab894058368465ee6f677`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: before. Outputs/bindings: (none).
 Calls/effect boundaries: before.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].orelse[0].test.left.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4608,13 +4728,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[0].test.comparators[0]::DictComp
 
-Source: `infra/agentinfra/roadmap_interfaces.py:164`; AST `b3b513e17d313612c761347be134082eaf2a3bca9251fc8cf68056573cf73bb1`.
+Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `b3b513e17d313612c761347be134082eaf2a3bca9251fc8cf68056573cf73bb1`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
 Inputs: after, k, v. Outputs/bindings: k, v.
 Calls/effect boundaries: after.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered DictComp evaluation at root.body[17].body[1].body[0].orelse[0].test.comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4628,13 +4748,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[0].test.comparators[0].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:164`; AST `12fa4c8028fca3bd7c7afd0406c83459c208642d4457fe041d590c4231ee2b5f`.
+Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `12fa4c8028fca3bd7c7afd0406c83459c208642d4457fe041d590c4231ee2b5f`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: after. Outputs/bindings: (none).
 Calls/effect boundaries: after.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].orelse[0].test.comparators[0].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4648,13 +4768,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[0].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:165`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:167`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[17].body[1].body[0].orelse[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4668,13 +4788,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `e2b7c8f57adf9171b7f331805dcf1a82f1cead5d9ed80c0440dad009db84b512`.
+Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `e2b7c8f57adf9171b7f331805dcf1a82f1cead5d9ed80c0440dad009db84b512`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: after, any, before, methods, name. Outputs/bindings: methods, name.
 Calls/effect boundaries: after.get, after.get('methods', {}).get, any, before['methods'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[17].body[1].body[0].orelse[1]; no call, error or mutation may be omitted. Condition: any((after.get('methods', {}).get(name) != methods for name, methods in before['methods'].items()))
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4688,13 +4808,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1].test::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `82bb893c75a0172ab25a50c1e8f4661f0bdcff1e96154ef97eea4f4bcc35d206`.
+Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `82bb893c75a0172ab25a50c1e8f4661f0bdcff1e96154ef97eea4f4bcc35d206`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: after, any, before, methods, name. Outputs/bindings: methods, name.
 Calls/effect boundaries: after.get, after.get('methods', {}).get, any, before['methods'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].orelse[1].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4708,13 +4828,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1].test.args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `00f5c9ebacae268f7de84a9a82547c73a451f7bdcb45ee8cba41fbe4d40fafca`.
+Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `00f5c9ebacae268f7de84a9a82547c73a451f7bdcb45ee8cba41fbe4d40fafca`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
 Inputs: after, before, methods, name. Outputs/bindings: methods, name.
 Calls/effect boundaries: after.get, after.get('methods', {}).get, before['methods'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered GeneratorExp evaluation at root.body[17].body[1].body[0].orelse[1].test.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4728,13 +4848,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1].test.args[0].elt.left::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `205afb4b66f6bb78e19847d206c6311c867bf339588c7b942d46ad91a421517e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `205afb4b66f6bb78e19847d206c6311c867bf339588c7b942d46ad91a421517e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: after, name. Outputs/bindings: (none).
 Calls/effect boundaries: after.get, after.get('methods', {}).get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].orelse[1].test.args[0].elt.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4748,13 +4868,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1].test.args[0].elt.left.func.value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `dc1d875870667036cd7d24149a5c1bb2ace9e6c3fac8cc3d6a8f14c74a075759`.
+Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `dc1d875870667036cd7d24149a5c1bb2ace9e6c3fac8cc3d6a8f14c74a075759`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: after. Outputs/bindings: (none).
 Calls/effect boundaries: after.get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].orelse[1].test.args[0].elt.left.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4768,13 +4888,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1].test.args[0].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:166`; AST `57859bc53129cbe2e1842e4a2747db677f492f58f6d12a2a942b2d2b49a6c07a`.
+Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `57859bc53129cbe2e1842e4a2747db677f492f58f6d12a2a942b2d2b49a6c07a`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: before. Outputs/bindings: (none).
 Calls/effect boundaries: before['methods'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[1].body[0].orelse[1].test.args[0].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4788,13 +4908,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[1].body[0].orelse[1].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:167`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:169`; AST `dd863ea504e8543d2fb185a820aa7e2cf2d0ceddec9c835185a3510fc2ab463d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[17].body[1].body[0].orelse[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4808,13 +4928,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::_compatible::root.body[17].body[2]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:168`; AST `4a8ef490a01d3017cb999fbea58c2adfb60a40ad736e0d23eceb176a236b14c3`.
+Source: `infra/agentinfra/roadmap_interfaces.py:170`; AST `4a8ef490a01d3017cb999fbea58c2adfb60a40ad736e0d23eceb176a236b14c3`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[17].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4828,13 +4948,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_interfaces.py:171`; AST `dd0b0e8b79793458a5c4bfd2d9c33a4b1690801ec27067b2a40620a113ba017c`.
+Source: `infra/agentinfra/roadmap_interfaces.py:173`; AST `0f6f81dc1efa3b322d0c3957587725bb4ccb315c0b9a7f30bcfb9b2a9a342599`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: GitInventory, INTERFACE_VERSION, Path, _compatible, _module, baseline, baseline_ref, bool, candidate, changes, current, dict, entry, exported, git, len, loads, m, module, name, now, observe_interfaces, old, old_schemas, previous_protocols, require, root, schema, set, signature, sorted, str, value. Outputs/bindings: baseline, candidate, changes, current, entry, exported, git, m, module, name, now, old, old_schemas, previous_protocols, schema, signature, value.
-Calls/effect boundaries: GitInventory, _compatible, _module, bool, changes.append, current['record_protocols'].get, entry['path'].endswith, entry['path'].startswith, git.blob, git.read, git.read('rev-parse', '--verify', '--end-of-options', baseline_ref + '^{commit}').strip, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip, git.tree, len, loads, module['exports'].items, now[name]['exports'].get, observe_interfaces, old.items, old_schemas.decode, previous_protocols.items, require, set, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: GitInventory, INTERFACE_VERSION, Path, _compatible, _module, after, after_fields, baseline, baseline_ref, before, before_fields, bool, candidate, changes, current, dict, entry, exported, f, field, git, len, loads, m, method, module, name, now, observe_interfaces, old, old_schemas, previous_protocols, require, root, schema, set, signature, sorted, str, value, zip. Outputs/bindings: after, after_fields, baseline, before, before_fields, candidate, changes, current, entry, exported, f, field, git, m, method, module, name, now, old, old_schemas, previous_protocols, schema, signature, value.
+Calls/effect boundaries: GitInventory, _compatible, _module, after.get, before.get, bool, changes.append, current['record_protocols'].get, entry['path'].endswith, entry['path'].startswith, git.blob, git.read, git.read('rev-parse', '--verify', '--end-of-options', baseline_ref + '^{commit}').strip, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip, git.tree, len, loads, module['exports'].items, now[name]['exports'].get, observe_interfaces, old.items, old_schemas.decode, previous_protocols.items, require, set, sorted, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[18]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4848,13 +4968,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:172`; AST `b5ffa0be1c1416af065b0e26c0e1735bb472b8f9f993633bef0c81beecad908a`.
+Source: `infra/agentinfra/roadmap_interfaces.py:174`; AST `b5ffa0be1c1416af065b0e26c0e1735bb472b8f9f993633bef0c81beecad908a`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: observe_interfaces, root. Outputs/bindings: current.
 Calls/effect boundaries: observe_interfaces.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4868,13 +4988,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:172`; AST `e3b835733344cc4702b993e1dfafa68c05951883e31c5b65824bdf1022d38cb1`.
+Source: `infra/agentinfra/roadmap_interfaces.py:174`; AST `e3b835733344cc4702b993e1dfafa68c05951883e31c5b65824bdf1022d38cb1`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: observe_interfaces, root. Outputs/bindings: (none).
 Calls/effect boundaries: observe_interfaces.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4888,13 +5008,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:173`; AST `6be60ecbd9492af5c5dd6b3f753a825879749c93ccb83967aa9f6d22383d5117`.
+Source: `infra/agentinfra/roadmap_interfaces.py:175`; AST `6be60ecbd9492af5c5dd6b3f753a825879749c93ccb83967aa9f6d22383d5117`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: GitInventory, root. Outputs/bindings: git.
 Calls/effect boundaries: GitInventory.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4908,13 +5028,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:173`; AST `c4f3e6818765e5df9cc7a91d7bfc9093ba441ac55f12b5153bb08ff3dd3b1703`.
+Source: `infra/agentinfra/roadmap_interfaces.py:175`; AST `c4f3e6818765e5df9cc7a91d7bfc9093ba441ac55f12b5153bb08ff3dd3b1703`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: GitInventory, root. Outputs/bindings: (none).
 Calls/effect boundaries: GitInventory.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4928,13 +5048,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:174`; AST `55c4af011e350b6f34da4790a85d5acae4702aab90a2fecd6e9592a1d235f1b8`.
+Source: `infra/agentinfra/roadmap_interfaces.py:176`; AST `55c4af011e350b6f34da4790a85d5acae4702aab90a2fecd6e9592a1d235f1b8`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: baseline_ref, git. Outputs/bindings: baseline.
 Calls/effect boundaries: git.read, git.read('rev-parse', '--verify', '--end-of-options', baseline_ref + '^{commit}').strip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4948,13 +5068,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:174`; AST `1b9f79e073fd163a64101a9ec326a3b319bd8bca76f4c760b3566e1da035794d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:176`; AST `1b9f79e073fd163a64101a9ec326a3b319bd8bca76f4c760b3566e1da035794d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: baseline_ref, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.read, git.read('rev-parse', '--verify', '--end-of-options', baseline_ref + '^{commit}').strip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4968,13 +5088,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[2].value.func.value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:174`; AST `8f481090a4a2f8acdf34c0cd09e657ecfe449fc135a5e9af30d5ed5e32a05902`.
+Source: `infra/agentinfra/roadmap_interfaces.py:176`; AST `8f481090a4a2f8acdf34c0cd09e657ecfe449fc135a5e9af30d5ed5e32a05902`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: baseline_ref, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.read.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[2].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -4988,13 +5108,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:175`; AST `a3890756b0f8ff83790166443326dd5c1ad1c4538d05ad143eeae0d97ed51a11`.
+Source: `infra/agentinfra/roadmap_interfaces.py:177`; AST `a3890756b0f8ff83790166443326dd5c1ad1c4538d05ad143eeae0d97ed51a11`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: old.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5008,13 +5128,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:176`; AST `a2c70fae372a3fc1c8da3b4e6ed9f136423459a3a4e304cb0c991cd7e025f263`.
+Source: `infra/agentinfra/roadmap_interfaces.py:178`; AST `a2c70fae372a3fc1c8da3b4e6ed9f136423459a3a4e304cb0c991cd7e025f263`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
 Inputs: _module, baseline, entry, git, old, require, value. Outputs/bindings: entry, value.
 Calls/effect boundaries: _module, entry['path'].endswith, entry['path'].startswith, git.blob, git.tree, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[18].body[4]; no call, error or mutation may be omitted. Iteration: entry in git.tree(baseline)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5028,13 +5148,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:176`; AST `fe7b80b9d8e4cba5aa5a7749d783ba4e66e8b012ff3fff87fe6b74af60375c94`.
+Source: `infra/agentinfra/roadmap_interfaces.py:178`; AST `fe7b80b9d8e4cba5aa5a7749d783ba4e66e8b012ff3fff87fe6b74af60375c94`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: baseline, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.tree.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[4].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5048,13 +5168,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:177`; AST `c862c85ac3e1f1a3d4eb8935bf604e8a9b48ff9cc696f690a3590509bbc229c6`.
+Source: `infra/agentinfra/roadmap_interfaces.py:179`; AST `c862c85ac3e1f1a3d4eb8935bf604e8a9b48ff9cc696f690a3590509bbc229c6`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: _module, entry, git, old, require, value. Outputs/bindings: value.
 Calls/effect boundaries: _module, entry['path'].endswith, entry['path'].startswith, git.blob, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[18].body[4].body[0]; no call, error or mutation may be omitted. Condition: entry['path'].startswith('infra/agentinfra/') and entry['path'].endswith('.py') and (entry['type'] == 'blob')
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5068,13 +5188,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].test.values[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:177`; AST `6fbb232c8c3f2369408b554bf1cdec2036e62f24bc82c55a1907dfd003e15aef`.
+Source: `infra/agentinfra/roadmap_interfaces.py:179`; AST `6fbb232c8c3f2369408b554bf1cdec2036e62f24bc82c55a1907dfd003e15aef`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: entry. Outputs/bindings: (none).
 Calls/effect boundaries: entry['path'].startswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[4].body[0].test.values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5088,13 +5208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].test.values[1]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:177`; AST `8abb863a5b1ee69fee160afa4714babc5755aca91161d451a2ad4a895c95a2e5`.
+Source: `infra/agentinfra/roadmap_interfaces.py:179`; AST `8abb863a5b1ee69fee160afa4714babc5755aca91161d451a2ad4a895c95a2e5`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: entry. Outputs/bindings: (none).
 Calls/effect boundaries: entry['path'].endswith.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[4].body[0].test.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5108,13 +5228,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:178`; AST `db5943d6918819c4ca0339910ac983c5ecfeac2be26cbe355d4d7b624781dd41`.
+Source: `infra/agentinfra/roadmap_interfaces.py:180`; AST `db5943d6918819c4ca0339910ac983c5ecfeac2be26cbe355d4d7b624781dd41`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: entry, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[18].body[4].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5128,13 +5248,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:178`; AST `989f567886a88d81f4e99f7022320ddcd6b3a60b01868d585dea160ffa18c18d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:180`; AST `989f567886a88d81f4e99f7022320ddcd6b3a60b01868d585dea160ffa18c18d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: entry, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[4].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5148,13 +5268,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:179`; AST `729a8bca91d7788dc97e4dcf4b8cd78151a2687c3a19822eacea832c85ec1729`.
+Source: `infra/agentinfra/roadmap_interfaces.py:181`; AST `729a8bca91d7788dc97e4dcf4b8cd78151a2687c3a19822eacea832c85ec1729`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: _module, entry, git. Outputs/bindings: value.
 Calls/effect boundaries: _module, git.blob.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[4].body[0].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5168,13 +5288,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:179`; AST `64e4f2416ad6f3b9d56196bdc645f270ed774b643064d5c3fa70150fa268d63a`.
+Source: `infra/agentinfra/roadmap_interfaces.py:181`; AST `64e4f2416ad6f3b9d56196bdc645f270ed774b643064d5c3fa70150fa268d63a`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: _module, entry, git. Outputs/bindings: (none).
 Calls/effect boundaries: _module, git.blob.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[4].body[0].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5188,13 +5308,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].body[1].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:179`; AST `250dcf5754423bca08c0d557665fe6b4076808045bd1867a32d86332ae2fb305`.
+Source: `infra/agentinfra/roadmap_interfaces.py:181`; AST `250dcf5754423bca08c0d557665fe6b4076808045bd1867a32d86332ae2fb305`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: entry, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.blob.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[4].body[0].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5208,13 +5328,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[4].body[0].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:180`; AST `3e18e1130e75fdd171ed93c3cac97d3e188c276be34c4be7d952de8334233b9d`.
+Source: `infra/agentinfra/roadmap_interfaces.py:182`; AST `3e18e1130e75fdd171ed93c3cac97d3e188c276be34c4be7d952de8334233b9d`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: old, value. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[4].body[0].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5228,13 +5348,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[5]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:181`; AST `1644569e49daaedf06815020c6eb31d4036e0a36d4ef599f43a12aa7341015e2`.
+Source: `infra/agentinfra/roadmap_interfaces.py:183`; AST `1644569e49daaedf06815020c6eb31d4036e0a36d4ef599f43a12aa7341015e2`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: bool, old, require. Outputs/bindings: (none).
 Calls/effect boundaries: bool, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[18].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5248,13 +5368,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:181`; AST `fe504b5df096c148dd4ffb89c7cc0e442ae268a3bcb33ac271d82e8654379b2c`.
+Source: `infra/agentinfra/roadmap_interfaces.py:183`; AST `fe504b5df096c148dd4ffb89c7cc0e442ae268a3bcb33ac271d82e8654379b2c`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: bool, old, require. Outputs/bindings: (none).
 Calls/effect boundaries: bool, require.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5268,13 +5388,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[5].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:181`; AST `c24394fbd71e6a194e252489ff389c10cc9aa26cedc37c1799d372faab9e1c67`.
+Source: `infra/agentinfra/roadmap_interfaces.py:183`; AST `c24394fbd71e6a194e252489ff389c10cc9aa26cedc37c1799d372faab9e1c67`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: bool, old. Outputs/bindings: (none).
 Calls/effect boundaries: bool.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[5].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5288,13 +5408,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[6]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:182`; AST `28ff756d46203f5b726705eb8e2bd4733c8159f01efc16b9b32e14f71763c52a`.
+Source: `infra/agentinfra/roadmap_interfaces.py:184`; AST `28ff756d46203f5b726705eb8e2bd4733c8159f01efc16b9b32e14f71763c52a`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: current, m. Outputs/bindings: m, now.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5308,13 +5428,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[6].value::DictComp
 
-Source: `infra/agentinfra/roadmap_interfaces.py:182`; AST `8fc1f38190b338bd08ab9be0d7a6ac39f7525413cc257e75e11a953aaf2b8744`.
+Source: `infra/agentinfra/roadmap_interfaces.py:184`; AST `8fc1f38190b338bd08ab9be0d7a6ac39f7525413cc257e75e11a953aaf2b8744`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
 Inputs: current, m. Outputs/bindings: m.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered DictComp evaluation at root.body[18].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5328,13 +5448,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[7]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:183`; AST `4b5017bb8cbdeea06785ff34dfa08e442f3328576c0f16148be31c607b435e36`.
+Source: `infra/agentinfra/roadmap_interfaces.py:185`; AST `4b5017bb8cbdeea06785ff34dfa08e442f3328576c0f16148be31c607b435e36`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: changes.
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5348,13 +5468,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:184`; AST `2aa24f87178a451170a9c92c42fc1bb9c074d997df301edcaf35698980dfb88b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:186`; AST `d6d04e03d9fc993370c889c1ab57d06b1a85ea8eaa9fc6f9aace248382b3c98e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
-Inputs: _compatible, candidate, changes, exported, module, name, now, old, signature. Outputs/bindings: candidate, exported, module, name, signature.
-Calls/effect boundaries: _compatible, changes.append, module['exports'].items, now[name]['exports'].get, old.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: _compatible, after, after_fields, before, before_fields, candidate, changes, exported, f, field, len, method, module, name, now, old, set, signature, sorted, zip. Outputs/bindings: after, after_fields, before, before_fields, candidate, exported, f, field, method, module, name, signature.
+Calls/effect boundaries: _compatible, after.get, before.get, changes.append, len, module['exports'].items, now[name]['exports'].get, old.items, set, sorted, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[18].body[8]; no call, error or mutation may be omitted. Iteration: (name, module) in old.items()
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5368,13 +5488,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:184`; AST `8fe2c43ce29720275afaa01eb97b597bf51fdebc00206db7fd28385292efa809`.
+Source: `infra/agentinfra/roadmap_interfaces.py:186`; AST `8fe2c43ce29720275afaa01eb97b597bf51fdebc00206db7fd28385292efa809`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: old. Outputs/bindings: (none).
 Calls/effect boundaries: old.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5388,13 +5508,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:185`; AST `4594843d371e8164ffc53f42bf56ec09f9537876c46c06259b95a561e8036f7a`.
+Source: `infra/agentinfra/roadmap_interfaces.py:187`; AST `4594843d371e8164ffc53f42bf56ec09f9537876c46c06259b95a561e8036f7a`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: changes, name, now. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[18].body[8].body[0]; no call, error or mutation may be omitted. Condition: name not in now
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5408,13 +5528,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:186`; AST `0c2c3e61717baa63c1e6e69b423f09501e362c7eab2067cc761f748415de0b6e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:188`; AST `0c2c3e61717baa63c1e6e69b423f09501e362c7eab2067cc761f748415de0b6e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: changes, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[18].body[8].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5428,13 +5548,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:186`; AST `a5a1230f969b5b49407906ce0085c5bbee36b64ea2b5c50607513fd40917e897`.
+Source: `infra/agentinfra/roadmap_interfaces.py:188`; AST `a5a1230f969b5b49407906ce0085c5bbee36b64ea2b5c50607513fd40917e897`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: changes, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5448,13 +5568,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[0].body[1]::Continue
 
-Source: `infra/agentinfra/roadmap_interfaces.py:187`; AST `3d1e0aaa463df3eefc9bd5be83f453adcd9621b2dc7f387c3eaff3ab42e91059`.
+Source: `infra/agentinfra/roadmap_interfaces.py:189`; AST `3d1e0aaa463df3eefc9bd5be83f453adcd9621b2dc7f387c3eaff3ab42e91059`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Continue evaluation at root.body[18].body[8].body[0].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5468,13 +5588,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:188`; AST `a79499a798b36142ac739d96f1e23f1e02427ba5d26a215c21b15056a6ec5f6b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:190`; AST `92cf563c77c8ff51606e48cb1a3875917e6dd445388f515d61ff98682b6a4139`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
-Inputs: _compatible, candidate, changes, exported, module, name, now, signature. Outputs/bindings: candidate, exported, signature.
-Calls/effect boundaries: _compatible, changes.append, module['exports'].items, now[name]['exports'].get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: _compatible, after, after_fields, before, before_fields, candidate, changes, exported, f, field, len, method, module, name, now, set, signature, sorted, zip. Outputs/bindings: after, after_fields, before, before_fields, candidate, exported, f, field, method, signature.
+Calls/effect boundaries: _compatible, after.get, before.get, changes.append, len, module['exports'].items, now[name]['exports'].get, set, sorted, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[18].body[8].body[1]; no call, error or mutation may be omitted. Iteration: (exported, signature) in module['exports'].items()
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5488,13 +5608,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:188`; AST `572aa641e6c105fe6cd2149c0e42e833c9efeb40b781b5632dad2090f43c70a4`.
+Source: `infra/agentinfra/roadmap_interfaces.py:190`; AST `572aa641e6c105fe6cd2149c0e42e833c9efeb40b781b5632dad2090f43c70a4`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: module. Outputs/bindings: (none).
 Calls/effect boundaries: module['exports'].items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5508,13 +5628,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:189`; AST `4f04366dd39a3e97a7f2091a6acdd72ad53286ccb968eabd883b82f46c83d231`.
+Source: `infra/agentinfra/roadmap_interfaces.py:191`; AST `4f04366dd39a3e97a7f2091a6acdd72ad53286ccb968eabd883b82f46c83d231`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: exported, name, now. Outputs/bindings: candidate.
 Calls/effect boundaries: now[name]['exports'].get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[8].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5528,13 +5648,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:189`; AST `c30b650357f7ec6b2543a3afb304567a7390855a02e9602818e77817fce966d6`.
+Source: `infra/agentinfra/roadmap_interfaces.py:191`; AST `c30b650357f7ec6b2543a3afb304567a7390855a02e9602818e77817fce966d6`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: exported, name, now. Outputs/bindings: (none).
 Calls/effect boundaries: now[name]['exports'].get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5548,13 +5668,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:190`; AST `2892abb59ad4f430dd472c972bf2a8b5078692fe1f9901aa072ca6ad02f8d8f1`.
+Source: `infra/agentinfra/roadmap_interfaces.py:192`; AST `66184a56581250cc37f0beb0afd4cd4ed517bb37f18cec33a3367b9ddc4cc4f9`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
-Inputs: _compatible, candidate, changes, exported, name, signature. Outputs/bindings: (none).
-Calls/effect boundaries: _compatible, changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: _compatible, after, after_fields, before, before_fields, candidate, changes, exported, f, field, len, method, name, set, signature, sorted, zip. Outputs/bindings: after, after_fields, before, before_fields, f, field, method.
+Calls/effect boundaries: _compatible, after.get, before.get, changes.append, len, set, sorted, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[18].body[8].body[1].body[1]; no call, error or mutation may be omitted. Condition: candidate is None
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5568,13 +5688,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:191`; AST `f1868a6ceb65919f889d3a5540ad49ff01afab992cc25dacca4c166502b0e0c8`.
+Source: `infra/agentinfra/roadmap_interfaces.py:193`; AST `f1868a6ceb65919f889d3a5540ad49ff01afab992cc25dacca4c166502b0e0c8`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: changes, exported, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[18].body[8].body[1].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5588,13 +5708,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:191`; AST `f05501febcff8259409eaff2f050660eb25aab90a40c68957e9a0ae2b2dd961b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:193`; AST `f05501febcff8259409eaff2f050660eb25aab90a40c68957e9a0ae2b2dd961b`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: changes, exported, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5608,13 +5728,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:192`; AST `265e8c2b08f88d3122efb7d694dd80defc987dc1cb3d23c41c811119756f9667`.
+Source: `infra/agentinfra/roadmap_interfaces.py:194`; AST `248acac9248cef01f602bf5ae9d10bd22983593084b6ddde06ccdc05902bd154`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
-Inputs: _compatible, candidate, changes, exported, name, signature. Outputs/bindings: (none).
-Calls/effect boundaries: _compatible, changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Inputs: _compatible, after, after_fields, before, before_fields, candidate, changes, exported, f, field, len, method, name, set, signature, sorted, zip. Outputs/bindings: after, after_fields, before, before_fields, f, field, method.
+Calls/effect boundaries: _compatible, after.get, before.get, changes.append, len, set, sorted, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[18].body[8].body[1].body[1].orelse[0]; no call, error or mutation may be omitted. Condition: not _compatible(signature, candidate)
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5628,13 +5748,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].test.operand::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:192`; AST `11fa0b6bfe7d3c8701505211537da0c9cfbad7ab01604ce757ede474194bfcf3`.
+Source: `infra/agentinfra/roadmap_interfaces.py:194`; AST `11fa0b6bfe7d3c8701505211537da0c9cfbad7ab01604ce757ede474194bfcf3`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: _compatible, candidate, signature. Outputs/bindings: (none).
 Calls/effect boundaries: _compatible.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].test.operand; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5648,13 +5768,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:193`; AST `ecea497fe61853f9799511299d8f172d4a3c45a1f28f81246612f8e65fa20eb3`.
+Source: `infra/agentinfra/roadmap_interfaces.py:195`; AST `ecea497fe61853f9799511299d8f172d4a3c45a1f28f81246612f8e65fa20eb3`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: changes, exported, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5668,13 +5788,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:193`; AST `dc62751a56db21b5b3f071cb8542f188b094fd20ccbb14e2a0d72ae8911250b5`.
+Source: `infra/agentinfra/roadmap_interfaces.py:195`; AST `dc62751a56db21b5b3f071cb8542f188b094fd20ccbb14e2a0d72ae8911250b5`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: changes, exported, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5686,15 +5806,555 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[1]::If
+
+Source: `infra/agentinfra/roadmap_interfaces.py:196`; AST `be099ffcc90b43a144fbe8869801d1410c9b8f82537824d001e6500212e29e96`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: candidate, changes, exported, len, name, signature. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append, len.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered If evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[1]; no call, error or mutation may be omitted. Condition: len(candidate) < len(signature)
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[1].test.left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:196`; AST `c06c2f63885fe2772cbd3dbde2bd442b9158c9a7304f9858adf280fa3f457cb2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: candidate, len. Outputs/bindings: (none).
+Calls/effect boundaries: len.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[1].test.left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[1].test.comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:196`; AST `10ac4ebcbb495d837d31dd3a93e52c9076472e0163875d754d8155b521556d23`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: len, signature. Outputs/bindings: (none).
+Calls/effect boundaries: len.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[1].test.comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[1].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:197`; AST `6a44c562ded4b85d83274662711e965b549e922e87258bbd992e62a037448141`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: changes, exported, name. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[1].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[1].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:197`; AST `1dcd940978bc781fb7c7940b2c968ec9f284923f18d4324eba33d6a068044a37`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: changes, exported, name. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[1].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2]::For
+
+Source: `infra/agentinfra/roadmap_interfaces.py:198`; AST `874ca817a562a71598ee63c7dfc309c49a056ba72a7bbfe4b404b00bba6d962a`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
+
+Inputs: after, after_fields, before, before_fields, candidate, changes, exported, f, field, method, name, set, signature, sorted, zip. Outputs/bindings: after, after_fields, before, before_fields, f, field, method.
+Calls/effect boundaries: after.get, before.get, changes.append, set, sorted, zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered For evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2]; no call, error or mutation may be omitted. Iteration: (before, after) in zip(signature, candidate)
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].iter::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:198`; AST `cd5962b2c86628a82a1cd0fb1b3c922efae1422022116dafb1da6782e1f4aa83`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: candidate, signature, zip. Outputs/bindings: (none).
+Calls/effect boundaries: zip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0]::If
+
+Source: `infra/agentinfra/roadmap_interfaces.py:199`; AST `04f6841dcac6ee0db231f33a599027920e38a9f4d68d147dacb397b8cfad3168`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: after, after_fields, before, before_fields, changes, exported, f, field, method, name, set, sorted. Outputs/bindings: after_fields, before_fields, f, field, method.
+Calls/effect boundaries: after.get, before.get, changes.append, set, sorted.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered If evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0]; no call, error or mutation may be omitted. Condition: before.get('kind') == 'ClassDef'
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].test.left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:199`; AST `40c16b2ca9a5ee22e0dce1b3d0de97b80528d69ffcb237af8280447a61e17875`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: before. Outputs/bindings: (none).
+Calls/effect boundaries: before.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].test.left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0]::For
+
+Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `a0b60f2292e47c7354c527de0d65bf978d0071798c264a6c97a66632d486dc92`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
+
+Inputs: after, before, changes, exported, method, name, set, sorted. Outputs/bindings: method.
+Calls/effect boundaries: after.get, before.get, changes.append, set, sorted.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered For evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0]; no call, error or mutation may be omitted. Iteration: method in sorted(set(before.get('methods', {})) - set(after.get('methods', {})))
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `feffbb3be3eaa4a7ec7b62421c4aea16f528462f06a399ab8e4cf847be6c584d`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after, before, set, sorted. Outputs/bindings: (none).
+Calls/effect boundaries: after.get, before.get, set, sorted.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `2cce9fdb31ce02160d9ef85fd37f633d7a155d1d0d21e7183267ba8bc5716fb9`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: before, set. Outputs/bindings: (none).
+Calls/effect boundaries: before.get, set.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].left.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `3d9220916e34892071356acee3d51481ebad39406dabd5c98f5dcc6e1ba9a7e1`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: before. Outputs/bindings: (none).
+Calls/effect boundaries: before.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].left.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].right::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `49855804f3fff8ee5582e666112e6d56af18ec0af5f3f72b7be94bce6343595b`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after, set. Outputs/bindings: (none).
+Calls/effect boundaries: after.get, set.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].right; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].right.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `dc1d875870667036cd7d24149a5c1bb2ace9e6c3fac8cc3d6a8f14c74a075759`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after. Outputs/bindings: (none).
+Calls/effect boundaries: after.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].iter.args[0].right.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:201`; AST `a94a5ecc6abcf316efdcd32eb799cf1d5a8ce4c2706aaecd671b8dcc69dcc0c2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: changes, exported, method, name. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:201`; AST `9adf94bb74407f2cccba7147346792dd3063abe8cca4053553ed05b9279854d5`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: changes, exported, method, name. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[0].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[1]::Assign
+
+Source: `infra/agentinfra/roadmap_interfaces.py:203`; AST `3edbd31284be80c5c127da1ee70000b9973c63d90e5ed1fe335533025bdf69ed`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: before, f. Outputs/bindings: before_fields, f.
+Calls/effect boundaries: before.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Assign evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[1].value::SetComp
+
+Source: `infra/agentinfra/roadmap_interfaces.py:203`; AST `de67a97b19c10098ec6cc0839920f27cf89b52a590f6ad1815ab616e31d03701`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
+
+Inputs: before, f. Outputs/bindings: f.
+Calls/effect boundaries: before.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered SetComp evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[1].value.generators[0].iter::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:203`; AST `7cc3bb47ebe7ae70f1187619a5e3534183657eb73dcf2d70fda63f525928f250`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: before. Outputs/bindings: (none).
+Calls/effect boundaries: before.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[1].value.generators[0].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_interfaces.py:204`; AST `391e99faa38b3e5acffe46c5084c7a8eb01e42d20785ab419e9230aa007a3709`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: after, f. Outputs/bindings: after_fields, f.
+Calls/effect boundaries: after.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Assign evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[2].value::SetComp
+
+Source: `infra/agentinfra/roadmap_interfaces.py:204`; AST `1b65d8d082348d3c24840f488d35c9157128e348215108c7393d3fb864127c61`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
+
+Inputs: after, f. Outputs/bindings: f.
+Calls/effect boundaries: after.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered SetComp evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[2].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[2].value.generators[0].iter::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:204`; AST `c6991c5d64878e6772c3f7369b0232cb938ee02e7c11b1ea2544c571f4afb927`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after. Outputs/bindings: (none).
+Calls/effect boundaries: after.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[2].value.generators[0].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3]::For
+
+Source: `infra/agentinfra/roadmap_interfaces.py:205`; AST `204f4c701506a9d98f43ff830051756d59e0197fc204d065b5851f3c76c21fca`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
+
+Inputs: after_fields, before_fields, changes, exported, field, name, sorted. Outputs/bindings: field.
+Calls/effect boundaries: changes.append, sorted.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered For evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3]; no call, error or mutation may be omitted. Iteration: field in sorted(before_fields - after_fields)
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3].iter::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:205`; AST `c0c77258330d35f7739d27f22cc789dfa900127bd29b1e77e5b2270c98e77d86`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: after_fields, before_fields, sorted. Outputs/bindings: (none).
+Calls/effect boundaries: sorted.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:206`; AST `322a83c23cf33d2c8726136f209c429b2db06bc6ce1e50c5d8ba8a2e9839bfc1`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: changes, exported, field, name. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:206`; AST `1d492db11d70af6695da002947f94f17a193e9e9960000cc476f1b3989033136`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: changes, exported, field, name. Outputs/bindings: (none).
+Calls/effect boundaries: changes.append.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[8].body[1].body[1].orelse[0].body[2].body[0].body[3].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[9]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:194`; AST `0a5f37e59619b02b1b373b3eedbcc0da108d177b7ddbd572afb8db3ab9f8dbd5`.
+Source: `infra/agentinfra/roadmap_interfaces.py:208`; AST `0a5f37e59619b02b1b373b3eedbcc0da108d177b7ddbd572afb8db3ab9f8dbd5`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: baseline, git. Outputs/bindings: old_schemas.
 Calls/effect boundaries: git.blob, git.read, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5708,13 +6368,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[9].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:194`; AST `1c872b75b03a5a73668ea74bd13ceba7ceddd44a5925bf9d5d5422d992d5aac5`.
+Source: `infra/agentinfra/roadmap_interfaces.py:208`; AST `1c872b75b03a5a73668ea74bd13ceba7ceddd44a5925bf9d5d5422d992d5aac5`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: baseline, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.blob, git.read, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5728,13 +6388,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[9].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:194`; AST `751ce353296cbcfbfd1d91ae7f289abb2892f0967fb9f98b0bb25fbbd7637963`.
+Source: `infra/agentinfra/roadmap_interfaces.py:208`; AST `751ce353296cbcfbfd1d91ae7f289abb2892f0967fb9f98b0bb25fbbd7637963`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: baseline, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.read, git.read('rev-parse', baseline + ':Roadmaps/Shared/records.schema.json').strip.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[9].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5748,13 +6408,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[9].value.args[0].func.value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:194`; AST `81fef6d525984f2f6dc3a55619d69c812f59bff489642ce76047bb41257482f5`.
+Source: `infra/agentinfra/roadmap_interfaces.py:208`; AST `81fef6d525984f2f6dc3a55619d69c812f59bff489642ce76047bb41257482f5`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: baseline, git. Outputs/bindings: (none).
 Calls/effect boundaries: git.read.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[9].value.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5768,13 +6428,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[10]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_interfaces.py:195`; AST `bf9783545a9d1e15fcbe04d054098fc8c576a703f83cf4f0a7e30dc030edaf47`.
+Source: `infra/agentinfra/roadmap_interfaces.py:209`; AST `bf9783545a9d1e15fcbe04d054098fc8c576a703f83cf4f0a7e30dc030edaf47`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[18].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5788,13 +6448,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[11]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:196`; AST `2d6023aa0bf293ccd16a037bcfda741a9339d811a6f6dce13b9db48efe50521b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:210`; AST `2d6023aa0bf293ccd16a037bcfda741a9339d811a6f6dce13b9db48efe50521b`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: loads, old_schemas. Outputs/bindings: previous_protocols.
 Calls/effect boundaries: loads, old_schemas.decode.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5808,13 +6468,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[11].value.value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:196`; AST `ebefc99a73e30d8be779479d4933f2b20d7ca45f266d67435bd95835cbae8eb1`.
+Source: `infra/agentinfra/roadmap_interfaces.py:210`; AST `ebefc99a73e30d8be779479d4933f2b20d7ca45f266d67435bd95835cbae8eb1`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: loads, old_schemas. Outputs/bindings: (none).
 Calls/effect boundaries: loads, old_schemas.decode.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[11].value.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5828,13 +6488,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[11].value.value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:196`; AST `b1383e83b0125a5f04523eb97a471e210593a14193c5380cee34afa443da0de8`.
+Source: `infra/agentinfra/roadmap_interfaces.py:210`; AST `b1383e83b0125a5f04523eb97a471e210593a14193c5380cee34afa443da0de8`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: old_schemas. Outputs/bindings: (none).
 Calls/effect boundaries: old_schemas.decode.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[11].value.value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5848,13 +6508,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[12]::For
 
-Source: `infra/agentinfra/roadmap_interfaces.py:197`; AST `9d075ad98c766c8e89f9de13a9a06e7b41ae98f339d86cc7150be872ad6857cb`.
+Source: `infra/agentinfra/roadmap_interfaces.py:211`; AST `9d075ad98c766c8e89f9de13a9a06e7b41ae98f339d86cc7150be872ad6857cb`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
 Inputs: changes, current, name, previous_protocols, schema. Outputs/bindings: name, schema.
 Calls/effect boundaries: changes.append, current['record_protocols'].get, previous_protocols.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered For evaluation at root.body[18].body[12]; no call, error or mutation may be omitted. Iteration: (name, schema) in previous_protocols.items()
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5868,13 +6528,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[12].iter::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:197`; AST `1906af2881086584766ec21faf4151dc7a94b7b72d59c80eb984f3d0f2d7078e`.
+Source: `infra/agentinfra/roadmap_interfaces.py:211`; AST `1906af2881086584766ec21faf4151dc7a94b7b72d59c80eb984f3d0f2d7078e`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: previous_protocols. Outputs/bindings: (none).
 Calls/effect boundaries: previous_protocols.items.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[12].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5888,13 +6548,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[12].body[0]::If
 
-Source: `infra/agentinfra/roadmap_interfaces.py:198`; AST `d1b83ed2bbde2b1f2cdb0593ee9fc354b91785baec10b63b08b1d40e151a54da`.
+Source: `infra/agentinfra/roadmap_interfaces.py:212`; AST `d1b83ed2bbde2b1f2cdb0593ee9fc354b91785baec10b63b08b1d40e151a54da`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: changes, current, name, schema. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append, current['record_protocols'].get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered If evaluation at root.body[18].body[12].body[0]; no call, error or mutation may be omitted. Condition: current['record_protocols'].get(name) != schema
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5908,13 +6568,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[12].body[0].test.left::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:198`; AST `14e5f81c30c0121469469868c4bab382e9b10cfbebcab5fe656d0cccebb69ff0`.
+Source: `infra/agentinfra/roadmap_interfaces.py:212`; AST `14e5f81c30c0121469469868c4bab382e9b10cfbebcab5fe656d0cccebb69ff0`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: current, name. Outputs/bindings: (none).
 Calls/effect boundaries: current['record_protocols'].get.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[12].body[0].test.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5928,13 +6588,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[12].body[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_interfaces.py:199`; AST `65411d932067ccfc5e2c2c50379924795d63eac6f4cc5b5ea27552fbf4d04532`.
+Source: `infra/agentinfra/roadmap_interfaces.py:213`; AST `65411d932067ccfc5e2c2c50379924795d63eac6f4cc5b5ea27552fbf4d04532`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: changes, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Expr evaluation at root.body[18].body[12].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5948,13 +6608,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[12].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:199`; AST `50a18b1340902ae1faa2291da736fa62aded59eceb5618043fe86f2989025bf2`.
+Source: `infra/agentinfra/roadmap_interfaces.py:213`; AST `50a18b1340902ae1faa2291da736fa62aded59eceb5618043fe86f2989025bf2`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: changes, name. Outputs/bindings: (none).
 Calls/effect boundaries: changes.append.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[12].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5968,13 +6628,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[13]::Return
 
-Source: `infra/agentinfra/roadmap_interfaces.py:200`; AST `6a47362372d3a92e9bbc99afabfb9d579a5e9fbab195c0b9ce243ecb3a4f8bb6`.
+Source: `infra/agentinfra/roadmap_interfaces.py:214`; AST `6a47362372d3a92e9bbc99afabfb9d579a5e9fbab195c0b9ce243ecb3a4f8bb6`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: INTERFACE_VERSION, baseline, changes, current, len, now, old, set, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: len, set, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Return evaluation at root.body[18].body[13]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -5988,13 +6648,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[13].value.values[4]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:201`; AST `b3720b73e42707ad9b300e9ca52f252134a94d0777a96462df2c014e67c318ae`.
+Source: `infra/agentinfra/roadmap_interfaces.py:215`; AST `b3720b73e42707ad9b300e9ca52f252134a94d0777a96462df2c014e67c318ae`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: len, old. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[13].value.values[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -6008,13 +6668,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[13].value.values[5]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:202`; AST `dcccb2a0f51409382ee29c8a7739dfac2ffe70cd97d9b6553ac03c28dc4f05cb`.
+Source: `infra/agentinfra/roadmap_interfaces.py:216`; AST `dcccb2a0f51409382ee29c8a7739dfac2ffe70cd97d9b6553ac03c28dc4f05cb`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: len, now. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[13].value.values[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -6028,13 +6688,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[13].value.values[8]::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:203`; AST `10d426f9faf5fee39dd6dba7a39f02f2fb3099f1682a7a7cbef2353d7b7e39bf`.
+Source: `infra/agentinfra/roadmap_interfaces.py:217`; AST `10d426f9faf5fee39dd6dba7a39f02f2fb3099f1682a7a7cbef2353d7b7e39bf`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: now, old, set, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: set, sorted.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[13].value.values[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -6048,13 +6708,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[13].value.values[8].args[0].left::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:203`; AST `7554e2d056c7330d49d83219dc4c92835d4104d684c7dab245248107965b529f`.
+Source: `infra/agentinfra/roadmap_interfaces.py:217`; AST `7554e2d056c7330d49d83219dc4c92835d4104d684c7dab245248107965b529f`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: now, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[13].value.values[8].args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
@@ -6068,15 +6728,615 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::compare_interfaces::root.body[18].body[13].value.values[8].args[0].right::Call
 
-Source: `infra/agentinfra/roadmap_interfaces.py:203`; AST `126a9e051bb3ed50fa0970c79f4ee485eee5f457a09cb491ed6ecb5f11dd4b32`.
+Source: `infra/agentinfra/roadmap_interfaces.py:217`; AST `126a9e051bb3ed50fa0970c79f4ee485eee5f457a09cb491ed6ecb5f11dd4b32`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: old, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
-Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_records, security, sys.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[13].value.values[8].args[0].right; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19]::FunctionDef
+
+Source: `infra/agentinfra/roadmap_interfaces.py:221`; AST `810e38711d842be9acf7e9ba85fbe243d11d162cb0db5fd011676401099c9c97`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
+
+Inputs: Path, allowed, change, decision, dict, digest, file_binding, isinstance, observation, policy_binding, require, root, source, str. Outputs/bindings: allowed, change, source.
+Calls/effect boundaries: change.get, decision.get, decision['rationale'].strip, digest, file_binding, isinstance, observation.get, policy_binding, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered FunctionDef evaluation at root.body[19]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:222`; AST `ce91451088085ea2ebfa3ffd9651d9fe35cf66ddb40d0445c4e6984d655da782`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[19].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[1]::ImportFrom
+
+Source: `infra/agentinfra/roadmap_interfaces.py:227`; AST `253c51097aa81c908a2c830148e373c66d37b9c47025200e402bee84cd75b121`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered ImportFrom evaluation at root.body[19].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_interfaces.py:228`; AST `6071f2ea9ebc285edf10a1d4a19066ca8a1a8efaf55a873a7481bcdea215e9f2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: file_binding, root. Outputs/bindings: source.
+Calls/effect boundaries: file_binding.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Assign evaluation at root.body[19].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[2].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:228`; AST `1e9c41757f7f2236236218465bc3b467c022881da8a309714522503424e813ee`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: file_binding, root. Outputs/bindings: (none).
+Calls/effect boundaries: file_binding.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[2].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:229`; AST `fa02201be41884615263d3ef9dfeebab99910dd8016ab114690455260d83f78a`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: decision, digest, observation, policy_binding, require, root, source. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get, digest, observation.get, policy_binding, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[19].body[3]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:229`; AST `1162a65db240277fe2e3444bcb151a8d7fc3319da9d6e109bfdcf2735aa62cc2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision, digest, observation, policy_binding, require, root, source. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get, digest, observation.get, policy_binding, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:229`; AST `1bc393215003ebcfcc04eb614e49dbcfb05dfa49b2e1af0921ddc04ed7ff68f7`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: observation. Outputs/bindings: (none).
+Calls/effect boundaries: observation.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[1]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:229`; AST `2a2808f7664ebf097ebfedbc7aa5f6dca58d656a1cded420cb89bdb6a928c06b`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: observation. Outputs/bindings: (none).
+Calls/effect boundaries: observation.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[2].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:230`; AST `a260952d24f2b406fd0d54dd7d43253eae11173c213161664834febf20f51d7f`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[2].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[3].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:230`; AST `6613a47e3263753ccfd2060fcde8cc8ed5529fcf94590c534c1269fc6f9cd9f1`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[3].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[4].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:231`; AST `735253e06df275dc7ed3a32258c856fdca196283cf883bd01fad58fa46e29a34`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[4].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[4].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:231`; AST `1af2dcd5f19d85a8db08951a0b972298a6efa0e6a519bf5bdfb56892001b494c`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: digest, observation. Outputs/bindings: (none).
+Calls/effect boundaries: digest.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[4].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[5].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:232`; AST `adb5d1d6a259fb125c0e697f612f8be307ca7032999fce2f8dc4b885a96199db`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[5].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[6].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:232`; AST `3fa0e153aff875d9e4f9a4b58f3d0515f166393ebd12abe2c463ffc13ff2808e`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[6].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[3].value.args[0].values[6].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:232`; AST `0f6fb9081af5dda829cc40a8483970d2a917c4f597b6c56df382be7780e184c2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: policy_binding, root. Outputs/bindings: (none).
+Calls/effect boundaries: policy_binding.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[3].value.args[0].values[6].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[4]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:234`; AST `f7573a515001bfa491ef06859c2076e499e362a401f2ccab26d8ea18ee41af46`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: decision, isinstance, observation, require, str. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get, decision['rationale'].strip, isinstance, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[19].body[4]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[4].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:234`; AST `e2e50185443da2ca7b50843f6e25c9b269ba07ad87662e9dacdff8fc187c791c`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision, isinstance, observation, require, str. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get, decision['rationale'].strip, isinstance, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[4].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[4].value.args[0].values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:234`; AST `5556f6c2d30e41670af4fa3edae3c2162a63b88053a299029b80e866ee548305`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[4].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[4].value.args[0].values[1]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:235`; AST `ec18fb191887234789d486ee08e3af2687a7e95412d967dec5d7787cc9719088`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision, isinstance, str. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get, isinstance.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[4].value.args[0].values[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[4].value.args[0].values[1].args[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:235`; AST `62cb225db8931dff7977eb44f9133473c87f48aea2fcff8dc936a52fe704f71c`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[4].value.args[0].values[1].args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[4].value.args[0].values[2]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:235`; AST `8ada71aa99cad16543f615330e29c1a4ea20e80bcaae12b77fde6f3556b9f72a`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: decision['rationale'].strip.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[4].value.args[0].values[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[5]::Assign
+
+Source: `infra/agentinfra/roadmap_interfaces.py:237`; AST `d0065a535770428acfadf417dc34545484fa22573e0e79faedab34fe05ee0e3f`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: allowed.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Assign evaluation at root.body[19].body[5]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[6]::For
+
+Source: `infra/agentinfra/roadmap_interfaces.py:242`; AST `ba1deb827282d1904f7f57400a90e752db40edda4ce28488fdd19749eec3ace5`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
+
+Inputs: allowed, change, observation, require. Outputs/bindings: change.
+Calls/effect boundaries: change.get, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered For evaluation at root.body[19].body[6]; no call, error or mutation may be omitted. Iteration: change in observation['changes']
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[6].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_interfaces.py:243`; AST `bee01ad6d8044b5a2f3b8507e70ab970de3dec2fa28eb03c3df5c209da70dbaa`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: allowed, change, require. Outputs/bindings: (none).
+Calls/effect boundaries: change.get, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Expr evaluation at root.body[19].body[6].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[6].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:243`; AST `17f65777d2a419cc82ebaa91170e275a95ae8d3ff347cb88dbc3f93aa97b21a2`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: allowed, change, require. Outputs/bindings: (none).
+Calls/effect boundaries: change.get, require.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[6].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[6].body[0].value.args[0].values[0].values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:243`; AST `1168ee13d1c36c19e4ed22b2746cc4970454b2351666f4b6c3de757fc0a33d44`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: change. Outputs/bindings: (none).
+Calls/effect boundaries: change.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[6].body[0].value.args[0].values[0].values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[6].body[0].value.args[0].values[0].values[1].left.elts[0]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:244`; AST `7f8c63476cc72080609bdc5240a83d853c2720d7f30beaad64b2864b711b0f39`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: change. Outputs/bindings: (none).
+Calls/effect boundaries: change.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[6].body[0].value.args[0].values[0].values[1].left.elts[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[6].body[0].value.args[0].values[0].values[1].left.elts[1]::Call
+
+Source: `infra/agentinfra/roadmap_interfaces.py:244`; AST `18370b5ae2c550af9f534209bbbd2ca7c4ddbd527c70ae90d88b45f2feea3399`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: change. Outputs/bindings: (none).
+Calls/effect boundaries: change.get.
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Call evaluation at root.body[19].body[6].body[0].value.args[0].values[0].values[1].left.elts[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_interfaces.py::module::validate_compatibility_disposition::root.body[19].body[7]::Return
+
+Source: `infra/agentinfra/roadmap_interfaces.py:247`; AST `88fb793dfbeea85a2caa8a7b133da717d7cfd3cbce4f936bfc747205bde4af7d`.
+
+Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: decision. Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, importlib.util, pathlib, roadmap_inventory, roadmap_persistence, roadmap_records, security, sys.
+
+Invariants: Preserve ordered Return evaluation at root.body[19].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 

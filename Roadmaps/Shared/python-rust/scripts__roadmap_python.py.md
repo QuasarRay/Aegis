@@ -2,18 +2,18 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 349. Inventory digest: `aa064348a8890b7949c06405ee63d5aa9506e1c764b31538cbe8d80f5017d12e`.
+Files: 1. Behavioral units: 345. Inventory digest: `ead25068150e0d2ce854c09fe3e0b1cf1e20f8d07b4349f2b08ac280bae3a009`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## scripts/roadmap_python.py::module::root::Module
 
-Source: `scripts/roadmap_python.py:1`; AST `88b90463af7890c1a7ebe00755f656e7c897236bf4eb3a682d1d45d74587b1e2`.
+Source: `scripts/roadmap_python.py:1`; AST `9967e8c893d0cb9031f08179d0dfd85ba7e088316210fa4dc4e2a1faa478d9df`.
 
 Rust module: `scripts::roadmap_python`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: Exception, Path, ROOT, TRANSPORT, __doc__, __file__, __name__, _download, archive, argparse, args, argv, artifacts, asdict, atomic_write_json, b, binding, bindings_current, bool, bundle, checked, classify_deal, classify_nagini, compile_roadmaps, confined_path, deadline, dependencies, details, dict, digest, directory, download_with_mirrors, entry, environment, exc, file_binding, files, fixture, float, installed, java, java_root, java_version, json, len, list, lock, main, map, minimal_subprocess_env, nagini, name, observed, observed_path, os, outcomes, output, p, package, parser, path, print, profile, provision, provision_deal, provision_esbmc, python, qualify, qualify_deal, qualify_esbmc, r, read_download_policy, read_json, require, result, result_path, root, route, run_recipe_stage, runs, sorted, source, source_closure, str, sys, tarfile, time, toolchain, toolchain_path, type, venv, virtual, wheels. Outputs/bindings: ROOT, archive, args, argv, artifacts, binding, bundle, checked, deadline, dependencies, details, directory, entry, environment, files, fixture, installed, java, java_root, java_version, lock, nagini, name, observed, observed_path, outcomes, output, p, package, parser, path, profile, python, r, result, result_path, runs, source, toolchain, virtual, wheels.
-Calls/effect boundaries: (virtual / 'bin/python').exists, Path, Path(__file__).resolve, _download, argparse.ArgumentParser, artifacts.append, artifacts.extend, asdict, atomic_write_json, bindings_current, bool, bundle.extractall, classify_deal, classify_nagini, compile_roadmaps, confined_path, dependencies.append, details.get, details.update, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, json.dumps, len, list, lock.get, main, map, minimal_subprocess_env, nagini.is_file, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix, os.uname, output.parent.mkdir, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, parser.add_argument, parser.parse_args, path.relative_to, path.relative_to(root).as_posix, print, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, read_download_policy, read_json, require, result_path.relative_to, result_path.relative_to(root).as_posix, route, run_recipe_stage, runs.append, sorted, source.relative_to, source.relative_to(root).as_posix, source_closure, str, sys.path.insert, tarfile.open, time.monotonic, toolchain.get, type, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
+Inputs: Exception, Path, ROOT, TRANSPORT, __doc__, __file__, __name__, _download, archive, argparse, args, argv, artifacts, asdict, atomic_write_json, b, binding, bindings_current, bool, bundle, checked, classify_deal, classify_nagini, compile_roadmaps, confined_path, deadline, dependencies, details, dict, digest, directory, download_with_mirrors, entry, environment, exc, file_binding, files, fixture, float, installed, java, java_root, java_version, json, len, list, lock, main, map, minimal_subprocess_env, nagini, name, observed, observed_path, os, outcomes, output, p, package, parser, path, print, profile, provision, provision_deal, provision_esbmc, python, qualify, qualify_deal, qualify_esbmc, r, read_json, require, result, result_path, root, route, run_recipe_stage, runs, sorted, source, source_closure, str, sys, tarfile, toolchain, toolchain_path, type, venv, virtual, wheels. Outputs/bindings: ROOT, archive, args, argv, artifacts, binding, bundle, checked, deadline, dependencies, details, directory, entry, environment, files, fixture, installed, java, java_root, java_version, lock, nagini, name, observed, observed_path, outcomes, output, p, package, parser, path, profile, python, r, result, result_path, runs, source, toolchain, virtual, wheels.
+Calls/effect boundaries: (virtual / 'bin/python').exists, Path, Path(__file__).resolve, _download, argparse.ArgumentParser, artifacts.append, artifacts.extend, asdict, atomic_write_json, bindings_current, bool, bundle.extractall, classify_deal, classify_nagini, compile_roadmaps, confined_path, dependencies.append, details.get, details.update, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, json.dumps, len, list, lock.get, main, map, minimal_subprocess_env, nagini.is_file, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix, os.uname, output.parent.mkdir, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, parser.add_argument, parser.parse_args, path.relative_to, path.relative_to(root).as_posix, print, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, read_json, require, result_path.relative_to, result_path.relative_to(root).as_posix, route, run_recipe_stage, runs.append, sorted, source.relative_to, source.relative_to(root).as_posix, source_closure, str, sys.path.insert, tarfile.open, toolchain.get, type, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
@@ -508,7 +508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::_download::root.body[20]::FunctionDef
 
-Source: `scripts/roadmap_python.py:26`; AST `d28a704cb38b4d4f5cc85082fb41c2de5858a823d5ba53d9642143292e7b278d`.
+Source: `scripts/roadmap_python.py:26`; AST `f35cb141ce376d945395962a9f95fcc6e536f8799a54753fcf1677cd36459712`.
 
 Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -568,12 +568,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21]::FunctionDef
 
-Source: `scripts/roadmap_python.py:30`; AST `aa40cd197a32f46610169c9ff9025efa4a5b59be948fc99ae53aa2864a8e0747`.
+Source: `scripts/roadmap_python.py:30`; AST `027652721a8030a9f31258a8a544c4a7029017fe7a92c80e04e28dda6dd933f2`.
 
 Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, TRANSPORT, _download, archive, asdict, atomic_write_json, b, bundle, checked, confined_path, deadline, dict, digest, directory, environment, file_binding, files, installed, java, java_root, java_version, len, list, lock, map, minimal_subprocess_env, nagini, os, output, p, package, python, read_download_policy, read_json, require, root, run_recipe_stage, sorted, str, sys, tarfile, time, venv, virtual, wheels. Outputs/bindings: archive, bundle, checked, deadline, directory, environment, files, installed, java, java_root, java_version, lock, nagini, p, package, python, virtual, wheels.
-Calls/effect boundaries: (virtual / 'bin/python').exists, _download, asdict, atomic_write_json, bundle.extractall, confined_path, digest, directory.mkdir, directory.rglob, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, len, list, lock.get, map, minimal_subprocess_env, nagini.is_file, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, read_download_policy, read_json, require, run_recipe_stage, sorted, str, tarfile.open, time.monotonic, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
+Inputs: Path, TRANSPORT, _download, archive, asdict, atomic_write_json, b, bundle, checked, confined_path, deadline, dict, digest, directory, environment, file_binding, files, installed, java, java_root, java_version, len, list, lock, map, minimal_subprocess_env, nagini, os, output, p, package, python, read_json, require, root, run_recipe_stage, sorted, str, sys, tarfile, venv, virtual, wheels. Outputs/bindings: archive, bundle, checked, deadline, directory, environment, files, installed, java, java_root, java_version, lock, nagini, p, package, python, virtual, wheels.
+Calls/effect boundaries: (virtual / 'bin/python').exists, _download, asdict, atomic_write_json, bundle.extractall, confined_path, digest, directory.mkdir, directory.rglob, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, len, list, lock.get, map, minimal_subprocess_env, nagini.is_file, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, read_json, require, run_recipe_stage, sorted, str, tarfile.open, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[21]; no call, error or mutation may be omitted.
@@ -848,55 +848,15 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[5]::Assign
 
-Source: `scripts/roadmap_python.py:36`; AST `4bf1f8e6c36f98f38e92ec4bca5e754fb5c2256335263ba3ca08b43b415056ba`.
+Source: `scripts/roadmap_python.py:36`; AST `3987dc54a2af5801607b1d026ae63a6ca96ab8eade16a4c7246f26df7cb9dd72`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: read_download_policy, root, time. Outputs/bindings: deadline.
-Calls/effect boundaries: read_download_policy, time.monotonic.
+Inputs: (none). Outputs/bindings: deadline.
+Calls/effect boundaries: (none).
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[5]; no call, error or mutation may be omitted.
-Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## scripts/roadmap_python.py::module::provision::root.body[21].body[5].value.left::Call
-
-Source: `scripts/roadmap_python.py:36`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
-
-Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: time. Outputs/bindings: (none).
-Calls/effect boundaries: time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
-
-Invariants: Preserve ordered Call evaluation at root.body[21].body[5].value.left; no call, error or mutation may be omitted.
-Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## scripts/roadmap_python.py::module::provision::root.body[21].body[5].value.right.value::Call
-
-Source: `scripts/roadmap_python.py:36`; AST `d98a9d8f02719fd4afc66431e19bae5e085c1a1947d40c1d0c9c099b5cc2ace2`.
-
-Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: read_download_policy, root. Outputs/bindings: (none).
-Calls/effect boundaries: read_download_policy.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
-
-Invariants: Preserve ordered Call evaluation at root.body[21].body[5].value.right.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -1608,7 +1568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[19]::Assign
 
-Source: `scripts/roadmap_python.py:55`; AST `9c456b538f15090f53eeb65917bdbb645a9ad6e7b62eb97f160a4013789857e3`.
+Source: `scripts/roadmap_python.py:55`; AST `129a044033da8ec638c8eadc9518e18c4269dd398a0e9136cf3d3b40f7e09d55`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1628,7 +1588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[19].value::Call
 
-Source: `scripts/roadmap_python.py:55`; AST `73438fd0ec6151fc90bc7d4a7b944563023a67dacae40dd57f4d785bd8948cf3`.
+Source: `scripts/roadmap_python.py:55`; AST `3bcd25291755bb7e849ea36229ec1ea15a69ce1f2b6c94107a0d07524d5e7624`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -1788,7 +1748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[22]::Assign
 
-Source: `scripts/roadmap_python.py:59`; AST `493da46a219f19b7f5bdd1138fecfb3bb3ccb3c7b529261290c4a044ce469e49`.
+Source: `scripts/roadmap_python.py:59`; AST `01d0cc174e9e164c9855b94b32fc6681ee36c5418da1ba00dd6d67e2aaa62aec`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -1808,7 +1768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[22].value::Call
 
-Source: `scripts/roadmap_python.py:59`; AST `dd4de1a0a528a97c3568522568f6a965c0486418e9f76425172021a6eea16c98`.
+Source: `scripts/roadmap_python.py:59`; AST `6ad7d32b8920b18a2d8240a26c813a5695231c0f389f4cdb4f4484accddbe41c`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2028,7 +1988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[27]::Assign
 
-Source: `scripts/roadmap_python.py:64`; AST `6784f9ed4d30ba5b37959d31f07ba211d597a3e9027c850776fdebf2084211b2`.
+Source: `scripts/roadmap_python.py:64`; AST `1094f594293da4d3e006ad66db773fa6bb09e9e0c45c82fd7baec59cbf242a8f`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2048,7 +2008,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision::root.body[21].body[27].value::Call
 
-Source: `scripts/roadmap_python.py:64`; AST `03478a40a25ce0504d91aa0b65d5634be59b927b16154d80bb37346e6d61c440`.
+Source: `scripts/roadmap_python.py:64`; AST `76894be6a45b79846de79871551e381b552e7e0de01eaa80200ec97a0eb20992`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2568,7 +2528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify::root.body[22]::FunctionDef
 
-Source: `scripts/roadmap_python.py:74`; AST `70089cd9fd9b5737021f7c834bf90360f0d873ed1a9395374121766ea88301af`.
+Source: `scripts/roadmap_python.py:74`; AST `982e3762dc899d92149e084ba8d9f098951b76d786813e1c4a0b010ba69898e6`.
 
 Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -2788,7 +2748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify::root.body[22].body[4]::For
 
-Source: `scripts/roadmap_python.py:80`; AST `a7da313865b07105d257c2485a308d6616e98a6e919c8de68d923de02a452668`.
+Source: `scripts/roadmap_python.py:80`; AST `dab282ec4941c4659253456a373f10b6c74a339f9ecbc3a73ac3c3d855355638`.
 
 Rust module: `scripts::roadmap_python`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -2908,7 +2868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify::root.body[22].body[4].body[2]::Assign
 
-Source: `scripts/roadmap_python.py:83`; AST `aba5ac24d901ecee632ad10b0fab17caf825727cb4d5e738e6e28e1467026eef`.
+Source: `scripts/roadmap_python.py:83`; AST `59b965ed08197910bb1dd6903005744979c2a25a12d6a4aca56ef2f3068a06f7`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2928,7 +2888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify::root.body[22].body[4].body[2].value::Call
 
-Source: `scripts/roadmap_python.py:83`; AST `d53df10d40e28345b61020aa7282bbd5945264c89762d01d4f926a523b85764a`.
+Source: `scripts/roadmap_python.py:83`; AST `f0298ad28edaf6d902a0712c3cfe958a69fafd193cd37787e18fd9a6ec2f9a93`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3428,12 +3388,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision_deal::root.body[23]::FunctionDef
 
-Source: `scripts/roadmap_python.py:99`; AST `fdc303f85e7ea173896df35d04bc70699d43a536117de16e52aa129d0ab4b0f2`.
+Source: `scripts/roadmap_python.py:99`; AST `9cfef465a18e38a834f0c3a6c2006308a34d5f51fba00bd958323c24d9b1e4e8`.
 
 Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, TRANSPORT, _download, argv, artifacts, asdict, atomic_write_json, b, confined_path, deadline, dict, digest, directory, entry, environment, file_binding, files, lock, map, minimal_subprocess_env, name, os, output, p, path, profile, python, read_download_policy, read_json, require, result, root, run_recipe_stage, sorted, str, sys, time, venv, virtual, wheels. Outputs/bindings: argv, artifacts, deadline, directory, entry, environment, files, lock, name, p, path, profile, python, result, virtual, wheels.
-Calls/effect boundaries: (virtual / 'bin/python').exists, _download, artifacts.append, asdict, atomic_write_json, confined_path, dict, digest, directory.mkdir, directory.rglob, file_binding, lock.get, map, minimal_subprocess_env, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.relative_to, path.relative_to(root).as_posix, read_download_policy, read_json, require, run_recipe_stage, sorted, str, time.monotonic, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
+Inputs: Path, TRANSPORT, _download, argv, artifacts, asdict, atomic_write_json, b, confined_path, deadline, dict, digest, directory, entry, environment, file_binding, files, lock, map, minimal_subprocess_env, name, os, output, p, path, profile, python, read_json, require, result, root, run_recipe_stage, sorted, str, sys, venv, virtual, wheels. Outputs/bindings: argv, artifacts, deadline, directory, entry, environment, files, lock, name, p, path, profile, python, result, virtual, wheels.
+Calls/effect boundaries: (virtual / 'bin/python').exists, _download, artifacts.append, asdict, atomic_write_json, confined_path, dict, digest, directory.mkdir, directory.rglob, file_binding, lock.get, map, minimal_subprocess_env, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.relative_to, path.relative_to(root).as_posix, read_json, require, run_recipe_stage, sorted, str, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[23]; no call, error or mutation may be omitted.
@@ -3708,55 +3668,15 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision_deal::root.body[23].body[5]::Assign
 
-Source: `scripts/roadmap_python.py:107`; AST `4bf1f8e6c36f98f38e92ec4bca5e754fb5c2256335263ba3ca08b43b415056ba`.
+Source: `scripts/roadmap_python.py:107`; AST `3987dc54a2af5801607b1d026ae63a6ca96ab8eade16a4c7246f26df7cb9dd72`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: read_download_policy, root, time. Outputs/bindings: deadline.
-Calls/effect boundaries: read_download_policy, time.monotonic.
+Inputs: (none). Outputs/bindings: deadline.
+Calls/effect boundaries: (none).
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[5]; no call, error or mutation may be omitted.
-Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## scripts/roadmap_python.py::module::provision_deal::root.body[23].body[5].value.left::Call
-
-Source: `scripts/roadmap_python.py:107`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
-
-Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: time. Outputs/bindings: (none).
-Calls/effect boundaries: time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
-
-Invariants: Preserve ordered Call evaluation at root.body[23].body[5].value.left; no call, error or mutation may be omitted.
-Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## scripts/roadmap_python.py::module::provision_deal::root.body[23].body[5].value.right.value::Call
-
-Source: `scripts/roadmap_python.py:107`; AST `d98a9d8f02719fd4afc66431e19bae5e085c1a1947d40c1d0c9c099b5cc2ace2`.
-
-Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: read_download_policy, root. Outputs/bindings: (none).
-Calls/effect boundaries: read_download_policy.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
-
-Invariants: Preserve ordered Call evaluation at root.body[23].body[5].value.right.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -4048,7 +3968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision_deal::root.body[23].body[12]::For
 
-Source: `scripts/roadmap_python.py:115`; AST `e2bddb51ed36a29d4e55cde03fb91aa0ec41cddd5a98ed1713d30dfaaa496e4d`.
+Source: `scripts/roadmap_python.py:115`; AST `ffd1e6495e0d0640fee1f9ad00983167e8e3c5ad6c9e67df701d1bf9dfa9947d`.
 
 Rust module: `scripts::roadmap_python`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -4128,7 +4048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision_deal::root.body[23].body[12].body[0]::Assign
 
-Source: `scripts/roadmap_python.py:117`; AST `f802c75c13444cf33fce4ad0ed80bf5ebea0a9cbda411ba7a80ff595533d76b8`.
+Source: `scripts/roadmap_python.py:117`; AST `c44493d1f7c841c07ba37cfb8a9eae48858e639375d7cc8ee42ea99f4d690fc4`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4148,7 +4068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::provision_deal::root.body[23].body[12].body[0].value::Call
 
-Source: `scripts/roadmap_python.py:117`; AST `bac19288464b2af15e29ca4705aaea6181d029c19012982d97b42b281688e44d`.
+Source: `scripts/roadmap_python.py:117`; AST `2ac1b224ce3a647da92d41a7bfdeca387233754bc485643c46cd8ac13f424294`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4648,7 +4568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify_deal::root.body[24]::FunctionDef
 
-Source: `scripts/roadmap_python.py:129`; AST `189bb90f811d553d0afb8ac2d842ee2aaed5b490072d1e495f71f03b917b6438`.
+Source: `scripts/roadmap_python.py:129`; AST `0852ab8928fac3b4b7bdb3794a971a823a56d6a802f9c509562998638ffbec80`.
 
 Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -4908,7 +4828,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify_deal::root.body[24].body[5]::For
 
-Source: `scripts/roadmap_python.py:136`; AST `80711ac1abc22e738a41cf19220399072cab8d7ec3cbb002be74b693c08f6484`.
+Source: `scripts/roadmap_python.py:136`; AST `8f9a5baf49c705ef594d9b72083517731dcebecfb960cbd19fe1a127c25ed7d7`.
 
 Rust module: `scripts::roadmap_python`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -5048,7 +4968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify_deal::root.body[24].body[5].body[3]::Assign
 
-Source: `scripts/roadmap_python.py:140`; AST `8e242f6ed42bba1c2c1cef646370da55d03d091f9b2369db60f3da293a686828`.
+Source: `scripts/roadmap_python.py:140`; AST `e597ef329b78f1bb614ceff43e9131a793eead888609226a3330fdd03555fed4`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5068,7 +4988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::qualify_deal::root.body[24].body[5].body[3].value::Call
 
-Source: `scripts/roadmap_python.py:140`; AST `624d672349731e77cd6626b2ba21309a66c68ba5df4358fcaa83c561adbf6841`.
+Source: `scripts/roadmap_python.py:140`; AST `edf377a9c10eecd1ce10909c66046aa9f81da9851d790ceb72950f261618e584`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
