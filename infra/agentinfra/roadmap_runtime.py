@@ -53,6 +53,12 @@ def retry_limits(root: Path, milestone: str, recipe: str, max_attempts: int, tot
             p["id"] in rows and p == {k: rows[p["id"]].get(k) for k in fields} for p in prior),
             "retry amendment lost or rewrote failed attempt history")
     generation = prior[-1]["generation"]
+    retained = amendment.get("retained_history")
+    if retained is not None:
+        history = [a for a in ledger if a["work_id"] == work_id]
+        require(retained and len(retained) >= len(prior) and
+                retained == [{k: a.get(k) for k in fields} for a in history[:len(retained)]] and
+                retained[-len(prior):] == prior, "retry amendment lost or rewrote retained attempt history")
     current = [a for a in ledger if a["work_id"] == work_id and a.get("generation") == generation]
     require([a["id"] for a in current[:len(prior)]] == [a["id"] for a in prior] and
             len(current) <= limits["max_attempts"] and all(a.get("generation") == generation for a in prior),
@@ -73,7 +79,10 @@ def retry_limits(root: Path, milestone: str, recipe: str, max_attempts: int, tot
 
 def authorize_single_retry(root: Path, compiled: dict, milestone: str, recipe: str, *,
                            user_authorized: bool, source: dict, dependencies: list[dict]) -> dict:
-    """Record the controlling agent's observed user directive; never infer approval from a Goal."""
+    """Record user scope for the exhausted latest generation, retaining history.
+
+    The controlling Goal alone never authorizes another attempt.
+    """
     from .roadmap_project import ProjectAdapter
     require(not compiled.get("policy", {}).get("execution_policy"),
             "AM20 uses persistent evidenced recovery; a one-run allowance amendment is obsolete")
@@ -93,8 +102,13 @@ def authorize_single_retry(root: Path, compiled: dict, milestone: str, recipe: s
     require(recipe in contract["checks"] and dependencies and bindings_current(root, dependencies), "retry dependencies/scope are not current")
     seconds = min(compiled["recipes"][recipe]["max_seconds"], contract["budget_policy"]["max_seconds_per_recipe"])
     attempts = min(compiled["recipes"][recipe]["max_attempts"], contract["budget_policy"]["max_attempts"])
-    prior = [a for a in BudgetLedger(root).read()["attempts"] if a["work_id"] == work_id]
-    require(len(prior) == attempts and all(a["status"] in {"FAILED", "INTERRUPTED"} and
+    history = [a for a in BudgetLedger(root).read()["attempts"] if a["work_id"] == work_id]
+    generation = history[-1].get("generation", 1) if history else None
+    prior = [a for a in history if a.get("generation", 1) == generation]
+    require(type(generation) is int and generation > 0 and
+            all(a["status"] in {"SUCCESS", "FAILED", "INTERRUPTED"} and
+                a.get("generation", 1) <= generation for a in history) and
+            len(prior) == attempts and all(a["status"] in {"FAILED", "INTERRUPTED"} and
             a.get("generation", 1) == prior[-1].get("generation", 1) for a in prior) and
             sum(a["reserved_seconds"] for a in prior) == 1800, "single retry requires intact exhausted failed history")
     native = execution["native_binding"]
@@ -107,6 +121,7 @@ def authorize_single_retry(root: Path, compiled: dict, milestone: str, recipe: s
                  "base_limits": {"max_attempts": attempts, "total_seconds": 1800},
                  "limits": {"max_attempts": attempts + 1, "total_seconds": 1800 + seconds}, "additional_seconds": seconds,
                  "prior_attempts": [{k: a.get(k) for k in fields} for a in prior],
+                 "retained_history": [{k: a.get(k) for k in fields} for a in history],
                  "preserve_attempt_lineage": True, "domain_proof": False}
     relative = ".aegis/roadmaps/authorizations/" + digest(amendment) + ".json"
     atomic_write_json(confined_path(root, relative), amendment, root=root, mode=0o600)
@@ -177,8 +192,18 @@ class BudgetLedger:
         lock.acquire()
         try:
             record = self.read()
-            require(not any(a["status"] == "RESERVED" and (not native_control or
-                            a.get("operation", {}).get("kind") == "native_lifecycle_control") for a in record["attempts"]),
+            def blocks(candidate: dict) -> bool:
+                if candidate["status"] != "RESERVED": return False
+                parent = candidate.get("operation", {})
+                if native_control: return parent.get("kind") == "native_lifecycle_control"
+                if (operation and operation.get("parent_native_attempt") == candidate["id"] and
+                        operation.get("kind") == "deterministic_recipe" and
+                        parent.get("kind") == "native_model_turn" and operation.get("owner") == parent.get("owner") and
+                        parent.get("child") and parent.get("turn_id")):
+                    from .roadmap_native import inspect_process, is_process_ancestor
+                    return not (inspect_process(parent["child"]) == "LIVE" and is_process_ancestor(parent["child"]["pid"]))
+                return True
+            require(not any(blocks(a) for a in record["attempts"]),
                     "existing workspace operation requires recovery, not redispatch")
             by_id = {a["id"]: a for a in record["attempts"]}
             require(len(by_id) == len(record["attempts"]), "duplicate durable attempt identity")
@@ -204,6 +229,13 @@ class BudgetLedger:
                 for successful in reversed(reusable):
                     receipt = successful.get("receipt", {})
                     if bindings_current(self.root, receipt.get("artifacts", [])):
+                        if successful.get("operation", {}).get("kind") == "native_model_turn":
+                            from .roadmap_managed import validate_native_turn_receipt
+                            try:
+                                saved_spec = read_json(confined_path(self.root, successful["operation"]["spec"]["path"]))
+                                validate_native_turn_receipt(self.root, saved_spec, receipt, current_outputs=True)
+                            except ValueError:
+                                continue
                         successful.setdefault("reuse_consumers", [])
                         if work_id not in successful["reuse_consumers"]:
                             successful["reuse_consumers"].append(work_id)
@@ -216,15 +248,19 @@ class BudgetLedger:
                         previous = prior[-1]
                         require(previous["id"] == supersedes and previous["status"] == "SUCCESS" and
                                 previous["inputs"] != inputs, "new target generation requires the latest successful operation")
-                        from .roadmap_work import validate_tool_receipt
                         spec_binding = previous.get("operation", {}).get("spec")
                         require(spec_binding and bindings_current(self.root, [spec_binding]), "successful generation lacks its original specification")
                         spec = read_json(confined_path(self.root, spec_binding["path"]))
                         require(spec.get("digest") == previous["inputs"] == digest({k: v for k, v in spec.items() if k != "digest"}),
                                 "successful generation specification identity changed")
-                        validate_tool_receipt(self.root, spec, previous["receipt"])
-                        require(previous["receipt"]["returncode"] == 0 and not previous["receipt"]["timed_out"] and
-                                not previous["receipt"]["truncated"], "new generation cannot supersede unsuccessful work")
+                        if spec.get("kind") == "managed_native_turn":
+                            from .roadmap_managed import validate_native_turn_receipt
+                            validate_native_turn_receipt(self.root, spec, previous["receipt"])
+                        else:
+                            from .roadmap_work import validate_tool_receipt
+                            validate_tool_receipt(self.root, spec, previous["receipt"])
+                            require(previous["receipt"]["returncode"] == 0 and not previous["receipt"]["timed_out"] and
+                                    not previous["receipt"]["truncated"], "new generation cannot supersede unsuccessful work")
                         generation += 1
                         generation_parent = supersedes
                         bounded_prior = []

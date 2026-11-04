@@ -53,8 +53,14 @@ class WorkspaceLease:
 
     def qualify(self, owner: dict) -> dict:
         self.assert_owner(owner)
-        from .roadmap_native import observe_native_owner
-        observation = observe_native_owner(self.root, owner)
+        canonical = self.root / ".aegis/project.json"
+        execution = read_json(canonical).get("execution", {}) if canonical.exists() else {}
+        if execution.get("integration_path") == "managed_app_server":
+            from .roadmap_managed import observe_managed_owner
+            observation = observe_managed_owner(self.root, owner)
+        else:
+            from .roadmap_native import observe_native_owner
+            observation = observe_native_owner(self.root, owner)
         self.assert_owner(owner)
         return observation
 
@@ -71,8 +77,7 @@ class WorkspaceLease:
         if binding.get("thread_id") == owner["session"] and binding.get("native_accounting_preserved") is True:
             # Legacy fixtures may supply transport observations. An adopted
             # production Goal must always be checked against the actual service.
-            from .roadmap_native import observe_native_owner
-            observed = observe_native_owner(self.root, owner)
+            observed = self.qualify(owner)
             require(observed["status"] == "idle" and observed["goal"]["status"] != "active",
                     "active or auto-continuing native Goal prohibits lease release")
         lock = FileLock(self.lock_path, "workspace lease release"); lock.acquire()

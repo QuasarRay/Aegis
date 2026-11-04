@@ -23,7 +23,7 @@ LAYERS = {
     "profiles": {"roadmap_project"},
     "evidence": {"roadmap_records", "roadmap_acceptance", "roadmap_verification", "roadmap_python", "roadmap_python_catalog", "evidence", "verus_evidence", "coverage", "formal"},
     "source": {"roadmap_inventory", "roadmap_portability", "roadmap_interfaces", "catalog", "context_cache"},
-    "native": {"roadmap_codex", "roadmap_native", "roadmap_protocol", "roadmap_native_adapter"},
+    "native": {"roadmap_codex", "roadmap_native", "roadmap_protocol", "roadmap_native_adapter", "roadmap_managed"},
     "knowledge": {"roadmap_knowledge"},
     "review": {"roadmap_review"},
     "entrypoint": {"cli", "roadmap_cli", "__main__"},

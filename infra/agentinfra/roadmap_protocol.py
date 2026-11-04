@@ -23,6 +23,9 @@ REQUIRED_SCHEMAS = (
     "ThreadGoalClearParams.json", "ThreadGoalClearResponse.json", "TurnPlanUpdatedNotification.json",
     "ThreadTokenUsageUpdatedNotification.json", "TurnCompletedNotification.json",
     "ModelReroutedNotification.json", "TurnStartedNotification.json", "ItemCompletedNotification.json",
+    "ThreadResumeParams.json", "ThreadResumeResponse.json", "TurnStartParams.json", "TurnStartResponse.json",
+    "TurnSteerParams.json", "TurnSteerResponse.json", "TurnInterruptParams.json", "TurnInterruptResponse.json",
+    "ThreadStatusChangedNotification.json", "ErrorNotification.json",
 )
 
 

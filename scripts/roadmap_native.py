@@ -10,6 +10,7 @@ sys.path.insert(0, str(ROOT / "infra"))
 from agentinfra.atomic import atomic_write_json
 from agentinfra.roadmap import compile_roadmaps
 from agentinfra.roadmap_lease import WorkspaceLease
+from agentinfra.roadmap_native import _read_transport_binding
 from agentinfra.roadmap_native_adapter import NativeGoalAdapter, NativeRpc, capability_snapshot, observe_goal, observe_plan
 from agentinfra.roadmap_project import ProjectAdapter
 from agentinfra.roadmap_records import ContractError, digest, file_binding, read_json, require
@@ -21,8 +22,8 @@ def collect(root: Path, protocol: dict, candidate: str, output: str) -> dict:
     execution = record["execution"]
     compiled = compile_roadmaps(root)
     native = WorkspaceLease(root).qualify(execution["workspace_lease"])
-    require(protocol["executable"]["sha256"] == native["executable"]["sha256"] and
-            native["model"] == execution["native_turn_configuration"]["model"] and native["goal"]["status"] == "active",
+    executable_binding = _read_transport_binding(root, protocol, native)
+    require(native["model"] == execution["native_turn_configuration"]["model"] and native["goal"]["status"] == "active",
             "real native host differs from the adopted execution")
     with NativeRpc(root, protocol) as rpc:
         rpc.watch(native)
@@ -41,7 +42,7 @@ def collect(root: Path, protocol: dict, candidate: str, output: str) -> dict:
     artifacts = {}
     for name, value in (("goal-binding", goal), ("plan-observation", plan), ("capability-snapshot", snapshot),
                         ("rpc-observations", {"schema": 1, "calls": calls, "root_turns": root_turns, "completion_guard": completion_guard}),
-                        ("active-host", native)):
+                        ("active-host", native), ("executable-binding", executable_binding)):
         path = directory / (name + "-" + digest(value) + ".json")
         target = confined_path(root, path)
         if target.exists():
@@ -53,6 +54,7 @@ def collect(root: Path, protocol: dict, candidate: str, output: str) -> dict:
             "goal_binding": artifacts["goal-binding"], "plan_binding": plan["binding"],
             "plan_observation": artifacts["plan-observation"], "capability_snapshot": artifacts["capability-snapshot"],
             "artifacts": list(artifacts.values()), "domain_proof": False, "installed_native_executable": protocol["executable"],
+            "executable_binding": artifacts["executable-binding"],
             "limits": ["Real read RPCs and active-host observations; no new chat, model turn or live Goal mutation",
                        "Host callbacks and the managed Goal sender share lifecycle policy and the existing durable ledger; live writes remain unqualified",
                        "Native service, local journal and host callback are explicit provenance/authorization trust boundaries"]}

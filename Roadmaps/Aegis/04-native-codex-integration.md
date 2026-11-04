@@ -167,7 +167,9 @@ This is a maintained execution contract. Runtime progress is derived from curren
 
 The fixed `native.protocol` and `native.acceptance` checks materialize installed schema export and real read-transport qualification through the existing work engine. They preserve the original outputs, implementation units and gates. Live mutation capabilities are reported separately from actual read observations.
 
-The managed Goal sender uses the same lifecycle preparation, evidence audit and durable control reservation as the host callback path. Actual stdio fixtures cover request dispatch, rejection, reply persistence, process identity and readback recovery. Live mutation qualification and the managed model-turn lifecycle remain explicit unfinished responsibilities; neither receives credit from the read-transport recipe.
+The managed Goal sender uses the same lifecycle preparation, evidence audit and durable control reservation as the host callback path. The managed turn controller adds explicit retired-parent adoption, source-bound specifications, max/model checks, steering/interruption, native handles and terminal/unknown recovery. Actual stdio fixtures qualify those runtime paths. Live mutation and managed-turn qualification remain unfinished responsibilities; neither receives credit from the read-transport recipe.
+
+Managed turns inherit AM20 persistent execution from the compiled contract. They have no Aegis-owned attempt or job-time ceiling, retain the same handle through slow observations and require an evidenced strategy decision before retrying terminal failure. Recovery preserves every prior attempt and WorkUnit continuation. Complete model-catalog traversal has no page-count ceiling; cyclic cursors remain invalid input. The integration controls exercise these boundaries without creating a live chat, dispatching actual inference or claiming native qualification.
 
 Keep host authorization identical across transports. Model catalog support and requested effort do not establish effective effort. Plan mode forbids mutation; unknown completion responses require reconciliation.
 
@@ -183,7 +185,7 @@ Record each output under the existing canonical queue/checkpoint, with an artifa
 
 ## Validation and completion
 
-Start with `roadmap.validate`. Materialize project recipe specifications with exact argv, selection, pinned tools, source identities and finite bounds before launch. Use production builds and applicable unchanged original tests during implementation. Formal work during this phase needs a documented concrete benefit; full required domain proof is mandatory for final completion.
+Start with `roadmap.validate`. Materialize project recipe specifications with exact argv, selection, pinned tools, source identities and explicit AM20 unlimited allocations before launch. Use production builds and applicable unchanged original tests during implementation. Formal work during this phase needs a documented concrete benefit; full required domain proof is mandatory for final completion.
 
 The declared gates are conjunctive. Evidence must belong to one candidate, preserve original-test semantics, identify installed artifacts when applicable, and retain failures and missing outcomes. Use the shared verification contract for detailed original-test closure, evidence strength and human intervention. No current product state is granted by compiling this file.
 

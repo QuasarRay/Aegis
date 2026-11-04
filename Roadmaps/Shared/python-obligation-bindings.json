@@ -58,7 +58,8 @@
         "agentinfra.roadmap_codex",
         "agentinfra.roadmap_native",
         "agentinfra.roadmap_protocol",
-        "agentinfra.roadmap_native_adapter"
+        "agentinfra.roadmap_native_adapter",
+        "agentinfra.roadmap_managed"
       ],
       "retained_implementation_gaps": [
         "Managed model-turn and live mutation qualification remain separate from accepted read transport; draft PR34 is not merged."

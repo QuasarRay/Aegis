@@ -67,6 +67,7 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
     context = None
     lifecycle = None
     usage = None
+    routing = []
     with path.open("rb") as stream:
         while True:
             offset = stream.tell()
@@ -82,6 +83,8 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
             if kind == "session_meta":
                 session = {"id": payload.get("id"), "origin": origin}
             elif kind == "turn_context":
+                if context is None or context.get("turn_id") != payload.get("turn_id"):
+                    routing = []
                 context = {"model": payload.get("model"), "effort": payload.get("effort"),
                            "turn_id": payload.get("turn_id"),
                            "mode": payload.get("collaboration_mode", {}).get("mode"),
@@ -92,9 +95,12 @@ def read_session_metadata(path: Path, thread_id: str) -> dict:
                     lifecycle = {"kind": event_kind, "turn_id": payload.get("turn_id"), "origin": origin}
                 elif event_kind == "token_count" and payload.get("info"):
                     usage = {"totals": payload["info"].get("total_token_usage"), "origin": origin}
+                elif event_kind == "model_rerouted":
+                    routing.append({"turn_id": payload.get("turn_id"), "from_model": payload.get("from_model"),
+                                    "to_model": payload.get("to_model"), "origin": origin})
     require(session and session["id"] == thread_id, "native journal belongs to another chat")
     require(context and lifecycle and lifecycle.get("turn_id"), "native turn state is not established")
-    return {"session": session, "context": context, "lifecycle": lifecycle, "usage": usage}
+    return {"session": session, "context": context, "lifecycle": lifecycle, "usage": usage, "routing": routing}
 
 
 def _reader_executable(root: Path, installed: dict, running_path: str, running_sha256: str,
@@ -150,6 +156,7 @@ def observe_native_owner(root: Path, owner: dict) -> dict:
             digest(owner_executable.read_bytes()) == route["sha256"], "active-host identity/bytes changed during native observation")
     metadata = read_session_metadata(Path(thread["path"]), owner["session"])
     context = metadata["context"]
+    require(not metadata["routing"], "native journal reports a model reroute")
     require(context.get("turn_id") == metadata["lifecycle"]["turn_id"],
             "effective configuration is not bound to the observed native turn")
     require(thread.get("model") == context["model"] and thread.get("reasoningEffort") == context["effort"],
@@ -167,3 +174,39 @@ def observe_native_owner(root: Path, owner: dict) -> dict:
                          "No inference, native Goal mutation or model rerouting is performed"]}
     result["digest"] = digest(result)
     return result
+
+
+def _read_transport_binding(root: Path, protocol: dict, native: dict) -> dict:
+    """Bind an installed reader to a fresh owned host observation.
+
+    The caller obtains ``native`` directly from WorkspaceLease.qualify, never
+    from a supplied observation file. Its existing observer verifies the live
+    process and retained executable. This binding keeps both authorities visible
+    when an atomic package update leaves the active host on its prior bytes.
+    """
+    from .roadmap_protocol import assert_protocol
+    assert_protocol(root, protocol)
+    require(native.get("digest") == digest({k: v for k, v in native.items() if k != "digest"}),
+            "owned native observation changed before read-transport binding")
+    installed = protocol["executable"]; active = native["executable"]
+    route = native.get("executable_route")
+    if active != installed:
+        require(native.get("kind") == "codex_active_host_observation" and
+                native.get("producer") == "agentinfra.roadmap_native.observe_native_owner" and
+                native.get("installed_executable") == installed and route and
+                route.get("route") == "kernel_retained_pinned_active_host" and
+                route.get("path") == active["path"] == f"/proc/{native['owner_process']['pid']}/exe" and
+                route.get("sha256") == active["sha256"] and route.get("prior_protocol") and
+                bindings_current(root, [route["prior_protocol"]]),
+                "read transport requires the verified pinned retained native host")
+        previous = read_json(confined_path(root, route["prior_protocol"]["path"], must_exist=True))
+        require(previous.get("kind") == "installed_codex_protocol_export" and previous.get("schema") == 1 and
+                previous.get("digest") == digest({k: v for k, v in previous.items() if k != "digest"}) and
+                previous.get("executable") == {"path": installed["path"], "sha256": active["sha256"]} and
+                previous.get("files") and bindings_current(root, previous["files"]),
+                "retained native read binding lost its exact prior executable/protocol pin")
+    return {"schema": 1, "kind": "installed_reader_owned_host_binding", "installed_transport": installed,
+            "active_host": active, "active_host_route": route,
+            "owned_observation_digest": native["digest"],
+            "limits": ["Fresh cooperating native observer is the process/host provenance boundary",
+                       "Separate reader and host pins do not migrate the active process or qualify managed inference"]}

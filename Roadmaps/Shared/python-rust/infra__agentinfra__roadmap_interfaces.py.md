@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 367. Inventory digest: `72ae96dceedf0234ed426033cdcf97667f1d95a52ea8cf97f110c865a72a28b6`.
+Files: 1. Behavioral units: 367. Inventory digest: `3900a1ec88d238fe5d88309d0fb65ed391aa42874a774213b7361f90e03f70d5`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_interfaces.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_interfaces.py:1`; AST `bc7a92e692252f0e4cf59a8d83ad581a44275fe906e566820548111f2e0ae023`.
+Source: `infra/agentinfra/roadmap_interfaces.py:1`; AST `b1f26b9990dd254b53aa4a29d2fa9d1cbcdf26a04707c3d21b618c6390b40f8f`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -228,7 +228,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_interfaces.py::module::root.body[10]::Assign
 
-Source: `infra/agentinfra/roadmap_interfaces.py:20`; AST `cfcacd143812bade37d6154e053e3bd0b14a18ab75c1e062023ebe94fd59f73b`.
+Source: `infra/agentinfra/roadmap_interfaces.py:20`; AST `977bab070978f89c27118f95824fefe6be8e3815cdb0c7fc7fda0f15c988ffad`.
 
 Rust module: `infra::agentinfra::roadmap_interfaces`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
