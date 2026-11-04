@@ -459,7 +459,13 @@ def run_work(root: Path, compiled: dict, milestone: str, recipe: str, *, diagnos
                 manifest = export_manifest(root, spec["target"]["output"] + "/export", spec["selection"]["executable"])
                 binding = _immutable(root, directory + "/protocol.json", manifest)
                 artifacts.extend([binding, *manifest["files"]])
-                adapter.update({"native_protocol": binding}, expected_digest=digest(adapter.profile.path().read_bytes()))
+                current = adapter.read()
+                history = list(current.get("native_protocol_history", []))
+                previous_protocol = current.get("native_protocol")
+                if previous_protocol and previous_protocol != binding and previous_protocol not in history:
+                    history.append(previous_protocol)
+                adapter.update({"native_protocol": binding, "native_protocol_history": history},
+                               expected_digest=digest(adapter.profile.path().read_bytes()))
             details = confined_path(root, spec["target"]["output"] + "/details.json")
             if details.exists():
                 details_record = read_json(details)
