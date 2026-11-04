@@ -39,10 +39,22 @@ def esbmc_arguments(root: Path, toolchain: dict, fixture: str, *, claims: bool =
                  "verification/roadmap/python/policy_deal_negative.py": "deliberately_wrong_budget_assertion"}
     require(fixture in functions and toolchain.get("backend") == "esbmc-python", "unknown ESBMC control/toolchain")
     argv = [toolchain["executable"], str(root / fixture), "--python", toolchain["python"], "--function", functions[fixture],
-            "--z3", "--ir", "--multi-property", "--timeout", "120s"]
+            "--z3", "--ir", "--multi-property"]
     if claims:
         argv.append("--show-claims")
     return argv
+
+
+def esbmc_command_policy(root: Path, toolchain: dict, fixture: str, argv: list[str], *,
+                         producer_inputs_current: bool, claims: bool = False) -> str:
+    """Identify the exact historical finite command without granting current credit."""
+    expected = esbmc_arguments(root, toolchain, fixture, claims=claims)
+    if argv == expected:
+        return "CURRENT_UNLIMITED_SELECTION"
+    legacy = expected[:-1] + ["--timeout", "120s", expected[-1]] if claims else expected + ["--timeout", "120s"]
+    require(producer_inputs_current is False and argv == legacy,
+            "ESBMC did not use its fixed production-import control command")
+    return "HISTORICAL_120_SECOND_LIMIT_NO_CURRENT_CREDIT"
 
 
 def esbmc_link_state(root: Path, toolchain: dict) -> list[dict]:

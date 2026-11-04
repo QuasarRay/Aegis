@@ -2,18 +2,18 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 206. Inventory digest: `b1e82473485ebbf571c16d8137d001c9127092b4b203f267c8176e6111cce44d`.
+Files: 1. Behavioral units: 206. Inventory digest: `d0ee9d65b3b5a4fa29771a9989cd85a6edeaaa2d6f5ef7263c2bf6c4fb4a1a3a`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_codex.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_codex.py:1`; AST `50c682d3b477d77e27fa408741e73c49cfc32d247297b0eccc2796a9ab24e7a7`.
+Source: `infra/agentinfra/roadmap_codex.py:1`; AST `affa980b33b1a638a519cf1ed310342187ed0be1bd59cb489027a7ee568b55eb`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
 Inputs: BaseException, BrokenPipeError, CodexReader, CodexRpcError, ContractError, Path, TimeoutError, __version__, bool, canonical, chunk, client, compiled, contract_hash, cursor, deadline, dict, digest, error, executable, experimental, float, goal, ident, len, line, list, loads, m, max, message, method, milestone_ids, models, objective, observation, os, params, plan, range, ready, redact_text, require, result, select, self, set, shutil, str, subprocess, super, thread_id, time, timeout, version. Outputs/bindings: ALLOWED, _, chunk, client, cursor, deadline, goal, ident, line, m, message, models, ready, result, version.
-Calls/effect boundaries: CodexReader, CodexRpcError, Path, Path(client.executable).read_bytes, TimeoutError, bool, canonical, client.call, digest, error.get, goal.get, len, line.decode, loads, m.get, max, message.get, models.extend, observation.get, os.read, plan.get, range, redact_text, require, result.get, select.select, self.__exit__, self._started, self.buffer.split, self.call, self.events.append, self.proc.kill, self.proc.stdin.close, self.proc.stdin.write, self.proc.stdout.close, self.proc.stdout.fileno, self.proc.terminate, self.proc.wait, set, shutil.which, str, subprocess.Popen, subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=10, check=True).stdout.strip, super, super().__init__, time.monotonic.
+Calls/effect boundaries: CodexReader, CodexRpcError, Path, Path(client.executable).read_bytes, TimeoutError, bool, canonical, client.call, digest, error.get, goal.get, len, line.decode, loads, m.get, max, message.get, models.extend, observation.get, os.read, plan.get, range, redact_text, require, result.get, select.select, self.__exit__, self._started, self.buffer.split, self.call, self.events.append, self.proc.kill, self.proc.stdin.close, self.proc.stdin.write, self.proc.stdout.close, self.proc.stdout.fileno, self.proc.terminate, self.proc.wait, set, shutil.which, str, subprocess.Popen, subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=None, check=True).stdout.strip, super, super().__init__, time.monotonic.
 Dependencies: , __future__, os, pathlib, roadmap_records, security, select, shutil, subprocess, time.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
@@ -488,7 +488,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::CodexReader::root.body[11]::ClassDef
 
-Source: `infra/agentinfra/roadmap_codex.py:28`; AST `1048ed836aae16ac45766b09bdf8a6f4b47454180d84782796058db31fc1d053`.
+Source: `infra/agentinfra/roadmap_codex.py:28`; AST `12b60a2288f8f7228320fed9c4071565c71283a14c58128cff624fef3e15fd8d`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. Original-named struct/enum plus trait and impl group; explicit fields and source-owned methods
 
@@ -528,7 +528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::CodexReader::__init__::root.body[11].body[1]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_codex.py:32`; AST `ea69625299941c79a24c50478228bde0e4568fde5e89bcc667fed74bf52d8e7f`.
+Source: `infra/agentinfra/roadmap_codex.py:32`; AST `9be716590f7b9d57ac27fdbfc972df60e9de96c833bb7d7ccb6100b13bc58832`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -548,7 +548,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::CodexReader::__init__::root.body[11].body[1].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_codex.py:33`; AST `643b9cd1002850f4d6c84314360b8258b9375d25869ee747b455841566b92038`.
+Source: `infra/agentinfra/roadmap_codex.py:33`; AST `f97d5dd537d02c0bc1549ac3714977d005dceda54cc55c5cd2f5dc5e74091f64`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -568,7 +568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::CodexReader::__init__::root.body[11].body[1].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_codex.py:33`; AST `7d3bb737b6f4484a0bfb02de08fed36fde385dda9f0677dc8ab4ac3dff849e48`.
+Source: `infra/agentinfra/roadmap_codex.py:33`; AST `ddab5d6ec7e008d6269f32661ecf0cebae7fd170984a96480e12846ee594ead7`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2648,12 +2648,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::capabilities::root.body[12]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_codex.py:106`; AST `7b366ffe394184ea0ccfa2d727458cdf4ddaae83eb84a65cca816db0491be6f0`.
+Source: `infra/agentinfra/roadmap_codex.py:106`; AST `76aa68b9b20a737756a465a650e0fe66af2d07fa745a9c6cffcef077498fa802`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
 Inputs: CodexReader, Path, client, cursor, dict, digest, m, models, range, require, result, subprocess, version. Outputs/bindings: _, client, cursor, m, models, result, version.
-Calls/effect boundaries: CodexReader, Path, Path(client.executable).read_bytes, client.call, digest, m.get, models.extend, range, require, result.get, subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=10, check=True).stdout.strip.
+Calls/effect boundaries: CodexReader, Path, Path(client.executable).read_bytes, client.call, digest, m.get, models.extend, range, require, result.get, subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=None, check=True).stdout.strip.
 Dependencies: , __future__, os, pathlib, roadmap_records, security, select, shutil, subprocess, time.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[12]; no call, error or mutation may be omitted.
@@ -2668,12 +2668,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::capabilities::root.body[12].body[0]::With
 
-Source: `infra/agentinfra/roadmap_codex.py:107`; AST `1fde29c411675b63af9ecabd9dba3be45d6751b763c1161332c6138f177631ac`.
+Source: `infra/agentinfra/roadmap_codex.py:107`; AST `ffd6c5fb454eca1a604b65760a9a0ceb7039ca8636f2008100da04b6a8ee0fc6`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. scoped resource guard plus explicit enter/exit and exception-suppression result
 
 Inputs: CodexReader, Path, client, cursor, digest, m, models, range, require, result, subprocess, version. Outputs/bindings: _, client, cursor, m, models, result, version.
-Calls/effect boundaries: CodexReader, Path, Path(client.executable).read_bytes, client.call, digest, m.get, models.extend, range, require, result.get, subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=10, check=True).stdout.strip.
+Calls/effect boundaries: CodexReader, Path, Path(client.executable).read_bytes, client.call, digest, m.get, models.extend, range, require, result.get, subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=None, check=True).stdout.strip.
 Dependencies: , __future__, os, pathlib, roadmap_records, security, select, shutil, subprocess, time.
 
 Invariants: Preserve ordered With evaluation at root.body[12].body[0]; no call, error or mutation may be omitted.
@@ -2708,12 +2708,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::capabilities::root.body[12].body[0].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_codex.py:108`; AST `c3e7e7c7e232bc9516397f515b78671dbf9f3c49363117285e818f812bde91fe`.
+Source: `infra/agentinfra/roadmap_codex.py:108`; AST `60215fce6e4a8feba182edf46309c46575a646991962864bfd612c43e5d22958`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: client, subprocess. Outputs/bindings: version.
-Calls/effect boundaries: subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=10, check=True).stdout.strip.
+Calls/effect boundaries: subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=None, check=True).stdout.strip.
 Dependencies: , __future__, os, pathlib, roadmap_records, security, select, shutil, subprocess, time.
 
 Invariants: Preserve ordered Assign evaluation at root.body[12].body[0].body[0]; no call, error or mutation may be omitted.
@@ -2728,12 +2728,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::capabilities::root.body[12].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_codex.py:108`; AST `4fc5ce3bf27d385d3b5d00d589b2bee9de4c16b6425aa57178bcee5e1f3129f4`.
+Source: `infra/agentinfra/roadmap_codex.py:108`; AST `062109d880365320494261fdf877b7770815e678b205426b4c5b854457d107c1`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: client, subprocess. Outputs/bindings: (none).
-Calls/effect boundaries: subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=10, check=True).stdout.strip.
+Calls/effect boundaries: subprocess.run, subprocess.run([client.executable, '--version'], capture_output=True, text=True, timeout=None, check=True).stdout.strip.
 Dependencies: , __future__, os, pathlib, roadmap_records, security, select, shutil, subprocess, time.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].body[0].body[0].value; no call, error or mutation may be omitted.
@@ -2748,7 +2748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_codex.py::module::capabilities::root.body[12].body[0].body[0].value.func.value.value::Call
 
-Source: `infra/agentinfra/roadmap_codex.py:108`; AST `8f9deb425fcd72eba3315c2fb5b44479b8ecba0690c8d482865d34790534b9e1`.
+Source: `infra/agentinfra/roadmap_codex.py:108`; AST `3a53d6d7f62b0565c6a1365f041f1de45826bed9e172b9f288479abbed189dfa`.
 
 Rust module: `infra::agentinfra::roadmap_codex`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 

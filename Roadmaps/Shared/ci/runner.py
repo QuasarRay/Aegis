@@ -22,7 +22,7 @@ CHECKS = [
 
 async def run() -> None:
     import dagger
-    observed = subprocess.run(["dagger", "version"], capture_output=True, text=True, check=True, timeout=10).stdout
+    observed = subprocess.run(["dagger", "version"], capture_output=True, text=True, check=True, timeout=None).stdout
     if not re.search(r"\bv" + re.escape(ENGINE) + r"\b", observed) or version("dagger-io") != ENGINE:
         raise RuntimeError("Dagger engine/SDK differs from the accepted recipe pin")
     image = os.environ.get("AEGIS_CI_PYTHON_IMAGE", "")

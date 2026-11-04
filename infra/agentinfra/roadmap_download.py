@@ -32,12 +32,12 @@ def _host(url: str) -> str:
     return parsed.hostname.encode("idna").decode("ascii").lower().rstrip(".")
 
 
-def _addresses(host: str, observations: list[dict]) -> list[str]:
+def _addresses(host: str, observations: list[dict], *, timeout: float = 12) -> list[str]:
     query = DNS_ENDPOINT + "?" + urllib.parse.urlencode({"name": host, "type": "A"})
     request = urllib.request.Request(query, headers={"Accept": "application/dns-json", "User-Agent": "Aegis-pinned-download"})
     # The resolver URL uses an IP literal with a certificate valid for that IP;
     # this bootstrap does not depend on the failing host resolver.
-    with urllib.request.urlopen(request, timeout=12) as response:
+    with urllib.request.urlopen(request, timeout=timeout) as response:
         raw = response.read(65537)
     require(len(raw) <= 65536, "HTTPS DNS response exceeds the fixed bound")
     answer = loads(raw.decode("utf-8"))
@@ -47,7 +47,7 @@ def _addresses(host: str, observations: list[dict]) -> list[str]:
             type(questions[0].get("type")) is int and questions[0]["type"] == 1,
             "HTTPS DNS response is unsuccessful, truncated or for another question")
     addresses = sorted({str(ipaddress.IPv4Address(row["data"])) for row in answer.get("Answer", []) if row.get("type") == 1})
-    require(0 < len(addresses) <= 16 and all(ipaddress.IPv4Address(address).is_global for address in addresses),
+    require(addresses and all(ipaddress.IPv4Address(address).is_global for address in addresses),
             "HTTPS DNS returned no public IPv4 artifact addresses")
     observations.append({"kind": "https_dns", "host": host, "resolver": DNS_ENDPOINT,
                          "response_sha256": digest(raw), "addresses": addresses})
@@ -56,16 +56,18 @@ def _addresses(host: str, observations: list[dict]) -> list[str]:
 
 class _ResolvedConnection(http.client.HTTPSConnection):
     def __init__(self, host: str, *, observations: list[dict], deadline: float | None = None,
-                 max_addresses: int = 16, **kwargs):
+                 max_addresses: int | None = 16, resolver_timeout: float = 12, **kwargs):
         super().__init__(host, **kwargs)
         self.observations = observations
         self.deadline = deadline
         self.max_addresses = max_addresses
+        self.resolver_timeout = resolver_timeout
 
     def connect(self) -> None:
         require(not self._tunnel_host, "pinned artifact transport does not use ambient tunnels")
         last_error = None
-        for address in _addresses(self.host, self.observations)[:self.max_addresses]:
+        addresses = _addresses(self.host, self.observations, timeout=self.resolver_timeout)
+        for address in addresses if self.max_addresses is None else addresses[:self.max_addresses]:
             sock = None
             try:
                 if self.deadline is not None:

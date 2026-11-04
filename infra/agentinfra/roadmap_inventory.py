@@ -29,15 +29,15 @@ class GitInventory:
 
     def __init__(self, root: Path, *, deadline: float | None = None):
         self.root = root.resolve()
-        self.deadline = time.monotonic() + 600 if deadline is None else deadline
+        self.deadline = deadline  # None is an unlimited inventory lifetime (AM20).
         self.executable = shutil.which("git")
         require(self.executable is not None, "Git is required for an authority inventory")
 
     def read(self, *arguments: str) -> str:
-        remaining = self.deadline - time.monotonic()
-        require(remaining > 0, "authority inventory exceeded its finite time budget")
+        remaining = None if self.deadline is None else self.deadline - time.monotonic()
+        require(remaining is None or remaining > 0, "authority observation window expired; retain inventory for recovery")
         result = run_process([self.executable, *arguments], cwd=self.root,
-                             timeout=min(30, remaining), capture_limit=16_000_000)
+                             timeout=None if remaining is None else min(30, remaining), capture_limit=16_000_000)
         require(result.returncode == 0 and not result.timed_out and
                 not result.stdout_truncated and not result.stderr_truncated,
                 f"Git inventory command failed or exceeded bounds: {arguments[0]}")
@@ -52,11 +52,11 @@ class GitInventory:
         # Keep source bytes out of redacted logs, preserve encoding declarations,
         # and bound memory independently of the size of an old branch's blob.
         with tempfile.TemporaryFile() as output:
-            remaining = self.deadline - time.monotonic()
-            require(remaining > 0, "authority inventory exceeded its finite time budget")
+            remaining = None if self.deadline is None else self.deadline - time.monotonic()
+            require(remaining is None or remaining > 0, "authority observation window expired; retain inventory for recovery")
             result = subprocess.run([self.executable, "cat-file", "blob", oid],
                                     cwd=self.root, stdout=output, stderr=subprocess.PIPE,
-                                    timeout=min(30, remaining), env=minimal_subprocess_env())
+                                    timeout=None if remaining is None else min(30, remaining), env=minimal_subprocess_env())
             require(result.returncode == 0, "Git source blob could not be read")
             require(output.tell() <= 8_000_000, "source blob exceeds inspection bound")
             output.seek(0)

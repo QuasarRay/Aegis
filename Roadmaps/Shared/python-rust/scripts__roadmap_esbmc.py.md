@@ -2,18 +2,18 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 299. Inventory digest: `0f08a5044c6d333cecf5eb1e255e37ac8f12f3c2d7e76626b96f37c380fe1885`.
+Files: 1. Behavioral units: 297. Inventory digest: `0de8ffe640da753f4b776ad55c90c9ead5bc2f82113ef6849bf7770f4ed69672`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## scripts/roadmap_esbmc.py::module::root::Module
 
-Source: `scripts/roadmap_esbmc.py:1`; AST `885da6586f85572a52c7a9ff221471b32d58085cd3df00e7bc159e7a33dd69f2`.
+Source: `scripts/roadmap_esbmc.py:1`; AST `6c630a0e41675cf4791f60d1274d6aca0f3763fbdc9a449fca423885f3f40fa0`.
 
 Rust module: `scripts::roadmap_esbmc`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: Path, PurePosixPath, TRANSPORT, all, archive, archive_binding, argv, artifacts, asdict, atomic_write_json, b, binding, bindings_current, bundle, claims, claims_binding, claims_path, classification, classify_esbmc, confined_path, deadline, destination, dict, digest, directory, download_with_mirrors, entries, entry, environment, esbmc_arguments, esbmc_link_state, executables, extract_release, file_binding, files, fixture, identity, len, link, links, lock, map, marker, minimal_subprocess_env, mode, name, names, os, output, p, path, profile, python, read_download_policy, read_json, release, require, resolved, result, result_binding, root, run_recipe_stage, runs, saved, set, shutil, sorted, source, source_closure, staging, stat, state, str, sum, symlinks, sys, target, time, toolchain, toolchain_path, venv, virtual, wheels, x, zipfile. Outputs/bindings: _, archive, archive_binding, argv, artifacts, binding, bundle, claims, claims_binding, claims_path, classification, deadline, destination, directory, entries, entry, environment, executables, files, fixture, identity, link, links, lock, marker, mode, name, names, output, p, path, profile, python, release, resolved, result, result_binding, runs, saved, source, staging, state, symlinks, target, toolchain, virtual, wheels, x.
-Calls/effect boundaries: (destination / p.relative_to(staging)).relative_to, (destination / p.relative_to(staging)).relative_to(root).as_posix, (target.parent / link).resolve, (virtual / 'bin/python').exists, Path, Path(link).is_absolute, PurePosixPath, all, archive.relative_to, archive.relative_to(root).as_posix, artifacts.append, artifacts.extend, asdict, atomic_write_json, bindings_current, bundle.infolist, bundle.open, bundle.read, bundle.read(entry).decode, claims_path.relative_to, claims_path.relative_to(root).as_posix, classify_esbmc, confined_path, destination.exists, destination.relative_to, destination.relative_to(root).as_posix, destination.rglob, destination.with_name, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, entry.filename.rstrip, entry.is_dir, esbmc_arguments, esbmc_link_state, extract_release, file_binding, len, links.append, lock.get, map, marker.is_file, minimal_subprocess_env, os.access, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.is_absolute, path.relative_to, path.relative_to(root).as_posix, read_download_policy, read_json, release.relative_to, release.relative_to(root).as_posix, release.rglob, require, resolved.is_relative_to, run_recipe_stage, runs.append, saved.get, set, shutil.copyfileobj, sorted, source_closure, staging.exists, staging.mkdir, staging.rename, staging.resolve, stat.S_IFMT, stat.S_ISLNK, str, sum, target.chmod, target.exists, target.is_symlink, target.mkdir, target.open, target.parent.mkdir, target.resolve, target.resolve().is_relative_to, target.symlink_to, time.monotonic, toolchain.get, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create, x.filename.rstrip, zipfile.ZipFile.
+Inputs: Path, PurePosixPath, TRANSPORT, all, archive, archive_binding, argv, artifacts, asdict, atomic_write_json, b, binding, bindings_current, bundle, claims, claims_binding, claims_path, classification, classify_esbmc, confined_path, deadline, destination, dict, digest, directory, download_with_mirrors, entries, entry, environment, esbmc_arguments, esbmc_link_state, executables, extract_release, file_binding, files, fixture, identity, len, link, links, lock, map, marker, minimal_subprocess_env, mode, name, names, os, output, p, path, profile, python, read_json, release, require, resolved, result, result_binding, root, run_recipe_stage, runs, saved, set, shutil, sorted, source, source_closure, staging, stat, state, str, sum, symlinks, sys, target, toolchain, toolchain_path, venv, virtual, wheels, x, zipfile. Outputs/bindings: _, archive, archive_binding, argv, artifacts, binding, bundle, claims, claims_binding, claims_path, classification, deadline, destination, directory, entries, entry, environment, executables, files, fixture, identity, link, links, lock, marker, mode, name, names, output, p, path, profile, python, release, resolved, result, result_binding, runs, saved, source, staging, state, symlinks, target, toolchain, virtual, wheels, x.
+Calls/effect boundaries: (destination / p.relative_to(staging)).relative_to, (destination / p.relative_to(staging)).relative_to(root).as_posix, (target.parent / link).resolve, (virtual / 'bin/python').exists, Path, Path(link).is_absolute, PurePosixPath, all, archive.relative_to, archive.relative_to(root).as_posix, artifacts.append, artifacts.extend, asdict, atomic_write_json, bindings_current, bundle.infolist, bundle.open, bundle.read, bundle.read(entry).decode, claims_path.relative_to, claims_path.relative_to(root).as_posix, classify_esbmc, confined_path, destination.exists, destination.relative_to, destination.relative_to(root).as_posix, destination.rglob, destination.with_name, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, entry.filename.rstrip, entry.is_dir, esbmc_arguments, esbmc_link_state, extract_release, file_binding, len, links.append, lock.get, map, marker.is_file, minimal_subprocess_env, os.access, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.is_absolute, path.relative_to, path.relative_to(root).as_posix, read_json, release.relative_to, release.relative_to(root).as_posix, release.rglob, require, resolved.is_relative_to, run_recipe_stage, runs.append, saved.get, set, shutil.copyfileobj, sorted, source_closure, staging.exists, staging.mkdir, staging.rename, staging.resolve, stat.S_IFMT, stat.S_ISLNK, str, sum, target.chmod, target.exists, target.is_symlink, target.mkdir, target.open, target.parent.mkdir, target.resolve, target.resolve().is_relative_to, target.symlink_to, toolchain.get, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create, x.filename.rstrip, zipfile.ZipFile.
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, dataclasses, os, pathlib, shutil, stat, sys, time, venv, zipfile.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
@@ -3208,12 +3208,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18]::FunctionDef
 
-Source: `scripts/roadmap_esbmc.py:81`; AST `09bb33ffc3c26b0b4ef0f0fe92990d18800c44933fc1d39eae118c2b9e3f6012`.
+Source: `scripts/roadmap_esbmc.py:81`; AST `b7be4d877a2e3be0829bb7a0e10a25e6b012b313c93d84b97d3bfee73d7e00bc`.
 
 Rust module: `scripts::roadmap_esbmc`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, TRANSPORT, archive, argv, artifacts, asdict, atomic_write_json, b, confined_path, deadline, dict, digest, directory, download_with_mirrors, environment, executables, extract_release, file_binding, files, identity, len, lock, map, minimal_subprocess_env, name, os, output, p, path, profile, python, read_download_policy, read_json, release, require, result, root, run_recipe_stage, sorted, str, sys, time, venv, virtual, wheels. Outputs/bindings: archive, argv, artifacts, deadline, directory, environment, executables, files, identity, lock, name, p, path, profile, python, release, result, virtual, wheels.
-Calls/effect boundaries: (virtual / 'bin/python').exists, artifacts.append, asdict, atomic_write_json, confined_path, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, extract_release, file_binding, len, lock.get, map, minimal_subprocess_env, os.access, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.relative_to, path.relative_to(root).as_posix, read_download_policy, read_json, release.relative_to, release.relative_to(root).as_posix, release.rglob, require, run_recipe_stage, sorted, str, time.monotonic, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
+Inputs: Path, TRANSPORT, archive, argv, artifacts, asdict, atomic_write_json, b, confined_path, deadline, dict, digest, directory, download_with_mirrors, environment, executables, extract_release, file_binding, files, identity, len, lock, map, minimal_subprocess_env, name, os, output, p, path, profile, python, read_json, release, require, result, root, run_recipe_stage, sorted, str, sys, venv, virtual, wheels. Outputs/bindings: archive, argv, artifacts, deadline, directory, environment, executables, files, identity, lock, name, p, path, profile, python, release, result, virtual, wheels.
+Calls/effect boundaries: (virtual / 'bin/python').exists, artifacts.append, asdict, atomic_write_json, confined_path, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, extract_release, file_binding, len, lock.get, map, minimal_subprocess_env, os.access, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.relative_to, path.relative_to(root).as_posix, read_json, release.relative_to, release.relative_to(root).as_posix, release.rglob, require, run_recipe_stage, sorted, str, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, dataclasses, os, pathlib, shutil, stat, sys, time, venv, zipfile.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[18]; no call, error or mutation may be omitted.
@@ -3488,55 +3488,15 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18].body[5]::Assign
 
-Source: `scripts/roadmap_esbmc.py:88`; AST `4bf1f8e6c36f98f38e92ec4bca5e754fb5c2256335263ba3ca08b43b415056ba`.
+Source: `scripts/roadmap_esbmc.py:88`; AST `3987dc54a2af5801607b1d026ae63a6ca96ab8eade16a4c7246f26df7cb9dd72`.
 
 Rust module: `scripts::roadmap_esbmc`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: read_download_policy, root, time. Outputs/bindings: deadline.
-Calls/effect boundaries: read_download_policy, time.monotonic.
+Inputs: (none). Outputs/bindings: deadline.
+Calls/effect boundaries: (none).
 Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, dataclasses, os, pathlib, shutil, stat, sys, time, venv, zipfile.
 
 Invariants: Preserve ordered Assign evaluation at root.body[18].body[5]; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; std::time::Instant / SystemTime
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18].body[5].value.left::Call
-
-Source: `scripts/roadmap_esbmc.py:88`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
-
-Rust module: `scripts::roadmap_esbmc`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: time. Outputs/bindings: (none).
-Calls/effect boundaries: time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, dataclasses, os, pathlib, shutil, stat, sys, time, venv, zipfile.
-
-Invariants: Preserve ordered Call evaluation at root.body[18].body[5].value.left; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; std::time::Instant / SystemTime
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18].body[5].value.right.value::Call
-
-Source: `scripts/roadmap_esbmc.py:88`; AST `d98a9d8f02719fd4afc66431e19bae5e085c1a1947d40c1d0c9c099b5cc2ace2`.
-
-Rust module: `scripts::roadmap_esbmc`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: read_download_policy, root. Outputs/bindings: (none).
-Calls/effect boundaries: read_download_policy.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, dataclasses, os, pathlib, shutil, stat, sys, time, venv, zipfile.
-
-Invariants: Preserve ordered Call evaluation at root.body[18].body[5].value.right.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; std::time::Instant / SystemTime
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -4088,7 +4048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18].body[17]::For
 
-Source: `scripts/roadmap_esbmc.py:101`; AST `7f23e5e7af598115917e88da9772c3f57f83de1d33815d5d9c26553aab75d1c2`.
+Source: `scripts/roadmap_esbmc.py:101`; AST `76ff82da67f27fda78a80130a197af3a0d66512a50c0cb3a88b63d48f8d88d5c`.
 
 Rust module: `scripts::roadmap_esbmc`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -4188,7 +4148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18].body[17].body[0]::Assign
 
-Source: `scripts/roadmap_esbmc.py:104`; AST `f802c75c13444cf33fce4ad0ed80bf5ebea0a9cbda411ba7a80ff595533d76b8`.
+Source: `scripts/roadmap_esbmc.py:104`; AST `c44493d1f7c841c07ba37cfb8a9eae48858e639375d7cc8ee42ea99f4d690fc4`.
 
 Rust module: `scripts::roadmap_esbmc`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4208,7 +4168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::provision_esbmc::root.body[18].body[17].body[0].value::Call
 
-Source: `scripts/roadmap_esbmc.py:104`; AST `bac19288464b2af15e29ca4705aaea6181d029c19012982d97b42b281688e44d`.
+Source: `scripts/roadmap_esbmc.py:104`; AST `2ac1b224ce3a647da92d41a7bfdeca387233754bc485643c46cd8ac13f424294`.
 
 Rust module: `scripts::roadmap_esbmc`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4808,7 +4768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19]::FunctionDef
 
-Source: `scripts/roadmap_esbmc.py:118`; AST `372c66e36c584e5b2ed252d9c0fe1dac8277ae9919f8ecca2f1f8b3811368db2`.
+Source: `scripts/roadmap_esbmc.py:118`; AST `72af028e2e6f4b2e93e491767a3c9d33e24ba25089db8eea7411bdd3c98845f5`.
 
 Rust module: `scripts::roadmap_esbmc`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -5148,7 +5108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19].body[5]::For
 
-Source: `scripts/roadmap_esbmc.py:125`; AST `41525a465a3bd42f33ebd381550c517b0dfc64d788d3aab0298863b5c041aeff`.
+Source: `scripts/roadmap_esbmc.py:125`; AST `7a52f3b0b89d7fe2504f592ac2867d1c48cce12045feb003333aab74de8700ba`.
 
 Rust module: `scripts::roadmap_esbmc`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -5268,7 +5228,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19].body[5].body[2]::Assign
 
-Source: `scripts/roadmap_esbmc.py:128`; AST `6144affb80332bf78e80950fa04e24e840acd268e2a11569630f6fbf56c7ffb6`.
+Source: `scripts/roadmap_esbmc.py:128`; AST `9bd9355dacefa187fed946323a023fe545fecf820c122966750307e8758643bd`.
 
 Rust module: `scripts::roadmap_esbmc`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5288,7 +5248,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19].body[5].body[2].value::Call
 
-Source: `scripts/roadmap_esbmc.py:128`; AST `3f804339ac2c71b5b0c1977c633d81f6d1ac3fd286856de43049dda77ad275ce`.
+Source: `scripts/roadmap_esbmc.py:128`; AST `6404b1ec8b2c840118b154bfc3fe986e42d8453d7ffe5f2935e2a7097581925d`.
 
 Rust module: `scripts::roadmap_esbmc`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5608,7 +5568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19].body[5].body[9]::If
 
-Source: `scripts/roadmap_esbmc.py:136`; AST `a752eaab9a9e4d1acc4272327427bc80e98f397088c6cedfb986ba119d2f31e4`.
+Source: `scripts/roadmap_esbmc.py:136`; AST `7d6deefa73b005a82f2982b6425bd73247a507dd34c5c87797f5e981ecc95178`.
 
 Rust module: `scripts::roadmap_esbmc`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -5628,7 +5588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19].body[5].body[9].body[0]::Assign
 
-Source: `scripts/roadmap_esbmc.py:137`; AST `9ec0150ba07d03343e70cb12c042392adc8fdad9692eea33f73e134ab9e9d8ed`.
+Source: `scripts/roadmap_esbmc.py:137`; AST `256dbf658b715a57d9ca5ba3ddfebb382404b03366983fb979b1d17acfacbd68`.
 
 Rust module: `scripts::roadmap_esbmc`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5648,7 +5608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_esbmc.py::module::qualify_esbmc::root.body[19].body[5].body[9].body[0].value::Call
 
-Source: `scripts/roadmap_esbmc.py:137`; AST `3037825531e2f219d13687932b9df8848b48c75889bc795622f253b20201b37d`.
+Source: `scripts/roadmap_esbmc.py:137`; AST `e43370b6e02771437fecb7570f6d0b492462d03c946ad5a1de453eab261eb037`.
 
 Rust module: `scripts::roadmap_esbmc`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 

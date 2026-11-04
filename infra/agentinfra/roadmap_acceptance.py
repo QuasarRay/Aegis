@@ -10,13 +10,13 @@ from pathlib import Path
 
 from .roadmap import audit_evidence, compile_roadmaps
 from .roadmap_codex import bind_goal
-from .roadmap_interfaces import compare_interfaces, observe_interfaces
+from .roadmap_interfaces import compare_interfaces, observe_interfaces, validate_compatibility_disposition
 from .roadmap_inventory import GitInventory
 from .roadmap_portability import artifacts, check, inventory
 from .roadmap_project import ProjectAdapter
 from .roadmap_records import bindings_current, digest, file_binding, read_json, require, validate_record
 from .roadmap_runtime import BudgetLedger
-from .roadmap_work import _immutable, materialize, qualify_execution, selected_work_milestones, validate_tool_receipt
+from .roadmap_work import _immutable, current_success, materialize, qualify_execution, selected_work_milestones, validate_tool_receipt
 from .security import confined_path
 
 
@@ -71,16 +71,13 @@ def _assemble(root: Path, review_path: str, through: str, *, complete_current: b
     names = list(dict.fromkeys(["roadmap.validate", "production.build", "original.tests", "source.reconcile",
                                *[name for m in selected for name in compiled["milestones"][m]["checks"]]]))
     for name in names:
-        spec = materialize(root, compiled, through, name)
-        matches = [a for a in attempts if a["status"] == "SUCCESS" and a["inputs"] == spec["digest"]
-                   and a.get("operation", {}).get("spec_digest") == spec["digest"]]
-        require(bool(matches), f"no successful current materialized {name} operation")
-        receipt = matches[-1]["receipt"]
+        run = current_success(root, compiled, through, name, attempts)
+        spec, receipt = run["spec"], run["receipt"]
         validate_tool_receipt(root, spec, receipt)
         require(bindings_current(root, receipt["artifacts"]), "successful operation artifacts became stale")
         require(receipt["returncode"] == 0 and receipt["timed_out"] is False and receipt["truncated"] is False,
                 "operation lacks a complete successful result")
-        runs[name] = {"attempt": matches[-1]["id"], "receipt": receipt, "spec": spec}
+        runs[name] = run
     candidate = runs["production.build"]["receipt"]["candidate"]
     require(all(r["receipt"]["candidate"] == candidate for r in runs.values()), "operation candidates differ")
     review_binding = file_binding(root, review_path)
@@ -113,13 +110,18 @@ def _assemble(root: Path, review_path: str, through: str, *, complete_current: b
     base = f".aegis/roadmaps/work/{candidate}/acceptance/{through}/{generation}"
     interfaces = _immutable(root, base + "/interfaces.json", observe_interfaces(root))
     compatibility = compare_interfaces(root, review["original_tests_baseline"])
-    require(compatibility["structural_compatible"], "public API/record changes require explicit compatibility disposition")
+    dispositions = []
+    if not compatibility["structural_compatible"]:
+        require(isinstance(review.get("compatibility_disposition"), dict),
+                "public API/record changes require explicit compatibility disposition")
+        disposition = validate_compatibility_disposition(root, compatibility, review["compatibility_disposition"])
+        dispositions.append(_immutable(root, base + "/compatibility-disposition.json", disposition))
     compatibility_binding = _immutable(root, base + "/compatibility.json", compatibility)
     originals_binding = _immutable(root, base + "/original-sources.json", originals)
     compiled_binding = _immutable(root, base + "/compiled.json", compiled)
     native_binding = _immutable(root, base + "/native-" + native["digest"] + ".json", native)
     all_inputs = _unique([*runs["production.build"]["spec"]["inputs"], *migration_bindings])
-    common = [compiled_binding, review_binding, originals_binding, interfaces, compatibility_binding,
+    common = [compiled_binding, review_binding, originals_binding, interfaces, compatibility_binding, *dispositions,
               *[b for name, run in runs.items() if name not in {"roadmap.validate", "production.build", "original.tests", "source.reconcile"}
                 for b in run["receipt"]["artifacts"]]]
     receipts = []

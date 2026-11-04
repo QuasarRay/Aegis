@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "amendment": "AM20",
+  "mode": "persistent_unlimited",
+  "max_seconds": null,
+  "max_attempts": null,
+  "total_seconds": null,
+  "require_recovery_record": true,
+  "reconcile_before_redispatch": true,
+  "recovery_strategies": [
+    "alternate_tool",
+    "async_poll",
+    "correct_inputs",
+    "equivalent_acceleration",
+    "expand_observation",
+    "incremental_workflow",
+    "reconnect_reobserve",
+    "resume_checkpoint",
+    "supported_tool_mode",
+    "verified_mirror",
+    "wait_for_capacity"
+  ],
+  "preserves": [
+    "work_identity_and_history",
+    "source_and_domain",
+    "assertions_and_counterexamples",
+    "artifact_identity_and_tls",
+    "native_goal_accounting",
+    "external_authority"
+  ],
+  "external_authority": "respect_permissions_quotas_and_retry_after",
+  "deployment_profile": "personal_laptop_unreliable_network",
+  "routine_recovery_owner": "agent_without_repeated_human_allowance",
+  "adaptation": "small_increment_between_roadmap_units",
+  "performance": "equivalent_faster_algorithms_incremental_cache_rust_simd_cuda_when_applicable"
+}

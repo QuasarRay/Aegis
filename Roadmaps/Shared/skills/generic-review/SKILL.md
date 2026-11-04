@@ -25,7 +25,7 @@ This entry point provides progressive disclosure. It is not a lossless replaceme
 
 ## Domain procedure
 
-1. Read REVIEW_PIPELINE.md and bind declared inputs, requirements, authorization, finite budget and evidence limits. Real project campaigns are deferred.
+1. Read REVIEW_PIPELINE.md and bind declared inputs, requirements, authorization, AM20 persistent execution/recovery policy and evidence limits. Real project campaigns are deferred.
 2. Execute classify, requirements, inspect, challenge, adjudicate, deduplicate and report in order with one active agent.
 3. Confirmed findings need exact current source evidence, violated requirement, demonstrated impact, confidence and repair. Preserve hypotheses and disagreements explicitly.
 4. Deduplicate identical causes/evidence without merging distinct fixtures or configuration responsibilities. Validate the engine using owned controlled fixtures before any campaign.

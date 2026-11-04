@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 161. Inventory digest: `4d28a7be47ae9372c320f62512c508e2a9781a5f85c785c8b9b5b79d1483c4f4`.
+Files: 1. Behavioral units: 161. Inventory digest: `6fc7d25139625a775a825ec314c074fa635fdf854bfd107bcad6362741e713f7`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## scripts/roadmap_deal.py::module::root::Module
 
-Source: `scripts/roadmap_deal.py:1`; AST `8ef93e14a016d64624b9f0c3c6aeba2081797bff544535f5e4f89f8fc0982476`.
+Source: `scripts/roadmap_deal.py:1`; AST `0679d89430e6545b8d2bbaadd217fe3317b864bc12577c593ecd1989af4f73eb`.
 
 Rust module: `scripts::roadmap_deal`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -368,7 +368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13]::FunctionDef
 
-Source: `scripts/roadmap_deal.py:23`; AST `cc54c79f268b0080b7424a5cc23486fb00d7da78fabdc44b0b5c82d877a5125b`.
+Source: `scripts/roadmap_deal.py:23`; AST `4536f9dfd0b27263d1ddefde9d58972f36152fcc40f49f5023407f14ba95113e`.
 
 Rust module: `scripts::roadmap_deal`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -748,7 +748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6]::Try
 
-Source: `scripts/roadmap_deal.py:36`; AST `acaca214cfb496e6747d81030af2e85f4f8323303aa901cc30f0ccf5c69191ab`.
+Source: `scripts/roadmap_deal.py:36`; AST `5967461e322c4ccc8a014310a38bd044befddff6f7c1fa3a103be5ef195e2c5a`.
 
 Rust module: `scripts::roadmap_deal`. Result propagation plus typed error matching; finally via explicit cleanup on success/error/return, not Drop alone
 
@@ -2408,7 +2408,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[15]::Assign
 
-Source: `scripts/roadmap_deal.py:89`; AST `f8224fd62d78e2486f4402692f3ce57d84b6503b1cf2995796d632f055297410`.
+Source: `scripts/roadmap_deal.py:91`; AST `a5d40b5e603d4cbcb6b95b050c5a69290cb59b3155ac832a29949849e928d9fc`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2428,7 +2428,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[15].value::Call
 
-Source: `scripts/roadmap_deal.py:89`; AST `fcbf8652393f21164c66c25c397823f84dfba883d5850f7535154d9c190d9426`.
+Source: `scripts/roadmap_deal.py:91`; AST `897dace27691463fd10463a2918de30933e2471a791e10c4183e61ff3a332ec3`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2448,7 +2448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[15].value.args[0]::Call
 
-Source: `scripts/roadmap_deal.py:89`; AST `7ffe28927d1c91c90fe95d18d86f70427c897583c86ac408c4bba3be4a052300`.
+Source: `scripts/roadmap_deal.py:91`; AST `4f4087728d1dcbd42a87d211173e7e295d92da2873b7d736eaa98bd2ec41e675`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2468,7 +2468,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[16]::Expr
 
-Source: `scripts/roadmap_deal.py:90`; AST `551134552400246a8a1e083425402655d53394c08df5afac5c016d2a0ff97674`.
+Source: `scripts/roadmap_deal.py:92`; AST `551134552400246a8a1e083425402655d53394c08df5afac5c016d2a0ff97674`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2488,7 +2488,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[16].value::Call
 
-Source: `scripts/roadmap_deal.py:90`; AST `39266d39ab902fb7a2b0b377807090d454c9cd42c761527bd1294d1d864f33d4`.
+Source: `scripts/roadmap_deal.py:92`; AST `39266d39ab902fb7a2b0b377807090d454c9cd42c761527bd1294d1d864f33d4`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2508,7 +2508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[16].value.args[0].left::ListComp
 
-Source: `scripts/roadmap_deal.py:90`; AST `882d1f87a7ca52c325b3a54a8955972bb700163ecd741892cd9b63f1be2e59b6`.
+Source: `scripts/roadmap_deal.py:92`; AST `882d1f87a7ca52c325b3a54a8955972bb700163ecd741892cd9b63f1be2e59b6`.
 
 Rust module: `scripts::roadmap_deal`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -2528,7 +2528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[17]::Assign
 
-Source: `scripts/roadmap_deal.py:91`; AST `65fa8881c0787bd7c391742f13cedf370e649e63b81b3040c197e77f29cde8ed`.
+Source: `scripts/roadmap_deal.py:93`; AST `65fa8881c0787bd7c391742f13cedf370e649e63b81b3040c197e77f29cde8ed`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2548,7 +2548,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[18]::Assign
 
-Source: `scripts/roadmap_deal.py:92`; AST `8b1f51f4150d37087855544067e0d99c9d2f7dc1bf587bf7987cad857add2084`.
+Source: `scripts/roadmap_deal.py:94`; AST `8b1f51f4150d37087855544067e0d99c9d2f7dc1bf587bf7987cad857add2084`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2568,7 +2568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[18].value::Call
 
-Source: `scripts/roadmap_deal.py:92`; AST `1f849e5678542b98ef76fb225dcc444109e39244bc225ede6de7db6faa6f6da1`.
+Source: `scripts/roadmap_deal.py:94`; AST `1f849e5678542b98ef76fb225dcc444109e39244bc225ede6de7db6faa6f6da1`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2588,7 +2588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[19]::Expr
 
-Source: `scripts/roadmap_deal.py:93`; AST `ec422e55e10e3ca9f636a97f041ebc9237fef58a1932b96d1485faaf89bb7f7a`.
+Source: `scripts/roadmap_deal.py:95`; AST `ec422e55e10e3ca9f636a97f041ebc9237fef58a1932b96d1485faaf89bb7f7a`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2608,7 +2608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[19].value::Call
 
-Source: `scripts/roadmap_deal.py:93`; AST `ad90d6fb848cabe89857a843216ab25151aca95332948b8674c0656f08a75fa3`.
+Source: `scripts/roadmap_deal.py:95`; AST `ad90d6fb848cabe89857a843216ab25151aca95332948b8674c0656f08a75fa3`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2628,7 +2628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[19].value.keywords[2].value.values[2].body::Call
 
-Source: `scripts/roadmap_deal.py:95`; AST `95378671fa283f189b9d25742e03582d472ece9b92f010ed4233aefe69dd51f2`.
+Source: `scripts/roadmap_deal.py:97`; AST `95378671fa283f189b9d25742e03582d472ece9b92f010ed4233aefe69dd51f2`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2648,7 +2648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[19].value.keywords[2].value.values[3].body::Call
 
-Source: `scripts/roadmap_deal.py:96`; AST `c82963b63a01589e25cdccc18ce78e1bd1877cdab000b4a8ea72cb3528f09e15`.
+Source: `scripts/roadmap_deal.py:98`; AST `c82963b63a01589e25cdccc18ce78e1bd1877cdab000b4a8ea72cb3528f09e15`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2668,7 +2668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[19].value.keywords[3].value::ListComp
 
-Source: `scripts/roadmap_deal.py:97`; AST `8b247184f4ad2ad71d8b74d221cbe6ec571497bc084b76b96bf160f447aa3d81`.
+Source: `scripts/roadmap_deal.py:99`; AST `8b247184f4ad2ad71d8b74d221cbe6ec571497bc084b76b96bf160f447aa3d81`.
 
 Rust module: `scripts::roadmap_deal`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -2688,7 +2688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].body[19].value.keywords[3].value.elt::Call
 
-Source: `scripts/roadmap_deal.py:97`; AST `c20c125f7500c98b1e9110b282f7886b46f1300c9be9803a8cde67b106477606`.
+Source: `scripts/roadmap_deal.py:99`; AST `c20c125f7500c98b1e9110b282f7886b46f1300c9be9803a8cde67b106477606`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2708,7 +2708,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].handlers[0]::ExceptHandler
 
-Source: `scripts/roadmap_deal.py:98`; AST `99d8b0caeae30848b9c8b22ac5b524b144645a59345cce3cf880a04d7ea18a06`.
+Source: `scripts/roadmap_deal.py:100`; AST `99d8b0caeae30848b9c8b22ac5b524b144645a59345cce3cf880a04d7ea18a06`.
 
 Rust module: `scripts::roadmap_deal`. match on source error enum preserving exception subtype matching and binding cleanup
 
@@ -2728,7 +2728,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].handlers[0].body[0]::Assign
 
-Source: `scripts/roadmap_deal.py:99`; AST `ab79d832db92fe9b2958c28df8cb2022c44eed8b1027f76bdc695227362b8f83`.
+Source: `scripts/roadmap_deal.py:101`; AST `ab79d832db92fe9b2958c28df8cb2022c44eed8b1027f76bdc695227362b8f83`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2748,7 +2748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].handlers[0].body[0].value.values[0].value::Call
 
-Source: `scripts/roadmap_deal.py:99`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
+Source: `scripts/roadmap_deal.py:101`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2768,7 +2768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[6].handlers[0].body[0].value.values[1]::Call
 
-Source: `scripts/roadmap_deal.py:99`; AST `ed91e0e2c4feb43ad37ba7941b4ee3c7dcc36d3eb80d4a170990c028aa16f027`.
+Source: `scripts/roadmap_deal.py:101`; AST `ed91e0e2c4feb43ad37ba7941b4ee3c7dcc36d3eb80d4a170990c028aa16f027`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2788,7 +2788,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::observe::root.body[13].body[7]::Return
 
-Source: `scripts/roadmap_deal.py:100`; AST `1d8c2c2be64d23c31c6eec0ccb160ec416867628655492a485c3d996da1d58bc`.
+Source: `scripts/roadmap_deal.py:102`; AST `1d8c2c2be64d23c31c6eec0ccb160ec416867628655492a485c3d996da1d58bc`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2808,7 +2808,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14]::FunctionDef
 
-Source: `scripts/roadmap_deal.py:103`; AST `5bad9f62ef5a7f46ba97cb1e325328c2e79b5c8ff4277a69d122c8f3302502d1`.
+Source: `scripts/roadmap_deal.py:105`; AST `5bad9f62ef5a7f46ba97cb1e325328c2e79b5c8ff4277a69d122c8f3302502d1`.
 
 Rust module: `scripts::roadmap_deal`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -2828,7 +2828,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[0]::Assign
 
-Source: `scripts/roadmap_deal.py:104`; AST `c4ad6d457d8034b25dcc473a40ed9c6629dab3a54fd3b776e18da1d1367bd02c`.
+Source: `scripts/roadmap_deal.py:106`; AST `c4ad6d457d8034b25dcc473a40ed9c6629dab3a54fd3b776e18da1d1367bd02c`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2848,7 +2848,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[0].value::Call
 
-Source: `scripts/roadmap_deal.py:104`; AST `d39f39ff7d74d107a287f654b8e1af65d84cce415404e0fd0bba007cadaa9678`.
+Source: `scripts/roadmap_deal.py:106`; AST `d39f39ff7d74d107a287f654b8e1af65d84cce415404e0fd0bba007cadaa9678`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2868,7 +2868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[1]::Expr
 
-Source: `scripts/roadmap_deal.py:105`; AST `8ed0f27de801f9dec3e0fad110e7d2e80a02910fe7188382daa14e5e02f3778f`.
+Source: `scripts/roadmap_deal.py:107`; AST `8ed0f27de801f9dec3e0fad110e7d2e80a02910fe7188382daa14e5e02f3778f`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2888,7 +2888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[1].value::Call
 
-Source: `scripts/roadmap_deal.py:105`; AST `dabb15dffe9d399f067e249c5934ba7a3b8ead227150029cb610dd99a27ad883`.
+Source: `scripts/roadmap_deal.py:107`; AST `dabb15dffe9d399f067e249c5934ba7a3b8ead227150029cb610dd99a27ad883`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2908,7 +2908,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[2]::Expr
 
-Source: `scripts/roadmap_deal.py:106`; AST `9da33d77a9d730d1b0a37192c8581046a68572dcd897195379ae8e318be418ad`.
+Source: `scripts/roadmap_deal.py:108`; AST `9da33d77a9d730d1b0a37192c8581046a68572dcd897195379ae8e318be418ad`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2928,7 +2928,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[2].value::Call
 
-Source: `scripts/roadmap_deal.py:106`; AST `fec4fbf48af0ce6f50e4b9bb90b76836907b3da18e1361a79d252cbbf372ac6f`.
+Source: `scripts/roadmap_deal.py:108`; AST `fec4fbf48af0ce6f50e4b9bb90b76836907b3da18e1361a79d252cbbf372ac6f`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2948,7 +2948,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[3]::Assign
 
-Source: `scripts/roadmap_deal.py:107`; AST `6275c8d1600da776fb862cf3f5fef974e2559c70800565172097404dcea6fef6`.
+Source: `scripts/roadmap_deal.py:109`; AST `6275c8d1600da776fb862cf3f5fef974e2559c70800565172097404dcea6fef6`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -2968,7 +2968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[3].value::Call
 
-Source: `scripts/roadmap_deal.py:107`; AST `c865e8043798bf46a3b13d6774886772cbfabc2836b109a02aef4d3c2ad2a7ef`.
+Source: `scripts/roadmap_deal.py:109`; AST `c865e8043798bf46a3b13d6774886772cbfabc2836b109a02aef4d3c2ad2a7ef`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -2988,7 +2988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[4]::Assign
 
-Source: `scripts/roadmap_deal.py:108`; AST `e002250987f81ebe280f91c325c98221a12dd1008e366d0a3237217612b1c9a2`.
+Source: `scripts/roadmap_deal.py:110`; AST `e002250987f81ebe280f91c325c98221a12dd1008e366d0a3237217612b1c9a2`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3008,7 +3008,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[4].value::Call
 
-Source: `scripts/roadmap_deal.py:108`; AST `011507cb33bdbd72147f6829e5df5f0de0bdc59a40b607f4a66bd62f5de39ab8`.
+Source: `scripts/roadmap_deal.py:110`; AST `011507cb33bdbd72147f6829e5df5f0de0bdc59a40b607f4a66bd62f5de39ab8`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3028,7 +3028,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[5]::Expr
 
-Source: `scripts/roadmap_deal.py:109`; AST `2788f7d1a826115b2255675302e6c2cd93f4df2a5223f3eaecb94d4c11b4b788`.
+Source: `scripts/roadmap_deal.py:111`; AST `2788f7d1a826115b2255675302e6c2cd93f4df2a5223f3eaecb94d4c11b4b788`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3048,7 +3048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[5].value::Call
 
-Source: `scripts/roadmap_deal.py:109`; AST `1209d46f3f10722f678ef162b5edbdfa00556b405784c29b195e774046189b74`.
+Source: `scripts/roadmap_deal.py:111`; AST `1209d46f3f10722f678ef162b5edbdfa00556b405784c29b195e774046189b74`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3068,7 +3068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[5].value.args[0]::Call
 
-Source: `scripts/roadmap_deal.py:109`; AST `bd2c4103df935f33b6c3362a61ace084743aa0c8c3bc6058f572e1ed907f0aa0`.
+Source: `scripts/roadmap_deal.py:111`; AST `bd2c4103df935f33b6c3362a61ace084743aa0c8c3bc6058f572e1ed907f0aa0`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3088,7 +3088,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[6]::Expr
 
-Source: `scripts/roadmap_deal.py:110`; AST `b5dd8c3bdad3b482d3700b634d17115f9f311add244f7cac83eeeab98e30a249`.
+Source: `scripts/roadmap_deal.py:112`; AST `b5dd8c3bdad3b482d3700b634d17115f9f311add244f7cac83eeeab98e30a249`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3108,7 +3108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[6].value::Call
 
-Source: `scripts/roadmap_deal.py:110`; AST `ccd1fdce14b47bbdc67f4f4c46e14317185692f7f2d16978198ad19e9459f094`.
+Source: `scripts/roadmap_deal.py:112`; AST `ccd1fdce14b47bbdc67f4f4c46e14317185692f7f2d16978198ad19e9459f094`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3128,7 +3128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[6].value.args[0].values[3]::Call
 
-Source: `scripts/roadmap_deal.py:111`; AST `293d9f793b5b16a7581beb55da06cd1f9b787c4e150c06e06f01cd5ab726864d`.
+Source: `scripts/roadmap_deal.py:113`; AST `293d9f793b5b16a7581beb55da06cd1f9b787c4e150c06e06f01cd5ab726864d`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3148,7 +3148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::main::root.body[14].body[6].value.args[0].values[4]::Call
 
-Source: `scripts/roadmap_deal.py:111`; AST `adbe94c313cfea696b9d4815e69cda9e73f594f8fa9bb0a2ab61bd5a0e6a19b2`.
+Source: `scripts/roadmap_deal.py:113`; AST `adbe94c313cfea696b9d4815e69cda9e73f594f8fa9bb0a2ab61bd5a0e6a19b2`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3168,7 +3168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::root.body[15]::If
 
-Source: `scripts/roadmap_deal.py:114`; AST `3340fd16ba41ba1ddf3989cd136a498b72a97f7796e0f7fad6e815585dbc1c52`.
+Source: `scripts/roadmap_deal.py:116`; AST `3340fd16ba41ba1ddf3989cd136a498b72a97f7796e0f7fad6e815585dbc1c52`.
 
 Rust module: `scripts::roadmap_deal`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -3188,7 +3188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::root.body[15].body[0]::Expr
 
-Source: `scripts/roadmap_deal.py:115`; AST `26412f54b9dfeb741e0d31e60ab8bd5c087bc77b2e3192f46a2fa84cd9152b86`.
+Source: `scripts/roadmap_deal.py:117`; AST `26412f54b9dfeb741e0d31e60ab8bd5c087bc77b2e3192f46a2fa84cd9152b86`.
 
 Rust module: `scripts::roadmap_deal`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3208,7 +3208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_deal.py::module::root.body[15].body[0].value::Call
 
-Source: `scripts/roadmap_deal.py:115`; AST `612de6187c097f49a7c6002bfa6b205845dac081e9c3dc6b160fd9a6f584c826`.
+Source: `scripts/roadmap_deal.py:117`; AST `612de6187c097f49a7c6002bfa6b205845dac081e9c3dc6b160fd9a6f584c826`.
 
 Rust module: `scripts::roadmap_deal`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
