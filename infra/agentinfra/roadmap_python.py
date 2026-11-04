@@ -45,11 +45,32 @@ def esbmc_arguments(root: Path, toolchain: dict, fixture: str, *, claims: bool =
     return argv
 
 
+def esbmc_link_state(root: Path, toolchain: dict) -> list[dict]:
+    """Observe release symlink identities without following a link outside it."""
+    release = confined_path(root, toolchain["release_root"], must_exist=True)
+    rows = []
+    for entry in toolchain.get("symlinks", []):
+        relative = Path(entry["path"])
+        require(not relative.is_absolute() and ".." not in relative.parts, "invalid release link identity")
+        parent = confined_path(root, (root / relative).parent, must_exist=True)
+        require(parent.is_relative_to(release), "release link parent escaped its owner")
+        path = parent / relative.name
+        observed = path.readlink().as_posix() if path.is_symlink() else None
+        try:
+            safe = bool(observed is not None and path.resolve(strict=True).is_relative_to(release))
+        except (OSError, RuntimeError):
+            safe = False
+        rows.append({"path": entry["path"], "expected": entry["target"], "observed": observed, "safe": safe})
+    return rows
+
+
 def classify_esbmc(run: dict) -> dict:
     """Observe native CLI strength; unsupported/model/bound gaps receive no proof."""
     if run.get("timed_out") or run.get("stdout_truncated") or run.get("stderr_truncated"):
         return {"outcome": "INDETERMINATE", "reason": "timeout or truncated ESBMC logs"}
     output = run.get("stdout", "") + "\n" + run.get("stderr", "")
+    if re.search(r"(?i)timed out|time limit exceeded|^TIMEOUT", output):
+        return {"outcome": "INDETERMINATE", "reason": "native ESBMC time limit"}
     if re.search(r"(?i)traceback|unsupported|not supported|error:|parsing error|segmentation fault|terminate called|aborted", output):
         return {"outcome": "UNSUPPORTED_OR_ERROR", "reason": "frontend/runtime/model diagnostic"}
     if "VERIFICATION SUCCESSFUL" in output and run.get("returncode") == 0:

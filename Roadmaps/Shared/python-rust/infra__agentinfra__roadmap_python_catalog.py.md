@@ -2,18 +2,18 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 824. Inventory digest: `9ae4841f2b9787a179c36feda8e38364375936b1254d0ccb3d18a53a6997a531`.
+Files: 1. Behavioral units: 916. Inventory digest: `08939473336fcc60bd0e7a364fa9846e9fb7ce521c88adea6922fbec179db0f4`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:1`; AST `e8d7fbebf3e681ee746b4d8f185a2a465e31a90e170e03bb077ac79bcbefb95d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:1`; AST `dd170283fe8bf33d142b721ef04589e4a942d66a717769b2b8f0240987de14b7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: BudgetLedger, HOOKS, Path, ProjectAdapter, SEMANTIC_FIELDS, _actual_test_details, _backend_evidence, _deal_report, _evidence_dependencies, _lineage, _node, _qualification_evidence, _qualification_report, _role, a, actual, actual_rows, affected, all, any, api, assertions, ast, attempt, attempts, b, backend, backend_observation_key, base, binding, bindings, bindings_current, by_id, c, calls, candidate, catalog, channel, classes, classification, classify_deal, classify_nagini, closure, closure_files, closures, cls, column, compiled, confined_path, contract, contracts, control, controls, current, declarations, dependencies, details, diagnostics, dict, digest, effects, enumerate, evidence, expected, expected_argv, external_bases, f, field, fields, file_binding, file_bindings, file_obligations, files, fixture, fixture_catalog, fixture_ids, fixture_nodes, fixtures, h, helpers, hooks, identities, int, invoked, isinstance, item, k, key, len, line, list, local, location, locations, m, match, matches, message, method, methods, milestone, module, module_closure, module_hooks, n, name, node, number, o, obligation, observation, observations, observed, op, original, original_ids, p, packet, packets, path, paths, pattern, pending, policy, policy_path, prefix, production, quantifiers, r, raw, re, read_json, receipt, record, related, relative, report, reports, require, result, root, row, rows, runs, runtime_bindings, runtime_dependencies, runtime_receipt, scope, scope_files, seen, selected, set, shared_targets, sorted, source, source_closure, source_files, source_inventory, sources, spec, spec_binding, spec_inputs, stale, status, str, suffix, target, targets, text, tool_binding, toolchain, tree, tuple, type, u, unit, units, unresolved, v, validate_tool_receipt, value, values, verification_targets, zip. Outputs/bindings: HOOKS, INTERFACE_VERSION, _, a, actual, actual_rows, affected, api, assertions, attempt, attempts, b, base, binding, bindings, by_id, c, calls, channel, classes, classification, closure, closure_files, closures, cls, column, contract, contracts, control, controls, current, declarations, dependencies, details, diagnostics, effects, expected, expected_argv, external_bases, f, field, fields, file_bindings, file_obligations, files, fixture, fixture_ids, fixture_nodes, fixtures, h, helpers, hooks, identities, invoked, item, k, key, line, local, location, m, match, matches, message, method, methods, milestone, module, module_hooks, n, name, number, o, obligation, observation, observations, observed, op, original, original_ids, p, packet, packets, path, paths, pattern, pending, policy, policy_path, prefix, production, quantifiers, r, raw, receipt, record, related, relative, report, reports, result, row, rows, runs, runtime_dependencies, runtime_receipt, scope, scope_files, seen, selected, shared_targets, source, source_files, sources, spec, spec_binding, spec_inputs, stale, status, suffix, target, targets, text, tool_binding, toolchain, tree, u, unit, units, unresolved, v, value, values, verification_targets.
-Calls/effect boundaries: (root / '.aegis/project.json').is_file, BudgetLedger, BudgetLedger(root).read, Path, Path(invoked).is_absolute, Path(invoked).resolve, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get, _actual_test_details, _backend_evidence, _deal_report, _evidence_dependencies, _lineage, _node, _qualification_evidence, _qualification_report, _role, a.get, a.get('receipt', {}).get, a['receipt'].get, all, any, api.get, ast.dump, ast.dump(node, include_attributes=False).encode, ast.parse, ast.unparse, ast.unparse(n.func).startswith, ast.walk, attempt.get, attempt.get('operation', {}).get, b['path'].endswith, backend_observation_key, bindings_current, by_id.setdefault, by_id.setdefault(fixture['runtime_id'], []).append, c.get, catalog['fixture_semantics'].items, catalog['production_targets'].values, classify_deal, classify_nagini, closure_files.get, closures.update, compiled['milestones'].items, confined_path, confined_path(root, fixture['path']).read_bytes, contracts.items, contracts.values, control.get, declarations.items, dependencies.values, details.get, diagnostics.append, dict, digest, enumerate, expected_argv.extend, external_bases.append, fields['fixture_setup'].update, fields['fixture_teardown'].update, fields['quantification'].update, file_binding, file_obligations.get, file_obligations.setdefault, file_obligations.setdefault(path, set()).add, fixture_catalog, fixture_nodes.append, fixtures.items, int, isinstance, len, list, match.groups, module.replace, module_closure, n.name.startswith, obligation['id'].removeprefix, observation.get, observations.get, p.is_file, p.relative_to, p.relative_to(root).as_posix, packets.append, path.is_file, path.read_bytes, path.startswith, pending.extend, pending.pop, policy.get, policy['milestones'].items, production.get, production.items, r.get, raw.get, raw.get(channel, '').splitlines, re.fullmatch, read_json, receipt.get, record.get, relative.removeprefix, relative.removeprefix('infra/tests/').removesuffix, relative.removeprefix('infra/tests/').removesuffix('.py').replace, require, result.values, root.glob, root.resolve, rows.append, runs.append, runtime_bindings, seen.add, selected.add, selected.update, set, shared_targets.values, sorted, source_closure, source_files.get, spec.get, spec.get('selection', {}).get, spec.items, spec['selection'].get, spec['toolchain'].get, spec_inputs.get, stale.append, str, toolchain.get, type, u['file'].startswith, units.append, unresolved.append, validate_tool_receipt, values.append, zip.
+Inputs: BudgetLedger, HOOKS, Path, ProjectAdapter, SEMANTIC_FIELDS, _actual_test_details, _backend_evidence, _deal_report, _esbmc_report, _evidence_dependencies, _lineage, _node, _qualification_evidence, _qualification_report, _role, a, actual, actual_rows, affected, all, any, api, assertions, ast, attempt, attempts, b, backend, backend_observation_key, base, binding, bindings, bindings_current, by_id, c, calls, candidate, catalog, channel, claims, classes, classification, classify_deal, classify_esbmc, classify_nagini, closure, closure_files, closures, cls, column, compiled, confined_path, contract, contracts, control, controls, current, declarations, dependencies, details, diagnostics, dict, digest, effects, enumerate, esbmc_arguments, esbmc_link_state, evidence, expected, expected_argv, external_bases, f, field, fields, file_binding, file_bindings, file_obligations, files, fixture, fixture_catalog, fixture_ids, fixture_nodes, fixtures, h, helpers, hooks, identities, int, invoked, isinstance, item, k, key, len, line, link_state, list, listed, local, location, locations, m, match, matches, message, method, methods, milestone, module, module_closure, module_hooks, n, name, node, number, o, obligation, observation, observations, observed, op, original, original_ids, p, packet, packets, path, paths, pattern, pending, policy, policy_path, prefix, production, quantifiers, r, raw, re, read_json, receipt, record, related, relative, report, reports, require, result, root, row, rows, runs, runtime_bindings, runtime_dependencies, runtime_receipt, scope, scope_files, seen, selected, set, shared_targets, sorted, source, source_closure, source_files, source_inventory, sources, spec, spec_binding, spec_inputs, stale, status, str, suffix, target, targets, text, tool_binding, toolchain, tree, tuple, type, u, unit, units, unresolved, v, validate_tool_receipt, value, values, verification_targets, x, zip. Outputs/bindings: HOOKS, INTERFACE_VERSION, _, a, actual, actual_rows, affected, api, assertions, attempt, attempts, b, backend, base, binding, bindings, by_id, c, calls, channel, claims, classes, classification, closure, closure_files, closures, cls, column, contract, contracts, control, controls, current, declarations, dependencies, details, diagnostics, effects, expected, expected_argv, external_bases, f, field, fields, file_bindings, file_obligations, files, fixture, fixture_ids, fixture_nodes, fixtures, h, helpers, hooks, identities, invoked, item, k, key, line, link_state, listed, local, location, m, match, matches, message, method, methods, milestone, module, module_hooks, n, name, number, o, obligation, observation, observations, observed, op, original, original_ids, p, packet, packets, path, paths, pattern, pending, policy, policy_path, prefix, production, quantifiers, r, raw, receipt, record, related, relative, report, reports, result, row, rows, runs, runtime_dependencies, runtime_receipt, scope, scope_files, seen, selected, shared_targets, source, source_files, sources, spec, spec_binding, spec_inputs, stale, status, suffix, target, targets, text, tool_binding, toolchain, tree, u, unit, units, unresolved, v, value, values, verification_targets, x.
+Calls/effect boundaries: (root / '.aegis/project.json').is_file, BudgetLedger, BudgetLedger(root).read, Path, Path(invoked).is_absolute, Path(invoked).resolve, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get, _actual_test_details, _backend_evidence, _deal_report, _esbmc_report, _evidence_dependencies, _lineage, _node, _qualification_evidence, _qualification_report, _role, a.get, a.get('receipt', {}).get, a['receipt'].get, all, any, api.get, ast.dump, ast.dump(node, include_attributes=False).encode, ast.parse, ast.unparse, ast.unparse(n.func).startswith, ast.walk, attempt.get, attempt.get('operation', {}).get, b['path'].endswith, backend_observation_key, bindings_current, by_id.setdefault, by_id.setdefault(fixture['runtime_id'], []).append, c.get, catalog['fixture_semantics'].items, catalog['production_targets'].values, classify_deal, classify_esbmc, classify_nagini, closure_files.get, closures.update, compiled['milestones'].items, confined_path, confined_path(root, fixture['path']).read_bytes, contracts.items, contracts.values, control.get, declarations.items, dependencies.values, details.get, diagnostics.append, dict, digest, enumerate, esbmc_arguments, esbmc_link_state, expected_argv.extend, external_bases.append, fields['fixture_setup'].update, fields['fixture_teardown'].update, fields['quantification'].update, file_binding, file_obligations.get, file_obligations.setdefault, file_obligations.setdefault(path, set()).add, fixture_catalog, fixture_nodes.append, fixtures.items, int, isinstance, len, list, listed.get, match.groups, module.replace, module_closure, n.name.startswith, obligation['id'].removeprefix, observation.get, observations.get, p.is_file, p.relative_to, p.relative_to(root).as_posix, packets.append, path.is_file, path.read_bytes, path.startswith, pending.extend, pending.pop, policy.get, policy['milestones'].items, production.get, production.items, r.get, raw.get, raw.get(channel, '').splitlines, re.fullmatch, read_json, receipt.get, record.get, relative.removeprefix, relative.removeprefix('infra/tests/').removesuffix, relative.removeprefix('infra/tests/').removesuffix('.py').replace, require, result.values, root.glob, root.resolve, rows.append, runs.append, runtime_bindings, seen.add, selected.add, selected.update, set, shared_targets.values, sorted, source_closure, source_files.get, spec.get, spec.get('selection', {}).get, spec.items, spec['selection'].get, spec['toolchain'].get, spec_inputs.get, stale.append, stale.extend, str, toolchain.get, type, u['file'].startswith, units.append, unresolved.append, validate_tool_receipt, values.append, zip.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
@@ -5828,12 +5828,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:183`; AST `e8b57eb8a4bfde5ca66583208d777bd1a8970081dbab0c405c7bda6b45e4b86c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:183`; AST `18ef09001470f6f16bfd089e79deb18acbbdf513fd3ad8a22b416df2ed750e5c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: BudgetLedger, Path, ProjectAdapter, a, attempt, attempts, b, backend, backend_observation_key, binding, bindings_current, confined_path, dependencies, details, dict, digest, expected, expected_argv, file_binding, invoked, isinstance, item, k, len, list, matches, observed, original, path, production, read_json, receipt, record, require, root, sorted, source_closure, spec, spec_binding, stale, str, tool_binding, toolchain, tuple, v, validate_tool_receipt. Outputs/bindings: a, attempt, attempts, binding, dependencies, details, expected, expected_argv, invoked, item, k, matches, observed, original, path, production, receipt, record, spec, spec_binding, stale, tool_binding, toolchain, v.
-Calls/effect boundaries: (root / '.aegis/project.json').is_file, BudgetLedger, BudgetLedger(root).read, Path, Path(invoked).is_absolute, Path(invoked).resolve, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get, a.get, a.get('receipt', {}).get, a['receipt'].get, attempt.get, attempt.get('operation', {}).get, backend_observation_key, bindings_current, confined_path, dependencies.values, details.get, digest, expected_argv.extend, file_binding, isinstance, len, path.is_file, production.get, production.items, read_json, receipt.get, require, sorted, source_closure, spec.get, spec.get('selection', {}).get, spec.items, spec['selection'].get, spec['toolchain'].get, stale.append, str, toolchain.get, validate_tool_receipt.
+Inputs: BudgetLedger, Path, ProjectAdapter, a, attempt, attempts, b, backend, backend_observation_key, binding, bindings_current, confined_path, dependencies, details, dict, digest, esbmc_link_state, expected, expected_argv, file_binding, invoked, isinstance, item, k, len, link_state, list, matches, observed, original, path, production, read_json, receipt, record, require, root, sorted, source_closure, spec, spec_binding, stale, str, tool_binding, toolchain, tuple, v, validate_tool_receipt, x. Outputs/bindings: a, attempt, attempts, binding, dependencies, details, expected, expected_argv, invoked, item, k, link_state, matches, observed, original, path, production, receipt, record, spec, spec_binding, stale, tool_binding, toolchain, v, x.
+Calls/effect boundaries: (root / '.aegis/project.json').is_file, BudgetLedger, BudgetLedger(root).read, Path, Path(invoked).is_absolute, Path(invoked).resolve, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get, a.get, a.get('receipt', {}).get, a['receipt'].get, attempt.get, attempt.get('operation', {}).get, backend_observation_key, bindings_current, confined_path, dependencies.values, details.get, digest, esbmc_link_state, expected_argv.extend, file_binding, isinstance, len, path.is_file, production.get, production.items, read_json, receipt.get, require, sorted, source_closure, spec.get, spec.get('selection', {}).get, spec.items, spec['selection'].get, spec['toolchain'].get, stale.append, stale.extend, str, toolchain.get, validate_tool_receipt.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[17]; no call, error or mutation may be omitted.
@@ -7608,7 +7608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[27]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:228`; AST `1e0e1aa329b3f7b3a857079d158da8865f97e2a3b8ac0bb32e14402866f32b7a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:228`; AST `0a11dfcd778ebc4f90996153bfde2385f4f2e1b1127ff769644e3b43e79f4a95`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -7616,7 +7616,7 @@ Inputs: backend, expected_argv, require, spec, toolchain. Outputs/bindings: (non
 Calls/effect boundaries: expected_argv.extend, require, spec['selection'].get, toolchain.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[17].body[27]; no call, error or mutation may be omitted. Condition: backend == 'deal'
+Invariants: Preserve ordered If evaluation at root.body[17].body[27]; no call, error or mutation may be omitted. Condition: backend != 'nagini'
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -7628,11 +7628,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[27].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:229`; AST `670030c1a9ad0bb06084afd1ad025e08a86417fe3a7f3aaa8ae27dce20829c23`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:229`; AST `70fabde6ebf3c7f5e031fc66d36f391a28ec8d995b7e7902bb4b54564d7f45ec`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: require, spec, toolchain. Outputs/bindings: (none).
+Inputs: backend, require, spec, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: require, spec['selection'].get, toolchain.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -7648,11 +7648,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[27].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:229`; AST `ff4c9c27f78927ae61ca41c38feeaa71b74fc783bf9548b7f645d913b2d87c6a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:229`; AST `d893f4b76717a0618d700b80d01a6faf826b6d0694f47d5a01eea5d8804b92fa`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: require, spec, toolchain. Outputs/bindings: (none).
+Inputs: backend, require, spec, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: require, spec['selection'].get, toolchain.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -7708,11 +7708,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[27].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:230`; AST `d4849e530ee12365b7869d8c32e3aa27724c631c7bf958c6b5279d37ec3d9600`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:230`; AST `535a8eedfd577719673568a2de835919bc364daad83ccbde45b30ecb0f234d95`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: expected_argv. Outputs/bindings: (none).
+Inputs: backend, expected_argv. Outputs/bindings: (none).
 Calls/effect boundaries: expected_argv.extend.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -7728,11 +7728,11 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[27].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:230`; AST `7b3766750fde7b4463c0014e59ad60b9cef97ee8316470ba66de743f245f0993`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:230`; AST `6f071595d43876b9864f399a69ff531f6e5633a55eda7072560144282515afed`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: expected_argv. Outputs/bindings: (none).
+Inputs: backend, expected_argv. Outputs/bindings: (none).
 Calls/effect boundaries: expected_argv.extend.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
@@ -8528,7 +8528,187 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:256`; AST `6a3091af8fb2c815091fa246c9c2e15ea61ab28d0cbdf3214754f19086e3b1b0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:256`; AST `70ddfa70926ef12d81102dbe4729a6f85bfa8a7e4539f4cd95fa758d9a00ce7e`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: backend, digest, esbmc_link_state, link_state, record, root, stale, toolchain, x. Outputs/bindings: link_state, x.
+Calls/effect boundaries: digest, esbmc_link_state, stale.extend.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered If evaluation at root.body[17].body[37]; no call, error or mutation may be omitted. Condition: backend == 'esbmc-python'
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[0]::ImportFrom
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:257`; AST `f3b1f0bd8b6e3a9da542bb0711a121a77825ed7882a9e0a8f7040ea3ec4b4521`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ImportFrom evaluation at root.body[17].body[37].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[1]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:258`; AST `da252946d187cee3934adfc41e9de0eaae1e3d0dcee77f040dc9b6ef29bc6ac2`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: esbmc_link_state, root, toolchain. Outputs/bindings: link_state.
+Calls/effect boundaries: esbmc_link_state.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[17].body[37].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[1].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:258`; AST `6caf4c0f92348aaea382c6864abe507af9c6c282c9bd22dca6778235e5997fd7`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: esbmc_link_state, root, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_link_state.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[17].body[37].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:259`; AST `c8a23f011c9a3489508d6dc236e9c6f8934b2b03d94409e6ff7fe4bbe4f056a8`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: digest, link_state, record. Outputs/bindings: (none).
+Calls/effect boundaries: digest.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[17].body[37].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[2].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:259`; AST `c187b97cced4590f02764bcd41c9b6909452af9cac8c46bdad2c6c3baebb750b`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: digest, link_state. Outputs/bindings: (none).
+Calls/effect boundaries: digest.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[17].body[37].body[2].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[3]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:260`; AST `a99155505c7f5fc409dcd3ae5adb5b15b1c508ada83c7a78a12e2de27cbb030c`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: link_state, stale, x. Outputs/bindings: x.
+Calls/effect boundaries: stale.extend.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[17].body[37].body[3]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[3].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:260`; AST `457b33f0d1eaf161f7e45fa4c673719e11ea80220bc9d0ed43d9362c29c8ce83`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: link_state, stale, x. Outputs/bindings: x.
+Calls/effect boundaries: stale.extend.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[17].body[37].body[3].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[3].value.args[0]::GeneratorExp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:260`; AST `230f2783255a6e9788fc824a63cf7390134b3c7a9319a59da551885c4aeab7be`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
+
+Inputs: link_state, x. Outputs/bindings: x.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[17].body[37].body[3].value.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38]::If
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:263`; AST `6a3091af8fb2c815091fa246c9c2e15ea61ab28d0cbdf3214754f19086e3b1b0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -8536,7 +8716,7 @@ Inputs: b, dependencies, record, sorted, stale. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[17].body[37]; no call, error or mutation may be omitted. Condition: stale
+Invariants: Preserve ordered If evaluation at root.body[17].body[38]; no call, error or mutation may be omitted. Condition: stale
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8546,9 +8726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:257`; AST `2c1c71a9ac32ddeae0c2fe0c22188a75836956d2502b130bbada8440c170f6ad`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:264`; AST `2c1c71a9ac32ddeae0c2fe0c22188a75836956d2502b130bbada8440c170f6ad`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -8556,7 +8736,7 @@ Inputs: record. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[17].body[37].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[17].body[38].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8566,9 +8746,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[1]::Return
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38].body[1]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:258`; AST `73ed8d19dfbd54367e09a3b86ea248def8835ed48e993bd5d73567915a877cfe`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `73ed8d19dfbd54367e09a3b86ea248def8835ed48e993bd5d73567915a877cfe`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -8576,7 +8756,7 @@ Inputs: b, dependencies, record, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Return evaluation at root.body[17].body[37].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[17].body[38].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8586,9 +8766,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[1].value.elts[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38].body[1].value.elts[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:258`; AST `0c92dcc8193e07b01c55fdcfcf6bd8ff73a2776d61096400805fb08b5794c057`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `0c92dcc8193e07b01c55fdcfcf6bd8ff73a2776d61096400805fb08b5794c057`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8596,7 +8776,7 @@ Inputs: b, dependencies, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[37].body[1].value.elts[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[38].body[1].value.elts[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8606,9 +8786,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[1].value.elts[2].args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38].body[1].value.elts[2].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:258`; AST `1f0a1f8ada8033f507f1e8ac925585718247758ca71aad47f1a6fc11028449fd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `1f0a1f8ada8033f507f1e8ac925585718247758ca71aad47f1a6fc11028449fd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8616,7 +8796,7 @@ Inputs: dependencies. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[37].body[1].value.elts[2].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[38].body[1].value.elts[2].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8626,9 +8806,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[37].body[1].value.elts[2].keywords[0].value::Lambda
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38].body[1].value.elts[2].keywords[0].value::Lambda
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:258`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. closure with explicit captures; preserve Python late binding and argument defaults
 
@@ -8636,47 +8816,7 @@ Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Lambda evaluation at root.body[17].body[37].body[1].value.elts[2].keywords[0].value; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38]::Expr
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:259`; AST `bea1d513d8c1838e49ba88dfd428bf35ab466966cb7b9988084b513a4d8688fd`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
-
-Inputs: receipt, root, spec, validate_tool_receipt. Outputs/bindings: (none).
-Calls/effect boundaries: validate_tool_receipt.
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered Expr evaluation at root.body[17].body[38]; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[38].value::Call
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:259`; AST `cfd9db3a38f9f5f522373afe44915146a40759b8c04aa17fc954f81c1c7d843d`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: receipt, root, spec, validate_tool_receipt. Outputs/bindings: (none).
-Calls/effect boundaries: validate_tool_receipt.
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered Call evaluation at root.body[17].body[38].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Lambda evaluation at root.body[17].body[38].body[1].value.elts[2].keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8688,12 +8828,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[39]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:260`; AST `657c142d0d6a0c7232437dfa54e0af061a196e1dda04e763a52b6493b906e947`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:266`; AST `bea1d513d8c1838e49ba88dfd428bf35ab466966cb7b9988084b513a4d8688fd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: receipt, require. Outputs/bindings: (none).
-Calls/effect boundaries: require.
+Inputs: receipt, root, spec, validate_tool_receipt. Outputs/bindings: (none).
+Calls/effect boundaries: validate_tool_receipt.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Expr evaluation at root.body[17].body[39]; no call, error or mutation may be omitted.
@@ -8708,12 +8848,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[39].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:260`; AST `f99f5559e0cc2d401621be744ff2081b1deab5265cdaff19cb9446d6b3eda43c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:266`; AST `cfd9db3a38f9f5f522373afe44915146a40759b8c04aa17fc954f81c1c7d843d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: receipt, require. Outputs/bindings: (none).
-Calls/effect boundaries: require.
+Inputs: receipt, root, spec, validate_tool_receipt. Outputs/bindings: (none).
+Calls/effect boundaries: validate_tool_receipt.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Call evaluation at root.body[17].body[39].value; no call, error or mutation may be omitted.
@@ -8726,9 +8866,49 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[40]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[40]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:262`; AST `1735d774dfb144c1c0e1bcebf77b00257e361b450b19a75131f8690cdca29aee`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:267`; AST `657c142d0d6a0c7232437dfa54e0af061a196e1dda04e763a52b6493b906e947`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: receipt, require. Outputs/bindings: (none).
+Calls/effect boundaries: require.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[17].body[40]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[40].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:267`; AST `f99f5559e0cc2d401621be744ff2081b1deab5265cdaff19cb9446d6b3eda43c`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: receipt, require. Outputs/bindings: (none).
+Calls/effect boundaries: require.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[17].body[40].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:269`; AST `1735d774dfb144c1c0e1bcebf77b00257e361b450b19a75131f8690cdca29aee`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -8736,7 +8916,7 @@ Inputs: production, record, root, source_closure. Outputs/bindings: (none).
 Calls/effect boundaries: source_closure.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[17].body[40]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[17].body[41]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8746,9 +8926,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[40].value.comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41].value.comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:262`; AST `630bb5e6ec024b4e2857b9df07812c9c7fee35fe9829a0b69613f0f6966ac391`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:269`; AST `630bb5e6ec024b4e2857b9df07812c9c7fee35fe9829a0b69613f0f6966ac391`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8756,7 +8936,7 @@ Inputs: production, root, source_closure. Outputs/bindings: (none).
 Calls/effect boundaries: source_closure.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[40].value.comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[41].value.comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8766,9 +8946,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41]::If
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:263`; AST `f4c61422fb60c83cbde5cf9980426c57a92dba6d4818440cb82493949d80ccc3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:270`; AST `f4c61422fb60c83cbde5cf9980426c57a92dba6d4818440cb82493949d80ccc3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -8776,7 +8956,7 @@ Inputs: b, dependencies, record, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[17].body[41]; no call, error or mutation may be omitted. Condition: not record['production_closure_current']
+Invariants: Preserve ordered If evaluation at root.body[17].body[42]; no call, error or mutation may be omitted. Condition: not record['production_closure_current']
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8786,9 +8966,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:264`; AST `53fabe9c5d51ee9a8080980bfb5042db0afade444facfe3b9032fa21aa041037`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:271`; AST `53fabe9c5d51ee9a8080980bfb5042db0afade444facfe3b9032fa21aa041037`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -8796,7 +8976,7 @@ Inputs: record. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[17].body[41].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[17].body[42].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8806,9 +8986,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41].body[1]::Return
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].body[1]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `73ed8d19dfbd54367e09a3b86ea248def8835ed48e993bd5d73567915a877cfe`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `73ed8d19dfbd54367e09a3b86ea248def8835ed48e993bd5d73567915a877cfe`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -8816,7 +8996,7 @@ Inputs: b, dependencies, record, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Return evaluation at root.body[17].body[41].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[17].body[42].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8826,9 +9006,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41].body[1].value.elts[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].body[1].value.elts[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `0c92dcc8193e07b01c55fdcfcf6bd8ff73a2776d61096400805fb08b5794c057`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `0c92dcc8193e07b01c55fdcfcf6bd8ff73a2776d61096400805fb08b5794c057`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8836,7 +9016,7 @@ Inputs: b, dependencies, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[41].body[1].value.elts[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[42].body[1].value.elts[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8846,9 +9026,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41].body[1].value.elts[2].args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].body[1].value.elts[2].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `1f0a1f8ada8033f507f1e8ac925585718247758ca71aad47f1a6fc11028449fd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `1f0a1f8ada8033f507f1e8ac925585718247758ca71aad47f1a6fc11028449fd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8856,7 +9036,7 @@ Inputs: dependencies. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[41].body[1].value.elts[2].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[42].body[1].value.elts[2].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8866,9 +9046,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[41].body[1].value.elts[2].keywords[0].value::Lambda
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].body[1].value.elts[2].keywords[0].value::Lambda
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:265`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. closure with explicit captures; preserve Python late binding and argument defaults
 
@@ -8876,7 +9056,7 @@ Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Lambda evaluation at root.body[17].body[41].body[1].value.elts[2].keywords[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Lambda evaluation at root.body[17].body[42].body[1].value.elts[2].keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8886,9 +9066,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42]::Return
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[43]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:266`; AST `a5f28f85f7c2add697a77aeb90d895194495f45a61e679859c1da2cead409f25`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `a5f28f85f7c2add697a77aeb90d895194495f45a61e679859c1da2cead409f25`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -8896,7 +9076,7 @@ Inputs: b, dependencies, details, record, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Return evaluation at root.body[17].body[42]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[17].body[43]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8906,9 +9086,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].value.elts[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[43].value.elts[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:266`; AST `0c92dcc8193e07b01c55fdcfcf6bd8ff73a2776d61096400805fb08b5794c057`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `0c92dcc8193e07b01c55fdcfcf6bd8ff73a2776d61096400805fb08b5794c057`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8916,7 +9096,7 @@ Inputs: b, dependencies, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[42].value.elts[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[43].value.elts[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8926,9 +9106,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].value.elts[2].args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[43].value.elts[2].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:266`; AST `1f0a1f8ada8033f507f1e8ac925585718247758ca71aad47f1a6fc11028449fd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `1f0a1f8ada8033f507f1e8ac925585718247758ca71aad47f1a6fc11028449fd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -8936,7 +9116,7 @@ Inputs: dependencies. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[17].body[42].value.elts[2].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[17].body[43].value.elts[2].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8946,9 +9126,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[42].value.elts[2].keywords[0].value::Lambda
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_evidence::root.body[17].body[43].value.elts[2].keywords[0].value::Lambda
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:266`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. closure with explicit captures; preserve Python late binding and argument defaults
 
@@ -8956,7 +9136,7 @@ Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Lambda evaluation at root.body[17].body[42].value.elts[2].keywords[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Lambda evaluation at root.body[17].body[43].value.elts[2].keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -8968,12 +9148,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:269`; AST `95f297a076247f79eb5e53e296564cd9b0c141e025b600978ef8424391b977de`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:276`; AST `99cff9f9b9f2163fdb5340ffdced104359db4217b5d02d4ac212c4be27dc0521`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, ProjectAdapter, _qualification_evidence, dict, list, root, tuple, values. Outputs/bindings: values.
-Calls/effect boundaries: (root / '.aegis/project.json').is_file, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get, _qualification_evidence, values.append.
+Inputs: Path, ProjectAdapter, _qualification_evidence, backend, dict, key, list, record, root, tuple, values. Outputs/bindings: backend, key, record, values.
+Calls/effect boundaries: (root / '.aegis/project.json').is_file, ProjectAdapter, ProjectAdapter(root).read, _qualification_evidence, record.get, values.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[18]; no call, error or mutation may be omitted.
@@ -8988,7 +9168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[0]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:270`; AST `06018155a23f1f83c82d139847669324993143354a3dd3b3aaf896059cf1187a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:277`; AST `06018155a23f1f83c82d139847669324993143354a3dd3b3aaf896059cf1187a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9008,7 +9188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:271`; AST `26ed262da676303bca703fdc5589639431ff228e212bb8df36ce22a39206017e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:278`; AST `26ed262da676303bca703fdc5589639431ff228e212bb8df36ce22a39206017e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9028,7 +9208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[1].value.elts[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:271`; AST `b501979533007ac95d0a62a007014948bb7f3faa09e158a0c6644824d47d0e9c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:278`; AST `b501979533007ac95d0a62a007014948bb7f3faa09e158a0c6644824d47d0e9c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9048,15 +9228,15 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `8b17ae5e66c908152c1fe524dc16757abd52e8501a0de06271683eaa94d441f8`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:279`; AST `6e769c4ade1b0cdf525863c7e5311684f88d557c3e227594ea8dfafedd56182a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
-Inputs: ProjectAdapter, _qualification_evidence, root, values. Outputs/bindings: (none).
-Calls/effect boundaries: (root / '.aegis/project.json').is_file, ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get, _qualification_evidence, values.append.
+Inputs: ProjectAdapter, _qualification_evidence, backend, key, record, root, values. Outputs/bindings: backend, key, record.
+Calls/effect boundaries: (root / '.aegis/project.json').is_file, ProjectAdapter, ProjectAdapter(root).read, _qualification_evidence, record.get, values.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[18].body[2]; no call, error or mutation may be omitted. Condition: (root / '.aegis/project.json').is_file() and ProjectAdapter(root).read().get('python_deal_qualification_observation')
+Invariants: Preserve ordered If evaluation at root.body[18].body[2]; no call, error or mutation may be omitted. Condition: (root / '.aegis/project.json').is_file()
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -9066,9 +9246,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].test.values[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].test::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `67126b1f34026550aad2b3e802049733ea373b272fd312daa6886b742d3115e1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:279`; AST `67126b1f34026550aad2b3e802049733ea373b272fd312daa6886b742d3115e1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9076,7 +9256,7 @@ Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: (root / '.aegis/project.json').is_file.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[18].body[2].test.values[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[18].body[2].test; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -9086,77 +9266,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].test.values[1]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `e42a453c25e3fdd642699bcb47bd012ef1b6de84c47987f772c7f131c3d06be4`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: ProjectAdapter, root. Outputs/bindings: (none).
-Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read, ProjectAdapter(root).read().get.
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered Call evaluation at root.body[18].body[2].test.values[1]; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].test.values[1].func.value::Call
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `aebfe9f0e99b7598f3da209b858f5afb31082b520cf878a8582e3946d9cfd8f6`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: ProjectAdapter, root. Outputs/bindings: (none).
-Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read.
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered Call evaluation at root.body[18].body[2].test.values[1].func.value; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].test.values[1].func.value.func.value::Call
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:272`; AST `a885979b048414ab9ab482a4aaa51e20efe2db175d6aaf5096c07c6e15434558`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
-
-Inputs: ProjectAdapter, root. Outputs/bindings: (none).
-Calls/effect boundaries: ProjectAdapter.
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered Call evaluation at root.body[18].body[2].test.values[1].func.value.func.value; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[0]::Expr
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `000c0ef4e71c9bf94bbb481b2c4b83cb02cd04c3dc8aeb2a6cc7a9f8b088aa30`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:280`; AST `afbfde35d4c7d3cc97dc305cc1f264cb71c1c2255447e09f03f654a738892641`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: _qualification_evidence, root, values. Outputs/bindings: (none).
-Calls/effect boundaries: _qualification_evidence, values.append.
+Inputs: ProjectAdapter, root. Outputs/bindings: record.
+Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[18].body[2].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[18].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -9168,12 +9288,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `778dda23a554f1529aae8a2e97e9b29a5ba3ae55284f7b351c428038bc1f6bb6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:280`; AST `aebfe9f0e99b7598f3da209b858f5afb31082b520cf878a8582e3946d9cfd8f6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: _qualification_evidence, root, values. Outputs/bindings: (none).
-Calls/effect boundaries: _qualification_evidence, values.append.
+Inputs: ProjectAdapter, root. Outputs/bindings: (none).
+Calls/effect boundaries: ProjectAdapter, ProjectAdapter(root).read.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Call evaluation at root.body[18].body[2].body[0].value; no call, error or mutation may be omitted.
@@ -9186,17 +9306,137 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[0].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[0].value.func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:273`; AST `d559d6b95baebba95a68e6676aa41e85b23935340028b8e3a4bb47204aba5c9b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:280`; AST `a885979b048414ab9ab482a4aaa51e20efe2db175d6aaf5096c07c6e15434558`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: _qualification_evidence, root. Outputs/bindings: (none).
+Inputs: ProjectAdapter, root. Outputs/bindings: (none).
+Calls/effect boundaries: ProjectAdapter.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[2].body[0].value.func.value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[1]::For
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:281`; AST `2c395ad12937960f954f9430c770b0dcbe8c157e7bab49e47dde128ae4c8e370`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
+
+Inputs: _qualification_evidence, backend, key, record, root, values. Outputs/bindings: backend, key.
+Calls/effect boundaries: _qualification_evidence, record.get, values.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered For evaluation at root.body[18].body[2].body[1]; no call, error or mutation may be omitted. Iteration: (backend, key) in (('deal', 'python_deal_qualification_observation'), ('esbmc-python', 'python_esbmc_qualification_observation'))
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[1].body[0]::If
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:282`; AST `a347dfe8fb93092e0291a39d5794128bfc659c50117a4e13241acd1684884a71`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: _qualification_evidence, backend, key, record, root, values. Outputs/bindings: (none).
+Calls/effect boundaries: _qualification_evidence, record.get, values.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered If evaluation at root.body[18].body[2].body[1].body[0]; no call, error or mutation may be omitted. Condition: record.get(key)
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[1].body[0].test::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:282`; AST `4582d6605a23cd6116b5f907d7ebc1b6664c2a10790119335722508e6604add3`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: key, record. Outputs/bindings: (none).
+Calls/effect boundaries: record.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[2].body[1].body[0].test; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[1].body[0].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `e2a8d068c935bd8e51d8fdf022a743b8a3016e32f07488c42a41aed790b544b0`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: _qualification_evidence, backend, root, values. Outputs/bindings: (none).
+Calls/effect boundaries: _qualification_evidence, values.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[18].body[2].body[1].body[0].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[1].body[0].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `92eb5844e52af6a5fede5bdcd853cf16019189e99f5e50bc3ce8483a8254d8d0`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _qualification_evidence, backend, root, values. Outputs/bindings: (none).
+Calls/effect boundaries: _qualification_evidence, values.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[18].body[2].body[1].body[0].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[2].body[1].body[0].body[0].value.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `040a3ed54c72a0883dc78b1771319fead503339b9a4974282055f7665d6989da`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _qualification_evidence, backend, root. Outputs/bindings: (none).
 Calls/effect boundaries: _qualification_evidence.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[18].body[2].body[0].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[18].body[2].body[1].body[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -9208,7 +9448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_backend_evidence::root.body[18].body[3]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:274`; AST `3dc84203b2119d705e674cb1dbaabcd7990dab0c0f404d49e25b7b95a544096b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:284`; AST `3dc84203b2119d705e674cb1dbaabcd7990dab0c0f404d49e25b7b95a544096b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9228,7 +9468,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:277`; AST `3690fe42a2b747451a9c75f6782cd98425e1f83e8fbf1e3a99ed03f211cd01dc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:287`; AST `3690fe42a2b747451a9c75f6782cd98425e1f83e8fbf1e3a99ed03f211cd01dc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -9248,7 +9488,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:278`; AST `2c435ecac12c985901bb8025f4efe5e5ad7e200542d8b36f3e0370612550a391`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:288`; AST `2c435ecac12c985901bb8025f4efe5e5ad7e200542d8b36f3e0370612550a391`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9268,7 +9508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[1]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:279`; AST `53277d2914198f875ae7a592e4fd4606edbda61eb60855b7575216b94a5bf809`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:289`; AST `53277d2914198f875ae7a592e4fd4606edbda61eb60855b7575216b94a5bf809`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -9288,7 +9528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[1].body[0]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:280`; AST `fc3ffa9f8e46d8e38ceaac6e52359a9c3e270f5b6d5928396d6ca28c2eab15a6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:290`; AST `fc3ffa9f8e46d8e38ceaac6e52359a9c3e270f5b6d5928396d6ca28c2eab15a6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -9308,7 +9548,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[1].body[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:281`; AST `61d7fb7074ddd5bcde566085bb1e990aa76fd1b62325ec2a6f6a8f08560730ab`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:291`; AST `61d7fb7074ddd5bcde566085bb1e990aa76fd1b62325ec2a6f6a8f08560730ab`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9328,7 +9568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[1].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:281`; AST `d490944815fc175da9053630a2af35ec2ffb14933426fca8aea907ac006c11ec`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:291`; AST `d490944815fc175da9053630a2af35ec2ffb14933426fca8aea907ac006c11ec`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9348,7 +9588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[1].body[0].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:282`; AST `b5e83864dd5f3b85dc58e5744d9537b3b76298d40559677bcabd0f7570b8bd28`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:292`; AST `b5e83864dd5f3b85dc58e5744d9537b3b76298d40559677bcabd0f7570b8bd28`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9368,7 +9608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[2]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `88260247a33d5637141b1a8d3535c194e6acfa4d1177b04a99b9d7a7fe6f76d1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `88260247a33d5637141b1a8d3535c194e6acfa4d1177b04a99b9d7a7fe6f76d1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9388,7 +9628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `17939b4d1ce362950b9d667360b0fa2dd53218271d1aa2ace5f2c9783ba8eeb9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `17939b4d1ce362950b9d667360b0fa2dd53218271d1aa2ace5f2c9783ba8eeb9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9408,7 +9648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[2].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `8453ea9de78ee706f563c804f2677d10bcfc059d1f72ebc711b0de590de94b1e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `8453ea9de78ee706f563c804f2677d10bcfc059d1f72ebc711b0de590de94b1e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9428,7 +9668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_evidence_dependencies::root.body[19].body[2].value.keywords[0].value::Lambda
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:283`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `10552bb4b453c48baad30da0d42657f44c1f0b25d33ce1f7c87527d13f5dd537`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. closure with explicit captures; preserve Python late binding and argument defaults
 
@@ -9448,7 +9688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:286`; AST `53ee05c15291ffb386ca03a7ecfc6dc2db6e3b877529fd7d2a6e65ee339d0086`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:296`; AST `2d6c9b3e4d01142114a2e765984eb58a4d79a29b8cc7bf25e2d7c2326309e313`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -9468,7 +9708,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:287`; AST `e905aa85ee1d08e6380f272cac8c9c6691e091b9b64e65533cfccee28ff47af0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:297`; AST `bbec63cecc6251d43987f532d2c7677f18ad1d5272153cc6dcee5ab0fb1c4270`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9488,7 +9728,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:287`; AST `574ac4687bdb838fb25d071aa9306126a8308f25f0db92d90a826d30f25966b8`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:297`; AST `67a521c3ba32e54bad905af87cf1f0be0a0f963f830d6549e7b9a8fb88105af1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9508,7 +9748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20].body[0].value.args[0]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:287`; AST `6a00ed4d672def1c3ea935085c680b1b789e1cb0336e9a1d5c241ccd5e51247b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:297`; AST `af316e320775532dfae20bf3330148e5c632132ef7d4b0110fc05e162a1b1ac9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -9528,7 +9768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20].body[0].value.args[0].elt.values[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:287`; AST `c7f0921f26b6188bfc7997e817dbaef6749de05e955665a99a9cd61dd84d65b5`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:297`; AST `c7f0921f26b6188bfc7997e817dbaef6749de05e955665a99a9cd61dd84d65b5`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9548,7 +9788,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20].body[0].value.args[0].elt.values[1]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:287`; AST `75a10263e46be0e29fb364289546640226ac290b430822eb56a06799017cb98d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:297`; AST `75a10263e46be0e29fb364289546640226ac290b430822eb56a06799017cb98d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9566,9 +9806,29 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
+## infra/agentinfra/roadmap_python_catalog.py::module::_lineage::root.body[20].body[0].value.args[0].elt.values[2]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:298`; AST `75c31e87e7782a08837ce067078b44f5493901860dce065f26b6bd6571d364f7`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: record. Outputs/bindings: (none).
+Calls/effect boundaries: record.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[20].body[0].value.args[0].elt.values[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_receipt_dependencies::root.body[21]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:291`; AST `1fbadb43c7c487c8295ab9fa18d94d905db4d07f2ee0c3af18c91ab06df214d7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:302`; AST `1fbadb43c7c487c8295ab9fa18d94d905db4d07f2ee0c3af18c91ab06df214d7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -9588,7 +9848,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_receipt_dependencies::root.body[21].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:292`; AST `76b6f5d32493a708a54609a7c90ae64e94cf00e765e906b35300c055d24912e0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:303`; AST `76b6f5d32493a708a54609a7c90ae64e94cf00e765e906b35300c055d24912e0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9608,7 +9868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_receipt_dependencies::root.body[21].body[1]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `458c2356800fa8fafe0d18aced78f4de3b2952eb42af6aeffc5549df6a28a09b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:304`; AST `458c2356800fa8fafe0d18aced78f4de3b2952eb42af6aeffc5549df6a28a09b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9628,7 +9888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_receipt_dependencies::root.body[21].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `24dc5428c721ce1aace512da3510ea52af0ffafd91b75e4cf3c856c9c621e87a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:304`; AST `24dc5428c721ce1aace512da3510ea52af0ffafd91b75e4cf3c856c9c621e87a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9648,7 +9908,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_receipt_dependencies::root.body[21].body[1].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:293`; AST `7b0349ab31c3baed5393c2f19a30320d341320d83e08d9ee74aa699e86845c83`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:304`; AST `7b0349ab31c3baed5393c2f19a30320d341320d83e08d9ee74aa699e86845c83`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9668,7 +9928,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_lineage_digest::root.body[22]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:296`; AST `a31d6f3bbee54fa22660522b3fa3987342d1f613fc3e4af3f7923a4c265a8ebf`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:307`; AST `a31d6f3bbee54fa22660522b3fa3987342d1f613fc3e4af3f7923a4c265a8ebf`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -9688,7 +9948,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_lineage_digest::root.body[22].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:297`; AST `0ec318856a9838feb1aa0c5ffc887ab89ba1221608c21915d6fbdc18a6908d42`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:308`; AST `0ec318856a9838feb1aa0c5ffc887ab89ba1221608c21915d6fbdc18a6908d42`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9708,7 +9968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_lineage_digest::root.body[22].body[1]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:298`; AST `f9b1fbd2afce106a037c8cc393d937cb39abf0769332bf3eb54e912426d118fb`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:309`; AST `f9b1fbd2afce106a037c8cc393d937cb39abf0769332bf3eb54e912426d118fb`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9728,7 +9988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_lineage_digest::root.body[22].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:298`; AST `647656c752a01b06aecf16932a7d26b1ca43257e58258253a44c7dcf97c3ee24`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:309`; AST `647656c752a01b06aecf16932a7d26b1ca43257e58258253a44c7dcf97c3ee24`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9748,7 +10008,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::qualification_lineage_digest::root.body[22].body[1].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:298`; AST `7b0349ab31c3baed5393c2f19a30320d341320d83e08d9ee74aa699e86845c83`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:309`; AST `7b0349ab31c3baed5393c2f19a30320d341320d83e08d9ee74aa699e86845c83`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9768,12 +10028,12 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:301`; AST `77fd416ca3a0c437ac339b5f22c79ff023874a7a4bb8ad8a110b7efe2737502b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:312`; AST `78102754ac1fd91f758d342c23dd6d660e8fb3d6de4e1d7c82e68e9775091de4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, _deal_report, _node, affected, assertions, ast, b, bindings_current, candidate, catalog, channel, classification, classify_nagini, closure, closure_files, column, confined_path, control, controls, dependencies, details, diagnostics, dict, digest, enumerate, evidence, fixture, fixture_ids, identities, int, isinstance, key, len, line, match, message, module, n, name, number, observation, packet, packets, prefix, r, raw, re, read_json, relative, require, root, row, runs, set, source, str, text, toolchain, tree, tuple, u, zip. Outputs/bindings: affected, assertions, b, channel, classification, closure, closure_files, column, control, controls, dependencies, details, diagnostics, fixture, fixture_ids, identities, key, line, match, message, module, n, name, number, observation, packet, packets, prefix, r, raw, relative, row, runs, source, text, toolchain, tree, u.
-Calls/effect boundaries: _deal_report, _node, ast.parse, ast.unparse, ast.walk, bindings_current, catalog['fixture_semantics'].items, catalog['production_targets'].values, classify_nagini, closure_files.get, confined_path, confined_path(root, fixture['path']).read_bytes, details.get, diagnostics.append, dict, digest, enumerate, int, isinstance, len, match.groups, module.replace, observation.get, packets.append, r.get, raw.get, raw.get(channel, '').splitlines, re.fullmatch, read_json, require, root.resolve, runs.append, set, str, zip.
+Inputs: Path, _deal_report, _esbmc_report, _node, affected, assertions, ast, b, bindings_current, candidate, catalog, channel, classification, classify_nagini, closure, closure_files, column, confined_path, control, controls, dependencies, details, diagnostics, dict, digest, enumerate, evidence, fixture, fixture_ids, identities, int, isinstance, key, len, line, match, message, module, n, name, number, observation, packet, packets, prefix, r, raw, re, read_json, relative, require, root, row, runs, set, source, str, text, toolchain, tree, tuple, u, zip. Outputs/bindings: affected, assertions, b, channel, classification, closure, closure_files, column, control, controls, dependencies, details, diagnostics, fixture, fixture_ids, identities, key, line, match, message, module, n, name, number, observation, packet, packets, prefix, r, raw, relative, row, runs, source, text, toolchain, tree, u.
+Calls/effect boundaries: _deal_report, _esbmc_report, _node, ast.parse, ast.unparse, ast.walk, bindings_current, catalog['fixture_semantics'].items, catalog['production_targets'].values, classify_nagini, closure_files.get, confined_path, confined_path(root, fixture['path']).read_bytes, details.get, diagnostics.append, dict, digest, enumerate, int, isinstance, len, match.groups, module.replace, observation.get, packets.append, r.get, raw.get, raw.get(channel, '').splitlines, re.fullmatch, read_json, require, root.resolve, runs.append, set, str, zip.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[23]; no call, error or mutation may be omitted.
@@ -9788,7 +10048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:302`; AST `70f180481ff25ec38d4ea2b77532765eb881bf692e749c1efea9025832b95f6f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:313`; AST `70f180481ff25ec38d4ea2b77532765eb881bf692e749c1efea9025832b95f6f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9808,7 +10068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[1]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:307`; AST `19aa607ee735684604c1fbf69d7166436d7272d258727297ef53622aaec323f7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:318`; AST `19aa607ee735684604c1fbf69d7166436d7272d258727297ef53622aaec323f7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9828,7 +10088,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:308`; AST `3cc4170bb31ebe6786004c660a7e5925575bfffdeddf451a31d39db858f835c4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:319`; AST `3cc4170bb31ebe6786004c660a7e5925575bfffdeddf451a31d39db858f835c4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9848,7 +10108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:309`; AST `10585889505623697ef67bdd65313443e0dbdcffc7a9a18f6cec6156786c37eb`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:320`; AST `10585889505623697ef67bdd65313443e0dbdcffc7a9a18f6cec6156786c37eb`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9868,7 +10128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[3].value.left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:309`; AST `3dd1d70ff0f81a62f0ff6a18c9d762266c2b483332414ba89ee02d5afa03d91d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:320`; AST `3dd1d70ff0f81a62f0ff6a18c9d762266c2b483332414ba89ee02d5afa03d91d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9888,7 +10148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[4]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:310`; AST `1b1547a916ca1fef880e633a6437f7a01518ab11f9d27f444b295409b523621c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:321`; AST `1b1547a916ca1fef880e633a6437f7a01518ab11f9d27f444b295409b523621c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -9908,7 +10168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[4].body[0]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:311`; AST `0a1a4b0cf26b47c0b8ed493a32f14d84cd4988d7e6e0e9ce6c56bd9b8e27bcda`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:322`; AST `0a1a4b0cf26b47c0b8ed493a32f14d84cd4988d7e6e0e9ce6c56bd9b8e27bcda`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9928,7 +10188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[4].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:311`; AST `f489db4fef13cd61ada46ab084f091a94a0b01deee6aa555f1111c15abae77d7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:322`; AST `f489db4fef13cd61ada46ab084f091a94a0b01deee6aa555f1111c15abae77d7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -9946,9 +10206,69 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[5]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[5]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:312`; AST `403bb69ca3beeebd9361ce14275d95450a6c94d21d881163f1b8a24ff7de3894`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:323`; AST `b4c7caa30714b1edae39b731abf44e91010f112c6633c42ba2caf17b35e98bcf`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: _esbmc_report, candidate, catalog, dependencies, details, observation, root. Outputs/bindings: (none).
+Calls/effect boundaries: _esbmc_report.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered If evaluation at root.body[23].body[5]; no call, error or mutation may be omitted. Condition: details and details['backend'] == 'esbmc-python'
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[5].body[0]::Return
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:324`; AST `acb934c56a7fc63f2b414b62ca291d51bd042a7c66419cbbfa3eeeda0d5d0bbc`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: _esbmc_report, candidate, catalog, dependencies, details, observation, root. Outputs/bindings: (none).
+Calls/effect boundaries: _esbmc_report.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Return evaluation at root.body[23].body[5].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[5].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:324`; AST `aef3b2f87262bd8f0e129ac6b9ffb7a6499755a62717b70b022049d7bffd1bae`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _esbmc_report, candidate, catalog, dependencies, details, observation, root. Outputs/bindings: (none).
+Calls/effect boundaries: _esbmc_report.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[23].body[5].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:325`; AST `403bb69ca3beeebd9361ce14275d95450a6c94d21d881163f1b8a24ff7de3894`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9956,7 +10276,7 @@ Inputs: (none). Outputs/bindings: packets, runs.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -9966,9 +10286,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6]::If
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:313`; AST `67d7d437bc1404b84055f727af1e82cf60c008681e644e09cd54497994addc37`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:326`; AST `67d7d437bc1404b84055f727af1e82cf60c008681e644e09cd54497994addc37`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -9976,7 +10296,7 @@ Inputs: _node, affected, assertions, ast, b, bindings_current, candidate, catalo
 Calls/effect boundaries: _node, ast.parse, ast.unparse, ast.walk, bindings_current, catalog['fixture_semantics'].items, catalog['production_targets'].values, classify_nagini, closure_files.get, confined_path, confined_path(root, fixture['path']).read_bytes, details.get, diagnostics.append, digest, enumerate, int, isinstance, len, match.groups, module.replace, packets.append, r.get, raw.get, raw.get(channel, '').splitlines, re.fullmatch, read_json, require, root.resolve, runs.append, set, str, zip.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[23].body[6]; no call, error or mutation may be omitted. Condition: details
+Invariants: Preserve ordered If evaluation at root.body[23].body[7]; no call, error or mutation may be omitted. Condition: details
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -9986,9 +10306,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:314`; AST `e31c39d4214a672b6f0c5ccd475365517bab401798b6ff65a1802a8488c0c34d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:327`; AST `e31c39d4214a672b6f0c5ccd475365517bab401798b6ff65a1802a8488c0c34d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -9996,7 +10316,7 @@ Inputs: confined_path, details, read_json, root. Outputs/bindings: toolchain.
 Calls/effect boundaries: confined_path, read_json.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10006,9 +10326,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:314`; AST `ba543d9bb2abffa00af76d4335a6388780b2696dcb394925e3d633bf1b86ac60`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:327`; AST `ba543d9bb2abffa00af76d4335a6388780b2696dcb394925e3d633bf1b86ac60`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10016,7 +10336,7 @@ Inputs: confined_path, details, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, read_json.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10026,9 +10346,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[0].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[0].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:314`; AST `cd0cf2f49b4bcb303f34233e0746443fc2440daf536bf572eb317df079b085d2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:327`; AST `cd0cf2f49b4bcb303f34233e0746443fc2440daf536bf572eb317df079b085d2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10036,7 +10356,7 @@ Inputs: confined_path, details, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[0].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10046,9 +10366,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[1]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:315`; AST `10b2a11eb94312cff480374e26e114cb898fefd691556ec35dc564ac55828d36`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:328`; AST `10b2a11eb94312cff480374e26e114cb898fefd691556ec35dc564ac55828d36`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10056,7 +10376,7 @@ Inputs: details. Outputs/bindings: controls.
 Calls/effect boundaries: details.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10066,9 +10386,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:315`; AST `b177892dc95fddc5b73e605be8e33175c02307582c5ed5a50ca25e226e2e28fc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:328`; AST `b177892dc95fddc5b73e605be8e33175c02307582c5ed5a50ca25e226e2e28fc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10076,7 +10396,7 @@ Inputs: details. Outputs/bindings: (none).
 Calls/effect boundaries: details.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10086,9 +10406,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[2]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[2]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:316`; AST `3880e423fea45ec1d87030d7989ac46b97aeb78753f08594bb6e3e8b9d261bce`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:329`; AST `3880e423fea45ec1d87030d7989ac46b97aeb78753f08594bb6e3e8b9d261bce`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10096,7 +10416,7 @@ Inputs: controls, len, r, require. Outputs/bindings: r.
 Calls/effect boundaries: len, r.get, require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[23].body[6].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[23].body[7].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10106,9 +10426,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[2].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:316`; AST `2262736dc132e11897c8e8f005f7698a62d9dc7d4b82114d48445fb8e609bcfd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:329`; AST `2262736dc132e11897c8e8f005f7698a62d9dc7d4b82114d48445fb8e609bcfd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10116,7 +10436,7 @@ Inputs: controls, len, r, require. Outputs/bindings: r.
 Calls/effect boundaries: len, r.get, require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10126,9 +10446,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[2].value.args[0].values[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[2].value.args[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:316`; AST `b736b12b5778a8a4a56cf0625c2116ab253d3f789b0630fa8cf02984f2e655c8`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:329`; AST `b736b12b5778a8a4a56cf0625c2116ab253d3f789b0630fa8cf02984f2e655c8`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10136,7 +10456,7 @@ Inputs: controls, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[2].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[2].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10146,9 +10466,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[2].value.args[0].values[1].left::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[2].value.args[0].values[1].left::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:316`; AST `f36c05651ed84df4e2ea7da3bfd9e060d9be68df98ee24a53b76f201b4e4533b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:329`; AST `f36c05651ed84df4e2ea7da3bfd9e060d9be68df98ee24a53b76f201b4e4533b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -10156,7 +10476,7 @@ Inputs: controls, r. Outputs/bindings: r.
 Calls/effect boundaries: r.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[23].body[6].body[2].value.args[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[23].body[7].body[2].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10166,9 +10486,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[2].value.args[0].values[1].left.elt::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[2].value.args[0].values[1].left.elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:316`; AST `d6c02270c60d3538767eb6a63a8263eeddbe3bc9158df729e8bc4465a686266f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:329`; AST `d6c02270c60d3538767eb6a63a8263eeddbe3bc9158df729e8bc4465a686266f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10176,7 +10496,7 @@ Inputs: r. Outputs/bindings: (none).
 Calls/effect boundaries: r.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[2].value.args[0].values[1].left.elt; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[2].value.args[0].values[1].left.elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10186,9 +10506,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[3]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:318`; AST `b7573604de48ef8c1be572c95568d5e9df92fe96bdd54761c6d43791092447e2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:331`; AST `b7573604de48ef8c1be572c95568d5e9df92fe96bdd54761c6d43791092447e2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10196,7 +10516,7 @@ Inputs: details. Outputs/bindings: closure.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10206,9 +10526,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[4]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:319`; AST `476cad8eba2380ee511c392678c28c99c53cd5430499d291e077e640a817d60c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:332`; AST `476cad8eba2380ee511c392678c28c99c53cd5430499d291e077e640a817d60c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10216,7 +10536,7 @@ Inputs: b, closure. Outputs/bindings: b, closure_files.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[4]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10226,9 +10546,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[4].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[4].value::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:319`; AST `e16b6f25ebbd1cc020052c3a6ce18d8196d50fcaf00c948d411b39e769a0cd8c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:332`; AST `e16b6f25ebbd1cc020052c3a6ce18d8196d50fcaf00c948d411b39e769a0cd8c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -10236,7 +10556,7 @@ Inputs: b, closure. Outputs/bindings: b.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[23].body[6].body[4].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[23].body[7].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10246,9 +10566,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[5]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:320`; AST `5dd617a7f5c642bb55a4f7a7ce3599ea6d1918a18d8c2bfef0630b4001bef1b7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `5dd617a7f5c642bb55a4f7a7ce3599ea6d1918a18d8c2bfef0630b4001bef1b7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10256,7 +10576,7 @@ Inputs: catalog, details, fixture, key. Outputs/bindings: fixture, fixture_ids, 
 Calls/effect boundaries: catalog['fixture_semantics'].items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10266,9 +10586,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[5].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[5].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:320`; AST `89a1f0918299179b84da1cd5b39cabd0b178c6f06da83e7b3ab7c7e9bf476a54`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `89a1f0918299179b84da1cd5b39cabd0b178c6f06da83e7b3ab7c7e9bf476a54`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -10276,7 +10596,7 @@ Inputs: catalog, details, fixture, key. Outputs/bindings: fixture, key.
 Calls/effect boundaries: catalog['fixture_semantics'].items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[23].body[6].body[5].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[23].body[7].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10286,9 +10606,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[5].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[5].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:320`; AST `736a1418823d127fae9534c9a307aed4974c6f0d0091b1f636308bce9fa55d94`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `736a1418823d127fae9534c9a307aed4974c6f0d0091b1f636308bce9fa55d94`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10296,7 +10616,7 @@ Inputs: catalog. Outputs/bindings: (none).
 Calls/effect boundaries: catalog['fixture_semantics'].items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[5].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[5].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10306,9 +10626,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[6]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[6]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:324`; AST `6b9ab253664c8c0f0b7ddca50be12f7c651c32fc4fcd48f3422b1f0c2d8124fe`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `6b9ab253664c8c0f0b7ddca50be12f7c651c32fc4fcd48f3422b1f0c2d8124fe`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10316,7 +10636,7 @@ Inputs: b, catalog, closure_files, fixture_ids, row, set. Outputs/bindings: affe
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10326,9 +10646,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[6].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[6].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:324`; AST `7ccb3519ee00f83a2c9607bf65512f6f7e27d31f0c202dae7785257d9bd365de`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `7ccb3519ee00f83a2c9607bf65512f6f7e27d31f0c202dae7785257d9bd365de`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -10336,7 +10656,7 @@ Inputs: b, catalog, closure_files, fixture_ids, row, set. Outputs/bindings: b, r
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[23].body[6].body[6].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[23].body[7].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10346,9 +10666,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[6].value.generators[0].ifs[0].values[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[6].value.generators[0].ifs[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:324`; AST `65f383af7e501820f418792b60db2bfe0160e2ff8c33f79fd8ebd72c5abf080f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `65f383af7e501820f418792b60db2bfe0160e2ff8c33f79fd8ebd72c5abf080f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10356,7 +10676,7 @@ Inputs: closure_files, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[6].value.generators[0].ifs[0].values[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[6].value.generators[0].ifs[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10366,9 +10686,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[6].value.generators[0].ifs[0].values[0].right::SetComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[6].value.generators[0].ifs[0].values[0].right::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:324`; AST `cdd3b91640a4c9766a38d6dd0a484d53c41db9680499007ea1a7776094017dbf`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `cdd3b91640a4c9766a38d6dd0a484d53c41db9680499007ea1a7776094017dbf`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -10376,7 +10696,7 @@ Inputs: b, row. Outputs/bindings: b.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered SetComp evaluation at root.body[23].body[6].body[6].value.generators[0].ifs[0].values[0].right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered SetComp evaluation at root.body[23].body[7].body[6].value.generators[0].ifs[0].values[0].right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10386,9 +10706,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[6].value.generators[0].ifs[0].values[1].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[6].value.generators[0].ifs[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:325`; AST `8d3136735dd119046195fd126d566b0537fa8512f575d174d798df584b26893b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:338`; AST `8d3136735dd119046195fd126d566b0537fa8512f575d174d798df584b26893b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10396,7 +10716,7 @@ Inputs: fixture_ids, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[6].value.generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[6].value.generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10406,9 +10726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[6].value.generators[0].ifs[0].values[1].right::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[6].value.generators[0].ifs[0].values[1].right::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:325`; AST `9bd0d510511c4c7b3cbc9ce569c16b468caf6db1e1a6d9067b408c9164b86699`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:338`; AST `9bd0d510511c4c7b3cbc9ce569c16b468caf6db1e1a6d9067b408c9164b86699`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10416,7 +10736,7 @@ Inputs: row, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[6].value.generators[0].ifs[0].values[1].right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[6].value.generators[0].ifs[0].values[1].right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10426,9 +10746,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:326`; AST `d24650ee52d2926bdca9d1f7c9241b09c5c75be6b0900e5e6240caae9675d80c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:339`; AST `d24650ee52d2926bdca9d1f7c9241b09c5c75be6b0900e5e6240caae9675d80c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -10436,7 +10756,7 @@ Inputs: _node, affected, assertions, ast, bindings_current, candidate, catalog, 
 Calls/effect boundaries: _node, ast.parse, ast.unparse, ast.walk, bindings_current, catalog['production_targets'].values, classify_nagini, closure_files.get, confined_path, confined_path(root, fixture['path']).read_bytes, diagnostics.append, digest, enumerate, int, isinstance, match.groups, module.replace, packets.append, raw.get, raw.get(channel, '').splitlines, re.fullmatch, read_json, require, root.resolve, runs.append, str, zip.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[23].body[6].body[7]; no call, error or mutation may be omitted. Iteration: (control, name) in zip(controls, ('policy_positive.py', 'policy_negative.py'), strict=True)
+Invariants: Preserve ordered For evaluation at root.body[23].body[7].body[7]; no call, error or mutation may be omitted. Iteration: (control, name) in zip(controls, ('policy_positive.py', 'policy_negative.py'), strict=True)
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10446,9 +10766,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:326`; AST `98fd70a5bdc8189b5a09d88d46aa11c531614ac2a72102c6643e27d9c96c72e7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:339`; AST `98fd70a5bdc8189b5a09d88d46aa11c531614ac2a72102c6643e27d9c96c72e7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10456,7 +10776,7 @@ Inputs: controls, zip. Outputs/bindings: (none).
 Calls/effect boundaries: zip.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10466,9 +10786,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:327`; AST `54ae10225582c0ea97ff5536c7ba4f89c268b80cf2a989d496cc47ad314cfb08`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:340`; AST `54ae10225582c0ea97ff5536c7ba4f89c268b80cf2a989d496cc47ad314cfb08`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10476,7 +10796,7 @@ Inputs: control. Outputs/bindings: fixture.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10486,9 +10806,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[1]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:328`; AST `a78dfcbdee93de75f6a5a9c0844f228996091209d47f2c7743640f8e29c8bc5c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:341`; AST `a78dfcbdee93de75f6a5a9c0844f228996091209d47f2c7743640f8e29c8bc5c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10496,7 +10816,7 @@ Inputs: bindings_current, control, details, fixture, name, require, root. Output
 Calls/effect boundaries: bindings_current, require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[23].body[6].body[7].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[23].body[7].body[7].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10506,9 +10826,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:328`; AST `db8b1e58521003ac80ba1f23e51c70cb09e233f0cd6ca9bd81cf9b21fbff723f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:341`; AST `db8b1e58521003ac80ba1f23e51c70cb09e233f0cd6ca9bd81cf9b21fbff723f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10516,7 +10836,7 @@ Inputs: bindings_current, control, details, fixture, name, require, root. Output
 Calls/effect boundaries: bindings_current, require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10526,9 +10846,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[1].value.args[0].values[1]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[1].value.args[0].values[1]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:328`; AST `69d0e5f50f3d2fe7923fecd5c7be5c6fbeb03ef0012367f6dcbda15e888f9294`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:341`; AST `69d0e5f50f3d2fe7923fecd5c7be5c6fbeb03ef0012367f6dcbda15e888f9294`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10536,7 +10856,7 @@ Inputs: bindings_current, control, fixture, root. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[1].value.args[0].values[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[1].value.args[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10546,9 +10866,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[2]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:330`; AST `408388e6667a23fcae1519b8a0b825c7752219d90a533cb0e1b6d2776ed51a45`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:343`; AST `408388e6667a23fcae1519b8a0b825c7752219d90a533cb0e1b6d2776ed51a45`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10556,7 +10876,7 @@ Inputs: confined_path, control, read_json, root. Outputs/bindings: raw.
 Calls/effect boundaries: confined_path, read_json.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10566,9 +10886,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[2].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:330`; AST `3795f296e2005ebd8bb764a502a3994247bf5bbb600db5ba886d45ddc11e74c9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:343`; AST `3795f296e2005ebd8bb764a502a3994247bf5bbb600db5ba886d45ddc11e74c9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10576,7 +10896,7 @@ Inputs: confined_path, control, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, read_json.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10586,9 +10906,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[2].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[2].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:330`; AST `aa1bc511667f88b9772f2250d8d9505ff28000a0f6ec8f90ba103373311084f4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:343`; AST `aa1bc511667f88b9772f2250d8d9505ff28000a0f6ec8f90ba103373311084f4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10596,7 +10916,7 @@ Inputs: confined_path, control, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[2].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[2].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10606,9 +10926,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[3]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:331`; AST `c77d591880b40eafb8a3b41f8ffda8d24849f59f3633f68bb63196c4ac22f5f0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:344`; AST `c77d591880b40eafb8a3b41f8ffda8d24849f59f3633f68bb63196c4ac22f5f0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10616,7 +10936,7 @@ Inputs: toolchain. Outputs/bindings: prefix.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10626,9 +10946,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:332`; AST `da26a9eb2447418bcacc5dc46dbc6b923f8f1f854f71e32828cf6a9d3da741f4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `da26a9eb2447418bcacc5dc46dbc6b923f8f1f854f71e32828cf6a9d3da741f4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10636,7 +10956,7 @@ Inputs: fixture, prefix, raw, require, root, str. Outputs/bindings: (none).
 Calls/effect boundaries: raw.get, require, root.resolve, str.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[23].body[6].body[7].body[4]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[23].body[7].body[7].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10646,9 +10966,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:332`; AST `a242091e1c25bf13fbc0f646e290a44ea256f660a580dec079e227bd25ee3af9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `a242091e1c25bf13fbc0f646e290a44ea256f660a580dec079e227bd25ee3af9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10656,7 +10976,7 @@ Inputs: fixture, prefix, raw, require, root, str. Outputs/bindings: (none).
 Calls/effect boundaries: raw.get, require, root.resolve, str.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10666,9 +10986,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:332`; AST `2a46d9193d4692ebcdafbf68c19ce9816e8f5ce64abf6ec9913f6fa71d477d26`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `2a46d9193d4692ebcdafbf68c19ce9816e8f5ce64abf6ec9913f6fa71d477d26`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10676,7 +10996,7 @@ Inputs: raw. Outputs/bindings: (none).
 Calls/effect boundaries: raw.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10686,9 +11006,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[0].comparators[0].elts[0].right.elts[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[0].comparators[0].elts[0].right.elts[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:332`; AST `dc1c16b1ee7e66d0970853b55d9442ff9e7ec9988a24a7c30098955097cb4025`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `dc1c16b1ee7e66d0970853b55d9442ff9e7ec9988a24a7c30098955097cb4025`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10696,7 +11016,7 @@ Inputs: fixture, root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[0].comparators[0].elts[0].right.elts[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[0].comparators[0].elts[0].right.elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10706,9 +11026,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[1]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[1]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `5e78564dad6f72b4fffe70a2682a87198ad49cb6d6eea55e10061b531d18c330`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `5e78564dad6f72b4fffe70a2682a87198ad49cb6d6eea55e10061b531d18c330`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10716,7 +11036,7 @@ Inputs: root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10726,9 +11046,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `dc1c16b1ee7e66d0970853b55d9442ff9e7ec9988a24a7c30098955097cb4025`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `dc1c16b1ee7e66d0970853b55d9442ff9e7ec9988a24a7c30098955097cb4025`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10736,7 +11056,7 @@ Inputs: fixture, root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[0].comparators[0].elts[1].right.elts[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10746,9 +11066,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[1].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `4f87ab28217a39c3f747f6a775563656100b5fdc57e1938a3a7353429c2398e7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `4f87ab28217a39c3f747f6a775563656100b5fdc57e1938a3a7353429c2398e7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10756,7 +11076,7 @@ Inputs: raw. Outputs/bindings: (none).
 Calls/effect boundaries: raw.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10766,9 +11086,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[1].comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[1].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `29d0b5a674124d6a5dea0e9d83c547c4cebd29502709afd03c4659bd6afedfda`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `29d0b5a674124d6a5dea0e9d83c547c4cebd29502709afd03c4659bd6afedfda`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10776,7 +11096,7 @@ Inputs: root, str. Outputs/bindings: (none).
 Calls/effect boundaries: root.resolve, str.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10786,9 +11106,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[4].value.args[0].values[1].comparators[0].args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[4].value.args[0].values[1].comparators[0].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:333`; AST `b97f3f463d4724206af2869ad4674d5eb373167f052507971a722ecc8f771a87`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `b97f3f463d4724206af2869ad4674d5eb373167f052507971a722ecc8f771a87`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10796,7 +11116,7 @@ Inputs: root. Outputs/bindings: (none).
 Calls/effect boundaries: root.resolve.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[4].value.args[0].values[1].comparators[0].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[4].value.args[0].values[1].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10806,9 +11126,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[5]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:335`; AST `d58fe7b426d62800f11a98b1f89d2394fd6f75394fa4164401ffc741f2d7f754`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:348`; AST `d58fe7b426d62800f11a98b1f89d2394fd6f75394fa4164401ffc741f2d7f754`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10816,7 +11136,7 @@ Inputs: classify_nagini, raw. Outputs/bindings: classification.
 Calls/effect boundaries: classify_nagini.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10826,9 +11146,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[5].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:335`; AST `00b32a9e1948ecd0bd1646929343270470adc69113b7e69d0d19a68d7d88618c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:348`; AST `00b32a9e1948ecd0bd1646929343270470adc69113b7e69d0d19a68d7d88618c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10836,7 +11156,7 @@ Inputs: classify_nagini, raw. Outputs/bindings: (none).
 Calls/effect boundaries: classify_nagini.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[5].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10846,9 +11166,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[6]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[6]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:336`; AST `756b348c457ff0de21210a839f92eed44aea984a3b6c24426be4633e686981a2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:349`; AST `756b348c457ff0de21210a839f92eed44aea984a3b6c24426be4633e686981a2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10856,7 +11176,7 @@ Inputs: ast, confined_path, fixture, root. Outputs/bindings: tree.
 Calls/effect boundaries: ast.parse, confined_path, confined_path(root, fixture['path']).read_bytes.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10866,9 +11186,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[6].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[6].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:336`; AST `d807ac284c9d970dada4821932513eacdea56b2861c14cc2e1fad3dd88d00a72`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:349`; AST `d807ac284c9d970dada4821932513eacdea56b2861c14cc2e1fad3dd88d00a72`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10876,7 +11196,7 @@ Inputs: ast, confined_path, fixture, root. Outputs/bindings: (none).
 Calls/effect boundaries: ast.parse, confined_path, confined_path(root, fixture['path']).read_bytes.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[6].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10886,9 +11206,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[6].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[6].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:336`; AST `abc730813de04334f428384ece5dae949d9831eaecac38cc479fc2788f4d09c4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:349`; AST `abc730813de04334f428384ece5dae949d9831eaecac38cc479fc2788f4d09c4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10896,7 +11216,7 @@ Inputs: confined_path, fixture, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, confined_path(root, fixture['path']).read_bytes.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[6].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[6].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10906,9 +11226,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[6].value.args[0].func.value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[6].value.args[0].func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:336`; AST `a35dde109688e5511869da902c114acd69cc46c60451ae9b66eac6c3417581f0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:349`; AST `a35dde109688e5511869da902c114acd69cc46c60451ae9b66eac6c3417581f0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10916,7 +11236,7 @@ Inputs: confined_path, fixture, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[6].value.args[0].func.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[6].value.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10926,9 +11246,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[7]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[7]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `68218898e98cdc0aa102c0e4f04eaca2b7ae295a03e39e45b11510b9b6189398`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `68218898e98cdc0aa102c0e4f04eaca2b7ae295a03e39e45b11510b9b6189398`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -10936,7 +11256,7 @@ Inputs: _node, ast, isinstance, n, tree. Outputs/bindings: assertions, n.
 Calls/effect boundaries: _node, ast.unparse, ast.walk, isinstance.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[7]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10946,9 +11266,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[7].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[7].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `0ae93108eeac350f9f6ed10f8d5d6cf4e13e4d043764a30cbaad1f803c101ff0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `0ae93108eeac350f9f6ed10f8d5d6cf4e13e4d043764a30cbaad1f803c101ff0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -10956,7 +11276,7 @@ Inputs: _node, ast, isinstance, n, tree. Outputs/bindings: n.
 Calls/effect boundaries: _node, ast.unparse, ast.walk, isinstance.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[23].body[6].body[7].body[7].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[23].body[7].body[7].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10966,9 +11286,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[7].value.elt::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[7].value.elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `ff405372acb9c3c8716db6104edc01a70e7e4625aad9c8394d7c45d961b3cd90`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `ff405372acb9c3c8716db6104edc01a70e7e4625aad9c8394d7c45d961b3cd90`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10976,7 +11296,7 @@ Inputs: _node, n. Outputs/bindings: (none).
 Calls/effect boundaries: _node.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[7].value.elt; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[7].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -10986,9 +11306,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[7].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[7].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `19592678e84fe9470658558ce2f8969cde685bcf0acebf08ba251a95a79335f2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `19592678e84fe9470658558ce2f8969cde685bcf0acebf08ba251a95a79335f2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -10996,7 +11316,7 @@ Inputs: ast, tree. Outputs/bindings: (none).
 Calls/effect boundaries: ast.walk.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[7].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[7].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11006,9 +11326,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[7].value.generators[0].ifs[0].values[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[7].value.generators[0].ifs[0].values[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `23e18c3c39ade2f3d2432c60fe81aa102408a21a7fb08bfc38a5c11908cdae5c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `23e18c3c39ade2f3d2432c60fe81aa102408a21a7fb08bfc38a5c11908cdae5c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11016,7 +11336,7 @@ Inputs: ast, isinstance, n. Outputs/bindings: (none).
 Calls/effect boundaries: isinstance.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[7].value.generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[7].value.generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11026,9 +11346,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[7].value.generators[0].ifs[0].values[1].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[7].value.generators[0].ifs[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:337`; AST `d37398c81d3e6778e173e0fabe4b6a4f1ccdff3685fe8d32f06e0aa03e719370`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `d37398c81d3e6778e173e0fabe4b6a4f1ccdff3685fe8d32f06e0aa03e719370`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11036,7 +11356,7 @@ Inputs: ast, n. Outputs/bindings: (none).
 Calls/effect boundaries: ast.unparse.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[7].value.generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[7].value.generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11046,9 +11366,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[8]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[8]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:338`; AST `f30db631277dcd8d8a27a6aa3f539951c44e81ee4c539efa3ff1d5fc9eea0b09`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:351`; AST `f30db631277dcd8d8a27a6aa3f539951c44e81ee4c539efa3ff1d5fc9eea0b09`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11056,7 +11376,7 @@ Inputs: assertions, classification, control, fixture. Outputs/bindings: row.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[8]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11066,9 +11386,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[9]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[9]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:342`; AST `4dfe3d3f3815bcd180ac98075cb6e8b427d64d9e438cc9c5225b0c8db4d35a77`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:355`; AST `4dfe3d3f3815bcd180ac98075cb6e8b427d64d9e438cc9c5225b0c8db4d35a77`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11076,7 +11396,7 @@ Inputs: row, runs. Outputs/bindings: (none).
 Calls/effect boundaries: runs.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[23].body[6].body[7].body[9]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[23].body[7].body[7].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11086,9 +11406,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[9].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[9].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:342`; AST `c3ac238be12cd0989967ddf017784d45b5fd5a8c859cb6cfaa164a7dad9c5b5d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:355`; AST `c3ac238be12cd0989967ddf017784d45b5fd5a8c859cb6cfaa164a7dad9c5b5d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11096,7 +11416,7 @@ Inputs: row, runs. Outputs/bindings: (none).
 Calls/effect boundaries: runs.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[9].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11106,9 +11426,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[10]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[10]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:343`; AST `93852414bd1df28bedcfac28845031688d691fab7697aca6d2672a2f5ee75946`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:356`; AST `93852414bd1df28bedcfac28845031688d691fab7697aca6d2672a2f5ee75946`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11116,7 +11436,7 @@ Inputs: (none). Outputs/bindings: diagnostics.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[10]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11126,9 +11446,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:344`; AST `4ed843e149848fb9a91bce8b9a9dc3305b5e48b9491dab8141a837a9444043cc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:357`; AST `4ed843e149848fb9a91bce8b9a9dc3305b5e48b9491dab8141a837a9444043cc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -11136,7 +11456,7 @@ Inputs: catalog, channel, closure_files, column, control, diagnostics, enumerate
 Calls/effect boundaries: catalog['production_targets'].values, closure_files.get, diagnostics.append, enumerate, int, match.groups, module.replace, raw.get, raw.get(channel, '').splitlines, re.fullmatch.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[23].body[6].body[7].body[11]; no call, error or mutation may be omitted. Iteration: channel in ('stdout', 'stderr')
+Invariants: Preserve ordered For evaluation at root.body[23].body[7].body[7].body[11]; no call, error or mutation may be omitted. Iteration: channel in ('stdout', 'stderr')
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11146,9 +11466,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `71e243df89870ba25803163c153d84b0927bf82473b4491415e9ace24b679515`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:358`; AST `71e243df89870ba25803163c153d84b0927bf82473b4491415e9ace24b679515`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -11156,7 +11476,7 @@ Inputs: catalog, channel, closure_files, column, control, diagnostics, enumerate
 Calls/effect boundaries: catalog['production_targets'].values, closure_files.get, diagnostics.append, enumerate, int, match.groups, module.replace, raw.get, raw.get(channel, '').splitlines, re.fullmatch.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[23].body[6].body[7].body[11].body[0]; no call, error or mutation may be omitted. Iteration: (number, text) in enumerate(raw.get(channel, '').splitlines(), 1)
+Invariants: Preserve ordered For evaluation at root.body[23].body[7].body[7].body[11].body[0]; no call, error or mutation may be omitted. Iteration: (number, text) in enumerate(raw.get(channel, '').splitlines(), 1)
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11166,9 +11486,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `8c2bbec895985bb8a93d9a1a2a27276c16a675ebc2c29f91df2c8d9e180567c6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:358`; AST `8c2bbec895985bb8a93d9a1a2a27276c16a675ebc2c29f91df2c8d9e180567c6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11176,7 +11496,7 @@ Inputs: channel, enumerate, raw. Outputs/bindings: (none).
 Calls/effect boundaries: enumerate, raw.get, raw.get(channel, '').splitlines.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11186,9 +11506,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].iter.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].iter.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `21174e7417de63d9354c224af314fd7aabe9d18f782de614726cc9f56de681e9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:358`; AST `21174e7417de63d9354c224af314fd7aabe9d18f782de614726cc9f56de681e9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11196,7 +11516,7 @@ Inputs: channel, raw. Outputs/bindings: (none).
 Calls/effect boundaries: raw.get, raw.get(channel, '').splitlines.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].iter.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].iter.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11206,9 +11526,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].iter.args[0].func.value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].iter.args[0].func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:345`; AST `00f0f77afaec299f7906328d9256bcac10f03d41e8feedef420eb845c540b24c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:358`; AST `00f0f77afaec299f7906328d9256bcac10f03d41e8feedef420eb845c540b24c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11216,7 +11536,7 @@ Inputs: channel, raw. Outputs/bindings: (none).
 Calls/effect boundaries: raw.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].iter.args[0].func.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].iter.args[0].func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11226,9 +11546,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `0e4fd654c8913ed7da00a1b3cb95cb17565814b65268509b58f6abc48a66298b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:359`; AST `0e4fd654c8913ed7da00a1b3cb95cb17565814b65268509b58f6abc48a66298b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11236,7 +11556,7 @@ Inputs: re, text. Outputs/bindings: match.
 Calls/effect boundaries: re.fullmatch.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[11].body[0].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[11].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11246,9 +11566,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:346`; AST `f2a9345ad69805b77b0cec02e797d8c2c91d016f850e2d85d32eba19404778bd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:359`; AST `f2a9345ad69805b77b0cec02e797d8c2c91d016f850e2d85d32eba19404778bd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11256,7 +11576,7 @@ Inputs: re, text. Outputs/bindings: (none).
 Calls/effect boundaries: re.fullmatch.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11266,9 +11586,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[1]::If
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[1]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:347`; AST `db8481b7afdfdd5436b594b28a9b0898a7b9206c55669cae30f2c81df32a38fd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:360`; AST `db8481b7afdfdd5436b594b28a9b0898a7b9206c55669cae30f2c81df32a38fd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -11276,7 +11596,7 @@ Inputs: match. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[23].body[6].body[7].body[11].body[0].body[1]; no call, error or mutation may be omitted. Condition: not match
+Invariants: Preserve ordered If evaluation at root.body[23].body[7].body[7].body[11].body[0].body[1]; no call, error or mutation may be omitted. Condition: not match
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11286,9 +11606,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[1].body[0]::Continue
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[1].body[0]::Continue
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:348`; AST `3d1e0aaa463df3eefc9bd5be83f453adcd9621b2dc7f387c3eaff3ab42e91059`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:361`; AST `3d1e0aaa463df3eefc9bd5be83f453adcd9621b2dc7f387c3eaff3ab42e91059`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11296,7 +11616,7 @@ Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Continue evaluation at root.body[23].body[6].body[7].body[11].body[0].body[1].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Continue evaluation at root.body[23].body[7].body[7].body[11].body[0].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11306,9 +11626,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[2]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:349`; AST `c6a82f2ce802a7f56cbb11bbdbc2976a4a635f379e1d8f90da4eefe0e0ccf723`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:362`; AST `c6a82f2ce802a7f56cbb11bbdbc2976a4a635f379e1d8f90da4eefe0e0ccf723`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11316,7 +11636,7 @@ Inputs: match. Outputs/bindings: column, line, message, module.
 Calls/effect boundaries: match.groups.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[11].body[0].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[11].body[0].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11326,9 +11646,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[2].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:349`; AST `9c47fa7c79009eec7b4eeca3ca2a8d1b4ac272286842074e8c81efd71d7d8c1b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:362`; AST `9c47fa7c79009eec7b4eeca3ca2a8d1b4ac272286842074e8c81efd71d7d8c1b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11336,7 +11656,7 @@ Inputs: match. Outputs/bindings: (none).
 Calls/effect boundaries: match.groups.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11346,9 +11666,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[3]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `5f5cfd53b3fe4a7d0206e7642d3b9aa6fb2f41d30f807d24de06bedcc9f41965`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:363`; AST `5f5cfd53b3fe4a7d0206e7642d3b9aa6fb2f41d30f807d24de06bedcc9f41965`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11356,7 +11676,7 @@ Inputs: module. Outputs/bindings: relative.
 Calls/effect boundaries: module.replace.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[11].body[0].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[11].body[0].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11366,9 +11686,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[3].value.left.right::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[3].value.left.right::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:350`; AST `e88e703772b75004eb4954cf71620439fc214359c4f038620546880320a2365f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:363`; AST `e88e703772b75004eb4954cf71620439fc214359c4f038620546880320a2365f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11376,7 +11696,7 @@ Inputs: module. Outputs/bindings: (none).
 Calls/effect boundaries: module.replace.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[3].value.left.right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[3].value.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11386,9 +11706,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[4]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:351`; AST `5f52008e5b329578e4a419085515ce43c001497f39747fc5b8ca3449de1db049`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:364`; AST `5f52008e5b329578e4a419085515ce43c001497f39747fc5b8ca3449de1db049`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11396,7 +11716,7 @@ Inputs: closure_files, relative. Outputs/bindings: source.
 Calls/effect boundaries: closure_files.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[11].body[0].body[4]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[11].body[0].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11406,9 +11726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[4].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:351`; AST `a8a8a58710f81e2be68bef3307c553bc4597a72f2ff3385579508679dbf78222`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:364`; AST `a8a8a58710f81e2be68bef3307c553bc4597a72f2ff3385579508679dbf78222`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11416,7 +11736,7 @@ Inputs: closure_files, relative. Outputs/bindings: (none).
 Calls/effect boundaries: closure_files.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[4].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11426,9 +11746,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[5]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:352`; AST `42adba390fa37fbacf04d2f76fc14bcc203bd37c70573cf6f28440aa22006ad3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:365`; AST `42adba390fa37fbacf04d2f76fc14bcc203bd37c70573cf6f28440aa22006ad3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11436,7 +11756,7 @@ Inputs: catalog, int, line, source, u. Outputs/bindings: identities, u.
 Calls/effect boundaries: catalog['production_targets'].values, int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[11].body[0].body[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[11].body[0].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11446,9 +11766,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[5].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[5].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:352`; AST `b18483c1119664ded6f2eebb82e0eb8408f95cd90d2847d06cf649b83007aa00`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:365`; AST `b18483c1119664ded6f2eebb82e0eb8408f95cd90d2847d06cf649b83007aa00`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -11456,7 +11776,7 @@ Inputs: catalog, int, line, source, u. Outputs/bindings: u.
 Calls/effect boundaries: catalog['production_targets'].values, int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[23].body[6].body[7].body[11].body[0].body[5].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[23].body[7].body[7].body[11].body[0].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11466,9 +11786,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[5].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[5].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:352`; AST `7e25cbd31dd5941fdf10daf4f7c84a30353dcc33e3415b31dd99cf0cc5d44f5a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:365`; AST `7e25cbd31dd5941fdf10daf4f7c84a30353dcc33e3415b31dd99cf0cc5d44f5a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11476,7 +11796,7 @@ Inputs: catalog. Outputs/bindings: (none).
 Calls/effect boundaries: catalog['production_targets'].values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[5].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[5].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11486,9 +11806,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[5].value.generators[0].ifs[0].values[2].comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[5].value.generators[0].ifs[0].values[2].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:353`; AST `62125cc768f07b63ed62255551b599f97089e325b1c380cc9e857692365d6940`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:366`; AST `62125cc768f07b63ed62255551b599f97089e325b1c380cc9e857692365d6940`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11496,7 +11816,7 @@ Inputs: int, line. Outputs/bindings: (none).
 Calls/effect boundaries: int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[5].value.generators[0].ifs[0].values[2].comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[5].value.generators[0].ifs[0].values[2].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11506,9 +11826,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[6]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[6]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:354`; AST `d8ab0a7a771a918f631f6e635ec43743a63f4a25a8ac4a615ab9168c6baec301`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:367`; AST `d8ab0a7a771a918f631f6e635ec43743a63f4a25a8ac4a615ab9168c6baec301`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11516,7 +11836,7 @@ Inputs: channel, column, control, diagnostics, identities, int, line, message, m
 Calls/effect boundaries: diagnostics.append, int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[23].body[6].body[7].body[11].body[0].body[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[23].body[7].body[7].body[11].body[0].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11526,9 +11846,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[6].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[6].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:354`; AST `59a23b007a1dfc525d3e25fd7da5efc87917b0a157d551d7cfc947a1e0e6a295`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:367`; AST `59a23b007a1dfc525d3e25fd7da5efc87917b0a157d551d7cfc947a1e0e6a295`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11536,7 +11856,7 @@ Inputs: channel, column, control, diagnostics, identities, int, line, message, m
 Calls/effect boundaries: diagnostics.append, int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[6].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11546,9 +11866,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[6].value.args[0].values[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[6].value.args[0].values[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:354`; AST `62125cc768f07b63ed62255551b599f97089e325b1c380cc9e857692365d6940`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:367`; AST `62125cc768f07b63ed62255551b599f97089e325b1c380cc9e857692365d6940`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11556,7 +11876,7 @@ Inputs: int, line. Outputs/bindings: (none).
 Calls/effect boundaries: int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[6].value.args[0].values[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[6].value.args[0].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11566,9 +11886,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[11].body[0].body[6].value.args[0].values[3]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[11].body[0].body[6].value.args[0].values[3]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:354`; AST `968921766807d8d0a571b1b93a23c15eaf48f6b9517671ce2fa0721870573563`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:367`; AST `968921766807d8d0a571b1b93a23c15eaf48f6b9517671ce2fa0721870573563`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11576,7 +11896,7 @@ Inputs: column, int. Outputs/bindings: (none).
 Calls/effect boundaries: int.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[11].body[0].body[6].value.args[0].values[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[11].body[0].body[6].value.args[0].values[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11586,9 +11906,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[12]::If
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[12]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:358`; AST `66ef3732a479756da86a6ba9421446cf0b8ccc40160bd7742aee609ff8de387b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:371`; AST `66ef3732a479756da86a6ba9421446cf0b8ccc40160bd7742aee609ff8de387b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -11596,7 +11916,7 @@ Inputs: affected, candidate, classification, closure, control, details, diagnost
 Calls/effect boundaries: digest, packets.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[23].body[6].body[7].body[12]; no call, error or mutation may be omitted. Condition: classification['outcome'] != 'VERIFIED_TOOL_RESULT' or control['intent'] != 'positive'
+Invariants: Preserve ordered If evaluation at root.body[23].body[7].body[7].body[12]; no call, error or mutation may be omitted. Condition: classification['outcome'] != 'VERIFIED_TOOL_RESULT' or control['intent'] != 'positive'
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11606,9 +11926,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[12].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[12].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:359`; AST `507faebc8573f851cd22b5d3bba7572c87ace9bc097230e49b5c825c17e0b89a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:372`; AST `507faebc8573f851cd22b5d3bba7572c87ace9bc097230e49b5c825c17e0b89a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11616,7 +11936,7 @@ Inputs: affected, candidate, closure, details, diagnostics, fixture_ids, observa
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[12].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[12].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11626,9 +11946,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[12].body[1]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[12].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:371`; AST `b929aeb35b5b8a0f218fcc27e27992779abc79d446d5d68437bd55ab683f7824`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:384`; AST `b929aeb35b5b8a0f218fcc27e27992779abc79d446d5d68437bd55ab683f7824`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11636,7 +11956,7 @@ Inputs: digest, packet. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[23].body[6].body[7].body[12].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[23].body[7].body[7].body[12].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11646,9 +11966,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[12].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[12].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:371`; AST `d611aad9a9dc53f0313a7dfede14788818618d6fe3dfd8a304073fee9626c685`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:384`; AST `d611aad9a9dc53f0313a7dfede14788818618d6fe3dfd8a304073fee9626c685`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11656,7 +11976,7 @@ Inputs: digest, packet. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[12].body[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[12].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11666,9 +11986,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[12].body[2]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[12].body[2]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:372`; AST `60da82c9786e77844ce9eee83e4ed1f37204da53d19733277b50b740c7d9139f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:385`; AST `60da82c9786e77844ce9eee83e4ed1f37204da53d19733277b50b740c7d9139f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11676,7 +11996,7 @@ Inputs: packet, packets. Outputs/bindings: (none).
 Calls/effect boundaries: packets.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[23].body[6].body[7].body[12].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[23].body[7].body[7].body[12].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11686,9 +12006,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[6].body[7].body[12].body[2].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].body[7].body[12].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:372`; AST `489d855223aaf109fa9b9531c5cba0b59c73ca6f2aae409891d1335a84ae20f6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:385`; AST `489d855223aaf109fa9b9531c5cba0b59c73ca6f2aae409891d1335a84ae20f6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11696,7 +12016,7 @@ Inputs: packet, packets. Outputs/bindings: (none).
 Calls/effect boundaries: packets.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[6].body[7].body[12].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[7].body[7].body[12].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11706,9 +12026,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7]::Return
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[8]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:373`; AST `a5a469911a3776a1f7c4792026068df33c22352b619679982878e20366fb486d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:386`; AST `a5a469911a3776a1f7c4792026068df33c22352b619679982878e20366fb486d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11716,7 +12036,7 @@ Inputs: dependencies, dict, digest, observation, packets, runs. Outputs/bindings
 Calls/effect boundaries: dict, digest, observation.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Return evaluation at root.body[23].body[7]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[23].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11726,9 +12046,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].value.values[0].elts[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[8].value.values[0].elts[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:373`; AST `c195aa27103d01905f12a7f50ff11bca4ee8f83d66058d0e9e9a7c2d49eaed97`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:386`; AST `c195aa27103d01905f12a7f50ff11bca4ee8f83d66058d0e9e9a7c2d49eaed97`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11736,7 +12056,7 @@ Inputs: dict, observation, runs. Outputs/bindings: (none).
 Calls/effect boundaries: dict.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[7].value.values[0].elts[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[8].value.values[0].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11746,9 +12066,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].value.values[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[8].value.values[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:374`; AST `5366464f3006a1c2a8383161cd3c0752d7fa461ad82b3f0bd04f78a90135677b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:387`; AST `5366464f3006a1c2a8383161cd3c0752d7fa461ad82b3f0bd04f78a90135677b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11756,7 +12076,7 @@ Inputs: digest, observation. Outputs/bindings: (none).
 Calls/effect boundaries: digest, observation.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[7].value.values[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[8].value.values[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11766,9 +12086,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[7].value.values[2].args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_qualification_report::root.body[23].body[8].value.values[2].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:374`; AST `21dfb94f44ac0455f9baa9b6d8f0db538ac00448cadd5748544633de5961c0cc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:387`; AST `21dfb94f44ac0455f9baa9b6d8f0db538ac00448cadd5748544633de5961c0cc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11776,7 +12096,7 @@ Inputs: observation. Outputs/bindings: (none).
 Calls/effect boundaries: observation.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[23].body[7].value.values[2].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[23].body[8].value.values[2].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -11788,7 +12108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:378`; AST `f3750dd13f40bb9ba1490b11bfea498098e0a8b047a4143ac9b4a6d87b9a4683`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:391`; AST `f3750dd13f40bb9ba1490b11bfea498098e0a8b047a4143ac9b4a6d87b9a4683`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -11808,7 +12128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[0]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:379`; AST `8d2d38b35f96f2215dafbc9cb4e9574bc75fb40a6a6c91669bbfeef064f694c3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:392`; AST `8d2d38b35f96f2215dafbc9cb4e9574bc75fb40a6a6c91669bbfeef064f694c3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11828,7 +12148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:380`; AST `e31c39d4214a672b6f0c5ccd475365517bab401798b6ff65a1802a8488c0c34d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:393`; AST `e31c39d4214a672b6f0c5ccd475365517bab401798b6ff65a1802a8488c0c34d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11848,7 +12168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:380`; AST `ba543d9bb2abffa00af76d4335a6388780b2696dcb394925e3d633bf1b86ac60`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:393`; AST `ba543d9bb2abffa00af76d4335a6388780b2696dcb394925e3d633bf1b86ac60`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11868,7 +12188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[1].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:380`; AST `cd0cf2f49b4bcb303f34233e0746443fc2440daf536bf572eb317df079b085d2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:393`; AST `cd0cf2f49b4bcb303f34233e0746443fc2440daf536bf572eb317df079b085d2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11888,7 +12208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:381`; AST `10b2a11eb94312cff480374e26e114cb898fefd691556ec35dc564ac55828d36`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:394`; AST `10b2a11eb94312cff480374e26e114cb898fefd691556ec35dc564ac55828d36`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11908,7 +12228,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:381`; AST `b177892dc95fddc5b73e605be8e33175c02307582c5ed5a50ca25e226e2e28fc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:394`; AST `b177892dc95fddc5b73e605be8e33175c02307582c5ed5a50ca25e226e2e28fc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11928,7 +12248,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[3]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:382`; AST `0a62c347595195035172cee2182fe3534fb03cb8d5cf3d76520f51ffb24534b6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `0a62c347595195035172cee2182fe3534fb03cb8d5cf3d76520f51ffb24534b6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -11948,7 +12268,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:382`; AST `ff69efe75ea7d10827374dbfd302b2aa7a50e5e639e716a3740a846040650e3e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `ff69efe75ea7d10827374dbfd302b2aa7a50e5e639e716a3740a846040650e3e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11968,7 +12288,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[3].value.args[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:382`; AST `b736b12b5778a8a4a56cf0625c2116ab253d3f789b0630fa8cf02984f2e655c8`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `b736b12b5778a8a4a56cf0625c2116ab253d3f789b0630fa8cf02984f2e655c8`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -11988,7 +12308,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[3].value.args[0].values[1].left::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:382`; AST `eb62a941ebcd7f288a671755d74dd8a33f3ae05a3f6925b6d19a2d7eae9a4efa`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `eb62a941ebcd7f288a671755d74dd8a33f3ae05a3f6925b6d19a2d7eae9a4efa`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -12008,7 +12328,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[3].value.args[0].values[1].left.elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:382`; AST `c5f768d570b881dada9d86742a3381ff6239594dc336591604eba8633bb4a7ad`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `c5f768d570b881dada9d86742a3381ff6239594dc336591604eba8633bb4a7ad`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12028,7 +12348,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:384`; AST `b7573604de48ef8c1be572c95568d5e9df92fe96bdd54761c6d43791092447e2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `b7573604de48ef8c1be572c95568d5e9df92fe96bdd54761c6d43791092447e2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12048,7 +12368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:385`; AST `e1e703e7b78346a24053276dd6cd06390bde3489c9400032b0ab4063aad9665b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:398`; AST `e1e703e7b78346a24053276dd6cd06390bde3489c9400032b0ab4063aad9665b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12068,7 +12388,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[5].value::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:385`; AST `0a593f03fddcd5b14d79a5735b51a12b7f23de52a515c806af60a3d2568d6869`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:398`; AST `0a593f03fddcd5b14d79a5735b51a12b7f23de52a515c806af60a3d2568d6869`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -12088,7 +12408,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[6]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:386`; AST `2cd4addf3360f62d05873d6a82ad17020f991e39e988d8b1006797cfe6f4fbab`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:399`; AST `2cd4addf3360f62d05873d6a82ad17020f991e39e988d8b1006797cfe6f4fbab`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12108,7 +12428,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[6].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:386`; AST `f7c0f71b7eda1f4b3bbcb8cba06c9b2ec0c6908c7e0f5b29f2ab46a8787bbacb`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:399`; AST `f7c0f71b7eda1f4b3bbcb8cba06c9b2ec0c6908c7e0f5b29f2ab46a8787bbacb`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -12128,7 +12448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[6].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:386`; AST `736a1418823d127fae9534c9a307aed4974c6f0d0091b1f636308bce9fa55d94`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:399`; AST `736a1418823d127fae9534c9a307aed4974c6f0d0091b1f636308bce9fa55d94`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12148,7 +12468,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[7]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:388`; AST `2031d8b98cfa8f8e85502d438b37c2efa9e6e2fdef4be6ec27aede7c77baf6e0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `2031d8b98cfa8f8e85502d438b37c2efa9e6e2fdef4be6ec27aede7c77baf6e0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12168,7 +12488,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[7].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:388`; AST `1a24c601a7d2cab4d70a8cc77ea91850c1084553f55ce48e9be1fdb0d22588a7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `1a24c601a7d2cab4d70a8cc77ea91850c1084553f55ce48e9be1fdb0d22588a7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -12188,7 +12508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[7].value.generators[0].ifs[0].values[0].right::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:388`; AST `20a1260eb95cb951c794d2adfb795929a20e226d59c42e7e2323e367213eeba4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `20a1260eb95cb951c794d2adfb795929a20e226d59c42e7e2323e367213eeba4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -12208,7 +12528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[7].value.generators[0].ifs[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:388`; AST `8d3136735dd119046195fd126d566b0537fa8512f575d174d798df584b26893b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `8d3136735dd119046195fd126d566b0537fa8512f575d174d798df584b26893b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12228,7 +12548,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[7].value.generators[0].ifs[0].values[1].right::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:388`; AST `fa2a1c2d5b41c2de51e60c9f22b4833c35a94adc604929b412efacd3b5eb0bb3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `fa2a1c2d5b41c2de51e60c9f22b4833c35a94adc604929b412efacd3b5eb0bb3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12248,7 +12568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[8]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:389`; AST `c4a3d913fad9e6f4d2a98a2929bdd50a29187a1dfa119d45e731a9db74f852c9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:402`; AST `c4a3d913fad9e6f4d2a98a2929bdd50a29187a1dfa119d45e731a9db74f852c9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12268,7 +12588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:390`; AST `eea42c20041763e0123b12e73df346dac35aefcc0e3307d7ef2da34d67427edc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:403`; AST `eea42c20041763e0123b12e73df346dac35aefcc0e3307d7ef2da34d67427edc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -12288,7 +12608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:390`; AST `90faf80a1cb6b66ec195245b5177d261efeac739051433c89887eff7d424a476`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:403`; AST `90faf80a1cb6b66ec195245b5177d261efeac739051433c89887eff7d424a476`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12308,7 +12628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:391`; AST `e11ea1fbff0f9fa536f18c0f6e68aff1da7dc6d56b5f786e86ea55d64d6d5b00`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:404`; AST `e11ea1fbff0f9fa536f18c0f6e68aff1da7dc6d56b5f786e86ea55d64d6d5b00`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12328,7 +12648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[0].value.elts[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:391`; AST `919cc5e6f3e1a37c05e7110635e06e00503d37e848f071742a7a82dc16c081e7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:404`; AST `919cc5e6f3e1a37c05e7110635e06e00503d37e848f071742a7a82dc16c081e7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12348,7 +12668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:392`; AST `20b9baa63306ba1828a7aab8d65a23e051002902400eed54047b4914d4444c36`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:405`; AST `20b9baa63306ba1828a7aab8d65a23e051002902400eed54047b4914d4444c36`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12368,7 +12688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:392`; AST `a5c66d219d91193d4f24638762c90b49bb5627ffe83f74c9898311b07955ea0f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:405`; AST `a5c66d219d91193d4f24638762c90b49bb5627ffe83f74c9898311b07955ea0f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12388,7 +12708,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[1].value.args[0].values[2]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:393`; AST `47e5783b868f0b9ca2ac73639ffe6e7a5a5dbb685d9634d4410821e021a574ef`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:406`; AST `47e5783b868f0b9ca2ac73639ffe6e7a5a5dbb685d9634d4410821e021a574ef`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12408,7 +12728,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[1].value.args[0].values[2].args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:393`; AST `2259e7dd31eba6e4f78ec57bc9ff9c639552e441ca14c8a34e2d08e5d461304f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:406`; AST `2259e7dd31eba6e4f78ec57bc9ff9c639552e441ca14c8a34e2d08e5d461304f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
@@ -12428,7 +12748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[1].value.args[0].values[3]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:393`; AST `c5e240a557004a057f451be6bd7c250bfec412aff539e6ca761cf97e21c274f1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:406`; AST `c5e240a557004a057f451be6bd7c250bfec412aff539e6ca761cf97e21c274f1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12448,7 +12768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `ddadd23745e08093687a2c4d1f149ec715737359b20eaa3821653209d4d818d4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `ddadd23745e08093687a2c4d1f149ec715737359b20eaa3821653209d4d818d4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12468,7 +12788,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[2].value.elts[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `d2772ea17526ff1ffd6a6682116750c703836d98bf5206cb165a77fae3fd0071`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `d2772ea17526ff1ffd6a6682116750c703836d98bf5206cb165a77fae3fd0071`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12488,7 +12808,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[2].value.elts[0].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `e22b2ba0ab99f5786a42197d89fe566261061f38a5b2a6d1ac526531c4bffb33`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `e22b2ba0ab99f5786a42197d89fe566261061f38a5b2a6d1ac526531c4bffb33`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12508,7 +12828,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[2].value.elts[1]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `781ed7c69901254e631e8887a4f061f9d90e073a5136e5b4001231bf8ac0a69f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `781ed7c69901254e631e8887a4f061f9d90e073a5136e5b4001231bf8ac0a69f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12528,7 +12848,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[2].value.elts[1].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:395`; AST `3cff76a4f8621efeac41053a9b6ce3e8ef8e5f85141b5ec2ef8724821ea6b41f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `3cff76a4f8621efeac41053a9b6ce3e8ef8e5f85141b5ec2ef8724821ea6b41f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12548,7 +12868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:396`; AST `a8799ad6e64d63e4fb0abb6cd539e4f5ed43f23e79745a73e578de8e7294ce0f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:409`; AST `a8799ad6e64d63e4fb0abb6cd539e4f5ed43f23e79745a73e578de8e7294ce0f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12568,7 +12888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `6df036f7f5f566ff4fc5f15c36433653f469df41bb435994b3ff96200d64daa2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `6df036f7f5f566ff4fc5f15c36433653f469df41bb435994b3ff96200d64daa2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12588,7 +12908,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `e7303ae3fd6acd337e513b871144a6a497cf9e4270621f35bd94671aa2a4419a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `e7303ae3fd6acd337e513b871144a6a497cf9e4270621f35bd94671aa2a4419a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12608,7 +12928,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `2a46d9193d4692ebcdafbf68c19ce9816e8f5ce64abf6ec9913f6fa71d477d26`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `2a46d9193d4692ebcdafbf68c19ce9816e8f5ce64abf6ec9913f6fa71d477d26`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12628,7 +12948,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `4f87ab28217a39c3f747f6a775563656100b5fdc57e1938a3a7353429c2398e7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `4f87ab28217a39c3f747f6a775563656100b5fdc57e1938a3a7353429c2398e7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12648,7 +12968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[1].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `29d0b5a674124d6a5dea0e9d83c547c4cebd29502709afd03c4659bd6afedfda`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `29d0b5a674124d6a5dea0e9d83c547c4cebd29502709afd03c4659bd6afedfda`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12668,7 +12988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[1].comparators[0].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `b97f3f463d4724206af2869ad4674d5eb373167f052507971a722ecc8f771a87`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `b97f3f463d4724206af2869ad4674d5eb373167f052507971a722ecc8f771a87`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12688,7 +13008,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[2].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:397`; AST `c5d145db6b705927beb0cc0c02ba73000cf6fea184257c3f00c8dbfcc53e3453`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `c5d145db6b705927beb0cc0c02ba73000cf6fea184257c3f00c8dbfcc53e3453`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12708,7 +13028,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[3].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:398`; AST `c14bd15fda78d0bb889adc76e88db93ef3bdf61d86020a856242eaabcbdc432c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:411`; AST `c14bd15fda78d0bb889adc76e88db93ef3bdf61d86020a856242eaabcbdc432c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12728,7 +13048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[4].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:398`; AST `4c5c539473933a759927106f54435f0e990e4d6ce9f65a81f6bb3590985a9c2e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:411`; AST `4c5c539473933a759927106f54435f0e990e4d6ce9f65a81f6bb3590985a9c2e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12748,7 +13068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[4].value.args[0].values[5].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:398`; AST `84a2647d9bb40a8b4cb24af3f36ad1cb32b4406f857bbd04c3e33819b950e085`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:411`; AST `84a2647d9bb40a8b4cb24af3f36ad1cb32b4406f857bbd04c3e33819b950e085`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12768,7 +13088,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `fac02db781ee56a6bc23c1ab56b37461e2ff2d44b03052644cd16365f0b88813`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `fac02db781ee56a6bc23c1ab56b37461e2ff2d44b03052644cd16365f0b88813`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12788,7 +13108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `c7fdba04db61e484a336e6a4d16f35b44ad47bf1434eff64380203bfd2c52f60`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `c7fdba04db61e484a336e6a4d16f35b44ad47bf1434eff64380203bfd2c52f60`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -12808,7 +13128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value.elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `ff405372acb9c3c8716db6104edc01a70e7e4625aad9c8394d7c45d961b3cd90`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `ff405372acb9c3c8716db6104edc01a70e7e4625aad9c8394d7c45d961b3cd90`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12828,7 +13148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `998349a5984d2c0d2f9030918ed12778089ddcb2236dc6ecf23a9e8c88377f73`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `998349a5984d2c0d2f9030918ed12778089ddcb2236dc6ecf23a9e8c88377f73`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12848,7 +13168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value.generators[0].iter.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `d807ac284c9d970dada4821932513eacdea56b2861c14cc2e1fad3dd88d00a72`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `d807ac284c9d970dada4821932513eacdea56b2861c14cc2e1fad3dd88d00a72`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12868,7 +13188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value.generators[0].iter.args[0].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `abc730813de04334f428384ece5dae949d9831eaecac38cc479fc2788f4d09c4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `abc730813de04334f428384ece5dae949d9831eaecac38cc479fc2788f4d09c4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12888,7 +13208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value.generators[0].iter.args[0].args[0].func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `a35dde109688e5511869da902c114acd69cc46c60451ae9b66eac6c3417581f0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `a35dde109688e5511869da902c114acd69cc46c60451ae9b66eac6c3417581f0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12908,7 +13228,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[5].value.generators[0].ifs[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:400`; AST `ec459fe7660e2311b9d6374445e99c314277891140df6f9795bcc3affd02ce37`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:413`; AST `ec459fe7660e2311b9d6374445e99c314277891140df6f9795bcc3affd02ce37`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12928,7 +13248,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[6]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `c320b2b4750ffd2f93a0cd2374460ca7a5a216796ca428a603c107119ebbb491`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:414`; AST `c320b2b4750ffd2f93a0cd2374460ca7a5a216796ca428a603c107119ebbb491`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -12948,7 +13268,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[6].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `5cbddaf37e6a83a4d7fd5fbe6b19651d1f9ae18b58fd2b00b2b5c7a76c024499`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:414`; AST `5cbddaf37e6a83a4d7fd5fbe6b19651d1f9ae18b58fd2b00b2b5c7a76c024499`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12968,7 +13288,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[6].value.args[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `fe298fd526e3a481c15d3fab158e35dc132d28429c19a13abe0b56a727ab2916`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:414`; AST `fe298fd526e3a481c15d3fab158e35dc132d28429c19a13abe0b56a727ab2916`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -12988,7 +13308,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[6].value.args[0].comparators[0]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:401`; AST `dd10e7781c96e0dfe3df860a8c7e8c55988c298379281bd2f1e083651ad4a7cc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:414`; AST `dd10e7781c96e0dfe3df860a8c7e8c55988c298379281bd2f1e083651ad4a7cc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -13008,7 +13328,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[7]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:403`; AST `50e8dd9f6bb61c8bf19428282620c86382132f03d1c03df59c244583311fba59`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:416`; AST `50e8dd9f6bb61c8bf19428282620c86382132f03d1c03df59c244583311fba59`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13028,7 +13348,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[7].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:403`; AST `a83a6fb43e200f22cee953dba36da9481aaf1b3176b8068d74ae517ddfcc4e68`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:416`; AST `a83a6fb43e200f22cee953dba36da9481aaf1b3176b8068d74ae517ddfcc4e68`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13048,7 +13368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:404`; AST `d810ed812a4535d2fc403f3b814cc0fd7c1cf1a9d3688babfde36e3e34faa5f2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:417`; AST `d810ed812a4535d2fc403f3b814cc0fd7c1cf1a9d3688babfde36e3e34faa5f2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13068,7 +13388,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[9]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:407`; AST `e0bf9165978172c17ce6955ad1260367a05b30b569abe9091fed863c5fbd4704`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:420`; AST `e0bf9165978172c17ce6955ad1260367a05b30b569abe9091fed863c5fbd4704`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13088,7 +13408,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[10]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:407`; AST `8166a02bcaf820566a078257dd03877ba262560b801b5e8a8a880eddfaeadee1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:420`; AST `8166a02bcaf820566a078257dd03877ba262560b801b5e8a8a880eddfaeadee1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13108,7 +13428,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[11]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:407`; AST `bff5d49cc6e724c8837b6a27f21c65f205e54fd71237586f4e3274e206199961`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:420`; AST `bff5d49cc6e724c8837b6a27f21c65f205e54fd71237586f4e3274e206199961`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13128,7 +13448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[12]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `0fcb634b0bd2f4410d502be20ef74835cdaa013cb6c596cac56cb8bb31f75397`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:421`; AST `0fcb634b0bd2f4410d502be20ef74835cdaa013cb6c596cac56cb8bb31f75397`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13148,7 +13468,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[12].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `8da148a19c0fb6d52d6f003d794c45d33aa43ec03e6de48b887a603e0543ddd2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:421`; AST `8da148a19c0fb6d52d6f003d794c45d33aa43ec03e6de48b887a603e0543ddd2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13168,7 +13488,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[13]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:408`; AST `3ce64ce160120ddc89bf7d3ed91ed9f314d62d4606e2f477692b8a106c8ceedf`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:421`; AST `3ce64ce160120ddc89bf7d3ed91ed9f314d62d4606e2f477692b8a106c8ceedf`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13188,7 +13508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[8].value.values[14]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:409`; AST `35fdd335cc21c6e6718a9bd89b52ddb7811edf99de37c6fbc3f98eaa1ef1257d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:422`; AST `35fdd335cc21c6e6718a9bd89b52ddb7811edf99de37c6fbc3f98eaa1ef1257d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13208,7 +13528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[9]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `4dfe3d3f3815bcd180ac98075cb6e8b427d64d9e438cc9c5225b0c8db4d35a77`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:423`; AST `4dfe3d3f3815bcd180ac98075cb6e8b427d64d9e438cc9c5225b0c8db4d35a77`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13228,7 +13548,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[9].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:410`; AST `c3ac238be12cd0989967ddf017784d45b5fd5a8c859cb6cfaa164a7dad9c5b5d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:423`; AST `c3ac238be12cd0989967ddf017784d45b5fd5a8c859cb6cfaa164a7dad9c5b5d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13248,7 +13568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[10]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:411`; AST `e25cbecba4cf912c73abfc0e9d7e2f111723e9af2afe48e0315d73025ebfae9d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:424`; AST `e25cbecba4cf912c73abfc0e9d7e2f111723e9af2afe48e0315d73025ebfae9d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13268,7 +13588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[11]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:420`; AST `b929aeb35b5b8a0f218fcc27e27992779abc79d446d5d68437bd55ab683f7824`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:433`; AST `b929aeb35b5b8a0f218fcc27e27992779abc79d446d5d68437bd55ab683f7824`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13288,7 +13608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[11].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:420`; AST `d611aad9a9dc53f0313a7dfede14788818618d6fe3dfd8a304073fee9626c685`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:433`; AST `d611aad9a9dc53f0313a7dfede14788818618d6fe3dfd8a304073fee9626c685`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13308,7 +13628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[12]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:421`; AST `60da82c9786e77844ce9eee83e4ed1f37204da53d19733277b50b740c7d9139f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:434`; AST `60da82c9786e77844ce9eee83e4ed1f37204da53d19733277b50b740c7d9139f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13328,7 +13648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[9].body[12].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:421`; AST `489d855223aaf109fa9b9531c5cba0b59c73ca6f2aae409891d1335a84ae20f6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:434`; AST `489d855223aaf109fa9b9531c5cba0b59c73ca6f2aae409891d1335a84ae20f6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13348,7 +13668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[10]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:422`; AST `a17c4af5581aee23927edd78690bb748de97ebfa14ce07b407374656e781e5b7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:435`; AST `a17c4af5581aee23927edd78690bb748de97ebfa14ce07b407374656e781e5b7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13368,7 +13688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_python_catalog.py::module::_deal_report::root.body[24].body[10].value.values[0].elts[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:422`; AST `c195aa27103d01905f12a7f50ff11bca4ee8f83d66058d0e9e9a7c2d49eaed97`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:435`; AST `c195aa27103d01905f12a7f50ff11bca4ee8f83d66058d0e9e9a7c2d49eaed97`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13386,14 +13706,14 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25]::FunctionDef
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:426`; AST `e16615fb216c2f715b840a125957e32984642ecaabb0c51edd89978a502608b2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:439`; AST `bb4f541c149b2b7378e9981874e23b9bc393c1497b7487ac30fd13f112b2dc63`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, _backend_evidence, _evidence_dependencies, _lineage, _qualification_report, candidate, catalog, dict, o, p, report, reports, root, str, value, values. Outputs/bindings: o, p, report, reports, value, values.
-Calls/effect boundaries: _backend_evidence, _evidence_dependencies, _lineage, _qualification_report.
+Inputs: Path, _node, affected, all, ast, b, bindings_current, c, candidate, catalog, claims, classify_esbmc, closure, confined_path, control, controls, dependencies, details, dict, digest, esbmc_arguments, f, files, fixture, fixture_ids, isinstance, key, len, list, listed, n, name, o, observation, packet, packets, raw, read_json, require, result, root, row, runs, set, str, toolchain, zip. Outputs/bindings: affected, b, c, claims, closure, control, controls, f, files, fixture, fixture_ids, key, listed, n, name, o, packet, packets, raw, result, row, runs, toolchain.
+Calls/effect boundaries: _node, all, ast.parse, ast.walk, bindings_current, c.get, catalog['fixture_semantics'].items, classify_esbmc, confined_path, confined_path(root, fixture['path']).read_bytes, control.get, details.get, dict, digest, esbmc_arguments, isinstance, len, listed.get, packets.append, raw.get, read_json, require, root.resolve, runs.append, set, str, zip.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[25]; no call, error or mutation may be omitted.
@@ -13406,9 +13726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[0]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[0]::ImportFrom
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:427`; AST `3e47b782a4fb999f04afcb0425412b76872f6ee105c092c9cf3eb9c305f399d1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:440`; AST `f1589ba8e77df43679d303d8609526acaac870ebc6125b9a6e35900944129ddd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13416,7 +13736,7 @@ Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[25].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ImportFrom evaluation at root.body[25].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13426,14 +13746,14 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[1]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:428`; AST `8cbd6ad72e4d32888618ba661a4248684e59964296580b3ce4896838e7cc7d2f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:441`; AST `e31c39d4214a672b6f0c5ccd475365517bab401798b6ff65a1802a8488c0c34d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: _backend_evidence, root. Outputs/bindings: values.
-Calls/effect boundaries: _backend_evidence.
+Inputs: confined_path, details, read_json, root. Outputs/bindings: toolchain.
+Calls/effect boundaries: confined_path, read_json.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Assign evaluation at root.body[25].body[1]; no call, error or mutation may be omitted.
@@ -13446,14 +13766,14 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:428`; AST `7b0349ab31c3baed5393c2f19a30320d341320d83e08d9ee74aa699e86845c83`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:441`; AST `ba543d9bb2abffa00af76d4335a6388780b2696dcb394925e3d633bf1b86ac60`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: _backend_evidence, root. Outputs/bindings: (none).
-Calls/effect boundaries: _backend_evidence.
+Inputs: confined_path, details, read_json, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path, read_json.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[1].value; no call, error or mutation may be omitted.
@@ -13466,14 +13786,34 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[2]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[1].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:429`; AST `44405694a657c2c63fe112cc92a2611d68da77eb536a9a73b8408788ec2c63dd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:441`; AST `cd0cf2f49b4bcb303f34233e0746443fc2440daf536bf572eb317df079b085d2`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: confined_path, details, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[1].value.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:442`; AST `10b2a11eb94312cff480374e26e114cb898fefd691556ec35dc564ac55828d36`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: _qualification_report, candidate, catalog, root, value, values. Outputs/bindings: reports, value.
-Calls/effect boundaries: _qualification_report.
+Inputs: details. Outputs/bindings: controls.
+Calls/effect boundaries: details.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Assign evaluation at root.body[25].body[2]; no call, error or mutation may be omitted.
@@ -13486,37 +13826,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[2].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:429`; AST `416ec632e6db33c71018e54c30bfe80e987291a938496016dce866d1fc6dabbc`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
-
-Inputs: _qualification_report, candidate, catalog, root, value, values. Outputs/bindings: value.
-Calls/effect boundaries: _qualification_report.
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered ListComp evaluation at root.body[25].body[2].value; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[2].value.elt::Call
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:429`; AST `f3f51a0e0490f0dc5b08024c6f4db0e93b4ae73dac041ca78c62574d5c4ac360`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:442`; AST `b177892dc95fddc5b73e605be8e33175c02307582c5ed5a50ca25e226e2e28fc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: _qualification_report, candidate, catalog, root, value. Outputs/bindings: (none).
-Calls/effect boundaries: _qualification_report.
+Inputs: details. Outputs/bindings: (none).
+Calls/effect boundaries: details.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[2].value.elt; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13526,17 +13846,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[3]::Return
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[3]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:430`; AST `68dc84a5973d1f43cc96ea7bcde4e054c79464b271100788e9daf839d9409f2c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `829e33f39298eba6833d6cbd2128410dec8ec5caa224fe9ce8023da15a9184cb`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: _evidence_dependencies, _lineage, o, p, report, reports, values. Outputs/bindings: o, p, report.
-Calls/effect boundaries: _evidence_dependencies, _lineage.
+Inputs: c, controls, len, require. Outputs/bindings: c.
+Calls/effect boundaries: c.get, len, require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Return evaluation at root.body[25].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13546,37 +13866,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[3].value.values[0]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:430`; AST `c6858251f093172993b420eb206a8214e0e5e587a4622e88b84ad4f304bff25b`.
-
-Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
-
-Inputs: o, report, reports. Outputs/bindings: o, report.
-Calls/effect boundaries: (none).
-Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
-
-Invariants: Preserve ordered ListComp evaluation at root.body[25].body[3].value.values[0]; no call, error or mutation may be omitted.
-Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
-Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
-
-Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
-Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
-Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
-
-Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
-
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[3].value.values[1]::Call
-
-Source: `infra/agentinfra/roadmap_python_catalog.py:431`; AST `a68e8276beab9b46e534ef35b3d627c1b602ef8b6fe7a7cce9570a98e2be46f2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `c62b577c978896d72522eb684e3224c2f65d12d5611ea8f9acfa2b60b56cd8a2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: _evidence_dependencies, values. Outputs/bindings: (none).
-Calls/effect boundaries: _evidence_dependencies.
+Inputs: c, controls, len, require. Outputs/bindings: c.
+Calls/effect boundaries: c.get, len, require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[3].value.values[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13586,17 +13886,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[3].value.values[2]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[3].value.args[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:431`; AST `bbe2759e230562139bb71411cbe50bb7132fcb8e02ece45c2963cb0e3047529a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `b736b12b5778a8a4a56cf0625c2116ab253d3f789b0630fa8cf02984f2e655c8`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: _lineage, values. Outputs/bindings: (none).
-Calls/effect boundaries: _lineage.
+Inputs: controls, len. Outputs/bindings: (none).
+Calls/effect boundaries: len.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[3].value.values[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[3].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13606,17 +13906,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[25].body[3].value.values[3]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[3].value.args[0].values[1].left::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:432`; AST `6f5aaf364a91697588b1b9d1f9958026207b721d77a8c7aa57b7d67f79c80e92`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `eb62a941ebcd7f288a671755d74dd8a33f3ae05a3f6925b6d19a2d7eae9a4efa`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
-Inputs: p, report, reports. Outputs/bindings: p, report.
-Calls/effect boundaries: (none).
+Inputs: c, controls. Outputs/bindings: c.
+Calls/effect boundaries: c.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[25].body[3].value.values[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[25].body[3].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13626,14 +13926,1314 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26]::FunctionDef
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[3].value.args[0].values[1].left.elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:436`; AST `87efb9f19209a5bd990605490536c77481cdae5fc9c569b3978a992ad57930ed`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `c5f768d570b881dada9d86742a3381ff6239594dc336591604eba8633bb4a7ad`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: c. Outputs/bindings: (none).
+Calls/effect boundaries: c.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[3].value.args[0].values[1].left.elt; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[4]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:445`; AST `b7573604de48ef8c1be572c95568d5e9df92fe96bdd54761c6d43791092447e2`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: details. Outputs/bindings: closure.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[4]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[5]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:446`; AST `e1e703e7b78346a24053276dd6cd06390bde3489c9400032b0ab4063aad9665b`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: b, closure. Outputs/bindings: b, files.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[5]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[5].value::SetComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:446`; AST `0a593f03fddcd5b14d79a5735b51a12b7f23de52a515c806af60a3d2568d6869`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
+
+Inputs: b, closure. Outputs/bindings: b.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered SetComp evaluation at root.body[25].body[5].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[6]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:447`; AST `2cd4addf3360f62d05873d6a82ad17020f991e39e988d8b1006797cfe6f4fbab`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: catalog, details, f, key. Outputs/bindings: f, fixture_ids, key.
+Calls/effect boundaries: catalog['fixture_semantics'].items.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[6]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[6].value::ListComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:447`; AST `f7c0f71b7eda1f4b3bbcb8cba06c9b2ec0c6908c7e0f5b29f2ab46a8787bbacb`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
+
+Inputs: catalog, details, f, key. Outputs/bindings: f, key.
+Calls/effect boundaries: catalog['fixture_semantics'].items.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ListComp evaluation at root.body[25].body[6].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[6].value.generators[0].iter::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:447`; AST `736a1418823d127fae9534c9a307aed4974c6f0d0091b1f636308bce9fa55d94`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: catalog. Outputs/bindings: (none).
+Calls/effect boundaries: catalog['fixture_semantics'].items.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[6].value.generators[0].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[7]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:449`; AST `2031d8b98cfa8f8e85502d438b37c2efa9e6e2fdef4be6ec27aede7c77baf6e0`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: b, catalog, files, fixture_ids, o, set. Outputs/bindings: affected, b, o.
+Calls/effect boundaries: set.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[7]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[7].value::ListComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:449`; AST `1a24c601a7d2cab4d70a8cc77ea91850c1084553f55ce48e9be1fdb0d22588a7`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
+
+Inputs: b, catalog, files, fixture_ids, o, set. Outputs/bindings: b, o.
+Calls/effect boundaries: set.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ListComp evaluation at root.body[25].body[7].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[7].value.generators[0].ifs[0].values[0].right::SetComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:449`; AST `20a1260eb95cb951c794d2adfb795929a20e226d59c42e7e2323e367213eeba4`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
+
+Inputs: b, o. Outputs/bindings: b.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered SetComp evaluation at root.body[25].body[7].value.generators[0].ifs[0].values[0].right; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[7].value.generators[0].ifs[0].values[1].left::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:449`; AST `8d3136735dd119046195fd126d566b0537fa8512f575d174d798df584b26893b`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: fixture_ids, set. Outputs/bindings: (none).
+Calls/effect boundaries: set.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[7].value.generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[7].value.generators[0].ifs[0].values[1].right::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:449`; AST `fa2a1c2d5b41c2de51e60c9f22b4833c35a94adc604929b412efacd3b5eb0bb3`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: o, set. Outputs/bindings: (none).
+Calls/effect boundaries: set.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[7].value.generators[0].ifs[0].values[1].right; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[8]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:450`; AST `c4a3d913fad9e6f4d2a98a2929bdd50a29187a1dfa119d45e731a9db74f852c9`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: packets, runs.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[8]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9]::For
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:451`; AST `ce339436da61254d11f662b31b576a8613404fe1f6f9c504a1ef00a999ef9e20`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
+
+Inputs: _node, affected, all, ast, b, bindings_current, candidate, claims, classify_esbmc, closure, confined_path, control, controls, details, digest, esbmc_arguments, fixture, fixture_ids, isinstance, listed, n, name, observation, packet, packets, raw, read_json, require, result, root, row, runs, str, toolchain, zip. Outputs/bindings: b, claims, control, fixture, listed, n, name, packet, raw, result, row.
+Calls/effect boundaries: _node, all, ast.parse, ast.walk, bindings_current, classify_esbmc, confined_path, confined_path(root, fixture['path']).read_bytes, control.get, digest, esbmc_arguments, isinstance, listed.get, packets.append, raw.get, read_json, require, root.resolve, runs.append, str, zip.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered For evaluation at root.body[25].body[9]; no call, error or mutation may be omitted. Iteration: (control, name) in zip(controls, ('policy_deal_positive.py', 'policy_deal_negative.py'), strict=True)
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].iter::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:451`; AST `90faf80a1cb6b66ec195245b5177d261efeac739051433c89887eff7d424a476`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: controls, zip. Outputs/bindings: (none).
+Calls/effect boundaries: zip.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[0]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:452`; AST `f34aa2804ff102eb9811af1eb7fce1d777584a790adb4aa3bc0437821d8c3509`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: control. Outputs/bindings: fixture, result.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[1]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:453`; AST `0ec35b99fbb6e182d5c7956908ae02227a9c48b0625732272cd95fca3f85a0f6`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: all, b, bindings_current, details, fixture, name, require, result, root. Outputs/bindings: b.
+Calls/effect boundaries: all, bindings_current, require.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[9].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[1].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:453`; AST `019a0277a8d3327c2d74c00b6c2f3bd229d6188da47f8a2f3c7e2a710b507b8a`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: all, b, bindings_current, details, fixture, name, require, result, root. Outputs/bindings: b.
+Calls/effect boundaries: all, bindings_current, require.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[1].value.args[0].values[1]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:454`; AST `e1263c6b248abd845416691ad44798576fffab070276a5a10031eeda828a82d6`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: all, b, details, fixture, result. Outputs/bindings: b.
+Calls/effect boundaries: all.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[1].value.args[0].values[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[1].value.args[0].values[1].args[0]::GeneratorExp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:454`; AST `4c338766bf38fabf28a90bed905a039a74d00e2c7f1bb49a9c6d3db7c34232d9`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
+
+Inputs: b, details, fixture, result. Outputs/bindings: b.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[25].body[9].body[1].value.args[0].values[1].args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[1].value.args[0].values[2]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:454`; AST `86da8c8caefdd60229f527eb155c034efe32dda0725972c8b79c3b215ed9db68`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: bindings_current, fixture, result, root. Outputs/bindings: (none).
+Calls/effect boundaries: bindings_current.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[1].value.args[0].values[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `b37426ac5e14633b7c6a2748985cad715f694743000ff8f3152eea35768058f6`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: confined_path, read_json, result, root. Outputs/bindings: raw.
+Calls/effect boundaries: confined_path, read_json.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[2].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `d2772ea17526ff1ffd6a6682116750c703836d98bf5206cb165a77fae3fd0071`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: confined_path, read_json, result, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path, read_json.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[2].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[2].value.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `e22b2ba0ab99f5786a42197d89fe566261061f38a5b2a6d1ac526531c4bffb33`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: confined_path, result, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[2].value.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `588bae26216f5a1c7fe56cf5d3915e4da72dba368d729ae21721a42b018e5306`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: esbmc_arguments, fixture, raw, require, root, str, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_arguments, raw.get, require, root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[9].body[3]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `f232275a3bccce042d22a38296c0c145a1a6d5e2037ae666e41723f191848f2d`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: esbmc_arguments, fixture, raw, require, root, str, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_arguments, raw.get, require, root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[3].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3].value.args[0].values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `2a46d9193d4692ebcdafbf68c19ce9816e8f5ce64abf6ec9913f6fa71d477d26`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: raw. Outputs/bindings: (none).
+Calls/effect boundaries: raw.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[3].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3].value.args[0].values[0].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `44d0bf8e0e4eebdd7de6f0bafd3d8fa55d9abeb4397b9fd0845f1e23e6ea77f9`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: esbmc_arguments, fixture, root, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_arguments.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[3].value.args[0].values[0].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3].value.args[0].values[1].left::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `4f87ab28217a39c3f747f6a775563656100b5fdc57e1938a3a7353429c2398e7`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: raw. Outputs/bindings: (none).
+Calls/effect boundaries: raw.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[3].value.args[0].values[1].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3].value.args[0].values[1].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `29d0b5a674124d6a5dea0e9d83c547c4cebd29502709afd03c4659bd6afedfda`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: root, str. Outputs/bindings: (none).
+Calls/effect boundaries: root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[3].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[3].value.args[0].values[1].comparators[0].args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `b97f3f463d4724206af2869ad4674d5eb373167f052507971a722ecc8f771a87`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: root. Outputs/bindings: (none).
+Calls/effect boundaries: root.resolve.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[3].value.args[0].values[1].comparators[0].args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[4]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:459`; AST `2ad642e2cb2c89687ce21efdd450b46dd6d2757b34ec86b1bba72f76d620e537`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: control. Outputs/bindings: claims.
+Calls/effect boundaries: control.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[4]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[4].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:459`; AST `442065aaa34a65c8148718d37d55213830bc82d6e8dae74285ad5e8b135cf9fb`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: control. Outputs/bindings: (none).
+Calls/effect boundaries: control.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[4].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5]::If
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:460`; AST `aaed5e7dac60e9e38ceab44ec06db55bc952e945a938c4b903bcb30ef0171603`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: bindings_current, claims, confined_path, details, esbmc_arguments, fixture, listed, read_json, require, root, str, toolchain. Outputs/bindings: listed.
+Calls/effect boundaries: bindings_current, confined_path, esbmc_arguments, listed.get, read_json, require, root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered If evaluation at root.body[25].body[9].body[5]; no call, error or mutation may be omitted. Condition: claims
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[0]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:461`; AST `4bd4661dbd872667deb271a6119dde703cb621194ce6cf3cecf05dd4b6f31d52`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: bindings_current, claims, details, require, root. Outputs/bindings: (none).
+Calls/effect boundaries: bindings_current, require.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[9].body[5].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[0].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:461`; AST `7dca972a96b786d7b616662ba14850d180f7cbd53dd73f8beb3b8b63ac96c999`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: bindings_current, claims, details, require, root. Outputs/bindings: (none).
+Calls/effect boundaries: bindings_current, require.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[0].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[0].value.args[0].values[1]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:461`; AST `17eade33d65f47ec18394c0c20d975a2ad8fd97050552a3e7ee30d9b88a1706c`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: bindings_current, claims, root. Outputs/bindings: (none).
+Calls/effect boundaries: bindings_current.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[0].value.args[0].values[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[1]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:462`; AST `4293f9c7391f0dd8b71f072be1aa89eaea1799ebb5a9f307a591da3376a98257`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: claims, confined_path, read_json, root. Outputs/bindings: listed.
+Calls/effect boundaries: confined_path, read_json.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[5].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[1].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:462`; AST `d7ab6e8d7a674852ac5ed60c406ef372a6098bcc40b5c66410bed18bd461f4d9`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: claims, confined_path, read_json, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path, read_json.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[1].value.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:462`; AST `c567a45545546e85e077147ac2fb8427c9af14d75f4f78ac49156f0c31ad268e`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: claims, confined_path, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[1].value.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `2f23b835242d32009b6c79b53b6c91951e9504d71bdbacc6b59a045d598c0e14`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: esbmc_arguments, fixture, listed, require, root, str, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_arguments, listed.get, require, root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[9].body[5].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `335f1c5a04a37fcfc9581ebff619188316793fa1f50da5e92daf77e228fa6571`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: esbmc_arguments, fixture, listed, require, root, str, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_arguments, listed.get, require, root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[2].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2].value.args[0].values[0].left::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `90b43f4a467c9b1844936a12933d8c0c473251c8495a90e373b50cbc376890d7`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: listed. Outputs/bindings: (none).
+Calls/effect boundaries: listed.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[2].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2].value.args[0].values[0].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `6775c46403e41326a7707961a72f78f70abef9c3ab0ee8b0fb65cc54ae5138f9`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: esbmc_arguments, fixture, root, toolchain. Outputs/bindings: (none).
+Calls/effect boundaries: esbmc_arguments.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[2].value.args[0].values[0].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2].value.args[0].values[1].left::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:464`; AST `8030e38553fd223bfd3edb41438a8684c1aa02cc02205a1a715ededd6d414deb`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: listed. Outputs/bindings: (none).
+Calls/effect boundaries: listed.get.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[2].value.args[0].values[1].left; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2].value.args[0].values[1].comparators[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:464`; AST `29d0b5a674124d6a5dea0e9d83c547c4cebd29502709afd03c4659bd6afedfda`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: root, str. Outputs/bindings: (none).
+Calls/effect boundaries: root.resolve, str.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[2].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[5].body[2].value.args[0].values[1].comparators[0].args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:464`; AST `b97f3f463d4724206af2869ad4674d5eb373167f052507971a722ecc8f771a87`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: root. Outputs/bindings: (none).
+Calls/effect boundaries: root.resolve.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[5].body[2].value.args[0].values[1].comparators[0].args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:465`; AST `0d8a5e6a722a82d8d2c9cc9b8cfafdb4a0bbeaae53271f41a4aa8c2231ad5e0a`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: _node, ast, claims, classify_esbmc, confined_path, control, fixture, isinstance, n, raw, result, root. Outputs/bindings: n, row.
+Calls/effect boundaries: _node, ast.parse, ast.walk, classify_esbmc, confined_path, confined_path(root, fixture['path']).read_bytes, isinstance.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[6]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[4]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:466`; AST `7a8d06d0addf7b1e40fd7370bc1810aea9434ae798646ab362ec5f06e23ab573`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: classify_esbmc, raw. Outputs/bindings: (none).
+Calls/effect boundaries: classify_esbmc.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[4]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6]::ListComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `c7fdba04db61e484a336e6a4d16f35b44ad47bf1434eff64380203bfd2c52f60`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
+
+Inputs: _node, ast, confined_path, fixture, isinstance, n, root. Outputs/bindings: n.
+Calls/effect boundaries: _node, ast.parse, ast.walk, confined_path, confined_path(root, fixture['path']).read_bytes, isinstance.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ListComp evaluation at root.body[25].body[9].body[6].value.values[6]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6].elt::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `ff405372acb9c3c8716db6104edc01a70e7e4625aad9c8394d7c45d961b3cd90`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _node, n. Outputs/bindings: (none).
+Calls/effect boundaries: _node.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[6].elt; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6].generators[0].iter::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `998349a5984d2c0d2f9030918ed12778089ddcb2236dc6ecf23a9e8c88377f73`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ast, confined_path, fixture, root. Outputs/bindings: (none).
+Calls/effect boundaries: ast.parse, ast.walk, confined_path, confined_path(root, fixture['path']).read_bytes.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[6].generators[0].iter; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6].generators[0].iter.args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `d807ac284c9d970dada4821932513eacdea56b2861c14cc2e1fad3dd88d00a72`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ast, confined_path, fixture, root. Outputs/bindings: (none).
+Calls/effect boundaries: ast.parse, confined_path, confined_path(root, fixture['path']).read_bytes.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[6].generators[0].iter.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6].generators[0].iter.args[0].args[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `abc730813de04334f428384ece5dae949d9831eaecac38cc479fc2788f4d09c4`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: confined_path, fixture, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path, confined_path(root, fixture['path']).read_bytes.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[6].generators[0].iter.args[0].args[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6].generators[0].iter.args[0].args[0].func.value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `a35dde109688e5511869da902c114acd69cc46c60451ae9b66eac6c3417581f0`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: confined_path, fixture, root. Outputs/bindings: (none).
+Calls/effect boundaries: confined_path.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[6].generators[0].iter.args[0].args[0].func.value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[6].value.values[6].generators[0].ifs[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `ec459fe7660e2311b9d6374445e99c314277891140df6f9795bcc3affd02ce37`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ast, isinstance, n. Outputs/bindings: (none).
+Calls/effect boundaries: isinstance.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[6].value.values[6].generators[0].ifs[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[7]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:469`; AST `4dfe3d3f3815bcd180ac98075cb6e8b427d64d9e438cc9c5225b0c8db4d35a77`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: row, runs. Outputs/bindings: (none).
+Calls/effect boundaries: runs.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[9].body[7]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[7].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:469`; AST `c3ac238be12cd0989967ddf017784d45b5fd5a8c859cb6cfaa164a7dad9c5b5d`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: row, runs. Outputs/bindings: (none).
+Calls/effect boundaries: runs.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[7].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[8]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:470`; AST `6a421bab763129b332ee5b8d20cdf143cd884f46bfde7eb4f28f1aebf167f2d3`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: affected, candidate, closure, fixture_ids, observation, row. Outputs/bindings: packet.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[8]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[9]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:479`; AST `b929aeb35b5b8a0f218fcc27e27992779abc79d446d5d68437bd55ab683f7824`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: digest, packet. Outputs/bindings: (none).
+Calls/effect boundaries: digest.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[25].body[9].body[9]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[9].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:479`; AST `d611aad9a9dc53f0313a7dfede14788818618d6fe3dfd8a304073fee9626c685`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: digest, packet. Outputs/bindings: (none).
+Calls/effect boundaries: digest.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[9].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[10]::Expr
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:480`; AST `60da82c9786e77844ce9eee83e4ed1f37204da53d19733277b50b740c7d9139f`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: packet, packets. Outputs/bindings: (none).
+Calls/effect boundaries: packets.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[9].body[10]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[9].body[10].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:480`; AST `489d855223aaf109fa9b9531c5cba0b59c73ca6f2aae409891d1335a84ae20f6`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: packet, packets. Outputs/bindings: (none).
+Calls/effect boundaries: packets.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[9].body[10].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[10]::Return
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:481`; AST `a17c4af5581aee23927edd78690bb748de97ebfa14ce07b407374656e781e5b7`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: dependencies, dict, observation, packets, runs. Outputs/bindings: (none).
+Calls/effect boundaries: dict.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Return evaluation at root.body[25].body[10]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::_esbmc_report::root.body[25].body[10].value.values[0].elts[0]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:481`; AST `c195aa27103d01905f12a7f50ff11bca4ee8f83d66058d0e9e9a7c2d49eaed97`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: dict, observation, runs. Outputs/bindings: (none).
+Calls/effect boundaries: dict.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].value.values[0].elts[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26]::FunctionDef
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:485`; AST `e16615fb216c2f715b840a125957e32984642ecaabb0c51edd89978a502608b2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Path, _actual_test_details, _role, all, b, c, candidate, closures, compiled, contract, contracts, declarations, details, dict, digest, expected, f, file_binding, file_bindings, file_obligations, files, fixture_catalog, fixtures, key, len, list, locations, m, milestone, module, o, obligation, original_ids, p, path, paths, pattern, policy, policy_path, r, read_json, related, relative, require, root, row, rows, runtime_bindings, runtime_dependencies, runtime_receipt, scope, scope_files, selected, set, shared_targets, sorted, source_closure, source_inventory, str, suffix, target, targets, u, unit, units, value, verification_targets. Outputs/bindings: b, c, closures, contract, contracts, declarations, details, expected, f, file_bindings, file_obligations, files, fixtures, key, m, milestone, module, o, obligation, original_ids, p, path, paths, pattern, policy, policy_path, r, related, relative, row, rows, runtime_dependencies, runtime_receipt, scope, scope_files, selected, shared_targets, suffix, target, targets, u, unit, units, value, verification_targets.
-Calls/effect boundaries: _actual_test_details, _role, all, closures.update, compiled['milestones'].items, contracts.items, contracts.values, declarations.items, dict, digest, file_binding, file_obligations.get, file_obligations.setdefault, file_obligations.setdefault(path, set()).add, fixture_catalog, fixtures.items, len, list, module.replace, obligation['id'].removeprefix, p.is_file, p.relative_to, p.relative_to(root).as_posix, policy.get, policy['milestones'].items, read_json, require, root.glob, rows.append, runtime_bindings, selected.add, selected.update, set, shared_targets.values, sorted, source_closure, u['file'].startswith, units.append.
+Inputs: Path, _backend_evidence, _evidence_dependencies, _lineage, _qualification_report, candidate, catalog, dict, o, p, report, reports, root, str, value, values. Outputs/bindings: o, p, report, reports, value, values.
+Calls/effect boundaries: _backend_evidence, _evidence_dependencies, _lineage, _qualification_report.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[26]; no call, error or mutation may be omitted.
@@ -13646,17 +15246,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:437`; AST `53618f5097cfad6c99c97155431c93c918ac446c82e7de80ffda05328f954beb`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:486`; AST `3e47b782a4fb999f04afcb0425412b76872f6ee105c092c9cf3eb9c305f399d1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: (none). Outputs/bindings: policy_path.
+Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[26].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13666,14 +15266,14 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[1]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:438`; AST `7143092bbc3cccb25a58ade4893031dedc103dda8c5d6720ff076c46866da532`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:487`; AST `8cbd6ad72e4d32888618ba661a4248684e59964296580b3ce4896838e7cc7d2f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: policy_path, read_json, root. Outputs/bindings: policy.
-Calls/effect boundaries: read_json.
+Inputs: _backend_evidence, root. Outputs/bindings: values.
+Calls/effect boundaries: _backend_evidence.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Assign evaluation at root.body[26].body[1]; no call, error or mutation may be omitted.
@@ -13686,14 +15286,14 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:438`; AST `afc9245725092ce976e97407354ff4acb8e24ce6d97df815c214ec1691d49144`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:487`; AST `7b0349ab31c3baed5393c2f19a30320d341320d83e08d9ee74aa699e86845c83`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
-Inputs: policy_path, read_json, root. Outputs/bindings: (none).
-Calls/effect boundaries: read_json.
+Inputs: _backend_evidence, root. Outputs/bindings: (none).
+Calls/effect boundaries: _backend_evidence.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Call evaluation at root.body[26].body[1].value; no call, error or mutation may be omitted.
@@ -13706,14 +15306,14 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[2]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:439`; AST `2f6b266295150b3bed7e381d1e5b0835ad4cc21af21c27d832344ec7b9db05f3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:488`; AST `44405694a657c2c63fe112cc92a2611d68da77eb536a9a73b8408788ec2c63dd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
-Inputs: c, compiled, m. Outputs/bindings: c, contracts, m.
-Calls/effect boundaries: compiled['milestones'].items.
+Inputs: _qualification_report, candidate, catalog, root, value, values. Outputs/bindings: reports, value.
+Calls/effect boundaries: _qualification_report.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
 Invariants: Preserve ordered Assign evaluation at root.body[26].body[2]; no call, error or mutation may be omitted.
@@ -13726,9 +15326,249 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[2].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[2].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:439`; AST `f44d2d4a7b7f787b9ae862a7024ead8d70e7ecdb344eb5c4bb8db1e8071f1d72`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:488`; AST `416ec632e6db33c71018e54c30bfe80e987291a938496016dce866d1fc6dabbc`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
+
+Inputs: _qualification_report, candidate, catalog, root, value, values. Outputs/bindings: value.
+Calls/effect boundaries: _qualification_report.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ListComp evaluation at root.body[26].body[2].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[2].value.elt::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:488`; AST `f3f51a0e0490f0dc5b08024c6f4db0e93b4ae73dac041ca78c62574d5c4ac360`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _qualification_report, candidate, catalog, root, value. Outputs/bindings: (none).
+Calls/effect boundaries: _qualification_report.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[26].body[2].value.elt; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[3]::Return
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:489`; AST `68dc84a5973d1f43cc96ea7bcde4e054c79464b271100788e9daf839d9409f2c`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: _evidence_dependencies, _lineage, o, p, report, reports, values. Outputs/bindings: o, p, report.
+Calls/effect boundaries: _evidence_dependencies, _lineage.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Return evaluation at root.body[26].body[3]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[3].value.values[0]::ListComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:489`; AST `c6858251f093172993b420eb206a8214e0e5e587a4622e88b84ad4f304bff25b`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
+
+Inputs: o, report, reports. Outputs/bindings: o, report.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ListComp evaluation at root.body[26].body[3].value.values[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[3].value.values[1]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:490`; AST `a68e8276beab9b46e534ef35b3d627c1b602ef8b6fe7a7cce9570a98e2be46f2`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _evidence_dependencies, values. Outputs/bindings: (none).
+Calls/effect boundaries: _evidence_dependencies.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[26].body[3].value.values[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[3].value.values[2]::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:490`; AST `bbe2759e230562139bb71411cbe50bb7132fcb8e02ece45c2963cb0e3047529a`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: _lineage, values. Outputs/bindings: (none).
+Calls/effect boundaries: _lineage.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[26].body[3].value.values[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::qualification_reports::root.body[26].body[3].value.values[3]::ListComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:491`; AST `6f5aaf364a91697588b1b9d1f9958026207b721d77a8c7aa57b7d67f79c80e92`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
+
+Inputs: p, report, reports. Outputs/bindings: p, report.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered ListComp evaluation at root.body[26].body[3].value.values[3]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27]::FunctionDef
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:495`; AST `87efb9f19209a5bd990605490536c77481cdae5fc9c569b3978a992ad57930ed`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
+
+Inputs: Path, _actual_test_details, _role, all, b, c, candidate, closures, compiled, contract, contracts, declarations, details, dict, digest, expected, f, file_binding, file_bindings, file_obligations, files, fixture_catalog, fixtures, key, len, list, locations, m, milestone, module, o, obligation, original_ids, p, path, paths, pattern, policy, policy_path, r, read_json, related, relative, require, root, row, rows, runtime_bindings, runtime_dependencies, runtime_receipt, scope, scope_files, selected, set, shared_targets, sorted, source_closure, source_inventory, str, suffix, target, targets, u, unit, units, value, verification_targets. Outputs/bindings: b, c, closures, contract, contracts, declarations, details, expected, f, file_bindings, file_obligations, files, fixtures, key, m, milestone, module, o, obligation, original_ids, p, path, paths, pattern, policy, policy_path, r, related, relative, row, rows, runtime_dependencies, runtime_receipt, scope, scope_files, selected, shared_targets, suffix, target, targets, u, unit, units, value, verification_targets.
+Calls/effect boundaries: _actual_test_details, _role, all, closures.update, compiled['milestones'].items, contracts.items, contracts.values, declarations.items, dict, digest, file_binding, file_obligations.get, file_obligations.setdefault, file_obligations.setdefault(path, set()).add, fixture_catalog, fixtures.items, len, list, module.replace, obligation['id'].removeprefix, p.is_file, p.relative_to, p.relative_to(root).as_posix, policy.get, policy['milestones'].items, read_json, require, root.glob, rows.append, runtime_bindings, selected.add, selected.update, set, shared_targets.values, sorted, source_closure, u['file'].startswith, units.append.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered FunctionDef evaluation at root.body[27]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[0]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:496`; AST `53618f5097cfad6c99c97155431c93c918ac446c82e7de80ffda05328f954beb`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: policy_path.
+Calls/effect boundaries: (none).
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[1]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:497`; AST `7143092bbc3cccb25a58ade4893031dedc103dda8c5d6720ff076c46866da532`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: policy_path, read_json, root. Outputs/bindings: policy.
+Calls/effect boundaries: read_json.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[1].value::Call
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:497`; AST `afc9245725092ce976e97407354ff4acb8e24ce6d97df815c214ec1691d49144`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: policy_path, read_json, root. Outputs/bindings: (none).
+Calls/effect boundaries: read_json.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Call evaluation at root.body[27].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[2]::Assign
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:498`; AST `2f6b266295150b3bed7e381d1e5b0835ad4cc21af21c27d832344ec7b9db05f3`.
+
+Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: c, compiled, m. Outputs/bindings: c, contracts, m.
+Calls/effect boundaries: compiled['milestones'].items.
+Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
+
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[2]; no call, error or mutation may be omitted.
+Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[2].value::DictComp
+
+Source: `infra/agentinfra/roadmap_python_catalog.py:498`; AST `f44d2d4a7b7f787b9ae862a7024ead8d70e7ecdb344eb5c4bb8db1e8071f1d72`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -13736,7 +15576,7 @@ Inputs: c, compiled, m. Outputs/bindings: c, m.
 Calls/effect boundaries: compiled['milestones'].items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13746,9 +15586,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[2].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[2].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:439`; AST `752f4a73b8c3044ae754a3009f757c4e7e03060bdfe02cc0899de4711f3326d6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:498`; AST `752f4a73b8c3044ae754a3009f757c4e7e03060bdfe02cc0899de4711f3326d6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13756,7 +15596,7 @@ Inputs: compiled. Outputs/bindings: (none).
 Calls/effect boundaries: compiled['milestones'].items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[2].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[2].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13766,9 +15606,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[3]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[3]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:440`; AST `e7f2d120734469047f344c7765d5d7204d824a3322173f339c563bee2a0209b3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `e7f2d120734469047f344c7765d5d7204d824a3322173f339c563bee2a0209b3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13776,7 +15616,7 @@ Inputs: contracts, policy, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13786,9 +15626,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[3].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:440`; AST `fc86861db45880ac55af892331fa221526826a44426fe69938a9ab4f460b0fc4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `fc86861db45880ac55af892331fa221526826a44426fe69938a9ab4f460b0fc4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13796,7 +15636,7 @@ Inputs: contracts, policy, require, set. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get, require, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[3].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13806,9 +15646,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[3].value.args[0].values[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[3].value.args[0].values[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:440`; AST `4f4917a694d078dcde9a0b2b3f36334ce31176634b9e12cecc4a86db64cf7e07`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `4f4917a694d078dcde9a0b2b3f36334ce31176634b9e12cecc4a86db64cf7e07`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13816,7 +15656,7 @@ Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy.get.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[3].value.args[0].values[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[3].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13826,9 +15666,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[3].value.args[0].values[1].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[3].value.args[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:440`; AST `94c9fdfd2a3a54a81ff51947e4c2ca4ed23161118987752d2cb889aa429b14e5`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `94c9fdfd2a3a54a81ff51947e4c2ca4ed23161118987752d2cb889aa429b14e5`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13836,7 +15676,7 @@ Inputs: policy, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[3].value.args[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[3].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13846,9 +15686,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[3].value.args[0].values[1].comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[3].value.args[0].values[1].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:440`; AST `84c74cfe8d6d6e09288203902dc607d0705f99caa0d7fa1166ca4a31812a1171`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `84c74cfe8d6d6e09288203902dc607d0705f99caa0d7fa1166ca4a31812a1171`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13856,7 +15696,7 @@ Inputs: contracts, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[3].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[3].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13866,9 +15706,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[4]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:441`; AST `921797b82d56aa1f8e09faf2e02f846ab0fcdce027f03d21785e1ee1e4192370`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `921797b82d56aa1f8e09faf2e02f846ab0fcdce027f03d21785e1ee1e4192370`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13876,7 +15716,7 @@ Inputs: fixture_catalog, locations, root. Outputs/bindings: closures, fixtures.
 Calls/effect boundaries: fixture_catalog.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[4]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13886,9 +15726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[4].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:441`; AST `fcb364079fe7074c0edf206402ebbf72fc8c0d5c89d89806fed3833bf2bb087c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `fcb364079fe7074c0edf206402ebbf72fc8c0d5c89d89806fed3833bf2bb087c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13896,7 +15736,7 @@ Inputs: fixture_catalog, locations, root. Outputs/bindings: (none).
 Calls/effect boundaries: fixture_catalog.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[4].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13906,9 +15746,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[5]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[5]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:442`; AST `e78c8a31b24a47773e979f0c3bfdde5a93d6d1c26ac13114fb00722f1a92a865`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:501`; AST `e78c8a31b24a47773e979f0c3bfdde5a93d6d1c26ac13114fb00722f1a92a865`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13916,7 +15756,7 @@ Inputs: _actual_test_details, candidate, compiled, root. Outputs/bindings: detai
 Calls/effect boundaries: _actual_test_details.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13926,9 +15766,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[5].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:442`; AST `735bc9ab05c8a691d52d5fd6f84275107daf4c87a24a378349337080021b6680`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:501`; AST `735bc9ab05c8a691d52d5fd6f84275107daf4c87a24a378349337080021b6680`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13936,7 +15776,7 @@ Inputs: _actual_test_details, candidate, compiled, root. Outputs/bindings: (none
 Calls/effect boundaries: _actual_test_details.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[5].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13946,9 +15786,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[6]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[6]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `fa9636d3d5b8a9eac50680203ea7b1c51f13c693a37874af52960d0365e9d57e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `fa9636d3d5b8a9eac50680203ea7b1c51f13c693a37874af52960d0365e9d57e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -13956,7 +15796,7 @@ Inputs: policy, root, source_closure, target. Outputs/bindings: shared_targets, 
 Calls/effect boundaries: source_closure.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13966,9 +15806,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[6].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[6].value::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `721021946063b76dadf063ac7e30609fd41f5831618fb68fce547bd97dca5e9a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `721021946063b76dadf063ac7e30609fd41f5831618fb68fce547bd97dca5e9a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -13976,7 +15816,7 @@ Inputs: policy, root, source_closure, target. Outputs/bindings: target.
 Calls/effect boundaries: source_closure.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[6].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -13986,9 +15826,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[6].value.value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[6].value.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:443`; AST `37eafd9fdd3b3f73c61d78db96f74aa01fdaefd3e002058c8d44e8eeb8004ebc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `37eafd9fdd3b3f73c61d78db96f74aa01fdaefd3e002058c8d44e8eeb8004ebc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -13996,7 +15836,7 @@ Inputs: root, source_closure, target. Outputs/bindings: (none).
 Calls/effect boundaries: source_closure.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[6].value.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[6].value.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14006,9 +15846,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[7]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[7]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:444`; AST `829b8ebf5c2f8a5ed49b902d2b2b9a0e0fe2590b8ca8d74b8b0a9bd54ed32a05`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `829b8ebf5c2f8a5ed49b902d2b2b9a0e0fe2590b8ca8d74b8b0a9bd54ed32a05`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14016,7 +15856,7 @@ Inputs: closures, shared_targets, value. Outputs/bindings: value.
 Calls/effect boundaries: closures.update, shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[7]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14026,9 +15866,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[7].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[7].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:444`; AST `b1449151cda6b6735fc9a91545292a6d01b98f4829cae1e03715e32b1654b03b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `b1449151cda6b6735fc9a91545292a6d01b98f4829cae1e03715e32b1654b03b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14036,7 +15876,7 @@ Inputs: closures, shared_targets, value. Outputs/bindings: value.
 Calls/effect boundaries: closures.update, shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[7].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14046,9 +15886,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[7].value.args[0]::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[7].value.args[0]::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:444`; AST `62eb94f6c036fc3cc7c5e82301e432dda4cbc475b8787c461a2038bda8b08e0a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `62eb94f6c036fc3cc7c5e82301e432dda4cbc475b8787c461a2038bda8b08e0a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -14056,7 +15896,7 @@ Inputs: shared_targets, value. Outputs/bindings: value.
 Calls/effect boundaries: shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[7].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[7].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14066,9 +15906,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[7].value.args[0].generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[7].value.args[0].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:444`; AST `901d5931952c73958542a21b056d5508842753cef6ebb4e2cd276b10a4f6f51d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `901d5931952c73958542a21b056d5508842753cef6ebb4e2cd276b10a4f6f51d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14076,7 +15916,7 @@ Inputs: shared_targets. Outputs/bindings: (none).
 Calls/effect boundaries: shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[7].value.args[0].generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[7].value.args[0].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14086,9 +15926,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[8]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[8]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:445`; AST `6268e60c1ce80b0cec0cc29ff316b412550e99959ead1f0199a53f7e68b4fb39`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:504`; AST `6268e60c1ce80b0cec0cc29ff316b412550e99959ead1f0199a53f7e68b4fb39`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14096,7 +15936,7 @@ Inputs: b, source_inventory. Outputs/bindings: b, file_bindings.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[8]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14106,9 +15946,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[8].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[8].value::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:445`; AST `49f9dce06d86e6b53774ba540c79b804c786b01b47561c3b903bfeecd3364eda`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:504`; AST `49f9dce06d86e6b53774ba540c79b804c786b01b47561c3b903bfeecd3364eda`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -14116,7 +15956,7 @@ Inputs: b, source_inventory. Outputs/bindings: b.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[8].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14126,9 +15966,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[9]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[9]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:446`; AST `33665da6c36e30273ca6be0cc47c1fd947bff52d0e3b01c616a8876f96cc3545`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:505`; AST `33665da6c36e30273ca6be0cc47c1fd947bff52d0e3b01c616a8876f96cc3545`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14136,7 +15976,7 @@ Inputs: (none). Outputs/bindings: scope_files.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[9]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14146,9 +15986,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:447`; AST `f2ab349e4c7a7ca00432369f8933ec40371e344f3d6616867ae34810e2c3108c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:506`; AST `f2ab349e4c7a7ca00432369f8933ec40371e344f3d6616867ae34810e2c3108c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -14156,7 +15996,7 @@ Inputs: file_bindings, milestone, module, p, pattern, policy, relative, require,
 Calls/effect boundaries: module.replace, p.is_file, p.relative_to, p.relative_to(root).as_posix, policy['milestones'].items, require, root.glob, selected.add, selected.update, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[10]; no call, error or mutation may be omitted. Iteration: (milestone, scope) in policy['milestones'].items()
+Invariants: Preserve ordered For evaluation at root.body[27].body[10]; no call, error or mutation may be omitted. Iteration: (milestone, scope) in policy['milestones'].items()
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14166,9 +16006,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:447`; AST `f4e7e43ac23220d5d06f3fe79d7d425f5130e55e00cd9db0073b235afa3bdf80`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:506`; AST `f4e7e43ac23220d5d06f3fe79d7d425f5130e55e00cd9db0073b235afa3bdf80`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14176,7 +16016,7 @@ Inputs: policy. Outputs/bindings: (none).
 Calls/effect boundaries: policy['milestones'].items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14186,9 +16026,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:448`; AST `4c2122a8558936951780f95e675d564c5a3c1b4506332af27d697b0499e6fca8`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:507`; AST `4c2122a8558936951780f95e675d564c5a3c1b4506332af27d697b0499e6fca8`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14196,7 +16036,7 @@ Inputs: set. Outputs/bindings: selected.
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[10].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[10].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14206,9 +16046,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:448`; AST `838cdcc98951e8453a6f9eabf156b2a00af54241b1675173b0420d161d1cb68b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:507`; AST `838cdcc98951e8453a6f9eabf156b2a00af54241b1675173b0420d161d1cb68b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14216,7 +16056,7 @@ Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14226,9 +16066,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:449`; AST `06269d6acd6750132881e6fddd118e4b6b5abca485639889904d91519c05b17c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:508`; AST `06269d6acd6750132881e6fddd118e4b6b5abca485639889904d91519c05b17c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -14236,7 +16076,7 @@ Inputs: file_bindings, module, relative, require, scope, selected. Outputs/bindi
 Calls/effect boundaries: module.replace, require, selected.add.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[10].body[1]; no call, error or mutation may be omitted. Iteration: module in scope['production_modules']
+Invariants: Preserve ordered For evaluation at root.body[27].body[10].body[1]; no call, error or mutation may be omitted. Iteration: module in scope['production_modules']
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14246,9 +16086,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:450`; AST `5f5cfd53b3fe4a7d0206e7642d3b9aa6fb2f41d30f807d24de06bedcc9f41965`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:509`; AST `5f5cfd53b3fe4a7d0206e7642d3b9aa6fb2f41d30f807d24de06bedcc9f41965`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14256,7 +16096,7 @@ Inputs: module. Outputs/bindings: relative.
 Calls/effect boundaries: module.replace.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[10].body[1].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[10].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14266,9 +16106,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[0].value.left.right::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[0].value.left.right::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:450`; AST `e88e703772b75004eb4954cf71620439fc214359c4f038620546880320a2365f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:509`; AST `e88e703772b75004eb4954cf71620439fc214359c4f038620546880320a2365f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14276,7 +16116,7 @@ Inputs: module. Outputs/bindings: (none).
 Calls/effect boundaries: module.replace.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[1].body[0].value.left.right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[1].body[0].value.left.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14286,9 +16126,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[1]::If
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[1]::If
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:451`; AST `44aa65c3c92ac9942e3c3b6d8ad99f99ce92f9b2a7b6c5c6a2db70f7ec2da350`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:510`; AST `44aa65c3c92ac9942e3c3b6d8ad99f99ce92f9b2a7b6c5c6a2db70f7ec2da350`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -14296,7 +16136,7 @@ Inputs: module. Outputs/bindings: relative.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered If evaluation at root.body[26].body[10].body[1].body[1]; no call, error or mutation may be omitted. Condition: module == 'agentinfra'
+Invariants: Preserve ordered If evaluation at root.body[27].body[10].body[1].body[1]; no call, error or mutation may be omitted. Condition: module == 'agentinfra'
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14306,9 +16146,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[1].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[1].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:452`; AST `6e1d008379e74d3ce1c9cb3a3d7b2b791e416c4dc307d5608a0c1c80bec85942`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:511`; AST `6e1d008379e74d3ce1c9cb3a3d7b2b791e416c4dc307d5608a0c1c80bec85942`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14316,7 +16156,7 @@ Inputs: (none). Outputs/bindings: relative.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[10].body[1].body[1].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[10].body[1].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14326,9 +16166,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[2]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[2]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:453`; AST `5954db7ac101855296eb39156f2ae8455bf4f4085fff961844e5cb44523233cd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:512`; AST `5954db7ac101855296eb39156f2ae8455bf4f4085fff961844e5cb44523233cd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14336,7 +16176,7 @@ Inputs: file_bindings, module, relative, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[10].body[1].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[10].body[1].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14346,9 +16186,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[2].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:453`; AST `af0c7742023b451e8e1ac929a361597ed062fe1def14049f45ccd5f95b94e306`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:512`; AST `af0c7742023b451e8e1ac929a361597ed062fe1def14049f45ccd5f95b94e306`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14356,7 +16196,7 @@ Inputs: file_bindings, module, relative, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[1].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[1].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14366,9 +16206,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[3]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[3]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:454`; AST `5c1fa3344c42172f7de49770e82681dbb801b7c77b0d5fed33e64053af2ba2fa`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:513`; AST `5c1fa3344c42172f7de49770e82681dbb801b7c77b0d5fed33e64053af2ba2fa`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14376,7 +16216,7 @@ Inputs: relative, selected. Outputs/bindings: (none).
 Calls/effect boundaries: selected.add.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[10].body[1].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[10].body[1].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14386,9 +16226,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[1].body[3].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[1].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:454`; AST `becb53e6e275fb7aee84901d742a80950ba77cad4b6346a275b140ae8efe34f2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:513`; AST `becb53e6e275fb7aee84901d742a80950ba77cad4b6346a275b140ae8efe34f2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14396,7 +16236,7 @@ Inputs: relative, selected. Outputs/bindings: (none).
 Calls/effect boundaries: selected.add.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[1].body[3].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[1].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14406,9 +16246,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:455`; AST `bb12f409782860432c8621f132526372253df8dfcc4dd807f57b79d544bb09dc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:514`; AST `bb12f409782860432c8621f132526372253df8dfcc4dd807f57b79d544bb09dc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -14416,7 +16256,7 @@ Inputs: file_bindings, p, pattern, root, scope, selected. Outputs/bindings: p, p
 Calls/effect boundaries: p.is_file, p.relative_to, p.relative_to(root).as_posix, root.glob, selected.update.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[10].body[2]; no call, error or mutation may be omitted. Iteration: pattern in scope['maintained_source_patterns']
+Invariants: Preserve ordered For evaluation at root.body[27].body[10].body[2]; no call, error or mutation may be omitted. Iteration: pattern in scope['maintained_source_patterns']
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14426,9 +16266,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `63b24911c31d0e829de6ad5d23159dab66499c265d50fd05dd8cea72ef37b52b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `63b24911c31d0e829de6ad5d23159dab66499c265d50fd05dd8cea72ef37b52b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14436,7 +16276,7 @@ Inputs: file_bindings, p, pattern, root, selected. Outputs/bindings: p.
 Calls/effect boundaries: p.is_file, p.relative_to, p.relative_to(root).as_posix, root.glob, selected.update.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[10].body[2].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[10].body[2].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14446,9 +16286,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `2647e88a63c71e7896841d8f80906d0312555db4feaf371d998d64d186ebddd7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `2647e88a63c71e7896841d8f80906d0312555db4feaf371d998d64d186ebddd7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14456,7 +16296,7 @@ Inputs: file_bindings, p, pattern, root, selected. Outputs/bindings: p.
 Calls/effect boundaries: p.is_file, p.relative_to, p.relative_to(root).as_posix, root.glob, selected.update.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14466,9 +16306,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0]::GeneratorExp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `18d3966b0b97eba2a22323a505f25b57507237a3d2ecf6c2fd0233a29a8037e6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `18d3966b0b97eba2a22323a505f25b57507237a3d2ecf6c2fd0233a29a8037e6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
@@ -14476,7 +16316,7 @@ Inputs: file_bindings, p, pattern, root. Outputs/bindings: p.
 Calls/effect boundaries: p.is_file, p.relative_to, p.relative_to(root).as_posix, root.glob.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered GeneratorExp evaluation at root.body[26].body[10].body[2].body[0].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[27].body[10].body[2].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14486,9 +16326,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0].elt::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0].elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `e5edcd6b200205e2fc0e53b73f283275768b68b00541e7340a68a6790ede5a16`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `e5edcd6b200205e2fc0e53b73f283275768b68b00541e7340a68a6790ede5a16`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14496,7 +16336,7 @@ Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to, p.relative_to(root).as_posix.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value.args[0].elt; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value.args[0].elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14506,9 +16346,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0].elt.func.value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0].elt.func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `104da8a083f29e3a4bb917346795d093732c1321160619fe967702ce846a3e35`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `104da8a083f29e3a4bb917346795d093732c1321160619fe967702ce846a3e35`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14516,7 +16356,7 @@ Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value.args[0].elt.func.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value.args[0].elt.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14526,9 +16366,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0].generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `259c59db5f2f06edc0bbd00d8d9e1098ac333049b126b4450815db1c45cac849`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `259c59db5f2f06edc0bbd00d8d9e1098ac333049b126b4450815db1c45cac849`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14536,7 +16376,7 @@ Inputs: pattern, root. Outputs/bindings: (none).
 Calls/effect boundaries: root.glob.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value.args[0].generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value.args[0].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14546,9 +16386,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `e0594c8f8595272c6b5ea9423cbfc33970f76cb3832fbbde2b4a35e386807838`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `e0594c8f8595272c6b5ea9423cbfc33970f76cb3832fbbde2b4a35e386807838`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14556,7 +16396,7 @@ Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.is_file.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14566,9 +16406,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `e5edcd6b200205e2fc0e53b73f283275768b68b00541e7340a68a6790ede5a16`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `e5edcd6b200205e2fc0e53b73f283275768b68b00541e7340a68a6790ede5a16`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14576,7 +16416,7 @@ Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to, p.relative_to(root).as_posix.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14586,9 +16426,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left.func.value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left.func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:456`; AST `104da8a083f29e3a4bb917346795d093732c1321160619fe967702ce846a3e35`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:515`; AST `104da8a083f29e3a4bb917346795d093732c1321160619fe967702ce846a3e35`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14596,7 +16436,7 @@ Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left.func.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[10].body[2].body[0].value.args[0].generators[0].ifs[0].values[1].left.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14606,9 +16446,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[10].body[3]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[10].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:457`; AST `25c2968aaed2c88627fb1bfe6c415944526ff4442f3bea5a959957af360f7f08`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:516`; AST `25c2968aaed2c88627fb1bfe6c415944526ff4442f3bea5a959957af360f7f08`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14616,7 +16456,7 @@ Inputs: milestone, scope_files, selected. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[10].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[10].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14626,9 +16466,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[11]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[11]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:458`; AST `ac5dc778d890ac7d3fe32248966b866f064c4894b141595ccc25455eb29f5366`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:517`; AST `ac5dc778d890ac7d3fe32248966b866f064c4894b141595ccc25455eb29f5366`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14636,7 +16476,7 @@ Inputs: (none). Outputs/bindings: rows.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[11]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14646,9 +16486,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:459`; AST `80108af9f6bac2bba21ab0dc1add0d4a8fff24cfb8366e073ea1e92d25ad0232`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:518`; AST `80108af9f6bac2bba21ab0dc1add0d4a8fff24cfb8366e073ea1e92d25ad0232`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -14656,7 +16496,7 @@ Inputs: _role, b, c, closures, contract, contracts, dict, digest, f, file_bindin
 Calls/effect boundaries: _role, contracts.items, dict, digest, fixtures.items, list, obligation['id'].removeprefix, require, rows.append, shared_targets.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[12]; no call, error or mutation may be omitted. Iteration: (milestone, contract) in contracts.items()
+Invariants: Preserve ordered For evaluation at root.body[27].body[12]; no call, error or mutation may be omitted. Iteration: (milestone, contract) in contracts.items()
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14666,9 +16506,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:459`; AST `194cbbafb8658fc92174f260adc20a0927247172cf511fb63942c34126fea87d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:518`; AST `194cbbafb8658fc92174f260adc20a0927247172cf511fb63942c34126fea87d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14676,7 +16516,7 @@ Inputs: contracts. Outputs/bindings: (none).
 Calls/effect boundaries: contracts.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14686,9 +16526,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:460`; AST `36c9bc2185c0ad22a7935963c80586a52143814e43b08e04af394b7dc3af3106`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:519`; AST `36c9bc2185c0ad22a7935963c80586a52143814e43b08e04af394b7dc3af3106`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -14696,7 +16536,7 @@ Inputs: _role, b, c, closures, contract, dict, digest, f, file_bindings, files, 
 Calls/effect boundaries: _role, dict, digest, fixtures.items, list, obligation['id'].removeprefix, require, rows.append, shared_targets.values, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[12].body[0]; no call, error or mutation may be omitted. Iteration: obligation in contract['proof_obligations']
+Invariants: Preserve ordered For evaluation at root.body[27].body[12].body[0]; no call, error or mutation may be omitted. Iteration: obligation in contract['proof_obligations']
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14706,9 +16546,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:461`; AST `4f4272189d3ed92b5ad241522f1142a6f0161da3f98346df81041f41c3d4cc3a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:520`; AST `4f4272189d3ed92b5ad241522f1142a6f0161da3f98346df81041f41c3d4cc3a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14716,7 +16556,7 @@ Inputs: milestone, obligation. Outputs/bindings: suffix.
 Calls/effect boundaries: obligation['id'].removeprefix.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[12].body[0].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[12].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14726,9 +16566,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:461`; AST `bbb68eaa2eefd7678e7c97bd28668f9368c19369b139520d38a651f48db6387f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:520`; AST `bbb68eaa2eefd7678e7c97bd28668f9368c19369b139520d38a651f48db6387f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14736,7 +16576,7 @@ Inputs: milestone, obligation. Outputs/bindings: (none).
 Calls/effect boundaries: obligation['id'].removeprefix.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14746,9 +16586,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[1]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:462`; AST `9290005806fab79d6ee0e3fb0fd9ef7ab102a6c804eccca4acbbd21c71eb4150`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:521`; AST `9290005806fab79d6ee0e3fb0fd9ef7ab102a6c804eccca4acbbd21c71eb4150`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14756,7 +16596,7 @@ Inputs: milestone, require, suffix. Outputs/bindings: (none).
 Calls/effect boundaries: require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[12].body[0].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[12].body[0].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14766,9 +16606,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:462`; AST `6703d42447c266e0076c393f347161d0bed47fc86988c458f1944cd60769deac`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:521`; AST `6703d42447c266e0076c393f347161d0bed47fc86988c458f1944cd60769deac`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14776,7 +16616,7 @@ Inputs: milestone, require, suffix. Outputs/bindings: (none).
 Calls/effect boundaries: require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14786,9 +16626,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[2]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `1dd4df203499b50b6673e6a0c15af26bd88c0c4dcf4f295b3dbd38655720b0fc`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:522`; AST `1dd4df203499b50b6673e6a0c15af26bd88c0c4dcf4f295b3dbd38655720b0fc`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14796,7 +16636,7 @@ Inputs: b, c, milestone, scope_files, shared_targets, suffix. Outputs/bindings: 
 Calls/effect boundaries: shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[12].body[0].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[12].body[0].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14806,9 +16646,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[2].value.orelse::SetComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[2].value.orelse::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `b76103f4e532aa170a120f424aaa81887d262a7462e489d75ce58c5e2326198b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:522`; AST `b76103f4e532aa170a120f424aaa81887d262a7462e489d75ce58c5e2326198b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -14816,7 +16656,7 @@ Inputs: b, c, shared_targets. Outputs/bindings: b, c.
 Calls/effect boundaries: shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered SetComp evaluation at root.body[26].body[12].body[0].body[2].value.orelse; no call, error or mutation may be omitted.
+Invariants: Preserve ordered SetComp evaluation at root.body[27].body[12].body[0].body[2].value.orelse; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14826,9 +16666,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[2].value.orelse.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[2].value.orelse.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:463`; AST `901d5931952c73958542a21b056d5508842753cef6ebb4e2cd276b10a4f6f51d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:522`; AST `901d5931952c73958542a21b056d5508842753cef6ebb4e2cd276b10a4f6f51d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14836,7 +16676,7 @@ Inputs: shared_targets. Outputs/bindings: (none).
 Calls/effect boundaries: shared_targets.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[2].value.orelse.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[2].value.orelse.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14846,9 +16686,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[3]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[3]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:464`; AST `2b82f9ae8730412235afb3cf75fcdc9e10fa493d01908ed3860c1d0c11ad3702`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:523`; AST `2b82f9ae8730412235afb3cf75fcdc9e10fa493d01908ed3860c1d0c11ad3702`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14856,7 +16696,7 @@ Inputs: files, source_inventory, u. Outputs/bindings: targets, u.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[12].body[0].body[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[12].body[0].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14866,9 +16706,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[3].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[3].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:464`; AST `a448621449c73c809b3d0aab6c6449f6459565d625c9ffedfde1d223dd75dace`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:523`; AST `a448621449c73c809b3d0aab6c6449f6459565d625c9ffedfde1d223dd75dace`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -14876,7 +16716,7 @@ Inputs: files, source_inventory, u. Outputs/bindings: u.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[3].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14886,9 +16726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[4]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[4]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:465`; AST `3526612b8eeb432ad8405d92a222382cd430c93f0f0f1fc4e07dfa73db5a43b9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:524`; AST `3526612b8eeb432ad8405d92a222382cd430c93f0f0f1fc4e07dfa73db5a43b9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14896,7 +16736,7 @@ Inputs: b, closures, f, files, fixtures, key, milestone, suffix. Outputs/binding
 Calls/effect boundaries: fixtures.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[12].body[0].body[4]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[12].body[0].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14906,9 +16746,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[4].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[4].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:465`; AST `cbb8f2402e370efd73395ef3787c1ff71e83e2280a405ad12a71118e6a9c776d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:524`; AST `cbb8f2402e370efd73395ef3787c1ff71e83e2280a405ad12a71118e6a9c776d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -14916,7 +16756,7 @@ Inputs: b, closures, f, files, fixtures, key, milestone, suffix. Outputs/binding
 Calls/effect boundaries: fixtures.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[4].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14926,9 +16766,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[4].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[4].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:465`; AST `a99a41db1c567786c4d9b9d14e898919607e646cbed9c0b1a367e921aedb5951`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:524`; AST `a99a41db1c567786c4d9b9d14e898919607e646cbed9c0b1a367e921aedb5951`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14936,7 +16776,7 @@ Inputs: fixtures. Outputs/bindings: (none).
 Calls/effect boundaries: fixtures.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[4].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[4].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14946,9 +16786,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[4].value.generators[0].ifs[0].values[1].right::SetComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[4].value.generators[0].ifs[0].values[1].right::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:465`; AST `54caf8651a2972ddb755e25d12ce7cb46f2257614e620bb289253eb5840a66ec`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:524`; AST `54caf8651a2972ddb755e25d12ce7cb46f2257614e620bb289253eb5840a66ec`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -14956,7 +16796,7 @@ Inputs: b, closures, f. Outputs/bindings: b.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered SetComp evaluation at root.body[26].body[12].body[0].body[4].value.generators[0].ifs[0].values[1].right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered SetComp evaluation at root.body[27].body[12].body[0].body[4].value.generators[0].ifs[0].values[1].right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14966,9 +16806,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:466`; AST `756c2e45b73b56e95af83730841bd9701b0b66b3058ebad108c1b1fbe16a9bd0`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:525`; AST `756c2e45b73b56e95af83730841bd9701b0b66b3058ebad108c1b1fbe16a9bd0`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -14976,7 +16816,7 @@ Inputs: _role, contract, dict, digest, file_bindings, files, list, milestone, ob
 Calls/effect boundaries: _role, dict, digest, list, rows.append, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[12].body[0].body[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[12].body[0].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -14986,9 +16826,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:466`; AST `a55b36882a04bc35461ceef88f56e55c98516e2a71fefcd4d44da27c4fb65082`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:525`; AST `a55b36882a04bc35461ceef88f56e55c98516e2a71fefcd4d44da27c4fb65082`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -14996,7 +16836,7 @@ Inputs: _role, contract, dict, digest, file_bindings, files, list, milestone, ob
 Calls/effect boundaries: _role, dict, digest, list, rows.append, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15006,9 +16846,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[5]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[5]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:467`; AST `1253f0f07ad69eba5dc7892142a2e1dca56b8de30947ef3013ae84aeb4801584`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:526`; AST `1253f0f07ad69eba5dc7892142a2e1dca56b8de30947ef3013ae84aeb4801584`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15016,7 +16856,7 @@ Inputs: contract, digest. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[5]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[5]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15026,9 +16866,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[6]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[6]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:468`; AST `53d551f8eabf28b1b22096f53ccb767d5600c9bed6e7d66534730d896316ee24`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:527`; AST `53d551f8eabf28b1b22096f53ccb767d5600c9bed6e7d66534730d896316ee24`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -15036,7 +16876,7 @@ Inputs: _role, dict, file_bindings, files, p, sorted. Outputs/bindings: p.
 Calls/effect boundaries: _role, dict, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15046,9 +16886,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[6].elt::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[6].elt::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:468`; AST `d90b6591e73e62990b40cd66eb763e6ec0b4c83380ace5402975314d6c6a497e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:527`; AST `d90b6591e73e62990b40cd66eb763e6ec0b4c83380ace5402975314d6c6a497e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15056,7 +16896,7 @@ Inputs: _role, dict, file_bindings, p. Outputs/bindings: (none).
 Calls/effect boundaries: _role, dict.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[6].elt; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[6].elt; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15066,9 +16906,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[6].elt.keywords[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[6].elt.keywords[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:468`; AST `5be8dcba6f5ecfd15de1da33597edeec70ba1689221bdfceae002af92ab26c43`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:527`; AST `5be8dcba6f5ecfd15de1da33597edeec70ba1689221bdfceae002af92ab26c43`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15076,7 +16916,7 @@ Inputs: _role, p. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[6].elt.keywords[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[6].elt.keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15086,9 +16926,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[6].generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[6].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:468`; AST `05cb7a0a2a5d8121e7823f0a1fb8c974bc335b007b204b6bd26fdf9a6644637f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:527`; AST `05cb7a0a2a5d8121e7823f0a1fb8c974bc335b007b204b6bd26fdf9a6644637f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15096,7 +16936,7 @@ Inputs: files, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[6].generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[6].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15106,9 +16946,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[7]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[7]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:469`; AST `47bf3aed017cc2df72dabaeff1557868383b1494706af42e65af6502135c7ed7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:528`; AST `47bf3aed017cc2df72dabaeff1557868383b1494706af42e65af6502135c7ed7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -15116,7 +16956,7 @@ Inputs: _role, file_bindings, files, p, sorted. Outputs/bindings: p.
 Calls/effect boundaries: _role, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[7]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15126,9 +16966,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[7].generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[7].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:469`; AST `05cb7a0a2a5d8121e7823f0a1fb8c974bc335b007b204b6bd26fdf9a6644637f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:528`; AST `05cb7a0a2a5d8121e7823f0a1fb8c974bc335b007b204b6bd26fdf9a6644637f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15136,7 +16976,7 @@ Inputs: files, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[7].generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[7].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15146,9 +16986,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[7].generators[0].ifs[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[7].generators[0].ifs[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:469`; AST `5be8dcba6f5ecfd15de1da33597edeec70ba1689221bdfceae002af92ab26c43`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:528`; AST `5be8dcba6f5ecfd15de1da33597edeec70ba1689221bdfceae002af92ab26c43`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15156,7 +16996,7 @@ Inputs: _role, p. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[7].generators[0].ifs[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[7].generators[0].ifs[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15166,9 +17006,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[8]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[8]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:470`; AST `73c5b627d30262a00e94b39eed1289da718470b60797a77ecae631a9adb56ec3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:529`; AST `73c5b627d30262a00e94b39eed1289da718470b60797a77ecae631a9adb56ec3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -15176,7 +17016,7 @@ Inputs: _role, file_bindings, files, p, sorted. Outputs/bindings: p.
 Calls/effect boundaries: _role, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[8]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[8]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15186,9 +17026,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[8].generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[8].generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:470`; AST `05cb7a0a2a5d8121e7823f0a1fb8c974bc335b007b204b6bd26fdf9a6644637f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:529`; AST `05cb7a0a2a5d8121e7823f0a1fb8c974bc335b007b204b6bd26fdf9a6644637f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15196,7 +17036,7 @@ Inputs: files, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[8].generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[8].generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15206,9 +17046,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[8].generators[0].ifs[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[8].generators[0].ifs[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:470`; AST `5be8dcba6f5ecfd15de1da33597edeec70ba1689221bdfceae002af92ab26c43`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:529`; AST `5be8dcba6f5ecfd15de1da33597edeec70ba1689221bdfceae002af92ab26c43`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15216,7 +17056,7 @@ Inputs: _role, p. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[8].generators[0].ifs[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[8].generators[0].ifs[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15226,9 +17066,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[9]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[9]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:471`; AST `e00942e4c96db7c31de85f7d4c33b811fb662e19e3f8fc55b8b44c101111b4e1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:530`; AST `e00942e4c96db7c31de85f7d4c33b811fb662e19e3f8fc55b8b44c101111b4e1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -15236,7 +17076,7 @@ Inputs: _role, targets, u. Outputs/bindings: u.
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[9]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15246,9 +17086,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[9].generators[0].ifs[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[9].generators[0].ifs[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:471`; AST `c6ba34afdb0f94c7ee97b84d5240c5fe8e693d5327b1449c319ccc0dcc5850ef`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:530`; AST `c6ba34afdb0f94c7ee97b84d5240c5fe8e693d5327b1449c319ccc0dcc5850ef`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15256,7 +17096,7 @@ Inputs: _role, u. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[9].generators[0].ifs[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[9].generators[0].ifs[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15266,9 +17106,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[10]::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[10]::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:472`; AST `2e30947866f89260b86096d348304f1806c5185dc09c8b056cec43397a516ff9`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:531`; AST `2e30947866f89260b86096d348304f1806c5185dc09c8b056cec43397a516ff9`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -15276,7 +17116,7 @@ Inputs: _role, targets, u. Outputs/bindings: u.
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[10]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[10]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15286,9 +17126,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[10].generators[0].ifs[0].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[10].generators[0].ifs[0].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:472`; AST `c6ba34afdb0f94c7ee97b84d5240c5fe8e693d5327b1449c319ccc0dcc5850ef`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:531`; AST `c6ba34afdb0f94c7ee97b84d5240c5fe8e693d5327b1449c319ccc0dcc5850ef`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15296,7 +17136,7 @@ Inputs: _role, u. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[10].generators[0].ifs[0].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[10].generators[0].ifs[0].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15306,9 +17146,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[12].body[0].body[5].value.args[0].values[12].body::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[12].body[0].body[5].value.args[0].values[12].body::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:473`; AST `17518ca1ed3ff56624c4e6d238e96dbc735ccd7e0e3024782af5cb906764d7f4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:532`; AST `17518ca1ed3ff56624c4e6d238e96dbc735ccd7e0e3024782af5cb906764d7f4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15316,7 +17156,7 @@ Inputs: list, shared_targets. Outputs/bindings: (none).
 Calls/effect boundaries: list.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[12].body[0].body[5].value.args[0].values[12].body; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[12].body[0].body[5].value.args[0].values[12].body; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15326,9 +17166,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[13]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[13]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:478`; AST `4875d1dd54e38d58c311efaa7a33b2af1db4cbfb15d7066cff379bcef636ab61`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:537`; AST `4875d1dd54e38d58c311efaa7a33b2af1db4cbfb15d7066cff379bcef636ab61`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15336,7 +17176,7 @@ Inputs: (none). Outputs/bindings: file_obligations.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[13]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[13]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15346,9 +17186,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:479`; AST `8790f8020416e6296d00aadc65faef79e2ff38fb004bc533d5d15e81aed33e17`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:538`; AST `8790f8020416e6296d00aadc65faef79e2ff38fb004bc533d5d15e81aed33e17`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -15356,7 +17196,7 @@ Inputs: b, file_obligations, fixtures, key, path, paths, row, rows, set. Outputs
 Calls/effect boundaries: file_obligations.setdefault, file_obligations.setdefault(path, set()).add, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[14]; no call, error or mutation may be omitted. Iteration: row in rows
+Invariants: Preserve ordered For evaluation at root.body[27].body[14]; no call, error or mutation may be omitted. Iteration: row in rows
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15366,9 +17206,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:480`; AST `fd4379240d358e03c66afde47011410a14b5ff49ed19b7cf64924fc7b5e9cdb4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:539`; AST `fd4379240d358e03c66afde47011410a14b5ff49ed19b7cf64924fc7b5e9cdb4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15376,7 +17216,7 @@ Inputs: b, fixtures, key, row. Outputs/bindings: b, key, paths.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[14].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[14].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15386,9 +17226,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[0].value.left::SetComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[0].value.left::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:480`; AST `cdd3b91640a4c9766a38d6dd0a484d53c41db9680499007ea1a7776094017dbf`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:539`; AST `cdd3b91640a4c9766a38d6dd0a484d53c41db9680499007ea1a7776094017dbf`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -15396,7 +17236,7 @@ Inputs: b, row. Outputs/bindings: b.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered SetComp evaluation at root.body[26].body[14].body[0].value.left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered SetComp evaluation at root.body[27].body[14].body[0].value.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15406,9 +17246,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[0].value.right::SetComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[0].value.right::SetComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:480`; AST `d75a8bcd25f6c529e8d54e4d7555c217b8158905c1f85423ef6eedc34301a1d5`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:539`; AST `d75a8bcd25f6c529e8d54e4d7555c217b8158905c1f85423ef6eedc34301a1d5`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. source-compatible ordered evaluation into a set; preserve equality/hash behavior
 
@@ -15416,7 +17256,7 @@ Inputs: fixtures, key, row. Outputs/bindings: key.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered SetComp evaluation at root.body[26].body[14].body[0].value.right; no call, error or mutation may be omitted.
+Invariants: Preserve ordered SetComp evaluation at root.body[27].body[14].body[0].value.right; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15426,9 +17266,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[1]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[1]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:481`; AST `50827491b627216b313b7c04da471512c096dd42ef93f5579636109fb76ca107`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:540`; AST `50827491b627216b313b7c04da471512c096dd42ef93f5579636109fb76ca107`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -15436,7 +17276,7 @@ Inputs: file_obligations, path, paths, row, set. Outputs/bindings: path.
 Calls/effect boundaries: file_obligations.setdefault, file_obligations.setdefault(path, set()).add, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[14].body[1]; no call, error or mutation may be omitted. Iteration: path in paths
+Invariants: Preserve ordered For evaluation at root.body[27].body[14].body[1]; no call, error or mutation may be omitted. Iteration: path in paths
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15446,9 +17286,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[1].body[0]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[1].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:482`; AST `e37fea0088a7469f1d82623b830352cd13cd36769873b1ef5b0a55fd8703157a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:541`; AST `e37fea0088a7469f1d82623b830352cd13cd36769873b1ef5b0a55fd8703157a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15456,7 +17296,7 @@ Inputs: file_obligations, path, row, set. Outputs/bindings: (none).
 Calls/effect boundaries: file_obligations.setdefault, file_obligations.setdefault(path, set()).add, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[14].body[1].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[14].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15466,9 +17306,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[1].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[1].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:482`; AST `c0acf46d42ce7a098615f17002561118a86020031ca54a304eac7aa30884057b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:541`; AST `c0acf46d42ce7a098615f17002561118a86020031ca54a304eac7aa30884057b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15476,7 +17316,7 @@ Inputs: file_obligations, path, row, set. Outputs/bindings: (none).
 Calls/effect boundaries: file_obligations.setdefault, file_obligations.setdefault(path, set()).add, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[14].body[1].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[14].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15486,9 +17326,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[1].body[0].value.func.value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[1].body[0].value.func.value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:482`; AST `c3ff4a22b7b44a0a649a08bbe35d8e4d6d9c37fd0f2c338d1849f6cb613b51a7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:541`; AST `c3ff4a22b7b44a0a649a08bbe35d8e4d6d9c37fd0f2c338d1849f6cb613b51a7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15496,7 +17336,7 @@ Inputs: file_obligations, path, set. Outputs/bindings: (none).
 Calls/effect boundaries: file_obligations.setdefault, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[14].body[1].body[0].value.func.value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[14].body[1].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15506,9 +17346,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[14].body[1].body[0].value.func.value.args[1]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[14].body[1].body[0].value.func.value.args[1]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:482`; AST `838cdcc98951e8453a6f9eabf156b2a00af54241b1675173b0420d161d1cb68b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:541`; AST `838cdcc98951e8453a6f9eabf156b2a00af54241b1675173b0420d161d1cb68b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15516,7 +17356,7 @@ Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[14].body[1].body[0].value.func.value.args[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[14].body[1].body[0].value.func.value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15526,9 +17366,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[15]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[15]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:483`; AST `263a15b8cce53eee8cb579999c1dccffacf60ae773eb5753ea991b2a92af637a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:542`; AST `263a15b8cce53eee8cb579999c1dccffacf60ae773eb5753ea991b2a92af637a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15536,7 +17376,7 @@ Inputs: (none). Outputs/bindings: units.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[15]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[15]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15546,9 +17386,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16]::For
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16]::For
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:484`; AST `01d624cd3b529b82a252c13cb0e89ae15693d8fc9cba89ab2e8ccb61d9852fc5`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:543`; AST `01d624cd3b529b82a252c13cb0e89ae15693d8fc9cba89ab2e8ccb61d9852fc5`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -15556,7 +17396,7 @@ Inputs: _role, file_obligations, related, require, set, sorted, source_inventory
 Calls/effect boundaries: _role, file_obligations.get, require, set, sorted, units.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered For evaluation at root.body[26].body[16]; no call, error or mutation may be omitted. Iteration: unit in source_inventory['units']
+Invariants: Preserve ordered For evaluation at root.body[27].body[16]; no call, error or mutation may be omitted. Iteration: unit in source_inventory['units']
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15566,9 +17406,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[0]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:485`; AST `721e3880878471e7d5d1a7cadbb9840bc2409a2795847ef247d73f496ef579de`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:544`; AST `721e3880878471e7d5d1a7cadbb9840bc2409a2795847ef247d73f496ef579de`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15576,7 +17416,7 @@ Inputs: file_obligations, set, sorted, unit. Outputs/bindings: related.
 Calls/effect boundaries: file_obligations.get, set, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[16].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[16].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15586,9 +17426,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[0].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:485`; AST `69ca3f97851c6c2d4dc22dd47f15ba957c0a5065adffc10964971e0e037948ed`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:544`; AST `69ca3f97851c6c2d4dc22dd47f15ba957c0a5065adffc10964971e0e037948ed`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15596,7 +17436,7 @@ Inputs: file_obligations, set, sorted, unit. Outputs/bindings: (none).
 Calls/effect boundaries: file_obligations.get, set, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[16].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[16].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15606,9 +17446,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[0].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[0].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:485`; AST `468517af327d1ba3a3ab9e1649929f14dc89bdbb188b64074f25a7d534d43c3a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:544`; AST `468517af327d1ba3a3ab9e1649929f14dc89bdbb188b64074f25a7d534d43c3a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15616,7 +17456,7 @@ Inputs: file_obligations, set, unit. Outputs/bindings: (none).
 Calls/effect boundaries: file_obligations.get, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[16].body[0].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[16].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15626,9 +17466,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[0].value.args[0].args[1]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[0].value.args[0].args[1]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:485`; AST `838cdcc98951e8453a6f9eabf156b2a00af54241b1675173b0420d161d1cb68b`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:544`; AST `838cdcc98951e8453a6f9eabf156b2a00af54241b1675173b0420d161d1cb68b`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15636,7 +17476,7 @@ Inputs: set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[16].body[0].value.args[0].args[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[16].body[0].value.args[0].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15646,9 +17486,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[1]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:486`; AST `77eaa62a97ef26d9829d8534bcca95000c9dfacaa1ecf7f366400a2005722e36`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:545`; AST `77eaa62a97ef26d9829d8534bcca95000c9dfacaa1ecf7f366400a2005722e36`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15656,7 +17496,7 @@ Inputs: related, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[16].body[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[16].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15666,9 +17506,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[1].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:486`; AST `104215f4d739c9eb36ba9cd6342a28e52f997362316ff7fc1ecd4acd3793c715`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:545`; AST `104215f4d739c9eb36ba9cd6342a28e52f997362316ff7fc1ecd4acd3793c715`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15676,7 +17516,7 @@ Inputs: related, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[16].body[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[16].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15686,9 +17526,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[2]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[2]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:487`; AST `37d5102fe784da47f0f0adaab0788abc2f6110fe8a44d6c12dbdf9edeb113066`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:546`; AST `37d5102fe784da47f0f0adaab0788abc2f6110fe8a44d6c12dbdf9edeb113066`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15696,7 +17536,7 @@ Inputs: _role, related, unit, units. Outputs/bindings: (none).
 Calls/effect boundaries: _role, units.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[16].body[2]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[16].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15706,9 +17546,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[2].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:487`; AST `afe3bba3b414504f95106b23c5c29030a2e165bf7a09337ea50a6cbf561cfe63`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:546`; AST `afe3bba3b414504f95106b23c5c29030a2e165bf7a09337ea50a6cbf561cfe63`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15716,7 +17556,7 @@ Inputs: _role, related, unit, units. Outputs/bindings: (none).
 Calls/effect boundaries: _role, units.append.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[16].body[2].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[16].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15726,9 +17566,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[16].body[2].value.args[0].values[6]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[16].body[2].value.args[0].values[6]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:488`; AST `e1f43631fdfa9fcd6e45f5988994458fa3fca0b151cb94a78d5132c4a1ab5acb`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:547`; AST `e1f43631fdfa9fcd6e45f5988994458fa3fca0b151cb94a78d5132c4a1ab5acb`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15736,7 +17576,7 @@ Inputs: _role, unit. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[16].body[2].value.args[0].values[6]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[16].body[2].value.args[0].values[6]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15746,9 +17586,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[17]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[17]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:490`; AST `808d5be7ac0a166d1dabb81df92aaa297a3873c908aeefdbdef7eb210a7aa86a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:549`; AST `808d5be7ac0a166d1dabb81df92aaa297a3873c908aeefdbdef7eb210a7aa86a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15756,7 +17596,7 @@ Inputs: _role, file_bindings, len, source_inventory, u. Outputs/bindings: declar
 Calls/effect boundaries: _role, len, u['file'].startswith.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[17]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[17]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15766,9 +17606,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[17].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[17].value::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:490`; AST `1d2bfefce06665b424fbb348e6479031b7afaeaf7826d57d328b23ce9d5ff003`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:549`; AST `1d2bfefce06665b424fbb348e6479031b7afaeaf7826d57d328b23ce9d5ff003`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -15776,7 +17616,7 @@ Inputs: _role, file_bindings, len, source_inventory, u. Outputs/bindings: u.
 Calls/effect boundaries: _role, len, u['file'].startswith.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[17].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[17].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15786,9 +17626,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[17].value.value.values[3]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[17].value.value.values[3]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:490`; AST `c6ba34afdb0f94c7ee97b84d5240c5fe8e693d5327b1449c319ccc0dcc5850ef`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:549`; AST `c6ba34afdb0f94c7ee97b84d5240c5fe8e693d5327b1449c319ccc0dcc5850ef`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15796,7 +17636,7 @@ Inputs: _role, u. Outputs/bindings: (none).
 Calls/effect boundaries: _role.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[17].value.value.values[3]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[17].value.value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15806,9 +17646,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[17].value.value.values[7]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[17].value.value.values[7]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:492`; AST `c60c39d072b7c384ddf4295b69a275045ad529085b3893fdd5180968383f7e9c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:551`; AST `c60c39d072b7c384ddf4295b69a275045ad529085b3893fdd5180968383f7e9c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15816,7 +17656,7 @@ Inputs: len, u. Outputs/bindings: (none).
 Calls/effect boundaries: len.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[17].value.value.values[7]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[17].value.value.values[7]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15826,9 +17666,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[17].value.generators[0].ifs[0].values[1].operand::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[17].value.generators[0].ifs[0].values[1].operand::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:496`; AST `06c0480e019584c4962f07a1b344390944524f306f06fa91135cbd10e3ee3a9f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:555`; AST `06c0480e019584c4962f07a1b344390944524f306f06fa91135cbd10e3ee3a9f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15836,7 +17676,7 @@ Inputs: u. Outputs/bindings: (none).
 Calls/effect boundaries: u['file'].startswith.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[17].value.generators[0].ifs[0].values[1].operand; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[17].value.generators[0].ifs[0].values[1].operand; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15846,9 +17686,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[18]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[18]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:497`; AST `7c7f844b80442b081f7eccb5f2bfc4427a1af3bd1b42491ff275e6665c03915f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:556`; AST `7c7f844b80442b081f7eccb5f2bfc4427a1af3bd1b42491ff275e6665c03915f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15856,7 +17696,7 @@ Inputs: declarations, key, value. Outputs/bindings: key, targets, value.
 Calls/effect boundaries: declarations.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[18]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[18]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15866,9 +17706,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[18].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[18].value::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:497`; AST `74c673259468536b8045b73e15e90575dc6f848822b001388a6609617e541174`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:556`; AST `74c673259468536b8045b73e15e90575dc6f848822b001388a6609617e541174`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -15876,7 +17716,7 @@ Inputs: declarations, key, value. Outputs/bindings: key, value.
 Calls/effect boundaries: declarations.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[18].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[18].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15886,9 +17726,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[18].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[18].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:497`; AST `01eaf35638ae74a15b5b7c7b018b63a2e9c5e0b3410a9e56be05d58b11136228`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:556`; AST `01eaf35638ae74a15b5b7c7b018b63a2e9c5e0b3410a9e56be05d58b11136228`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15896,7 +17736,7 @@ Inputs: declarations. Outputs/bindings: (none).
 Calls/effect boundaries: declarations.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[18].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[18].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15906,9 +17746,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[19]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[19]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:498`; AST `24c944c44e9c3914417a332a861be5a0f17cc1c62c8d9901868d86738cd4aec7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:557`; AST `24c944c44e9c3914417a332a861be5a0f17cc1c62c8d9901868d86738cd4aec7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15916,7 +17756,7 @@ Inputs: declarations, key, value. Outputs/bindings: key, value, verification_tar
 Calls/effect boundaries: declarations.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[19]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[19]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15926,9 +17766,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[19].value::DictComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[19].value::DictComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:498`; AST `3104806899eeabe2b8f5834c207cb2de55ad70dce1f934875092c419304b303d`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:557`; AST `3104806899eeabe2b8f5834c207cb2de55ad70dce1f934875092c419304b303d`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. ordered evaluation into an insertion-ordered map; preserve duplicate-key replacement
 
@@ -15936,7 +17776,7 @@ Inputs: declarations, key, value. Outputs/bindings: key, value.
 Calls/effect boundaries: declarations.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered DictComp evaluation at root.body[26].body[19].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered DictComp evaluation at root.body[27].body[19].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15946,9 +17786,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[19].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[19].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:498`; AST `01eaf35638ae74a15b5b7c7b018b63a2e9c5e0b3410a9e56be05d58b11136228`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:557`; AST `01eaf35638ae74a15b5b7c7b018b63a2e9c5e0b3410a9e56be05d58b11136228`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -15956,7 +17796,7 @@ Inputs: declarations. Outputs/bindings: (none).
 Calls/effect boundaries: declarations.items.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[19].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[19].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15966,9 +17806,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[20]::Assign
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[20]::Assign
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `ff70b97ff2ad16e3a4394412f3e99cb8bd975d40673b2b1ca1f467d1429342fd`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:558`; AST `ff70b97ff2ad16e3a4394412f3e99cb8bd975d40673b2b1ca1f467d1429342fd`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -15976,7 +17816,7 @@ Inputs: contract, contracts, o. Outputs/bindings: contract, expected, o.
 Calls/effect boundaries: contracts.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Assign evaluation at root.body[26].body[20]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Assign evaluation at root.body[27].body[20]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -15986,9 +17826,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[20].value::ListComp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[20].value::ListComp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `26a74ddd0397ef3d086a82528fe0adaa69f3be101fdbc45b1ff2641478573878`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:558`; AST `26a74ddd0397ef3d086a82528fe0adaa69f3be101fdbc45b1ff2641478573878`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. iterator pipeline collected into Vec; preserve evaluation order and comprehension-local scope
 
@@ -15996,7 +17836,7 @@ Inputs: contract, contracts, o. Outputs/bindings: contract, o.
 Calls/effect boundaries: contracts.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered ListComp evaluation at root.body[26].body[20].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered ListComp evaluation at root.body[27].body[20].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16006,9 +17846,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[20].value.generators[0].iter::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[20].value.generators[0].iter::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:499`; AST `ead2696b3f9b9f68fe7019593bed9e88783f3bb113027c1c5d97340104be159e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:558`; AST `ead2696b3f9b9f68fe7019593bed9e88783f3bb113027c1c5d97340104be159e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16016,7 +17856,7 @@ Inputs: contracts. Outputs/bindings: (none).
 Calls/effect boundaries: contracts.values.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[20].value.generators[0].iter; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[20].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16026,9 +17866,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `7b726cdaee4760cad94febe5d110bc3f12ff05eb28becf0467fa4d00586b627f`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `7b726cdaee4760cad94febe5d110bc3f12ff05eb28becf0467fa4d00586b627f`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -16036,7 +17876,7 @@ Inputs: expected, len, r, require, rows, set, sorted. Outputs/bindings: r.
 Calls/effect boundaries: len, require, set, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[21]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[21]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16046,9 +17886,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `460a382fd94d39ac15ec98744ab7b493d8228212d3206dc15f54aa4b020a9389`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `460a382fd94d39ac15ec98744ab7b493d8228212d3206dc15f54aa4b020a9389`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16056,7 +17896,7 @@ Inputs: expected, len, r, require, rows, set, sorted. Outputs/bindings: r.
 Calls/effect boundaries: len, require, set, sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[21].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[21].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16066,9 +17906,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value.args[0].values[1].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value.args[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `c2d06b163e3f45e9d7be910cb5ac5a89b21e57724763b4159be61fb15e2f5005`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `c2d06b163e3f45e9d7be910cb5ac5a89b21e57724763b4159be61fb15e2f5005`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16076,7 +17916,7 @@ Inputs: expected, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[21].value.args[0].values[1].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[21].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16086,9 +17926,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value.args[0].values[1].comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value.args[0].values[1].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `92c7b105ab8208e6c0d99003aa501423395c1925384705c62d883a1c21cf675e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `92c7b105ab8208e6c0d99003aa501423395c1925384705c62d883a1c21cf675e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16096,7 +17936,7 @@ Inputs: expected, len, set. Outputs/bindings: (none).
 Calls/effect boundaries: len, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[21].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[21].value.args[0].values[1].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16106,9 +17946,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value.args[0].values[1].comparators[0].args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value.args[0].values[1].comparators[0].args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `8065006d3e7f0aec9df46549354158a7684ad8f3e04977773498c5d7231e93b7`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `8065006d3e7f0aec9df46549354158a7684ad8f3e04977773498c5d7231e93b7`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16116,7 +17956,7 @@ Inputs: expected, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[21].value.args[0].values[1].comparators[0].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[21].value.args[0].values[1].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16126,9 +17966,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value.args[0].values[2].left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value.args[0].values[2].left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `ce496e131ed1c30321cd73f9d72367282de4cde60997f5322f3ffdf066b2645a`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `ce496e131ed1c30321cd73f9d72367282de4cde60997f5322f3ffdf066b2645a`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16136,7 +17976,7 @@ Inputs: expected, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[21].value.args[0].values[2].left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[21].value.args[0].values[2].left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16146,9 +17986,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value.args[0].values[2].comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value.args[0].values[2].comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `e59ae0b9bc1ccc6b98738bce5bdcaf5f886a65d8fe9df9c37890583ca5525f94`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `e59ae0b9bc1ccc6b98738bce5bdcaf5f886a65d8fe9df9c37890583ca5525f94`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16156,7 +17996,7 @@ Inputs: r, rows, sorted. Outputs/bindings: r.
 Calls/effect boundaries: sorted.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[21].value.args[0].values[2].comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[21].value.args[0].values[2].comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16166,9 +18006,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[21].value.args[0].values[2].comparators[0].args[0]::GeneratorExp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[21].value.args[0].values[2].comparators[0].args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:500`; AST `8de0d01ce146bdbb123b597fb32be67c88816b3e28e927ab3161373eaa03596e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:559`; AST `8de0d01ce146bdbb123b597fb32be67c88816b3e28e927ab3161373eaa03596e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
@@ -16176,7 +18016,7 @@ Inputs: r, rows. Outputs/bindings: r.
 Calls/effect boundaries: (none).
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered GeneratorExp evaluation at root.body[26].body[21].value.args[0].values[2].comparators[0].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[27].body[21].value.args[0].values[2].comparators[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16186,9 +18026,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[22]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[22]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `b7a3207da45211109028ec27f4e149aadb802e529b8a401823adab0cbf3623f5`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:561`; AST `b7a3207da45211109028ec27f4e149aadb802e529b8a401823adab0cbf3623f5`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -16196,7 +18036,7 @@ Inputs: all, r, require, rows, set, targets. Outputs/bindings: r.
 Calls/effect boundaries: all, require, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[22]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[22]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16206,9 +18046,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[22].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[22].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `0ccd8df6c226ad24148cdfef773a34bed9ce921c353f85bab8ef34fa6b55e703`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:561`; AST `0ccd8df6c226ad24148cdfef773a34bed9ce921c353f85bab8ef34fa6b55e703`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16216,7 +18056,7 @@ Inputs: all, r, require, rows, set, targets. Outputs/bindings: r.
 Calls/effect boundaries: all, require, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[22].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[22].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16226,9 +18066,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[22].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[22].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `1e73a2073329c3f0e59f5784bf63f0d52b3c14d0442b6b92213884c597839a89`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:561`; AST `1e73a2073329c3f0e59f5784bf63f0d52b3c14d0442b6b92213884c597839a89`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16236,7 +18076,7 @@ Inputs: all, r, rows, set, targets. Outputs/bindings: r.
 Calls/effect boundaries: all, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[22].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[22].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16246,9 +18086,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[22].value.args[0].args[0]::GeneratorExp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[22].value.args[0].args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `4e026134a9cfde1745b9f6a65c8f666fee8ea741765601e60251d3320b518365`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:561`; AST `4e026134a9cfde1745b9f6a65c8f666fee8ea741765601e60251d3320b518365`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
@@ -16256,7 +18096,7 @@ Inputs: r, rows, set, targets. Outputs/bindings: r.
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered GeneratorExp evaluation at root.body[26].body[22].value.args[0].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[27].body[22].value.args[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16266,9 +18106,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[22].value.args[0].args[0].elt.left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[22].value.args[0].args[0].elt.left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `28f037d707c936e02d43a08094dc39e5aa5b6d4be7db4aaff6abffd1ecc8932c`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:561`; AST `28f037d707c936e02d43a08094dc39e5aa5b6d4be7db4aaff6abffd1ecc8932c`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16276,7 +18116,7 @@ Inputs: r, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[22].value.args[0].args[0].elt.left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[22].value.args[0].args[0].elt.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16286,9 +18126,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[22].value.args[0].args[0].elt.comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[22].value.args[0].args[0].elt.comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:502`; AST `8942adca9fcadeb50e227a08d09d2198deda26d90437dff8bd0bda057c14c7d2`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:561`; AST `8942adca9fcadeb50e227a08d09d2198deda26d90437dff8bd0bda057c14c7d2`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16296,7 +18136,7 @@ Inputs: set, targets. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[22].value.args[0].args[0].elt.comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[22].value.args[0].args[0].elt.comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16306,9 +18146,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[23]::Expr
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[23]::Expr
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `0354636ff73c3b71d08adcd7cccea6bd7d0bb6be8965b75a6428822f012c75a4`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:562`; AST `0354636ff73c3b71d08adcd7cccea6bd7d0bb6be8965b75a6428822f012c75a4`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -16316,7 +18156,7 @@ Inputs: all, r, require, rows, set, verification_targets. Outputs/bindings: r.
 Calls/effect boundaries: all, require, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Expr evaluation at root.body[26].body[23]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[27].body[23]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16326,9 +18166,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[23].value::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[23].value::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `4a3127d5c7acd496f3e6ccb95fc6165ab0bb7b38dade1b9c66b2bc74783a4fc6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:562`; AST `4a3127d5c7acd496f3e6ccb95fc6165ab0bb7b38dade1b9c66b2bc74783a4fc6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16336,7 +18176,7 @@ Inputs: all, r, require, rows, set, verification_targets. Outputs/bindings: r.
 Calls/effect boundaries: all, require, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[23].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[23].value; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16346,9 +18186,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[23].value.args[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[23].value.args[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `273cc243942c8348cb8b8ee519e47ed2f2b97c2c29fa58092c8caaa4f1e45594`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:562`; AST `273cc243942c8348cb8b8ee519e47ed2f2b97c2c29fa58092c8caaa4f1e45594`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16356,7 +18196,7 @@ Inputs: all, r, rows, set, verification_targets. Outputs/bindings: r.
 Calls/effect boundaries: all, set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[23].value.args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[23].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16366,9 +18206,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[23].value.args[0].args[0]::GeneratorExp
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[23].value.args[0].args[0]::GeneratorExp
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `6820f7175866b74c6acd0e625a845dce60c6f8517747273cb434789b2f69e7b1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:562`; AST `6820f7175866b74c6acd0e625a845dce60c6f8517747273cb434789b2f69e7b1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. lazy iterator with captured environment and explicit exhaustion/error lifetime
 
@@ -16376,7 +18216,7 @@ Inputs: r, rows, set, verification_targets. Outputs/bindings: r.
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered GeneratorExp evaluation at root.body[26].body[23].value.args[0].args[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered GeneratorExp evaluation at root.body[27].body[23].value.args[0].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16386,9 +18226,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[23].value.args[0].args[0].elt.left::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[23].value.args[0].args[0].elt.left::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `79800a1fca8c974ef65a6010acf12c14f98c47bb22a8361530eac0c8a22064d1`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:562`; AST `79800a1fca8c974ef65a6010acf12c14f98c47bb22a8361530eac0c8a22064d1`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16396,7 +18236,7 @@ Inputs: r, set. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[23].value.args[0].args[0].elt.left; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[23].value.args[0].args[0].elt.left; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16406,9 +18246,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[23].value.args[0].args[0].elt.comparators[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[23].value.args[0].args[0].elt.comparators[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:503`; AST `0b069f28bf69a6c5f104b3616a137811420766cba520ebb5a6488f14dff442b3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:562`; AST `0b069f28bf69a6c5f104b3616a137811420766cba520ebb5a6488f14dff442b3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16416,7 +18256,7 @@ Inputs: set, verification_targets. Outputs/bindings: (none).
 Calls/effect boundaries: set.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[23].value.args[0].args[0].elt.comparators[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[23].value.args[0].args[0].elt.comparators[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16426,9 +18266,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[24]::Return
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[24]::Return
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:504`; AST `76cb7d2af9cd4a853018b83323919e1c7483ced53b01958193f29a94525e806e`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:563`; AST `76cb7d2af9cd4a853018b83323919e1c7483ced53b01958193f29a94525e806e`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -16436,7 +18276,7 @@ Inputs: closures, details, file_binding, fixtures, policy_path, root, rows, runt
 Calls/effect boundaries: file_binding, runtime_bindings.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Return evaluation at root.body[26].body[24]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Return evaluation at root.body[27].body[24]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16446,9 +18286,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[24].value.values[0]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[24].value.values[0]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:504`; AST `204b89cb9b4a277fd8acc43fe9c975bae097102940c5eb3e6a0e474fa95dbbf3`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:563`; AST `204b89cb9b4a277fd8acc43fe9c975bae097102940c5eb3e6a0e474fa95dbbf3`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16456,7 +18296,7 @@ Inputs: file_binding, policy_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[24].value.values[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[24].value.values[0]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -16466,9 +18306,9 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[26].body[24].value.values[9]::Call
+## infra/agentinfra/roadmap_python_catalog.py::module::obligation_catalog::root.body[27].body[24].value.values[9]::Call
 
-Source: `infra/agentinfra/roadmap_python_catalog.py:508`; AST `8c004f620786695cacd9935f98e00a08ca2d72dcd5c6455ba898f3b449a59df6`.
+Source: `infra/agentinfra/roadmap_python_catalog.py:567`; AST `8c004f620786695cacd9935f98e00a08ca2d72dcd5c6455ba898f3b449a59df6`.
 
 Rust module: `infra::agentinfra::roadmap_python_catalog`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -16476,7 +18316,7 @@ Inputs: details, fixtures, root, runtime_bindings. Outputs/bindings: (none).
 Calls/effect boundaries: runtime_bindings.
 Dependencies: __future__, ast, pathlib, re, roadmap_policy, roadmap_project, roadmap_python, roadmap_records, roadmap_runtime, roadmap_work, security.
 
-Invariants: Preserve ordered Call evaluation at root.body[26].body[24].value.values[9]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[27].body[24].value.values[9]; no call, error or mutation may be omitted.
 Rust library candidates: std::fs / std::path::PathBuf; regex; rustpython_parser or validated Python AST bridge
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 

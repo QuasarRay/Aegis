@@ -141,6 +141,11 @@ def materialize(root: Path, compiled: dict, milestone: str, recipe: str) -> dict
             require(binding and bindings_current(root, [binding]), "current isolated Python toolchain observation required")
             observed = read_json(confined_path(root, binding["path"]))
             require(observed.get("status") == "INSTALLED_NOT_QUALIFIED" and bindings_current(root, observed["files"]), "isolated Python toolchain is missing or changed")
+            if backend == "esbmc-python":
+                from .roadmap_python import esbmc_link_state
+                links = esbmc_link_state(root, observed)
+                require(all(x["safe"] and x["observed"] == x["expected"] for x in links), "ESBMC release symlink changed")
+                selection["toolchain_link_state"] = links
             for dependency in [binding, *observed["files"]]:
                 inputs[dependency["path"]] = dependency
             argv.extend(["--toolchain", binding["path"]])
