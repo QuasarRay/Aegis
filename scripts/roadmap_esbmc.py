@@ -14,7 +14,7 @@ import zipfile
 from agentinfra.atomic import atomic_write_json
 from agentinfra.process import run_recipe_stage
 from agentinfra.roadmap_mirrors import download_with_mirrors, read_download_policy, TRANSPORT
-from agentinfra.roadmap_python import classify_esbmc, esbmc_arguments, source_closure
+from agentinfra.roadmap_python import classify_esbmc, esbmc_arguments, esbmc_link_state, source_closure
 from agentinfra.roadmap_records import bindings_current, digest, file_binding, read_json, require
 from agentinfra.security import confined_path, minimal_subprocess_env
 
@@ -28,6 +28,8 @@ def extract_release(root: Path, archive: Path, destination: Path) -> None:
         require(marker.is_file(), "existing ESBMC release needs extraction recovery")
         saved = read_json(marker)
         require(saved.get("archive") == archive_binding and bindings_current(root, saved.get("files", [])), "installed release changed")
+        state = esbmc_link_state(root, {"release_root": destination.relative_to(root).as_posix(), "symlinks": saved.get("symlinks", [])})
+        require(all(x["safe"] and x["observed"] == x["expected"] for x in state), "installed release symlinks changed")
         return
     staging = destination.with_name(destination.name + ".staging")
     require(not staging.exists(), "interrupted ESBMC extraction requires reconciliation")
@@ -36,7 +38,7 @@ def extract_release(root: Path, archive: Path, destination: Path) -> None:
         entries = bundle.infolist()
         require(0 < len(entries) <= 50000 and sum(x.file_size for x in entries) <= 3_000_000_000, "unbounded ESBMC archive")
         names = [x.filename.rstrip("/") for x in entries]
-        require(len(names) == len(set(names)), "duplicate archive destination")
+        require(len(names) == len(set(names)) and "aegis-release-identity.json" not in names, "duplicate/reserved archive destination")
         for entry in entries:
             name = entry.filename.rstrip("/")
             path = PurePosixPath(name)
@@ -70,8 +72,10 @@ def extract_release(root: Path, archive: Path, destination: Path) -> None:
     for target, _ in links:
         require(target.resolve().is_relative_to(staging.resolve()) and target.exists(), "release symlink is dangling/escaping/cyclic")
     staging.rename(destination)
-    files = [file_binding(root, p.relative_to(root).as_posix()) for p in destination.rglob("*") if p.is_file()]
-    atomic_write_json(marker, {"schema": 1, "archive": archive_binding, "files": sorted(files, key=lambda b: b["path"])}, root=root, mode=0o600)
+    files = [file_binding(root, p.relative_to(root).as_posix()) for p in destination.rglob("*") if p.is_file() and not p.is_symlink()]
+    symlinks = [{"path": (destination / p.relative_to(staging)).relative_to(root).as_posix(), "target": link} for p, link in links]
+    atomic_write_json(marker, {"schema": 1, "archive": archive_binding, "files": sorted(files, key=lambda b: b["path"]),
+                               "symlinks": symlinks}, root=root, mode=0o600)
 
 
 def provision_esbmc(root: Path, output: Path) -> dict:
@@ -103,10 +107,12 @@ def provision_esbmc(root: Path, output: Path) -> dict:
         artifacts.append(file_binding(root, path.relative_to(root).as_posix()))
         require(result.returncode == 0 and not result.timed_out and not result.stdout_truncated and not result.stderr_truncated,
                 "ESBMC installation/dependency/version query failed")
-    files = [file_binding(root, p.relative_to(root).as_posix()) for p in directory.rglob("*") if p.is_file() and "__pycache__" not in p.parts]
+    files = [file_binding(root, p.relative_to(root).as_posix()) for p in directory.rglob("*") if p.is_file() and not p.is_symlink() and "__pycache__" not in p.parts]
+    identity = read_json(release / "aegis-release-identity.json")
     return {"backend": "esbmc-python", "status": "INSTALLED_NOT_QUALIFIED", "lock": file_binding(root, profile),
             "python": str(python), "executable": str(executables[0]), "environment": environment,
-            "files": sorted(files, key=lambda b: b["path"]), "artifacts": artifacts}
+            "files": sorted(files, key=lambda b: b["path"]), "artifacts": artifacts,
+            "release_root": release.relative_to(root).as_posix(), "symlinks": identity["symlinks"]}
 
 
 def qualify_esbmc(root: Path, output: Path, toolchain_path: str) -> dict:
@@ -114,6 +120,7 @@ def qualify_esbmc(root: Path, output: Path, toolchain_path: str) -> dict:
     toolchain = read_json(confined_path(root, toolchain_path, must_exist=True))
     require(toolchain.get("backend") == "esbmc-python" and toolchain.get("status") == "INSTALLED_NOT_QUALIFIED" and
             bindings_current(root, [toolchain["lock"], *toolchain["files"]]), "ESBMC installation changed")
+    require(all(x["safe"] and x["observed"] == x["expected"] for x in esbmc_link_state(root, toolchain)), "ESBMC symlink identity changed")
     runs, artifacts = [], []
     for name in ("policy_deal_positive.py", "policy_deal_negative.py"):
         fixture = file_binding(root, "verification/roadmap/python/" + name)

@@ -225,9 +225,9 @@ def _qualification_evidence(root: Path, backend: str = "nagini") -> tuple[dict, 
             str(Path(invoked).resolve()) == spec["toolchain"]["executable"], "qualification interpreter differs from its pinned executable identity")
     expected_argv = [invoked, "-B", "scripts/roadmap_python.py", "qualify", "--output",
                      spec["target"]["output"] + "/details.json", "--candidate", spec["candidate"]]
-    if backend == "deal":
-        require(spec["selection"].get("backend") == "deal" and toolchain.get("backend") == "deal", "Deal producer selection differs")
-        expected_argv.extend(["--backend", "deal"])
+    if backend != "nagini":
+        require(spec["selection"].get("backend") == backend and toolchain.get("backend") == backend, "backend producer selection differs")
+        expected_argv.extend(["--backend", backend])
     expected_argv.extend(["--toolchain", tool_binding["path"]])
     require(spec.get("argv") == expected_argv and receipt.get("argv") == expected_argv and
             binding["path"] == spec["target"]["output"] + "/" + spec["digest"] + "/details.json",
@@ -253,6 +253,13 @@ def _qualification_evidence(root: Path, backend: str = "nagini") -> tuple[dict, 
               "producer_interpreter": {k: spec["toolchain"].get(k) for k in ("executable", "sha256", "version", "platform")},
               "retained_attempt_ids": [a["id"] for a in attempts if a["work_id"] == attempt["work_id"]],
               "producer_inputs_current": bindings_current(root, spec["inputs"]), "stale_bindings": stale}
+    if backend == "esbmc-python":
+        from .roadmap_python import esbmc_link_state
+        link_state = esbmc_link_state(root, toolchain)
+        record["toolchain_links_digest"] = digest(link_state)
+        stale.extend({"expected": {"path": x["path"], "symlink_target": x["expected"]},
+                      "observed": {"path": x["path"], "symlink_target": x["observed"], "safe": x["safe"]}}
+                     for x in link_state if not x["safe"] or x["observed"] != x["expected"])
     if stale:
         record["status"] = "STALE_QUALIFICATION_ARTIFACTS_NO_CURRENT_CREDIT"
         return record, None, sorted(dependencies.values(), key=lambda b: b["path"])
@@ -269,8 +276,11 @@ def _qualification_evidence(root: Path, backend: str = "nagini") -> tuple[dict, 
 def _backend_evidence(root: Path) -> list[tuple[dict, dict | None, list[dict]]]:
     from .roadmap_project import ProjectAdapter
     values = [_qualification_evidence(root)]
-    if (root / ".aegis/project.json").is_file() and ProjectAdapter(root).read().get("python_deal_qualification_observation"):
-        values.append(_qualification_evidence(root, "deal"))
+    if (root / ".aegis/project.json").is_file():
+        record = ProjectAdapter(root).read()
+        for backend, key in (("deal", "python_deal_qualification_observation"), ("esbmc-python", "python_esbmc_qualification_observation")):
+            if record.get(key):
+                values.append(_qualification_evidence(root, backend))
     return values
 
 
@@ -284,7 +294,8 @@ def _evidence_dependencies(values: list[tuple[dict, dict | None, list[dict]]]) -
 
 
 def _lineage(values: list[tuple[dict, dict | None, list[dict]]]) -> str:
-    return digest([{ "backend": record.get("backend", "nagini"), "attempts": record.get("retained_attempt_ids", [])}
+    return digest([{ "backend": record.get("backend", "nagini"), "attempts": record.get("retained_attempt_ids", []),
+                     "toolchain_links": record.get("toolchain_links_digest")}
                    for record, _, _ in values])
 
 
@@ -309,6 +320,8 @@ def _qualification_report(root: Path, candidate: str, catalog: dict, evidence: t
     observation["same_code_candidate"] = observation.get("producer_candidate") == candidate
     if details and details["backend"] == "deal":
         return _deal_report(root, candidate, catalog, observation, details, dependencies)
+    if details and details["backend"] == "esbmc-python":
+        return _esbmc_report(root, candidate, catalog, observation, details, dependencies)
     packets, runs = [], []
     if details:
         toolchain = read_json(confined_path(root, details["toolchain"]["path"]))
@@ -417,6 +430,52 @@ def _deal_report(root: Path, candidate: str, catalog: dict, observation: dict, d
                   "required_actions": ["Investigate actual Deal unsupported/skip/error behavior without replacing or simplifying the maintained function.",
                                        "Qualify whole module/state and numeric semantics plus exact original assertion identities and reachability before promotion.",
                                        "Investigate a faithful ESBMC route without shrinking domains or treating skipped/model-only results as proof."]}
+        packet["id"] = digest(packet)
+        packets.append(packet)
+    return {"qualification_observations": [dict(observation, runs=runs)], "qualification_dependencies": dependencies,
+            "qualification_interventions": packets}
+
+
+def _esbmc_report(root: Path, candidate: str, catalog: dict, observation: dict, details: dict, dependencies: list[dict]) -> dict:
+    from .roadmap_python import classify_esbmc, esbmc_arguments
+    toolchain = read_json(confined_path(root, details["toolchain"]["path"]))
+    controls = details.get("runs", [])
+    require(len(controls) == 2 and [c.get("intent") for c in controls] == ["positive", "deliberately_wrong_assertion"],
+            "ESBMC omitted, duplicated or reordered its original controls")
+    closure = details["production"]
+    files = {b["path"] for b in closure["files"]}
+    fixture_ids = [key for key, f in catalog["fixture_semantics"].items() if f["location"]["source"] == details["original"] and
+                   f["location"]["fixture"] == "DomainPolicyTests" and f["location"]["test"] == "test_budgets_and_completion"]
+    affected = [o["id"] for o in catalog["obligations"] if files & {b["path"] for b in o["source_bindings"]} or set(fixture_ids) & set(o["original_fixture_ids"])]
+    runs, packets = [], []
+    for control, name in zip(controls, ("policy_deal_positive.py", "policy_deal_negative.py"), strict=True):
+        fixture, result = control["fixture"], control["result"]
+        require(fixture["path"] == "verification/roadmap/python/" + name and
+                all(b in details["artifacts"] for b in (fixture, result)) and bindings_current(root, [fixture, result]),
+                "ESBMC original control source/result changed")
+        raw = read_json(confined_path(root, result["path"]))
+        require(raw.get("argv") == esbmc_arguments(root, toolchain, fixture["path"]) and raw.get("cwd") == str(root.resolve()),
+                "ESBMC did not use its fixed production-import control command")
+        claims = control.get("claims")
+        if claims:
+            require(claims in details["artifacts"] and bindings_current(root, [claims]), "ESBMC claims artifact changed")
+            listed = read_json(confined_path(root, claims["path"]))
+            require(listed.get("argv") == esbmc_arguments(root, toolchain, fixture["path"], claims=True) and
+                    listed.get("cwd") == str(root.resolve()), "ESBMC claim selection differs from the actual control")
+        row = {"intent": control["intent"], "fixture": fixture, "result": result, "claims": claims,
+               "classification": classify_esbmc(raw), "recorded_classification": control["classification"],
+               "assertion_source_nodes": [_node(n) for n in ast.walk(ast.parse(confined_path(root, fixture["path"]).read_bytes())) if isinstance(n, ast.Assert)],
+               "assertion_reachability": "NOT_ESTABLISHED", "property_identity_review": "NOT_GRANTED", "domain_proof": False}
+        runs.append(row)
+        packet = {"kind": "python_backend_engineering_intervention", "backend": "esbmc-python", "observation": observation["observation"],
+                  "producer_attempt": observation["attempt"], "producer_candidate": observation["producer_candidate"], "route_candidate": candidate,
+                  "target": closure["target"], "production_closure": closure, "control": row, "original_fixture_ids": fixture_ids,
+                  "potentially_affected_obligation_ids": affected, "domain_proof": False, "backend_qualified": False,
+                  "semantic_translation_approved": False, "status": "UNRESOLVED_ENGINEERING_AND_SEMANTIC_REVIEW_REQUIRED",
+                  "required_behavior": "Preserve all required production/original semantics, complete imports/state and exact unbounded Python integer and bool/int obligations.",
+                  "required_actions": ["Reconcile actual frontend diagnostics, claims and original assertion identities; reject absent/unsupported/model-only outcomes.",
+                                       "Qualify actual release defaults, integer/real frontend widths, operational models, module state and reachability before any promotion.",
+                                       "Do not replace production bodies or narrow required domains to obtain verification success."]}
         packet["id"] = digest(packet)
         packets.append(packet)
     return {"qualification_observations": [dict(observation, runs=runs)], "qualification_dependencies": dependencies,

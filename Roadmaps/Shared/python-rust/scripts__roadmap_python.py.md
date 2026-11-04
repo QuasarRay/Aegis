@@ -2,19 +2,19 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 339. Inventory digest: `ca45c459605eea416e0882f622397dbfd04a141fe96a3cd9b171951f3da296f4`.
+Files: 1. Behavioral units: 349. Inventory digest: `aa064348a8890b7949c06405ee63d5aa9506e1c764b31538cbe8d80f5017d12e`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## scripts/roadmap_python.py::module::root::Module
 
-Source: `scripts/roadmap_python.py:1`; AST `488f32c5e36d2e31ceb816ee205a503300dca93f250d1ab62a523b434e28a259`.
+Source: `scripts/roadmap_python.py:1`; AST `88b90463af7890c1a7ebe00755f656e7c897236bf4eb3a682d1d45d74587b1e2`.
 
 Rust module: `scripts::roadmap_python`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
-Inputs: Exception, Path, ROOT, TRANSPORT, __doc__, __file__, __name__, _download, archive, argparse, args, argv, artifacts, asdict, atomic_write_json, b, binding, bindings_current, bool, bundle, checked, classify_deal, classify_nagini, compile_roadmaps, confined_path, deadline, dependencies, details, dict, digest, directory, download_with_mirrors, entry, environment, exc, file_binding, files, fixture, float, installed, java, java_root, java_version, json, len, list, lock, main, map, minimal_subprocess_env, nagini, name, observed, observed_path, os, outcomes, output, p, package, parser, path, print, profile, provision, provision_deal, python, qualify, qualify_deal, r, read_download_policy, read_json, require, result, result_path, root, route, run_recipe_stage, runs, sorted, source, source_closure, str, sys, tarfile, time, toolchain, toolchain_path, type, venv, virtual, wheels. Outputs/bindings: ROOT, archive, args, argv, artifacts, binding, bundle, checked, deadline, dependencies, details, directory, entry, environment, files, fixture, installed, java, java_root, java_version, lock, nagini, name, observed, observed_path, outcomes, output, p, package, parser, path, profile, python, r, result, result_path, runs, source, toolchain, virtual, wheels.
-Calls/effect boundaries: (virtual / 'bin/python').exists, Path, Path(__file__).resolve, _download, argparse.ArgumentParser, artifacts.append, artifacts.extend, asdict, atomic_write_json, bindings_current, bool, bundle.extractall, classify_deal, classify_nagini, compile_roadmaps, confined_path, dependencies.append, details.get, details.update, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, json.dumps, len, list, lock.get, main, map, minimal_subprocess_env, nagini.is_file, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix, os.uname, output.parent.mkdir, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, parser.add_argument, parser.parse_args, path.relative_to, path.relative_to(root).as_posix, print, provision, provision_deal, qualify, qualify_deal, read_download_policy, read_json, require, result_path.relative_to, result_path.relative_to(root).as_posix, route, run_recipe_stage, runs.append, sorted, source.relative_to, source.relative_to(root).as_posix, source_closure, str, sys.path.insert, tarfile.open, time.monotonic, toolchain.get, type, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Inputs: Exception, Path, ROOT, TRANSPORT, __doc__, __file__, __name__, _download, archive, argparse, args, argv, artifacts, asdict, atomic_write_json, b, binding, bindings_current, bool, bundle, checked, classify_deal, classify_nagini, compile_roadmaps, confined_path, deadline, dependencies, details, dict, digest, directory, download_with_mirrors, entry, environment, exc, file_binding, files, fixture, float, installed, java, java_root, java_version, json, len, list, lock, main, map, minimal_subprocess_env, nagini, name, observed, observed_path, os, outcomes, output, p, package, parser, path, print, profile, provision, provision_deal, provision_esbmc, python, qualify, qualify_deal, qualify_esbmc, r, read_download_policy, read_json, require, result, result_path, root, route, run_recipe_stage, runs, sorted, source, source_closure, str, sys, tarfile, time, toolchain, toolchain_path, type, venv, virtual, wheels. Outputs/bindings: ROOT, archive, args, argv, artifacts, binding, bundle, checked, deadline, dependencies, details, directory, entry, environment, files, fixture, installed, java, java_root, java_version, lock, nagini, name, observed, observed_path, outcomes, output, p, package, parser, path, profile, python, r, result, result_path, runs, source, toolchain, virtual, wheels.
+Calls/effect boundaries: (virtual / 'bin/python').exists, Path, Path(__file__).resolve, _download, argparse.ArgumentParser, artifacts.append, artifacts.extend, asdict, atomic_write_json, bindings_current, bool, bundle.extractall, classify_deal, classify_nagini, compile_roadmaps, confined_path, dependencies.append, details.get, details.update, dict, digest, directory.mkdir, directory.rglob, download_with_mirrors, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, json.dumps, len, list, lock.get, main, map, minimal_subprocess_env, nagini.is_file, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix, os.uname, output.parent.mkdir, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, parser.add_argument, parser.parse_args, path.relative_to, path.relative_to(root).as_posix, print, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, read_download_policy, read_json, require, result_path.relative_to, result_path.relative_to(root).as_posix, route, run_recipe_stage, runs.append, sorted, source.relative_to, source.relative_to(root).as_posix, source_closure, str, sys.path.insert, tarfile.open, time.monotonic, toolchain.get, type, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Module evaluation at root; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -34,7 +34,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -54,7 +54,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -74,7 +74,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -94,7 +94,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -114,7 +114,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -134,7 +134,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -154,7 +154,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -174,7 +174,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -194,7 +194,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -214,7 +214,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -234,7 +234,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Import evaluation at root.body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -254,7 +254,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: Path, __file__. Outputs/bindings: ROOT.
 Calls/effect boundaries: Path, Path(__file__).resolve.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -274,7 +274,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: Path, __file__. Outputs/bindings: (none).
 Calls/effect boundaries: Path, Path(__file__).resolve.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[11].value.value.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -294,7 +294,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: Path, __file__. Outputs/bindings: (none).
 Calls/effect boundaries: Path.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[11].value.value.value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -314,7 +314,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: ROOT, str, sys. Outputs/bindings: (none).
 Calls/effect boundaries: str, sys.path.insert.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[12]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -334,7 +334,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: ROOT, str, sys. Outputs/bindings: (none).
 Calls/effect boundaries: str, sys.path.insert.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -354,7 +354,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: ROOT, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[12].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -374,7 +374,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[13]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -394,7 +394,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[14]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -414,7 +414,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[15]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -434,7 +434,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[16]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -454,7 +454,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[17]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -474,7 +474,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[18]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -494,7 +494,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[19]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -514,7 +514,7 @@ Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, So
 
 Inputs: Path, deadline, dict, directory, download_with_mirrors, entry, float, root. Outputs/bindings: (none).
 Calls/effect boundaries: download_with_mirrors.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[20]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -534,7 +534,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: deadline, directory, download_with_mirrors, entry, root. Outputs/bindings: (none).
 Calls/effect boundaries: download_with_mirrors.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Return evaluation at root.body[20].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -554,7 +554,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: deadline, directory, download_with_mirrors, entry, root. Outputs/bindings: (none).
 Calls/effect boundaries: download_with_mirrors.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[20].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -574,7 +574,7 @@ Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, So
 
 Inputs: Path, TRANSPORT, _download, archive, asdict, atomic_write_json, b, bundle, checked, confined_path, deadline, dict, digest, directory, environment, file_binding, files, installed, java, java_root, java_version, len, list, lock, map, minimal_subprocess_env, nagini, os, output, p, package, python, read_download_policy, read_json, require, root, run_recipe_stage, sorted, str, sys, tarfile, time, venv, virtual, wheels. Outputs/bindings: archive, bundle, checked, deadline, directory, environment, files, installed, java, java_root, java_version, lock, nagini, p, package, python, virtual, wheels.
 Calls/effect boundaries: (virtual / 'bin/python').exists, _download, asdict, atomic_write_json, bundle.extractall, confined_path, digest, directory.mkdir, directory.rglob, environment.get, file_binding, java_root.exists, java_root.glob, java_root.mkdir, len, list, lock.get, map, minimal_subprocess_env, nagini.is_file, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, read_download_policy, read_json, require, run_recipe_stage, sorted, str, tarfile.open, time.monotonic, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[21]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -594,7 +594,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: read_json, root. Outputs/bindings: lock.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -614,7 +614,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -634,7 +634,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: TRANSPORT, lock, require. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -654,7 +654,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: TRANSPORT, lock, require. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -674,7 +674,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: lock. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[1].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -694,7 +694,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: os, require, sys. Outputs/bindings: (none).
 Calls/effect boundaries: os.uname, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -714,7 +714,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: os, require, sys. Outputs/bindings: (none).
 Calls/effect boundaries: os.uname, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -734,7 +734,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: os. Outputs/bindings: (none).
 Calls/effect boundaries: os.uname.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[2].value.args[0].values[1].left.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -754,7 +754,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: confined_path, digest, lock, root. Outputs/bindings: directory.
 Calls/effect boundaries: confined_path, digest.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -774,7 +774,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: confined_path, digest, lock, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, digest.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -794,7 +794,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: digest, lock. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[3].value.args[1].right; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -814,7 +814,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory. Outputs/bindings: (none).
 Calls/effect boundaries: directory.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -834,7 +834,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: directory. Outputs/bindings: (none).
 Calls/effect boundaries: directory.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -854,7 +854,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: read_download_policy, root, time. Outputs/bindings: deadline.
 Calls/effect boundaries: read_download_policy, time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -874,7 +874,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: time. Outputs/bindings: (none).
 Calls/effect boundaries: time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].value.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -894,7 +894,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: read_download_policy, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_download_policy.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[5].value.right.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -914,7 +914,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: _download, deadline, directory, lock, package, root. Outputs/bindings: package, wheels.
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -934,7 +934,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: _download, deadline, directory, lock, package, root. Outputs/bindings: package.
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[21].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -954,7 +954,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: _download, deadline, directory, package, root. Outputs/bindings: (none).
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[6].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -974,7 +974,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: _download, deadline, directory, lock, root. Outputs/bindings: archive.
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -994,7 +994,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: _download, deadline, directory, lock, root. Outputs/bindings: (none).
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1014,7 +1014,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory. Outputs/bindings: java_root.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1034,7 +1034,7 @@ Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value
 
 Inputs: archive, bundle, java_root, tarfile. Outputs/bindings: bundle.
 Calls/effect boundaries: bundle.extractall, java_root.exists, java_root.mkdir, tarfile.open.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[9]; no call, error or mutation may be omitted. Condition: not java_root.exists()
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1054,7 +1054,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java_root. Outputs/bindings: (none).
 Calls/effect boundaries: java_root.exists.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[9].test.operand; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1074,7 +1074,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: java_root. Outputs/bindings: (none).
 Calls/effect boundaries: java_root.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[9].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1094,7 +1094,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java_root. Outputs/bindings: (none).
 Calls/effect boundaries: java_root.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[9].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1114,7 +1114,7 @@ Rust module: `scripts::roadmap_python`. scoped resource guard plus explicit ente
 
 Inputs: archive, bundle, java_root, tarfile. Outputs/bindings: bundle.
 Calls/effect boundaries: bundle.extractall, tarfile.open.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered With evaluation at root.body[21].body[9].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1134,7 +1134,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: archive, tarfile. Outputs/bindings: (none).
 Calls/effect boundaries: tarfile.open.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[9].body[1].items[0].context_expr; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1154,7 +1154,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: bundle, java_root. Outputs/bindings: (none).
 Calls/effect boundaries: bundle.extractall.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[9].body[1].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1174,7 +1174,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: bundle, java_root. Outputs/bindings: (none).
 Calls/effect boundaries: bundle.extractall.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[9].body[1].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1194,7 +1194,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: java_root, list. Outputs/bindings: java.
 Calls/effect boundaries: java_root.glob, list.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1214,7 +1214,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java_root, list. Outputs/bindings: (none).
 Calls/effect boundaries: java_root.glob, list.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[10].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1234,7 +1234,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java_root. Outputs/bindings: (none).
 Calls/effect boundaries: java_root.glob.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[10].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1254,7 +1254,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: java, len, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1274,7 +1274,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java, len, require. Outputs/bindings: (none).
 Calls/effect boundaries: len, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[11].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1294,7 +1294,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[11].value.args[0].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1314,7 +1314,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: minimal_subprocess_env. Outputs/bindings: environment.
 Calls/effect boundaries: minimal_subprocess_env.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1334,7 +1334,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: minimal_subprocess_env. Outputs/bindings: (none).
 Calls/effect boundaries: minimal_subprocess_env.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1354,7 +1354,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, java, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[13]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1374,7 +1374,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[13].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1394,7 +1394,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, java, os, str. Outputs/bindings: (none).
 Calls/effect boundaries: environment.get, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[14]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1414,7 +1414,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[14].value.left.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1434,7 +1434,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: environment, os. Outputs/bindings: (none).
 Calls/effect boundaries: environment.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[14].value.right; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1454,7 +1454,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[15]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1474,7 +1474,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory. Outputs/bindings: virtual.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[16]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1494,7 +1494,7 @@ Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value
 
 Inputs: venv, virtual. Outputs/bindings: (none).
 Calls/effect boundaries: (virtual / 'bin/python').exists, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[21].body[17]; no call, error or mutation may be omitted. Condition: not (virtual / 'bin/python').exists()
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1514,7 +1514,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: virtual. Outputs/bindings: (none).
 Calls/effect boundaries: (virtual / 'bin/python').exists.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[17].test.operand; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1534,7 +1534,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: venv, virtual. Outputs/bindings: (none).
 Calls/effect boundaries: venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[17].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1554,7 +1554,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: venv, virtual. Outputs/bindings: (none).
 Calls/effect boundaries: venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[17].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1574,7 +1574,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: venv. Outputs/bindings: (none).
 Calls/effect boundaries: venv.EnvBuilder.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[17].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1594,7 +1594,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: virtual. Outputs/bindings: python.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[18]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1614,7 +1614,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, map, python, root, run_recipe_stage, str, wheels. Outputs/bindings: installed.
 Calls/effect boundaries: map, run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[19]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1634,7 +1634,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: environment, map, python, root, run_recipe_stage, str, wheels. Outputs/bindings: (none).
 Calls/effect boundaries: map, run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[19].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1654,7 +1654,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: python, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[19].value.args[0].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1674,7 +1674,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: map, str, wheels. Outputs/bindings: (none).
 Calls/effect boundaries: map.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[19].value.args[0].elts[7].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1694,7 +1694,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, atomic_write_json, installed, output, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[20]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1714,7 +1714,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, atomic_write_json, installed, output, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[20].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1734,7 +1734,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, installed. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[20].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1754,7 +1754,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: installed, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[21]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1774,7 +1774,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: installed, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[21].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1794,7 +1794,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, python, root, run_recipe_stage, str. Outputs/bindings: checked.
 Calls/effect boundaries: run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[22]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1814,7 +1814,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: environment, python, root, run_recipe_stage, str. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[22].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1834,7 +1834,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: python, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[22].value.args[0].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1854,7 +1854,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, atomic_write_json, checked, output, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[23]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1874,7 +1874,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, atomic_write_json, checked, output, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[23].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1894,7 +1894,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, checked. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[23].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1914,7 +1914,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: checked, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[24]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1934,7 +1934,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: checked, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[24].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1954,7 +1954,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: virtual. Outputs/bindings: nagini.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[25]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1974,7 +1974,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: nagini, require. Outputs/bindings: (none).
 Calls/effect boundaries: nagini.is_file, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[26]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -1994,7 +1994,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: nagini, require. Outputs/bindings: (none).
 Calls/effect boundaries: nagini.is_file, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[26].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2014,7 +2014,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: nagini. Outputs/bindings: (none).
 Calls/effect boundaries: nagini.is_file.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[26].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2034,7 +2034,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, java, root, run_recipe_stage, str. Outputs/bindings: java_version.
 Calls/effect boundaries: run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[27]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2054,7 +2054,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: environment, java, root, run_recipe_stage, str. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[27].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2074,7 +2074,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[27].value.args[0].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2094,7 +2094,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, atomic_write_json, java_version, output, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[28]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2114,7 +2114,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, atomic_write_json, java_version, output, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[28].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2134,7 +2134,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, java_version. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[28].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2154,7 +2154,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: java_version, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[21].body[29]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2174,7 +2174,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java_version, require. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[29].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2194,7 +2194,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory, file_binding, p, root. Outputs/bindings: files, p.
 Calls/effect boundaries: directory.rglob, file_binding, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[21].body[30]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2214,7 +2214,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: directory, file_binding, p, root. Outputs/bindings: p.
 Calls/effect boundaries: directory.rglob, file_binding, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[21].body[30].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2234,7 +2234,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, p, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[30].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2254,7 +2254,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[30].value.elt.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2274,7 +2274,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[30].value.elt.args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2294,7 +2294,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: directory. Outputs/bindings: (none).
 Calls/effect boundaries: directory.rglob.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[30].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2314,7 +2314,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.is_file.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[30].value.generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2334,7 +2334,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.is_symlink.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[30].value.generators[0].ifs[0].values[1].operand; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2354,7 +2354,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: b, environment, file_binding, files, java, nagini, output, p, python, root, sorted, str. Outputs/bindings: p.
 Calls/effect boundaries: file_binding, p.relative_to, p.relative_to(root).as_posix, sorted, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Return evaluation at root.body[21].body[31]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2374,7 +2374,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2394,7 +2394,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: python, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2414,7 +2414,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: nagini, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2434,7 +2434,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: java, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2454,7 +2454,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: b, files, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2474,7 +2474,7 @@ Rust module: `scripts::roadmap_python`. closure with explicit captures; preserve
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Lambda evaluation at root.body[21].body[31].value.values[6].keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2494,7 +2494,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: file_binding, output, p, root. Outputs/bindings: p.
 Calls/effect boundaries: file_binding, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[21].body[31].value.values[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2514,7 +2514,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, p, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[7].elt; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2534,7 +2534,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[7].elt.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2554,7 +2554,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[21].body[31].value.values[7].elt.args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2574,7 +2574,7 @@ Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, So
 
 Inputs: Path, asdict, atomic_write_json, bindings_current, classify_nagini, confined_path, dict, environment, file_binding, name, outcomes, output, path, r, read_json, require, result, root, run_recipe_stage, runs, source, source_closure, str, toolchain, toolchain_path. Outputs/bindings: environment, name, outcomes, path, r, result, runs, source, toolchain.
 Calls/effect boundaries: asdict, atomic_write_json, bindings_current, classify_nagini, confined_path, dict, file_binding, path.relative_to, path.relative_to(root).as_posix, read_json, require, run_recipe_stage, runs.append, source.relative_to, source.relative_to(root).as_posix, source_closure, str, toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[22]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2594,7 +2594,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[22].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2614,7 +2614,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: confined_path, read_json, root, toolchain_path. Outputs/bindings: toolchain.
 Calls/effect boundaries: confined_path, read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2634,7 +2634,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: confined_path, read_json, root, toolchain_path. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2654,7 +2654,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: confined_path, root, toolchain_path. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[1].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2674,7 +2674,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: bindings_current, require, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require, toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[22].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2694,7 +2694,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: bindings_current, require, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require, toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2714,7 +2714,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2734,7 +2734,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: bindings_current, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].value.args[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2754,7 +2754,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: bindings_current, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[2].value.args[0].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2774,7 +2774,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: runs.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2794,7 +2794,7 @@ Rust module: `scripts::roadmap_python`. for over a source-compatible iterator; p
 
 Inputs: asdict, atomic_write_json, classify_nagini, dict, environment, file_binding, name, output, path, result, root, run_recipe_stage, runs, source, str, toolchain. Outputs/bindings: environment, name, path, result, source.
 Calls/effect boundaries: asdict, atomic_write_json, classify_nagini, dict, file_binding, path.relative_to, path.relative_to(root).as_posix, run_recipe_stage, runs.append, source.relative_to, source.relative_to(root).as_posix, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered For evaluation at root.body[22].body[4]; no call, error or mutation may be omitted. Iteration: name in ('policy_positive.py', 'policy_negative.py')
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2814,7 +2814,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: name, root. Outputs/bindings: source.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[4].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2834,7 +2834,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: dict, root, str, toolchain. Outputs/bindings: environment.
 Calls/effect boundaries: dict, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[4].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2854,7 +2854,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: dict, root, str, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: dict, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2874,7 +2874,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[1].value.keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2894,7 +2894,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[1].value.keywords[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2914,7 +2914,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, root, run_recipe_stage, source, str, toolchain. Outputs/bindings: result.
 Calls/effect boundaries: run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[4].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2934,7 +2934,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: environment, root, run_recipe_stage, source, str, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2954,7 +2954,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[2].value.args[0].elts[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2974,7 +2974,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: source, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[2].value.args[0].elts[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -2994,7 +2994,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: name, output. Outputs/bindings: path.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[4].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3014,7 +3014,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, atomic_write_json, path, result, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[22].body[4].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3034,7 +3034,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, atomic_write_json, path, result, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3054,7 +3054,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[4].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3074,7 +3074,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, classify_nagini, file_binding, name, path, result, root, runs, source. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, classify_nagini, file_binding, path.relative_to, path.relative_to(root).as_posix, runs.append, source.relative_to, source.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[22].body[4].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3094,7 +3094,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, classify_nagini, file_binding, name, path, result, root, runs, source. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, classify_nagini, file_binding, path.relative_to, path.relative_to(root).as_posix, runs.append, source.relative_to, source.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3114,7 +3114,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, root, source. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, source.relative_to, source.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3134,7 +3134,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, source. Outputs/bindings: (none).
 Calls/effect boundaries: source.relative_to, source.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[0].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3154,7 +3154,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, source. Outputs/bindings: (none).
 Calls/effect boundaries: source.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[0].args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3174,7 +3174,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3194,7 +3194,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[2].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3214,7 +3214,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[2].args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3234,7 +3234,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, classify_nagini, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, classify_nagini.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3254,7 +3254,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[4].body[5].value.args[0].values[3].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3274,7 +3274,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: r, runs. Outputs/bindings: outcomes, r.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[22].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3294,7 +3294,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: r, runs. Outputs/bindings: r.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[22].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3314,7 +3314,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: file_binding, outcomes, r, root, runs, source_closure, toolchain_path. Outputs/bindings: r.
 Calls/effect boundaries: file_binding, source_closure.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Return evaluation at root.body[22].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3334,7 +3334,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, source_closure. Outputs/bindings: (none).
 Calls/effect boundaries: source_closure.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[6].value.values[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3354,7 +3354,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[6].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3374,7 +3374,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, root, toolchain_path. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[22].body[6].value.values[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3394,7 +3394,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: r, runs. Outputs/bindings: r.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[22].body[6].value.values[6].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3414,7 +3414,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: r, runs. Outputs/bindings: r.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[22].body[6].value.values[6].right; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3434,7 +3434,7 @@ Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, So
 
 Inputs: Path, TRANSPORT, _download, argv, artifacts, asdict, atomic_write_json, b, confined_path, deadline, dict, digest, directory, entry, environment, file_binding, files, lock, map, minimal_subprocess_env, name, os, output, p, path, profile, python, read_download_policy, read_json, require, result, root, run_recipe_stage, sorted, str, sys, time, venv, virtual, wheels. Outputs/bindings: argv, artifacts, deadline, directory, entry, environment, files, lock, name, p, path, profile, python, result, virtual, wheels.
 Calls/effect boundaries: (virtual / 'bin/python').exists, _download, artifacts.append, asdict, atomic_write_json, confined_path, dict, digest, directory.mkdir, directory.rglob, file_binding, lock.get, map, minimal_subprocess_env, os.uname, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix, path.relative_to, path.relative_to(root).as_posix, read_download_policy, read_json, require, run_recipe_stage, sorted, str, time.monotonic, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[23]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3454,7 +3454,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: profile.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3474,7 +3474,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: profile, read_json, root. Outputs/bindings: lock.
 Calls/effect boundaries: read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3494,7 +3494,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: profile, read_json, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3514,7 +3514,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: TRANSPORT, lock, os, require, sys. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get, os.uname, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[23].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3534,7 +3534,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: TRANSPORT, lock, os, require, sys. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get, os.uname, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3554,7 +3554,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: lock. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[2].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3574,7 +3574,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: lock. Outputs/bindings: (none).
 Calls/effect boundaries: lock.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[2].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3594,7 +3594,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: os. Outputs/bindings: (none).
 Calls/effect boundaries: os.uname.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[2].value.args[0].values[3].left.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3614,7 +3614,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: confined_path, digest, lock, root. Outputs/bindings: directory.
 Calls/effect boundaries: confined_path, digest.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3634,7 +3634,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: confined_path, digest, lock, root. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, digest.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3654,7 +3654,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: digest, lock. Outputs/bindings: (none).
 Calls/effect boundaries: digest.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[3].value.args[1].right; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3674,7 +3674,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory. Outputs/bindings: (none).
 Calls/effect boundaries: directory.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[23].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3694,7 +3694,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: directory. Outputs/bindings: (none).
 Calls/effect boundaries: directory.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3714,7 +3714,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: read_download_policy, root, time. Outputs/bindings: deadline.
 Calls/effect boundaries: read_download_policy, time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3734,7 +3734,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: time. Outputs/bindings: (none).
 Calls/effect boundaries: time.monotonic.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[5].value.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3754,7 +3754,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: read_download_policy, root. Outputs/bindings: (none).
 Calls/effect boundaries: read_download_policy.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[5].value.right.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3774,7 +3774,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: _download, deadline, directory, entry, lock, root. Outputs/bindings: entry, wheels.
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3794,7 +3794,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: _download, deadline, directory, entry, lock, root. Outputs/bindings: entry.
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[23].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3814,7 +3814,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: _download, deadline, directory, entry, root. Outputs/bindings: (none).
 Calls/effect boundaries: _download.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[6].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3834,7 +3834,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory. Outputs/bindings: virtual.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3854,7 +3854,7 @@ Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value
 
 Inputs: venv, virtual. Outputs/bindings: (none).
 Calls/effect boundaries: (virtual / 'bin/python').exists, venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[23].body[8]; no call, error or mutation may be omitted. Condition: not (virtual / 'bin/python').exists()
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3874,7 +3874,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: virtual. Outputs/bindings: (none).
 Calls/effect boundaries: (virtual / 'bin/python').exists.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[8].test.operand; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3894,7 +3894,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: venv, virtual. Outputs/bindings: (none).
 Calls/effect boundaries: venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[23].body[8].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3914,7 +3914,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: venv, virtual. Outputs/bindings: (none).
 Calls/effect boundaries: venv.EnvBuilder, venv.EnvBuilder(with_pip=True).create.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[8].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3934,7 +3934,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: venv. Outputs/bindings: (none).
 Calls/effect boundaries: venv.EnvBuilder.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[8].body[0].value.func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3954,7 +3954,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: virtual. Outputs/bindings: python.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3974,7 +3974,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: dict, minimal_subprocess_env. Outputs/bindings: environment.
 Calls/effect boundaries: dict, minimal_subprocess_env.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -3994,7 +3994,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: dict, minimal_subprocess_env. Outputs/bindings: (none).
 Calls/effect boundaries: dict, minimal_subprocess_env.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[10].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4014,7 +4014,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: minimal_subprocess_env. Outputs/bindings: (none).
 Calls/effect boundaries: minimal_subprocess_env.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[10].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4034,7 +4034,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: artifacts.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4054,7 +4054,7 @@ Rust module: `scripts::roadmap_python`. for over a source-compatible iterator; p
 
 Inputs: argv, artifacts, asdict, atomic_write_json, environment, file_binding, map, name, output, path, python, require, result, root, run_recipe_stage, str, wheels. Outputs/bindings: argv, name, path, result.
 Calls/effect boundaries: artifacts.append, asdict, atomic_write_json, file_binding, map, path.relative_to, path.relative_to(root).as_posix, require, run_recipe_stage, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered For evaluation at root.body[23].body[12]; no call, error or mutation may be omitted. Iteration: (name, argv) in (('pip-result.json', [str(python), '-B', '-m', 'pip', 'install', '--no-index', '--no-deps', *map(str, wheels)]), ('pip-check.json', [str(python), '-B', '-m', 'pip', 'check']))
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4074,7 +4074,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: python, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].iter.elts[0].elts[1].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4094,7 +4094,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: map, str, wheels. Outputs/bindings: (none).
 Calls/effect boundaries: map.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].iter.elts[0].elts[1].elts[7].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4114,7 +4114,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: python, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].iter.elts[1].elts[1].elts[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4134,7 +4134,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: argv, environment, root, run_recipe_stage. Outputs/bindings: result.
 Calls/effect boundaries: run_recipe_stage.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[12].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4154,7 +4154,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: argv, environment, root, run_recipe_stage. Outputs/bindings: (none).
 Calls/effect boundaries: run_recipe_stage.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4174,7 +4174,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: name, output. Outputs/bindings: path.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[12].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4194,7 +4194,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, atomic_write_json, path, result, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[23].body[12].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4214,7 +4214,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, atomic_write_json, path, result, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4234,7 +4234,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[2].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4254,7 +4254,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: artifacts, file_binding, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: artifacts.append, file_binding, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[23].body[12].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4274,7 +4274,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: artifacts, file_binding, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: artifacts.append, file_binding, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4294,7 +4294,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, path, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[3].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4314,7 +4314,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to, path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[3].value.args[0].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4334,7 +4334,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: path, root. Outputs/bindings: (none).
 Calls/effect boundaries: path.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[3].value.args[0].args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4354,7 +4354,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: require, result. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[23].body[12].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4374,7 +4374,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: require, result. Outputs/bindings: (none).
 Calls/effect boundaries: require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[12].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4394,7 +4394,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: directory, file_binding, p, root. Outputs/bindings: files, p.
 Calls/effect boundaries: directory.rglob, file_binding, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[23].body[13]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4414,7 +4414,7 @@ Rust module: `scripts::roadmap_python`. iterator pipeline collected into Vec; pr
 
 Inputs: directory, file_binding, p, root. Outputs/bindings: p.
 Calls/effect boundaries: directory.rglob, file_binding, p.is_file, p.is_symlink, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ListComp evaluation at root.body[23].body[13].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4434,7 +4434,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, p, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[13].value.elt; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4454,7 +4454,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to, p.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[13].value.elt.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4474,7 +4474,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p, root. Outputs/bindings: (none).
 Calls/effect boundaries: p.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[13].value.elt.args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4494,7 +4494,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: directory. Outputs/bindings: (none).
 Calls/effect boundaries: directory.rglob.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[13].value.generators[0].iter; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4514,7 +4514,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.is_file.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[13].value.generators[0].ifs[0].values[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4534,7 +4534,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: p. Outputs/bindings: (none).
 Calls/effect boundaries: p.is_symlink.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[13].value.generators[0].ifs[0].values[1].operand; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4554,7 +4554,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: artifacts, b, environment, file_binding, files, profile, python, root, sorted, str. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, sorted, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Return evaluation at root.body[23].body[14]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4574,7 +4574,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, profile, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[14].value.values[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4594,7 +4594,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: python, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[14].value.values[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4614,7 +4614,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: b, files, sorted. Outputs/bindings: (none).
 Calls/effect boundaries: sorted.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[23].body[14].value.values[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4634,7 +4634,7 @@ Rust module: `scripts::roadmap_python`. closure with explicit captures; preserve
 
 Inputs: b. Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Lambda evaluation at root.body[23].body[14].value.values[5].keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4654,7 +4654,7 @@ Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, So
 
 Inputs: Path, artifacts, asdict, atomic_write_json, binding, bindings_current, classify_deal, confined_path, dependencies, dict, environment, file_binding, fixture, len, name, observed, observed_path, output, read_json, require, result, result_path, root, run_recipe_stage, runs, source_closure, str, toolchain, toolchain_path. Outputs/bindings: artifacts, binding, dependencies, environment, fixture, name, observed, observed_path, result, result_path, runs, toolchain.
 Calls/effect boundaries: artifacts.extend, asdict, atomic_write_json, bindings_current, classify_deal, confined_path, dependencies.append, dict, file_binding, len, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix, read_json, require, result_path.relative_to, result_path.relative_to(root).as_posix, run_recipe_stage, runs.append, source_closure, str, toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[24]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4674,7 +4674,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ImportFrom evaluation at root.body[24].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4694,7 +4694,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: file_binding, root, toolchain_path. Outputs/bindings: binding.
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4714,7 +4714,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, root, toolchain_path. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4734,7 +4734,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: confined_path, read_json, root, toolchain_path. Outputs/bindings: toolchain.
 Calls/effect boundaries: confined_path, read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4754,7 +4754,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: confined_path, read_json, root, toolchain_path. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path, read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4774,7 +4774,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: confined_path, root, toolchain_path. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[2].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4794,7 +4794,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: bindings_current, require, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require, toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[24].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4814,7 +4814,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: bindings_current, require, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current, require, toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4834,7 +4834,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[3].value.args[0].values[0].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4854,7 +4854,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: toolchain.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[3].value.args[0].values[1].left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4874,7 +4874,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: bindings_current, root, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: bindings_current.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[3].value.args[0].values[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4894,7 +4894,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: (none). Outputs/bindings: artifacts, runs.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4914,7 +4914,7 @@ Rust module: `scripts::roadmap_python`. for over a source-compatible iterator; p
 
 Inputs: artifacts, asdict, atomic_write_json, classify_deal, dependencies, dict, environment, file_binding, fixture, len, name, observed, observed_path, output, read_json, result, result_path, root, run_recipe_stage, runs, str, toolchain. Outputs/bindings: dependencies, environment, fixture, name, observed, observed_path, result, result_path.
 Calls/effect boundaries: artifacts.extend, asdict, atomic_write_json, classify_deal, dependencies.append, dict, file_binding, len, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix, read_json, result_path.relative_to, result_path.relative_to(root).as_posix, run_recipe_stage, runs.append, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered For evaluation at root.body[24].body[5]; no call, error or mutation may be omitted. Iteration: name in ('policy_deal_positive.py', 'policy_deal_negative.py')
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4934,7 +4934,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: file_binding, name, root. Outputs/bindings: fixture.
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4954,7 +4954,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, name, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4974,7 +4974,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: name, output. Outputs/bindings: observed_path.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -4994,7 +4994,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: dict, root, str, toolchain. Outputs/bindings: environment.
 Calls/effect boundaries: dict, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5014,7 +5014,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: dict, root, str, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: dict, str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5034,7 +5034,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[2].value.keywords[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5054,7 +5054,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: environment, fixture, observed_path, root, run_recipe_stage, toolchain. Outputs/bindings: result.
 Calls/effect boundaries: observed_path.relative_to, observed_path.relative_to(root).as_posix, run_recipe_stage.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5074,7 +5074,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: environment, fixture, observed_path, root, run_recipe_stage, toolchain. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.relative_to, observed_path.relative_to(root).as_posix, run_recipe_stage.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5094,7 +5094,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.relative_to, observed_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[3].value.args[0].elts[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5114,7 +5114,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[3].value.args[0].elts[6].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5134,7 +5134,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: name, output. Outputs/bindings: result_path.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5154,7 +5154,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, atomic_write_json, result, result_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[24].body[5].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5174,7 +5174,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, atomic_write_json, result, result_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5194,7 +5194,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[5].value.args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5214,7 +5214,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: observed_path, read_json. Outputs/bindings: observed.
 Calls/effect boundaries: observed_path.is_file, read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5234,7 +5234,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.is_file.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[6].value.test; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5254,7 +5254,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path, read_json. Outputs/bindings: (none).
 Calls/effect boundaries: read_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[6].value.body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5274,7 +5274,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: file_binding, fixture, result_path, root. Outputs/bindings: dependencies.
 Calls/effect boundaries: file_binding, result_path.relative_to, result_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[24].body[5].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5294,7 +5294,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, result_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, result_path.relative_to, result_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[7].value.elts[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5314,7 +5314,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: result_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: result_path.relative_to, result_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[7].value.elts[1].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5334,7 +5334,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: result_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: result_path.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[7].value.elts[1].args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5354,7 +5354,7 @@ Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value
 
 Inputs: dependencies, file_binding, observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.append, file_binding, observed_path.is_file, observed_path.relative_to, observed_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[24].body[5].body[8]; no call, error or mutation may be omitted. Condition: observed_path.is_file()
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5374,7 +5374,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.is_file.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[8].test; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5394,7 +5394,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: dependencies, file_binding, observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.append, file_binding, observed_path.relative_to, observed_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[24].body[5].body[8].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5414,7 +5414,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: dependencies, file_binding, observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: dependencies.append, file_binding, observed_path.relative_to, observed_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[8].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5434,7 +5434,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, observed_path.relative_to, observed_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[8].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5454,7 +5454,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.relative_to, observed_path.relative_to(root).as_posix.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[8].body[0].value.args[0].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5474,7 +5474,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: observed_path, root. Outputs/bindings: (none).
 Calls/effect boundaries: observed_path.relative_to.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[8].body[0].value.args[0].args[1].func.value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5494,7 +5494,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: artifacts, dependencies. Outputs/bindings: (none).
 Calls/effect boundaries: artifacts.extend.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[24].body[5].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5514,7 +5514,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: artifacts, dependencies. Outputs/bindings: (none).
 Calls/effect boundaries: artifacts.extend.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[9].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5534,7 +5534,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: asdict, classify_deal, dependencies, fixture, len, name, observed, result, runs. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, classify_deal, len, runs.append.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[24].body[5].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5554,7 +5554,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, classify_deal, dependencies, fixture, len, name, observed, result, runs. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, classify_deal, len, runs.append.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[10].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5574,7 +5574,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: dependencies, len. Outputs/bindings: (none).
 Calls/effect boundaries: len.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[10].value.args[0].values[3].test.left; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5594,7 +5594,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, classify_deal, observed, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict, classify_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[10].value.args[0].values[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5614,7 +5614,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: asdict, result. Outputs/bindings: (none).
 Calls/effect boundaries: asdict.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[5].body[10].value.args[0].values[4].args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5634,7 +5634,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: artifacts, binding, file_binding, root, runs, source_closure. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding, source_closure.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Return evaluation at root.body[24].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5654,7 +5654,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: root, source_closure. Outputs/bindings: (none).
 Calls/effect boundaries: source_closure.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[6].value.values[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5674,7 +5674,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: file_binding, root. Outputs/bindings: (none).
 Calls/effect boundaries: file_binding.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[24].body[6].value.values[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5688,13 +5688,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25]::FunctionDef
 
-Source: `scripts/roadmap_python.py:159`; AST `9443d45db9d5e4b1cfad4e26104be2a3ef670ed114cd8083e358dbb5462997bc`.
+Source: `scripts/roadmap_python.py:159`; AST `bed630188283a1744195e6fad55e43e3dad60967fb8a4a0330563c9fd313902b`.
 
 Rust module: `scripts::roadmap_python`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
-Inputs: Exception, ROOT, __doc__, argparse, args, atomic_write_json, bool, compile_roadmaps, confined_path, details, exc, json, output, parser, print, provision, provision_deal, qualify, qualify_deal, require, route, str, type. Outputs/bindings: args, details, output, parser.
-Calls/effect boundaries: argparse.ArgumentParser, atomic_write_json, bool, compile_roadmaps, confined_path, details.get, details.update, json.dumps, output.parent.mkdir, parser.add_argument, parser.parse_args, print, provision, provision_deal, qualify, qualify_deal, require, route, str, type.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Inputs: Exception, ROOT, __doc__, argparse, args, atomic_write_json, bool, compile_roadmaps, confined_path, details, exc, json, output, parser, print, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require, route, str, type. Outputs/bindings: args, details, output, parser.
+Calls/effect boundaries: argparse.ArgumentParser, atomic_write_json, bool, compile_roadmaps, confined_path, details.get, details.update, json.dumps, output.parent.mkdir, parser.add_argument, parser.parse_args, print, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require, route, str, type.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered FunctionDef evaluation at root.body[25]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5714,7 +5714,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: __doc__, argparse. Outputs/bindings: parser.
 Calls/effect boundaries: argparse.ArgumentParser.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[25].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5734,7 +5734,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: __doc__, argparse. Outputs/bindings: (none).
 Calls/effect boundaries: argparse.ArgumentParser.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5754,7 +5754,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5774,7 +5774,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5794,7 +5794,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5814,7 +5814,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[2].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5834,7 +5834,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[3]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5854,7 +5854,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[3].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5874,7 +5874,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[4]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5894,7 +5894,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[4].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5908,13 +5908,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[5]::Expr
 
-Source: `scripts/roadmap_python.py:165`; AST `543430748da9632375d8bf210e3acbbdabfd68ec3c3af223c9645d072a619b47`.
+Source: `scripts/roadmap_python.py:165`; AST `5dc3037bf8b79a57f092f7b592d3da2c5e19754b0ea1174afb23e01bbe2e8727`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[5]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5928,13 +5928,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[5].value::Call
 
-Source: `scripts/roadmap_python.py:165`; AST `7cafde594fe15ab266cc44d403603348f06bb7306125001c7bbc48404d7f59e4`.
+Source: `scripts/roadmap_python.py:165`; AST `0093743eff5ed56ff5408b72767e2320decccba39058574af1c0a270f9f8cc58`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.add_argument.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[5].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5954,7 +5954,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: parser. Outputs/bindings: args.
 Calls/effect boundaries: parser.parse_args.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[25].body[6]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5974,7 +5974,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: parser. Outputs/bindings: (none).
 Calls/effect boundaries: parser.parse_args.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[6].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -5994,7 +5994,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: ROOT, args, confined_path. Outputs/bindings: output.
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[25].body[7]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6014,7 +6014,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: ROOT, args, confined_path. Outputs/bindings: (none).
 Calls/effect boundaries: confined_path.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[7].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6034,7 +6034,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: output. Outputs/bindings: (none).
 Calls/effect boundaries: output.parent.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[8]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6054,7 +6054,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: output. Outputs/bindings: (none).
 Calls/effect boundaries: output.parent.mkdir.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[8].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6074,7 +6074,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: args. Outputs/bindings: details.
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Assign evaluation at root.body[25].body[9]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6088,13 +6088,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10]::Try
 
-Source: `scripts/roadmap_python.py:170`; AST `150400aeabc4a3dda6c8e608a8843ca8cffc43e38d4a9539c6a0cf119b32944c`.
+Source: `scripts/roadmap_python.py:170`; AST `b9584f5b9ba44687d51084a30bfbe597b34c10fd2c16b7d172d90ae19fbd91f6`.
 
 Rust module: `scripts::roadmap_python`. Result propagation plus typed error matching; finally via explicit cleanup on success/error/return, not Drop alone
 
-Inputs: Exception, ROOT, args, atomic_write_json, bool, compile_roadmaps, details, exc, output, provision, provision_deal, qualify, qualify_deal, require, route, str, type. Outputs/bindings: (none).
-Calls/effect boundaries: atomic_write_json, bool, compile_roadmaps, details.update, provision, provision_deal, qualify, qualify_deal, require, route, str, type.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Inputs: Exception, ROOT, args, atomic_write_json, bool, compile_roadmaps, details, exc, output, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require, route, str, type. Outputs/bindings: (none).
+Calls/effect boundaries: atomic_write_json, bool, compile_roadmaps, details.update, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require, route, str, type.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Try evaluation at root.body[25].body[10]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6108,13 +6108,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0]::If
 
-Source: `scripts/roadmap_python.py:171`; AST `0724761847a12ca5f44984c8489ada286de47a2b0ca86d0f3eaf2eee57d07b77`.
+Source: `scripts/roadmap_python.py:171`; AST `eacfdb8dae137e592780ebc07d46519a5423a5fdd4d754731fc782f632ec94cb`.
 
 Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value conversion and unchanged branch order
 
-Inputs: ROOT, args, bool, compile_roadmaps, details, output, provision, provision_deal, qualify, qualify_deal, require, route. Outputs/bindings: (none).
-Calls/effect boundaries: bool, compile_roadmaps, details.update, provision, provision_deal, qualify, qualify_deal, require, route.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Inputs: ROOT, args, bool, compile_roadmaps, details, output, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require, route. Outputs/bindings: (none).
+Calls/effect boundaries: bool, compile_roadmaps, details.update, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require, route.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[25].body[10].body[0]; no call, error or mutation may be omitted. Condition: args.action == 'route'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6134,7 +6134,7 @@ Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation ord
 
 Inputs: ROOT, args, compile_roadmaps, details, route. Outputs/bindings: (none).
 Calls/effect boundaries: compile_roadmaps, details.update, route.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6154,7 +6154,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: ROOT, args, compile_roadmaps, details, route. Outputs/bindings: (none).
 Calls/effect boundaries: compile_roadmaps, details.update, route.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6174,7 +6174,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: ROOT, args, compile_roadmaps, route. Outputs/bindings: (none).
 Calls/effect boundaries: compile_roadmaps, route.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].body[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6194,7 +6194,7 @@ Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; prese
 
 Inputs: ROOT, compile_roadmaps. Outputs/bindings: (none).
 Calls/effect boundaries: compile_roadmaps.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].body[0].value.args[0].args[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6208,13 +6208,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0]::If
 
-Source: `scripts/roadmap_python.py:173`; AST `08c2811e0dc4cce9e3cbce58d1f01a91a310d1d457de6ed6a9b4d46fb0626021`.
+Source: `scripts/roadmap_python.py:173`; AST `23602eab3dcbbc551ceddd803367a0cff62ea160e10bfdcfb04ccf79e2a923ad`.
 
 Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value conversion and unchanged branch order
 
-Inputs: ROOT, args, bool, details, output, provision, provision_deal, qualify, qualify_deal, require. Outputs/bindings: (none).
-Calls/effect boundaries: bool, details.update, provision, provision_deal, qualify, qualify_deal, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Inputs: ROOT, args, bool, details, output, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require. Outputs/bindings: (none).
+Calls/effect boundaries: bool, details.update, provision, provision_deal, provision_esbmc, qualify, qualify_deal, qualify_esbmc, require.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[25].body[10].body[0].orelse[0]; no call, error or mutation may be omitted. Condition: args.action == 'toolchain'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6226,17 +6226,117 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0]::Expr
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0]::If
 
-Source: `scripts/roadmap_python.py:174`; AST `680e9027b15c384f5fc41633b9614d42e41e821bf9376fe4bac17fa73916a05f`.
+Source: `scripts/roadmap_python.py:174`; AST `15173224edc5e1edb98052f37ffad140ca878ba0d2d677aca424b3c1d850c306`.
+
+Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: ROOT, args, details, output, provision, provision_deal, provision_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: details.update, provision, provision_deal, provision_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered If evaluation at root.body[25].body[10].body[0].orelse[0].body[0]; no call, error or mutation may be omitted. Condition: args.backend == 'esbmc-python'
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].body[0]::ImportFrom
+
+Source: `scripts/roadmap_python.py:175`; AST `6207cdc881598bc33fe609621a25e3552446cae0e7720c9ac5348d683785676d`.
+
+Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered ImportFrom evaluation at root.body[25].body[10].body[0].orelse[0].body[0].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].body[1]::Expr
+
+Source: `scripts/roadmap_python.py:176`; AST `9b356dc29851b1b3ad75a69ec625c24a5900459e50ca1b9bfff4c635a2995eb2`.
+
+Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: ROOT, details, output, provision_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: details.update, provision_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].body[0].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].body[1].value::Call
+
+Source: `scripts/roadmap_python.py:176`; AST `c987678f05cb0697a86735c62987a5f6ed8ce948fd03fddb13ab781ade0f64b4`.
+
+Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ROOT, details, output, provision_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: details.update, provision_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].body[1].value.args[0]::Call
+
+Source: `scripts/roadmap_python.py:176`; AST `cd5e604c882701697deba32e40d2196b23ab1f127f8fa518d4716bc019792b04`.
+
+Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ROOT, output, provision_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: provision_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].body[1].value.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].orelse[0]::Expr
+
+Source: `scripts/roadmap_python.py:178`; AST `680e9027b15c384f5fc41633b9614d42e41e821bf9376fe4bac17fa73916a05f`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: ROOT, args, details, output, provision, provision_deal. Outputs/bindings: (none).
 Calls/effect boundaries: details.update, provision, provision_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].body[0]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].body[0].orelse[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6246,17 +6346,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].value::Call
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].orelse[0].value::Call
 
-Source: `scripts/roadmap_python.py:174`; AST `2bf371865962d5e027ef3ce2a7da5359de26602ade6086fb688a524d0f83e824`.
+Source: `scripts/roadmap_python.py:178`; AST `2bf371865962d5e027ef3ce2a7da5359de26602ade6086fb688a524d0f83e824`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, args, details, output, provision, provision_deal. Outputs/bindings: (none).
 Calls/effect boundaries: details.update, provision, provision_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].orelse[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6266,17 +6366,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].value.args[0].body::Call
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].orelse[0].value.args[0].body::Call
 
-Source: `scripts/roadmap_python.py:174`; AST `d94639f6493217e74bf80cdfa2a959eeb3f218fa4ca5c7093284cc667397e71b`.
+Source: `scripts/roadmap_python.py:178`; AST `d94639f6493217e74bf80cdfa2a959eeb3f218fa4ca5c7093284cc667397e71b`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, output, provision_deal. Outputs/bindings: (none).
 Calls/effect boundaries: provision_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].value.args[0].body; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].orelse[0].value.args[0].body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6286,17 +6386,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].value.args[0].orelse::Call
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].body[0].orelse[0].value.args[0].orelse::Call
 
-Source: `scripts/roadmap_python.py:174`; AST `09b3dfd74d54b6851cf97079981e7c8bb8d4845057644b7e6e243cbcb800af4c`.
+Source: `scripts/roadmap_python.py:178`; AST `09b3dfd74d54b6851cf97079981e7c8bb8d4845057644b7e6e243cbcb800af4c`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, output, provision. Outputs/bindings: (none).
 Calls/effect boundaries: provision.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].value.args[0].orelse; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].body[0].orelse[0].value.args[0].orelse; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6308,13 +6408,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[0]::Expr
 
-Source: `scripts/roadmap_python.py:176`; AST `c0b1de1c66ad89ca7f1f70d0b698ed66f4e64fbea18cd0e60e87e2207009735f`.
+Source: `scripts/roadmap_python.py:180`; AST `c0b1de1c66ad89ca7f1f70d0b698ed66f4e64fbea18cd0e60e87e2207009735f`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: args, bool, require. Outputs/bindings: (none).
 Calls/effect boundaries: bool, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].orelse[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6328,13 +6428,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[0].value::Call
 
-Source: `scripts/roadmap_python.py:176`; AST `1b79322c8c38826bdf7e5dbcc641f3ee711c2b278192923d5f437e7cc8bb8cc4`.
+Source: `scripts/roadmap_python.py:180`; AST `1b79322c8c38826bdf7e5dbcc641f3ee711c2b278192923d5f437e7cc8bb8cc4`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: args, bool, require. Outputs/bindings: (none).
 Calls/effect boundaries: bool, require.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6348,13 +6448,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[0].value.args[0]::Call
 
-Source: `scripts/roadmap_python.py:176`; AST `fd5b4b44bde615f9fc60e6bd97ae64e8173f8e63fb481e5b52ea35a5d294897a`.
+Source: `scripts/roadmap_python.py:180`; AST `fd5b4b44bde615f9fc60e6bd97ae64e8173f8e63fb481e5b52ea35a5d294897a`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: args, bool. Outputs/bindings: (none).
 Calls/effect boundaries: bool.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[0].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6366,17 +6466,117 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1]::Expr
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1]::If
 
-Source: `scripts/roadmap_python.py:177`; AST `e55c0b5284d95a7e3ccecf3e1f326eaf3f8acde6e3a63a837fcc33aca258041e`.
+Source: `scripts/roadmap_python.py:181`; AST `b5bc23753a217f428966a5a7c2b0d39984a866e4f84e126984c9db0f31f698d5`.
+
+Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value conversion and unchanged branch order
+
+Inputs: ROOT, args, details, output, qualify, qualify_deal, qualify_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: details.update, qualify, qualify_deal, qualify_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered If evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1]; no call, error or mutation may be omitted. Condition: args.backend == 'esbmc-python'
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].body[0]::ImportFrom
+
+Source: `scripts/roadmap_python.py:182`; AST `247f37d36bbe27c02921b915730692701130ecb46bb5b46b4d7a191fc0615070`.
+
+Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: (none). Outputs/bindings: (none).
+Calls/effect boundaries: (none).
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered ImportFrom evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].body[0]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].body[1]::Expr
+
+Source: `scripts/roadmap_python.py:183`; AST `d85303d48ac0e6bc2e0ff51d97fb17e2cc54f0187d54813d9b8019f1ed51123b`.
+
+Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
+
+Inputs: ROOT, args, details, output, qualify_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: details.update, qualify_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].body[1]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].body[1].value::Call
+
+Source: `scripts/roadmap_python.py:183`; AST `f32a0af395cc3353e01d9c0c4fba9aa5485fece446e758e54829c4ac64ec5cce`.
+
+Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ROOT, args, details, output, qualify_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: details.update, qualify_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].body[1].value; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].body[1].value.args[0]::Call
+
+Source: `scripts/roadmap_python.py:183`; AST `4ff976d5c442eeff4394ec5174c7192465a5f4e41359b563bd3e2fe2c88647e5`.
+
+Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
+
+Inputs: ROOT, args, output, qualify_esbmc. Outputs/bindings: (none).
+Calls/effect boundaries: qualify_esbmc.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
+
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].body[1].value.args[0]; no call, error or mutation may be omitted.
+Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
+Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
+
+Python int -> num_bigint::BigInt unless a proved source bound permits fixed width; preserve bool/int distinctions, float bits and rounding
+Classify actual aliases and mutations before choosing owned values, Arc/Weak or borrowing; preserve logical lifetime and callback phases
+Preserve source exception classes, matching, validation order, cleanup and partial effects with a typed error enum
+
+Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
+
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0]::Expr
+
+Source: `scripts/roadmap_python.py:185`; AST `e55c0b5284d95a7e3ccecf3e1f326eaf3f8acde6e3a63a837fcc33aca258041e`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: ROOT, args, details, output, qualify, qualify_deal. Outputs/bindings: (none).
 Calls/effect boundaries: details.update, qualify, qualify_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1]; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6386,17 +6586,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].value::Call
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0].value::Call
 
-Source: `scripts/roadmap_python.py:177`; AST `e2b091252750078d32db773cb19be0c311f97752f8cc1398786c527897f8c498`.
+Source: `scripts/roadmap_python.py:185`; AST `e2b091252750078d32db773cb19be0c311f97752f8cc1398786c527897f8c498`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, args, details, output, qualify, qualify_deal. Outputs/bindings: (none).
 Calls/effect boundaries: details.update, qualify, qualify_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].value; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6406,17 +6606,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].value.args[0].body::Call
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0].value.args[0].body::Call
 
-Source: `scripts/roadmap_python.py:177`; AST `9bff276eb84b0b28a4104177cd37c4973943cfc8e2da4c3e018119759c23e109`.
+Source: `scripts/roadmap_python.py:185`; AST `9bff276eb84b0b28a4104177cd37c4973943cfc8e2da4c3e018119759c23e109`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, args, output, qualify_deal. Outputs/bindings: (none).
 Calls/effect boundaries: qualify_deal.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].value.args[0].body; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0].value.args[0].body; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6426,17 +6626,17 @@ Preserve source exception classes, matching, validation order, cleanup and parti
 
 Required evidence: current Python tests; actual production Python proof where applicable; future Rust correspondence and affected test/proof replay.
 
-## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].value.args[0].orelse::Call
+## scripts/roadmap_python.py::module::main::root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0].value.args[0].orelse::Call
 
-Source: `scripts/roadmap_python.py:177`; AST `9493480b6d44dbcd3995fce5128ec6af3d336a1d5281e866e5172d6920055f44`.
+Source: `scripts/roadmap_python.py:185`; AST `9493480b6d44dbcd3995fce5128ec6af3d336a1d5281e866e5172d6920055f44`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, args, output, qualify. Outputs/bindings: (none).
 Calls/effect boundaries: qualify.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
-Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].value.args[0].orelse; no call, error or mutation may be omitted.
+Invariants: Preserve ordered Call evaluation at root.body[25].body[10].body[0].orelse[0].orelse[1].orelse[0].value.args[0].orelse; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
 Unresolved: Infer concrete dynamic types, alias/lifetime constraints and external-call exception contracts from the bound production context before accepting a replacement
 
@@ -6448,13 +6648,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0]::ExceptHandler
 
-Source: `scripts/roadmap_python.py:178`; AST `be0e352e3eb5a6555cd8a4462cb28790a828f68813c1d94c7e9375175fcc67a2`.
+Source: `scripts/roadmap_python.py:186`; AST `be0e352e3eb5a6555cd8a4462cb28790a828f68813c1d94c7e9375175fcc67a2`.
 
 Rust module: `scripts::roadmap_python`. match on source error enum preserving exception subtype matching and binding cleanup
 
 Inputs: Exception, ROOT, atomic_write_json, details, exc, output, str, type. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json, details.update, str, type.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered ExceptHandler evaluation at root.body[25].body[10].handlers[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6468,13 +6668,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[0]::Expr
 
-Source: `scripts/roadmap_python.py:179`; AST `abeed5042a73141808d86ad9c758a4deb65df21e35308b4f121f6f848e00979f`.
+Source: `scripts/roadmap_python.py:187`; AST `abeed5042a73141808d86ad9c758a4deb65df21e35308b4f121f6f848e00979f`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: details, exc, str, type. Outputs/bindings: (none).
 Calls/effect boundaries: details.update, str, type.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].handlers[0].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6488,13 +6688,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[0].value::Call
 
-Source: `scripts/roadmap_python.py:179`; AST `7aa41abb1d2ef7061383da1ef31927f8ef7b9fe56f8de7461eb92953d27ab474`.
+Source: `scripts/roadmap_python.py:187`; AST `7aa41abb1d2ef7061383da1ef31927f8ef7b9fe56f8de7461eb92953d27ab474`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: details, exc, str, type. Outputs/bindings: (none).
 Calls/effect boundaries: details.update, str, type.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].handlers[0].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6508,13 +6708,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[0].value.keywords[1].value.values[0].value::Call
 
-Source: `scripts/roadmap_python.py:179`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
+Source: `scripts/roadmap_python.py:187`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: exc, type. Outputs/bindings: (none).
 Calls/effect boundaries: type.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].handlers[0].body[0].value.keywords[1].value.values[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6528,13 +6728,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[0].value.keywords[1].value.values[1]::Call
 
-Source: `scripts/roadmap_python.py:179`; AST `ed91e0e2c4feb43ad37ba7941b4ee3c7dcc36d3eb80d4a170990c028aa16f027`.
+Source: `scripts/roadmap_python.py:187`; AST `ed91e0e2c4feb43ad37ba7941b4ee3c7dcc36d3eb80d4a170990c028aa16f027`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: exc, str. Outputs/bindings: (none).
 Calls/effect boundaries: str.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].handlers[0].body[0].value.keywords[1].value.values[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6548,13 +6748,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[1]::Expr
 
-Source: `scripts/roadmap_python.py:180`; AST `6827e0538d8a875ec70f86a195629043358a77d80a9ad92988899f3a044623a9`.
+Source: `scripts/roadmap_python.py:188`; AST `6827e0538d8a875ec70f86a195629043358a77d80a9ad92988899f3a044623a9`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: ROOT, atomic_write_json, details, output. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[10].handlers[0].body[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6568,13 +6768,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[1].value::Call
 
-Source: `scripts/roadmap_python.py:180`; AST `60bb52616de20a8c1388546ef8f467481955ceced2d321546afa06ee8106c189`.
+Source: `scripts/roadmap_python.py:188`; AST `60bb52616de20a8c1388546ef8f467481955ceced2d321546afa06ee8106c189`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, atomic_write_json, details, output. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[10].handlers[0].body[1].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6588,13 +6788,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[10].handlers[0].body[2]::Raise
 
-Source: `scripts/roadmap_python.py:181`; AST `ba28128c14dfbd0a9062c0dbab42ad6c52ecf0767df6b67576deb1dbbfdd038d`.
+Source: `scripts/roadmap_python.py:189`; AST `ba28128c14dfbd0a9062c0dbab42ad6c52ecf0767df6b67576deb1dbbfdd038d`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: (none). Outputs/bindings: (none).
 Calls/effect boundaries: (none).
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Raise evaluation at root.body[25].body[10].handlers[0].body[2]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6608,13 +6808,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[11]::Expr
 
-Source: `scripts/roadmap_python.py:182`; AST `6827e0538d8a875ec70f86a195629043358a77d80a9ad92988899f3a044623a9`.
+Source: `scripts/roadmap_python.py:190`; AST `6827e0538d8a875ec70f86a195629043358a77d80a9ad92988899f3a044623a9`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: ROOT, atomic_write_json, details, output. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[11]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6628,13 +6828,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[11].value::Call
 
-Source: `scripts/roadmap_python.py:182`; AST `60bb52616de20a8c1388546ef8f467481955ceced2d321546afa06ee8106c189`.
+Source: `scripts/roadmap_python.py:190`; AST `60bb52616de20a8c1388546ef8f467481955ceced2d321546afa06ee8106c189`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: ROOT, atomic_write_json, details, output. Outputs/bindings: (none).
 Calls/effect boundaries: atomic_write_json.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[11].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6648,13 +6848,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[12]::Expr
 
-Source: `scripts/roadmap_python.py:183`; AST `7e5045f4dd975b10c3b4cf83aafd6c94dac43df4c4bea2d3562833171c07f130`.
+Source: `scripts/roadmap_python.py:191`; AST `7e5045f4dd975b10c3b4cf83aafd6c94dac43df4c4bea2d3562833171c07f130`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: args, details, json, print. Outputs/bindings: (none).
 Calls/effect boundaries: details.get, json.dumps, print.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[25].body[12]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6668,13 +6868,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[12].value::Call
 
-Source: `scripts/roadmap_python.py:183`; AST `9baa38ad91607bc2d039cb848ddc7837d1bb1d352b50c1e675262f311c081040`.
+Source: `scripts/roadmap_python.py:191`; AST `9baa38ad91607bc2d039cb848ddc7837d1bb1d352b50c1e675262f311c081040`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: args, details, json, print. Outputs/bindings: (none).
 Calls/effect boundaries: details.get, json.dumps, print.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[12].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6688,13 +6888,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[12].value.args[0]::Call
 
-Source: `scripts/roadmap_python.py:183`; AST `7954c862fdca8377761218c9b25cae511aa0de78f299f3b3d752f49ae76540cc`.
+Source: `scripts/roadmap_python.py:191`; AST `7954c862fdca8377761218c9b25cae511aa0de78f299f3b3d752f49ae76540cc`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: args, details, json. Outputs/bindings: (none).
 Calls/effect boundaries: details.get, json.dumps.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[12].value.args[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6708,13 +6908,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::main::root.body[25].body[12].value.args[0].args[0].values[1]::Call
 
-Source: `scripts/roadmap_python.py:183`; AST `f63476f469df30469ab052e394bf48bef4cca66f10e12ebb537b6d3ab4725243`.
+Source: `scripts/roadmap_python.py:191`; AST `f63476f469df30469ab052e394bf48bef4cca66f10e12ebb537b6d3ab4725243`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: details. Outputs/bindings: (none).
 Calls/effect boundaries: details.get.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[25].body[12].value.args[0].args[0].values[1]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6728,13 +6928,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::root.body[26]::If
 
-Source: `scripts/roadmap_python.py:186`; AST `3340fd16ba41ba1ddf3989cd136a498b72a97f7796e0f7fad6e815585dbc1c52`.
+Source: `scripts/roadmap_python.py:194`; AST `3340fd16ba41ba1ddf3989cd136a498b72a97f7796e0f7fad6e815585dbc1c52`.
 
 Rust module: `scripts::roadmap_python`. if/else with explicit Python truth-value conversion and unchanged branch order
 
 Inputs: __name__, main. Outputs/bindings: (none).
 Calls/effect boundaries: main.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered If evaluation at root.body[26]; no call, error or mutation may be omitted. Condition: __name__ == '__main__'
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6748,13 +6948,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::root.body[26].body[0]::Expr
 
-Source: `scripts/roadmap_python.py:187`; AST `26412f54b9dfeb741e0d31e60ab8bd5c087bc77b2e3192f46a2fa84cd9152b86`.
+Source: `scripts/roadmap_python.py:195`; AST `26412f54b9dfeb741e0d31e60ab8bd5c087bc77b2e3192f46a2fa84cd9152b86`.
 
 Rust module: `scripts::roadmap_python`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
 Inputs: main. Outputs/bindings: (none).
 Calls/effect boundaries: main.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Expr evaluation at root.body[26].body[0]; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap
@@ -6768,13 +6968,13 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## scripts/roadmap_python.py::module::root.body[26].body[0].value::Call
 
-Source: `scripts/roadmap_python.py:187`; AST `612de6187c097f49a7c6002bfa6b205845dac081e9c3dc6b160fd9a6f584c826`.
+Source: `scripts/roadmap_python.py:195`; AST `612de6187c097f49a7c6002bfa6b205845dac081e9c3dc6b160fd9a6f584c826`.
 
 Rust module: `scripts::roadmap_python`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
 Inputs: main. Outputs/bindings: (none).
 Calls/effect boundaries: main.
-Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, sys, tarfile, time, venv.
+Dependencies: __future__, agentinfra.atomic, agentinfra.process, agentinfra.roadmap, agentinfra.roadmap_mirrors, agentinfra.roadmap_python, agentinfra.roadmap_records, agentinfra.security, argparse, dataclasses, json, os, pathlib, roadmap_esbmc, sys, tarfile, time, venv.
 
 Invariants: Preserve ordered Call evaluation at root.body[26].body[0].value; no call, error or mutation may be omitted.
 Rust library candidates: serde_json; std::fs / std::path::PathBuf; std::time::Instant / SystemTime; clap

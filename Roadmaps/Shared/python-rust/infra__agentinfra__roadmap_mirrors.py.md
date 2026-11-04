@@ -2,13 +2,13 @@
 
 Generated from actual Python ASTs. Every entry is a migration proposal, not a completed Rust implementation or a proof.
 
-Files: 1. Behavioral units: 265. Inventory digest: `7f29149bd8735027dd75ea5def35555c625426168e1ff521ca147b7fe75c6375`.
+Files: 1. Behavioral units: 265. Inventory digest: `02dbb6e7d30c447095f4124a54a8f4d794e19d6879c1b575f4c954c6c7f8fbba`.
 
 Line numbers are navigation only. AST routes and source hashes bind identities; an edit requires regeneration and review.
 
 ## infra/agentinfra/roadmap_mirrors.py::module::root::Module
 
-Source: `infra/agentinfra/roadmap_mirrors.py:1`; AST `d9594af9afb92ca601950850eb1937b0a4c5e99ce51183c34de656ff4427bdd3`.
+Source: `infra/agentinfra/roadmap_mirrors.py:1`; AST `0582ce56537b76f46a62758d8b41db66cdaaddfb264a75e270110b3c2652b40c`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Rust module; explicit initialization function for module-level effects; no hidden import-time mutation
 
@@ -2368,7 +2368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19]::FunctionDef
 
-Source: `infra/agentinfra/roadmap_mirrors.py:91`; AST `b3c090e7d593867e9930c2e4cbd5791d4cd6941b6ebd73e804f3c4db05b8b4a3`.
+Source: `infra/agentinfra/roadmap_mirrors.py:91`; AST `228419d70169a3b611c78e6aaf47c3ce1b96dc9923a60892a8373666d38aac27`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. fn with explicit inputs and Result<T, SourceError>; preserve defaults, argument binding and validation order
 
@@ -3148,7 +3148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12]::For
 
-Source: `infra/agentinfra/roadmap_mirrors.py:108`; AST `708f27a6589e4e6db3a05a077da03a4bc924e8c305d759774329ec869d56134b`.
+Source: `infra/agentinfra/roadmap_mirrors.py:108`; AST `4179c7e1fda4531b29bd4a4a308387fafc81e4994abe5e3dfd5e758a64405133`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. for over a source-compatible iterator; preserve mutation/iteration and else-on-normal-exhaustion semantics
 
@@ -3508,7 +3508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7]::Try
 
-Source: `infra/agentinfra/roadmap_mirrors.py:118`; AST `ef661a2827f19c4328ccd15b289d0978644ec5e10c7380960b3f83cc3693cd49`.
+Source: `infra/agentinfra/roadmap_mirrors.py:118`; AST `091cbdce1fee3a1c3979798327f40cbac5a1b6bed7341e117dae6407be568e39`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Result propagation plus typed error matching; finally via explicit cleanup on success/error/return, not Drop alone
 
@@ -3628,7 +3628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:122`; AST `48befb21bb71e20238fbf25b6a519f336afbcdb7a2f28dcefc0fcdc1a67a38b8`.
+Source: `infra/agentinfra/roadmap_mirrors.py:122`; AST `2f1e5f38af4f5950e98ea8c1e5ebd5a61e156e392052c83b2ca1c447e04de90b`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3648,7 +3648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:122`; AST `bf24a1a3e1fcd35dd24fcce4f3d76f19b992fef9e0aafd5b64953509eb8f045c`.
+Source: `infra/agentinfra/roadmap_mirrors.py:122`; AST `f3129863a963e279d6034f5459314dcfd5c7a3dbd5c907393121b28827cc63ba`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3668,7 +3668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[2]::Assign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:123`; AST `5d2ae2540f7ccb509b7f248bacd05d5eaab58355b3108d9cc44bc1634a6dad48`.
+Source: `infra/agentinfra/roadmap_mirrors.py:124`; AST `5d2ae2540f7ccb509b7f248bacd05d5eaab58355b3108d9cc44bc1634a6dad48`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3688,7 +3688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[2].value.elts[0]::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:123`; AST `46ef61fb8c7d09a7bf845569bbc8968c05c256379ed5433a5aca1ba6d226695f`.
+Source: `infra/agentinfra/roadmap_mirrors.py:124`; AST `46ef61fb8c7d09a7bf845569bbc8968c05c256379ed5433a5aca1ba6d226695f`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3708,7 +3708,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3]::With
 
-Source: `infra/agentinfra/roadmap_mirrors.py:124`; AST `3a4fd6359a85de5c6101096400ebfc6c7bb10c27d29e840c8db81773fe846441`.
+Source: `infra/agentinfra/roadmap_mirrors.py:125`; AST `3a4fd6359a85de5c6101096400ebfc6c7bb10c27d29e840c8db81773fe846441`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. scoped resource guard plus explicit enter/exit and exception-suppression result
 
@@ -3728,7 +3728,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].items[0].context_expr::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:124`; AST `cd1fc77b5089853496bfee581bdf5cf466a2cb4ce43d70b74275045f6596da2a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:125`; AST `cd1fc77b5089853496bfee581bdf5cf466a2cb4ce43d70b74275045f6596da2a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3748,7 +3748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0]::With
 
-Source: `infra/agentinfra/roadmap_mirrors.py:125`; AST `f6ee4ec15d787f7ef41e4306e3d6dedea90179ea50713379762fbc10f29f5bfe`.
+Source: `infra/agentinfra/roadmap_mirrors.py:126`; AST `f6ee4ec15d787f7ef41e4306e3d6dedea90179ea50713379762fbc10f29f5bfe`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. scoped resource guard plus explicit enter/exit and exception-suppression result
 
@@ -3768,7 +3768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].items[0].context_expr::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:125`; AST `92f388e9646ee4657b38dfa4bd0c9d93c0b1ad88a241b1b3eccdb08cabd90143`.
+Source: `infra/agentinfra/roadmap_mirrors.py:126`; AST `92f388e9646ee4657b38dfa4bd0c9d93c0b1ad88a241b1b3eccdb08cabd90143`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3788,7 +3788,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:126`; AST `27117513a62fd2e6e15606dccb9ae27b498e76ce5b8557a3e46b99f4743f3a32`.
+Source: `infra/agentinfra/roadmap_mirrors.py:127`; AST `27117513a62fd2e6e15606dccb9ae27b498e76ce5b8557a3e46b99f4743f3a32`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3808,7 +3808,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1]::While
 
-Source: `infra/agentinfra/roadmap_mirrors.py:127`; AST `26012b1315f70b596112d96318478e44f54d00f6fb8f06db9977e3fa8effe017`.
+Source: `infra/agentinfra/roadmap_mirrors.py:128`; AST `26012b1315f70b596112d96318478e44f54d00f6fb8f06db9977e3fa8effe017`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. while with explicit truth conversion and a normal-exhaustion flag for loop else
 
@@ -3828,7 +3828,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:128`; AST `11ea19e13fe705d3e24dcab885dfb1d9645aa475ceb40e3bda2b7b2946cb2af1`.
+Source: `infra/agentinfra/roadmap_mirrors.py:129`; AST `11ea19e13fe705d3e24dcab885dfb1d9645aa475ceb40e3bda2b7b2946cb2af1`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3848,7 +3848,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:128`; AST `659a1aa1c926556b214aa77652fe9e5f1d12efde506a26fd5cdfdc38bbf8e4f7`.
+Source: `infra/agentinfra/roadmap_mirrors.py:129`; AST `659a1aa1c926556b214aa77652fe9e5f1d12efde506a26fd5cdfdc38bbf8e4f7`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3868,7 +3868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[0].value.args[0].left::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:128`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
+Source: `infra/agentinfra/roadmap_mirrors.py:129`; AST `1518ec519851d0a5084168b533bc641ad5d2ce5a406bada9f9d7d919d82e5b92`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3888,7 +3888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:129`; AST `01388335d0cc65145945338a6dae4a4b7ca5656020ff5f50ad19b83c0cab23fc`.
+Source: `infra/agentinfra/roadmap_mirrors.py:130`; AST `01388335d0cc65145945338a6dae4a4b7ca5656020ff5f50ad19b83c0cab23fc`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3908,7 +3908,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:129`; AST `486bfa5f84495dd85edcebcdd914f0d2e78f3ffd95ada51e13d859d268be2f09`.
+Source: `infra/agentinfra/roadmap_mirrors.py:130`; AST `486bfa5f84495dd85edcebcdd914f0d2e78f3ffd95ada51e13d859d268be2f09`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -3928,7 +3928,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[2]::If
 
-Source: `infra/agentinfra/roadmap_mirrors.py:130`; AST `f84dd423a781f5e574b9f7a1f7392884bd07a02891b07e8df1240c51081ed583`.
+Source: `infra/agentinfra/roadmap_mirrors.py:131`; AST `f84dd423a781f5e574b9f7a1f7392884bd07a02891b07e8df1240c51081ed583`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -3948,7 +3948,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[2].body[0]::Break
 
-Source: `infra/agentinfra/roadmap_mirrors.py:131`; AST `c0d25d96e6146e7b648417b86bf6bbfedd0a458099247cf2cd469124da4c9fec`.
+Source: `infra/agentinfra/roadmap_mirrors.py:132`; AST `c0d25d96e6146e7b648417b86bf6bbfedd0a458099247cf2cd469124da4c9fec`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3968,7 +3968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[3]::AugAssign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:132`; AST `18bcba3de3adda48da4f4c2e4b2317f2e1615e978aee1fdcbef98e021a6f6c02`.
+Source: `infra/agentinfra/roadmap_mirrors.py:133`; AST `18bcba3de3adda48da4f4c2e4b2317f2e1615e978aee1fdcbef98e021a6f6c02`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -3988,7 +3988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:132`; AST `6f99d4ecb2708ba92e74d7c76fd9b2c1d7b1aa91d619b54799b549e649104fc3`.
+Source: `infra/agentinfra/roadmap_mirrors.py:133`; AST `6f99d4ecb2708ba92e74d7c76fd9b2c1d7b1aa91d619b54799b549e649104fc3`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4008,7 +4008,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:133`; AST `482e054dece6da57bb20b194d4852bbb1af8cb24fcdbbf240691cc45ea92430f`.
+Source: `infra/agentinfra/roadmap_mirrors.py:134`; AST `482e054dece6da57bb20b194d4852bbb1af8cb24fcdbbf240691cc45ea92430f`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4028,7 +4028,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:133`; AST `b08f1da57fd70880d1d9f08f7e120e581e3ac0076c0166214a46dc8bf68427ae`.
+Source: `infra/agentinfra/roadmap_mirrors.py:134`; AST `b08f1da57fd70880d1d9f08f7e120e581e3ac0076c0166214a46dc8bf68427ae`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4048,7 +4048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[5]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:134`; AST `9c802f4657e8e7d7607ed61235070098592ebe3b89265147793dd56aa51c617c`.
+Source: `infra/agentinfra/roadmap_mirrors.py:135`; AST `9c802f4657e8e7d7607ed61235070098592ebe3b89265147793dd56aa51c617c`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4068,7 +4068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:134`; AST `190360950a5fd203e4c19531c04f75f94bc12254565043396c7251615d294d97`.
+Source: `infra/agentinfra/roadmap_mirrors.py:135`; AST `190360950a5fd203e4c19531c04f75f94bc12254565043396c7251615d294d97`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4088,7 +4088,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[6]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:135`; AST `5b9720c9bee8347a04a755fb211d21ac07ec37d01120d4cb42081ec943b93f56`.
+Source: `infra/agentinfra/roadmap_mirrors.py:136`; AST `5b9720c9bee8347a04a755fb211d21ac07ec37d01120d4cb42081ec943b93f56`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4108,7 +4108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[3].body[0].body[1].body[6].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:135`; AST `81d5d403d3ef72138e8f5cb3c1e11ce3b23c62358a2679395188a44e224025d9`.
+Source: `infra/agentinfra/roadmap_mirrors.py:136`; AST `81d5d403d3ef72138e8f5cb3c1e11ce3b23c62358a2679395188a44e224025d9`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4128,7 +4128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:136`; AST `b56fcb78707afdf25672f0dafbc5264c73a6fdc61bde6b133c8bb34361d61955`.
+Source: `infra/agentinfra/roadmap_mirrors.py:137`; AST `b56fcb78707afdf25672f0dafbc5264c73a6fdc61bde6b133c8bb34361d61955`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4148,7 +4148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:136`; AST `ee6472b40716f31fa1cd282589b492cca51628d4f6b408e1482137d30651229c`.
+Source: `infra/agentinfra/roadmap_mirrors.py:137`; AST `ee6472b40716f31fa1cd282589b492cca51628d4f6b408e1482137d30651229c`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4168,7 +4168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[4].value.keywords[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:136`; AST `429bf1063cc0186d561b9173ea78e26b0f1ccbd888ae1bf86c8b10aabc247e50`.
+Source: `infra/agentinfra/roadmap_mirrors.py:137`; AST `429bf1063cc0186d561b9173ea78e26b0f1ccbd888ae1bf86c8b10aabc247e50`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4188,7 +4188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[5]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:137`; AST `5d53fe4a85757e3800edfcd901f60b177e68d405e949f48445264a06c38eaba8`.
+Source: `infra/agentinfra/roadmap_mirrors.py:138`; AST `5d53fe4a85757e3800edfcd901f60b177e68d405e949f48445264a06c38eaba8`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4208,7 +4208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[5].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:137`; AST `637765f0d422c2cbfac71cce0108d4b36304471eec056df007c5a19b7f159621`.
+Source: `infra/agentinfra/roadmap_mirrors.py:138`; AST `637765f0d422c2cbfac71cce0108d4b36304471eec056df007c5a19b7f159621`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4228,7 +4228,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[5].value.args[0].values[1].left::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:137`; AST `429bf1063cc0186d561b9173ea78e26b0f1ccbd888ae1bf86c8b10aabc247e50`.
+Source: `infra/agentinfra/roadmap_mirrors.py:138`; AST `429bf1063cc0186d561b9173ea78e26b0f1ccbd888ae1bf86c8b10aabc247e50`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4248,7 +4248,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[6]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:138`; AST `0f9704ad9ec67c5268c5d9527db346f1499118ea918f504c0c86127338a1eefb`.
+Source: `infra/agentinfra/roadmap_mirrors.py:139`; AST `0f9704ad9ec67c5268c5d9527db346f1499118ea918f504c0c86127338a1eefb`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4268,7 +4268,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[6].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:138`; AST `d46f8d171cc48fc29a5e567eb00ffda6d4d879a3102092c328fa0a97aa0283f8`.
+Source: `infra/agentinfra/roadmap_mirrors.py:139`; AST `d46f8d171cc48fc29a5e567eb00ffda6d4d879a3102092c328fa0a97aa0283f8`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4288,7 +4288,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[6].value.args[0].operand::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:138`; AST `65a9b6c938dd41ce241a38e5ad89154925bfb2a60b6a4960ec27b7239156acdb`.
+Source: `infra/agentinfra/roadmap_mirrors.py:139`; AST `65a9b6c938dd41ce241a38e5ad89154925bfb2a60b6a4960ec27b7239156acdb`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4308,7 +4308,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[7]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:139`; AST `2d0feac56e67f48b48fc455b246fa938a8ae899e415163b65008e14d20533a81`.
+Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `2d0feac56e67f48b48fc455b246fa938a8ae899e415163b65008e14d20533a81`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4328,7 +4328,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[7].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:139`; AST `e34e3e3e47d4a1857d5e745199738f4cb8aede3e0fa513420b19bc2862d82a97`.
+Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `e34e3e3e47d4a1857d5e745199738f4cb8aede3e0fa513420b19bc2862d82a97`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4348,7 +4348,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[8]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `19384e8f806a54a07d528657743702544587dfd0ad8cc3bb40997ecc03cf1994`.
+Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `19384e8f806a54a07d528657743702544587dfd0ad8cc3bb40997ecc03cf1994`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4368,7 +4368,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[8].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `3c4b290a1f6a890ef712bd9f21dcb8a29f87af2c0e036cb59d11f6065ac3d268`.
+Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `3c4b290a1f6a890ef712bd9f21dcb8a29f87af2c0e036cb59d11f6065ac3d268`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4388,7 +4388,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[8].value.keywords[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `64a54a3ab4aace227b6fd10315b246f9dba3ff41222b2ad3f6d92034209f062b`.
+Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `64a54a3ab4aace227b6fd10315b246f9dba3ff41222b2ad3f6d92034209f062b`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4408,7 +4408,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[8].value.keywords[1].value.args[1]::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `06b516eecc61f6f21156d1e06f8de045cbf83c558d758b2898ec3d669ac263dd`.
+Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `06b516eecc61f6f21156d1e06f8de045cbf83c558d758b2898ec3d669ac263dd`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4428,7 +4428,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[8].value.keywords[1].value.args[1].func.value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:140`; AST `ea5d4c93f9f1daaf4c30b187da7e0bb28b312ed38010f08d4527034161e05516`.
+Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `ea5d4c93f9f1daaf4c30b187da7e0bb28b312ed38010f08d4527034161e05516`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4448,7 +4448,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[9]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `a06c067ce3eac7a02b7b06b17620888e2dacc402639ea2c15ce9d0bad1b82655`.
+Source: `infra/agentinfra/roadmap_mirrors.py:142`; AST `a06c067ce3eac7a02b7b06b17620888e2dacc402639ea2c15ce9d0bad1b82655`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4468,7 +4468,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[9].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:141`; AST `fed29693b66e7b4b35a43aa4d72d7f20089997c05e1db5b052e07f5a1658e356`.
+Source: `infra/agentinfra/roadmap_mirrors.py:142`; AST `fed29693b66e7b4b35a43aa4d72d7f20089997c05e1db5b052e07f5a1658e356`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4488,7 +4488,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].body[10]::Return
 
-Source: `infra/agentinfra/roadmap_mirrors.py:142`; AST `ba7aee57225013aa5eb8d1f77060c02dae8d2fd452a43950ecaf458982a136d7`.
+Source: `infra/agentinfra/roadmap_mirrors.py:143`; AST `ba7aee57225013aa5eb8d1f77060c02dae8d2fd452a43950ecaf458982a136d7`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4508,7 +4508,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0]::ExceptHandler
 
-Source: `infra/agentinfra/roadmap_mirrors.py:143`; AST `fdf73bc4c068989c4ab1f485b7e26d5d1ca222eae0235a08a0fe78ba4d0745bc`.
+Source: `infra/agentinfra/roadmap_mirrors.py:144`; AST `fdf73bc4c068989c4ab1f485b7e26d5d1ca222eae0235a08a0fe78ba4d0745bc`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. match on source error enum preserving exception subtype matching and binding cleanup
 
@@ -4528,7 +4528,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:144`; AST `24566649d9a123b7bd773713970772c04cf89d97325e5ba037299600bb55be98`.
+Source: `infra/agentinfra/roadmap_mirrors.py:145`; AST `24566649d9a123b7bd773713970772c04cf89d97325e5ba037299600bb55be98`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4548,7 +4548,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:144`; AST `ceef1f9a63ad0cb68e75cc9046d7a2e3691525f889240af9b1b8b18b92408a59`.
+Source: `infra/agentinfra/roadmap_mirrors.py:145`; AST `ceef1f9a63ad0cb68e75cc9046d7a2e3691525f889240af9b1b8b18b92408a59`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4568,7 +4568,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[0].value.args[0].operand::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:144`; AST `65a9b6c938dd41ce241a38e5ad89154925bfb2a60b6a4960ec27b7239156acdb`.
+Source: `infra/agentinfra/roadmap_mirrors.py:145`; AST `65a9b6c938dd41ce241a38e5ad89154925bfb2a60b6a4960ec27b7239156acdb`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4588,7 +4588,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:145`; AST `fc6d08dce645f552fab8afc51da38df9deb044aa560ee31fb4ab49178d3f4b15`.
+Source: `infra/agentinfra/roadmap_mirrors.py:146`; AST `fc6d08dce645f552fab8afc51da38df9deb044aa560ee31fb4ab49178d3f4b15`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4608,7 +4608,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:145`; AST `4591afb4059728efbca715e27ee3cf4e6eaaa35327fcbc9f0d29cb8d79d74171`.
+Source: `infra/agentinfra/roadmap_mirrors.py:146`; AST `4591afb4059728efbca715e27ee3cf4e6eaaa35327fcbc9f0d29cb8d79d74171`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4628,7 +4628,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[1].value.keywords[1].value.value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:145`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
+Source: `infra/agentinfra/roadmap_mirrors.py:146`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4648,7 +4648,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2]::If
 
-Source: `infra/agentinfra/roadmap_mirrors.py:146`; AST `dd5cf3afaf00c14f447cf21be974ecf628aa1644aa89929e48416ece555158b8`.
+Source: `infra/agentinfra/roadmap_mirrors.py:147`; AST `dd5cf3afaf00c14f447cf21be974ecf628aa1644aa89929e48416ece555158b8`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -4668,7 +4668,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].test.values[1]::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:146`; AST `8cbf3aead02eaa20e373f530b2eab77766a8dc73f76131e459dff4d11ed50f66`.
+Source: `infra/agentinfra/roadmap_mirrors.py:147`; AST `8cbf3aead02eaa20e373f530b2eab77766a8dc73f76131e459dff4d11ed50f66`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4688,7 +4688,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[0]::Assign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:147`; AST `acbc87b0f524295c1afd842c03763486fb8ff98841550d731d68f15064b46ae4`.
+Source: `infra/agentinfra/roadmap_mirrors.py:148`; AST `acbc87b0f524295c1afd842c03763486fb8ff98841550d731d68f15064b46ae4`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4708,7 +4708,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:147`; AST `036cf7dddaf576ab4be59cf3ea4fc55cafb37cfe12cfe42e258ae18502a59d30`.
+Source: `infra/agentinfra/roadmap_mirrors.py:148`; AST `036cf7dddaf576ab4be59cf3ea4fc55cafb37cfe12cfe42e258ae18502a59d30`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4728,7 +4728,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[1]::Assign
 
-Source: `infra/agentinfra/roadmap_mirrors.py:148`; AST `870bd4ba716c33c3ef7c2f2276bd7404665565bff2ce4af94a9ae33a1208a362`.
+Source: `infra/agentinfra/roadmap_mirrors.py:149`; AST `870bd4ba716c33c3ef7c2f2276bd7404665565bff2ce4af94a9ae33a1208a362`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4748,7 +4748,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:148`; AST `f4040b0e8a327b80c3a6d6508b6a177f0b250b913a1c0b8ebde9e4d831ea0d1a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:149`; AST `f4040b0e8a327b80c3a6d6508b6a177f0b250b913a1c0b8ebde9e4d831ea0d1a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4768,7 +4768,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[1].value.args[1].right.left.right::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:148`; AST `5bdb5d1eee130dbed52cd02b55d2bae0a08474ef4a3589a2f763913acb5ea48a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:149`; AST `5bdb5d1eee130dbed52cd02b55d2bae0a08474ef4a3589a2f763913acb5ea48a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4788,7 +4788,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[2]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:149`; AST `765eec377596dc8670de763dac626a3cf18d123d1e2f05cb7e10cb5c567ee814`.
+Source: `infra/agentinfra/roadmap_mirrors.py:150`; AST `765eec377596dc8670de763dac626a3cf18d123d1e2f05cb7e10cb5c567ee814`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4808,7 +4808,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[2].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:149`; AST `9f1fe334e26f590bf0b36f8f3aeb4332a21bd2d915ba70c9d5740a855969670a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:150`; AST `9f1fe334e26f590bf0b36f8f3aeb4332a21bd2d915ba70c9d5740a855969670a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4828,7 +4828,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3]::If
 
-Source: `infra/agentinfra/roadmap_mirrors.py:150`; AST `996bb504f1882bc7df8c7c6bdc084928515db3e9c63d0fce2973e9f81dd1363b`.
+Source: `infra/agentinfra/roadmap_mirrors.py:151`; AST `996bb504f1882bc7df8c7c6bdc084928515db3e9c63d0fce2973e9f81dd1363b`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. if/else with explicit Python truth-value conversion and unchanged branch order
 
@@ -4848,7 +4848,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].test::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:150`; AST `d7be5e17beb640ea1d6422e78cba5469834d711e2f02265640fe957b608aaa96`.
+Source: `infra/agentinfra/roadmap_mirrors.py:151`; AST `d7be5e17beb640ea1d6422e78cba5469834d711e2f02265640fe957b608aaa96`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4868,7 +4868,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].body[0]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:151`; AST `1d19ce09c3c1290a17887a516b7593575f336b267f464e7443fad9f5698154f1`.
+Source: `infra/agentinfra/roadmap_mirrors.py:152`; AST `1d19ce09c3c1290a17887a516b7593575f336b267f464e7443fad9f5698154f1`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4888,7 +4888,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].body[0].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:151`; AST `51b3944840505a14ef675d9f03d5237f3a283d37c115dd362105f0b5f75db373`.
+Source: `infra/agentinfra/roadmap_mirrors.py:152`; AST `51b3944840505a14ef675d9f03d5237f3a283d37c115dd362105f0b5f75db373`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4908,7 +4908,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].body[0].value.args[0].left::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:151`; AST `a02e4701a421dc1db710d069758021c383ec7d6dd14267ecd096618dc2e55c55`.
+Source: `infra/agentinfra/roadmap_mirrors.py:152`; AST `a02e4701a421dc1db710d069758021c383ec7d6dd14267ecd096618dc2e55c55`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4928,7 +4928,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].body[1]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:152`; AST `22e4fb708920f4df472750b506bc8df9a1ac66993747ba5782d5eb79569ce212`.
+Source: `infra/agentinfra/roadmap_mirrors.py:153`; AST `22e4fb708920f4df472750b506bc8df9a1ac66993747ba5782d5eb79569ce212`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4948,7 +4948,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].body[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:152`; AST `e947d95510b1f238a23ed7803a95db47aec3ba739daa1be4f166bafcba87d82a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:153`; AST `e947d95510b1f238a23ed7803a95db47aec3ba739daa1be4f166bafcba87d82a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -4968,7 +4968,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].orelse[0]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:154`; AST `c0efa4cdfa4569232c796513a11a0099fbb31e4fb3e4ded56d47268328ef1573`.
+Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `c0efa4cdfa4569232c796513a11a0099fbb31e4fb3e4ded56d47268328ef1573`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -4988,7 +4988,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[3].orelse[0].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:154`; AST `3868641e497be0b187e2d71db599062b5c0c5cb60c9715987ed95e775a23203f`.
+Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `3868641e497be0b187e2d71db599062b5c0c5cb60c9715987ed95e775a23203f`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5008,7 +5008,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `05d6050fedc766c45eb0b713806f50e50a3d42e2073684e5839f25fbd6bdfccc`.
+Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `05d6050fedc766c45eb0b713806f50e50a3d42e2073684e5839f25fbd6bdfccc`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5028,7 +5028,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `814df82164e130f70ae50afc3b97a22234205d986a6a05466e9eefd161c5b846`.
+Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `814df82164e130f70ae50afc3b97a22234205d986a6a05466e9eefd161c5b846`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5048,7 +5048,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4].value.keywords[0].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `a984e60fdf094e8e9ca9096c40df3ba1c810c65d3cf6c87b4fe3122a9d32f492`.
+Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `a984e60fdf094e8e9ca9096c40df3ba1c810c65d3cf6c87b4fe3122a9d32f492`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5068,7 +5068,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4].value.keywords[0].value.args[1]::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `2fe01ec8d376f86d221f148e9bd9e6a088cc6f4dde81042bc71f4254deb085f3`.
+Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `2fe01ec8d376f86d221f148e9bd9e6a088cc6f4dde81042bc71f4254deb085f3`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5088,7 +5088,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4].value.keywords[0].value.args[1].func.value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:155`; AST `de45c3fe276aba87c195aa25c623d19f94e52d4d8600c058c78e1f025428164a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `de45c3fe276aba87c195aa25c623d19f94e52d4d8600c058c78e1f025428164a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5108,7 +5108,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4].value.keywords[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `14381ee198b233fab86e0cefdac3169f8ede2b4f94479d019dcd9cc290015a66`.
+Source: `infra/agentinfra/roadmap_mirrors.py:157`; AST `14381ee198b233fab86e0cefdac3169f8ede2b4f94479d019dcd9cc290015a66`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5128,7 +5128,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[2].body[4].value.keywords[2].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:156`; AST `5bdb5d1eee130dbed52cd02b55d2bae0a08474ef4a3589a2f763913acb5ea48a`.
+Source: `infra/agentinfra/roadmap_mirrors.py:157`; AST `5bdb5d1eee130dbed52cd02b55d2bae0a08474ef4a3589a2f763913acb5ea48a`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5148,7 +5148,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[3]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:157`; AST `a06c067ce3eac7a02b7b06b17620888e2dacc402639ea2c15ce9d0bad1b82655`.
+Source: `infra/agentinfra/roadmap_mirrors.py:158`; AST `a06c067ce3eac7a02b7b06b17620888e2dacc402639ea2c15ce9d0bad1b82655`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5168,7 +5168,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[3].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:157`; AST `fed29693b66e7b4b35a43aa4d72d7f20089997c05e1db5b052e07f5a1658e356`.
+Source: `infra/agentinfra/roadmap_mirrors.py:158`; AST `fed29693b66e7b4b35a43aa4d72d7f20089997c05e1db5b052e07f5a1658e356`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5188,7 +5188,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[4]::Expr
 
-Source: `infra/agentinfra/roadmap_mirrors.py:158`; AST `ef3fa73e8ee0737e3ef22e65bee786334d48158f36a8ada478545ee56ba040eb`.
+Source: `infra/agentinfra/roadmap_mirrors.py:159`; AST `ef3fa73e8ee0737e3ef22e65bee786334d48158f36a8ada478545ee56ba040eb`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5208,7 +5208,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[4].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:158`; AST `86e072d7b6c3968149882b434faa22d0558f8905a047899d00c4f1309d7593e4`.
+Source: `infra/agentinfra/roadmap_mirrors.py:159`; AST `86e072d7b6c3968149882b434faa22d0558f8905a047899d00c4f1309d7593e4`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5228,7 +5228,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[12].body[7].handlers[0].body[4].value.args[0].values[1].value::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:158`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
+Source: `infra/agentinfra/roadmap_mirrors.py:159`; AST `760fdaff1a05c24c8db8bb1ee0c475c11403d48d9ac9c89ec3c062a1494d5d01`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5248,7 +5248,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[13]::Raise
 
-Source: `infra/agentinfra/roadmap_mirrors.py:159`; AST `24e883ee0f23a9ae0630352835e682a8482914547097a8cb87f0169be6b26e17`.
+Source: `infra/agentinfra/roadmap_mirrors.py:160`; AST `24e883ee0f23a9ae0630352835e682a8482914547097a8cb87f0169be6b26e17`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. Preserve this statement's evaluation order in its enclosing Rust function; use explicit Result/error and ownership effects
 
@@ -5268,7 +5268,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[13].exc::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:159`; AST `72b289d90b843c059bf7f8b6feda79139169c0cc0b28401fa9322e1f2c5a0a35`.
+Source: `infra/agentinfra/roadmap_mirrors.py:160`; AST `72b289d90b843c059bf7f8b6feda79139169c0cc0b28401fa9322e1f2c5a0a35`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
@@ -5288,7 +5288,7 @@ Required evidence: current Python tests; actual production Python proof where ap
 
 ## infra/agentinfra/roadmap_mirrors.py::module::download_with_mirrors::root.body[19].body[13].exc.args[0].right::Call
 
-Source: `infra/agentinfra/roadmap_mirrors.py:159`; AST `e2ef4e3295facda7605e6db852f395cc5b790449a961fdf0580a30db32d959ee`.
+Source: `infra/agentinfra/roadmap_mirrors.py:160`; AST `e2ef4e3295facda7605e6db852f395cc5b790449a961fdf0580a30db32d959ee`.
 
 Rust module: `infra::agentinfra::roadmap_mirrors`. typed Rust call or trait boundary; preserve argument evaluation, keyword/default binding, effects and errors
 
