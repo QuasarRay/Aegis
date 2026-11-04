@@ -27,7 +27,28 @@
       "acceptance": "Model proof alone is insufficient; qualify production translation before any proof credit",
       "name": "Apex",
       "role": "bounded qualification experiment",
-      "status": "NOT_QUALIFIED"
+      "status": "NOT_QUALIFIED",
+      "source_readiness": {
+        "status": "REVIEWED_NOT_EXECUTED",
+        "source_commit": "550d49106a5c169ab7ae30f68fc8c887625be4d3",
+        "source_tree": "a193fb8e4da475eeef6ed3cc78d1bdbe81c57a64",
+        "scope": "Pinned upstream source review; no installation, actual production trial, backend qualification or domain proof.",
+        "primary_sources": [
+          "https://github.com/hyperionaidev/apex/blob/550d49106a5c169ab7ae30f68fc8c887625be4d3/docs/LIMITS.md",
+          "https://github.com/hyperionaidev/apex/blob/550d49106a5c169ab7ae30f68fc8c887625be4d3/src/apex/analyze/target.py",
+          "https://github.com/hyperionaidev/apex/blob/550d49106a5c169ab7ae30f68fc8c887625be4d3/src/apex/translate/lean.py",
+          "https://github.com/hyperionaidev/apex/blob/550d49106a5c169ab7ae30f68fc8c887625be4d3/src/apex/fidelity/bridge.py",
+          "https://github.com/hyperionaidev/apex/blob/550d49106a5c169ab7ae30f68fc8c887625be4d3/src/apex/pipeline.py"
+        ],
+        "required_repairs": [
+          "Preserve and translate exact tuple iteration, runtime type identity, dictionaries/strings, imported declarations and the full required module initialization/state closure.",
+          "Preserve original unittest fixture/call/assertion/exception semantics; the current shared controls use None returns and nonleading assertions that the inspected translator does not model.",
+          "Supply an accepted production-to-model semantic linkage argument; generated-input fidelity comparison cannot supply full-domain translation correctness.",
+          "Before any actual trial, pin a fixed source-owned producer under existing lease/ledger/recipe ownership, preserve Codex-only single-agent execution, and exclude automatic fuzz/concurrency/provider dispatch."
+        ],
+        "domain_proof": false,
+        "backend_qualified": false
+      }
     },
     {
       "acceptance": "Never full-domain-proof credit",
